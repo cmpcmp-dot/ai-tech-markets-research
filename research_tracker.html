@@ -929,15 +929,15 @@ const THEMES = [
     confidence: "consensus",
     question: "Who faces the greatest displacement risk — and is AI widening inequality?",
     framing: "The displacement story is no longer about which jobs disappear — it's about who captures the productivity gains and who absorbs the losses.",
-    synthesis: "<p>Research consensus is shifting: AI is inverting prior automation patterns by targeting higher-wage cognitive work (Eloundou et al.), yet early productivity data shows gains concentrating among workers already earning above the median. Goldman Sachs estimates 300 million jobs globally face partial automation exposure, while Brookings documents that AI-skilled workers already command an 11–25% salary premium over equivalent roles.</p><p>Acemoglu cautions that net job-creation projections are overstated and that productivity gains may accrue almost entirely to capital rather than labor. Mateescu et al. argue displacement is a deliberate policy choice, not technological inevitability — framing that shifts responsibility from technology to governance and directly determines where intervention is most productive.</p>",
-    gaps: ["Long-run wage effects after task displacement", "Geographic variation — which metros and rural areas absorb the most harm", "Informal and gig sector exposure, largely absent from current data"],
+    synthesis: "<p>Research consensus is shifting: AI is inverting prior automation patterns by targeting higher-wage cognitive work (Eloundou et al.), yet early productivity data shows gains concentrating among workers already earning above the median. The ILO's 2025 global analysis finds one in four workers is in an occupation with some degree of GenAI exposure — with transformation rather than wholesale replacement as the most likely near-term outcome. The World Economic Forum projects 170 million new roles and 92 million displaced by 2030, while Brookings documents that AI-skilled workers already command an 11–25% salary premium over equivalent roles.</p><p>Acemoglu's task-level macroeconomic modeling cautions that net job-creation projections are overstated: AI's total factor productivity gains are likely under 0.53% over 10 years, and the gains will widen the capital-labor income gap without countervailing policy. Bivens and Zipperer at EPI sharpen this diagnosis — the real threat is not the technology itself but unbalanced employer power that deploys AI as a control mechanism rather than a productivity-sharing tool. Mateescu et al. reinforce the frame: displacement is a deliberate policy choice, not technological inevitability. New research from Brookings and Opportunity@Work adds a frequently overlooked dimension: AI may not eliminate entry-level Gateway jobs outright but could sever the advancement routes through them, leaving 15 million non-degree workers employed but locked out of upward mobility.</p>",
+    gaps: ["Long-run wage effects after task displacement", "Gender and geographic exposure gaps — ILO data shows women in high-income countries face nearly 3× higher high-exposure rates than men, a divide that current workforce interventions are not designed to address", "Informal and gig sector exposure, largely absent from current data"],
     implication: "<p>Institutions focused only on higher-wage knowledge workers will miss those most vulnerable to cumulative economic harm. The compounding dynamic — where AI-adopting workers pull further ahead while non-adopters fall behind — suggests the gap is widening faster than most workforce projections account for.</p><p>Understanding where AI deployment is accelerating in low-wage and informal sectors, and what tools are being used to manage those workers, should be foundational to where institutions direct attention and resources. This requires looking beyond headline employment numbers to wage trajectories, task composition, and who is absorbing the productivity gains.</p>",
     risk: {
       level: "High",
       color: "#C0392B",
       summary: "<p>AI-driven wage divergence is accelerating faster than policy or institutions can respond. The risk is not theoretical displacement but compounding inequality — workers without AI skills fall further behind while productivity gains concentrate among those already above the median, and the gap widens annually.</p><p>Institutions that treat this as a future risk rather than a present one will fall behind the intervention window. The research suggests the divergence is already underway and is being measured in salary premiums and task-exposure data, not in projections.</p>"
     },
-    papers: [1, 2, 19, 20, 22],
+    papers: [1, 2, 46, 60, 61],
   },
   {
     id: "equity",
@@ -946,7 +946,7 @@ const THEMES = [
     confidence: "consensus",
     question: "Is AI compounding existing racial, gender, and class inequalities?",
     framing: "AI systems are not neutral by default — documented disparities in hiring, credit, and surveillance show that without deliberate intervention, AI rollout will deepen existing inequalities.",
-    synthesis: "<p>Documented disparities are persistent across the AI pipeline. In hiring, fewer than 20% of vendors provide adequate bias audit documentation, and NIST's AI Risk Management Framework identifies demographic parity failures as among the most underreported deployment risks. Mortgage underwriting algorithms show 40–60% higher denial rates for Black and Latino applicants even after controlling for creditworthiness, per NCRC analysis. On the adoption side, women are adopting generative AI at measurably lower rates globally — a gap that, if sustained, will compound into earnings and career disparities over the next decade.</p><p>Meanwhile, 'privacy-preserving' surveillance techniques — differential privacy, on-device processing — are increasingly being used to satisfy compliance requirements while still enabling fine-grained monitoring of low-wage logistics and retail workers. AI for Social Good literature broadly documents that communities historically marginalized by technology do not automatically benefit from its improvement; equitable distribution of AI gains requires deliberate architectural and policy choices at procurement and deployment stages.</p>",
+    synthesis: "<p>Documented disparities are persistent across the AI pipeline. In hiring, fewer than 20% of vendors provide adequate bias audit documentation, and NIST's AI Risk Management Framework identifies demographic parity failures as among the most underreported deployment risks. Mortgage underwriting algorithms show 40–60% higher denial rates for Black and Latino applicants even after controlling for creditworthiness, per NCRC analysis. Tenant screening algorithms present a third documented domain: the National Consumer Law Center finds no empirical evidence that credit scores predict successful tenancy, yet they are primary inputs to automated screening tools that amplify racial disparities embedded in eviction records and criminal histories — making discrimination faster, cheaper, and harder to contest than under human decision-making. On the adoption side, women are adopting generative AI at measurably lower rates globally — a gap that, if sustained, will compound into earnings and career disparities over the next decade.</p><p>Meanwhile, 'privacy-preserving' surveillance techniques — differential privacy, on-device processing — are increasingly being used to satisfy compliance requirements while still enabling fine-grained monitoring of low-wage logistics and retail workers. AI for Social Good literature broadly documents that communities historically marginalized by technology do not automatically benefit from its improvement; equitable distribution of AI gains requires deliberate architectural and policy choices at procurement and deployment stages.</p>",
     gaps: ["Intersectional analysis across race, gender, and class simultaneously", "Disability and accessibility in AI-mediated work", "Geographic equity in who benefits from AI-driven job creation"],
     implication: "<p>Equity frameworks need to be embedded upstream in AI procurement and deployment decisions — not treated as post-hoc audit concerns. The evidence on hiring and credit algorithms suggests that bias accumulates structurally, not incidentally, which means voluntary vendor commitments are insufficient. Institutions are better positioned to advance change through procurement standards, coalition-building with civil rights organizations, and direct advocacy for enforceable audit requirements than through general AI literacy campaigns.</p><p>The adoption gap among women and lower-income populations also warrants specific attention. Institutions investing in AI tools should actively assess who is actually using them and at what level of sophistication — not just whether access exists. Uneven adoption within institutions mirrors the broader labor market dynamic: tools that amplify productivity for confident, experienced users will widen internal equity gaps if rollout is not paired with deliberate support structures.</p>",
     risk: {
@@ -954,7 +954,7 @@ const THEMES = [
       color: "#C0392B",
       summary: "<p>Algorithmic bias in hiring, credit, and surveillance is structural and self-reinforcing. Without upstream intervention at procurement and deployment stages, AI rollout at scale will deepen racial, gender, and class disparities faster than legal or advocacy mechanisms can address them.</p><p>The adoption gap compounds the risk: if lower-income and marginalized workers adopt AI tools at lower rates and with less sophistication, the economic divergence documented in displacement research will be layered on top of pre-existing inequalities, producing outcomes that are harder to reverse over time.</p>"
     },
-    papers: [8, 9, 10, 11, 26],
+    papers: [8, 9, 10, 26, 66],
   },
   {
     id: "worker-power",
@@ -963,15 +963,15 @@ const THEMES = [
     confidence: "emerging",
     question: "What leverage do workers actually have, and where is organizing working?",
     framing: "Workers have more leverage than union density numbers suggest — but only where they can organize collectively around specific AI deployment terms before those terms become standard.",
-    synthesis: "<p>Tech sector union density remains below 5% despite rising AI-related job insecurity — a gap driven primarily by contractor misclassification, at-will employment, and aggressive employer countermeasures. Yet the 2023 WGA and SAG-AFTRA strikes produced the first replicable AI contract language in a major U.S. industry: consent requirements for AI replicas, residual payments tied to AI use, and mandatory notification when AI substitutes for covered work. These provisions are now being studied by unions in adjacent sectors.</p><p>In warehouse and logistics, Cornell ILR and worker advocacy data show that algorithmic management systems increased injury rates by 34% and voluntary turnover by the same margin — outcomes generating new organizing energy and litigation. The proliferation of surveillance tools marketed as compliant with GDPR and CCPA is enabling new forms of worker control that existing labor law does not yet address, creating an enforcement gap that is growing faster than legal doctrine can close.</p>",
-    gaps: ["Non-creative sector organizing — manufacturing, logistics, healthcare", "Gig and platform worker legal frameworks for collective action", "International labor law and cross-border organizing"],
+    synthesis: "<p>Tech sector union density remains below 5% despite rising AI-related job insecurity — a gap driven primarily by contractor misclassification, at-will employment, and aggressive employer countermeasures. Yet the 2023 WGA and SAG-AFTRA strikes produced the first replicable AI contract language in a major U.S. industry: consent requirements for AI replicas, residual payments tied to AI use, and mandatory notification when AI substitutes for covered work. In October 2025, the AFL-CIO escalated significantly with Workers First — the first comprehensive labor movement AI agenda — representing 63 unions and 15 million workers, with five binding principles covering worker input in AI design, formal negotiation requirements, surveillance limits, and employer investment in career development. The characterization of AI organizing as confined to a handful of industries is no longer accurate.</p><p>In warehouse and logistics, Cornell ILR and worker advocacy data show that algorithmic management systems increased injury rates by 34% and voluntary turnover by the same margin — outcomes generating new organizing energy and litigation. The proliferation of surveillance tools marketed as compliant with GDPR and CCPA is enabling new forms of worker control that existing labor law does not yet address. The pattern is now spreading beyond logistics: AI Now's gig nursing research documents a coordinated deregulatory campaign threatening healthcare worker protections across 25 states, and NEJM analysis finds hospital AI monitoring placing clinicians at risk of the same algorithmic management dynamics — eroded autonomy, tightening performance baselines, limited recourse — previously documented only in blue-collar settings.</p>",
+    gaps: ["Healthcare and professional sector organizing — gig nursing deregulation and clinical AI surveillance represent the newest frontier of algorithmic management, with organizing infrastructure still underdeveloped", "Gig and platform worker legal frameworks for collective action", "International labor law and cross-border organizing"],
     implication: "<p>Collective bargaining remains the most direct and documented lever workers have to shape AI deployment terms — not just wages. The WGA/SAG-AFTRA precedent demonstrates that AI governance provisions can be won through contract, even before legislation exists. Institutions with labor relationships or labor-adjacent programming should treat AI contract language development as a high-value, near-term investment: the window for establishing precedents in key industries is open now and may close as contracts normalize.</p><p>The algorithmic management data also suggests that institutions tracking worker wellbeing need to look beyond wages and employment rates. Injury frequency, voluntary turnover, and psychological safety are where harm is concentrating in AI-managed environments — outcomes that do not appear in standard labor market indicators but that workers and their advocates are documenting in real time.</p>",
     risk: {
       level: "Medium",
       color: "#D4952A",
       summary: "<p>Legal frameworks governing AI in the workplace lag deployment by years. Workers in algorithmic management environments face measurable harm — elevated injury rates, turnover, and surveillance — with limited legal recourse, and the organizing infrastructure needed to negotiate AI contract terms is underdeveloped outside a handful of industries.</p><p>The risk intensifies in sectors without union density or advocacy infrastructure. Where workers lack the collective capacity to negotiate AI terms, employer discretion over deployment conditions is nearly unchecked — and the harms documented in warehouse and logistics contexts will replicate across industries as algorithmic management tools become cheaper and more accessible.</p>"
     },
-    papers: [3, 4, 7, 12, 26],
+    papers: [3, 4, 7, 26, 76],
   },
   {
     id: "policy",
@@ -980,7 +980,7 @@ const THEMES = [
     confidence: "emerging",
     question: "What policy frameworks are emerging — and are they adequate?",
     framing: "The gap between what AI can do and what institutions are required to disclose or prevent is widening faster than any single jurisdiction can close.",
-    synthesis: "<p>U.S. policy is deeply fragmented: 47 states have no statutory AI disclosure rights for workers, and no federal floor exists for algorithmic transparency or impact assessment. The Trump administration is pursuing aggressive AI industrial policy — accelerating permitting for data center development, reducing environmental review requirements, and positioning the federal government as a demand-side anchor for AI products — while framing these moves as deregulation rather than industrial strategy. The gap between stated policy goals and enforcement capacity is growing, particularly at the state level where AI-related laws lack dedicated implementation infrastructure.</p><p>The EU AI Act, now moving into enforcement, is creating a compliance floor that will affect any institution or employer operating across jurisdictions, with high-risk AI systems in employment and credit decisions subject to mandatory conformity assessments. OpenAI's 2025 Economic Blueprint and subsequent policy proposals blend genuine access-equity framing with provisions that would entrench dominant players and limit open-source competition — a dynamic that requires scrutiny from institutions whose interests diverge from large AI developers.</p>",
+    synthesis: "<p>U.S. policy is deeply fragmented: 47 states have no statutory AI disclosure rights for workers, and no federal floor exists for algorithmic transparency or impact assessment. The Trump administration is pursuing aggressive AI industrial policy — accelerating permitting for data center development, reducing environmental review requirements, and positioning the federal government as a demand-side anchor for AI products — while framing these moves as deregulation rather than industrial strategy. The gap between stated policy goals and enforcement capacity is growing, particularly at the state level where AI-related laws lack dedicated implementation infrastructure.</p><p>The EU AI Act, now moving into enforcement, is creating a compliance floor that will affect any institution or employer operating across jurisdictions, with high-risk AI systems in employment and credit decisions subject to mandatory conformity assessments. OpenAI's 2025 Economic Blueprint and subsequent policy proposals blend genuine access-equity framing with provisions that would entrench dominant players and limit open-source competition — a dynamic that requires scrutiny from institutions whose interests diverge from large AI developers. Competition enforcement offers a parallel and underused track: Open Markets Institute analysis confirms that existing federal antitrust statutes are sufficient to address AI concentration through merger blocking, structural separation, and algorithmic price-fixing prosecution — the constraint is enforcement will and technical capacity, not legal authority, as the 2025 DOJ RealPage settlement demonstrated.</p>",
     gaps: ["State-level enforcement capacity — laws exist but lack implementation infrastructure", "Worker participation in AI governance processes", "International regulatory coordination between U.S. and EU frameworks"],
     implication: "<p>Advocacy for a federal AI worker rights floor is urgent, but the practical near-term leverage lies at the state level — where laws are passing but implementation infrastructure is almost entirely absent. Institutions with policy capacity should prioritize funding enforcement and compliance infrastructure, not just legislation. Building state agency capacity to investigate algorithmic harm is a less visible but more durable investment than supporting additional statutory language.</p><p>The EU AI Act is also creating an underappreciated opportunity: its requirements for high-risk AI systems in employment contexts can be used as a reference standard by U.S. institutions that want to establish procurement or deployment criteria ahead of domestic regulation. Institutions should also be skeptical of AI policy proposals — including from major developers — that conflate access-equity goals with market-concentration outcomes. Scrutinizing whose interests a given policy framing actually serves is an essential institutional capacity right now.</p>",
     risk: {
@@ -988,7 +988,7 @@ const THEMES = [
       color: "#D4952A",
       summary: "<p>Regulatory fragmentation creates conditions where harmful AI deployments can proceed without oversight or accountability. The core risk is the gap between policy intent and enforcement capacity: laws are passing, but the infrastructure to act on them is largely absent, and this gap is widening faster than state agencies can close it.</p><p>There is also a capture risk: well-resourced AI developers are actively shaping the policy environment in ways that can appear aligned with equity goals while protecting market concentration. Institutions that do not maintain independent policy analysis capacity risk lending legitimacy to frameworks that do not serve their constituencies.</p>"
     },
-    papers: [16, 18, 21, 24, 28],
+    papers: [16, 18, 67, 24, 28],
   },
   {
     id: "community",
@@ -997,7 +997,7 @@ const THEMES = [
     confidence: "emerging",
     question: "How is AI infrastructure reshaping specific communities and regions?",
     framing: "AI's physical infrastructure is landing in communities that had no voice in the decision — and the economic gains are flowing somewhere else.",
-    synthesis: "<p>AI infrastructure is concentrating in a handful of regions — Pennsylvania, Texas, Virginia, and Ohio lead current data center expansion — driven by land costs, energy access, and state tax incentives. Community input is routinely bypassed: at least 14 states have passed preemption laws that strip municipal authority over data center siting and permitting. Environmental impacts are significant and unevenly distributed, with large data centers consuming 20–50 megawatts of power and millions of gallons of water annually, disproportionately sited near communities with limited political capacity to negotiate mitigation.</p><p>Rural communities face a compounding disadvantage — simultaneously experiencing higher rates of automation-driven job loss in agriculture and manufacturing, while being largely excluded from AI-driven job creation concentrated in metros. Brookings Metro research documents that the top 20 AI job markets account for over 60% of new AI-related employment, and none are rural. Civic capacity to engage meaningfully with AI infrastructure decisions remains critically underdeveloped: most local governments lack dedicated technical staff, and community benefit agreement frameworks for data centers are nascent.</p>",
+    synthesis: "<p>AI infrastructure is concentrating in a handful of regions — Pennsylvania, Texas, Virginia, and Ohio lead current data center expansion — driven by land costs, energy access, and state tax incentives. Community input is routinely bypassed: at least 14 states have passed preemption laws that strip municipal authority over data center siting and permitting. Environmental impacts are significant and unevenly distributed, with large data centers consuming 20–50 megawatts of power and millions of gallons of water annually, disproportionately sited near communities with limited political capacity to negotiate mitigation.</p><p>Rural communities face a compounding disadvantage — simultaneously experiencing higher rates of automation-driven job loss in agriculture and manufacturing, while being largely excluded from AI-driven job creation concentrated in metros. Brookings Metro research documents that the top 20 AI job markets account for over 60% of new AI-related employment, and none are rural. Civic capacity to engage meaningfully with AI infrastructure decisions remains critically underdeveloped: most local governments lack dedicated technical staff, and community benefit agreement frameworks for data centers are only beginning to develop — AI Now's 2026 North Star Policy Toolkit provides model state and local legislation for environmental impact disclosure requirements and benefit agreements, directly addressing this gap. AI also harms community economic conditions through algorithmic pricing: RealPage's rent-setting software coordinated prices across competing landlords until a 2025 DOJ antitrust settlement, establishing that algorithmic pricing among competitors is actionable under existing law.</p>",
     gaps: ["Environmental justice impacts of data center energy and water use", "Municipal governance capacity — most local governments lack AI technical staff", "Rural economic transition data: what happens after a major employer automates"],
     implication: "<p>Institutions should orient toward two intersecting gaps: communities absorbing AI infrastructure without adequate civic representation or benefit-sharing, and communities experiencing industry displacement without access to AI-driven economic growth. These are not the same communities, and the strategies differ materially. For infrastructure-hosting communities, the most productive interventions are civic capacity-building and community benefit agreement frameworks established before projects are approved — not retrospective mitigation after ground is broken.</p><p>For economically displaced rural communities, the gap is structural: AI job creation is not coming to them, and workforce retraining without accompanying economic development investment produces skilled workers who leave. Institutions should be cautious about conflating these two groups in program design, and equally cautious about treating data center proximity as economic development. The fiscal benefits are real but often narrowly distributed; the community costs are diffuse and frequently uncompensated.</p>",
     risk: {
@@ -1005,7 +1005,7 @@ const THEMES = [
       color: "#D4952A",
       summary: "<p>Communities absorbing AI infrastructure are doing so without meaningful representation or benefit-sharing frameworks. Environmental and civic costs are real and growing, while economic benefits concentrate in distant metros. The window to establish protective frameworks is narrowing as deployment accelerates and state preemption laws expand the range of decisions communities cannot meaningfully contest.</p><p>For rural communities facing automation-driven displacement, the risk is structural exclusion from the economic upside of AI. Without deliberate intervention, geographic inequality in AI's benefits will compound existing regional economic divergence — producing communities that bear the costs of AI infrastructure while remaining outside the labor markets where AI-driven job creation is occurring.</p>"
     },
-    papers: [13, 23, 24, 27],
+    papers: [23, 24, 27, 48, 65],
   },
   {
     id: "reskilling",
@@ -1014,7 +1014,7 @@ const THEMES = [
     confidence: "contested",
     question: "Is reskilling delivering economic mobility — and for whom?",
     framing: "Reskilling is the go-to policy response to AI displacement — but the evidence that it actually delivers lasting mobility, especially for those who need it most, is weak.",
-    synthesis: "<p>The reskilling consensus is fracturing. Government-funded retraining programs have a weak evidence base: most evaluations show modest short-term wage gains that dissipate within 2–3 years, particularly for workers over 45 or without post-secondary credentials. The core design flaw, documented by Urban Institute and others, is treating skill-building in isolation from the structural conditions — housing instability, childcare gaps, transportation barriers, income volatility — that make sustained learning impossible for the populations most in need. Meanwhile, employer-led upskilling investments are concentrating on already-higher-wage workers, with little evidence of investment in frontline or low-wage populations.</p><p>On the technology side, Anthropic's 80,000-person usage study reveals a deepening expertise gap: experienced users treat AI as a collaborative partner, refining outputs iteratively and building compound advantages, while novice users offload discrete tasks entirely and capture far less value. This suggests that AI tools are amplifying existing skill and confidence gaps rather than leveling them — and that generic AI literacy programs, without deliberate scaffolding toward collaborative use, may widen the divide they aim to close.</p>",
+    synthesis: "<p>The reskilling consensus is fracturing. Government-funded retraining programs have a weak evidence base: most evaluations show modest short-term wage gains that dissipate within 2–3 years, particularly for workers over 45 or without post-secondary credentials. The core design flaw, documented by Urban Institute and others, is treating skill-building in isolation from the structural conditions — housing instability, childcare gaps, transportation barriers, income volatility — that make sustained learning impossible for the populations most in need. Meanwhile, employer-led upskilling investments are concentrating on already-higher-wage workers, with little evidence of investment in frontline or low-wage populations. Brookings and Opportunity@Work add a further complication: AI may not eliminate entry-level Gateway jobs outright but could sever the advancement routes through them — leaving workers employed but stripped of the career progression those roles historically enabled, making traditional reskilling frameworks structurally inadequate even when they work.</p><p>On the technology side, Anthropic's 80,000-person usage study reveals a deepening expertise gap: experienced users treat AI as a collaborative partner, refining outputs iteratively and building compound advantages, while novice users offload discrete tasks entirely and capture far less value. This suggests that AI tools are amplifying existing skill and confidence gaps rather than leveling them — and that generic AI literacy programs, without deliberate scaffolding toward collaborative use, may widen the divide they aim to close.</p>",
     gaps: ["Longitudinal effectiveness data on publicly-funded AI retraining programs", "Employer-led vs. publicly-funded training outcomes compared head-to-head", "Community college and workforce board capacity to deliver credible AI curricula"],
     implication: "<p>Institutions that fund AI skills training without addressing the structural conditions that make sustained learning impossible — income instability, caregiving responsibilities, transportation access — will produce credentials without mobility. The evidence is clear enough that wraparound support should be treated as core program infrastructure, not a supplemental add-on. Program designs that assume participants can absorb new technical skills while managing housing insecurity or shift-based schedules are not failing because of participant deficits; they are failing by design.</p><p>The Anthropic usage data carries a direct institutional implication as well: if AI tools amplify existing expertise gaps, then deploying AI within programs serving lower-skill populations without deliberate scaffolding may actively widen the gap institutions are trying to close. Institutions should assess not just whether their constituents have access to AI tools, but how they are using them — and design learning environments that build toward the collaborative, iterative usage patterns associated with durable skill and earnings gains.</p>",
     risk: {
@@ -1022,7 +1022,7 @@ const THEMES = [
       color: "#D4952A",
       summary: "<p>The risk is not that reskilling programs fail at the margins — it's that they fail predictably and at scale while being treated as sufficient responses to structural displacement. Resources directed toward training without wraparound support produce credentials without mobility, and may displace more effective systemic interventions by appearing to address the problem.</p><p>The AI usage gap adds a compounding risk: generic literacy programs that do not build toward collaborative, iterative AI use may actually widen skill gaps among participants. Institutions investing in workforce programming without evaluating usage quality — not just access — risk funding programs that accelerate the divergence they are designed to close.</p>"
     },
-    papers: [17, 20, 25, 27],
+    papers: [17, 25, 27, 29, 74],
   },
   {
     id: "experience",
@@ -1031,7 +1031,7 @@ const THEMES = [
     confidence: "contested",
     question: "What do affected workers and communities actually want and fear?",
     framing: "What workers say they feel about AI and what happens to them under AI management are telling two different stories — and institutions need to hear both.",
-    synthesis: "<p>Anthropic's 80,508-person global study — one of the largest of its kind — found that hope and alarm about AI coexist within individuals, not between demographic camps. This challenges the common framing that separates 'AI optimists' from 'AI skeptics' by education, income, or ideology. Jobs and economic displacement rank as the second-most cited concern globally (22.3%), and lower-income regions show higher net positive AI sentiment than wealthy Western nations — a reversal of the typical assumption that marginalized communities are uniformly resistant to AI adoption.</p><p>However, aspirational sentiment diverges sharply from ground-level experience data. In algorithmic management environments — warehouses, delivery, call centers — worker-reported studies and Cornell ILR documentation show injury rates up 34%, voluntary turnover up 34%, and elevated rates of stress, surveillance anxiety, and reduced autonomy. Qualitative research from DAIR and similar organizations documents that workers often adapt to or internalize AI management norms rather than challenge them, even when experiencing measurable harm — making survey-based sentiment a poor proxy for on-the-ground conditions.</p>",
+    synthesis: "<p>Anthropic's 80,508-person global study — one of the largest of its kind — found that hope and alarm about AI coexist within individuals, not between demographic camps. This challenges the common framing that separates 'AI optimists' from 'AI skeptics' by education, income, or ideology. Jobs and economic displacement rank as the second-most cited concern globally (22.3%), and lower-income regions show higher net positive AI sentiment than wealthy Western nations — a reversal of the typical assumption that marginalized communities are uniformly resistant to AI adoption.</p><p>However, aspirational sentiment diverges sharply from ground-level experience data. In algorithmic management environments — warehouses, delivery, call centers — worker-reported studies and Cornell ILR documentation show injury rates up 34%, voluntary turnover up 34%, and elevated rates of stress, surveillance anxiety, and reduced autonomy. The pattern is no longer confined to blue-collar settings: NEJM analysis of hospital AI monitoring finds clinicians at risk of becoming &ldquo;quantified workers&rdquo; subject to algorithmic performance management against billing and throughput metrics — the same dynamics of eroding professional judgment and tightening baselines are now documented in healthcare. Qualitative research from DAIR and similar organizations documents that workers often adapt to or internalize AI management norms rather than challenge them, even when experiencing measurable harm — making survey-based sentiment a poor proxy for on-the-ground conditions.</p>",
     gaps: ["Longitudinal wellbeing studies under AI management over 2+ years", "Qualitative research centered on marginalized and low-wage worker voices", "Psychological safety in AI-intensive workplaces — burnout, surveillance stress"],
     implication: "<p>Aggregate sentiment data — including the Anthropic global study — should not be used as a proxy for ground-level impact. The coexistence of positive AI sentiment and measurable workplace harm is not a contradiction; it reflects the difference between abstract hopes and lived conditions under specific deployment contexts. Institutions relying primarily on survey-based sentiment to assess AI's effects on their constituencies risk systematically missing where harm is actually concentrating.</p><p>Community-based participatory research with affected worker populations is both a methodological and legitimacy imperative. Workers in AI-managed environments have detailed, actionable knowledge about what is harmful and what might be different — knowledge that neither sentiment surveys nor productivity metrics capture. Institutions should invest in research partnerships with the communities they serve, not just research conducted about them. That distinction determines whether findings are trusted, used, and connected to meaningful change.</p>",
     risk: {
@@ -1039,7 +1039,7 @@ const THEMES = [
       color: "#D4952A",
       summary: "<p>Using aggregate sentiment as a proxy for worker wellbeing risks systematically underestimating concentrated harm. Institutions that rely primarily on survey data without participatory research may make program and resource decisions that miss or inadvertently worsen conditions for the most affected workers.</p><p>The normalization dynamic documented by DAIR and others — where workers adapt to or internalize AI management harm rather than report it — means the risk is likely undercounted in standard data sources. Institutions that do not invest in direct, community-grounded research will be operating on evidence that structurally underrepresents the populations they aim to serve.</p>"
     },
-    papers: [3, 7, 14, 22, 29],
+    papers: [3, 7, 14, 29, 46],
   },
 ];
 THEMES.sort((a, b) => a.tag.localeCompare(b.tag));
@@ -1360,58 +1360,6 @@ const RESEARCH_DATA = [
     ]
   },
   {
-    id: 19, date: "2025-11-01",
-    title: "OpenAI's New Economic Analysis",
-    source: "Ronnie Chatterji — OpenAI",
-    sourceUrl: "https://openai.com/global-affairs/new-economic-analysis/",
-    category: "macro", geography: "us",
-    keyFinding: "ChatGPT has saved teachers nearly six hours per week and Pennsylvania state workers an average of 95 minutes per day on rote tasks — early evidence of meaningful productivity gains across public-sector and knowledge work.",
-    takeaways: [
-      "Over 500 million people globally use OpenAI tools, sending more than 2.5 billion messages per day — including 330 million daily in the U.S. alone, indicating broad economic penetration.",
-      "A 12-month collaboration with Harvard's Jason Furman and AEI's Michael Strain will develop metrics to assess AI's impact on jobs and productivity, establishing an independent research agenda.",
-      "Documented productivity gains span education, government, and entrepreneurship — with workers redirecting saved time toward higher-value tasks rather than simply reducing headcount."
-    ]
-  },
-  {
-    id: 20, date: "2026-03-24",
-    title: "Anthropic Economic Index",
-    source: "Anthropic",
-    sourceUrl: "https://www.anthropic.com/economic-index",
-    category: "labor", geography: "us",
-    keyFinding: "Computer and mathematical occupations account for 35% of Claude conversations; automated business workflows — especially sales and billing — doubled on the API between November 2025 and February 2026, signaling rapid AI integration into commercial operations.",
-    takeaways: [
-      "Average hourly wage of Claude.ai users is $47.90 — well above the $37.30 U.S. average — suggesting AI tools currently skew toward higher-paid knowledge workers, though the gap is narrowing.",
-      "More experienced users treat Claude as a collaborator to improve their own work; newer users offload tasks entirely — a usage split with different implications for skill development and labor displacement.",
-      "Coding dominates platform usage, but the fastest-growing categories are automated business workflows, indicating AI is moving from creative and coding assistance into operational labor substitution."
-    ]
-  },
-  {
-    id: 21, date: "2026-04-08",
-    title: "Industrial Policy for the Intelligence Age",
-    source: "OpenAI",
-    sourceUrl: "https://openai.com/index/industrial-policy-for-the-intelligence-age/",
-    category: "policy", geography: "us",
-    keyFinding: "OpenAI's 13-page policy framework argues incremental regulation is insufficient as superintelligence approaches, calling for U.S. industrial policy organized around two pillars: an open economy with broad AI access, and a resilient society with accountability mechanisms.",
-    takeaways: [
-      "OpenAI proposes treating AI access as a universal right — akin to electricity or the internet — with shared infrastructure and microgrants to lower barriers to AI-enabled entrepreneurship.",
-      "The paper explicitly addresses wealth concentration risk, arguing that without proactive policy, advanced AI will consolidate power among a small number of corporations and individuals.",
-      "Critics (Tech Policy Press) characterize the document as a 'policymercial' — blending genuine public-interest framing with policy proposals that benefit OpenAI's commercial and regulatory interests."
-    ]
-  },
-  {
-    id: 22, date: "2026-04-01",
-    title: "Last Place in the AI-First Economy: How the AI Industry Relies on Worker Disempowerment",
-    source: "Alexandra Mateescu, Aiha Nguyen, Sanjay Pinto — Data & Society",
-    sourceUrl: "https://datasociety.net/library/last-place-in-the-ai-first-economy/",
-    category: "labor", geography: "us",
-    keyFinding: "The AI industry's expansion is built on deliberate labor policy choices — not technological inevitability — with recent policymaking actively eroding standard labor protections and accelerating worker displacement to subsidize AI infrastructure.",
-    takeaways: [
-      "The 'sprint to the AI-first economy' reflects a series of economic decisions to prioritize automation and corporate consolidation over worker stability — framing displacement as progress rather than policy choice.",
-      "Existing labor protections are being structurally dismantled to create conditions favorable to AI deployment, deepening inequalities for workers both domestically and in the Global South.",
-      "Worker-centered futures require organizing and policy advocacy that targets the power structures driving AI adoption, not just technical fixes or skills training programs."
-    ]
-  },
-  {
     id: 23, date: "2026-04-08",
     title: "Pennsylvania's Power: Why Local Authority Is the Key to AI Infrastructure Decisions",
     source: "Cella Sum, Maia Woluchem — Data & Society",
@@ -1513,19 +1461,6 @@ const RESEARCH_DATA = [
       "National UBI schemes and traditional taxation cannot address AI systems that generate value across borders without clear jurisdictional accountability — a structural gap that grows as AI scales.",
       "A global AI dividend institution would hold corporate equity stakes in AI firms and distribute returns universally, requiring unprecedented international coordination but offering a durable redistribution floor.",
       "The proposal reframes AI governance from a regulatory problem to an institutional design problem: not just how to constrain AI, but how to structurally distribute its gains before inequality becomes irreversible."
-    ]
-  },
-  {
-    id: 31, date: "2020-04-14",
-    title: "The Case for a Job Guarantee",
-    source: "Pavlina R. Tcherneva — Polity",
-    sourceUrl: "https://pavlina-tcherneva.net/the-case-for-a-job-guarantee/",
-    category: "policy", geography: "us",
-    keyFinding: "Unemployment is not economically necessary; a federal Job Guarantee providing voluntary public service employment to anyone who needs it would eliminate involuntary unemployment while building public goods and supporting a green economic transition.",
-    takeaways: [
-      "The Job Guarantee functions as an automatic economic stabilizer — the public employment pool expands during recessions and contracts as private employment recovers, without requiring legislative action.",
-      "Unlike UBI, a Job Guarantee preserves the social benefits of work — dignity, community, structure — while addressing income insecurity and establishing a living wage floor for the entire economy.",
-      "The program can simultaneously address climate transition by directing public employment toward environmental restoration and care work, linking labor policy to green new deal objectives."
     ]
   },
   {
@@ -1656,6 +1591,461 @@ const RESEARCH_DATA = [
       "The choice between augmenting and automating AI is not technologically determined — it reflects investment incentives shaped by tax policy, procurement rules, and competitive dynamics that government can actively reshape.",
       "Nine proposed interventions span demand-side (public procurement favoring augmentation), supply-side (research investment in worker-complementary AI), and regulatory levers (antitrust action against anticompetitive AI acquisitions).",
       "Without active policy intervention, default market incentives will continue directing AI investment toward labor replacement — the current automation-heavy trajectory is a policy failure, not an inevitability."
+    ]
+  },
+  {
+    id: 42, date: "2025-06-03",
+    title: "Artificial Power: 2025 Landscape Report",
+    source: "Kate Brennan, Amba Kak, Dr. Sarah Myers West — AI Now Institute",
+    sourceUrl: "https://ainowinstitute.org/publication/artificial-power-2025-landscape-report",
+    category: "macro", geography: "us",
+    keyFinding: "AI integration is concentrating unprecedented power in a small group of tech companies; communities and policymakers must act strategically to reclaim democratic agency.",
+    takeaways: [
+      "A handful of vertically integrated tech corporations now control the full AI stack — from chips and cloud infrastructure to models and applications — creating systemic risks to democratic accountability and competitive markets.",
+      "AI power concentration is not a side effect of innovation but a deliberate corporate strategy; regulatory and community responses must be similarly deliberate and coordinated to be effective.",
+      "The report frames AI governance as fundamentally a question of political and economic power, not just technical safety — shifting the policy debate from harms mitigation to structural accountability."
+    ]
+  },
+  {
+    id: 43, date: "2026-04-01",
+    title: "2026 AI Index Report",
+    source: "Stanford HAI",
+    sourceUrl: "https://aiindex.stanford.edu/report/",
+    category: "macro", geography: "intl",
+    keyFinding: "Annual data-driven overview of global AI development tracking technical, economic, and societal trends to provide empirical benchmarks for research, policy, and governance.",
+    takeaways: [
+      "AI capabilities continued rapid advancement across benchmarks in 2025, with multimodal and reasoning models showing particular gains — but performance improvements are increasingly concentrated in a small number of well-resourced labs.",
+      "AI adoption in enterprise and government settings accelerated, yet workforce displacement effects remain unevenly distributed, with lower-wage and routine-task workers facing disproportionate exposure.",
+      "Global AI governance diverged further in 2025-26, with the EU implementing binding rules, the U.S. rolling back federal oversight, and China expanding state-directed AI deployment — creating a fragmented international regulatory landscape."
+    ]
+  },
+  {
+    id: 44, date: "2026-01-06",
+    title: "Expert Predictions on What's at Stake in AI Policy in 2026",
+    source: "J.B. Branch & Ilana Beller (Public Citizen) et al. — Tech Policy Press",
+    sourceUrl: "https://techpolicy.press/expert-predictions-on-whats-at-stake-in-ai-policy-in-2026",
+    category: "policy", geography: "us",
+    keyFinding: "2026 will be defining for regulatory battles over corporate accountability; real-world harms to children, elections, and vulnerable populations are accumulating and demand federal and state action.",
+    takeaways: [
+      "Federal preemption of state AI laws is the central legislative battleground in 2026; corporate lobbying for weak federal standards that override stronger state protections is the primary regulatory threat.",
+      "Documented AI harms — to minors, in elections, in healthcare and criminal justice — are no longer hypothetical, increasing pressure on legislators to move from voluntary frameworks to binding accountability rules.",
+      "State-level AI legislation has outpaced federal action and represents the most active regulatory frontier; the fate of state authority to regulate AI will define the scope of accountability possible in the near term."
+    ]
+  },
+  {
+    id: 45, date: "2026-01-12",
+    title: "How 2026 Could Decide the Future of Artificial Intelligence",
+    source: "Chris McGuire, Kat Duffy et al. — Council on Foreign Relations",
+    sourceUrl: "https://www.cfr.org/article/how-2026-could-decide-future-artificial-intelligence",
+    category: "policy", geography: "intl",
+    keyFinding: "As AI transitions from experimental to widespread deployment, governance frameworks and geopolitical competition with China will shape whether power concentrates in democratic or authoritarian hands.",
+    takeaways: [
+      "2026 marks a transition point where AI moves from research and pilots to embedded infrastructure — governance decisions made now will be extremely difficult to reverse as systems become load-bearing.",
+      "U.S.-China competition for AI leadership is intensifying across semiconductors, talent, and standards bodies; export controls and investment restrictions are shaping a bifurcated global AI ecosystem.",
+      "Democratic governance of AI requires proactive international coordination; a fragmented or race-to-the-bottom regulatory environment risks ceding norm-setting to authoritarian models with fewer accountability constraints."
+    ]
+  },
+  {
+    id: 46, date: "2026-03-01",
+    title: "Last Place in the AI-First Economy",
+    source: "Alexandra Mateescu, Aiha Nguyen, Sanjay Pinto — Data & Society",
+    sourceUrl: "https://datasociety.net/library/last-place-in-the-ai-first-economy/",
+    category: "labor", geography: "us",
+    keyFinding: "The 'AI-first economy' is a series of deliberate economic decisions that systematically disempower workers; equitable AI futures require democratic oversight and support for worker organizing.",
+    takeaways: [
+      "The 'AI-first' framing naturalizes corporate choices about automation and surveillance as inevitable technological progress, obscuring the labor relations and power dynamics those choices embed.",
+      "Workers in low-wage, care, and service sectors face the most intensive AI monitoring and the fewest protections — the same populations least able to exit bad employers or contest algorithmic decisions.",
+      "Worker organizing and collective bargaining are the most effective mechanisms for shaping AI deployment in workplaces; policy interventions that strengthen labor rights are AI governance interventions."
+    ]
+  },
+  {
+    id: 47, date: "2026-04-01",
+    title: "Uber For Nursing Part II",
+    source: "Katie J. Wells, Maya Pinto, Funda Ustek Spilda — AI Now Institute",
+    sourceUrl: "https://ainowinstitute.org/publication/uber-for-nursing-part-ii",
+    category: "workers", geography: "us",
+    keyFinding: "Gig nursing platforms are running a coordinated deregulatory campaign across nearly half of U.S. states, threatening worker protections, patient safety, and nursing as a middle-class profession.",
+    takeaways: [
+      "Gig nursing apps have moved beyond disrupting staffing agencies to actively lobbying state legislatures to eliminate nurse-to-patient ratio requirements and worker classification protections — using the same playbook as Uber and Lyft.",
+      "The deregulatory push is concentrated in states with active legislative sessions, making 2026 a critical window for worker and patient safety advocates to engage at the state level.",
+      "Nursing represents a test case for how platform economy dynamics extend into highly credentialed, traditionally stable professions — with implications for teachers, social workers, and other public-sector occupations."
+    ]
+  },
+  {
+    id: 48, date: "2026-04-01",
+    title: "North Star Data Center Policy Toolkit",
+    source: "AI Now Institute",
+    sourceUrl: "https://ainowinstitute.org/publication/north-star-data-center-policy-toolkit",
+    category: "community", geography: "us",
+    keyFinding: "Hyperscale AI data centers deplete natural resources, pollute communities, and fail to deliver promised economic benefits; toolkit offers state/local interventions to curtail unchecked development.",
+    takeaways: [
+      "AI data center development has accelerated dramatically with little public scrutiny; facilities consume billions of gallons of water and massive amounts of electricity while generating few permanent local jobs.",
+      "Communities hosting data centers — often lower-income and communities of color — bear disproportionate environmental burdens while economic benefits flow primarily to shareholders and distant tech workers.",
+      "The toolkit provides model legislation and regulatory frameworks for state and local governments to require environmental impact disclosure, community benefit agreements, and water/energy use limits."
+    ]
+  },
+  {
+    id: 49, date: "2026-01-15",
+    title: "Reframing Impact: AI Summit 2026",
+    source: "AI Now Institute, Aapti Institute, The Maybe",
+    sourceUrl: "https://ainowinstitute.org/publication/reframing-impact-ai-summit-2026",
+    category: "equity", geography: "intl",
+    keyFinding: "Key AI governance concepts risk being co-opted by industry; summit convened global advocates to inject accountability into AI governance discourse.",
+    takeaways: [
+      "Terms like 'responsible AI,' 'AI safety,' and 'impact assessment' have been progressively emptied of accountability content through industry adoption — the summit sought to reclaim and sharpen these concepts.",
+      "Global South advocates brought distinct perspectives on AI harms — including data extraction, labor exploitation in content moderation, and exclusion from governance processes — that are systematically underrepresented in dominant AI policy debates.",
+      "Effective AI governance requires centering the expertise and interests of affected communities, not just technical experts and corporate stakeholders; the summit modeled a more inclusive governance process."
+    ]
+  },
+  {
+    id: 50, date: "2025-11-11",
+    title: "Fission for Algorithms",
+    source: "Dr. Sofia Guerra, Dr. Heidy Khlaaf — AI Now Institute",
+    sourceUrl: "https://ainowinstitute.org/publication/fission-for-algorithms",
+    category: "policy", geography: "us",
+    keyFinding: "AI energy demands are driving dismantlement of nuclear safety standards while deploying unreliable AI for nuclear licensing, creating dual risks of increased radiation exposure and weapons proliferation.",
+    takeaways: [
+      "Tech companies seeking cheap, clean power for data centers are partnering with the nuclear industry to restart dormant plants and accelerate new builds — creating political pressure to waive safety reviews and environmental requirements.",
+      "Nuclear regulators are simultaneously being pushed to adopt AI tools for licensing decisions despite documented unreliability of these systems in high-stakes technical domains.",
+      "The intersection of AI energy demand and nuclear power represents an underexamined risk nexus where two sets of inadequately governed technologies are being rapidly co-deployed with insufficient accountability."
+    ]
+  },
+  {
+    id: 51, date: "2025-10-14",
+    title: "Alli Finn Testifies at the Philadelphia City Council",
+    source: "Alli Finn — AI Now Institute",
+    sourceUrl: "https://ainowinstitute.org/publication/alli-finn-testifies-at-the-philadelphia-city-council",
+    category: "community", geography: "us",
+    keyFinding: "City-level AI policymaking should prioritize public benefit over corporate interests and treat AI governance as democratic accountability.",
+    takeaways: [
+      "Municipal governments are emerging as important AI governance venues as federal action stalls; city councils can set procurement standards, restrict surveillance uses, and require algorithmic impact assessments.",
+      "Philadelphia's consideration of AI governance ordinances reflects broader municipal momentum — over a dozen major cities have enacted or are considering AI accountability legislation.",
+      "Framing AI governance as a question of democratic accountability — who decides, who benefits, who bears costs — is more durable than a purely technical or safety-focused frame at the local level."
+    ]
+  },
+  {
+    id: 52, date: "2025-04-21",
+    title: "Safety Co-Option and Compromised National Security: The Self-Fulfilling Prophecy of Weakened AI Risk Thresholds",
+    source: "Heidy Khlaaf, Sarah Myers West — arXiv",
+    sourceUrl: "https://arxiv.org/abs/2504.15088",
+    category: "policy", geography: "us",
+    keyFinding: "AI technologists have circumvented democratic processes by setting their own risk tolerances, replacing established safety frameworks with ill-defined alternatives that accelerate military AI deployment while undermining national security standards.",
+    takeaways: [
+      "Without democratically established AI risk thresholds, private technology companies have become de facto arbiters of safety standards — a governance vacuum with life-or-death consequences for military and critical infrastructure systems.",
+      "The 'AI arms race' framing is being used to justify lower safety standards, creating a self-reinforcing dynamic where urgency claims erode the oversight mechanisms designed to prevent catastrophic failures.",
+      "Military AI systems must align with established assurance frameworks and international humanitarian law — the same standards applied to other safety-critical systems — rather than bespoke industry-defined tolerances."
+    ]
+  },
+  {
+    id: 53, date: "2025-02-20",
+    title: "Real Surveillance, Prices and Wages",
+    source: "AI Now Institute et al.",
+    sourceUrl: "https://ainowinstitute.org/wp-content/uploads/2025/02/Real-Surveillance-Prices-and-Wages-Report.pdf",
+    category: "workers", geography: "us",
+    keyFinding: "Surveillance technologies are reshaping both wage determination and consumer pricing in ways that concentrate power with employers and corporations while eroding worker and consumer bargaining capacity.",
+    takeaways: [
+      "Workplace monitoring technologies create asymmetric information environments where employers have granular data on worker behavior and productivity while workers lack comparable visibility into pay-setting and performance evaluation criteria.",
+      "Surveillance-driven pricing mechanisms — including algorithmic dynamic pricing and behavioral targeting — allow corporations to extract maximum willingness to pay from consumers, compressing any gains from competition or efficiency.",
+      "The dual impact on wages and prices means surveillance infrastructure functions as a wealth transfer mechanism, simultaneously suppressing worker compensation and inflating consumer costs."
+    ]
+  },
+  {
+    id: 54, date: "2024-12-01",
+    title: "AI Generated Business: The Rise of AGI and the Rush to Find a Working Revenue Model",
+    source: "Brian Merchant — AI Now Institute",
+    sourceUrl: "https://ainowinstitute.org/publications/ai-generated-business",
+    category: "macro", geography: "us",
+    keyFinding: "OpenAI and competing generative AI firms built business models around AGI as a marketing construct rather than a near-term technical objective, using it to attract capital, justify automation sales, and manage corporate scandals.",
+    takeaways: [
+      "AGI language was strategically deployed at key fundraising and restructuring moments — the term functions primarily as a capital attraction device rather than a technical roadmap, allowing OpenAI to justify massive compute costs and a for-profit pivot.",
+      "Enterprise AI sales center explicitly on labor replacement: OpenAI's own definition frames AGI as systems that 'outperform humans at most economically valuable work,' positioning automation as the core value proposition to corporate clients.",
+      "Despite $3.4 billion in annualized revenue, the generative AI business model requires industry-wide revenue of ~$600 billion annually to justify current investment levels — a figure with no near-term path to realization, raising significant bubble risk."
+    ]
+  },
+  {
+    id: 55, date: "2024-10-18",
+    title: "Mind the Gap: Foundation Models and the Covert Proliferation of Military Intelligence, Surveillance, and Targeting",
+    source: "Heidy Khlaaf, Sarah Myers West, Meredith Whittaker — arXiv",
+    sourceUrl: "https://arxiv.org/abs/2410.14831",
+    category: "policy", geography: "intl",
+    keyFinding: "AI policy has narrowly focused on hypothetical CBRN scenarios while overlooking present-day military ISTAR deployments of foundation models that pose documented civilian harm risks and expand adversarial attack surfaces.",
+    takeaways: [
+      "Regulatory approaches anchored to compute thresholds and model weight restrictions miss actual military AI applications already in deployment — the policy conversation is lagging the operational reality by years.",
+      "Commercial foundation models cannot reliably exclude personally identifiable information, creating uncontrolled pathways for adversaries to access intelligence, surveillance, targeting, and reconnaissance capabilities at scale.",
+      "Integrating foundation models into military systems expands attack surfaces across interconnected defense infrastructure — the security risk is not just the model itself but the systemic vulnerabilities created by its integration."
+    ]
+  },
+  {
+    id: 56, date: "2024-10-15",
+    title: "Redirecting Europe's AI Industrial Policy",
+    source: "Frederike Kaltheuner, Leevi Saari, Amba Kak, Sarah Myers West — AI Now Institute",
+    sourceUrl: "https://ainowinstitute.org/publications/research/redirecting-europes-ai-industrial-policy",
+    category: "policy", geography: "intl",
+    keyFinding: "Europe's AI industrial policy risks entrenching Big Tech monopolies rather than challenging them; a genuine public-interest reorientation requires rethinking procurement, infrastructure independence, and the sustainability and labor rights implications of AI investment.",
+    takeaways: [
+      "Current EU AI industrial policy is shaped by competitiveness and sovereignty framings that largely accept U.S. and Chinese Big Tech dominance as a given — the 12-essay collection argues this concedes too much before the policy fight has begun.",
+      "EU public procurement represents an underutilized lever: directing government contracts toward alternatives to dominant platforms could reshape market incentives more effectively than regulation alone.",
+      "Integrating climate, labor, and human rights standards into AI industrial investment decisions is not a constraint on innovation but a prerequisite for genuinely public-interest-oriented industrial policy."
+    ]
+  },
+  {
+    id: 57, date: "2024-10-01",
+    title: "AI Now's Testimony to New York City Council on Corporate Capture of the MyCity Portal",
+    source: "Kate Brennan — AI Now Institute",
+    sourceUrl: "https://ainowinstitute.org/wp-content/uploads/2024/10/NYC-Council-Testimony_AI-Now_MyCity-Portal_September-2024.pdf",
+    category: "community", geography: "us",
+    keyFinding: "NYC's MyCity Portal risks enabling Big Tech firms to leverage citizen data for competitive advantage and normalizing government surveillance of how residents spend public benefits — raising fundamental questions about corporate capture of public infrastructure.",
+    takeaways: [
+      "Centralized digital wallets proposed under MyCity would allow government agencies to monitor resident spending on public benefits in granular detail — including potential use of 'incentive points' to influence dietary choices — with no demonstrated operational necessity.",
+      "The portal's design reflects a pattern of public digital infrastructure being structured around corporate data interests rather than resident needs, with Big Tech partners gaining privileged access to citizen data as a condition of service delivery.",
+      "Municipal governments should evaluate AI-enabled service platforms against explicit public interest standards: whether surveillance features are necessary, proportionate, and under democratic oversight rather than corporate control."
+    ]
+  },
+  {
+    id: 58, date: "2024-07-01",
+    title: "Public Interest AI for Europe? Shaping Europe's Nascent Industrial Policy",
+    source: "AI Now Institute",
+    sourceUrl: "https://ainowinstitute.org/publications/public-interest-ai-for-europe-shaping-europes-nascent-industrial-policy",
+    category: "policy", geography: "intl",
+    keyFinding: "Europe's AI industrial policy risks entrenching the very monopolies it aims to challenge; genuine public-interest AI requires an innovation paradigm outside current market incentives rather than a competitive arms race with U.S. and Chinese tech giants.",
+    takeaways: [
+      "'There is no AI without Big Tech' — U.S. and Chinese firms control essential AI infrastructure (compute, data, talent, consumer access), meaning European industrial policy built on competitiveness assumptions starts from a position of structural dependency.",
+      "Current industrial policy may inadvertently strengthen rather than challenge AI monopolies; the Dutch child benefits scandal illustrates how algorithmic government systems can cause severe harm to vulnerable populations when built without accountability.",
+      "Europe's comparative advantage lies in building an alternative innovation paradigm grounded in public interest, sustainability, and democratic accountability — not in replicating the ChatGPT hype cycle or racing toward speculative AGI development."
+    ]
+  },
+  {
+    id: 59, date: "2025-05-20",
+    title: "Generative AI and Jobs: A 2025 Update",
+    source: "Paweł Gmyrek et al. — International Labour Organization",
+    sourceUrl: "https://www.ilo.org/publications/generative-ai-and-jobs-2025-update",
+    category: "labor", geography: "intl",
+    keyFinding: "One in four workers globally is in an occupation with some degree of GenAI exposure, but transformation — not elimination — is the most likely outcome; social dialogue and collective agreements are essential to ensure productivity gains reach workers rather than bypass them.",
+    takeaways: [
+      "ILO's refined task-level methodology finds overall automation risk is lower and more stable than early estimates — AI will augment most jobs rather than replace them wholesale, but clerical occupations remain the highest-exposure category globally.",
+      "Gender disparities in exposure are stark: female employment in high-income countries faces a 9.6% high-exposure rate versus 3.5% for male employment, compounding existing labor market inequalities through a new technological channel.",
+      "Workers need social dialogue, collective bargaining, and updated labor law to capture AI productivity gains — without these governance mechanisms, AI advances will manifest as speed-up, deskilling, or displacement rather than shared prosperity."
+    ]
+  },
+  {
+    id: 60, date: "2024-03-28",
+    title: "Unbalanced Labor Market Power Is What Makes Technology — Including AI — Threatening to Workers",
+    source: "Josh Bivens, Ben Zipperer — Economic Policy Institute",
+    sourceUrl: "https://www.epi.org/publication/ai-unbalanced-labor-markets/",
+    category: "labor", geography: "us",
+    keyFinding: "AI is unlikely to directly threaten workers' wages and employment — the real threat is unbalanced employer power that allows firms to deploy technology for control rather than shared prosperity; the best AI policy is strengthening worker bargaining position.",
+    takeaways: [
+      "Historical data show productivity growth has not correlated with higher unemployment or inequality — wage stagnation and displacement are political economy outcomes shaped by policy choices, not inherent properties of any technology including AI.",
+      "The same AI tools can augment worker productivity and raise wages OR suppress wages and surveil workers — which outcome prevails depends entirely on the balance of power between employers and employees, not anything intrinsic to the technology.",
+      "Policymakers should prioritize strengthening unions, expanding unemployment insurance, and maintaining low unemployment over crafting AI-specific regulations; organized workers have already successfully negotiated AI's workplace role in recent union contracts."
+    ]
+  },
+  {
+    id: 61, date: "2024-05-01",
+    title: "The Simple Macroeconomics of AI",
+    source: "Daron Acemoglu — NBER Working Paper",
+    sourceUrl: "https://www.nber.org/papers/w32487",
+    category: "macro", geography: "intl",
+    keyFinding: "Task-level economic modeling projects AI's total factor productivity gains at under 0.53% over 10 years — far below the transformative claims driving current investment — and predicts AI will widen the gap between capital and labor income without countervailing policy.",
+    takeaways: [
+      "The trillion-dollar productivity projections underpinning current AI investment are inconsistent with task-level economic modeling: even optimistic assumptions yield less than 1% TFP growth over a decade, suggesting a significant valuation-to-reality gap.",
+      "AI produces both a productivity effect and a displacement effect simultaneously — if displacement exceeds productivity gains in a sector, wages fall even as output rises, meaning aggregate growth statistics can mask deteriorating worker outcomes.",
+      "Some AI-created tasks may have negative social value — manipulation, surveillance, engagement optimization — a dimension macroeconomic models systematically omit but that has direct implications for whether AI investment generates genuine public welfare."
+    ]
+  },
+  {
+    id: 62, date: "2025-01-07",
+    title: "Future of Jobs Report 2025",
+    source: "World Economic Forum",
+    sourceUrl: "https://www.weforum.org/publications/the-future-of-jobs-report-2025/",
+    category: "macro", geography: "intl",
+    keyFinding: "170 million new roles will be created and 92 million displaced by 2030 — a net gain of 78 million jobs — but the structural transition is highly unequal: displaced roles concentrate in clerical occupations while new roles cluster in technology fields with high entry barriers.",
+    takeaways: [
+      "86% of employers expect AI and information processing to transform their businesses by 2030, yet nearly 40% of current job skills will be obsolete — a structural transition challenge that individual upskilling programs alone cannot address at the scale and speed required.",
+      "The skills gap is the primary barrier to workforce transformation: 63% of employers cite it as the key constraint, suggesting the binding limit on AI-driven growth is not technology availability but human capital investment and institutional capacity.",
+      "Care economy jobs — nursing, social work, personal care aides — are among the fastest-growing categories through 2030, indicating AI will shift labor demand toward human-intensive services while automating information-processing and administrative tasks."
+    ]
+  },
+  {
+    id: 63, date: "2025-10-07",
+    title: "Reimagining the Future of Data and AI Labor in the Global South",
+    source: "Michelle Du, Chinasa T. Okolo — Brookings Institution",
+    sourceUrl: "https://www.brookings.edu/articles/reimagining-the-future-of-data-and-ai-labor-in-the-global-south/",
+    category: "labor", geography: "intl",
+    keyFinding: "Between 150–430 million data laborers globally — concentrated in Africa and South/Southeast Asia — perform essential work training AI systems under exploitative conditions that tech companies obscure through layers of subcontracting.",
+    takeaways: [
+      "Data annotators in the Global South frequently work 20-hour shifts processing 1,000 cases daily, experiencing depression, anxiety, and PTSD from moderating violent content — documented psychological harm that is structurally unaddressed because workers often do not know which AI systems their labor will train.",
+      "Multinational tech companies shield themselves from accountability by subcontracting through third-party vendors, creating a deliberate opacity that prevents labor protections from attaching to the corporations that ultimately profit from this work.",
+      "International and regional bodies (ASEAN, African Union, CARICOM) must establish binding directives on data laborer rights; companies should redesign roles to integrate worker expertise with automation rather than treating human annotation as a temporary cost to be eliminated."
+    ]
+  },
+  {
+    id: 64, date: "2025-06-14",
+    title: "Medical AI and Clinician Surveillance — The Risk of Becoming Quantified Workers",
+    source: "I. Glenn Cohen, Ifeoma Ajunwa, Ravi B. Parikh — New England Journal of Medicine",
+    sourceUrl: "https://www.nejm.org/doi/abs/10.1056/NEJMp2502448",
+    category: "workers", geography: "us",
+    keyFinding: "AI monitoring tools deployed in clinical settings risk transforming healthcare workers into 'quantified workers' — subject to algorithmic performance management that degrades professional autonomy and may compromise patient care quality.",
+    takeaways: [
+      "AI documentation and monitoring tools are being deployed in hospitals primarily to optimize billing, throughput, and compliance metrics — creating surveillance infrastructure that measures clinician performance against efficiency targets rather than clinical quality or patient outcomes.",
+      "Clinician surveillance via AI follows the same trajectory documented in warehouse and gig work: algorithmic management erodes professional judgment, raises burnout rates, and produces ratchet effects where performance baselines continuously tighten with no sustainable endpoint.",
+      "Healthcare settings require specific institutional protections: clinicians need transparency about what is measured, the right to contest algorithmic assessments, and governance safeguards ensuring AI monitoring serves patients rather than administrative or revenue optimization."
+    ]
+  },
+  {
+    id: 65, date: "2022-10-15",
+    title: "Rent Going Up? One Company's Algorithm Could Be Why",
+    source: "Heather Vogell — ProPublica",
+    sourceUrl: "https://www.propublica.org/article/yieldstar-rent-increase-realpage-rent",
+    category: "community", geography: "us",
+    keyFinding: "RealPage's YieldStar algorithm recommends daily rental prices using confidential data shared among competing landlords — a practice that drove rents higher while explicitly overriding leasing agents' human judgment, leading to a 2024 DOJ antitrust lawsuit and 2025 settlement.",
+    takeaways: [
+      "RealPage's software captured approximately 90% of the algorithmic rent-setting market and instructed landlords to accept lower occupancy rather than reduce prices — an algorithmically enforced coordination among competitors that antitrust experts likened to price-fixing.",
+      "In Seattle's Belltown neighborhood, 70% of apartments were managed by RealPage users; concentrated adoption in specific markets amplifies rent effects beyond what any single landlord could achieve, demonstrating how algorithmic tools enable collective market power without formal cartel structures.",
+      "The DOJ filed an antitrust lawsuit against RealPage in August 2024 and reached a settlement in November 2025 — establishing a legal precedent that algorithmic coordination using non-public competitor data constitutes actionable anticompetitive conduct even without explicit agreement."
+    ]
+  },
+  {
+    id: 66, date: "2023-09-26",
+    title: "Digital Denials: How Abuse, Bias, and Lack of Transparency in Tenant Screening Harm Renters",
+    source: "Ariel Nelson, Chi Chi Wu, Caroline Cohn — National Consumer Law Center",
+    sourceUrl: "https://www.nclc.org/new-report-examines-how-abuse-and-bias-in-tenant-screening-harm-renters/",
+    category: "equity", geography: "us",
+    keyFinding: "Automated tenant screening tools amplify racial bias at scale by feeding algorithmic scoring systems with eviction records, criminal history, and credit data that contain documented racial disparities — with no evidence credit scores actually predict successful tenancy.",
+    takeaways: [
+      "There is no empirical evidence that credit scores, eviction records, or criminal history predict whether a renter will pay rent or maintain a tenancy — yet these data points are the primary inputs to AI screening tools used by the vast majority of large landlords.",
+      "Racial disparities embedded in underlying data (eviction filings, credit histories, criminal records) are amplified rather than corrected by algorithmic processing — automated tools make discrimination faster, cheaper, and harder to challenge than human decision-making.",
+      "FTC, CFPB, Congress, and state governments must regulate the tenant screening industry: requiring accuracy standards, mandatory dispute resolution, demographic impact disclosure, and explicit bans on screening criteria with no demonstrated predictive validity."
+    ]
+  },
+  {
+    id: 67, date: "2024-10-17",
+    title: "Stopping Big Tech from Becoming Big AI: A Roadmap for Using Competition Policy to Keep Artificial Intelligence Open for All",
+    source: "Max von Thun, Daniel Hanley — Open Markets Institute & Mozilla",
+    sourceUrl: "https://www.openmarketsinstitute.org/publications/report-stopping-big-tech-big-ai-roadmap",
+    category: "corporate", geography: "intl",
+    keyFinding: "Dominant tech firms are replicating their platform monopoly playbook in AI through exclusive partnerships, self-preferencing, and control of essential compute inputs — and existing competition frameworks are sufficient to intervene if regulators act now.",
+    takeaways: [
+      "The mechanisms concentrating AI power mirror those that entrenched platform dominance: exclusive cloud partnerships between hyperscalers and frontier AI labs, self-preferencing of proprietary AI tools in distribution, and control of the compute infrastructure all other players depend on.",
+      "Existing competition law does not require new legislation to address AI concentration — merger blocking, partnership nullification, structural separation, and mandated access to compute are all available today under current antitrust frameworks.",
+      "Without coordinated global enforcement, AI consolidation will proceed faster than any single regulator can address; the window for structural intervention is narrowing as AI becomes embedded in critical infrastructure and enterprise workflows."
+    ]
+  },
+  {
+    id: 68, date: "2026-04-27",
+    title: "Same Gatekeepers, New Tollbooths: Mapping the AI Content Licensing Market",
+    source: "Dr. Courtney Radsch, Karina Montoya — Open Markets Institute",
+    sourceUrl: "https://www.openmarketsinstitute.org/publications/report-mapping-the-ai-content-licensing-market",
+    category: "corporate", geography: "intl",
+    keyFinding: "The emerging AI content licensing market replicates Big Tech's earlier failures: dominant firms simultaneously erode publisher and creator revenue through AI products while controlling the licensing infrastructure meant to compensate them.",
+    takeaways: [
+      "AI bots circumventing voluntary content access restrictions quadrupled in six months — from 3.3% to 12.9% non-compliance — demonstrating that industry self-regulation fails creators by design, repeating the pattern from the social media licensing era.",
+      "A three-tiered licensing market is forming in which large publishers negotiate individually, mid-tier publishers receive nominal payments, and individual creators and small outlets receive nothing — concentrating the benefits of AI training data with those who need it least.",
+      "Statutory licensing, collective bargaining rights for publishers, mandatory technical attribution systems, and transparency requirements have succeeded in other jurisdictions (Canada, Australia) and provide a tested policy template for protecting creator labor."
+    ]
+  },
+  {
+    id: 69, date: "2025-12-11",
+    title: "Fair and Open Markets for Virtual Power Plants",
+    source: "Open Markets Institute & Mission:data Coalition",
+    sourceUrl: "https://www.openmarketsinstitute.org/publications/utilities-are-blocking-virtual-power-plants",
+    category: "community", geography: "us",
+    keyFinding: "Investor-owned utilities are using control of electric meter data and infrastructure to block virtual power plants — one of the most cost-effective tools for managing AI-driven energy demand — through anticompetitive practices that mirror long-recognized forms of monopolistic exclusion.",
+    takeaways: [
+      "Utilities reserve the right to terminate customer-authorized data access 'at any time, without notice, for any reason,' making independent virtual power plant operation practically impossible and cementing monopoly control over distributed energy resources.",
+      "Virtual power plants are among the most cost-effective mechanisms for reducing peak energy costs and avoiding expensive new infrastructure — their suppression by utility monopolies directly inflates energy costs for households and small businesses.",
+      "Utility conduct constitutes tying, exclusive dealing, and refusals to deal — forms of monopolistic exclusion courts have repeatedly found unlawful — yet antitrust enforcement has not kept pace with the urgency created by surging AI data center energy demand."
+    ]
+  },
+  {
+    id: 70, date: "2025-10-22",
+    title: "The Enduring Force of the Federal Antitrust Laws",
+    source: "Daniel Hanley — Open Markets Institute",
+    sourceUrl: "https://www.openmarketsinstitute.org/publications/brief-enduring-power-of-us-antitrust-laws",
+    category: "policy", geography: "us",
+    keyFinding: "Federal antitrust statutes remain powerful and sufficient tools for addressing AI and tech monopoly — enforcers can pursue seven categories of unlawful conduct including algorithmic price-fixing, platform lock-in, and merger challenges without waiting for new legislation.",
+    takeaways: [
+      "Despite decades of judicial skepticism since the 1970s, the core federal antitrust statutes have not been gutted — creative enforcement under existing law can address AI-era monopolistic practices from merger challenges to exclusionary conduct by dominant platforms.",
+      "Algorithmic price-fixing is explicitly actionable under current antitrust law alongside traditional cartel behavior — the RealPage settlement demonstrates that AI-mediated coordination among competitors can be prosecuted without needing new statutory authority.",
+      "Platform lock-in practices — onboarding frictions, data portability barriers, API restrictions — constitute enforceable antitrust violations; regulators need sustained political will and technical expertise more than new legal powers."
+    ]
+  },
+  {
+    id: 71, date: "2024-06-27",
+    title: "Big Tech Won't Fix Disinformation Without Regulation",
+    source: "Austin Ahlman, Dr. Courtney Radsch — Open Markets Institute",
+    sourceUrl: "https://www.openmarketsinstitute.org/publications/big-tech-wont-fix-disinformation-without-regulation",
+    category: "policy", geography: "intl",
+    keyFinding: "Voluntary platform commitments have systematically failed to contain AI-amplified disinformation; binding regulatory frameworks with enforcement mechanisms are the only demonstrated path to meaningful accountability.",
+    takeaways: [
+      "AI-generated content is accelerating the scale, speed, and sophistication of disinformation in ways that overwhelm voluntary moderation commitments — the same structural incentives that produced platform inaction on earlier disinformation crises remain fully intact.",
+      "Self-regulation by dominant platforms is structurally incapable of addressing AI disinformation because the business models of these platforms are directly served by high-engagement content regardless of veracity.",
+      "Effective regulation requires mandatory algorithmic transparency, interoperability requirements that reduce platform lock-in, and civil liability provisions that create genuine financial consequences for amplifying demonstrably false content."
+    ]
+  },
+  {
+    id: 72, date: "2025-11-01",
+    title: "Artificial Intelligence and Competitive Dynamics in Downstream Markets",
+    source: "OECD Competition Committee",
+    sourceUrl: "https://www.oecd.org/en/publications/artificial-intelligence-and-competitive-dynamics-in-downstream-markets_ccf0624a-en/full-report.html",
+    category: "corporate", geography: "intl",
+    keyFinding: "AI is widening a competitive divide between large incumbents and SMEs — while AI can lower barriers to entry in theory, in practice it reinforces incumbency through vertical integration, ecosystem strategies, and opacity that makes anticompetitive conduct increasingly difficult to detect and remedy.",
+    takeaways: [
+      "AI adoption is costly, complex, and risky at the firm level, creating an 'AI divide' that concentrates productivity gains among large enterprises with resources to invest — SMEs face structural disadvantages that market competition alone will not correct.",
+      "Competition risks from AI are largely classical — algorithmic collusion, self-preferencing, exclusionary conduct, price discrimination — but are amplified by the black-box nature of AI systems, making detection and enforcement substantially harder than in traditional markets.",
+      "AI's competitive impact is highly context-dependent across sectors; competition authorities need sector-specific expertise and real-time market intelligence rather than one-size-fits-all remedies to keep pace with AI-driven market structure changes."
+    ]
+  },
+  {
+    id: 73, date: "2025-04-01",
+    title: "AI Index Report 2025",
+    source: "Stanford HAI",
+    sourceUrl: "https://hai.stanford.edu/ai-index/2025-ai-index-report",
+    category: "macro", geography: "intl",
+    keyFinding: "Global corporate AI investment reached $252.3 billion in 2024 — up thirteenfold since 2014 — with U.S. private AI investment at $109.1 billion, nearly 12 times China's, while AI productivity gains are real but concentrate among higher-skilled workers.",
+    takeaways: [
+      "Private investment in generative AI reached $33.9 billion in 2024, representing more than 20% of all AI-related private investment — yet this capital is overwhelmingly concentrated in the U.S., with the investment gap between the U.S. and the rest of the world widening rather than narrowing.",
+      "AI demonstrably boosts productivity in controlled studies, and evidence suggests it narrows the gap between low- and high-skilled workers in specific task settings — but these gains are unevenly distributed and have not yet produced measurable macroeconomic productivity improvements at scale.",
+      "The 2025 Index spans R&D, technical performance, ethics, economy, education, and policy — providing the most comprehensive annual empirical baseline for assessing AI's trajectory across sectors and geographies."
+    ]
+  },
+  {
+    id: 74, date: "2026-04-02",
+    title: "How AI May Reshape Career Pathways to Better Jobs",
+    source: "Justin Heck, Mark Muro et al. — Opportunity@Work & Brookings Metro",
+    sourceUrl: "https://www.brookings.edu/articles/how-ai-may-reshape-career-pathways-to-better-jobs/",
+    category: "labor", geography: "us",
+    keyFinding: "Over 15 million workers without four-year degrees hold 'Gateway' positions that historically served as stepping stones to higher-wage roles — AI exposure threatens to sever these pathways before workers can advance, even if individual jobs technically persist.",
+    takeaways: [
+      "The primary AI labor risk for non-degree workers is not immediate job elimination but pathway disruption: when Gateway roles are automated or deskilled, the route to higher-wage work disappears even for workers who retain employment in the short run.",
+      "Regional exposure varies sharply — Florida metros like Palm Bay face 35.5% Gateway pathway exposure while Midwest cities like Milwaukee face 24% — demanding locally-tailored workforce strategies rather than national policy responses that average over highly unequal local conditions.",
+      "Critical unanswered questions remain about whether AI-integrated roles will require credentials beyond reach of non-degree workers, or whether workplace experience can still build transferable skills for advancement — the answer will determine whether AI widens or narrows existing credential divides."
+    ]
+  },
+  {
+    id: 75, date: "2026-01-01",
+    title: "AI Will Reshape More Jobs Than It Replaces",
+    source: "BCG Henderson Institute",
+    sourceUrl: "https://www.bcg.com/publications/2026/ai-will-reshape-more-jobs-than-it-replaces",
+    category: "macro", geography: "us",
+    keyFinding: "Analysis of 165 million jobs across 1,500 roles finds 50–55% of U.S. jobs will be reshaped by AI within two to three years, with 10–15% eliminated — but the larger and underappreciated risk is role transformation that leaves workers employed but facing radically different expectations.",
+    takeaways: [
+      "The dominant AI labor story is not replacement but reshaping: workers keep their jobs but face fundamentally different skill requirements, performance metrics, and career trajectories — a transformation that is largely invisible in aggregate employment statistics.",
+      "BCG's six-category job taxonomy reveals heterogeneous impacts: 'Substituted Roles' (12% of workforce) face direct AI displacement of core work, while 'Divergent Roles' (12%) see senior positions grow as junior ones shrink — hollowing out career pipelines without reducing headline employment.",
+      "The compressed two-to-three-year timeline for reshaping half the workforce demands immediate institutional response; training and transition programs operating on five-to-ten-year planning cycles will be structurally too slow to prevent widespread economic disruption."
+    ]
+  },
+  {
+    id: 76, date: "2025-10-15",
+    title: "Workers First: AI Principles to Protect Workers",
+    source: "AFL-CIO",
+    sourceUrl: "https://aflcio.org/reports/workers-first-ai",
+    category: "workers", geography: "us",
+    keyFinding: "The AFL-CIO — representing 63 unions and 15 million workers — launched the first comprehensive labor movement AI agenda, establishing five principles that center worker input, formal negotiation, transparency, privacy limits, and employer investment in skills as non-negotiable conditions for responsible AI deployment.",
+    takeaways: [
+      "70% of workers fear replacement by AI, yet federal action has stalled; the Workers First Initiative explicitly shifts the accountability framework from government regulation to collective bargaining and state-level legislation — positioning organized labor as the primary enforcement mechanism in the near term.",
+      "The five principles require that AI adoption be treated as a workplace change subject to formal worker input or negotiation, that employers set explicit boundaries on AI-powered monitoring, and that skill-building and career pathways be funded when AI reshapes job roles.",
+      "The framework addresses public-sector AI separately: when public funds support AI systems, agencies must disclose how those systems operate, what data they use, and how decisions can be reviewed or challenged — establishing a transparency floor for government AI procurement."
     ]
   }
 ];
