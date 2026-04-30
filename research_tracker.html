@@ -195,7 +195,7 @@
   .sidebar-section.collapsed .sidebar-chevron { transform: rotate(-90deg); }
   .sidebar-nav-wrap {
     overflow: hidden;
-    max-height: 600px;
+    max-height: 1100px;
     transition: max-height 0.28s ease, opacity 0.22s ease;
     opacity: 1;
     padding-bottom: 6px;
@@ -416,7 +416,7 @@
   .source-value { font-size: 12px; color: var(--muted); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
   .source-value a { color: var(--accent); text-decoration: none; }
   .source-value a:hover { text-decoration: underline; }
-  .inst-meta { font-size: 11px; color: var(--muted); opacity: 0.7; margin-top: 2px; display: block; }
+  .inst-meta { font-size: 11.5px; color: var(--muted); opacity: 0.85; margin-top: 3px; display: block; line-height: 1.4; }
 
   .expand-btn {
     display: flex; align-items: center; gap: 4px; font-size: 12px; color: var(--accent);
@@ -1053,36 +1053,65 @@ function calcStatus(entry) {
 }
 
 const INST_META = {
-  "Anthropic":                               { url: "https://www.anthropic.com",                                         type: "AI lab",                   note: "Industry-funded, safety-focused"                },
-  "OpenAI":                                  { url: "https://openai.com",                                                type: "AI lab",                   note: "Industry-funded, policy-active"                 },
-  "OpenAI / University of Pennsylvania":     { url: "https://openai.com",                                                type: "AI lab / University",      note: "Industry-academic partnership"                  },
-  "Brookings Institution":                   { url: "https://www.brookings.edu",                                         type: "Think tank",               note: "Centrist, philanthropically funded"             },
-  "Brookings Metro":                         { url: "https://www.brookings.edu",                                         type: "Think tank",               note: "Centrist, urban and regional policy focus"      },
-  "Data & Society":                          { url: "https://datasociety.net",                                           type: "Research institute",        note: "Independent nonprofit, critical technology studies"     },
-  "Data and Society Research Institute":     { url: "https://datasociety.net",                                           type: "Research institute",        note: "Independent nonprofit, critical technology studies"     },
-  "NBER":                                    { url: "https://www.nber.org",                                              type: "Economic research network", note: "Academic, nonpartisan"                          },
-  "MIT Work of the Future Task Force":       { url: "https://workofthefuture-taskforce.mit.edu",                        type: "University research",       note: "Academic, nonpartisan"                          },
-  "MIT Work of the Future":                  { url: "https://workofthefuture-taskforce.mit.edu",                        type: "University research",       note: "Academic, nonpartisan"                          },
-  "Digitalist Papers":                       { url: "https://www.digitalistpapers.com",                                 type: "Policy journal",            note: "Academic-adjacent, pluralist"                   },
-  "Centre for Future Generations":           { url: "https://cfg.eu",                                                    type: "Think tank",               note: "Long-termist, European"                         },
-  "Tony Blair Institute for Global Change":  { url: "https://institute.global",                                          type: "Think tank",               note: "Third Way politics, centrist"                   },
-  "U.S. National Science Foundation":        { url: "https://www.nsf.gov",                                              type: "Federal agency",            note: "Government, nonpartisan"                        },
-  "Center for American Progress":            { url: "https://www.americanprogress.org",                                 type: "Think tank",                note: "Democratic-affiliated, progressive policy"      },
-  "Polity":                                  { url: "https://politybooks.com",                                           type: "Academic publisher",        note: "Nonpartisan"                                    },
-  "The Bully Pulpit":                        { url: "https://bharatramamurti.substack.com",                             type: "Policy commentary",         note: "Progressive, independent"                       },
-  "Cornell ILR School":                      { url: "https://www.ilr.cornell.edu",                                      type: "University",                note: "Academic, labor relations focus"                },
-  "McKinsey Global Institute":               { url: "https://www.mckinsey.com/mgi/overview",                            type: "Consulting research",       note: "Industry-funded, pro-business"                  },
-  "Goldman Sachs Global Investment Research":{ url: "https://www.goldmansachs.com/intelligence",                        type: "Investment bank research",  note: "Industry-funded, market-oriented"               },
-  "Georgetown CSET":                         { url: "https://cset.georgetown.edu",                                      type: "Research institute",        note: "Technology and national security, nonpartisan"  },
-  "European Parliament Research Service":    { url: "https://www.europarl.europa.eu/thinktank/en/home.html",           type: "Government research body",  note: "EU institutional, nonpartisan"                  },
-  "World Economic Forum":                    { url: "https://www.weforum.org",                                          type: "International body",        note: "Business-government forum, pro-globalization"   },
-  "National Employment Law Project":         { url: "https://www.nelp.org",                                             type: "Worker advocacy",           note: "Labor-movement aligned, progressive"            },
-  "National Fair Housing Alliance":          { url: "https://nationalfairhousing.org",                                  type: "Civil rights advocacy",     note: "Progressive, housing and equity focus"          },
-  "American Economic Liberties Project":     { url: "https://www.economicliberties.us",                                 type: "Policy advocacy",           note: "Anti-monopoly, progressive"                     },
-  "American Psychological Association":      { url: "https://www.apa.org",                                              type: "Professional association",  note: "Scientific, nonpartisan"                        },
-  "Writers Guild of America":                { url: "https://www.wga.org",                                              type: "Labor union",               note: "Labor-movement aligned, entertainment sector"   },
-  "Upturn":                                  { url: "https://www.upturn.org",                                            type: "Civil society research",    note: "Racial and tech justice focus, progressive"     },
-  "Resources for the Future / Lincoln Institute": { url: "https://www.rff.org",                                         type: "Think tank",               note: "Environmental policy, nonpartisan"               },
+  // ── AI Industry ───────────────────────────────────────────────
+  "Anthropic":                                    { url: "https://www.anthropic.com",                                      type: "AI lab",                    note: "Industry-funded, safety-focused"                          },
+  "OpenAI":                                       { url: "https://openai.com",                                             type: "AI lab",                    note: "Industry-funded, policy-active"                           },
+  "OpenAI / University of Pennsylvania":          { url: "https://openai.com",                                             type: "AI lab / University",       note: "Industry-academic partnership"                            },
+  // ── Academic & Economic Research ─────────────────────────────
+  "Stanford HAI":                                 { url: "https://hai.stanford.edu",                                       type: "University research",       note: "Academic, AI policy and ethics focus"                     },
+  "NBER":                                         { url: "https://www.nber.org",                                           type: "Economic research network", note: "Academic, nonpartisan"                                    },
+  "NBER Working Paper":                           { url: "https://www.nber.org",                                           type: "Economic research network", note: "Academic, nonpartisan"                                    },
+  "MIT Work of the Future Task Force":            { url: "https://workofthefuture.mit.edu",                                type: "University research",       note: "Academic, nonpartisan"                                    },
+  "MIT Work of the Future":                       { url: "https://workofthefuture.mit.edu",                                type: "University research",       note: "Academic, nonpartisan"                                    },
+  "Cornell ILR School":                           { url: "https://www.ilr.cornell.edu",                                    type: "University",                note: "Academic, labor relations focus"                          },
+  "Brookings Institution":                        { url: "https://www.brookings.edu",                                      type: "Think tank",                note: "Centrist, philanthropically funded"                       },
+  "Brookings Metro":                              { url: "https://www.brookings.edu",                                      type: "Think tank",                note: "Centrist, urban and regional policy focus"                 },
+  "Opportunity@Work & Brookings Metro":           { url: "https://www.brookings.edu",                                      type: "Research collaboration",    note: "Workforce development and regional policy"                 },
+  "New England Journal of Medicine":              { url: "https://www.nejm.org",                                           type: "Academic journal",          note: "Peer-reviewed, nonpartisan"                               },
+  "Council on Foreign Relations":                 { url: "https://www.cfr.org",                                            type: "Think tank",                note: "Centrist, foreign policy and international affairs"        },
+  "arXiv":                                        { url: "https://arxiv.org",                                              type: "Preprint repository",       note: "Open-access, not peer-reviewed"                           },
+  // ── Critical Technology Research ─────────────────────────────
+  "AI Now Institute":                             { url: "https://ainowinstitute.org",                                     type: "Research institute",        note: "Critical AI studies, progressive"                         },
+  "AI Now Institute et al.":                      { url: "https://ainowinstitute.org",                                     type: "Research institute",        note: "Critical AI studies, progressive"                         },
+  "AI Now Institute, Aapti Institute, The Maybe": { url: "https://ainowinstitute.org",                                     type: "Research consortium",       note: "Critical AI studies, global perspective"                   },
+  "Data & Society":                               { url: "https://datasociety.net",                                        type: "Research institute",        note: "Independent nonprofit, critical technology studies"        },
+  "Data and Society Research Institute":          { url: "https://datasociety.net",                                        type: "Research institute",        note: "Independent nonprofit, critical technology studies"        },
+  "Georgetown CSET":                              { url: "https://cset.georgetown.edu",                                    type: "Research institute",        note: "Technology and national security, nonpartisan"             },
+  "Upturn":                                       { url: "https://www.upturn.org",                                         type: "Civil society research",    note: "Racial and tech justice focus, progressive"                },
+  // ── Policy & Think Tanks ──────────────────────────────────────
+  "Economic Policy Institute":                    { url: "https://www.epi.org",                                            type: "Think tank",                note: "Labor-aligned, progressive economic policy"               },
+  "Center for American Progress":                 { url: "https://www.americanprogress.org",                               type: "Think tank",                note: "Democratic-affiliated, progressive policy"                 },
+  "Open Markets Institute":                       { url: "https://www.openmarketsinstitute.org",                           type: "Policy advocacy",           note: "Anti-monopoly, progressive"                               },
+  "Open Markets Institute & Mozilla":             { url: "https://www.openmarketsinstitute.org",                           type: "Policy advocacy",           note: "Anti-monopoly, progressive"                               },
+  "Open Markets Institute & Mission:data Coalition": { url: "https://www.openmarketsinstitute.org",                        type: "Policy advocacy",           note: "Anti-monopoly, progressive"                               },
+  "American Economic Liberties Project":          { url: "https://www.economicliberties.us",                               type: "Policy advocacy",           note: "Anti-monopoly, progressive"                               },
+  "International Labour Organization":            { url: "https://www.ilo.org",                                            type: "International organization",note: "UN agency, pro-worker mandate"                            },
+  "OECD Competition Committee":                   { url: "https://www.oecd.org",                                           type: "International organization",note: "Multilateral, developed-country focus"                     },
+  "World Economic Forum":                         { url: "https://www.weforum.org",                                        type: "International body",        note: "Business-government forum, pro-globalization"              },
+  "European Parliament Research Service":         { url: "https://www.europarl.europa.eu/thinktank/en/home.html",         type: "Government research body",  note: "EU institutional, nonpartisan"                            },
+  "U.S. National Science Foundation":             { url: "https://www.nsf.gov",                                            type: "Federal agency",            note: "Government, nonpartisan"                                  },
+  "Tony Blair Institute for Global Change":       { url: "https://institute.global",                                       type: "Think tank",                note: "Third Way politics, centrist"                             },
+  "Centre for Future Generations":                { url: "https://cfg.eu",                                                  type: "Think tank",                note: "Long-termist, European"                                   },
+  "Digitalist Papers":                            { url: "https://www.digitalistpapers.com",                               type: "Policy journal",            note: "Academic-adjacent, pluralist"                             },
+  "The Bully Pulpit":                             { url: "https://bharatramamurti.substack.com",                           type: "Policy commentary",         note: "Progressive, independent"                                 },
+  "Tech Policy Press":                            { url: "https://techpolicy.press",                                       type: "Policy journalism",         note: "Independent, technology policy focus"                     },
+  "Resources for the Future / Lincoln Institute": { url: "https://www.rff.org",                                            type: "Think tank",                note: "Environmental policy, nonpartisan"                        },
+  // ── Labor & Workers' Rights ───────────────────────────────────
+  "AFL-CIO":                                      { url: "https://aflcio.org",                                             type: "Labor federation",          note: "Labor-movement aligned, 63 affiliated unions"             },
+  "Writers Guild of America":                     { url: "https://www.wga.org",                                            type: "Labor union",               note: "Labor-movement aligned, entertainment sector"             },
+  "National Employment Law Project":              { url: "https://www.nelp.org",                                           type: "Worker advocacy",           note: "Labor-movement aligned, progressive"                      },
+  // ── Civil Rights & Equity ─────────────────────────────────────
+  "National Consumer Law Center":                 { url: "https://www.nclc.org",                                           type: "Consumer advocacy",         note: "Consumer rights focus, progressive"                       },
+  "National Fair Housing Alliance":               { url: "https://nationalfairhousing.org",                                type: "Civil rights advocacy",     note: "Progressive, housing and equity focus"                    },
+  "American Psychological Association":           { url: "https://www.apa.org",                                            type: "Professional association",  note: "Scientific, nonpartisan"                                  },
+  // ── Investigative Journalism ──────────────────────────────────
+  "ProPublica":                                   { url: "https://www.propublica.org",                                     type: "Investigative journalism",   note: "Independent nonprofit, progressive"                       },
+  // ── Industry Research ─────────────────────────────────────────
+  "McKinsey Global Institute":                    { url: "https://www.mckinsey.com/mgi/overview",                          type: "Consulting research",       note: "Industry-funded, pro-business"                            },
+  "Goldman Sachs Global Investment Research":     { url: "https://www.goldmansachs.com/intelligence",                     type: "Investment bank research",  note: "Industry-funded, market-oriented"                         },
+  "BCG Henderson Institute":                      { url: "https://bcg.com/beyond-consulting/bcg-henderson-institute",     type: "Consulting research",       note: "Industry-funded, management consulting"                   },
+  // ── Academic Publishing ───────────────────────────────────────
+  "Polity":                                       { url: "https://politybooks.com",                                        type: "Academic publisher",        note: "Nonpartisan"                                              },
 };
 const INST_URLS = Object.fromEntries(Object.entries(INST_META).map(([k,v]) => [k, v.url]));
 
@@ -1096,31 +1125,37 @@ const PRIORITY_SOURCE_GROUPS = {
     "Anthropic", "OpenAI",
   ],
   "Academic & Economic Research": [
-    "NBER", "MIT Work of the Future Task Force", "MIT Work of the Future",
-    "Brookings Institution", "Brookings Metro", "Cornell ILR School",
+    "Stanford HAI", "NBER", "NBER Working Paper",
+    "MIT Work of the Future Task Force", "MIT Work of the Future",
+    "Brookings Institution", "Brookings Metro", "Opportunity@Work & Brookings Metro",
+    "Cornell ILR School", "New England Journal of Medicine", "Council on Foreign Relations",
   ],
   "Critical Technology Research": [
+    "AI Now Institute", "AI Now Institute et al.", "AI Now Institute, Aapti Institute, The Maybe",
     "Data & Society", "Data and Society Research Institute",
     "Georgetown CSET", "Upturn",
   ],
   "Policy & Think Tanks": [
-    "Center for American Progress", "Tony Blair Institute for Global Change",
-    "Centre for Future Generations", "Digitalist Papers", "The Bully Pulpit",
-    "European Parliament Research Service", "World Economic Forum",
+    "Economic Policy Institute", "Center for American Progress",
+    "Open Markets Institute", "Open Markets Institute & Mozilla", "Open Markets Institute & Mission:data Coalition",
+    "American Economic Liberties Project",
+    "International Labour Organization", "OECD Competition Committee", "World Economic Forum",
+    "European Parliament Research Service",
+    "Tony Blair Institute for Global Change", "Centre for Future Generations",
+    "Digitalist Papers", "The Bully Pulpit", "Tech Policy Press",
     "Resources for the Future / Lincoln Institute", "U.S. National Science Foundation",
   ],
   "Labor & Workers' Rights": [
-    "Writers Guild of America", "National Employment Law Project",
-    "American Economic Liberties Project",
+    "AFL-CIO", "Writers Guild of America", "National Employment Law Project",
   ],
   "Civil Rights & Equity": [
-    "National Fair Housing Alliance", "American Psychological Association",
+    "National Consumer Law Center", "National Fair Housing Alliance", "American Psychological Association",
+  ],
+  "Investigative Journalism": [
+    "ProPublica",
   ],
   "Industry Research": [
-    "McKinsey Global Institute", "Goldman Sachs Global Investment Research",
-  ],
-  "Academic Publishing": [
-    "Polity",
+    "McKinsey Global Institute", "Goldman Sachs Global Investment Research", "BCG Henderson Institute",
   ],
 };
 
@@ -2171,6 +2206,7 @@ const RESEARCH_DATA = [
 </button>
 <div class="sidebar-backdrop" id="sidebarBackdrop"></div>
 
+
 <!-- ═══════════════════════════════════════════════════════════
      ENGINE
      ═══════════════════════════════════════════════════════════ -->
@@ -2912,11 +2948,8 @@ const RESEARCH_DATA = [
             const nameEl = meta.url
               ? `<a class="modal-source-link" href="${meta.url}" target="_blank" rel="noopener">${name}<span class="modal-source-ext">↗</span></a>`
               : `<span class="modal-source-link">${name}</span>`;
-            const typeEl = meta.type ? `<span class="modal-source-type">${meta.type}</span>` : '';
-            const noteEl = meta.note ? `<div class="modal-source-note">${meta.note}</div>` : '';
             return `<div class="modal-source-row">
-              <div class="modal-source-top">${nameEl}${typeEl}</div>
-              ${noteEl}
+              <div class="modal-source-top">${nameEl}</div>
             </div>`;
           }).join('');
           g.innerHTML = `<div class="modal-group-name">${group}</div>
