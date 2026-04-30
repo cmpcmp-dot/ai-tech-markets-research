@@ -946,15 +946,15 @@ const THEMES = [
     confidence: "consensus",
     question: "Is AI compounding existing racial, gender, and class inequalities?",
     framing: "AI systems are not neutral by default — documented disparities in hiring, credit, and surveillance show that without deliberate intervention, AI rollout will deepen existing inequalities.",
-    synthesis: "<p>Documented disparities are persistent across the AI pipeline. In hiring, fewer than 20% of vendors provide adequate bias audit documentation, and NIST's AI Risk Management Framework identifies demographic parity failures as among the most underreported deployment risks. Mortgage underwriting algorithms show 40–60% higher denial rates for Black and Latino applicants even after controlling for creditworthiness, per NCRC analysis. Tenant screening algorithms present a third documented domain: the National Consumer Law Center finds no empirical evidence that credit scores predict successful tenancy, yet they are primary inputs to automated screening tools that amplify racial disparities embedded in eviction records and criminal histories — making discrimination faster, cheaper, and harder to contest than under human decision-making. On the adoption side, women are adopting generative AI at measurably lower rates globally — a gap that, if sustained, will compound into earnings and career disparities over the next decade.</p><p>Meanwhile, 'privacy-preserving' surveillance techniques — differential privacy, on-device processing — are increasingly being used to satisfy compliance requirements while still enabling fine-grained monitoring of low-wage logistics and retail workers. AI for Social Good literature broadly documents that communities historically marginalized by technology do not automatically benefit from its improvement; equitable distribution of AI gains requires deliberate architectural and policy choices at procurement and deployment stages.</p>",
-    gaps: ["Intersectional analysis across race, gender, and class simultaneously", "Disability and accessibility in AI-mediated work", "Geographic equity in who benefits from AI-driven job creation"],
-    implication: "<p>Equity frameworks need to be embedded upstream in AI procurement and deployment decisions — not treated as post-hoc audit concerns. The evidence on hiring and credit algorithms suggests that bias accumulates structurally, not incidentally, which means voluntary vendor commitments are insufficient. Institutions are better positioned to advance change through procurement standards, coalition-building with civil rights organizations, and direct advocacy for enforceable audit requirements than through general AI literacy campaigns.</p><p>The adoption gap among women and lower-income populations also warrants specific attention. Institutions investing in AI tools should actively assess who is actually using them and at what level of sophistication — not just whether access exists. Uneven adoption within institutions mirrors the broader labor market dynamic: tools that amplify productivity for confident, experienced users will widen internal equity gaps if rollout is not paired with deliberate support structures.</p>",
+    synthesis: "<p>Documented disparities are persistent across the AI pipeline. In hiring, fewer than 20% of vendors provide adequate bias audit documentation, and NIST's AI Risk Management Framework identifies demographic parity failures as among the most underreported deployment risks. Mortgage underwriting algorithms show 40–60% higher denial rates for Black and Latino applicants even after controlling for creditworthiness, per NCRC analysis. Tenant screening algorithms present a third documented domain: the National Consumer Law Center finds no empirical evidence that credit scores predict successful tenancy, yet they are primary inputs to automated screening tools that amplify racial disparities embedded in eviction records and criminal histories — making discrimination faster, cheaper, and harder to contest than under human decision-making. On the adoption side, women are adopting generative AI at measurably lower rates globally — a gap that, if sustained, will compound into earnings and career disparities over the next decade.</p><p>Meanwhile, 'privacy-preserving' surveillance techniques — differential privacy, on-device processing — are increasingly being used to satisfy compliance requirements while still enabling fine-grained monitoring of low-wage logistics and retail workers. AI for Social Good literature broadly documents that communities historically marginalized by technology do not automatically benefit from its improvement; equitable distribution of AI gains requires deliberate architectural and policy choices at procurement and deployment stages.</p><p>Housing is an emerging enforcement frontier. Center for American Progress analysis of AI in housing finance documents that automated valuation models (AVMs) and algorithmic underwriting tools lack the oversight frameworks applied to human decision-making, creating conditions where Fair Housing Act obligations are technically satisfied while discriminatory outcomes persist. CAP's regulatory recommendations identify concrete actions for HUD, CFPB, and FHFA — including mandatory bias testing of AVMs, audit trail requirements for algorithmic lending decisions, and explicit guidance extending disparate impact liability to automated tools — framing housing AI oversight as an enforcement gap addressable under existing statutory authority rather than requiring new legislation.</p>",
+    gaps: ["Intersectional analysis across race, gender, and class simultaneously", "Disability and accessibility in AI-mediated work", "Geographic equity in who benefits from AI-driven job creation", "AVM and algorithmic underwriting bias — enforcement gap between Fair Housing Act intent and current automated lending oversight"],
+    implication: "<p>Equity frameworks need to be embedded upstream in AI procurement and deployment decisions — not treated as post-hoc audit concerns. The evidence on hiring and credit algorithms suggests that bias accumulates structurally, not incidentally, which means voluntary vendor commitments are insufficient. Institutions are better positioned to advance change through procurement standards, coalition-building with civil rights organizations, and direct advocacy for enforceable audit requirements than through general AI literacy campaigns.</p><p>The adoption gap among women and lower-income populations also warrants specific attention. Institutions investing in AI tools should actively assess who is actually using them and at what level of sophistication — not just whether access exists. Uneven adoption within institutions mirrors the broader labor market dynamic: tools that amplify productivity for confident, experienced users will widen internal equity gaps if rollout is not paired with deliberate support structures.</p><p>The housing regulatory gap is actionable through existing channels. HUD, CFPB, and FHFA already have statutory authority to extend Fair Housing Act enforcement to algorithmic tools — the constraint is agency will and technical capacity, not legal authority. Institutions engaged in housing policy or fair lending advocacy should treat AVM bias auditing requirements and algorithmic decision audit trails as near-term enforcement priorities that do not require new legislation to pursue.</p>",
     risk: {
       level: "High",
       color: "#C0392B",
       summary: "<p>Algorithmic bias in hiring, credit, and surveillance is structural and self-reinforcing. Without upstream intervention at procurement and deployment stages, AI rollout at scale will deepen racial, gender, and class disparities faster than legal or advocacy mechanisms can address them.</p><p>The adoption gap compounds the risk: if lower-income and marginalized workers adopt AI tools at lower rates and with less sophistication, the economic divergence documented in displacement research will be layered on top of pre-existing inequalities, producing outcomes that are harder to reverse over time.</p>"
     },
-    papers: [8, 9, 10, 26, 66],
+    papers: [8, 9, 89, 26, 66],
   },
   {
     id: "worker-power",
@@ -980,15 +980,15 @@ const THEMES = [
     confidence: "emerging",
     question: "What policy frameworks are emerging — and are they adequate?",
     framing: "The gap between what AI can do and what institutions are required to disclose or prevent is widening faster than any single jurisdiction can close.",
-    synthesis: "<p>U.S. policy is deeply fragmented: 47 states have no statutory AI disclosure rights for workers, and no federal floor exists for algorithmic transparency or impact assessment. The Trump administration is pursuing aggressive AI industrial policy — accelerating permitting for data center development, reducing environmental review requirements, and positioning the federal government as a demand-side anchor for AI products — while framing these moves as deregulation rather than industrial strategy. The gap between stated policy goals and enforcement capacity is growing, particularly at the state level where AI-related laws lack dedicated implementation infrastructure.</p><p>The EU AI Act, now moving into enforcement, is creating a compliance floor that will affect any institution or employer operating across jurisdictions, with high-risk AI systems in employment and credit decisions subject to mandatory conformity assessments. OpenAI's 2025 Economic Blueprint and subsequent policy proposals blend genuine access-equity framing with provisions that would entrench dominant players and limit open-source competition — a dynamic that requires scrutiny from institutions whose interests diverge from large AI developers. Competition enforcement offers a parallel and underused track: Open Markets Institute analysis confirms that existing federal antitrust statutes are sufficient to address AI concentration through merger blocking, structural separation, and algorithmic price-fixing prosecution — the constraint is enforcement will and technical capacity, not legal authority, as the 2025 DOJ RealPage settlement demonstrated.</p>",
-    gaps: ["State-level enforcement capacity — laws exist but lack implementation infrastructure", "Worker participation in AI governance processes", "International regulatory coordination between U.S. and EU frameworks"],
-    implication: "<p>Advocacy for a federal AI worker rights floor is urgent, but the practical near-term leverage lies at the state level — where laws are passing but implementation infrastructure is almost entirely absent. Institutions with policy capacity should prioritize funding enforcement and compliance infrastructure, not just legislation. Building state agency capacity to investigate algorithmic harm is a less visible but more durable investment than supporting additional statutory language.</p><p>The EU AI Act is also creating an underappreciated opportunity: its requirements for high-risk AI systems in employment contexts can be used as a reference standard by U.S. institutions that want to establish procurement or deployment criteria ahead of domestic regulation. Institutions should also be skeptical of AI policy proposals — including from major developers — that conflate access-equity goals with market-concentration outcomes. Scrutinizing whose interests a given policy framing actually serves is an essential institutional capacity right now.</p>",
+    synthesis: "<p>U.S. policy is deeply fragmented: 47 states have no statutory AI disclosure rights for workers, and no federal floor exists for algorithmic transparency or impact assessment. The Trump administration is pursuing aggressive AI industrial policy — accelerating permitting for data center development, reducing environmental review requirements, and positioning the federal government as a demand-side anchor for AI products — while framing these moves as deregulation rather than industrial strategy. The gap between stated policy goals and enforcement capacity is growing, particularly at the state level where AI-related laws lack dedicated implementation infrastructure.</p><p>The EU AI Act, now moving into enforcement, is creating a compliance floor that will affect any institution or employer operating across jurisdictions, with high-risk AI systems in employment and credit decisions subject to mandatory conformity assessments. OpenAI's 2025 Economic Blueprint and subsequent policy proposals blend genuine access-equity framing with provisions that would entrench dominant players and limit open-source competition — a dynamic that requires scrutiny from institutions whose interests diverge from large AI developers. Competition enforcement offers a parallel and underused track: Open Markets Institute analysis confirms that existing federal antitrust statutes are sufficient to address AI concentration through merger blocking, structural separation, and algorithmic price-fixing prosecution — the constraint is enforcement will and technical capacity, not legal authority, as the 2025 DOJ RealPage settlement demonstrated.</p><p>Two emerging patterns sharpen the picture. First, AI is now being deployed inside governance itself: the Trump administration's Department of Transportation is using AI to draft federal regulations in 20 minutes while staffing is at historic lows, and DOGE's AI review of Veterans Affairs contracts — analyzing only 2,500 words per document using undefined criteria tuned iteratively toward maximum cuts — documents what inadequate government AI governance produces in practice. The line between AI as subject of regulation and AI as instrument of governance is collapsing faster than accountability frameworks can respond. Second, the 99-1 Senate vote striking the federal AI preemption moratorium preserved state regulatory authority for now, but the industry-backed push continues. CAP's mapping of over 80 agency-specific recommendations confirms that existing federal statutory authority is already sufficient to address most AI harms — the constraint is enforcement will and technical capacity, not legal power.</p>",
+    gaps: ["State-level enforcement capacity — laws exist but lack implementation infrastructure", "Accountability frameworks for AI deployed in government decision-making and rulemaking", "Worker participation in AI governance processes", "International regulatory coordination between U.S. and EU frameworks"],
+    implication: "<p>Advocacy for a federal AI worker rights floor is urgent, but the practical near-term leverage lies at the state level — where laws are passing but implementation infrastructure is almost entirely absent. Institutions with policy capacity should prioritize funding enforcement and compliance infrastructure, not just legislation. Building state agency capacity to investigate algorithmic harm is a less visible but more durable investment than supporting additional statutory language.</p><p>The EU AI Act is also creating an underappreciated opportunity: its requirements for high-risk AI systems in employment contexts can be used as a reference standard by U.S. institutions that want to establish procurement or deployment criteria ahead of domestic regulation. Institutions should also be skeptical of AI policy proposals — including from major developers — that conflate access-equity goals with market-concentration outcomes. Scrutinizing whose interests a given policy framing actually serves is an essential institutional capacity right now.</p><p>The government AI deployment cases — transportation rulemaking and VA contracts — are early signals of a governance gap that will widen as agencies accelerate AI adoption. Institutions should advocate for procurement standards and oversight requirements that apply the same accountability expectations to government AI use as to private deployment: explainability, defined criteria, independent audit, and human review before consequential decisions.</p>",
     risk: {
       level: "Medium",
       color: "#D4952A",
-      summary: "<p>Regulatory fragmentation creates conditions where harmful AI deployments can proceed without oversight or accountability. The core risk is the gap between policy intent and enforcement capacity: laws are passing, but the infrastructure to act on them is largely absent, and this gap is widening faster than state agencies can close it.</p><p>There is also a capture risk: well-resourced AI developers are actively shaping the policy environment in ways that can appear aligned with equity goals while protecting market concentration. Institutions that do not maintain independent policy analysis capacity risk lending legitimacy to frameworks that do not serve their constituencies.</p>"
+      summary: "<p>Regulatory fragmentation creates conditions where harmful AI deployments can proceed without oversight or accountability. The core risk is the gap between policy intent and enforcement capacity: laws are passing, but the infrastructure to act on them is largely absent, and this gap is widening faster than state agencies can close it.</p><p>There is also a capture risk: well-resourced AI developers are actively shaping the policy environment in ways that can appear aligned with equity goals while protecting market concentration. Institutions that do not maintain independent policy analysis capacity risk lending legitimacy to frameworks that do not serve their constituencies.</p><p>An underappreciated emerging risk: when government deploys AI in its own decision-making — drafting regulations, reviewing contracts, processing claims — the accountability mechanisms designed for private AI deployment do not automatically apply. Federal procurement and rulemaking processes are not yet equipped to assess or constrain the AI tools being introduced into them.</p>"
     },
-    papers: [16, 18, 67, 24, 28],
+    papers: [77, 80, 82, 86, 67, 70],
   },
   {
     id: "community",
@@ -1014,15 +1014,15 @@ const THEMES = [
     confidence: "contested",
     question: "Is reskilling delivering economic mobility — and for whom?",
     framing: "Reskilling is the go-to policy response to AI displacement — but the evidence that it actually delivers lasting mobility, especially for those who need it most, is weak.",
-    synthesis: "<p>The reskilling consensus is fracturing. Government-funded retraining programs have a weak evidence base: most evaluations show modest short-term wage gains that dissipate within 2–3 years, particularly for workers over 45 or without post-secondary credentials. The core design flaw, documented by Urban Institute and others, is treating skill-building in isolation from the structural conditions — housing instability, childcare gaps, transportation barriers, income volatility — that make sustained learning impossible for the populations most in need. Meanwhile, employer-led upskilling investments are concentrating on already-higher-wage workers, with little evidence of investment in frontline or low-wage populations. Brookings and Opportunity@Work add a further complication: AI may not eliminate entry-level Gateway jobs outright but could sever the advancement routes through them — leaving workers employed but stripped of the career progression those roles historically enabled, making traditional reskilling frameworks structurally inadequate even when they work.</p><p>On the technology side, Anthropic's 80,000-person usage study reveals a deepening expertise gap: experienced users treat AI as a collaborative partner, refining outputs iteratively and building compound advantages, while novice users offload discrete tasks entirely and capture far less value. This suggests that AI tools are amplifying existing skill and confidence gaps rather than leveling them — and that generic AI literacy programs, without deliberate scaffolding toward collaborative use, may widen the divide they aim to close.</p>",
-    gaps: ["Longitudinal effectiveness data on publicly-funded AI retraining programs", "Employer-led vs. publicly-funded training outcomes compared head-to-head", "Community college and workforce board capacity to deliver credible AI curricula"],
-    implication: "<p>Institutions that fund AI skills training without addressing the structural conditions that make sustained learning impossible — income instability, caregiving responsibilities, transportation access — will produce credentials without mobility. The evidence is clear enough that wraparound support should be treated as core program infrastructure, not a supplemental add-on. Program designs that assume participants can absorb new technical skills while managing housing insecurity or shift-based schedules are not failing because of participant deficits; they are failing by design.</p><p>The Anthropic usage data carries a direct institutional implication as well: if AI tools amplify existing expertise gaps, then deploying AI within programs serving lower-skill populations without deliberate scaffolding may actively widen the gap institutions are trying to close. Institutions should assess not just whether their constituents have access to AI tools, but how they are using them — and design learning environments that build toward the collaborative, iterative usage patterns associated with durable skill and earnings gains.</p>",
+    synthesis: "<p>The reskilling consensus is fracturing. Government-funded retraining programs have a weak evidence base: most evaluations show modest short-term wage gains that dissipate within 2–3 years, particularly for workers over 45 or without post-secondary credentials. The core design flaw, documented by Urban Institute and others, is treating skill-building in isolation from the structural conditions — housing instability, childcare gaps, transportation barriers, income volatility — that make sustained learning impossible for the populations most in need. Meanwhile, employer-led upskilling investments are concentrating on already-higher-wage workers, with little evidence of investment in frontline or low-wage populations. Brookings and Opportunity@Work add a further complication: AI may not eliminate entry-level Gateway jobs outright but could sever the advancement routes through them — leaving workers employed but stripped of the career progression those roles historically enabled, making traditional reskilling frameworks structurally inadequate even when they work.</p><p>On the technology side, Anthropic's 80,000-person usage study reveals a deepening expertise gap: experienced users treat AI as a collaborative partner, refining outputs iteratively and building compound advantages, while novice users offload discrete tasks entirely and capture far less value. This suggests that AI tools are amplifying existing skill and confidence gaps rather than leveling them — and that generic AI literacy programs, without deliberate scaffolding toward collaborative use, may widen the divide they aim to close.</p><p>The K-12 pipeline compounds the long-term picture. Center for American Progress learning-science analysis finds that AI in K-12 contexts carries genuine risks — over-reliance, assessment integrity erosion, and inequitable access — that require structured pedagogical frameworks rather than open-ended AI deployment. A companion CAP analysis on the digital divide documents that rural and low-income students remain systematically under-connected, with broadband and device gaps translating directly into reduced college and career readiness before any AI reskilling question even arises. The cohort entering the AI-shaped labor market over the next decade will have experienced highly unequal AI exposure during formative years — a starting-line gap that workforce retraining programs alone cannot close.</p>",
+    gaps: ["Longitudinal effectiveness data on publicly-funded AI retraining programs", "Employer-led vs. publicly-funded training outcomes compared head-to-head", "Community college and workforce board capacity to deliver credible AI curricula", "K-12 AI integration evidence base — what pedagogical frameworks actually close rather than widen learning gaps"],
+    implication: "<p>Institutions that fund AI skills training without addressing the structural conditions that make sustained learning impossible — income instability, caregiving responsibilities, transportation access — will produce credentials without mobility. The evidence is clear enough that wraparound support should be treated as core program infrastructure, not a supplemental add-on. Program designs that assume participants can absorb new technical skills while managing housing insecurity or shift-based schedules are not failing because of participant deficits; they are failing by design.</p><p>The Anthropic usage data carries a direct institutional implication as well: if AI tools amplify existing expertise gaps, then deploying AI within programs serving lower-skill populations without deliberate scaffolding may actively widen the gap institutions are trying to close. Institutions should assess not just whether their constituents have access to AI tools, but how they are using them — and design learning environments that build toward the collaborative, iterative usage patterns associated with durable skill and earnings gains.</p><p>The K-12 and digital divide findings extend the reskilling frame upstream: interventions focused only on adult workforce retraining are addressing the symptom while the source widens. Institutions with education programming should treat digital infrastructure access and structured AI pedagogy in K-12 as workforce development investments, not separate policy tracks. A student who reaches the labor market without reliable connectivity, AI exposure, or the scaffolded skills to use AI collaboratively faces compounded disadvantage that no post-secondary retraining program is designed to remedy.</p>",
     risk: {
       level: "Medium",
       color: "#D4952A",
       summary: "<p>The risk is not that reskilling programs fail at the margins — it's that they fail predictably and at scale while being treated as sufficient responses to structural displacement. Resources directed toward training without wraparound support produce credentials without mobility, and may displace more effective systemic interventions by appearing to address the problem.</p><p>The AI usage gap adds a compounding risk: generic literacy programs that do not build toward collaborative, iterative AI use may actually widen skill gaps among participants. Institutions investing in workforce programming without evaluating usage quality — not just access — risk funding programs that accelerate the divergence they are designed to close.</p>"
     },
-    papers: [17, 25, 27, 29, 74],
+    papers: [17, 84, 85, 29, 74],
   },
   {
     id: "experience",
@@ -2081,6 +2081,188 @@ const RESEARCH_DATA = [
       "70% of workers fear replacement by AI, yet federal action has stalled; the Workers First Initiative explicitly shifts the accountability framework from government regulation to collective bargaining and state-level legislation — positioning organized labor as the primary enforcement mechanism in the near term.",
       "The five principles require that AI adoption be treated as a workplace change subject to formal worker input or negotiation, that employers set explicit boundaries on AI-powered monitoring, and that skill-building and career pathways be funded when AI reshapes job roles.",
       "The framework addresses public-sector AI separately: when public funds support AI systems, agencies must disclose how those systems operate, what data they use, and how decisions can be reviewed or challenged — establishing a transparency floor for government AI procurement."
+    ]
+  },
+  {
+    id: 77, date: "2026-01-26",
+    title: "Government by AI? Trump Administration Plans to Write Regulations Using Artificial Intelligence",
+    source: "Jesse Coburn — ProPublica",
+    sourceUrl: "https://www.propublica.org/article/trump-artificial-intelligence-google-gemini-transportation-regulations",
+    category: "policy", geography: "us",
+    keyFinding: "The Trump administration's Department of Transportation is using Google Gemini to draft federal regulations in 20 minutes and compress rulemaking to 30 days — while having shed nearly 4,000 staff including 100+ attorneys — raising acute safety concerns across aviation, pipeline, and highway oversight.",
+    takeaways: [
+      "DOT leadership explicitly framed the goal as 'good enough' regulations, prioritizing speed over rigor in safety-critical domains where regulatory errors have direct life-or-death consequences.",
+      "The agency's simultaneous staff reductions mean that AI-generated drafts will face less expert review than ever — the combination of automated drafting and depleted subject-matter expertise creates compounding rather than offsetting risks.",
+      "Federal employees, academics, and former officials called the approach 'wildly irresponsible,' comparing it to having an intern draft aviation safety standards, and flagging AI hallucination risks in legally binding regulatory documents."
+    ]
+  },
+  {
+    id: 78, date: "2025-03-13",
+    title: "How ProPublica Uses AI Responsibly in Its Investigations",
+    source: "Charles Ornstein et al. — ProPublica",
+    sourceUrl: "https://www.propublica.org/article/using-ai-responsibly-for-reporting",
+    category: "policy", geography: "us",
+    keyFinding: "ProPublica used large language models to analyze thousands of NSF grants flagged as 'woke' by Senator Ted Cruz, finding widespread mischaracterization — a case study in both the investigative potential of AI and the human oversight required to make AI-assisted analysis publishable.",
+    takeaways: [
+      "AI analysis of the Cruz grant database revealed that many flagged grants had only tangential references to diversity or were entirely unrelated to DEI themes — findings that required prohibiting the model from guessing and verifying every output against source documents.",
+      "All AI-generated findings underwent staff review before publication, with journalists contacting named parties for comment; the newsroom explicitly frames AI as augmenting human judgment rather than replacing it.",
+      "ProPublica has applied similar methods to identify sexual misconduct patterns in disciplinary records and to classify hundreds of hours of Uvalde investigation audio — establishing a replicable, accountability-journalism standard for responsible AI use."
+    ]
+  },
+  {
+    id: 79, date: "2026-04-06",
+    title: "The Federal Government Is Rushing Toward AI. Our Reporting Offers Three Cautionary Tales.",
+    source: "Renee Dudley — ProPublica",
+    sourceUrl: "https://www.propublica.org/article/federal-government-ai-cautionary-tales",
+    category: "policy", geography: "us",
+    keyFinding: "Historical patterns from federal cloud computing adoption — vendor lock-in, underfunded oversight, and conflicted third-party assessors — are already replicating in the government's AI transition, with FedRAMP operating at minimum staffing as agencies accelerate AI procurement.",
+    takeaways: [
+      "Discounted or free AI offerings from vendors create dependency that allows significant price increases once agencies are locked in — the GSA has already warned that usage costs can grow quickly without monitoring, mirroring the cloud computing playbook.",
+      "FedRAMP now operates with an absolute minimum of support staff, making security validation effectively a rubber stamp at the moment federal AI adoption is accelerating fastest.",
+      "Third-party security assessors paid by the vendors they evaluate create structural conflicts of interest; without robust independent oversight, agencies rely on vendor claims rather than verified assessments — a pattern that enabled major federal cybersecurity failures in the cloud era."
+    ]
+  },
+  {
+    id: 80, date: "2025-06-06",
+    title: "Inside the AI Prompts DOGE Used to 'Munch' Contracts Related to Veterans' Health",
+    source: "Brandon Roberts, Vernal Coleman — ProPublica",
+    sourceUrl: "https://www.propublica.org/article/inside-ai-tool-doge-veterans-affairs-contracts-sahil-lavingia",
+    category: "policy", geography: "us",
+    keyFinding: "DOGE deployed an AI system to review Veterans Affairs contracts that analyzed only the first 2,500 words of each document, used undefined key terms, and was iteratively modified to flag more contracts for cancellation — resulting in essential services including internet infrastructure and patient lift maintenance being targeted.",
+    takeaways: [
+      "The system analyzed only the first 10,000 characters of contracts when current AI models support inputs more than 50 times larger — a deliberate or negligent design choice that systematically excluded critical contract details from review.",
+      "Core terms like 'direct patient care' and 'soft services' were never defined in the prompts, forcing the model to interpret ambiguous criteria in ways that flagged clearly essential services, including ceiling lift maintenance for disabled veterans.",
+      "Prompt revisions focused exclusively on making the model 'more aggressive' about flagging contracts for termination, with no parallel refinements to reduce false positives — structurally biasing the system toward maximum cuts rather than accurate waste identification."
+    ]
+  },
+  {
+    id: 81, date: "2024-02-02",
+    title: "Police Departments Are Turning to AI to Sift Through Millions of Hours of Unreviewed Body-Cam Footage",
+    source: "Umar Farooq — ProPublica",
+    sourceUrl: "https://www.propublica.org/article/police-body-cameras-video-ai-law-enforcement",
+    category: "surveillance", geography: "us",
+    keyFinding: "Police departments have accumulated over 100 petabytes of bodycam footage — the vast majority unreviewed — and are now adopting AI tools to flag problematic officer behavior, but resist disclosing findings publicly, converting a transparency technology into a confidential internal management system.",
+    takeaways: [
+      "The scale of unreviewed footage — equivalent to 25 million feature films — reflects a fundamental failure of the bodycam transparency promise; AI analysis is being adopted not to fulfill that promise publicly but to manage officer behavior internally.",
+      "Around 30 departments currently use AI tools like Truleo that automatically flag behaviors including interrupting civilians, using force, or muting cameras — but union pressure and department resistance mean findings are rarely disclosed to the public or oversight bodies.",
+      "The dynamic illustrates a recurring pattern in law enforcement technology: tools adopted under the banner of accountability are operationalized in ways that preserve institutional opacity, with AI accelerating the volume of analysis while accountability mechanisms remain unchanged."
+    ]
+  },
+  {
+    id: 82, date: "2025-11-19",
+    title: "Moratoriums and Federal Preemption of State Artificial Intelligence Laws Pose Serious Risks",
+    source: "Nicole Alvarez — Center for American Progress",
+    sourceUrl: "https://www.americanprogress.org/article/moratoriums-and-federal-preemption-of-state-artificial-intelligence-laws-pose-serious-risks/",
+    category: "policy", geography: "us",
+    keyFinding: "The 99-1 Senate vote striking an AI preemption moratorium from the budget reconciliation bill exposed its flawed drafting and industry-driven origins — but Congressional Republicans continue pursuing federal preemption despite having no viable replacement for the state protections it would eliminate.",
+    takeaways: [
+      "The reconciliation moratorium contained vague definitions and enforcement mechanisms that would have created legal confusion, inviting costly litigation while blocking states from regulating AI harms in employment, healthcare, housing, and elections.",
+      "Large AI companies and their trade associations actively lobbied for federal preemption to reduce regulatory friction and protect market dominance — framing it as a compliance burden relief for small firms while primarily benefiting incumbent platforms.",
+      "States have enacted meaningful AI protections precisely because federal action stalled; preserving state regulatory authority allows for policy experimentation and development of best practices that can eventually inform stronger federal standards."
+    ]
+  },
+  {
+    id: 83, date: "2024-09-25",
+    title: "To Implement AI Responsibly, Third-Party Deployments Must Require Safeguards",
+    source: "Anastasia Dodd, Megan Shahi — Center for American Progress",
+    sourceUrl: "https://www.americanprogress.org/article/to-implement-ai-responsibly-third-party-deployments-must-require-safeguards/",
+    category: "policy", geography: "us",
+    keyFinding: "Six months after CAP issued safety recommendations, none of the major AI developers had implemented them for third-party deployments — the segment representing the majority of future AI growth — leaving users systematically less protected than those accessing the same models directly.",
+    takeaways: [
+      "In first-party deployments, users can report safety issues directly to developers; in third-party deployments they can only report to deployers, who have no structural incentive to escalate violations upstream — creating an accountability gap at the fastest-growing layer of AI distribution.",
+      "Safety tools exist across major AI platforms but deployers can disable them without consequence; CAP recommends these tools default to on across all deployments rather than being optional features deployers can strip out.",
+      "AI companies lack standardized transparency reporting on policy violations, and deployers struggle navigating fragmented compliance documentation — leaving end users exposed to harms that neither the developer nor the deployer is formally accountable for preventing."
+    ]
+  },
+  {
+    id: 84, date: "2024-09-19",
+    title: "Using Learning Science To Analyze the Risks and Benefits of AI in K-12 Education",
+    source: "Lisette Partelow — Center for American Progress",
+    sourceUrl: "https://www.americanprogress.org/article/using-learning-science-to-analyze-the-risks-and-benefits-of-ai-in-k-12-education/",
+    category: "education", geography: "us",
+    keyFinding: "AI tools in K-12 settings risk displacing the unstructured play, physical movement, and social interaction that learning science identifies as foundational to cognitive development — and poorly designed adoption is likely to deepen educational inequities rather than reduce them.",
+    takeaways: [
+      "Human brains learn through play, social interaction, and movement in ways that screen-based AI instruction cannot replicate; schools adopting AI tools without assessing their fit with developmental science risk substituting engagement metrics for genuine learning outcomes.",
+      "Low-income and BIPOC students face compounded risks from poorly designed AI adoption — including a deepened digital divide and reduced access to enriched learning environments — making equity assessment a prerequisite for any AI tool deployment, not an afterthought.",
+      "AI tools should be evaluated against whether they enhance or displace meaningful teacher-student and peer relationships, which are central to motivation and cognitive development; tools that automate interaction rather than support it are likely to harm the students most in need."
+    ]
+  },
+  {
+    id: 85, date: "2024-07-30",
+    title: "How States and Districts Can Close the Digital Divide To Increase College and Career Readiness",
+    source: "Paige Shoemaker DeMio — Center for American Progress",
+    sourceUrl: "https://www.americanprogress.org/article/how-states-and-districts-can-close-the-digital-divide-to-increase-college-and-career-readiness/",
+    category: "education", geography: "us",
+    keyFinding: "The digital divide has three distinct dimensions — device access, teacher capacity for technology-rich curriculum design, and meaningful implementation in classrooms — and closing all three is a prerequisite for equitable AI-era workforce preparation.",
+    takeaways: [
+      "One-third of jobs created over the past 25 years did not previously exist, and AI is projected to create 20-50 million new jobs globally by 2030; students without meaningful digital literacy exposure in K-12 are structurally unprepared for the labor market they will enter.",
+      "Closing the design and use dimensions of the divide — not just device access — requires building teacher capacity to integrate technology into rich curricula rather than passive uses like online quizzes; professional development investment is as essential as hardware procurement.",
+      "Existing federal funding streams including ESSA, IDEA, and IIJA can support technology integration without new appropriations; states and districts that have not mapped available resources against all three divide dimensions are leaving implementation capacity on the table."
+    ]
+  },
+  {
+    id: 86, date: "2024-06-17",
+    title: "Taking Further Agency Action on AI",
+    source: "Will Dobbs-Allsopp, Reed Shaw, Adam Conner et al. — Center for American Progress",
+    sourceUrl: "https://www.americanprogress.org/article/taking-further-agency-action-on-ai/",
+    category: "policy", geography: "us",
+    keyFinding: "Federal agencies already possess statutory authority to regulate AI risks across consumer protection, civil rights, labor, and financial oversight — and over 80 actionable agency-specific recommendations are available for immediate implementation without new legislation.",
+    takeaways: [
+      "Congressional inaction on AI legislation means federal agencies must become the primary regulators; existing laws including consumer protection, civil rights, and labor statutes apply to AI-enabled harms with no AI exemption required — enforcement will and technical capacity are the binding constraints.",
+      "The analysis spans the White House, Department of Labor, Department of Education, housing regulators, and nine financial agencies, mapping over 80 specific recommendations to each sector's existing jurisdiction — providing an implementation roadmap that does not depend on legislative action.",
+      "The core argument mirrors the antitrust framing from Open Markets Institute: regulatory authority already exists; what is missing is the institutional will, technical expertise, and political prioritization to deploy it consistently against AI-enabled harms."
+    ]
+  },
+  {
+    id: 87, date: "2024-02-01",
+    title: "Generative AI Should Be Developed and Deployed Responsibly at Every Level for Everyone",
+    source: "Megan Shahi, Adam Conner, Nicole Alvarez et al. — Center for American Progress",
+    sourceUrl: "https://www.americanprogress.org/article/generative-ai-should-be-developed-and-deployed-responsibly-at-every-level-for-everyone/",
+    category: "policy", geography: "us",
+    keyFinding: "AI developers implement meaningful safety protections for their own platforms while imposing minimal requirements on third-party API users — creating a structural accountability gap at the layer representing the majority of AI deployment growth.",
+    takeaways: [
+      "The disparity between first-party and third-party safety requirements creates a system where responsibility is passed to deployers who lack the technical capacity, contractual obligation, or business incentive to enforce it — and end users bear the resulting risk.",
+      "Current usage policies lack specificity, transparency, and enforcement capacity; without defined investigation processes, timelines, and consequences for violations, policy terms function as liability shields rather than meaningful safety commitments.",
+      "CAP recommends NIST incorporate third-party risk management into its AI framework, the FTC conduct safety requirement studies for API deployments, and Congress establish liability frameworks ensuring developers and deployers share accountability for downstream harms."
+    ]
+  },
+  {
+    id: 88, date: "2024-06-17",
+    title: "Fact Sheet: Recommendations for Financial Regulatory Agencies To Take Further Action on AI",
+    source: "Todd Phillips, Adam Conner — Center for American Progress",
+    sourceUrl: "https://www.americanprogress.org/article/fact-sheet-recommendations-for-financial-regulatory-agencies-to-take-further-action-on-ai/",
+    category: "policy", geography: "us",
+    keyFinding: "Financial regulators have existing authority to mandate AI explainability, cybersecurity red-teaming, and vendor interoperability requirements — and should use it now rather than waiting for sector-specific AI legislation that may not arrive.",
+    takeaways: [
+      "Regulators should require that AI systems used in lending, capital management, and customer-facing applications be explainable to both expert and lay audiences, with regular audits and source code reviews to detect discrimination and vulnerabilities before they cause systemic harm.",
+      "Financial institutions must conduct structured red team exercises to identify AI vulnerabilities, particularly as adversarial actors increasingly use AI-enabled attacks — a requirement that larger firms should face on an ongoing basis rather than at point-of-deployment only.",
+      "Requiring financial firms to ensure interoperability with at least five AI providers before contracting would prevent vendor lock-in, promote competitive alternatives, and reduce the systemic risk of critical financial infrastructure depending on a single AI supplier."
+    ]
+  },
+  {
+    id: 89, date: "2024-06-17",
+    title: "Fact Sheet: Recommendations for Housing Regulators To Take Further Action on AI",
+    source: "Anna Rodriguez — Center for American Progress",
+    sourceUrl: "https://www.americanprogress.org/article/fact-sheet-recommendations-for-housing-regulators-to-take-further-action-on-ai/",
+    category: "equity", geography: "us",
+    keyFinding: "Housing regulators can use existing authority under the Fair Housing Act and Dodd-Frank to address algorithmic discrimination in advertising, automated valuations, and mortgage underwriting — with specific actions available to HUD and FHFA without new legislation.",
+    takeaways: [
+      "HUD should update fair housing advertising guidance to explicitly hold companies providing AI-driven advertising services liable for steering housing ads away from protected communities — closing a gap where algorithmic targeting escapes accountability that applies to human decision-making.",
+      "The FHFA should expand its proposed automated valuation model rule to cover nonbank lenders, which originated over 50% of residential loans in 2022, and align minimum standards with NIST AI guidelines — the current rule covers a shrinking share of the market it purports to regulate.",
+      "Mandatory disclosure of AVM use and the right to request manual appraisals would protect against data manipulation and conflicts of interest in property valuations, directly addressing one of the documented mechanisms through which AI perpetuates racial wealth gaps in housing."
+    ]
+  },
+  {
+    id: 90, date: "2024-06-17",
+    title: "Fact Sheet: Recommendations for the Department of Education To Take Further Action on AI",
+    source: "Anna Rodriguez — Center for American Progress",
+    sourceUrl: "https://www.americanprogress.org/article/fact-sheet-recommendations-for-the-department-of-education-to-take-further-action-on-ai/",
+    category: "education", geography: "us",
+    keyFinding: "The Department of Education can use existing civil rights statutes and the Higher Education Act to address AI-enabled discrimination in schools — including disproportionate discipline, surveillance of students with disabilities, and inaccurate AI loan servicing chatbots.",
+    takeaways: [
+      "The Department should issue guidance clarifying that Title VI and Title IX apply to discrimination enabled by AI systems, including algorithmic discipline tools that disproportionately affect students of color and AI-based surveillance systems that flag protected characteristics.",
+      "AI-based cheating detection tools may discriminate against students with disabilities by flagging accommodation-related behaviors as suspicious; the Department should require schools to assess disability impacts before deploying any AI surveillance or academic integrity system.",
+      "Contracted loan servicers deploying AI chatbots must guarantee borrowers receive accurate information about their individual loans and maintain guaranteed pathways to human agents within reasonable timeframes — a basic standard that current AI deployments in federal loan servicing frequently fail to meet."
     ]
   }
 ];
