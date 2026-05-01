@@ -59,7 +59,7 @@
     --c0: #2C3254; --c1: #FF8361; --c2: #472B51; --c3: #70AD8F;
     --c4: #EBC382; --c5: #2C3254; --c6: #472B51; --c7: #70AD8F;
     --c8: #FF8361; --c9: #3C4164; --c10: #2C3254; --c11: #70AD8F;
-    --c12: #EBC382;
+    --c12: #EBC382; --c13: #B03030;
 
     --s-emergent: #70AD8F;
     --s-current:  #2C3254;
@@ -195,7 +195,7 @@
   .sidebar-section.collapsed .sidebar-chevron { transform: rotate(-90deg); }
   .sidebar-nav-wrap {
     overflow: hidden;
-    max-height: 1100px;
+    max-height: 1300px;
     transition: max-height 0.28s ease, opacity 0.22s ease;
     opacity: 1;
     padding-bottom: 6px;
@@ -904,6 +904,7 @@ const CATEGORIES = [
   { id: "macro",       label: "Macroeconomic & Industry Trends",                color: "var(--c7)" },
   { id: "policy",      label: "Policy & Regulatory Responses",                  color: "var(--c8)" },
   { id: "education",   label: "Education, Skills & Human Capital",              color: "var(--c12)"},
+  { id: "criminal-justice", label: "Criminal Justice & Policing",              color: "var(--c13)"},
 ];
 
 const STATUS_META = {
@@ -946,15 +947,32 @@ const THEMES = [
     confidence: "consensus",
     question: "Is AI compounding existing racial, gender, and class inequalities?",
     framing: "AI systems are not neutral by default — documented disparities in hiring, credit, and surveillance show that without deliberate intervention, AI rollout will deepen existing inequalities.",
-    synthesis: "<p>Documented disparities are persistent across the AI pipeline. In hiring, fewer than 20% of vendors provide adequate bias audit documentation, and NIST's AI Risk Management Framework identifies demographic parity failures as among the most underreported deployment risks. Mortgage underwriting algorithms show 40–60% higher denial rates for Black and Latino applicants even after controlling for creditworthiness, per NCRC analysis. Tenant screening algorithms present a third documented domain: the National Consumer Law Center finds no empirical evidence that credit scores predict successful tenancy, yet they are primary inputs to automated screening tools that amplify racial disparities embedded in eviction records and criminal histories — making discrimination faster, cheaper, and harder to contest than under human decision-making. On the adoption side, women are adopting generative AI at measurably lower rates globally — a gap that, if sustained, will compound into earnings and career disparities over the next decade.</p><p>Meanwhile, 'privacy-preserving' surveillance techniques — differential privacy, on-device processing — are increasingly being used to satisfy compliance requirements while still enabling fine-grained monitoring of low-wage logistics and retail workers. AI for Social Good literature broadly documents that communities historically marginalized by technology do not automatically benefit from its improvement; equitable distribution of AI gains requires deliberate architectural and policy choices at procurement and deployment stages.</p><p>Housing is an emerging enforcement frontier. Center for American Progress analysis of AI in housing finance documents that automated valuation models (AVMs) and algorithmic underwriting tools lack the oversight frameworks applied to human decision-making, creating conditions where Fair Housing Act obligations are technically satisfied while discriminatory outcomes persist. CAP's regulatory recommendations identify concrete actions for HUD, CFPB, and FHFA — including mandatory bias testing of AVMs, audit trail requirements for algorithmic lending decisions, and explicit guidance extending disparate impact liability to automated tools — framing housing AI oversight as an enforcement gap addressable under existing statutory authority rather than requiring new legislation.</p>",
-    gaps: ["Intersectional analysis across race, gender, and class simultaneously", "Disability and accessibility in AI-mediated work", "Geographic equity in who benefits from AI-driven job creation", "AVM and algorithmic underwriting bias — enforcement gap between Fair Housing Act intent and current automated lending oversight"],
-    implication: "<p>Equity frameworks need to be embedded upstream in AI procurement and deployment decisions — not treated as post-hoc audit concerns. The evidence on hiring and credit algorithms suggests that bias accumulates structurally, not incidentally, which means voluntary vendor commitments are insufficient. Institutions are better positioned to advance change through procurement standards, coalition-building with civil rights organizations, and direct advocacy for enforceable audit requirements than through general AI literacy campaigns.</p><p>The adoption gap among women and lower-income populations also warrants specific attention. Institutions investing in AI tools should actively assess who is actually using them and at what level of sophistication — not just whether access exists. Uneven adoption within institutions mirrors the broader labor market dynamic: tools that amplify productivity for confident, experienced users will widen internal equity gaps if rollout is not paired with deliberate support structures.</p><p>The housing regulatory gap is actionable through existing channels. HUD, CFPB, and FHFA already have statutory authority to extend Fair Housing Act enforcement to algorithmic tools — the constraint is agency will and technical capacity, not legal authority. Institutions engaged in housing policy or fair lending advocacy should treat AVM bias auditing requirements and algorithmic decision audit trails as near-term enforcement priorities that do not require new legislation to pursue.</p>",
+    synthesis: "<p>Documented disparities are persistent across the AI pipeline. In hiring, fewer than 20% of vendors provide adequate bias audit documentation, and NIST's AI Risk Management Framework identifies demographic parity failures as among the most underreported deployment risks. Mortgage underwriting algorithms show 40–60% higher denial rates for Black and Latino applicants even after controlling for creditworthiness, per NCRC analysis. Tenant screening algorithms present a third documented domain: the National Consumer Law Center finds no empirical evidence that credit scores predict successful tenancy, yet they are primary inputs to automated screening tools that amplify racial disparities embedded in eviction records and criminal histories — making discrimination faster, cheaper, and harder to contest than under human decision-making. On the adoption side, women are adopting generative AI at measurably lower rates globally — a gap that, if sustained, will compound into earnings and career disparities over the next decade.</p><p>Healthcare algorithms are among the most consequential and least-scrutinized sites of AI-driven racial disparity. Obermeyer et al.'s landmark Science study found that a widely used commercial health algorithm systematically underestimated Black patients' illness severity because it used healthcare cost as a proxy for need — and structural inequities mean less is spent on Black patients regardless of clinical condition. Correcting the bias would more than double the proportion of Black patients identified as needing high-risk care, raising the share from 17.7% to 46.5%. The problem extends to clinical decision tools themselves: Vyas, Eisenstein, and Jones in the NEJM documented race-adjustment factors embedded across cardiology, nephrology, obstetrics, and urology that encode a false biological premise about race, directing Black patients away from care they clinically need — including organ transplant referrals — through tools embedded in electronic health records and clinical training nationwide.</p><p>Housing is an emerging enforcement frontier. Center for American Progress analysis of AI in housing finance documents that automated valuation models (AVMs) and algorithmic underwriting tools lack the oversight frameworks applied to human decision-making, creating conditions where Fair Housing Act obligations are technically satisfied while discriminatory outcomes persist. CAP's regulatory recommendations identify concrete actions for HUD, CFPB, and FHFA — including mandatory bias testing of AVMs, audit trail requirements for algorithmic lending decisions, and explicit guidance extending disparate impact liability to automated tools — framing housing AI oversight as an enforcement gap addressable under existing statutory authority rather than requiring new legislation.</p>",
+    gaps: ["Intersectional analysis across race, gender, and class simultaneously", "Disability and accessibility in AI-mediated work", "Geographic equity in who benefits from AI-driven job creation", "AVM and algorithmic underwriting bias — enforcement gap between Fair Housing Act intent and current automated lending oversight", "Healthcare AI bias audit requirements — no federal standard requires commercial health algorithms to be tested for racial disparity before deployment"],
+    implication: "<p>Equity frameworks need to be embedded upstream in AI procurement and deployment decisions — not treated as post-hoc audit concerns. The evidence on hiring, credit, and healthcare algorithms shows that bias accumulates structurally through design choices — proxy variable selection, training data composition, outcome definition — which means voluntary vendor commitments are insufficient. Institutions are better positioned to advance change through procurement standards, coalition-building with civil rights organizations, and direct advocacy for enforceable audit requirements than through general AI literacy campaigns.</p><p>The adoption gap among women and lower-income populations also warrants specific attention. Institutions investing in AI tools should actively assess who is actually using them and at what level of sophistication — not just whether access exists. Uneven adoption within institutions mirrors the broader labor market dynamic: tools that amplify productivity for confident, experienced users will widen internal equity gaps if rollout is not paired with deliberate support structures.</p><p>The housing regulatory gap is actionable through existing channels. HUD, CFPB, and FHFA already have statutory authority to extend Fair Housing Act enforcement to algorithmic tools — the constraint is agency will and technical capacity, not legal authority. Institutions engaged in housing policy or fair lending advocacy should treat AVM bias auditing requirements and algorithmic decision audit trails as near-term enforcement priorities that do not require new legislation to pursue.</p>",
     risk: {
       level: "High",
       color: "#C0392B",
-      summary: "<p>Algorithmic bias in hiring, credit, and surveillance is structural and self-reinforcing. Without upstream intervention at procurement and deployment stages, AI rollout at scale will deepen racial, gender, and class disparities faster than legal or advocacy mechanisms can address them.</p><p>The adoption gap compounds the risk: if lower-income and marginalized workers adopt AI tools at lower rates and with less sophistication, the economic divergence documented in displacement research will be layered on top of pre-existing inequalities, producing outcomes that are harder to reverse over time.</p>"
+      summary: "<p>Algorithmic bias in hiring, credit, healthcare, and housing is structural and self-reinforcing. Without upstream intervention at procurement and deployment stages, AI rollout at scale will deepen racial, gender, and class disparities faster than legal or advocacy mechanisms can address them. Healthcare is a particularly underregulated frontier: no federal standard requires commercial health algorithms to be audited for racial disparity before deployment, and the tools are embedded in clinical infrastructure used by millions of patients.</p><p>The adoption gap compounds the risk: if lower-income and marginalized workers adopt AI tools at lower rates and with less sophistication, the economic divergence documented in displacement research will be layered on top of pre-existing inequalities, producing outcomes that are harder to reverse over time.</p>"
     },
-    papers: [8, 9, 89, 26, 66],
+    papers: [94, 95, 8, 9, 89],
+  },
+  {
+    id: "criminal-justice",
+    color: "#B03030",
+    tag: "Criminal Justice & Policing",
+    confidence: "consensus",
+    question: "Is AI amplifying racial bias in policing, sentencing, and surveillance — and who is accountable?",
+    framing: "AI in criminal justice is not a future risk — it is a decade-long documented harm. Risk assessment tools, facial recognition, and predictive policing have been in active deployment for years with demonstrated racial disparities and almost no enforceable accountability.",
+    synthesis: "<p>The evidence base for AI-driven harm in criminal justice is among the oldest and most rigorous in the field. ProPublica's 2016 investigation of the COMPAS recidivism algorithm established the foundational finding: Black defendants were 77% more likely to be labeled high-risk for future violent crime than white defendants with equivalent records — and the algorithm's errors ran in systematically opposite directions by race, mislabeling Black defendants as dangerous and white defendants who reoffended as safe. The algorithm remained in active use across multiple states despite the findings, and the vendor kept its predictive methodology proprietary, preventing defendants from examining or challenging the basis of risk scores used against them at sentencing and pretrial hearings.</p><p>Facial recognition compounds the problem at the point of identification. Georgetown Law's 2016 Perpetual Line-Up report documented that over 117 million Americans — one in two adults — were enrolled in law enforcement facial recognition networks, primarily through driver's license databases, without knowledge or consent. No state had passed comprehensive legislation governing police use of the technology. Research established that these systems are least accurate for Black individuals, women, and people aged 18–30 — the demographic groups most subject to law enforcement contact — creating conditions where the populations bearing the most risk from misidentification are also the least accurately identified. Maryland and Vermont responded to the Georgetown findings with early regulatory action, but most states have still not acted.</p><p>Predictive policing closes the feedback loop. Richardson, Schultz, and Crawford's 2019 NYU Law Review analysis identified 13 U.S. cities — jurisdictions with documented police misconduct, federal consent decrees, or civil rights investigations — that were simultaneously running predictive policing systems trained on the same corrupt data their misconduct produced. Systems like PredPol and HunchLab train on historical arrest records, encoding and amplifying the biases of the officers who generated them, then output algorithmic predictions that appear objective and are harder to contest legally than human judgment. No existing procurement framework requires law enforcement agencies to audit training data for civil rights violations before deployment — a structural accountability gap that remains unaddressed.</p>",
+    gaps: ["Public defender access to algorithm documentation — most defendants cannot examine or challenge the AI tools used against them", "Longitudinal accuracy data on recidivism tools — COMPAS was validated in 2010 and model drift is largely untracked", "Immigration enforcement AI — algorithmic tools in ICE proceedings are nearly absent from the research record", "Oversight mechanisms for real-time facial recognition in surveillance infrastructure"],
+    implication: "<p>Criminal justice AI is operating without oversight frameworks that apply even to commercial AI products. Procurement decisions are the most actionable near-term intervention: jurisdictions can require vendors to disclose training data provenance, accuracy by demographic subgroup, and independent audit access as conditions of contract — without waiting for state or federal legislation. The civil rights litigation record on COMPAS and facial recognition demonstrates that existing disparate impact doctrine under the Equal Protection Clause and Title VI is applicable; the constraint is legal capacity and access, not legal authority.</p><p>Institutions engaged in criminal justice reform, public defense, or civil rights should treat AI governance as a direct extension of existing work rather than a separate technical domain. The same procurement standards, transparency requirements, and legal challenges that apply to other high-stakes government decision-making apply here — and the evidence base to support those challenges is more developed in criminal justice than in almost any other AI deployment context.</p>",
+    risk: {
+      level: "High",
+      color: "#C0392B",
+      summary: "<p>Documented racial disparities in risk assessment, facial recognition, and predictive policing are structural and self-reinforcing. Proprietary algorithms, absent audit requirements, and no defendant access to model documentation mean these systems operate without the accountability mechanisms considered standard for other high-stakes government decisions.</p><p>The feedback loop in predictive policing — biased data producing biased predictions producing biased enforcement producing more biased data — compounds over time and becomes harder to disentangle the longer it runs. Jurisdictions that have been using these systems for a decade are now several cycles deep into that loop.</p>"
+    },
+    papers: [91, 92, 93],
   },
   {
     id: "worker-power",
@@ -963,7 +981,7 @@ const THEMES = [
     confidence: "emerging",
     question: "What leverage do workers actually have, and where is organizing working?",
     framing: "Workers have more leverage than union density numbers suggest — but only where they can organize collectively around specific AI deployment terms before those terms become standard.",
-    synthesis: "<p>Tech sector union density remains below 5% despite rising AI-related job insecurity — a gap driven primarily by contractor misclassification, at-will employment, and aggressive employer countermeasures. Yet the 2023 WGA and SAG-AFTRA strikes produced the first replicable AI contract language in a major U.S. industry: consent requirements for AI replicas, residual payments tied to AI use, and mandatory notification when AI substitutes for covered work. In October 2025, the AFL-CIO escalated significantly with Workers First — the first comprehensive labor movement AI agenda — representing 63 unions and 15 million workers, with five binding principles covering worker input in AI design, formal negotiation requirements, surveillance limits, and employer investment in career development. The characterization of AI organizing as confined to a handful of industries is no longer accurate.</p><p>In warehouse and logistics, Cornell ILR and worker advocacy data show that algorithmic management systems increased injury rates by 34% and voluntary turnover by the same margin — outcomes generating new organizing energy and litigation. The proliferation of surveillance tools marketed as compliant with GDPR and CCPA is enabling new forms of worker control that existing labor law does not yet address. The pattern is now spreading beyond logistics: AI Now's gig nursing research documents a coordinated deregulatory campaign threatening healthcare worker protections across 25 states, and NEJM analysis finds hospital AI monitoring placing clinicians at risk of the same algorithmic management dynamics — eroded autonomy, tightening performance baselines, limited recourse — previously documented only in blue-collar settings.</p>",
+    synthesis: "<p>Tech sector union density remains below 5% despite rising AI-related job insecurity — a gap driven primarily by contractor misclassification, at-will employment, and aggressive employer countermeasures. Yet the 2023 WGA and SAG-AFTRA strikes produced the first replicable AI contract language in a major U.S. industry: consent requirements for AI replicas, residual payments tied to AI use, and mandatory notification when AI substitutes for covered work. In October 2025, the AFL-CIO escalated significantly with Workers First — the first comprehensive labor movement AI agenda — representing 63 unions and 15 million workers, with five binding principles covering worker input in AI design, formal negotiation requirements, surveillance limits, and employer investment in career development. The characterization of AI organizing as confined to a handful of industries is no longer accurate.</p><p>In warehouse and logistics, Cornell ILR and worker advocacy data show that algorithmic management systems increased injury rates by 34% and voluntary turnover by the same margin — outcomes generating new organizing energy and litigation. ILO cross-country case studies in logistics and healthcare across Italy, France, India, and South Africa reinforce the pattern with international evidence: algorithmic management consistently degrades job quality and intensifies surveillance regardless of regulatory context — including in France and Italy, where strong labor law frameworks exist but contain no specific provisions for algorithmic management. The implication is that legal protection alone, without contract-specific AI governance provisions, does not prevent these outcomes. The pattern is now spreading beyond logistics: AI Now's gig nursing research documents a coordinated deregulatory campaign threatening healthcare worker protections across 25 states, and NEJM analysis finds hospital AI monitoring placing clinicians at risk of the same algorithmic management dynamics — eroded autonomy, tightening performance baselines, limited recourse — previously documented only in blue-collar settings.</p>",
     gaps: ["Healthcare and professional sector organizing — gig nursing deregulation and clinical AI surveillance represent the newest frontier of algorithmic management, with organizing infrastructure still underdeveloped", "Gig and platform worker legal frameworks for collective action", "International labor law and cross-border organizing"],
     implication: "<p>Collective bargaining remains the most direct and documented lever workers have to shape AI deployment terms — not just wages. The WGA/SAG-AFTRA precedent demonstrates that AI governance provisions can be won through contract, even before legislation exists. Institutions with labor relationships or labor-adjacent programming should treat AI contract language development as a high-value, near-term investment: the window for establishing precedents in key industries is open now and may close as contracts normalize.</p><p>The algorithmic management data also suggests that institutions tracking worker wellbeing need to look beyond wages and employment rates. Injury frequency, voluntary turnover, and psychological safety are where harm is concentrating in AI-managed environments — outcomes that do not appear in standard labor market indicators but that workers and their advocates are documenting in real time.</p>",
     risk: {
@@ -971,7 +989,7 @@ const THEMES = [
       color: "#D4952A",
       summary: "<p>Legal frameworks governing AI in the workplace lag deployment by years. Workers in algorithmic management environments face measurable harm — elevated injury rates, turnover, and surveillance — with limited legal recourse, and the organizing infrastructure needed to negotiate AI contract terms is underdeveloped outside a handful of industries.</p><p>The risk intensifies in sectors without union density or advocacy infrastructure. Where workers lack the collective capacity to negotiate AI terms, employer discretion over deployment conditions is nearly unchecked — and the harms documented in warehouse and logistics contexts will replicate across industries as algorithmic management tools become cheaper and more accessible.</p>"
     },
-    papers: [3, 4, 7, 26, 76],
+    papers: [3, 4, 7, 110, 76],
   },
   {
     id: "policy",
@@ -980,7 +998,7 @@ const THEMES = [
     confidence: "emerging",
     question: "What policy frameworks are emerging — and are they adequate?",
     framing: "The gap between what AI can do and what institutions are required to disclose or prevent is widening faster than any single jurisdiction can close.",
-    synthesis: "<p>U.S. policy is deeply fragmented: 47 states have no statutory AI disclosure rights for workers, and no federal floor exists for algorithmic transparency or impact assessment. The Trump administration is pursuing aggressive AI industrial policy — accelerating permitting for data center development, reducing environmental review requirements, and positioning the federal government as a demand-side anchor for AI products — while framing these moves as deregulation rather than industrial strategy. The gap between stated policy goals and enforcement capacity is growing, particularly at the state level where AI-related laws lack dedicated implementation infrastructure.</p><p>The EU AI Act, now moving into enforcement, is creating a compliance floor that will affect any institution or employer operating across jurisdictions, with high-risk AI systems in employment and credit decisions subject to mandatory conformity assessments. OpenAI's 2025 Economic Blueprint and subsequent policy proposals blend genuine access-equity framing with provisions that would entrench dominant players and limit open-source competition — a dynamic that requires scrutiny from institutions whose interests diverge from large AI developers. Competition enforcement offers a parallel and underused track: Open Markets Institute analysis confirms that existing federal antitrust statutes are sufficient to address AI concentration through merger blocking, structural separation, and algorithmic price-fixing prosecution — the constraint is enforcement will and technical capacity, not legal authority, as the 2025 DOJ RealPage settlement demonstrated.</p><p>Two emerging patterns sharpen the picture. First, AI is now being deployed inside governance itself: the Trump administration's Department of Transportation is using AI to draft federal regulations in 20 minutes while staffing is at historic lows, and DOGE's AI review of Veterans Affairs contracts — analyzing only 2,500 words per document using undefined criteria tuned iteratively toward maximum cuts — documents what inadequate government AI governance produces in practice. The line between AI as subject of regulation and AI as instrument of governance is collapsing faster than accountability frameworks can respond. Second, the 99-1 Senate vote striking the federal AI preemption moratorium preserved state regulatory authority for now, but the industry-backed push continues. CAP's mapping of over 80 agency-specific recommendations confirms that existing federal statutory authority is already sufficient to address most AI harms — the constraint is enforcement will and technical capacity, not legal power.</p>",
+    synthesis: "<p>U.S. policy is deeply fragmented: 47 states have no statutory AI disclosure rights for workers, and no federal floor exists for algorithmic transparency or impact assessment. The Trump administration is pursuing aggressive AI industrial policy — accelerating permitting for data center development, reducing environmental review requirements, and positioning the federal government as a demand-side anchor for AI products — while framing these moves as deregulation rather than industrial strategy. The gap between stated policy goals and enforcement capacity is growing, particularly at the state level where AI-related laws lack dedicated implementation infrastructure.</p><p>The EEOC's 2021 initiative on AI and algorithmic fairness marked the first formal federal assertion that existing antidiscrimination law — Title VII, ADA, ADEA — governs AI-driven employment decisions without requiring new legislation, establishing that employers cannot outsource civil rights liability to algorithm vendors. Technical guidance produced under the initiative identified hiring tools, video interview analyzers, and predictive assessments as potential sources of disparate impact subject to enforcement — a regulatory baseline that can be applied now. The EU AI Act, now moving into enforcement, is creating a compliance floor that will affect any institution or employer operating across jurisdictions, with high-risk AI systems in employment and credit decisions subject to mandatory conformity assessments. OpenAI's 2025 Economic Blueprint and subsequent policy proposals blend genuine access-equity framing with provisions that would entrench dominant players and limit open-source competition — a dynamic that requires scrutiny from institutions whose interests diverge from large AI developers. Competition enforcement offers a parallel and underused track: Open Markets Institute analysis confirms that existing federal antitrust statutes are sufficient to address AI concentration through merger blocking, structural separation, and algorithmic price-fixing prosecution — the constraint is enforcement will and technical capacity, not legal authority, as the 2025 DOJ RealPage settlement demonstrated.</p><p>Two emerging patterns sharpen the picture. First, AI is now being deployed inside governance itself: the Trump administration's Department of Transportation is using AI to draft federal regulations in 20 minutes while staffing is at historic lows, and DOGE's AI review of Veterans Affairs contracts — analyzing only 2,500 words per document using undefined criteria tuned iteratively toward maximum cuts — documents what inadequate government AI governance produces in practice. The line between AI as subject of regulation and AI as instrument of governance is collapsing faster than accountability frameworks can respond. Second, the 99-1 Senate vote striking the federal AI preemption moratorium preserved state regulatory authority for now, but the industry-backed push continues. CAP's mapping of over 80 agency-specific recommendations confirms that existing federal statutory authority is already sufficient to address most AI harms — the constraint is enforcement will and technical capacity, not legal power.</p>",
     gaps: ["State-level enforcement capacity — laws exist but lack implementation infrastructure", "Accountability frameworks for AI deployed in government decision-making and rulemaking", "Worker participation in AI governance processes", "International regulatory coordination between U.S. and EU frameworks"],
     implication: "<p>Advocacy for a federal AI worker rights floor is urgent, but the practical near-term leverage lies at the state level — where laws are passing but implementation infrastructure is almost entirely absent. Institutions with policy capacity should prioritize funding enforcement and compliance infrastructure, not just legislation. Building state agency capacity to investigate algorithmic harm is a less visible but more durable investment than supporting additional statutory language.</p><p>The EU AI Act is also creating an underappreciated opportunity: its requirements for high-risk AI systems in employment contexts can be used as a reference standard by U.S. institutions that want to establish procurement or deployment criteria ahead of domestic regulation. Institutions should also be skeptical of AI policy proposals — including from major developers — that conflate access-equity goals with market-concentration outcomes. Scrutinizing whose interests a given policy framing actually serves is an essential institutional capacity right now.</p><p>The government AI deployment cases — transportation rulemaking and VA contracts — are early signals of a governance gap that will widen as agencies accelerate AI adoption. Institutions should advocate for procurement standards and oversight requirements that apply the same accountability expectations to government AI use as to private deployment: explainability, defined criteria, independent audit, and human review before consequential decisions.</p>",
     risk: {
@@ -988,7 +1006,7 @@ const THEMES = [
       color: "#D4952A",
       summary: "<p>Regulatory fragmentation creates conditions where harmful AI deployments can proceed without oversight or accountability. The core risk is the gap between policy intent and enforcement capacity: laws are passing, but the infrastructure to act on them is largely absent, and this gap is widening faster than state agencies can close it.</p><p>There is also a capture risk: well-resourced AI developers are actively shaping the policy environment in ways that can appear aligned with equity goals while protecting market concentration. Institutions that do not maintain independent policy analysis capacity risk lending legitimacy to frameworks that do not serve their constituencies.</p><p>An underappreciated emerging risk: when government deploys AI in its own decision-making — drafting regulations, reviewing contracts, processing claims — the accountability mechanisms designed for private AI deployment do not automatically apply. Federal procurement and rulemaking processes are not yet equipped to assess or constrain the AI tools being introduced into them.</p>"
     },
-    papers: [77, 80, 82, 86, 67, 70],
+    papers: [77, 80, 82, 86, 101, 70],
   },
   {
     id: "community",
@@ -1031,7 +1049,7 @@ const THEMES = [
     confidence: "contested",
     question: "What do affected workers and communities actually want and fear?",
     framing: "What workers say they feel about AI and what happens to them under AI management are telling two different stories — and institutions need to hear both.",
-    synthesis: "<p>Anthropic's 80,508-person global study — one of the largest of its kind — found that hope and alarm about AI coexist within individuals, not between demographic camps. This challenges the common framing that separates 'AI optimists' from 'AI skeptics' by education, income, or ideology. Jobs and economic displacement rank as the second-most cited concern globally (22.3%), and lower-income regions show higher net positive AI sentiment than wealthy Western nations — a reversal of the typical assumption that marginalized communities are uniformly resistant to AI adoption.</p><p>However, aspirational sentiment diverges sharply from ground-level experience data. In algorithmic management environments — warehouses, delivery, call centers — worker-reported studies and Cornell ILR documentation show injury rates up 34%, voluntary turnover up 34%, and elevated rates of stress, surveillance anxiety, and reduced autonomy. The pattern is no longer confined to blue-collar settings: NEJM analysis of hospital AI monitoring finds clinicians at risk of becoming &ldquo;quantified workers&rdquo; subject to algorithmic performance management against billing and throughput metrics — the same dynamics of eroding professional judgment and tightening baselines are now documented in healthcare. Qualitative research from DAIR and similar organizations documents that workers often adapt to or internalize AI management norms rather than challenge them, even when experiencing measurable harm — making survey-based sentiment a poor proxy for on-the-ground conditions.</p>",
+    synthesis: "<p>Anthropic's 80,508-person global study — one of the largest of its kind — found that hope and alarm about AI coexist within individuals, not between demographic camps. This challenges the common framing that separates 'AI optimists' from 'AI skeptics' by education, income, or ideology. Jobs and economic displacement rank as the second-most cited concern globally (22.3%), and lower-income regions show higher net positive AI sentiment than wealthy Western nations — a reversal of the typical assumption that marginalized communities are uniformly resistant to AI adoption.</p><p>However, aspirational sentiment diverges sharply from ground-level experience data. In algorithmic management environments — warehouses, delivery, call centers — worker-reported studies and Cornell ILR documentation show injury rates up 34%, voluntary turnover up 34%, and elevated rates of stress, surveillance anxiety, and reduced autonomy. The pattern is no longer confined to blue-collar settings: NEJM analysis of hospital AI monitoring finds clinicians at risk of becoming &ldquo;quantified workers&rdquo; subject to algorithmic performance management against billing and throughput metrics — the same dynamics of eroding professional judgment and tightening baselines are now documented in healthcare. ILO Working Paper 170 adds a formal international framing: AI-driven surveillance, work intensification, and erosion of autonomy generate a documented cluster of psychosocial hazards that existing occupational safety and health frameworks — still oriented toward physical risks — are structurally unequipped to govern, and the ILO identifies the gap as requiring an integrated regulatory response spanning labor law, OSH standards, equality protections, and data protection. Qualitative research from DAIR and similar organizations documents that workers often adapt to or internalize AI management norms rather than challenge them, even when experiencing measurable harm — making survey-based sentiment a poor proxy for on-the-ground conditions.</p>",
     gaps: ["Longitudinal wellbeing studies under AI management over 2+ years", "Qualitative research centered on marginalized and low-wage worker voices", "Psychological safety in AI-intensive workplaces — burnout, surveillance stress"],
     implication: "<p>Aggregate sentiment data — including the Anthropic global study — should not be used as a proxy for ground-level impact. The coexistence of positive AI sentiment and measurable workplace harm is not a contradiction; it reflects the difference between abstract hopes and lived conditions under specific deployment contexts. Institutions relying primarily on survey-based sentiment to assess AI's effects on their constituencies risk systematically missing where harm is actually concentrating.</p><p>Community-based participatory research with affected worker populations is both a methodological and legitimacy imperative. Workers in AI-managed environments have detailed, actionable knowledge about what is harmful and what might be different — knowledge that neither sentiment surveys nor productivity metrics capture. Institutions should invest in research partnerships with the communities they serve, not just research conducted about them. That distinction determines whether findings are trusted, used, and connected to meaningful change.</p>",
     risk: {
@@ -1039,7 +1057,7 @@ const THEMES = [
       color: "#D4952A",
       summary: "<p>Using aggregate sentiment as a proxy for worker wellbeing risks systematically underestimating concentrated harm. Institutions that rely primarily on survey data without participatory research may make program and resource decisions that miss or inadvertently worsen conditions for the most affected workers.</p><p>The normalization dynamic documented by DAIR and others — where workers adapt to or internalize AI management harm rather than report it — means the risk is likely undercounted in standard data sources. Institutions that do not invest in direct, community-grounded research will be operating on evidence that structurally underrepresents the populations they aim to serve.</p>"
     },
-    papers: [3, 7, 14, 29, 46],
+    papers: [3, 7, 14, 106, 29],
   },
 ];
 THEMES.sort((a, b) => a.tag.localeCompare(b.tag));
@@ -1104,8 +1122,20 @@ const INST_META = {
   "National Consumer Law Center":                 { url: "https://www.nclc.org",                                           type: "Consumer advocacy",         note: "Consumer rights focus, progressive"                       },
   "National Fair Housing Alliance":               { url: "https://nationalfairhousing.org",                                type: "Civil rights advocacy",     note: "Progressive, housing and equity focus"                    },
   "American Psychological Association":           { url: "https://www.apa.org",                                            type: "Professional association",  note: "Scientific, nonpartisan"                                  },
+  // ── Civil Liberties & Digital Rights ────────────────────────
+  "Electronic Frontier Foundation":               { url: "https://www.eff.org",                                            type: "Civil liberties nonprofit",  note: "Digital rights focus, advocacy-oriented"                  },
+  "Georgetown Law Center on Privacy & Technology":{ url: "https://www.law.georgetown.edu/privacy-technology-center/",     type: "University research",        note: "Academic, civil liberties and surveillance focus"         },
+  // ── Federal Agencies & Government ────────────────────────────
+  "U.S. Equal Employment Opportunity Commission": { url: "https://www.eeoc.gov",                                           type: "Federal agency",             note: "Federal civil rights enforcement"                         },
+  "U.S. Senate Permanent Subcommittee on Investigations": { url: "https://www.hsgac.senate.gov/subcommittees/investigations/", type: "Government oversight", note: "Federal legislative oversight body"                      },
+  // ── Academic Journals ─────────────────────────────────────────
+  "Science":                                      { url: "https://www.science.org",                                        type: "Academic journal",           note: "Peer-reviewed, multidisciplinary"                         },
+  "NYU Law Review":                               { url: "https://www.nyulawreview.org",                                   type: "Academic journal",           note: "Peer-reviewed, nonpartisan"                               },
+  "Philosophy & Technology":                      { url: "https://link.springer.com/journal/13347",                        type: "Academic journal",           note: "Peer-reviewed, technology ethics"                         },
+  "ACM FAccT":                                    { url: "https://facctconference.org",                                    type: "Academic conference",        note: "Peer-reviewed, AI fairness and accountability"            },
   // ── Investigative Journalism ──────────────────────────────────
   "ProPublica":                                   { url: "https://www.propublica.org",                                     type: "Investigative journalism",   note: "Independent nonprofit, progressive"                       },
+  "TIME":                                         { url: "https://time.com",                                               type: "Investigative journalism",   note: "Major news publication"                                   },
   // ── Industry Research ─────────────────────────────────────────
   "McKinsey Global Institute":                    { url: "https://www.mckinsey.com/mgi/overview",                          type: "Consulting research",       note: "Industry-funded, pro-business"                            },
   "Goldman Sachs Global Investment Research":     { url: "https://www.goldmansachs.com/intelligence",                     type: "Investment bank research",  note: "Industry-funded, market-oriented"                         },
@@ -1122,18 +1152,19 @@ const GEOGRAPHY_META = {
 
 const PRIORITY_SOURCE_GROUPS = {
   "AI Industry": [
-    "Anthropic", "OpenAI",
+    "Anthropic", "OpenAI", "OpenAI / University of Pennsylvania",
   ],
   "Academic & Economic Research": [
     "Stanford HAI", "NBER", "NBER Working Paper",
     "MIT Work of the Future Task Force", "MIT Work of the Future",
     "Brookings Institution", "Brookings Metro", "Opportunity@Work & Brookings Metro",
     "Cornell ILR School", "New England Journal of Medicine", "Council on Foreign Relations",
+    "Science", "NYU Law Review", "Philosophy & Technology", "ACM FAccT", "arXiv",
   ],
   "Critical Technology Research": [
     "AI Now Institute", "AI Now Institute et al.", "AI Now Institute, Aapti Institute, The Maybe",
     "Data & Society", "Data and Society Research Institute",
-    "Georgetown CSET", "Upturn",
+    "Georgetown CSET", "Georgetown Law Center on Privacy & Technology", "Upturn",
   ],
   "Policy & Think Tanks": [
     "Economic Policy Institute", "Center for American Progress",
@@ -1145,14 +1176,18 @@ const PRIORITY_SOURCE_GROUPS = {
     "Digitalist Papers", "The Bully Pulpit", "Tech Policy Press",
     "Resources for the Future / Lincoln Institute", "U.S. National Science Foundation",
   ],
+  "Federal Agencies": [
+    "U.S. Equal Employment Opportunity Commission", "U.S. Senate Permanent Subcommittee on Investigations",
+  ],
   "Labor & Workers' Rights": [
     "AFL-CIO", "Writers Guild of America", "National Employment Law Project",
   ],
   "Civil Rights & Equity": [
     "National Consumer Law Center", "National Fair Housing Alliance", "American Psychological Association",
+    "Electronic Frontier Foundation",
   ],
   "Investigative Journalism": [
-    "ProPublica",
+    "ProPublica", "TIME",
   ],
   "Industry Research": [
     "McKinsey Global Institute", "Goldman Sachs Global Investment Research", "BCG Henderson Institute",
@@ -2264,6 +2299,266 @@ const RESEARCH_DATA = [
       "AI-based cheating detection tools may discriminate against students with disabilities by flagging accommodation-related behaviors as suspicious; the Department should require schools to assess disability impacts before deploying any AI surveillance or academic integrity system.",
       "Contracted loan servicers deploying AI chatbots must guarantee borrowers receive accurate information about their individual loans and maintain guaranteed pathways to human agents within reasonable timeframes — a basic standard that current AI deployments in federal loan servicing frequently fail to meet."
     ]
+  },
+  {
+    id: 91, date: "2016-05-23",
+    title: "Machine Bias",
+    source: "Julia Angwin, Jeff Larson, Surya Mattu, Lauren Kirchner — ProPublica",
+    sourceUrl: "https://www.propublica.org/article/machine-bias-risk-assessments-in-criminal-sentencing",
+    category: "criminal-justice", geography: "us",
+    keyFinding: "Risk assessment software used across the U.S. to predict future criminals flags Black defendants as future criminals at nearly twice the rate of white defendants, even after controlling for criminal history, age, and gender.",
+    takeaways: [
+      "Black defendants were 77% more likely to be labeled higher risk for future violent crime and 45% more likely to be labeled higher risk generally — with error patterns running in opposite directions by race.",
+      "The algorithm’s inverse error pattern is systematic: Black defendants are disproportionately mislabeled high-risk, while white defendants who go on to reoffend are more often labeled low-risk.",
+      "Northpointe’s COMPAS tool was deployed across multiple states for sentencing and pretrial decisions before rigorous independent validation, with predictive calculations kept proprietary and unavailable to defendants."
+    ]
+  },
+  {
+    id: 92, date: "2016-10-18",
+    title: "The Perpetual Line-Up: Unregulated Police Face Recognition in America",
+    source: "Clare Garvie, Alvaro Bedoya, Jonathan Frankle — Georgetown Law Center on Privacy & Technology",
+    sourceUrl: "https://www.law.georgetown.edu/privacy-technology-center/publications/the-perpetual-line-up/",
+    category: "criminal-justice", geography: "us",
+    keyFinding: "One in two American adults is enrolled in a law enforcement facial recognition network — primarily through driver’s license databases — with virtually no statutory oversight, accuracy standards, or civil liberties protections.",
+    takeaways: [
+      "Over 117 million Americans were in a law enforcement face recognition network at time of publication, enrolled without consent or knowledge, most via driver’s license photo databases shared with police.",
+      "The majority of states and departments using facial recognition had no legal requirements to test for racial bias or validate accuracy — and research shows the technology is least accurate for Black individuals, women, and people aged 18–30.",
+      "The report directly prompted regulatory action — Maryland proposed legislation to regulate police use and Vermont ended its driver’s license facial recognition program — demonstrating the policy leverage of empirical surveillance documentation."
+    ]
+  },
+  {
+    id: 93, date: "2019-04-01",
+    title: "Dirty Data, Bad Predictions: How Civil Rights Violations Impact Police Data, Predictive Policing Systems, and Justice",
+    source: "Rashida Richardson, Jason M. Schultz, Kate Crawford — NYU Law Review",
+    sourceUrl: "https://www.nyulawreview.org/wp-content/uploads/2019/04/NYULawReview-94-Richardson-Schultz-Crawford.pdf",
+    category: "criminal-justice", geography: "us",
+    keyFinding: "Thirteen U.S. cities with documented police misconduct — including departments under federal consent decrees — were actively using predictive policing systems trained on the same corrupt data that misconduct produced.",
+    takeaways: [
+      "Predictive policing launders discriminatory enforcement: systems like PredPol and HunchLab train on historical arrest data that reflects the biases of the officers who generated it, then output algorithmic predictions that appear objective and are harder to contest legally.",
+      "The “dirty data cities” identified include jurisdictions where police data was formally found tainted through civil rights investigations, consent decrees, and federal oversight — yet procurement processes contained no requirement to audit training data for such contamination.",
+      "No existing legal framework requires law enforcement agencies to assess whether training data is compromised by past misconduct before deploying predictive systems — a structural accountability gap with no current remedy."
+    ]
+  },
+  {
+    id: 94, date: "2019-10-25",
+    title: "Dissecting Racial Bias in an Algorithm Used to Manage the Health of Populations",
+    source: "Ziad Obermeyer, Brian Powers, Christine Vogeli, Sendhil Mullainathan — Science",
+    sourceUrl: "https://www.science.org/doi/10.1126/science.aax2342",
+    category: "equity", geography: "us",
+    keyFinding: "A widely used commercial health algorithm exhibits significant racial bias because it uses healthcare cost as a proxy for illness — and structural inequities mean less is spent on Black patients with equivalent need, causing the algorithm to systematically underestimate their severity.",
+    takeaways: [
+      "At any given risk score, Black patients are considerably sicker than white patients — meaning the algorithm consistently underestimates Black patients’ illness severity and need for additional care management.",
+      "Correcting the bias would more than double the proportion of Black patients identified for high-risk care programs, raising the share from 17.7% to 46.5% — affecting millions of people currently under-served by the tool.",
+      "The flaw lies not in implementation but in the choice of cost as a proxy for health need — a design decision that appears technically reasonable but encodes structural inequity, demonstrating how bias enters through proxy selection rather than explicit discrimination."
+    ]
+  },
+  {
+    id: 95, date: "2020-08-27",
+    title: "Hidden in Plain Sight — Reconsidering the Use of Race Correction in Clinical Algorithms",
+    source: "Darshali A. Vyas, Leo G. Eisenstein, David S. Jones — New England Journal of Medicine",
+    sourceUrl: "https://www.nejm.org/doi/abs/10.1056/NEJMms2004740",
+    category: "equity", geography: "us",
+    keyFinding: "Race-adjustment factors embedded in widely used clinical algorithms across cardiology, nephrology, obstetrics, and urology encode a false biological premise about race and systematically direct Black patients away from care they clinically need.",
+    takeaways: [
+      "Race correction in the eGFR kidney function formula assigns higher scores to Black patients regardless of individual clinical circumstances, resulting in Black patients being less likely to receive timely transplant referrals — a concrete, documented harm from a widely deployed clinical tool.",
+      "These adjustments are embedded in clinical software, electronic health records, and medical training across multiple specialties — making individual provider awareness an inadequate remedy for a structural problem in clinical decision infrastructure.",
+      "The authors call for eliminating race as a variable in clinical algorithms and replacing it with socioeconomic and structural determinants of health that reflect actual causal mechanisms rather than a biological proxy with no empirical basis."
+    ]
+  },
+  {
+    id: 96, date: "2024-10-17",
+    title: "Refusal of Care: Medicare Advantage Insurers’ Use of Prior Authorization to Delay and Deny Post-Acute Care for Seniors",
+    source: "U.S. Senate Permanent Subcommittee on Investigations",
+    sourceUrl: "https://www.blumenthal.senate.gov/newsroom/press/release/senate-permanent-subcommittee-on-investigations-releases-majority-staff-report-exposing-medicare-advantage-insurers-refusal-of-care-for-vulnerable-seniors",
+    category: "policy", geography: "us",
+    keyFinding: "The three largest Medicare Advantage insurers systematically used AI-driven prior authorization to restrict post-acute care access for seniors, with escalating denial rates that coincided directly with AI deployment and increased profitability.",
+    takeaways: [
+      "UnitedHealthcare’s prior authorization rejection rate for post-acute care nearly doubled from 10.9% in 2020 to 22.7% in 2022, directly following expanded AI automation in the review process — with no corresponding change in patient health or clinical standards.",
+      "CVS increased prior authorization requirements by 57.5% — far exceeding its 40% enrollment growth — after deploying AI-powered Post-Acute Analytics, and internal presentations show the company deliberately deprioritized reducing denial volume due to significant profit impact.",
+      "The investigation found no evidence that escalating denial rates reflected appropriate clinical judgment — documenting AI deployment as a profit-maximization mechanism in consequential medical decisions affecting vulnerable seniors."
+    ]
+  },
+  {
+    id: 97, date: "2023-01-18",
+    title: "OpenAI Used Kenyan Workers on Less Than $2 Per Hour to Make ChatGPT Less Toxic",
+    source: "Billy Perrigo — TIME",
+    sourceUrl: "https://time.com/6247678/openai-chatgpt-kenya-workers/",
+    category: "labor", geography: "intl",
+    keyFinding: "OpenAI outsourced toxic content labeling to Kenyan workers paid under $2 per hour, who were required to read and categorize graphic depictions of violence, sexual abuse, and trauma with inadequate psychological support.",
+    takeaways: [
+      "Workers at Nairobi-based Sama, contracted by OpenAI, were paid between $1.32 and $2 per hour to review and label disturbing content to train ChatGPT’s safety classifier — a supply chain dimension absent from most AI safety discourse.",
+      "Many workers reported symptoms of secondary trauma; Sama’s contract with OpenAI was terminated several months early amid a labor dispute in which workers sought union recognition.",
+      "The commercial viability of “safe” generative AI depends on an invisible global workforce of low-wage data laborers disproportionately located in the Global South — a structural labor condition that safety certifications and model cards do not disclose."
+    ]
+  },
+  {
+    id: 98, date: "2020-07-08",
+    title: "Decolonial AI: Decolonial Theory as Sociotechnical Foresight in Artificial Intelligence",
+    source: "Shakir Mohamed, Marie-Therese Png, William Isaac — Philosophy & Technology",
+    sourceUrl: "https://link.springer.com/article/10.1007/s13347-020-00405-8",
+    category: "equity", geography: "intl",
+    keyFinding: "Decolonial theory provides a framework for identifying how AI systems replicate colonial structures — extracting data and labor from the Global South, concentrating power in wealthy institutions, and reinforcing Western research norms as universal.",
+    takeaways: [
+      "AI development reproduces colonial dynamics through “algorithmic coloniality”: surveillance systems and behavioral classification tools are developed for and tested on vulnerable populations in the Global South before deployment elsewhere, extracting data value without redistributing benefit.",
+      "The authors call for “reverse tutelage” — reorienting AI knowledge flows so that communities historically marginalized by technology hold genuine authority over research agendas and deployment decisions, rather than serving as data sources or test populations.",
+      "Strengthening political communities across the Global South is necessary to make AI governance genuinely multilateral — a direct challenge to the concentration of AI ethics and governance in a handful of Western institutions and companies."
+    ]
+  },
+  {
+    id: 99, date: "2018-12-10",
+    title: "Help Wanted: An Examination of Hiring Algorithms, Equity, and Bias",
+    source: "Aaron Rieke, Miranda Bogen — Upturn",
+    sourceUrl: "https://www.upturn.org/work/help-wanted/",
+    category: "hiring", geography: "us",
+    keyFinding: "Predictive hiring algorithms automate rejection at scale with minimal transparency — vendors disclose almost nothing about how systems are built or validated, making discrimination effectively undetectable and unchallengeable.",
+    takeaways: [
+      "Most algorithmic hiring tools automate rejection rather than selection, screening candidates out before human review — concentrating disparate impact at the point of least visibility and accountability in the hiring funnel.",
+      "Removing protected characteristics like race and gender from algorithm inputs does not prevent discriminatory outcomes: historical hiring patterns, zip codes, and credentials carry demographic proxies that reproduce the same disparities through different variables.",
+      "Existing civil rights law was designed for human decision-makers and does not clearly assign liability to vendors versus employers when algorithmic tools produce discriminatory outcomes — a structural enforcement gap that benefits neither jobseekers nor regulators."
+    ]
+  },
+  {
+    id: 100, date: "2020-01-27",
+    title: "Mitigating Bias in Algorithmic Hiring: Evaluating Claims and Practices",
+    source: "Manish Raghavan, Solon Barocas, Jon Kleinberg, Karen Levy — arXiv",
+    sourceUrl: "https://dl.acm.org/doi/10.1145/3351095.3372828",
+    category: "hiring", geography: "us",
+    keyFinding: "Bias mitigation techniques used by algorithmic hiring vendors are neither transparent nor legally adequate — and the de-biasing methods vendors employ create direct tensions with antidiscrimination law.",
+    takeaways: [
+      "Hiring algorithm vendors provide almost no documentation of how their systems are built or validated for bias, making independent audit impossible and employer due diligence effectively meaningless.",
+      "Technical choices about what data to collect and what outcomes to predict introduce distinct bias risks hidden behind product-level mitigation claims — each representing a separate, undisclosed design decision with disparate impact potential.",
+      "De-biasing techniques — such as removing protected attributes or adjusting score distributions — can conflict with Uniform Guidelines on Employee Selection Procedures, creating situations where a legally compliant system remains technically biased and vice versa."
+    ]
+  },
+  {
+    id: 101, date: "2021-10-28",
+    title: "EEOC Launches Initiative on Artificial Intelligence and Algorithmic Fairness",
+    source: "U.S. Equal Employment Opportunity Commission",
+    sourceUrl: "https://www.eeoc.gov/newsroom/eeoc-launches-initiative-artificial-intelligence-and-algorithmic-fairness",
+    category: "policy", geography: "us",
+    keyFinding: "The EEOC formally asserted that existing federal antidiscrimination law — Title VII, ADA, ADEA — applies to AI-driven employment decisions, establishing that technology creates no legal carve-out from civil rights obligations.",
+    takeaways: [
+      "The initiative represents the first formal EEOC assertion that employers cannot outsource civil rights liability to AI vendors — if an algorithmic hiring or management tool produces discriminatory outcomes, the employer remains legally responsible.",
+      "The EEOC identified tools across the hiring funnel — resume screeners, video interview analyzers, predictive assessments — as potential sources of disparate impact, with particular attention to disability discrimination via AI screening under the ADA.",
+      "The initiative produced concrete technical guidance and stakeholder listening sessions, establishing a regulatory baseline that companies deploying AI in employment contexts can be held to without waiting for new legislation."
+    ]
+  },
+  {
+    id: 102, date: "2020-06-30",
+    title: "Inside the Invasive, Secretive ‘Bossware’ Tracking Workers",
+    source: "Bennett Cyphers, Karen Gullo — Electronic Frontier Foundation",
+    sourceUrl: "https://www.eff.org/deeplinks/2020/06/inside-invasive-secretive-bossware-tracking-workers",
+    category: "surveillance", geography: "us",
+    keyFinding: "Remote work surveillance software routinely captures keystroke logs, screenshots, webcam feeds, GPS location, private messages, and passwords — with nine of ten vendors offering covert installation that workers cannot detect.",
+    takeaways: [
+      "Nine of ten bossware vendors examined offered invisible or covert installation modes, enabling employers to monitor workers on employer-provided devices without disclosure — a capability with no analog in physical workplace monitoring.",
+      "Data collected routinely exceeds any plausible business justification: many tools capture personal communications, passwords, and off-hours activity, extending employer surveillance into domestic space without consent.",
+      "U.S. law offers workers almost no protection: employers can monitor employer-owned devices with minimal restriction, and proposed legislation requiring notice and proportionality exists only at the state level in a small number of jurisdictions."
+    ]
+  },
+  {
+    id: 103, date: "2022-06-21",
+    title: "The Values Encoded in Machine Learning Research",
+    source: "Abeba Birhane, Pratyusha Kalluri, Dallas Card, William Agnew, Ravit Dotan, Michelle Bao — ACM FAccT",
+    sourceUrl: "https://dl.acm.org/doi/fullHtml/10.1145/3531146.3533083",
+    category: "macro", geography: "intl",
+    keyFinding: "Analysis of 100 highly-cited ML papers finds that performance, efficiency, and novelty dominate as research values, fewer than 15% connect their work to a societal need, and only 1% discuss negative potential.",
+    takeaways: [
+      "The six dominant values in mainstream ML research — performance, generalization, efficiency, building on past work, quantitative evidence, and novelty — are structurally misaligned with societal benefit and generally support the centralization of power.",
+      "Increasingly close ties between highly-cited papers and tech companies and elite universities mean mainstream ML research reflects the values of privileged institutional actors, not communities most affected by deployment.",
+      "The field’s value system is self-reinforcing: the metrics by which research is evaluated reward the same qualities that serve commercial and institutional interests, creating a feedback loop that resists reform from within the research community."
+    ]
+  },
+  {
+    id: 104, date: "2025-04-23",
+    title: "Revolutionizing Health and Safety: The Role of AI and Digitalization at Work",
+    source: "International Labour Organization",
+    sourceUrl: "https://www.ilo.org/publications/revolutionizing-health-and-safety-role-ai-and-digitalization-work",
+    category: "wellbeing", geography: "intl",
+    keyFinding: "AI and digitalization offer significant potential to reduce workplace hazards and prevent injuries, but introduce new psychosocial and regulatory risks that existing occupational safety frameworks were not designed to address.",
+    takeaways: [
+      "Automation, robotics, smart monitoring, and algorithmic work management are reshaping occupational safety practices across industries — with benefits in hazard reduction but new exposures in stress, surveillance, and work intensification.",
+      "Significant regulatory gaps exist across countries in how digitalized workplaces are governed for occupational safety, with most national frameworks still oriented toward physical hazards rather than the psychosocial risks AI deployment introduces.",
+      "The report provides governments, employers, and workers with case studies and preventive strategies for safely integrating digital tools — positioning occupational safety as an active AI governance frontier, not a downstream compliance issue."
+    ]
+  },
+  {
+    id: 105, date: "2024-07-26",
+    title: "Mind the AI Divide: Shaping a Global Perspective on the Future of Work",
+    source: "International Labour Organization",
+    sourceUrl: "https://www.ilo.org/publications/major-publications/mind-ai-divide-shaping-global-perspective-future-work",
+    category: "macro", geography: "intl",
+    keyFinding: "Disparities in digital infrastructure, technology access, education, and training are deepening existing global inequalities as AI reshapes economies — with less-developed nations at greatest risk of being permanently left behind.",
+    takeaways: [
+      "The AI divide is not primarily about access to AI tools but about the prerequisites for adoption: digital infrastructure, skills, regulatory capacity, and institutional readiness — gaps that compound at every level of development.",
+      "Organizations can achieve productivity gains and improved working conditions through AI when supported by proper infrastructure and collaborative labor practices, but these enabling conditions are deeply unevenly distributed globally.",
+      "Addressing the divide requires international collaboration in AI capacity building — individual country strategies are insufficient given the scale of cross-border dependency in AI supply chains and the concentration of AI development in a handful of wealthy economies."
+    ]
+  },
+  {
+    id: 106, date: "2026-04-30",
+    title: "AI Systems @ Work: A Changing Psychosocial Work Environment",
+    source: "International Labour Organization",
+    sourceUrl: "https://www.ilo.org/resource/news/ai-driven-intrusive-surveillance-and-loss-autonomy-work-linked-psychosocial",
+    category: "wellbeing", geography: "intl",
+    keyFinding: "AI-driven surveillance, work intensification, and erosion of job autonomy are generating measurable psychosocial risks at work that existing occupational safety and health frameworks are structurally unequipped to address.",
+    takeaways: [
+      "AI implementation creates a cluster of interconnected psychosocial hazards — surveillance anxiety, reduced autonomy, work intensification, and privacy erosion — that existing OSH frameworks, still oriented toward physical risks, do not adequately govern.",
+      "ILO Working Paper 170 documents that mental health risks from AI management are structural, not incidental: they arise from how algorithmic systems are designed and deployed, making individual coping strategies an insufficient response.",
+      "An integrated policy approach combining labor regulation, occupational safety law, equality protections, and data protection frameworks is required — no single regulatory stream is sufficient to address the psychosocial risks AI management systems generate."
+    ]
+  },
+  {
+    id: 107, date: "2026-04-21",
+    title: "ILO Adopts First-Ever Conclusions on AI in Manufacturing Work",
+    source: "International Labour Organization",
+    sourceUrl: "https://www.ilo.org/resource/news/ilo-adopts-first-ever-conclusions-ai-manufacturing-work",
+    category: "policy", geography: "intl",
+    keyFinding: "Representatives from 54 countries adopted the ILO’s first tripartite conclusions on AI in manufacturing — establishing globally negotiated guidance on skills, safety, and worker rights for a sector employing nearly 500 million people.",
+    takeaways: [
+      "The conclusions are the first ILO tripartite agreement specifically on AI, developed by government officials, employers, and trade unions from 54 countries — giving them legitimacy and global reach that unilateral national frameworks cannot achieve.",
+      "Core recommendations cover skills development, occupational safety standards, fundamental labor rights protection, and strengthened social dialogue — rejecting a purely productivity-focused framing of AI deployment in manufacturing.",
+      "Submission to the ILO Governing Body in November 2026 for approval establishes a policy timeline that labor advocates can use to hold governments accountable to the tripartite commitments made during adoption."
+    ]
+  },
+  {
+    id: 108, date: "2026-04-14",
+    title: "AI Training Opens Doors for Women Entrepreneurs in the Philippines",
+    source: "International Labour Organization",
+    sourceUrl: "https://www.ilo.org/resource/news/ai-training-opens-doors-women-entrepreneurs-philippines",
+    category: "equity", geography: "intl",
+    keyFinding: "Women entrepreneurs in a remote Philippine community successfully adopted AI tools for business growth through an ILO program designed for digital novices — demonstrating that inclusive AI adoption requires training design and infrastructure investment, not just access.",
+    takeaways: [
+      "The Digital-PINAS programme equipped women from the United Mothers Livelihood Association with practical AI tools for informal micro-businesses, showing that technical expertise is not a prerequisite for AI adoption when training is appropriately designed.",
+      "The program addressed both the skills gap and the infrastructure gap simultaneously — equipping local training centers with connectivity tools alongside the AI training itself, recognizing that access without connectivity is not meaningful access.",
+      "The Philippine case offers a replicable model for Global South AI inclusion: community-centered, practical, and designed for micro and small enterprises rather than scaling down tools built for larger organizations."
+    ]
+  },
+  {
+    id: 109, date: "2026-03-06",
+    title: "Adoption of Artificial Intelligence and Productivity Growth in Kuwait’s Private Sector",
+    source: "International Labour Organization",
+    sourceUrl: "https://www.ilo.org/resource/news/ai-adoption-shapes-productivity-kuwait",
+    category: "macro", geography: "intl",
+    keyFinding: "AI adoption is expanding across Kuwait’s private sector, but large enterprises are adopting at dramatically higher rates than small firms — and only 26% of reported productivity effects met criteria for verified impact.",
+    takeaways: [
+      "Large enterprises show far stronger AI readiness than small firms: 45% of large companies have formal AI policies and 65% offer AI training, compared to 14% and 29% respectively among smaller firms — a size-stratified gap that mirrors patterns in Western economies.",
+      "Despite widespread reports of faster task execution, only 26% of claimed productivity effects met the study’s criteria for verified impact — suggesting that AI adoption and AI-driven productivity are not the same thing and that measurement gaps are significant.",
+      "Converting AI investment into measurable productivity gains requires organizational prerequisites — data systems, skills development, governance structures — that many firms, particularly smaller ones, have not yet built."
+    ]
+  },
+  {
+    id: 110, date: "2024-02-19",
+    title: "Algorithmic Management Practices in Regular Workplaces: Case Studies in Logistics and Healthcare",
+    source: "Uma Rani, Annarosa Pesole, Ignacio Gonzalez Vazquez — International Labour Organization",
+    sourceUrl: "https://www.ilo.org/publications/algorithmic-management-practices-regular-workplaces-case-studies-logistics",
+    category: "workers", geography: "intl",
+    keyFinding: "Cross-country case studies in logistics and healthcare across Italy, France, India, and South Africa document that algorithmic management delivers efficiency gains for employers while consistently degrading job quality and intensifying worker surveillance.",
+    takeaways: [
+      "Algorithmic management follows consistent patterns across all four countries regardless of regulatory context: streamlined workflows for employers, intensified monitoring, reduced worker autonomy, and greater exposure to algorithmic evaluation workers cannot contest.",
+      "Job quality deterioration is a consistent finding across developed and developing economies alike — manifesting in increased performance pressure, reduced discretion over work pace and methods, and algorithmic accountability with no recourse mechanism.",
+      "The cross-regional evidence challenges the assumption that strong labor law in advanced economies protects workers from algorithmic management harms: documented negative effects appear in France and Italy despite robust labor regulation frameworks."
+    ]
   }
 ];
 </script>
@@ -2421,7 +2716,7 @@ const RESEARCH_DATA = [
     'var(--c0)':'#2C3254','var(--c1)':'#FF8361','var(--c2)':'#472B51','var(--c3)':'#70AD8F',
     'var(--c4)':'#EBC382','var(--c5)':'#2C3254','var(--c6)':'#472B51','var(--c7)':'#70AD8F',
     'var(--c8)':'#FF8361','var(--c9)':'#3C4164','var(--c10)':'#2C3254','var(--c11)':'#70AD8F',
-    'var(--c12)':'#EBC382','var(--g-us)':'#2C3254','var(--g-intl)':'#FF8361',
+    'var(--c12)':'#EBC382','var(--c13)':'#B03030','var(--g-us)':'#2C3254','var(--g-intl)':'#FF8361',
     'var(--s-emergent)':'#70AD8F','var(--s-current)':'#2C3254','var(--s-stale)':'#9BA5B5',
   };
   const resolve = v => COLOR_MAP[v] || v;
