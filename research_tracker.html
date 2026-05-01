@@ -616,8 +616,7 @@
     background: var(--surface2); border: 1px solid var(--border); border-radius: 8px;
     padding: 8px 14px; cursor: pointer; font-family: inherit;
     transition: color 0.15s, border-color 0.15s, background 0.15s;
-    white-space: nowrap; max-width: 46%; overflow: hidden; text-overflow: ellipsis;
-    display: flex; align-items: center; gap: 6px;
+    max-width: 46%; display: flex; align-items: center; gap: 6px;
   }
   .theme-nav-btn:hover:not(:disabled) {
     color: var(--text); border-color: var(--theme-color);
@@ -625,7 +624,7 @@
   }
   .theme-nav-btn:disabled { opacity: 0.5; cursor: default; }
   .theme-nav-btn .nav-arrow { font-size: 15px; flex-shrink: 0; }
-  .theme-nav-btn .nav-label { overflow: hidden; text-overflow: ellipsis; }
+  .theme-nav-btn .nav-label { overflow: hidden; }
   .theme-confidence {
     display: inline-flex; align-items: center; gap: 5px;
     font-size: 10px; font-weight: 700; letter-spacing: 0.07em; text-transform: uppercase;
@@ -891,20 +890,20 @@
      ═══════════════════════════════════════════════════════════ -->
 <script>
 const CATEGORIES = [
-  { id: "labor",       label: "Labor Market Outcomes",                          color: "var(--c0)" },
-  { id: "workers",     label: "Worker Power & Collective Bargaining",           color: "var(--c1)" },
-  { id: "corporate",   label: "Corporate Power & Market Concentration",         color: "var(--c2)" },
-  { id: "hiring",      label: "Algorithmic Hiring & Screening",                 color: "var(--c3)" },
-  { id: "surveillance",label: "Workplace Surveillance & Algorithmic Management",color: "var(--c9)" },
-  { id: "equity",      label: "Equity & Civil Rights",                          color: "var(--c4)" },
-  { id: "datarights",  label: "Data Rights & Intellectual Property",            color: "var(--c10)"},
-  { id: "community",   label: "Community & Place-Based Impacts",                color: "var(--c5)" },
-  { id: "environment", label: "Environmental & Energy Impacts",                 color: "var(--c11)"},
-  { id: "wellbeing",   label: "Worker Wellbeing & Psychology",                  color: "var(--c6)" },
-  { id: "macro",       label: "Macroeconomic & Industry Trends",                color: "var(--c7)" },
-  { id: "policy",      label: "Policy & Regulatory Responses",                  color: "var(--c8)" },
-  { id: "education",   label: "Education, Skills & Human Capital",              color: "var(--c12)"},
-  { id: "criminal-justice", label: "Criminal Justice & Policing",              color: "var(--c13)"},
+  { id: "hiring",           label: "Algorithmic Hiring & Screening",                  color: "var(--c3)"  },
+  { id: "community",        label: "Community & Place-Based Impacts",                 color: "var(--c5)"  },
+  { id: "corporate",        label: "Corporate Power & Market Concentration",          color: "var(--c2)"  },
+  { id: "criminal-justice", label: "Criminal Justice & Policing",                     color: "var(--c13)" },
+  { id: "datarights",       label: "Data Rights & Intellectual Property",             color: "var(--c10)" },
+  { id: "education",        label: "Education, Skills & Human Capital",               color: "var(--c12)" },
+  { id: "environment",      label: "Environmental & Energy Impacts",                  color: "var(--c11)" },
+  { id: "equity",           label: "Equity & Civil Rights",                           color: "var(--c4)"  },
+  { id: "labor",            label: "Labor Market Outcomes",                           color: "var(--c0)"  },
+  { id: "macro",            label: "Macroeconomic & Industry Trends",                 color: "var(--c7)"  },
+  { id: "policy",           label: "Policy & Regulatory Responses",                   color: "var(--c8)"  },
+  { id: "workers",          label: "Worker Power & Collective Bargaining",            color: "var(--c1)"  },
+  { id: "wellbeing",        label: "Worker Wellbeing & Psychology",                   color: "var(--c6)"  },
+  { id: "surveillance",     label: "Workplace Surveillance & Algorithmic Management", color: "var(--c9)"  },
 ];
 
 const STATUS_META = {
