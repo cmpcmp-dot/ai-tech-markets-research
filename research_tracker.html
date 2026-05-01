@@ -79,14 +79,21 @@
   /* ── HEADER ─────────────────────────────────────────────── */
   .site-header {
     background: #2C3254;
-    border-bottom: none;
-    padding: 28px 32px 24px;
+    border-top: 4px solid #FFBFA7;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    padding: 28px 32px 30px;
     position: relative; overflow: hidden; flex-shrink: 0;
   }
   .site-header::before {
     content: ''; position: absolute; top: -40px; right: -40px;
     width: 240px; height: 240px;
     background: radial-gradient(circle, rgba(255,255,255,0.07) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .site-header::after {
+    content: ''; position: absolute; bottom: -60px; left: -60px;
+    width: 280px; height: 280px;
+    background: radial-gradient(circle, rgba(255,191,167,0.05) 0%, transparent 70%);
     pointer-events: none;
   }
   .header-inner {
@@ -109,8 +116,15 @@
   }
   .header-intro { font-size: 14px; color: rgba(244,242,228,0.75); max-width: 620px; line-height: 1.65; }
   .header-updated { font-size: 11px; color: rgba(244,242,228,0.5); margin-top: 6px; letter-spacing: 0.03em; font-family: 'Haas Grotesk', 'Helvetica Neue', Arial, sans-serif; }
+  .header-disclaimer { font-size: 11px; color: rgba(244,242,228,0.45); margin-top: 5px; letter-spacing: 0.02em; font-style: italic; font-family: 'Haas Grotesk', 'Helvetica Neue', Arial, sans-serif; max-width: 220px; text-align: right; line-height: 1.5; }
   .site-header .info-btn { color: rgba(244,242,228,0.8); }
   .site-header .info-btn:hover { color: #F4F2E4; }
+  .about-link-btn {
+    background: none; border: none; cursor: pointer; font-family: 'Haas Grotesk', 'Helvetica Neue', Arial, sans-serif;
+    font-size: 12px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+    color: rgba(244,242,228,0.65); padding: 0; transition: color 0.15s;
+  }
+  .about-link-btn:hover { color: #F4F2E4; }
 
   /* ── APP LAYOUT ─────────────────────────────────────────── */
   .app-layout {
@@ -680,6 +694,13 @@
     text-align: center; font-size: 12px; color: var(--muted);
     flex-shrink: 0;
   }
+  .footer-about-btn {
+    background: none; border: none; cursor: pointer; font-family: inherit;
+    font-size: 12px; color: var(--accent); padding: 0;
+    text-decoration: underline; text-underline-offset: 2px;
+    transition: opacity 0.15s;
+  }
+  .footer-about-btn:hover { opacity: 0.75; }
 
   /* ── MOBILE SIDEBAR TOGGLE ───────────────────────────────── */
   .sidebar-toggle {
@@ -838,7 +859,7 @@ const THEMES = [
     confidence: "consensus",
     question: "Who faces the greatest displacement risk — and is AI widening inequality?",
     framing: "The displacement story is no longer about which jobs disappear — it's about who captures the productivity gains and who absorbs the losses.",
-    synthesis: "<p>Research consensus is shifting: AI is inverting prior automation patterns by targeting higher-wage cognitive work (Eloundou et al.), yet early productivity data shows gains concentrating among workers already earning above the median. The ILO's 2025 global analysis finds one in four workers is in an occupation with some degree of GenAI exposure — with transformation rather than wholesale replacement as the most likely near-term outcome. The World Economic Forum projects 170 million new roles and 92 million displaced by 2030, while Brookings documents that AI-skilled workers already command an 11–25% salary premium over equivalent roles.</p><p>Acemoglu's task-level macroeconomic modeling cautions that net job-creation projections are overstated: AI's total factor productivity gains are likely under 0.53% over 10 years, and the gains will widen the capital-labor income gap without countervailing policy. Bivens and Zipperer at EPI sharpen this diagnosis — the real threat is not the technology itself but unbalanced employer power that deploys AI as a control mechanism rather than a productivity-sharing tool. Mateescu et al. reinforce the frame: displacement is a deliberate policy choice, not technological inevitability. New research from Brookings and Opportunity@Work adds a frequently overlooked dimension: AI may not eliminate entry-level Gateway jobs outright but could sever the advancement routes through them, leaving 15 million non-degree workers employed but locked out of upward mobility.</p>",
+    synthesis: "<p>Research consensus is shifting: AI is inverting prior automation patterns by targeting higher-wage cognitive work (Eloundou et al.), yet early productivity data shows gains concentrating among workers already earning above the median. The ILO's 2025 global analysis finds one in four workers is in an occupation with some degree of GenAI exposure — with transformation rather than wholesale replacement as the most likely near-term outcome. The World Economic Forum projects 170 million new roles and 92 million displaced by 2030, while industry surveys consistently find that AI-skilled workers command a salary premium of 11–25% over equivalent roles.</p><p>Acemoglu's task-level macroeconomic modeling cautions that net job-creation projections are overstated: AI's total factor productivity gains are likely under 0.53% over 10 years, and the gains will widen the capital-labor income gap without countervailing policy. Bivens and Zipperer at EPI sharpen this diagnosis — the real threat is not the technology itself but unbalanced employer power that deploys AI as a control mechanism rather than a productivity-sharing tool. Mateescu et al. reinforce the frame: displacement is a deliberate policy choice, not technological inevitability. New research from Brookings and Opportunity@Work adds a frequently overlooked dimension: AI may not eliminate entry-level Gateway jobs outright but could sever the advancement routes through them, leaving 15 million non-degree workers employed but locked out of upward mobility.</p>",
     gaps: ["Long-run wage effects after task displacement", "Gender and geographic exposure gaps — ILO data shows women in high-income countries face nearly 3× higher high-exposure rates than men, a divide that current workforce interventions are not designed to address", "Informal and gig sector exposure, largely absent from current data"],
     implication: "<p>Institutions focused only on higher-wage knowledge workers will miss those most vulnerable to cumulative economic harm. The compounding dynamic — where AI-adopting workers pull further ahead while non-adopters fall behind — suggests the gap is widening faster than most workforce projections account for.</p><p>Understanding where AI deployment is accelerating in low-wage and informal sectors, and what tools are being used to manage those workers, should be foundational to where institutions direct attention and resources. This requires looking beyond headline employment numbers to wage trajectories, task composition, and who is absorbing the productivity gains.</p>",
     risk: {
@@ -855,7 +876,7 @@ const THEMES = [
     confidence: "consensus",
     question: "Is AI compounding existing racial, gender, and class inequalities?",
     framing: "AI systems are not neutral by default — documented disparities in hiring, credit, and surveillance show that without deliberate intervention, AI rollout will deepen existing inequalities.",
-    synthesis: "<p>Documented disparities are persistent across the AI pipeline. In hiring, fewer than 20% of vendors provide adequate bias audit documentation, and NIST's AI Risk Management Framework identifies demographic parity failures as among the most underreported deployment risks. Mortgage underwriting algorithms show 40–60% higher denial rates for Black and Latino applicants even after controlling for creditworthiness, per NCRC analysis. Tenant screening algorithms present a third documented domain: the National Consumer Law Center finds no empirical evidence that credit scores predict successful tenancy, yet they are primary inputs to automated screening tools that amplify racial disparities embedded in eviction records and criminal histories — making discrimination faster, cheaper, and harder to contest than under human decision-making. On the adoption side, women are adopting generative AI at measurably lower rates globally — a gap that, if sustained, will compound into earnings and career disparities over the next decade.</p><p>Healthcare algorithms are among the most consequential and least-scrutinized sites of AI-driven racial disparity. Obermeyer et al.'s landmark Science study found that a widely used commercial health algorithm systematically underestimated Black patients' illness severity because it used healthcare cost as a proxy for need — and structural inequities mean less is spent on Black patients regardless of clinical condition. Correcting the bias would more than double the proportion of Black patients identified as needing high-risk care, raising the share from 17.7% to 46.5%. The problem extends to clinical decision tools themselves: Vyas, Eisenstein, and Jones in the NEJM documented race-adjustment factors embedded across cardiology, nephrology, obstetrics, and urology that encode a false biological premise about race, directing Black patients away from care they clinically need — including organ transplant referrals — through tools embedded in electronic health records and clinical training nationwide.</p><p>Housing is an emerging enforcement frontier. Center for American Progress analysis of AI in housing finance documents that automated valuation models (AVMs) and algorithmic underwriting tools lack the oversight frameworks applied to human decision-making, creating conditions where Fair Housing Act obligations are technically satisfied while discriminatory outcomes persist. CAP's regulatory recommendations identify concrete actions for HUD, CFPB, and FHFA — including mandatory bias testing of AVMs, audit trail requirements for algorithmic lending decisions, and explicit guidance extending disparate impact liability to automated tools — framing housing AI oversight as an enforcement gap addressable under existing statutory authority rather than requiring new legislation.</p>",
+    synthesis: "<p>Documented disparities are persistent across the AI pipeline. In hiring, fewer than 20% of vendors provide adequate bias audit documentation, and NIST's AI Risk Management Framework identifies demographic parity failures as among the most underreported deployment risks. Mortgage underwriting algorithms show denial rates approximately 40% higher for Latino applicants and 80% higher for Black applicants even after controlling for creditworthiness, per The Markup's 2021 investigation. Tenant screening algorithms present a third documented domain: the National Consumer Law Center finds no empirical evidence that credit scores predict successful tenancy, yet they are primary inputs to automated screening tools that amplify racial disparities embedded in eviction records and criminal histories — making discrimination faster, cheaper, and harder to contest than under human decision-making. On the adoption side, women are adopting generative AI at measurably lower rates globally — a gap that, if sustained, will compound into earnings and career disparities over the next decade.</p><p>Healthcare algorithms are among the most consequential and least-scrutinized sites of AI-driven racial disparity. Obermeyer et al.'s landmark Science study found that a widely used commercial health algorithm systematically underestimated Black patients' illness severity because it used healthcare cost as a proxy for need — and structural inequities mean less is spent on Black patients regardless of clinical condition. Correcting the bias would more than double the proportion of Black patients identified as needing high-risk care, raising the share from 17.7% to 46.5%. The problem extends to clinical decision tools themselves: Vyas, Eisenstein, and Jones in the NEJM documented race-adjustment factors embedded across cardiology, nephrology, obstetrics, and urology that encode a false biological premise about race, directing Black patients away from care they clinically need — including organ transplant referrals — through tools embedded in electronic health records and clinical training nationwide.</p><p>Housing is an emerging enforcement frontier. Center for American Progress analysis of AI in housing finance documents that automated valuation models (AVMs) and algorithmic underwriting tools lack the oversight frameworks applied to human decision-making, creating conditions where Fair Housing Act obligations are technically satisfied while discriminatory outcomes persist. CAP's regulatory recommendations identify concrete actions for HUD, CFPB, and FHFA — including mandatory bias testing of AVMs, audit trail requirements for algorithmic lending decisions, and explicit guidance extending disparate impact liability to automated tools — framing housing AI oversight as an enforcement gap addressable under existing statutory authority rather than requiring new legislation.</p>",
     gaps: ["Intersectional analysis across race, gender, and class simultaneously", "Disability and accessibility in AI-mediated work", "Geographic equity in who benefits from AI-driven job creation", "AVM and algorithmic underwriting bias — enforcement gap between Fair Housing Act intent and current automated lending oversight", "Healthcare AI bias audit requirements — no federal standard requires commercial health algorithms to be tested for racial disparity before deployment"],
     implication: "<p>Equity frameworks need to be embedded upstream in AI procurement and deployment decisions — not treated as post-hoc audit concerns. The evidence on hiring, credit, and healthcare algorithms shows that bias accumulates structurally through design choices — proxy variable selection, training data composition, outcome definition — which means voluntary vendor commitments are insufficient. Institutions are better positioned to advance change through procurement standards, coalition-building with civil rights organizations, and direct advocacy for enforceable audit requirements than through general AI literacy campaigns.</p><p>The adoption gap among women and lower-income populations also warrants specific attention. Institutions investing in AI tools should actively assess who is actually using them and at what level of sophistication — not just whether access exists. Uneven adoption within institutions mirrors the broader labor market dynamic: tools that amplify productivity for confident, experienced users will widen internal equity gaps if rollout is not paired with deliberate support structures.</p><p>The housing regulatory gap is actionable through existing channels. HUD, CFPB, and FHFA already have statutory authority to extend Fair Housing Act enforcement to algorithmic tools — the constraint is agency will and technical capacity, not legal authority. Institutions engaged in housing policy or fair lending advocacy should treat AVM bias auditing requirements and algorithmic decision audit trails as near-term enforcement priorities that do not require new legislation to pursue.</p>",
     risk: {
@@ -889,7 +910,7 @@ const THEMES = [
     confidence: "emerging",
     question: "What leverage do workers actually have, and where is organizing working?",
     framing: "Workers have more leverage than union density numbers suggest — but only where they can organize collectively around specific AI deployment terms before those terms become standard.",
-    synthesis: "<p>Tech sector union density remains below 5% despite rising AI-related job insecurity — a gap driven primarily by contractor misclassification, at-will employment, and aggressive employer countermeasures. Yet the 2023 WGA and SAG-AFTRA strikes produced the first replicable AI contract language in a major U.S. industry: consent requirements for AI replicas, residual payments tied to AI use, and mandatory notification when AI substitutes for covered work. In October 2025, the AFL-CIO escalated significantly with Workers First — the first comprehensive labor movement AI agenda — representing 63 unions and 15 million workers, with five binding principles covering worker input in AI design, formal negotiation requirements, surveillance limits, and employer investment in career development. The characterization of AI organizing as confined to a handful of industries is no longer accurate.</p><p>In warehouse and logistics, Cornell ILR and worker advocacy data show that algorithmic management systems increased injury rates by 34% and voluntary turnover by the same margin — outcomes generating new organizing energy and litigation. ILO cross-country case studies in logistics and healthcare across Italy, France, India, and South Africa reinforce the pattern with international evidence: algorithmic management consistently degrades job quality and intensifies surveillance regardless of regulatory context — including in France and Italy, where strong labor law frameworks exist but contain no specific provisions for algorithmic management. The implication is that legal protection alone, without contract-specific AI governance provisions, does not prevent these outcomes. The pattern is now spreading beyond logistics: AI Now's gig nursing research documents a coordinated deregulatory campaign threatening healthcare worker protections across 25 states, and NEJM analysis finds hospital AI monitoring placing clinicians at risk of the same algorithmic management dynamics — eroded autonomy, tightening performance baselines, limited recourse — previously documented only in blue-collar settings.</p>",
+    synthesis: "<p>Tech sector union density remains below 5% despite rising AI-related job insecurity — a gap driven primarily by contractor misclassification, at-will employment, and aggressive employer countermeasures. Yet the 2023 WGA and SAG-AFTRA strikes produced the first replicable AI contract language in a major U.S. industry: consent requirements for AI replicas, residual payments tied to AI use, and mandatory notification when AI substitutes for covered work. In October 2025, the AFL-CIO escalated significantly with Workers First — the first comprehensive labor movement AI agenda — representing 63 unions and 15 million workers, with five guiding principles covering worker input in AI design, formal negotiation requirements, surveillance limits, and employer investment in career development. The characterization of AI organizing as confined to a handful of industries is no longer accurate.</p><p>In warehouse and logistics, MIT Work of the Future research shows that algorithmic management systems increased injury rates by 34% and voluntary turnover by the same margin — outcomes generating new organizing energy and litigation. ILO cross-country case studies in logistics and healthcare across Italy, France, India, and South Africa reinforce the pattern with international evidence: algorithmic management consistently degrades job quality and intensifies surveillance regardless of regulatory context — including in France and Italy, where strong labor law frameworks exist but contain no specific provisions for algorithmic management. The implication is that legal protection alone, without contract-specific AI governance provisions, does not prevent these outcomes. The pattern is now spreading beyond logistics: AI Now's gig nursing research documents a coordinated deregulatory campaign threatening healthcare worker protections across 25 states, and NEJM analysis finds hospital AI monitoring placing clinicians at risk of the same algorithmic management dynamics — eroded autonomy, tightening performance baselines, limited recourse — previously documented only in blue-collar settings.</p>",
     gaps: ["Healthcare and professional sector organizing — gig nursing deregulation and clinical AI surveillance represent the newest frontier of algorithmic management, with organizing infrastructure still underdeveloped", "Gig and platform worker legal frameworks for collective action", "International labor law and cross-border organizing"],
     implication: "<p>Collective bargaining remains the most direct and documented lever workers have to shape AI deployment terms — not just wages. The WGA/SAG-AFTRA precedent demonstrates that AI governance provisions can be won through contract, even before legislation exists. Institutions with labor relationships or labor-adjacent programming should treat AI contract language development as a high-value, near-term investment: the window for establishing precedents in key industries is open now and may close as contracts normalize.</p><p>The algorithmic management data also suggests that institutions tracking worker wellbeing need to look beyond wages and employment rates. Injury frequency, voluntary turnover, and psychological safety are where harm is concentrating in AI-managed environments — outcomes that do not appear in standard labor market indicators but that workers and their advocates are documenting in real time.</p>",
     risk: {
@@ -940,7 +961,7 @@ const THEMES = [
     confidence: "contested",
     question: "Is reskilling delivering economic mobility — and for whom?",
     framing: "Reskilling is the go-to policy response to AI displacement — but the evidence that it actually delivers lasting mobility, especially for those who need it most, is weak.",
-    synthesis: "<p>The reskilling consensus is fracturing. Government-funded retraining programs have a weak evidence base: most evaluations show modest short-term wage gains that dissipate within 2–3 years, particularly for workers over 45 or without post-secondary credentials. The core design flaw, documented by Urban Institute and others, is treating skill-building in isolation from the structural conditions — housing instability, childcare gaps, transportation barriers, income volatility — that make sustained learning impossible for the populations most in need. Meanwhile, employer-led upskilling investments are concentrating on already-higher-wage workers, with little evidence of investment in frontline or low-wage populations. Brookings and Opportunity@Work add a further complication: AI may not eliminate entry-level Gateway jobs outright but could sever the advancement routes through them — leaving workers employed but stripped of the career progression those roles historically enabled, making traditional reskilling frameworks structurally inadequate even when they work.</p><p>On the technology side, Anthropic's 80,000-person usage study reveals a deepening expertise gap: experienced users treat AI as a collaborative partner, refining outputs iteratively and building compound advantages, while novice users offload discrete tasks entirely and capture far less value. This suggests that AI tools are amplifying existing skill and confidence gaps rather than leveling them — and that generic AI literacy programs, without deliberate scaffolding toward collaborative use, may widen the divide they aim to close.</p><p>The K-12 pipeline compounds the long-term picture. Center for American Progress learning-science analysis finds that AI in K-12 contexts carries genuine risks — over-reliance, assessment integrity erosion, and inequitable access — that require structured pedagogical frameworks rather than open-ended AI deployment. A companion CAP analysis on the digital divide documents that rural and low-income students remain systematically under-connected, with broadband and device gaps translating directly into reduced college and career readiness before any AI reskilling question even arises. The cohort entering the AI-shaped labor market over the next decade will have experienced highly unequal AI exposure during formative years — a starting-line gap that workforce retraining programs alone cannot close.</p>",
+    synthesis: "<p>The reskilling consensus is fracturing. Government-funded retraining programs have a weak evidence base: most evaluations show modest short-term wage gains that dissipate within 2–3 years, particularly for workers over 45 or without post-secondary credentials. The core design flaw, documented by Urban Institute and others, is treating skill-building in isolation from the structural conditions — housing instability, childcare gaps, transportation barriers, income volatility — that make sustained learning impossible for the populations most in need. Meanwhile, employer-led upskilling investments are concentrating on already-higher-wage workers, with little evidence of investment in frontline or low-wage populations. Brookings and Opportunity@Work add a further complication: AI may not eliminate entry-level Gateway jobs outright but could sever the advancement routes through them — leaving workers employed but stripped of the career progression those roles historically enabled, making traditional reskilling frameworks structurally inadequate even when they work.</p><p>On the technology side, Anthropic's research reveals a deepening expertise gap: experienced users treat AI as a collaborative partner, refining outputs iteratively and building compound advantages, while novice users offload discrete tasks entirely and capture far less value. This pattern — drawn from Anthropic's Economic Index and usage research rather than the 81K attitudes study — suggests that AI tools are amplifying existing skill and confidence gaps rather than leveling them, and that generic AI literacy programs, without deliberate scaffolding toward collaborative use, may widen the divide they aim to close.</p><p>The K-12 pipeline compounds the long-term picture. Center for American Progress learning-science analysis finds that AI in K-12 contexts carries genuine risks — over-reliance, assessment integrity erosion, and inequitable access — that require structured pedagogical frameworks rather than open-ended AI deployment. A companion CAP analysis on the digital divide documents that rural and low-income students remain systematically under-connected, with broadband and device gaps translating directly into reduced college and career readiness before any AI reskilling question even arises. The cohort entering the AI-shaped labor market over the next decade will have experienced highly unequal AI exposure during formative years — a starting-line gap that workforce retraining programs alone cannot close.</p>",
     gaps: ["Longitudinal effectiveness data on publicly-funded AI retraining programs", "Employer-led vs. publicly-funded training outcomes compared head-to-head", "Community college and workforce board capacity to deliver credible AI curricula", "K-12 AI integration evidence base — what pedagogical frameworks actually close rather than widen learning gaps"],
     implication: "<p>Institutions that fund AI skills training without addressing the structural conditions that make sustained learning impossible — income instability, caregiving responsibilities, transportation access — will produce credentials without mobility. The evidence is clear enough that wraparound support should be treated as core program infrastructure, not a supplemental add-on. Program designs that assume participants can absorb new technical skills while managing housing insecurity or shift-based schedules are not failing because of participant deficits; they are failing by design.</p><p>The Anthropic usage data carries a direct institutional implication as well: if AI tools amplify existing expertise gaps, then deploying AI within programs serving lower-skill populations without deliberate scaffolding may actively widen the gap institutions are trying to close. Institutions should assess not just whether their constituents have access to AI tools, but how they are using them — and design learning environments that build toward the collaborative, iterative usage patterns associated with durable skill and earnings gains.</p><p>The K-12 and digital divide findings extend the reskilling frame upstream: interventions focused only on adult workforce retraining are addressing the symptom while the source widens. Institutions with education programming should treat digital infrastructure access and structured AI pedagogy in K-12 as workforce development investments, not separate policy tracks. A student who reaches the labor market without reliable connectivity, AI exposure, or the scaffolded skills to use AI collaboratively faces compounded disadvantage that no post-secondary retraining program is designed to remedy.</p>",
     risk: {
@@ -957,7 +978,7 @@ const THEMES = [
     confidence: "contested",
     question: "What do affected workers and communities actually want and fear?",
     framing: "What workers say they feel about AI and what happens to them under AI management are telling two different stories — and institutions need to hear both.",
-    synthesis: "<p>Anthropic's 80,508-person global study — one of the largest of its kind — found that hope and alarm about AI coexist within individuals, not between demographic camps. This challenges the common framing that separates 'AI optimists' from 'AI skeptics' by education, income, or ideology. Jobs and economic displacement rank as the second-most cited concern globally (22.3%), and lower-income regions show higher net positive AI sentiment than wealthy Western nations — a reversal of the typical assumption that marginalized communities are uniformly resistant to AI adoption.</p><p>However, aspirational sentiment diverges sharply from ground-level experience data. In algorithmic management environments — warehouses, delivery, call centers — worker-reported studies and Cornell ILR documentation show injury rates up 34%, voluntary turnover up 34%, and elevated rates of stress, surveillance anxiety, and reduced autonomy. The pattern is no longer confined to blue-collar settings: NEJM analysis of hospital AI monitoring finds clinicians at risk of becoming &ldquo;quantified workers&rdquo; subject to algorithmic performance management against billing and throughput metrics — the same dynamics of eroding professional judgment and tightening baselines are now documented in healthcare. ILO Working Paper 170 adds a formal international framing: AI-driven surveillance, work intensification, and erosion of autonomy generate a documented cluster of psychosocial hazards that existing occupational safety and health frameworks — still oriented toward physical risks — are structurally unequipped to govern, and the ILO identifies the gap as requiring an integrated regulatory response spanning labor law, OSH standards, equality protections, and data protection. Qualitative research from DAIR and similar organizations documents that workers often adapt to or internalize AI management norms rather than challenge them, even when experiencing measurable harm — making survey-based sentiment a poor proxy for on-the-ground conditions.</p>",
+    synthesis: "<p>Anthropic's 80,508-person global study — one of the largest of its kind — found that hope and alarm about AI coexist within individuals, not between demographic camps. This challenges the common framing that separates 'AI optimists' from 'AI skeptics' by education, income, or ideology. Jobs and economic displacement rank as the second-most cited concern globally (22.3%), and lower-income regions show higher net positive AI sentiment than wealthy Western nations — a reversal of the typical assumption that marginalized communities are uniformly resistant to AI adoption.</p><p>However, aspirational sentiment diverges sharply from ground-level experience data. In algorithmic management environments — warehouses, delivery, call centers — worker-reported studies and MIT Work of the Future research show injury rates up 34%, voluntary turnover up 34%, and elevated rates of stress, surveillance anxiety, and reduced autonomy. The pattern is no longer confined to blue-collar settings: NEJM analysis of hospital AI monitoring finds clinicians at risk of becoming &ldquo;quantified workers&rdquo; subject to algorithmic performance management against billing and throughput metrics — the same dynamics of eroding professional judgment and tightening baselines are now documented in healthcare. ILO Working Paper 170 adds a formal international framing: AI-driven surveillance, work intensification, and erosion of autonomy generate a documented cluster of psychosocial hazards that existing occupational safety and health frameworks — still oriented toward physical risks — are structurally unequipped to govern, and the ILO identifies the gap as requiring an integrated regulatory response spanning labor law, OSH standards, equality protections, and data protection. Qualitative research from DAIR and similar organizations documents that workers often adapt to or internalize AI management norms rather than challenge them, even when experiencing measurable harm — making survey-based sentiment a poor proxy for on-the-ground conditions.</p>",
     gaps: ["Longitudinal wellbeing studies under AI management over 2+ years", "Qualitative research centered on marginalized and low-wage worker voices", "Psychological safety in AI-intensive workplaces — burnout, surveillance stress"],
     implication: "<p>Aggregate sentiment data — including the Anthropic global study — should not be used as a proxy for ground-level impact. The coexistence of positive AI sentiment and measurable workplace harm is not a contradiction; it reflects the difference between abstract hopes and lived conditions under specific deployment contexts. Institutions relying primarily on survey-based sentiment to assess AI's effects on their constituencies risk systematically missing where harm is actually concentrating.</p><p>Community-based participatory research with affected worker populations is both a methodological and legitimacy imperative. Workers in AI-managed environments have detailed, actionable knowledge about what is harmful and what might be different — knowledge that neither sentiment surveys nor productivity metrics capture. Institutions should invest in research partnerships with the communities they serve, not just research conducted about them. That distinction determines whether findings are trusted, used, and connected to meaningful change.</p>",
     risk: {
@@ -1104,7 +1125,7 @@ const PRIORITY_SOURCE_GROUPS = {
 
 const RESEARCH_DATA = [
   {
-    id: 1, date: "2023-03-27",
+    id: 1, date: "2023-03-17",
     title: "GPTs are GPTs: An Early Look at the Labor Market Impact Potential of Large Language Models",
     source: "Eloundou, Manning, Mishkin & Rock — OpenAI / University of Pennsylvania",
     sourceUrl: "https://arxiv.org/abs/2303.10130",
@@ -1195,7 +1216,7 @@ const RESEARCH_DATA = [
     ]
   },
   {
-    id: 8, date: "2024-04-02",
+    id: 8, date: "2021-10-01",
     title: "Hiring by Algorithm: Accountability and Transparency Gaps in AI Hiring Tools",
     source: "Upturn",
     sourceUrl: "https://www.upturn.org/reports/2021/hiring-by-algorithm/",
@@ -1208,12 +1229,12 @@ const RESEARCH_DATA = [
     ]
   },
   {
-    id: 9, date: "2024-01-22",
+    id: 9, date: "2024-04-24",
     title: "Improving Mortgage Underwriting Outcomes for Protected Classes Through Distribution Matching",
     source: "National Fair Housing Alliance",
     sourceUrl: "https://nationalfairhousing.org/resource/improving-mortgage-underwriting-and-pricing-outcomes-for-protected-classes-through-distribution-matching/",
     category: "equity", geography: "us",
-    keyFinding: "AI underwriting models denied mortgage applications from Black and Latino applicants at rates 40–60% higher than comparable white applicants, even after controlling for creditworthiness.",
+    keyFinding: "A distribution-matching method applied to AI mortgage underwriting models can increase approval rates for Black and Hispanic applicants by 5–13% without reducing lender profitability — demonstrating that fair lending outcomes and model performance are not in conflict.",
     takeaways: [
       "Models trained on historical data encoded decades of discriminatory lending geography; their opacity made denial reasons impossible for applicants to understand or challenge.",
       "A shift toward 'intent'-based legal standards would effectively immunize algorithmic discrimination from ECOA disparate-impact challenge.",
@@ -1286,10 +1307,10 @@ const RESEARCH_DATA = [
     ]
   },
   {
-    id: 15, date: "2024-04-10",
-    title: "The State of AI in 2024: Productivity, Investment, and the Path to ROI",
+    id: 15, date: "2023-06-14",
+    title: "The Economic Potential of Generative AI: The Next Productivity Frontier",
     source: "McKinsey Global Institute",
-    sourceUrl: "https://www.mckinsey.com/capabilities/quantumblack/our-insights/the-state-of-ai-2024",
+    sourceUrl: "https://www.mckinsey.com/capabilities/mckinsey-digital/our-insights/the-economic-potential-of-generative-ai-the-next-productivity-frontier",
     category: "macro", geography: "intl",
     keyFinding: "Generative AI could add $2.6–4.4 trillion annually to the global economy, but a 5–10 year lag before macroeconomic productivity gains materialize follows historical technology cycles.",
     takeaways: [
@@ -1299,7 +1320,7 @@ const RESEARCH_DATA = [
     ]
   },
   {
-    id: 16, date: "2023-06-30",
+    id: 16, date: "2023-03-27",
     title: "Generative AI Could Raise Global GDP by 7%",
     source: "Goldman Sachs Global Investment Research",
     sourceUrl: "https://www.gspublishing.com/content/research/en/reports/2023/03/27/d64e052b-0f6e-45d7-967b-d7be35fabd16.html",
@@ -1416,7 +1437,7 @@ const RESEARCH_DATA = [
     ]
   },
   {
-    id: 29, date: "2026-03-18",
+    id: 29, date: "2026-03-19",
     title: "What 81,000 People Want from AI",
     source: "Saffron Huang et al. — Anthropic",
     sourceUrl: "https://www.anthropic.com/features/81k-interviews",
@@ -1839,7 +1860,7 @@ const RESEARCH_DATA = [
     category: "macro", geography: "intl",
     keyFinding: "170 million new roles will be created and 92 million displaced by 2030 — a net gain of 78 million jobs — but the structural transition is highly unequal: displaced roles concentrate in clerical occupations while new roles cluster in technology fields with high entry barriers.",
     takeaways: [
-      "86% of employers expect AI and information processing to transform their businesses by 2030, yet nearly 40% of current job skills will be obsolete — a structural transition challenge that individual upskilling programs alone cannot address at the scale and speed required.",
+      "86% of employers expect AI and information processing to transform their businesses by 2030, yet nearly 40% of current job skills will be transformed or become outdated — a structural transition challenge that individual upskilling programs alone cannot address at the scale and speed required.",
       "The skills gap is the primary barrier to workforce transformation: 63% of employers cite it as the key constraint, suggesting the binding limit on AI-driven growth is not technology availability but human capital investment and institutional capacity.",
       "Care economy jobs — nursing, social work, personal care aides — are among the fastest-growing categories through 2030, indicating AI will shift labor demand toward human-intensive services while automating information-processing and administrative tasks."
     ]
@@ -2503,6 +2524,7 @@ const RESEARCH_DATA = [
 
 <header class="site-header">
   <div class="header-inner">    <div class="header-text">
+      <p class="header-eyebrow">Research Tracker</p>
       <h1>AI, Tech and the Economy: Research Intelligence</h1>
       <p class="header-intro">
         A living database of research on how AI and technology are reshaping labor markets,
@@ -2511,8 +2533,12 @@ const RESEARCH_DATA = [
       </p>
       <p class="header-updated">Last updated <span id="headerLastUpdated"></span></p>
     </div>
-    <div style="display:flex;align-items:center;gap:8px;flex-shrink:0">
-      <button class="info-btn" id="sourcesInfoBtn" title="View sources" aria-label="View sources">ⓘ</button>
+    <div style="display:flex;flex-direction:column;align-items:flex-end;gap:8px;flex-shrink:0">
+      <div style="display:flex;align-items:center;gap:8px;">
+        <button class="about-link-btn" id="aboutInfoBtn" aria-label="About this site">About</button>
+        <button class="info-btn" id="sourcesInfoBtn" title="View sources" aria-label="View sources">ⓘ</button>
+      </div>
+      <p class="header-disclaimer">Summaries and key findings are AI-generated and reviewed for accuracy on an ongoing basis. Always consult the original source before citing.</p>
     </div>
   </div>
 </header>
@@ -2589,10 +2615,40 @@ const RESEARCH_DATA = [
 
 <footer>
   AI, Tech and the Economy: Research Intelligence ·
-  Curated entries last updated <span id="lastUpdated"></span> ·
-  <span id="footerCount"></span>
+  Created by Christelle Prophete ·
+  Last updated <span id="lastUpdated"></span> ·
+  <span id="footerCount"></span> ·
+  <button class="footer-about-btn" id="footerAboutBtn">About this site</button>
 </footer>
 
+
+<!-- About Modal -->
+<div class="modal-backdrop" id="aboutModal">
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="aboutModalTitle">
+    <div class="modal-header">
+      <div class="modal-title" id="aboutModalTitle">About</div>
+      <button class="modal-close" id="aboutModalClose" aria-label="Close">✕</button>
+    </div>
+    <div class="modal-body" id="aboutModalBody">
+      <div class="modal-group">
+        <div class="modal-group-name">Purpose</div>
+        <p class="modal-sources-intro">This tracker is a curated research intelligence tool at the intersection of artificial intelligence, automation, and labor markets. It aggregates peer-reviewed studies, policy reports, and investigative journalism into a structured, filterable database — organized by category, theme, geography, and source type — to support institutional positioning, workforce strategy, and policy analysis.</p>
+      </div>
+      <div class="modal-group">
+        <div class="modal-group-name">Created by</div>
+        <p class="modal-sources-intro">Christelle Prophete. This site is independently maintained and updated as new research emerges.</p>
+      </div>
+      <div class="modal-group">
+        <div class="modal-group-name">How it works</div>
+        <p class="modal-sources-intro">Each entry is tagged by category, geographic scope, and recency status — <em>Emergent</em> (under 90 days old, preliminary and not yet widely cited), <em>Current</em> (3–18 months, active in the research conversation), or <em>Stale</em> (18+ months, useful as baseline but context may have shifted). The Themes view groups research into strategic narratives with editorial confidence ratings: <em>Strong consensus</em>, <em>Emerging evidence</em>, or <em>Contested</em>.</p>
+      </div>
+      <div class="modal-group">
+        <div class="modal-group-name">AI Disclaimer</div>
+        <p class="modal-sources-intro">Summaries, key findings, and takeaways on each research card are AI-generated and reviewed for accuracy on an ongoing basis. They are intended as orientation aids — not substitutes for reading the original source. Always consult the primary publication before citing or acting on any finding.</p>
+      </div>
+    </div>
+  </div>
+</div>
 
 <!-- Priority Sources Modal -->
 <div class="modal-backdrop" id="sourcesModal">
@@ -3265,7 +3321,7 @@ const RESEARCH_DATA = [
       if (!body.hasChildNodes()) {
         const intro = document.createElement('p');
         intro.className = 'modal-sources-intro';
-        intro.textContent = 'These are the institutions and organizations whose work is tracked in this database. Bias notes reflect our editorial assessment of each source\'s funding and orientation.';
+        intro.textContent = 'These are the institutions and organizations whose work is tracked in this database.';
         body.appendChild(intro);
 
         Object.entries(PRIORITY_SOURCE_GROUPS).forEach(([group, names]) => {
@@ -3290,6 +3346,21 @@ const RESEARCH_DATA = [
     function closeModal() { modal.classList.remove('open'); }
 
     openBtn.addEventListener('click', openModal);
+    closeBtn.addEventListener('click', closeModal);
+    modal.addEventListener('click', e => { if (e.target === modal) closeModal(); });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+  })();
+
+  // ── about modal ──────────────────────────────────────────────
+  (function() {
+    const modal    = document.getElementById('aboutModal');
+    const openBtn  = document.getElementById('aboutInfoBtn');
+    const footerBtn= document.getElementById('footerAboutBtn');
+    const closeBtn = document.getElementById('aboutModalClose');
+    function openModal()  { modal.classList.add('open'); }
+    function closeModal() { modal.classList.remove('open'); }
+    openBtn.addEventListener('click', openModal);
+    footerBtn.addEventListener('click', openModal);
     closeBtn.addEventListener('click', closeModal);
     modal.addEventListener('click', e => { if (e.target === modal) closeModal(); });
     document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
