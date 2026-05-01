@@ -488,7 +488,7 @@
     border-radius: 12px 12px 0 0;
   }
   .theme-card-body {
-    padding: 16px 20px 16px; flex: 1;
+    padding: 16px 20px 28px; flex: 1;
     display: flex; flex-direction: column;
     position: relative; z-index: 1;
   }
@@ -3125,7 +3125,7 @@ const RESEARCH_DATA = [
     const linkedPapers = (theme.papers || []).map(id => paperMap[id]).filter(Boolean);
     const paperChips = linkedPapers.map(p => {
       const shortTitle = p.title.length > 55 ? p.title.slice(0, 52) + '…' : p.title;
-      return `<button class="theme-paper-chip" data-paper-id="${p.id}" title="${p.title}">${shortTitle}</button>`;
+      return `<a class="theme-paper-chip" href="${p.sourceUrl}" target="_blank" rel="noopener noreferrer" title="${p.title}">${shortTitle}</a>`;
     }).join('');
 
     const gapItems = theme.gaps.map(g =>
@@ -3202,14 +3202,6 @@ const RESEARCH_DATA = [
 
         ${prevNextNav}
       </div>`;
-
-    card.querySelectorAll('.theme-paper-chip').forEach(btn => {
-      btn.addEventListener('click', e => {
-        e.stopPropagation();
-        const paper = paperMap[parseInt(btn.dataset.paperId)];
-        if (paper) showPaperPopover(paper, e.clientX, e.clientY, theme.color);
-      });
-    });
 
     card.querySelectorAll('.theme-nav-btn[data-theme-id]').forEach(btn => {
       btn.addEventListener('click', () => {
