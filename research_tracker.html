@@ -616,15 +616,15 @@
     background: var(--surface2); border: 1px solid var(--border); border-radius: 8px;
     padding: 8px 14px; cursor: pointer; font-family: inherit;
     transition: color 0.15s, border-color 0.15s, background 0.15s;
-    max-width: 46%; display: flex; align-items: center; gap: 6px;
+    max-width: 46%; display: flex; align-items: flex-start; gap: 6px;
   }
   .theme-nav-btn:hover:not(:disabled) {
     color: var(--text); border-color: var(--theme-color);
     background: color-mix(in srgb, var(--theme-color) 8%, var(--surface2));
   }
   .theme-nav-btn:disabled { opacity: 0.5; cursor: default; }
-  .theme-nav-btn .nav-arrow { font-size: 15px; flex-shrink: 0; }
-  .theme-nav-btn .nav-label { overflow: hidden; }
+  .theme-nav-btn .nav-arrow { font-size: 15px; flex-shrink: 0; line-height: 1.5; }
+  .theme-nav-btn .nav-label { line-height: 1.4; }
   .theme-confidence {
     display: inline-flex; align-items: center; gap: 5px;
     font-size: 10px; font-weight: 700; letter-spacing: 0.07em; text-transform: uppercase;
