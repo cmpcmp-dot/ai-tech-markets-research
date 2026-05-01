@@ -173,6 +173,13 @@
     background: var(--bg); position: sticky; top: 57px; z-index: 99;
   }
   .strategy-view .theme-nav-strip { display: flex; }
+  .theme-disclaimer-bar {
+    display: none; font-size: 11px; font-style: italic; color: var(--muted);
+    text-align: center; padding: 8px 28px;
+    border-bottom: 1px solid var(--border);
+    font-family: 'Haas Grotesk', 'Helvetica Neue', Arial, sans-serif;
+  }
+  .strategy-view .theme-disclaimer-bar { display: block; }
   .theme-nav-counter {
     font-size: 11px; font-weight: 600; color: #6B7280;
     white-space: nowrap; flex-shrink: 0; letter-spacing: 0.03em;
@@ -2596,6 +2603,7 @@ const RESEARCH_DATA = [
       <div id="themeTabNav"></div>
       <span class="theme-nav-counter" id="themeNavCounter"></span>
     </div>
+    <div class="theme-disclaimer-bar">The content on this page does not reflect the opinions or perspectives of the creator.</div>
 
     <div class="cards-area">
       <div class="cards-grid" id="cardsGrid"></div>
@@ -2636,7 +2644,7 @@ const RESEARCH_DATA = [
       </div>
       <div class="modal-group">
         <div class="modal-group-name">Created by</div>
-        <p class="modal-sources-intro">Christelle Prophete. This site is independently maintained and updated as new research emerges.</p>
+        <p class="modal-sources-intro">Christelle Prophete. This site is independently maintained and updated as new research emerges. The content presented here does not reflect the opinions or perspectives of the creator.</p>
       </div>
       <div class="modal-group">
         <div class="modal-group-name">How it works</div>
