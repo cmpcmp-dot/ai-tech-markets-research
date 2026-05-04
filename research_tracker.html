@@ -883,15 +883,15 @@ const THEMES = [
     confidence: "consensus",
     question: "Is AI compounding existing racial, gender, and class inequalities?",
     framing: "AI systems are not neutral by default — documented disparities in hiring, credit, and surveillance show that without deliberate intervention, AI rollout will deepen existing inequalities.",
-    synthesis: "<p>Documented disparities are persistent across the AI pipeline. In hiring, fewer than 20% of vendors provide adequate bias audit documentation, and NIST's AI Risk Management Framework identifies demographic parity failures as among the most underreported deployment risks. Mortgage underwriting algorithms show denial rates approximately 40% higher for Latino applicants and 80% higher for Black applicants even after controlling for creditworthiness, per The Markup's 2021 investigation. Tenant screening algorithms present a third documented domain: the National Consumer Law Center finds no empirical evidence that credit scores predict successful tenancy, yet they are primary inputs to automated screening tools that amplify racial disparities embedded in eviction records and criminal histories — making discrimination faster, cheaper, and harder to contest than under human decision-making. On the adoption side, women are adopting generative AI at measurably lower rates globally — a gap that, if sustained, will compound into earnings and career disparities over the next decade.</p><p>Healthcare algorithms are among the most consequential and least-scrutinized sites of AI-driven racial disparity. Obermeyer et al.'s landmark Science study found that a widely used commercial health algorithm systematically underestimated Black patients' illness severity because it used healthcare cost as a proxy for need — and structural inequities mean less is spent on Black patients regardless of clinical condition. Correcting the bias would more than double the proportion of Black patients identified as needing high-risk care, raising the share from 17.7% to 46.5%. The problem extends to clinical decision tools themselves: Vyas, Eisenstein, and Jones in the NEJM documented race-adjustment factors embedded across cardiology, nephrology, obstetrics, and urology that encode a false biological premise about race, directing Black patients away from care they clinically need — including organ transplant referrals — through tools embedded in electronic health records and clinical training nationwide.</p><p>Housing is an emerging enforcement frontier. Center for American Progress analysis of AI in housing finance documents that automated valuation models (AVMs) and algorithmic underwriting tools lack the oversight frameworks applied to human decision-making, creating conditions where Fair Housing Act obligations are technically satisfied while discriminatory outcomes persist. CAP's regulatory recommendations identify concrete actions for HUD, CFPB, and FHFA — including mandatory bias testing of AVMs, audit trail requirements for algorithmic lending decisions, and explicit guidance extending disparate impact liability to automated tools — framing housing AI oversight as an enforcement gap addressable under existing statutory authority rather than requiring new legislation.</p>",
-    gaps: ["Intersectional analysis across race, gender, and class simultaneously", "Disability and accessibility in AI-mediated work", "Geographic equity in who benefits from AI-driven job creation", "AVM and algorithmic underwriting bias — enforcement gap between Fair Housing Act intent and current automated lending oversight", "Healthcare AI bias audit requirements — no federal standard requires commercial health algorithms to be tested for racial disparity before deployment"],
+    synthesis: "<p>Documented disparities are persistent across the AI pipeline. In hiring, fewer than 20% of vendors provide adequate bias audit documentation, and NIST's AI Risk Management Framework identifies demographic parity failures as among the most underreported deployment risks. Mortgage underwriting algorithms show denial rates approximately 40% higher for Latino applicants and 80% higher for Black applicants even after controlling for creditworthiness, per The Markup's 2021 investigation. Tenant screening algorithms present a third documented domain, now substantially developed by a growing body of research: the National Consumer Law Center finds no empirical evidence that credit scores predict successful tenancy, yet they remain primary inputs to automated screening tools that amplify racial disparities embedded in eviction records and criminal histories. Karpinski's legal analysis of AI-powered tenant screening programs documents how these systems automate historic patterns of discrimination — disproportionately screening out Black and Latino renters — while appearing facially neutral, placing the burden of challenging each decision on individual renters who rarely have legal representation. Humber frames the dynamic as algorithmic redlining: property technology systems that perpetuate residential segregation by encoding race-correlated signals into automated decisioning. Pappoe documents a structural compounding mechanism — eviction court filings, even those successfully contested, are aggregated by data brokers and transmitted to tenant screening systems, functioning as a permanent algorithmic record that makes housing instability self-reinforcing. On the adoption side, women are adopting generative AI at measurably lower rates globally — a gap that, if sustained, will compound into earnings and career disparities over the next decade.</p><p>Healthcare algorithms are among the most consequential and least-scrutinized sites of AI-driven racial disparity. Obermeyer et al.'s landmark Science study found that a widely used commercial health algorithm systematically underestimated Black patients' illness severity because it used healthcare cost as a proxy for need — and structural inequities mean less is spent on Black patients regardless of clinical condition. Correcting the bias would more than double the proportion of Black patients identified as needing high-risk care, raising the share from 17.7% to 46.5%. The problem extends to clinical decision tools themselves: Vyas, Eisenstein, and Jones in the NEJM documented race-adjustment factors embedded across cardiology, nephrology, obstetrics, and urology that encode a false biological premise about race, directing Black patients away from care they clinically need — including organ transplant referrals — through tools embedded in electronic health records and clinical training nationwide.</p><p>Housing is an emerging enforcement frontier with a clear legal doctrine now anchoring it. Center for American Progress analysis of AI in housing finance documents that automated valuation models (AVMs) and algorithmic underwriting tools lack the oversight frameworks applied to human decision-making, creating conditions where Fair Housing Act obligations are technically satisfied while discriminatory outcomes persist. CAP's regulatory recommendations identify concrete actions for HUD, CFPB, and FHFA — including mandatory bias testing of AVMs, audit trail requirements for algorithmic lending decisions, and explicit guidance extending disparate impact liability to automated tools. The Leadership Conference's 'When Machines Discriminate' report elevates this framing to a civil rights priority: disparate impact doctrine — the legal principle that facially neutral policies with discriminatory effects violate anti-discrimination law — is the most consequential existing legal instrument for AI accountability, and its preservation and application to algorithmic systems is foundational. Bains and Brookings reinforce the analysis: disparate impact is the legal infrastructure that will determine whether AI-driven discrimination can be addressed under existing law without waiting for new statutory authority — and it is already under threat from courts and industry actors seeking to narrow its reach.</p>",
+    gaps: ["Intersectional analysis across race, gender, and class simultaneously", "Disability and accessibility in AI-mediated work", "Geographic equity in who benefits from AI-driven job creation", "Healthcare AI bias audit requirements — no federal standard requires commercial health algorithms to be tested for racial disparity before deployment", "Legal representation gap: disparate impact doctrine provides the legal basis to challenge algorithmic discrimination, but most affected tenants, applicants, and borrowers lack access to attorneys equipped to bring these cases at scale"],
     implication: "<p>Equity frameworks need to be embedded upstream in AI procurement and deployment decisions — not treated as post-hoc audit concerns. The evidence on hiring, credit, and healthcare algorithms shows that bias accumulates structurally through design choices — proxy variable selection, training data composition, outcome definition — which means voluntary vendor commitments are insufficient. Institutions are better positioned to advance change through procurement standards, coalition-building with civil rights organizations, and direct advocacy for enforceable audit requirements than through general AI literacy campaigns.</p><p>The adoption gap among women and lower-income populations also warrants specific attention. Institutions investing in AI tools should actively assess who is actually using them and at what level of sophistication — not just whether access exists. Uneven adoption within institutions mirrors the broader labor market dynamic: tools that amplify productivity for confident, experienced users will widen internal equity gaps if rollout is not paired with deliberate support structures.</p><p>The housing regulatory gap is actionable through existing channels. HUD, CFPB, and FHFA already have statutory authority to extend Fair Housing Act enforcement to algorithmic tools — the constraint is agency will and technical capacity, not legal authority. Institutions engaged in housing policy or fair lending advocacy should treat AVM bias auditing requirements and algorithmic decision audit trails as near-term enforcement priorities that do not require new legislation to pursue.</p>",
     risk: {
       level: "High",
       color: "#C0392B",
       summary: "<p>Algorithmic bias in hiring, credit, healthcare, and housing is structural and self-reinforcing. Without upstream intervention at procurement and deployment stages, AI rollout at scale will deepen racial, gender, and class disparities faster than legal or advocacy mechanisms can address them. Healthcare is a particularly underregulated frontier: no federal standard requires commercial health algorithms to be audited for racial disparity before deployment, and the tools are embedded in clinical infrastructure used by millions of patients.</p><p>The adoption gap compounds the risk: if lower-income and marginalized workers adopt AI tools at lower rates and with less sophistication, the economic divergence documented in displacement research will be layered on top of pre-existing inequalities, producing outcomes that are harder to reverse over time.</p>"
     },
-    papers: [94, 95, 8, 9, 89],
+    papers: [94, 95, 8, 9, 89, 117, 120, 121, 124],
   },
   {
     id: "criminal-justice",
@@ -934,15 +934,15 @@ const THEMES = [
     confidence: "emerging",
     question: "What policy frameworks are emerging — and are they adequate?",
     framing: "The gap between what AI can do and what institutions are required to disclose or prevent is widening faster than any single jurisdiction can close.",
-    synthesis: "<p>U.S. policy is deeply fragmented: 47 states have no statutory AI disclosure rights for workers, and no federal floor exists for algorithmic transparency or impact assessment. The Trump administration is pursuing aggressive AI industrial policy — accelerating permitting for data center development, reducing environmental review requirements, and positioning the federal government as a demand-side anchor for AI products — while framing these moves as deregulation rather than industrial strategy. The gap between stated policy goals and enforcement capacity is growing, particularly at the state level where AI-related laws lack dedicated implementation infrastructure.</p><p>The EEOC's 2021 initiative on AI and algorithmic fairness marked the first formal federal assertion that existing antidiscrimination law — Title VII, ADA, ADEA — governs AI-driven employment decisions without requiring new legislation, establishing that employers cannot outsource civil rights liability to algorithm vendors. Technical guidance produced under the initiative identified hiring tools, video interview analyzers, and predictive assessments as potential sources of disparate impact subject to enforcement — a regulatory baseline that can be applied now. The EU AI Act, now moving into enforcement, is creating a compliance floor that will affect any institution or employer operating across jurisdictions, with high-risk AI systems in employment and credit decisions subject to mandatory conformity assessments. OpenAI's 2025 Economic Blueprint and subsequent policy proposals blend genuine access-equity framing with provisions that would entrench dominant players and limit open-source competition — a dynamic that requires scrutiny from institutions whose interests diverge from large AI developers. Competition enforcement offers a parallel and underused track: Open Markets Institute analysis confirms that existing federal antitrust statutes are sufficient to address AI concentration through merger blocking, structural separation, and algorithmic price-fixing prosecution — the constraint is enforcement will and technical capacity, not legal authority, as the 2025 DOJ RealPage settlement demonstrated.</p><p>Two emerging patterns sharpen the picture. First, AI is now being deployed inside governance itself: the Trump administration's Department of Transportation is using AI to draft federal regulations in 20 minutes while staffing is at historic lows, and DOGE's AI review of Veterans Affairs contracts — analyzing only 2,500 words per document using undefined criteria tuned iteratively toward maximum cuts — documents what inadequate government AI governance produces in practice. The line between AI as subject of regulation and AI as instrument of governance is collapsing faster than accountability frameworks can respond. Second, the 99-1 Senate vote striking the federal AI preemption moratorium preserved state regulatory authority for now, but the industry-backed push continues. CAP's mapping of over 80 agency-specific recommendations confirms that existing federal statutory authority is already sufficient to address most AI harms — the constraint is enforcement will and technical capacity, not legal power.</p>",
-    gaps: ["State-level enforcement capacity — laws exist but lack implementation infrastructure", "Accountability frameworks for AI deployed in government decision-making and rulemaking", "Worker participation in AI governance processes", "International regulatory coordination between U.S. and EU frameworks"],
+    synthesis: "<p>U.S. policy is deeply fragmented: 47 states have no statutory AI disclosure rights for workers, and no federal floor exists for algorithmic transparency or impact assessment. The Trump administration is pursuing aggressive AI industrial policy — accelerating permitting for data center development, reducing environmental review requirements, and positioning the federal government as a demand-side anchor for AI products — while framing these moves as deregulation rather than industrial strategy. The gap between stated policy goals and enforcement capacity is growing, particularly at the state level where AI-related laws lack dedicated implementation infrastructure.</p><p>The EEOC's 2021 initiative on AI and algorithmic fairness marked the first formal federal assertion that existing antidiscrimination law — Title VII, ADA, ADEA — governs AI-driven employment decisions without requiring new legislation, establishing that employers cannot outsource civil rights liability to algorithm vendors. Technical guidance produced under the initiative identified hiring tools, video interview analyzers, and predictive assessments as potential sources of disparate impact subject to enforcement — a regulatory baseline that can be applied now. HUD's 2022 guidance on criminal background screenings extends a parallel principle to housing: screening policies with a disparate impact on protected classes may violate the Fair Housing Act regardless of facially neutral intent — establishing that housing AI oversight is actionable through existing enforcement authority, not new legislation. The EU AI Act, now moving into enforcement, is creating a compliance floor that will affect any institution or employer operating across jurisdictions, with high-risk AI systems in employment and credit decisions subject to mandatory conformity assessments. OpenAI's 2025 Economic Blueprint and subsequent policy proposals blend genuine access-equity framing with provisions that would entrench dominant players and limit open-source competition — a dynamic that requires scrutiny from institutions whose interests diverge from large AI developers. Competition enforcement offers a parallel and underused track: Open Markets Institute analysis confirms that existing federal antitrust statutes are sufficient to address AI concentration through merger blocking, structural separation, and algorithmic price-fixing prosecution — the constraint is enforcement will and technical capacity, not legal authority, as the 2025 DOJ RealPage settlement demonstrated.</p><p>Two emerging patterns sharpen the picture. First, AI is now being deployed inside governance itself: the Trump administration's Department of Transportation is using AI to draft federal regulations in 20 minutes while staffing is at historic lows, and DOGE's AI review of Veterans Affairs contracts — analyzing only 2,500 words per document using undefined criteria tuned iteratively toward maximum cuts — documents what inadequate government AI governance produces in practice. The line between AI as subject of regulation and AI as instrument of governance is collapsing faster than accountability frameworks can respond. Second, the 99-1 Senate vote striking the federal AI preemption moratorium preserved state regulatory authority for now, but the industry-backed push continues. CAP's mapping of over 80 agency-specific recommendations confirms that existing federal statutory authority is already sufficient to address most AI harms — the constraint is enforcement will and technical capacity, not legal power.</p><p>Three additional frameworks are sharpening the policy picture from a civil rights and transatlantic perspective. The Leadership Conference's 'Innovation Framework: A Civil Rights Approach to AI' provides a comprehensive policy blueprint applying civil rights law across the full AI lifecycle — procurement, development, deployment, and enforcement — framing AI policy not as a technology governance challenge but as a continuation of existing civil rights obligations, with concrete legislative and regulatory recommendations structured around communities most harmed by algorithmic systems. On the legal doctrine side, disparate impact — the principle that facially neutral policies with discriminatory effects violate anti-discrimination law — is now explicitly identified as the most consequential existing legal instrument for AI accountability: the Leadership Conference's 'When Machines Discriminate' and Bains and Brookings both document that this doctrine is the legal infrastructure that will determine whether AI discrimination is addressable under existing law, and that its preservation against narrowing by courts and industry actors is a near-term civil rights priority. On transatlantic coordination, German Marshall Fund's 2026 analysis challenges the 'US innovates, Europe regulates' framing as an oversimplification that forecloses cooperation opportunities — identifying concrete areas where policy convergence is achievable and where the apparent divide is driven more by political framing than structural incompatibility.</p>",
+    gaps: ["State-level enforcement capacity — laws exist but lack implementation infrastructure", "Accountability frameworks for AI deployed in government decision-making and rulemaking", "Worker participation in AI governance processes", "International regulatory coordination — the US/EU divide is less absolute than typically framed (per German Marshall Fund analysis), but concrete coordination mechanisms and mutual recognition frameworks remain underdeveloped"],
     implication: "<p>Advocacy for a federal AI worker rights floor is urgent, but the practical near-term leverage lies at the state level — where laws are passing but implementation infrastructure is almost entirely absent. Institutions with policy capacity should prioritize funding enforcement and compliance infrastructure, not just legislation. Building state agency capacity to investigate algorithmic harm is a less visible but more durable investment than supporting additional statutory language.</p><p>The EU AI Act is also creating an underappreciated opportunity: its requirements for high-risk AI systems in employment contexts can be used as a reference standard by U.S. institutions that want to establish procurement or deployment criteria ahead of domestic regulation. Institutions should also be skeptical of AI policy proposals — including from major developers — that conflate access-equity goals with market-concentration outcomes. Scrutinizing whose interests a given policy framing actually serves is an essential institutional capacity right now.</p><p>The government AI deployment cases — transportation rulemaking and VA contracts — are early signals of a governance gap that will widen as agencies accelerate AI adoption. Institutions should advocate for procurement standards and oversight requirements that apply the same accountability expectations to government AI use as to private deployment: explainability, defined criteria, independent audit, and human review before consequential decisions.</p>",
     risk: {
       level: "Medium",
       color: "#D4952A",
       summary: "<p>Regulatory fragmentation creates conditions where harmful AI deployments can proceed without oversight or accountability. The core risk is the gap between policy intent and enforcement capacity: laws are passing, but the infrastructure to act on them is largely absent, and this gap is widening faster than state agencies can close it.</p><p>There is also a capture risk: well-resourced AI developers are actively shaping the policy environment in ways that can appear aligned with equity goals while protecting market concentration. Institutions that do not maintain independent policy analysis capacity risk lending legitimacy to frameworks that do not serve their constituencies.</p><p>An underappreciated emerging risk: when government deploys AI in its own decision-making — drafting regulations, reviewing contracts, processing claims — the accountability mechanisms designed for private AI deployment do not automatically apply. Federal procurement and rulemaking processes are not yet equipped to assess or constrain the AI tools being introduced into them.</p>"
     },
-    papers: [77, 80, 82, 86, 101, 70],
+    papers: [77, 80, 82, 86, 101, 70, 113, 115, 122, 123, 124],
   },
   {
     id: "community",
@@ -951,7 +951,7 @@ const THEMES = [
     confidence: "emerging",
     question: "How is AI infrastructure reshaping specific communities and regions?",
     framing: "AI's physical infrastructure is landing in communities that had no voice in the decision — and the economic gains are flowing somewhere else.",
-    synthesis: "<p>AI infrastructure is concentrating in a handful of regions — Pennsylvania, Texas, Virginia, and Ohio lead current data center expansion — driven by land costs, energy access, and state tax incentives. Community input is routinely bypassed: at least 14 states have passed preemption laws that strip municipal authority over data center siting and permitting. Environmental impacts are significant and unevenly distributed, with large data centers consuming 20–50 megawatts of power and millions of gallons of water annually, disproportionately sited near communities with limited political capacity to negotiate mitigation.</p><p>Rural communities face a compounding disadvantage — simultaneously experiencing higher rates of automation-driven job loss in agriculture and manufacturing, while being largely excluded from AI-driven job creation concentrated in metros. Brookings Metro research documents that the top 20 AI job markets account for over 60% of new AI-related employment, and none are rural. Civic capacity to engage meaningfully with AI infrastructure decisions remains critically underdeveloped: most local governments lack dedicated technical staff, and community benefit agreement frameworks for data centers are only beginning to develop — AI Now's 2026 North Star Policy Toolkit provides model state and local legislation for environmental impact disclosure requirements and benefit agreements, directly addressing this gap. AI also harms community economic conditions through algorithmic pricing: RealPage's rent-setting software coordinated prices across competing landlords until a 2025 DOJ antitrust settlement, establishing that algorithmic pricing among competitors is actionable under existing law.</p>",
+    synthesis: "<p>AI infrastructure is concentrating in a handful of regions — Pennsylvania, Texas, Virginia, and Ohio lead current data center expansion — driven by land costs, energy access, and state tax incentives. Community input is routinely bypassed: at least 14 states have passed preemption laws that strip municipal authority over data center siting and permitting. Environmental impacts are significant and unevenly distributed, with large data centers consuming 20–50 megawatts of power and millions of gallons of water annually, disproportionately sited near communities with limited political capacity to negotiate mitigation. In the EU, Corporate Europe Observatory's 2026 investigation documents how Big Tech lobbying shaped AI Act governance in ways that protect corporate infrastructure interests over community accountability — a pattern with direct implications for how data center decisions are contested globally.</p><p>Rural communities face a compounding disadvantage — simultaneously experiencing higher rates of automation-driven job loss in agriculture and manufacturing, while being largely excluded from AI-driven job creation concentrated in metros. Brookings Metro research documents that the top 20 AI job markets account for over 60% of new AI-related employment, and none are rural. Civic capacity to engage meaningfully with AI infrastructure decisions remains critically underdeveloped: most local governments lack dedicated technical staff, and community benefit agreement frameworks for data centers are only beginning to develop — AI Now's 2026 North Star Policy Toolkit provides model state and local legislation for environmental impact disclosure requirements and benefit agreements, directly addressing this gap. AI also harms community economic conditions through algorithmic pricing: RealPage's rent-setting software coordinated prices across competing landlords until a 2025 DOJ antitrust settlement, establishing that algorithmic pricing among competitors is actionable under existing law.</p><p>A third dimension of community-level AI harm is the residential technology infrastructure governing housing access. TechEquity Collaborative's year-one summary of residential PropTech documents how investor-backed technology is restructuring housing markets: rent-setting algorithms, AI-powered tenant screening, and digital-first leasing platforms are layering automated barriers on top of already-strained housing supply. Leiwant's analysis documents how algorithmic screening systems translate criminal and eviction records into disqualifying scores, creating near-permanent barriers to housing access for communities of color overrepresented in those records due to structural inequities in policing and court systems. Eisenberg and Brantley extend the picture: even when tenants are not ultimately evicted, the court filing record persists in commercial databases and is transmitted to tenant screening systems — producing collateral consequences that compound housing instability for years after the original proceeding. The cumulative effect is a housing access infrastructure that automates exclusion at scale: each individual decision appears facially neutral while the aggregate outcome is deeply racially skewed and nearly impossible to contest without legal representation.</p>",
     gaps: ["Environmental justice impacts of data center energy and water use", "Municipal governance capacity — most local governments lack AI technical staff", "Rural economic transition data: what happens after a major employer automates"],
     implication: "<p>Institutions should orient toward two intersecting gaps: communities absorbing AI infrastructure without adequate civic representation or benefit-sharing, and communities experiencing industry displacement without access to AI-driven economic growth. These are not the same communities, and the strategies differ materially. For infrastructure-hosting communities, the most productive interventions are civic capacity-building and community benefit agreement frameworks established before projects are approved — not retrospective mitigation after ground is broken.</p><p>For economically displaced rural communities, the gap is structural: AI job creation is not coming to them, and workforce retraining without accompanying economic development investment produces skilled workers who leave. Institutions should be cautious about conflating these two groups in program design, and equally cautious about treating data center proximity as economic development. The fiscal benefits are real but often narrowly distributed; the community costs are diffuse and frequently uncompensated.</p>",
     risk: {
@@ -959,7 +959,7 @@ const THEMES = [
       color: "#D4952A",
       summary: "<p>Communities absorbing AI infrastructure are doing so without meaningful representation or benefit-sharing frameworks. Environmental and civic costs are real and growing, while economic benefits concentrate in distant metros. The window to establish protective frameworks is narrowing as deployment accelerates and state preemption laws expand the range of decisions communities cannot meaningfully contest.</p><p>For rural communities facing automation-driven displacement, the risk is structural exclusion from the economic upside of AI. Without deliberate intervention, geographic inequality in AI's benefits will compound existing regional economic divergence — producing communities that bear the costs of AI infrastructure while remaining outside the labor markets where AI-driven job creation is occurring.</p>"
     },
-    papers: [23, 24, 27, 48, 65],
+    papers: [23, 24, 27, 48, 65, 116, 118, 119],
   },
   {
     id: "reskilling",
@@ -1078,6 +1078,20 @@ const INST_META = {
   "BCG Henderson Institute":                      { url: "https://bcg.com/beyond-consulting/bcg-henderson-institute",     type: "Consulting research",       note: "Industry-funded, management consulting"                   },
   // ── Academic Publishing ───────────────────────────────────────
   "Polity":                                       { url: "https://politybooks.com",                                        type: "Academic publisher",        note: "Nonpartisan"                                              },
+  // ── Legal Scholarship ────────────────────────────────────────
+  "Boston University Law Review":                 { url: "https://www.bu.edu/bulawreview/",                                type: "Academic journal",          note: "Peer-reviewed, nonpartisan"                               },
+  "Georgetown Law Technology Review":             { url: "https://georgetownlawtechreview.org",                            type: "Academic journal",          note: "Peer-reviewed, technology law focus"                      },
+  "California Law Review":                        { url: "https://www.californialawreview.org",                            type: "Academic journal",          note: "Peer-reviewed, nonpartisan"                               },
+  "Georgetown Journal on Poverty Law & Policy":   { url: "https://www.law.georgetown.edu/poverty-journal/",                type: "Academic journal",          note: "Peer-reviewed, poverty and equity focus"                  },
+  "University of Michigan Poverty Solutions":     { url: "https://poverty.umich.edu",                                      type: "University research",       note: "Academic, nonpartisan, poverty and housing focus"         },
+  // ── Civil Rights ─────────────────────────────────────────────
+  "The Leadership Conference on Civil and Human Rights": { url: "https://civilrights.org",                                 type: "Civil rights advocacy",     note: "Progressive, broad civil rights coalition"                },
+  "TechEquity Collaborative":                     { url: "https://techequity.us",                                          type: "Civil society research",    note: "Progressive, tech and economic justice focus"             },
+  // ── International Policy ──────────────────────────────────────
+  "German Marshall Fund of the United States":    { url: "https://www.gmfus.org",                                          type: "Think tank",                note: "Transatlantic policy focus, nonpartisan"                  },
+  "Corporate Europe Observatory":                 { url: "https://corporateeurope.org",                                    type: "Investigative research",    note: "Corporate lobbying watchdog, progressive"                 },
+  // ── Federal Agencies (housing) ───────────────────────────────
+  "U.S. Department of Housing and Urban Development": { url: "https://www.hud.gov",                                        type: "Federal agency",            note: "Federal housing policy and enforcement"                   },
 };
 const INST_URLS = Object.fromEntries(Object.entries(INST_META).map(([k,v]) => [k, v.url]));
 
@@ -1102,31 +1116,38 @@ const PRIORITY_SOURCE_GROUPS = {
     "Data & Society", "Data and Society Research Institute",
     "Georgetown CSET", "Georgetown Law Center on Privacy & Technology", "Upturn",
   ],
+  "Labor & Workers' Rights": [
+    "AFL-CIO", "Writers Guild of America", "National Employment Law Project",
+  ],
+  "Investigative Journalism": [
+    "ProPublica", "TIME", "Corporate Europe Observatory",
+  ],
+  "Industry Research": [
+    "McKinsey Global Institute", "Goldman Sachs Global Investment Research", "BCG Henderson Institute",
+  ],
+  "Legal Scholarship": [
+    "Boston University Law Review", "Georgetown Law Technology Review",
+    "California Law Review", "Georgetown Journal on Poverty Law & Policy",
+    "University of Michigan Poverty Solutions",
+  ],
+  "Federal Agencies": [
+    "U.S. Equal Employment Opportunity Commission", "U.S. Senate Permanent Subcommittee on Investigations",
+    "U.S. Department of Housing and Urban Development",
+  ],
+  "Civil Rights & Equity": [
+    "National Consumer Law Center", "National Fair Housing Alliance", "American Psychological Association",
+    "Electronic Frontier Foundation", "The Leadership Conference on Civil and Human Rights",
+    "TechEquity Collaborative",
+  ],
   "Policy & Think Tanks": [
     "Economic Policy Institute", "Center for American Progress",
     "Open Markets Institute", "Open Markets Institute & Mozilla", "Open Markets Institute & Mission:data Coalition",
     "American Economic Liberties Project",
     "International Labour Organization", "OECD Competition Committee", "World Economic Forum",
-    "European Parliament Research Service",
+    "European Parliament Research Service", "German Marshall Fund of the United States",
     "Tony Blair Institute for Global Change", "Centre for Future Generations",
     "Digitalist Papers", "The Bully Pulpit", "Tech Policy Press",
     "Resources for the Future / Lincoln Institute", "U.S. National Science Foundation",
-  ],
-  "Federal Agencies": [
-    "U.S. Equal Employment Opportunity Commission", "U.S. Senate Permanent Subcommittee on Investigations",
-  ],
-  "Labor & Workers' Rights": [
-    "AFL-CIO", "Writers Guild of America", "National Employment Law Project",
-  ],
-  "Civil Rights & Equity": [
-    "National Consumer Law Center", "National Fair Housing Alliance", "American Psychological Association",
-    "Electronic Frontier Foundation",
-  ],
-  "Investigative Journalism": [
-    "ProPublica", "TIME",
-  ],
-  "Industry Research": [
-    "McKinsey Global Institute", "Goldman Sachs Global Investment Research", "BCG Henderson Institute",
   ],
 };
 
@@ -2520,6 +2541,162 @@ const RESEARCH_DATA = [
       "Algorithmic management follows consistent patterns across all four countries regardless of regulatory context: streamlined workflows for employers, intensified monitoring, reduced worker autonomy, and greater exposure to algorithmic evaluation workers cannot contest.",
       "Job quality deterioration is a consistent finding across developed and developing economies alike — manifesting in increased performance pressure, reduced discretion over work pace and methods, and algorithmic accountability with no recourse mechanism.",
       "The cross-regional evidence challenges the assumption that strong labor law in advanced economies protects workers from algorithmic management harms: documented negative effects appear in France and Italy despite robust labor regulation frameworks."
+    ]
+  },
+  {
+    id: 113, date: "2026-03-30",
+    title: "Beyond 'US Innovates, Europe Regulates': Lessons and Recommendations from a Transatlantic AI Exchange",
+    source: "Julia Tréhu, Adrienne Goldstein — German Marshall Fund of the United States",
+    sourceUrl: "https://www.gmfus.org/news/beyond-us-innovates-europe-regulates",
+    category: "policy", geography: "intl",
+    keyFinding: "Despite diverging transatlantic AI governance approaches, shared concerns around children's safety and unacceptable AI uses offer concrete grounds for US-EU cooperation that transcends the reductive 'US innovates, Europe regulates' framing.",
+    takeaways: [
+      "Children's safety and 'AI redlines' — unacceptable uses such as social scoring — are the clearest convergence points for US-EU cooperation, suggesting a targeted bilateral dialogue would yield more than broad harmonization efforts.",
+      "Structural barriers to AI competitiveness span the entire value chain — financing, energy costs, talent retention, compute access — and extend well beyond regulatory frameworks, requiring industrial policy and procurement strategies alongside governance reform.",
+      "Legislatures lack institutional capacity to address AI's cross-sectoral impacts, requiring dedicated technical civil service, rotating academic and industry experts, and sustained peer education across policy domains."
+    ]
+  },
+  {
+    id: 114, date: "2026-04-15",
+    title: "Copy, Paste, Govern: Microsoft Ghostwrote EU Policy That Keeps Data Centres' Energy Use Secret",
+    source: "Corporate Europe Observatory and AlgorithmWatch",
+    sourceUrl: "https://corporateeurope.org/en/2026/04/copy-paste-govern",
+    category: "corporate", geography: "eu",
+    keyFinding: "Microsoft's lobbying language was directly incorporated into EU regulatory text, classifying nearly all data centre energy and water consumption data as confidential trade secrets and contradicting the Energy Efficiency Directive's original transparency mandate.",
+    takeaways: [
+      "The EU Commission 'essentially plagiarised' Microsoft and DigitalEurope amendments into a Delegated Act, establishing a documented precedent of Big Tech lobby text being incorporated verbatim into binding regulatory instruments.",
+      "The resulting rules classify individual data centre energy and water use as proprietary trade secrets, making it structurally impossible for regulators, journalists, or the public to hold facilities accountable for their environmental footprint.",
+      "Data centre expansion faces $156 billion in blocked or stalled projects in the US alone during 2025, making opacity in EU energy disclosure rules particularly valuable for corporations seeking to limit accountability as resistance grows globally."
+    ]
+  },
+  {
+    id: 115, date: "2025-05-29",
+    title: "The Innovation Framework: A Civil Rights Approach to AI",
+    source: "The Leadership Conference on Civil and Human Rights",
+    sourceUrl: "https://civilrights.org/wp-content/uploads/2025/05/The-Innovation-Framework.pdf",
+    category: "policy", geography: "us",
+    keyFinding: "A structured framework of four foundational values and ten lifecycle pillars provides AI developers and deployers with actionable civil rights standards to ensure fair, trustworthy, and safe AI systems — with particular attention to communities historically pushed to the margins.",
+    takeaways: [
+      "The framework's dual structure separates long-term strategic values from operational lifecycle pillars aligned to the AI development and deployment pipeline, enabling implementation at both governance and product levels.",
+      "Developed with input from industry developers and deployers alongside civil society and academic experts, the framework is positioned as a proactive standard rather than a reactive compliance checklist.",
+      "The framework explicitly requires developers to assess how AI systems will impact marginalized communities throughout development — not as a post-launch audit, but as an embedded design requirement."
+    ]
+  },
+  {
+    id: 116, date: "2023-04-25",
+    title: "The Promises and Perils of Residential Proptech: Year 1 Summary Report",
+    source: "TechEquity Collaborative",
+    sourceUrl: "https://techequity.us/wp-content/uploads/2023/04/TBHI-Y1-Research-Summary-Report.pdf",
+    category: "community", geography: "us",
+    keyFinding: "Venture-backed property technology companies' growth-at-all-costs model is accelerating racial and economic inequality in housing through opaque screening algorithms, corporate consolidation of the rental market, and predatory alternative homeownership products.",
+    takeaways: [
+      "Tenant screening algorithms are 'opaque, predictive, and frequently based on inaccurate data,' creating hidden barriers to rental housing that applicants cannot contest or understand.",
+      "Digital tools enable institutional investors to amass and manage massive single-family home portfolios, prioritizing investor returns over tenant welfare and long-term housing affordability.",
+      "Alternative homeownership paths marketed through PropTech — including rent-to-own and land contracts — echo discriminatory and predatory practices of the past, perpetuating historical inequities through modern technological infrastructure."
+    ]
+  },
+  {
+    id: 117, date: "2023-04-01",
+    title: "The Scarlet Letter 'E': How Tenancy Screening Policies Exacerbate Housing Inequity for Evicted Black Women",
+    source: "Yvette N.A. Pappoe — Boston University Law Review",
+    sourceUrl: "https://www.bu.edu/bulawreview/files/2023/04/PAPPOE.pdf",
+    category: "equity", geography: "us",
+    keyFinding: "Blanket tenant screening policies that disqualify applicants based on eviction records disparately impact Black women in violation of the Fair Housing Act, requiring both landlords and screening companies to be held liable under disparate impact doctrine.",
+    takeaways: [
+      "Eviction filings create a permanent 'Scarlet Letter E' that follows tenants indefinitely through screening systems, foreclosing future housing access regardless of subsequent financial recovery or case outcomes.",
+      "Black women face compounded disadvantage: eviction records reflect gendered economic precarity while screening criteria encode racial disparities from the criminal justice system and credit markets.",
+      "The paper proposes an interpretive framework extending Fair Housing Act liability to tenant screening companies as well as landlords — closing a structural accountability gap where third-party vendors escape direct legal exposure for discriminatory outputs."
+    ]
+  },
+  {
+    id: 118, date: "2022-02-01",
+    title: "Locked Out: How Algorithmic Tenant Screening Exacerbates the Eviction Crisis in the United States",
+    source: "Matthew Harold Leiwant — Georgetown Law Technology Review",
+    sourceUrl: "https://georgetownlawtechreview.org/wp-content/uploads/2022/02/Leiwant_Locked-Out_Formatted.pdf",
+    category: "community", geography: "us",
+    keyFinding: "Algorithmic tenant screening systems compound housing instability by treating pandemic-era eviction filings as permanent disqualifying marks, locking financially recovered renters out of the housing market through automated discrimination.",
+    takeaways: [
+      "Over nine million American households faced rent delinquency during the pandemic, producing a wave of eviction filings that now function as permanent housing barriers regardless of whether tenants won their cases.",
+      "Eviction court records are scraped by screening companies as soon as they are filed — before any adjudication — meaning even dismissed cases generate lasting housing disqualifications.",
+      "Record-sealing legislation targeting pandemic-era filings is the most direct policy remedy, but most states lack provisions to seal records at the point of filing, where screening company data collection occurs."
+    ]
+  },
+  {
+    id: 119, date: "2024-07-16",
+    title: "Record Costs: Collateral Consequences of Eviction Court Filings in Pennsylvania",
+    source: "Alexa Eisenberg, Kate Brantley — University of Michigan Poverty Solutions",
+    sourceUrl: "https://c9737800-326f-4c8f-9fd8-3f266717d0f2.filesusr.com/ugd/9d463d_6517025d2feb407f86473c5006da1484.pdf",
+    category: "community", geography: "us",
+    keyFinding: "Even tenants who win their eviction cases face severe, lasting consequences — 80% report restricted future housing access, and screening companies' real-time scraping of public court records means even dismissed filings follow renters indefinitely.",
+    takeaways: [
+      "Eight in ten participants reported their eviction filing limited future housing options; over half were explicitly denied by a prospective landlord because of their filing, even when the case was dismissed or won.",
+      "Unsuccessful rental applications generated hundreds to thousands of dollars in excess costs per tenant — application fees, moving expenses, and emergency housing — compounding the economic harm of the original housing crisis.",
+      "Record-sealing at the point of filing — not just after case resolution — is the only effective remedy, as screening companies scrape public court records before adjudication, making post-judgment sealing insufficient."
+    ]
+  },
+  {
+    id: 120, date: "2025-07-12",
+    title: "The Discriminatory Impacts of AI-Powered Tenant Screening Programs",
+    source: "Lauren Karpinski — Georgetown Journal on Poverty Law & Policy",
+    sourceUrl: "https://www.law.georgetown.edu/poverty-journal/blog/the-discriminatory-impacts-of-ai-powered-tenant-screening-programs/",
+    category: "equity", geography: "us",
+    keyFinding: "AI-powered tenant screening perpetuates housing discrimination through data quality failures, structurally biased criteria, and landlord over-reliance on algorithmic scores — a triple accountability gap with no current regulatory remedy.",
+    takeaways: [
+      "Screening databases contain unsubstantiated information including false matches and outdated records that applicants cannot dispute or correct before denial — algorithmic speed forecloses the informal contestation that human decision-making occasionally allowed.",
+      "Criminal record and credit score criteria are structurally skewed: arrest data reflects racial policing disparities, while credit scores encode historical economic discrimination rather than actual rental risk.",
+      "Landlord over-reliance on screening scores — treating algorithmic outputs as authoritative rather than as one input — removes discretion from decision-making and can unconsciously shape future judgment even after discontinuing a particular system."
+    ]
+  },
+  {
+    id: 121, date: "2023-10-01",
+    title: "A Home for Digital Equity: Algorithmic Redlining and Property Technology",
+    source: "Nadiyah J. Humber — California Law Review",
+    sourceUrl: "https://www.californialawreview.org/print/a-home-for-digital-equity",
+    category: "equity", geography: "us",
+    keyFinding: "Automated tenant screening tools perpetuate racial discrimination by inheriting bias from historical data, and the Fair Housing Act's underutilized segregative effect doctrine offers stronger legal remedies than disparate impact claims for challenging algorithmic housing discrimination.",
+    takeaways: [
+      "Tenant screening algorithms inherit discrimination from their training data — eviction records, credit histories, and criminal databases — which disproportionately reflect decades of racialized housing exclusion and structural inequality.",
+      "Segregative effect theory provides stronger litigation advantages than disparate impact: it applies to individual decisions rather than requiring statistical proof across policies, requires narrower geographic statistics, and has greater appellate track record in housing discrimination cases.",
+      "Algorithmic neutrality creates a dangerous accountability gap: landlords attribute denials to technology rather than human choice, eliminating appeal processes and denying tenants recourse despite demonstrably disparate outcomes."
+    ]
+  },
+  {
+    id: 122, date: "2022-06-10",
+    title: "HUD Guidance: Criminal Background Screenings May Violate the Fair Housing Act",
+    source: "U.S. Department of Housing and Urban Development",
+    sourceUrl: "https://nlihc.org/resource/hud-memo-criminal-background-screenings-may-violate-fair-housing-act",
+    category: "policy", geography: "us",
+    keyFinding: "Blanket bans and overly broad criminal history screening policies risk violating the Fair Housing Act through discriminatory effects on Black and Latino individuals, requiring landlords to individualize screening by weighing the nature, severity, and recency of each offense.",
+    takeaways: [
+      "HUD outlined three Fair Housing Act violation pathways for criminal screening: discriminatory intent, discriminatory effects on protected classes, and failure to accommodate persons with disabilities — giving tenants multiple legal avenues to challenge categorical exclusions.",
+      "Written individualized screening policies that assess each applicant's specific history are both the legally required and practically superior alternative to blanket conviction bans, which courts have increasingly found to constitute disparate impact discrimination.",
+      "Because criminal justice system involvement disproportionately affects Black and Latino individuals due to documented enforcement disparities, blanket criminal history bans function as a proxy for race discrimination — regardless of facially neutral intent."
+    ]
+  },
+  {
+    id: 123, date: "2024-09-13",
+    title: "The Legal Doctrine That Will Be Key to Preventing AI Discrimination",
+    source: "Chiraag Bains — Brookings Institution",
+    sourceUrl: "https://www.brookings.edu/articles/the-legal-doctrine-that-will-be-key-to-preventing-ai-discrimination/",
+    category: "policy", geography: "us",
+    keyFinding: "Congress should establish comprehensive disparate impact liability for AI systems because current legal protections are fragmented and inadequate — algorithmic discrimination operates without human intent, making outcome-based legal standards the only viable enforcement mechanism.",
+    takeaways: [
+      "Because algorithms lack human intent, proving discrimination requires examining outcomes rather than motivations — disparate impact doctrine is uniquely suited to AI accountability in ways that disparate treatment theory structurally cannot be.",
+      "Documented AI discrimination is widespread: Amazon's resume screening filtered out women, and facial recognition tools fail on darker-skinned faces at rates 10–100 times higher than for white faces — neither failure involved explicit discriminatory intent.",
+      "Existing disparate impact protections are fragmented across multiple federal statutes with inconsistent coverage, and courts have progressively narrowed them; unified AI-specific legislation with private rights of action is the necessary structural fix."
+    ]
+  },
+  {
+    id: 124, date: "2026-01-22",
+    title: "When Machines Discriminate: The Critical Role of Disparate Impact in AI Accountability",
+    source: "The Leadership Conference on Civil and Human Rights",
+    sourceUrl: "https://civilrights.org/wp-content/uploads/2026/01/SNAPSHOT-When-Machines-Discriminate_The-Critical-Role-of-Disparate-Impact-in-AI-Accountability.pdf",
+    category: "policy", geography: "us",
+    keyFinding: "Disparate impact doctrine is the essential legal tool for addressing AI-driven discrimination because algorithmic systems produce discriminatory outcomes without discriminatory intent — weakening this doctrine would eliminate the primary accountability mechanism for automated decision-making across housing, credit, employment, and healthcare.",
+    takeaways: [
+      "Disparate impact doctrine surfaces and addresses sources of bias that disparate treatment doctrine cannot reach, because AI discrimination operates through statistical patterns rather than conscious choices — intent-based standards are structurally inadequate for algorithmic accountability.",
+      "Efforts to roll back disparate impact protections — through executive action, judicial narrowing, or preemption legislation — would functionally immunize AI systems from civil rights enforcement across every domain where they are deployed.",
+      "A unified federal AI-specific disparate impact framework with private rights of action would close the fragmentation gap left by sector-by-sector antidiscrimination statutes and provide consistent accountability regardless of deployment context."
     ]
   }
 ];
