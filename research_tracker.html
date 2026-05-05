@@ -1092,6 +1092,15 @@ const INST_META = {
   "Corporate Europe Observatory":                 { url: "https://corporateeurope.org",                                    type: "Investigative research",    note: "Corporate lobbying watchdog, progressive"                 },
   // ── Federal Agencies (housing) ───────────────────────────────
   "U.S. Department of Housing and Urban Development": { url: "https://www.hud.gov",                                        type: "Federal agency",            note: "Federal housing policy and enforcement"                   },
+  // ── AI Fairness & Technology Research ────────────────────────
+  "MIT Media Lab":                                    { url: "https://www.media.mit.edu",                                   type: "University research",       note: "Academic, MIT, AI and technology focus"                   },
+  "Vector Institute":                                 { url: "https://vectorinstitute.ai",                                  type: "Research institute",        note: "Nonprofit, AI research, Canadian"                         },
+  // ── Criminal Justice & Civil Liberties ───────────────────────
+  "Innocence Project":                                { url: "https://innocenceproject.org",                                type: "Civil rights advocacy",     note: "Criminal justice reform, wrongful conviction focus"       },
+  // ── Technology Accountability Journalism ─────────────────────
+  "The Markup":                                       { url: "https://themarkup.org",                                       type: "Investigative journalism",  note: "Independent nonprofit, technology accountability focus"   },
+  // ── Federal Standards & Evaluation ───────────────────────────
+  "National Institute of Standards and Technology":   { url: "https://www.nist.gov",                                        type: "Federal agency",            note: "Government, standards and technology evaluation"          },
 };
 const INST_URLS = Object.fromEntries(Object.entries(INST_META).map(([k,v]) => [k, v.url]));
 
@@ -1106,7 +1115,7 @@ const PRIORITY_SOURCE_GROUPS = {
   ],
   "Academic & Economic Research": [
     "Stanford HAI", "NBER", "NBER Working Paper",
-    "MIT Work of the Future Task Force", "MIT Work of the Future",
+    "MIT Work of the Future Task Force", "MIT Work of the Future", "MIT Media Lab",
     "Brookings Institution", "Brookings Metro", "Opportunity@Work & Brookings Metro",
     "Cornell ILR School", "New England Journal of Medicine", "Council on Foreign Relations",
     "Science", "NYU Law Review", "Philosophy & Technology", "ACM FAccT", "arXiv",
@@ -1115,12 +1124,13 @@ const PRIORITY_SOURCE_GROUPS = {
     "AI Now Institute", "AI Now Institute et al.", "AI Now Institute, Aapti Institute, The Maybe",
     "Data & Society", "Data and Society Research Institute",
     "Georgetown CSET", "Georgetown Law Center on Privacy & Technology", "Upturn",
+    "Vector Institute",
   ],
   "Labor & Workers' Rights": [
     "AFL-CIO", "Writers Guild of America", "National Employment Law Project",
   ],
   "Investigative Journalism": [
-    "ProPublica", "TIME", "Corporate Europe Observatory",
+    "ProPublica", "TIME", "Corporate Europe Observatory", "The Markup",
   ],
   "Industry Research": [
     "McKinsey Global Institute", "Goldman Sachs Global Investment Research", "BCG Henderson Institute",
@@ -1133,11 +1143,12 @@ const PRIORITY_SOURCE_GROUPS = {
   "Federal Agencies": [
     "U.S. Equal Employment Opportunity Commission", "U.S. Senate Permanent Subcommittee on Investigations",
     "U.S. Department of Housing and Urban Development",
+    "National Institute of Standards and Technology",
   ],
   "Civil Rights & Equity": [
     "National Consumer Law Center", "National Fair Housing Alliance", "American Psychological Association",
     "Electronic Frontier Foundation", "The Leadership Conference on Civil and Human Rights",
-    "TechEquity Collaborative",
+    "TechEquity Collaborative", "Innocence Project",
   ],
   "Policy & Think Tanks": [
     "Economic Policy Institute", "Center for American Progress",
@@ -2697,6 +2708,149 @@ const RESEARCH_DATA = [
       "Disparate impact doctrine surfaces and addresses sources of bias that disparate treatment doctrine cannot reach, because AI discrimination operates through statistical patterns rather than conscious choices — intent-based standards are structurally inadequate for algorithmic accountability.",
       "Efforts to roll back disparate impact protections — through executive action, judicial narrowing, or preemption legislation — would functionally immunize AI systems from civil rights enforcement across every domain where they are deployed.",
       "A unified federal AI-specific disparate impact framework with private rights of action would close the fragmentation gap left by sector-by-sector antidiscrimination statutes and provide consistent accountability regardless of deployment context."
+    ]
+  },
+  {
+    id: 125, date: "2019-05-22",
+    title: "Algorithmic Bias Detection and Mitigation: Best Practices and Policies to Reduce Consumer Harms",
+    source: "Turner Lee, Resnick & Barton — Brookings Institution",
+    sourceUrl: "https://www.brookings.edu/articles/algorithmic-bias-detection-and-mitigation-best-practices-and-policies-to-reduce-consumer-harms/",
+    category: "policy", geography: "us",
+    keyFinding: "Algorithms governing critical decisions in hiring, lending, and criminal justice can replicate and amplify historical human biases affecting protected groups. The authors propose bias impact statements, diverse design teams, regular audits, and regulatory sandboxes as self-regulatory practices, alongside policy recommendations to update federal nondiscrimination law to explicitly cover algorithmic decision-making.",
+    takeaways: [
+      "Self-regulatory best practices — bias impact statements, diverse teams, algorithmic audits — are necessary but insufficient without legal requirements that create enforceable accountability for algorithmic discrimination.",
+      "Existing nondiscrimination law was not designed for algorithmic decision-making; explicitly extending Title VII, ECOA, and Fair Housing Act coverage to automated systems is the most direct path to closing the accountability gap.",
+      "Regulatory sandboxes and improved algorithmic literacy across federal agencies are enabling conditions for effective oversight — but are currently absent from most enforcement frameworks."
+    ]
+  },
+  {
+    id: 126, date: "2018-02-23",
+    title: "Gender Shades: Intersectional Accuracy Disparities in Commercial Gender Classification",
+    source: "Buolamwini & Gebru — MIT Media Lab",
+    sourceUrl: "https://proceedings.mlr.press/v81/buolamwini18a.html",
+    category: "equity", geography: "intl",
+    keyFinding: "Commercial gender classification systems exhibited error rates up to 34.7% for darker-skinned women compared to 0.8% for lighter-skinned men — a 43x disparity. Benchmark datasets used to train and evaluate these systems were 79–86% lighter-skinned subjects, and accuracy gaps closed substantially when balanced datasets were used.",
+    takeaways: [
+      "Facial analysis accuracy gaps are not technical limitations — they are the direct result of unrepresentative training data. Systems perform worst for the demographic groups they are most likely to be deployed against.",
+      "Intersectional testing is essential: auditing by gender or race alone masks the compounded disadvantage faced by darker-skinned women, who were the most misclassified group across all commercial systems tested.",
+      "The Gender Shades methodology established intersectional demographic parity testing as the standard for AI bias audits — yet most commercial systems still lack independent demographic accuracy testing before deployment."
+    ]
+  },
+  {
+    id: 127, date: "2019-12-01",
+    title: "Face Recognition Vendor Test (FRVT) Part 3: Demographic Effects",
+    source: "Grother, Ngan & Hanaoka — National Institute of Standards and Technology",
+    sourceUrl: "https://www.nist.gov/publications/face-recognition-vendor-test-part-3-demographic-effects",
+    category: "criminal-justice", geography: "us",
+    keyFinding: "False positive rate disparities — the error type that produces misidentification — are widespread across 189 facial recognition algorithms tested on 18.27 million images from U.S. government applications. Error rates are highest for Black women, Native American women, and East Asian individuals; disparities greatly exceed false negative differentials and persist even in high-quality images.",
+    takeaways: [
+      "False positive disparities in facial recognition are not outlier failures — they are a systemic feature confirmed across virtually all commercially deployed algorithms in government testing, including systems currently in use by law enforcement.",
+      "The populations most subject to law enforcement contact face the highest misidentification rates: Black women and Native American women had the highest false positive rates across most tested algorithms.",
+      "NIST testing established the empirical foundation for legislative action: the disparities are not hypothetical and cannot be attributed to image quality — they occur even under controlled, high-quality conditions across nearly all vendors."
+    ]
+  },
+  {
+    id: 128, date: "2024-02-14",
+    title: "Artificial Intelligence Is Putting Innocent People at Risk of Being Incarcerated",
+    source: "Sanford — Innocence Project",
+    sourceUrl: "https://innocenceproject.org/news/artificial-intelligence-is-putting-innocent-people-at-risk-of-being-incarcerated/",
+    category: "criminal-justice", geography: "us",
+    keyFinding: "At least seven individuals have been wrongfully arrested based on facial recognition misidentification; six of the seven are Black. Facial recognition technology is now being introduced as direct evidence of guilt at trial — not just as an investigative lead — despite documented racial accuracy gaps and the absence of regulatory oversight.",
+    takeaways: [
+      "Facial recognition has moved from investigative tool to courtroom evidence without standards that reflect its documented racial accuracy disparities, mirroring the historical pattern of flawed forensic science being admitted at trial before its limitations were acknowledged.",
+      "Six of seven documented wrongful facial recognition arrests involved Black individuals — consistent with NIST findings that Black women face the highest false positive rates among commercially deployed systems.",
+      "The absence of mandatory pre-deployment accuracy audits by demographic subgroup means the evidence standard for facial recognition at trial exceeds the evidence standard for its development and validation."
+    ]
+  },
+  {
+    id: 129, date: "2021-08-25",
+    title: "The Secret Bias Hidden in Mortgage-Approval Algorithms",
+    source: "Martinez & Kirchner — The Markup",
+    sourceUrl: "https://themarkup.org/denied/2021/08/25/the-secret-bias-hidden-in-mortgage-approval-algorithms",
+    category: "equity", geography: "us",
+    keyFinding: "Holding 17 financial factors constant, mortgage lenders were 40% more likely to deny Latino applicants, 50% more likely to deny Asian and Pacific Islander applicants, 70% more likely to deny Native American applicants, and 80% more likely to deny Black applicants compared to similarly qualified white applicants. High-earning Black applicants with lower debt-to-income ratios were denied more often than white applicants with more debt.",
+    takeaways: [
+      "Algorithmic mortgage underwriting does not discriminate by intent but does by effect — a finding that directly supports disparate impact claims under the Fair Housing Act and Equal Credit Opportunity Act without requiring proof of discriminatory purpose.",
+      "The 80% denial rate disparity for Black applicants persisted after controlling for income, debt, and other financial variables — demonstrating that the gap is produced by the algorithm's structure, not by applicant qualifications.",
+      "This investigation provided the quantitative foundation for advocacy requiring bias auditing of automated valuation models and algorithmic underwriting tools as a condition of Fair Housing Act compliance."
+    ]
+  },
+  {
+    id: 130, date: "2024-05-24",
+    title: "MBIAS: Mitigating Bias in Large Language Models While Retaining Context",
+    source: "Raza, Raval & Chatrath — Vector Institute",
+    sourceUrl: "https://arxiv.org/abs/2405.11290",
+    category: "equity", geography: "intl",
+    keyFinding: "Instruction fine-tuning Mistral-7B on curated paired datasets of biased and benign text reduces LLM bias and toxicity by more than 30% while preserving contextual accuracy. Demographic-specific testing showed reductions exceeding 90% across multiple groups in out-of-distribution scenarios.",
+    takeaways: [
+      "Technical bias mitigation is achievable without sacrificing model performance — but requires deliberate investment in curated training data and targeted fine-tuning, not post-hoc filtering or generic safety guardrails.",
+      "A 30%+ reduction in measured bias demonstrates that current commercial LLM deployments are not at a technical ceiling on bias mitigation — the remaining gap reflects a choice about where to invest development resources.",
+      "Out-of-distribution testing is essential for evaluating bias mitigation: models that appear debiased on standard benchmarks may still exhibit significant disparities when applied to novel demographic contexts."
+    ]
+  },
+  {
+    id: 131, date: "2022-01-27",
+    title: "Aligning Language Models to Follow Instructions",
+    source: "Ouyang et al. — OpenAI",
+    sourceUrl: "https://openai.com/index/instruction-following/",
+    category: "corporate", geography: "intl",
+    keyFinding: "Applying reinforcement learning from human feedback (RLHF) produces a 1.3B parameter InstructGPT model preferred over the 175B GPT-3 in 85% of comparisons despite having 100x fewer parameters. Outputs are more aligned with user intent, less likely to produce harmful content, and less prone to fabrication — establishing RLHF as the foundational alignment technique for all subsequent commercial AI systems.",
+    takeaways: [
+      "Scale alone does not produce aligned AI behavior — RLHF-based instruction-following is the architectural foundation that makes current AI assistants commercially viable and is now standard across frontier models including ChatGPT, Claude, and Gemini.",
+      "The same mechanism that makes AI assistants useful makes their behavior more legible and more trainable toward specific objectives — which has direct implications for how AI tools are shaped by the organizations that deploy and fine-tune them.",
+      "InstructGPT's demonstration that alignment and capability can be jointly optimized shifted AI development toward human-feedback-based training as a default — a transition with ongoing implications for how AI systems interpret and prioritize instructions from different sources."
+    ]
+  },
+  {
+    id: 132, date: "2024-03-01",
+    title: "Gender Bias in Large Language Models across Multiple Languages",
+    source: "Zhao, Ding, Jia, Wang & Qian — arXiv",
+    sourceUrl: "https://arxiv.org/abs/2403.00277",
+    category: "equity", geography: "intl",
+    keyFinding: "GPT series models exhibit significant gender biases across all languages tested, including non-English contexts substantially underrepresented in AI bias research. Bias manifests consistently across three measurement approaches: gendered word selection, pronoun attribution, and topic assignment in dialogue.",
+    takeaways: [
+      "LLM gender bias is not an English-language problem — it propagates across multilingual deployments, meaning institutions deploying AI tools in non-English-speaking contexts face the same structural bias risks documented in English-language research.",
+      "Bias audits conducted only on English outputs produce systematically incomplete assessments: organizations deploying AI internationally need language-specific evaluation to capture the actual risk profile.",
+      "The consistency of gender bias across three different measurement methods suggests the bias is embedded in the model's underlying representations, not a surface artifact of particular prompting approaches."
+    ]
+  },
+  {
+    id: 133, date: "2021-01-14",
+    title: "Persistent Anti-Muslim Bias in Large Language Models",
+    source: "Abid, Farooqi & Zou — arXiv",
+    sourceUrl: "https://arxiv.org/abs/2101.05783",
+    category: "equity", geography: "intl",
+    keyFinding: "GPT-3 associates 'Muslim' with 'terrorist' in 23% of completions — substantially higher than for any other religious group. Positive prompt engineering reduces violent completions from 66% to 20%, but anti-Muslim stereotyping persists across all evaluation conditions and cannot be reliably eliminated through prompt modification alone.",
+    takeaways: [
+      "Religious bias in large language models is persistent and directional — not random noise. GPT-3's documented anti-Muslim stereotyping is a measurable harm risk that prompt modifications cannot reliably prevent.",
+      "For institutions deploying AI tools in multicultural or community-facing contexts, this finding identifies a specific population at disproportionate risk from LLM-generated content — a risk that standard safety evaluations may not capture.",
+      "The persistence of anti-Muslim bias after positive prompt interventions demonstrates that bias mitigation requires architectural or training-data changes, not surface-level prompting strategies."
+    ]
+  },
+  {
+    id: 134, date: "2024-02-06",
+    title: "Measuring Implicit Bias in Explicitly Unbiased Large Language Models",
+    source: "Bai, Wang, Sucholutsky & Griffiths — arXiv",
+    sourceUrl: "https://arxiv.org/abs/2402.04105",
+    category: "equity", geography: "intl",
+    keyFinding: "Eight safety-aligned and commercially deployed language models exhibit pervasive stereotype biases across four demographic categories and 21 distinct stereotypes — biases not detected by standard bias benchmarks. Adapted psychological association testing and comparative decision-making methods reveal hidden prejudices that explicit evaluation frameworks systematically miss.",
+    takeaways: [
+      "Passing standard AI bias benchmarks does not mean a model is unbiased: aligned models harbor implicit stereotypes that emerge only under methods designed to detect them, making vendor bias certifications based on standard tests necessary but not sufficient.",
+      "The gap between explicit benchmark performance and implicit bias — documented across eight models including frontier commercial systems — means institutions relying solely on vendor safety documentation face an unquantified residual bias risk in deployed systems.",
+      "Psychological association methods adapted for LLM evaluation provide a more sensitive detection framework than existing AI bias benchmarks, suggesting the AI auditing field needs evaluation standards that go beyond current approaches."
+    ]
+  },
+  {
+    id: 135, date: "2024-02-21",
+    title: "What's in a Name? Auditing Large Language Models for Race and Gender Bias",
+    source: "Salinas, Haim & Nyarko — arXiv",
+    sourceUrl: "https://arxiv.org/abs/2402.14875",
+    category: "hiring", geography: "intl",
+    keyFinding: "GPT-4 and other major language models systematically provide less favorable advice when names commonly associated with racial minorities and women are used in prompts, across 42 different scenario types. Names associated with Black women receive the most unfavorable treatment. Numerical anchors in prompts can partially but not fully mitigate the disparity.",
+    takeaways: [
+      "Name-based racial and gender bias in LLMs has direct employment implications: AI tools used for resume screening, salary negotiation coaching, or career advice will produce systematically worse outcomes for people with minority-associated names regardless of identical underlying qualifications.",
+      "The consistency of bias across 42 different scenario types suggests that name-based demographic discrimination is a general feature of how these models weight cues, not a domain-specific artifact.",
+      "Partial mitigation through numerical anchors does not eliminate the disparity and may not be applicable in real-world contexts, meaning organizations deploying LLMs in evaluation or advisory roles face a bias risk that current prompt engineering cannot fully address."
     ]
   }
 ];
