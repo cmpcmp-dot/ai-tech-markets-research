@@ -115,7 +115,7 @@
   .site-header h1 {
     font-size: clamp(21px, 3vw, 33px); font-weight: 700; letter-spacing: -0.01em;
     margin-bottom: 8px; color: #F4F2E4;
-    font-family: 'Publico Banner', Georgia, serif;
+    font-family: 'Haas Grotesk', Georgia, serif;
   }
   .header-intro { font-size: 14px; color: rgba(244,242,228,0.75); max-width: 620px; line-height: 1.65; }
   .header-updated { font-size: 11px; color: rgba(244,242,228,0.5); margin-top: 6px; letter-spacing: 0.03em; font-family: 'Haas Grotesk', 'Helvetica Neue', Arial, sans-serif; }
@@ -357,7 +357,7 @@
   }
   .stat-bar .stat-value {
     font-size: 20px; font-weight: 700; color: var(--text); line-height: 1;
-    font-family: 'Publico Banner', Georgia, serif; letter-spacing: -0.02em;
+    font-family: 'Haas Grotesk', Georgia, serif; letter-spacing: -0.02em;
   }
   .stat-bar .stat-label {
     font-size: 10px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase;
@@ -457,7 +457,7 @@
   }
   .date-badge { font-size: 12px; color: var(--muted); margin-left: auto; white-space: nowrap; opacity: 0.85; }
 
-  .card-title { font-size: 16px; font-weight: 500; line-height: 1.35; margin-bottom: 6px; color: var(--text); text-decoration: none; display: block; font-family: 'Publico Banner', Georgia, serif; }
+  .card-title { font-size: 16px; font-weight: 800; line-height: 1.35; margin-bottom: 6px; color: var(--text); text-decoration: none; display: block; font-family: 'Haas Grotesk', Georgia, serif; }
   a.card-title:hover { text-decoration: underline; text-underline-offset: 3px; text-decoration-color: var(--card-accent, var(--muted)); }
   .card-finding { font-size: 13.5px; color: var(--muted); line-height: 1.6; margin-bottom: 11px; }
 
@@ -589,7 +589,7 @@
   .theme-question {
     font-size: 23px; font-weight: 500; line-height: 1.3; color: var(--text);
     margin-bottom: 8px; letter-spacing: -0.01em;
-    font-family: 'Publico Banner', Georgia, serif;
+    font-family: 'Haas Grotesk', Georgia, serif;
   }
   .theme-framing {
     font-size: 14px; line-height: 1.6; color: var(--muted);
@@ -917,7 +917,7 @@
     display: flex; align-items: center; justify-content: space-between;
     margin-bottom: 18px; flex-shrink: 0;
   }
-  .modal-title { font-size: 16px; font-weight: 500; font-family: 'Publico Banner', Georgia, serif; }
+  .modal-title { font-size: 16px; font-weight: 800; font-family: 'Haas Grotesk', Georgia, serif; }
   .modal-subtitle { font-size: 12px; color: var(--muted); margin-top: 2px; }
   .modal-close {
     background: none; border: none; cursor: pointer;
@@ -963,7 +963,7 @@
   .pol-modal {
     background: var(--surface); border: 1px solid var(--border);
     border-radius: 14px; padding: 0;
-    max-width: 580px; width: calc(100% - 40px);
+    max-width: 760px; width: calc(100% - 40px);
     max-height: 85vh; display: flex; flex-direction: column;
     box-shadow: 0 8px 40px rgba(44,50,84,0.2);
     overflow: hidden;
@@ -975,8 +975,8 @@
     border-bottom: 1px solid var(--border);
   }
   .pol-modal-title {
-    font-size: 16px; font-weight: 600; color: var(--text); line-height: 1.35;
-    font-family: 'Publico Banner', Georgia, serif; flex: 1; margin-right: 12px;
+    font-size: 16px; font-weight: 800; color: var(--text); line-height: 1.35;
+    font-family: 'Haas Grotesk', Georgia, serif; flex: 1; margin-right: 12px;
   }
   .pol-modal-meta {
     display: flex; align-items: center; gap: 8px; margin-top: 6px; flex-wrap: wrap;
@@ -1077,7 +1077,7 @@
     display: block;
     font-size: 18px; font-weight: 700; color: var(--text);
     letter-spacing: -0.01em; margin-bottom: 5px;
-    font-family: 'Publico Banner', Georgia, serif;
+    font-family: 'Haas Grotesk', Georgia, serif;
   }
   .pol-col-hint {
     padding: 7px 40px 0;
@@ -1125,8 +1125,8 @@
     color: var(--muted); font-family: inherit; transition: all 0.12s;
     position: relative;
   }
-  .pol-chip:hover { border-color: var(--muted); color: var(--text); }
-  .pol-chip.active { border-width: 2px; color: var(--text); font-weight: 600; }
+  .pol-chip:hover { filter: brightness(0.93); }
+  .pol-chip.active { border-width: 2px; font-weight: 700; filter: brightness(0.88); }
   .pol-chip-tooltip {
     display: none; position: absolute; top: calc(100% + 8px); left: 50%;
     transform: translateX(-50%);
@@ -1171,19 +1171,19 @@
     align-items: start;
   }
   .pol-col {
-    border: 1px solid color-mix(in srgb, var(--pol-cat-color, var(--border)) 22%, var(--border));
+    border: 1px solid var(--border);
     border-radius: 12px; overflow: hidden;
-    border-top: 3px solid var(--pol-cat-color, var(--border));
-    background: color-mix(in srgb, var(--pol-cat-color, var(--surface2)) 4%, var(--surface2));
+    border-top: 2px solid color-mix(in srgb, var(--pol-cat-color, var(--border)) 45%, var(--border));
+    background: #ffffff;
   }
   .pol-col-header {
     padding: 12px 14px 10px;
     background: transparent;
-    border-bottom: 1px solid color-mix(in srgb, var(--pol-cat-color, var(--border)) 15%, var(--border));
+    border-bottom: 1px solid var(--border);
   }
   .pol-col-title {
-    font-size: 10.5px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase;
-    color: color-mix(in srgb, var(--pol-cat-color, var(--text)) 85%, var(--text));
+    font-size: 14px; font-weight: 900; letter-spacing: 0.02em; text-transform: uppercase;
+    color: color-mix(in srgb, var(--pol-cat-color, var(--text)) 45%, var(--text));
     font-family: 'Haas Grotesk', 'Helvetica Neue', Arial, sans-serif;
     line-height: 1.3; margin-bottom: 4px;
   }
@@ -1208,9 +1208,9 @@
     display: flex; flex-direction: column; gap: 8px; padding: 10px;
   }
   .pol-item-wrap {
-    border: 1px solid var(--border);
+    border: 1px solid color-mix(in srgb, var(--level-color, var(--border)) 18%, var(--border));
     border-radius: 10px; overflow: hidden; position: relative;
-    background: var(--surface);
+    background: color-mix(in srgb, var(--level-color, #ffffff) 6%, #ffffff);
     transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
   }
   .pol-item-wrap::before {
@@ -1220,7 +1220,7 @@
   }
   .pol-item-wrap::after {
     content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
-    background: linear-gradient(to right, var(--level-color, transparent) 0%, transparent 75%);
+    background: linear-gradient(to right, color-mix(in srgb, var(--level-color, transparent) 60%, transparent) 0%, transparent 65%);
     border-radius: 10px 10px 0 0;
   }
   .pol-item-wrap:hover {
@@ -1236,9 +1236,9 @@
   .pol-item-badge {
     display: inline-block; flex-shrink: 0; margin-top: 1px;
     font-size: 10px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase;
-    color: color-mix(in srgb, var(--level-color, var(--muted)) 85%, #1a1a2e);
-    background: color-mix(in srgb, var(--level-color, var(--muted)) 12%, transparent);
-    border: 1px solid color-mix(in srgb, var(--level-color, var(--muted)) 30%, transparent);
+    color: color-mix(in srgb, var(--level-color, var(--muted)) 65%, var(--muted));
+    background: color-mix(in srgb, var(--level-color, var(--muted)) 7%, transparent);
+    border: 1px solid color-mix(in srgb, var(--level-color, var(--muted)) 18%, var(--border));
     border-radius: 4px; padding: 2px 7px;
     white-space: nowrap;
   }
@@ -4258,7 +4258,7 @@ const POL_TO_RESEARCH_CATS = {
           <span class="pol-filter-label">Activates at:</span>
           <button class="pol-chip active" data-level="all">All</button>
           ${DISRUPTION_LEVELS.map(l => `
-            <button class="pol-chip" data-level="${l.id}" style="--chip-color:${l.color};color:${l.color}">${l.label}
+            <button class="pol-chip" data-level="${l.id}" style="--chip-color:${l.color};color:${l.color};background:color-mix(in srgb,${l.color} 10%,white);border-color:color-mix(in srgb,${l.color} 30%,var(--border))">${l.label}
               <span class="pol-chip-tooltip">
                 <span class="pol-chip-tip-sublabel">${l.sublabel}</span>
                 <span class="pol-chip-tip-desc">${l.desc}</span>
@@ -4272,16 +4272,16 @@ const POL_TO_RESEARCH_CATS = {
 
       const levelMap = Object.fromEntries(DISRUPTION_LEVELS.map(l => [l.id, l]));
       const POL_CAT_COLORS = {
-        'safety-net':    '#2563EB',
-        'labor-rights':  '#7C3AED',
-        'tax-wealth':    '#059669',
-        'healthcare':    '#DC2626',
-        'work-structure':'#D97706',
-        'education':     '#0891B2',
-        'antitrust':     '#EA580C',
-        'housing':       '#65A30D',
-        'jobs':          '#0D9488',
-        'international': '#9333EA',
+        'safety-net':    '#5B7A9E',
+        'labor-rights':  '#7B6B9E',
+        'tax-wealth':    '#4F8E77',
+        'healthcare':    '#8E5B5B',
+        'work-structure':'#8E7B52',
+        'education':     '#4F7D8E',
+        'antitrust':     '#8E6B4F',
+        'housing':       '#5E8A52',
+        'jobs':          '#4F8E87',
+        'international': '#7B5B8E',
       };
 
       // Empty state msg
