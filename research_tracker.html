@@ -70,6 +70,7 @@
 
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body {
+    zoom: 1.05;
     background: var(--bg); color: var(--text);
     font-family: 'Public Sans', 'Segoe UI', system-ui, -apple-system, sans-serif;
     min-height: 100vh; line-height: 1.6;
@@ -209,11 +210,6 @@
   .theme-disclaimer-line {
     display: block; font-size: 11px; font-style: italic; color: var(--muted);
   }
-  .theme-nav-counter {
-    font-size: 11px; font-weight: 600; color: #6B7280;
-    white-space: nowrap; flex-shrink: 0; letter-spacing: 0.03em;
-    font-family: 'Haas Grotesk', 'Helvetica Neue', Arial, sans-serif;
-  }
 
   /* ── SIDEBAR ─────────────────────────────────────────────── */
   .sidebar {
@@ -334,7 +330,11 @@
   }
   .ctrl-btn:hover { border-color: var(--accent); color: var(--text); }
   .ctrl-btn:disabled { opacity: 0.45; cursor: not-allowed; }
-  .result-count { font-size: 13px; color: var(--muted); margin-left: auto; white-space: nowrap; }
+  .ctrl-btn.sort-active {
+    border-color: var(--accent); color: var(--text);
+    background: color-mix(in srgb, var(--accent) 8%, var(--surface));
+  }
+  .result-count { font-size: 12px; color: var(--muted); margin-left: auto; white-space: nowrap; flex-shrink: 0; }
 
   /* ── STAT BAR ───────────────────────────────────────────── */
   .stat-bar {
@@ -439,10 +439,11 @@
     font-family: 'Haas Grotesk', 'Helvetica Neue', Arial, sans-serif;
   }
   .status-badge {
-    font-size: 11px; font-weight: 500;
-    display: flex; align-items: center; gap: 4px;
-    opacity: 0.7; background: none !important;
-    padding: 0;
+    font-size: 11px; font-weight: 500; letter-spacing: 0.03em;
+    display: inline-flex; align-items: center; gap: 4px;
+    padding: 2px 7px; border-radius: 20px;
+    border: 1px solid var(--border);
+    color: var(--muted); background: var(--surface);
   }
   .sdot { width: 5px; height: 5px; border-radius: 50%; flex-shrink: 0; }
   .geo-badge {
@@ -687,6 +688,13 @@
     cursor: pointer;
   }
   .theme-gaps-wrap .theme-section-chevron { color: #6B7280; }
+  .theme-gaps-count {
+    font-size: 10px; font-weight: 600; letter-spacing: 0.04em;
+    color: #6B7280; background: color-mix(in srgb, #6B7280 10%, transparent);
+    border: 1px solid color-mix(in srgb, #6B7280 22%, transparent);
+    border-radius: 20px; padding: 1px 7px; margin-left: 6px; margin-right: auto;
+    opacity: 0.85;
+  }
   .theme-implication-wrap {
     margin-top: 24px; margin-bottom: 0;
     padding-top: 20px; border-top: 1px solid var(--border);
@@ -813,25 +821,6 @@
   .paper-theme-badge:hover { opacity: 1; }
 
   /* ── FILTER PILLS ───────────────────────────────────────── */
-  .filter-bar {
-    padding: 0 28px; display: flex; align-items: center; gap: 6px; flex-wrap: wrap;
-    max-height: 0; overflow: hidden;
-    transition: max-height 0.22s ease, padding 0.22s ease;
-    border-bottom: 1px solid transparent;
-  }
-  .filter-bar.has-filters {
-    max-height: 60px; padding: 8px 28px;
-    border-bottom-color: var(--border);
-  }
-  .filter-pill {
-    display: inline-flex; align-items: center; gap: 5px;
-    background: var(--surface2); border: 1px solid var(--border);
-    border-radius: 20px; padding: 3px 8px 3px 10px;
-    font-size: 12px; color: var(--text); white-space: nowrap;
-  }
-  .fp-label { font-size: 10px; font-weight: 700; letter-spacing: 0.09em; text-transform: uppercase; opacity: 0.65; }
-  .fp-x { cursor: pointer; opacity: 0.65; font-size: 15px; line-height: 1; padding: 0 1px; transition: opacity 0.15s; }
-  .fp-x:hover { opacity: 1; }
   .clear-all-btn {
     font-size: 12px; color: var(--muted); cursor: pointer;
     background: none; border: none; font-family: inherit; padding: 3px 6px;
@@ -885,7 +874,7 @@
     .sidebar.open { left: 0; box-shadow: 4px 0 24px rgba(44,50,84,0.12); }
     .sidebar-toggle { display: flex; }
     .sidebar-backdrop.visible { display: block; }
-    .cards-area { padding: 16px 16px 40px; }
+    .cards-area { padding: 16px 16px 88px; }
     .topbar { padding: 10px 16px; }
     .cards-grid { grid-template-columns: 1fr; }
     .header-inner { flex-direction: column; gap: 12px; }
@@ -1101,32 +1090,40 @@
     display: flex; align-items: center; gap: 6px; flex-wrap: wrap;
     padding: 10px 28px;
   }
-  .pol-filterbar-row + .pol-filterbar-row {
-    border-top: 1px solid var(--border);
-    padding-top: 8px; padding-bottom: 8px;
-    background: color-mix(in srgb, var(--surface2) 50%, transparent);
-  }
   .pol-filter-label {
     font-size: 10px; font-weight: 700; letter-spacing: 0.1em;
     text-transform: uppercase; color: var(--muted); white-space: nowrap;
     flex-shrink: 0; opacity: 0.75;
     font-family: 'Haas Grotesk', 'Helvetica Neue', Arial, sans-serif;
   }
-  .pol-scale-bar {
-    height: 3px;
-    background: linear-gradient(to right, #70AD8F, #EBC382 30%, #FF8361 55%, #C0392B 78%, #472B51);
-    opacity: 0.55;
-  }
   .pol-filter-sep { width: 1px; height: 16px; background: var(--border); margin: 0 4px; flex-shrink: 0; }
+  .pol-filter-info {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 13px; height: 13px; border-radius: 50%;
+    border: 1px solid var(--muted); color: var(--muted);
+    font-size: 9px; font-weight: 700; cursor: default; flex-shrink: 0;
+    opacity: 0.45; position: relative; font-style: normal; letter-spacing: 0;
+    font-family: 'Haas Grotesk', 'Helvetica Neue', Arial, sans-serif;
+    transition: opacity 0.15s;
+  }
+  .pol-filter-info:hover { opacity: 0.9; }
+  .pol-filter-info .pol-chip-tooltip { left: 0; transform: none; width: 260px; }
+  .pol-filter-info:hover .pol-chip-tooltip { display: block; }
   /* Disruption chips */
   .pol-chip {
-    font-size: 11px; font-weight: 500; padding: 3px 10px; border-radius: 20px;
+    font-size: 12px; font-weight: 500; padding: 3px 10px; border-radius: 20px;
     border: 1px solid var(--border); background: var(--surface); cursor: pointer;
     color: var(--muted); font-family: inherit; transition: all 0.12s;
     position: relative;
   }
   .pol-chip:hover { filter: brightness(0.93); }
-  .pol-chip.active { border-width: 2px; font-weight: 700; filter: brightness(0.88); }
+  .pol-chip.active {
+    font-weight: 700;
+    color: color-mix(in srgb, var(--chip-color, var(--text)) 85%, #1a1a2e);
+    border-color: var(--chip-color, var(--border));
+    background: color-mix(in srgb, var(--chip-color, var(--surface)) 14%, var(--surface));
+    box-shadow: inset 0 0 0 1px var(--chip-color, var(--border));
+  }
   .pol-chip-tooltip {
     display: none; position: absolute; top: calc(100% + 8px); left: 50%;
     transform: translateX(-50%);
@@ -1143,18 +1140,13 @@
   .pol-chip:hover .pol-chip-tooltip { display: block; }
   .pol-chip-tip-sublabel {
     font-size: 10px; font-weight: 700; letter-spacing: 0.07em; text-transform: uppercase;
-    color: var(--chip-color, #aab); margin-bottom: 5px;
+    color: color-mix(in srgb, var(--chip-color, #aab) 40%, #ffffff); margin-bottom: 5px;
     font-family: 'Haas Grotesk', 'Helvetica Neue', Arial, sans-serif;
   }
   .pol-chip-tip-desc { font-size: 11.5px; line-height: 1.5; color: #c8cad8; }
-  .pol-clear-btn {
-    font-size: 11px; font-weight: 500; color: var(--muted);
-    background: none; border: 1px solid var(--border); border-radius: 20px;
-    padding: 3px 10px; cursor: pointer; font-family: inherit; transition: all 0.12s;
-  }
-  .pol-clear-btn:hover { color: var(--text); border-color: var(--muted); }
   .pol-count-note {
-    font-size: 11px; color: var(--muted); margin-left: auto; white-space: nowrap;
+    font-size: 12px; color: var(--muted); white-space: nowrap;
+    margin-left: auto; flex-shrink: 0;
   }
   .pol-empty-msg {
     display: none; padding: 36px 40px;
@@ -1252,6 +1244,7 @@
     .pol-filterbar-row { padding-left: 16px; padding-right: 16px; }
     .pol-columns { padding-left: 16px; padding-right: 16px; grid-template-columns: 1fr; }
     .wnb-wrap { padding: 9px 16px; }
+    .pol-chip-tooltip { display: none !important; }
   }
 
   /* ── FOCUS STYLES (Fix 1) ────────────────────────────────── */
@@ -1303,6 +1296,9 @@ const STATUS_META = {
     desc: "18+ months — use as baseline; context may have shifted."
   },
 };
+
+// Update this date whenever themes or policy lab content changes
+const LAST_CONTENT_UPDATE = "2026-05-06";
 
 const THEMES = [
   {
@@ -3535,8 +3531,8 @@ const POL_TO_RESEARCH_CATS = {
   <!-- ── MAIN ── -->
   <div class="main-content">
 
-    <div class="topbar">
-      <div class="view-toggle">
+    <div class="topbar" aria-label="Main navigation">
+      <div class="view-toggle" role="tablist" aria-label="Select view">
         <button class="view-btn active" id="viewCards" role="tab" aria-selected="true" aria-label="View as research cards">
           <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
           Research
@@ -3567,13 +3563,13 @@ const POL_TO_RESEARCH_CATS = {
         </svg>
         <input type="search" id="searchInput" placeholder="Search titles, sources, findings…">
       </div>
-      <span class="result-count" id="resultCount" aria-live="polite" aria-atomic="true"></span>
       <button class="ctrl-btn" id="sortBtn">
         <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
           <path d="M3 6h18M7 12h10M11 18h2"/>
         </svg>
         <span id="sortLabel">Newest first</span>
       </button>
+      <span class="result-count" id="resultCount" aria-live="polite" aria-atomic="true"></span>
     </div>
 
     <div class="inline-filters" id="inlineFilters"></div>
@@ -3586,7 +3582,6 @@ const POL_TO_RESEARCH_CATS = {
     <div class="theme-nav-strip">
       <span class="theme-nav-label">Themes</span>
       <div id="themeTabNav"></div>
-      <span class="theme-nav-counter" id="themeNavCounter"></span>
     </div>
 
     <div class="cards-area">
@@ -3812,7 +3807,11 @@ const POL_TO_RESEARCH_CATS = {
     };
 
     // Status pills
-    bar.appendChild(mkPill('All statuses', 'var(--muted)', activeStatus === 'all', () => { activeStatus = 'all'; render(); }));
+    const statusLabel = document.createElement('span');
+    statusLabel.className = 'pol-filter-label';
+    statusLabel.textContent = 'Status:';
+    bar.appendChild(statusLabel);
+    bar.appendChild(mkPill('All', 'var(--muted)', activeStatus === 'all', () => { activeStatus = 'all'; render(); }));
     Object.entries(STATUS_META).forEach(([key, sm]) => {
       bar.appendChild(mkPill(sm.label, sm.dot, activeStatus === key, () => { activeStatus = key; render(); }, sm.desc));
     });
@@ -3823,7 +3822,11 @@ const POL_TO_RESEARCH_CATS = {
     bar.appendChild(sep);
 
     // Geo pills
-    bar.appendChild(mkPill('All regions', 'var(--muted)', activeGeo === 'all', () => { activeGeo = 'all'; render(); }));
+    const geoLabel = document.createElement('span');
+    geoLabel.className = 'pol-filter-label';
+    geoLabel.textContent = 'Region:';
+    bar.appendChild(geoLabel);
+    bar.appendChild(mkPill('All', 'var(--muted)', activeGeo === 'all', () => { activeGeo = 'all'; render(); }));
     Object.entries(GEOGRAPHY_META).forEach(([key, gm]) => {
       bar.appendChild(mkPill(gm.label, resolve(gm.color), activeGeo === key, () => { activeGeo = key; render(); }));
     });
@@ -3943,7 +3946,10 @@ const POL_TO_RESEARCH_CATS = {
           <span class="cat-chip" style="background:${color}1e;color:${color}">${cat.label}</span>
           <span class="date-badge" style="margin-left:auto">${fmtDate(entry.date)}</span>
         </div>
-        ${titleEl}
+        <div style="display:flex;align-items:baseline;gap:8px;margin-bottom:6px">
+          ${titleEl.replace('class="card-title"', 'class="card-title" style="margin-bottom:0"')}
+          <span class="status-badge" style="flex-shrink:0;margin-left:auto"><span class="sdot" style="background:${sm.dot}"></span>${sm.label}</span>
+        </div>
         <div class="card-finding">${entry.keyFinding}</div>
         ${polLinkHTML}
         <div class="card-footer">
@@ -3995,56 +4001,10 @@ const POL_TO_RESEARCH_CATS = {
     return card;
   }
 
-  // ── filter pills ─────────────────────────────────────────────
-  function buildFilterBar() {
-    const bar = document.getElementById('filterBar');
-    const pills = [];
-    if (activeCat !== 'all') {
-      const cat = getCat(activeCat);
-      const hex = resolve(cat.color);
-      pills.push({ label: 'Category', value: cat.label, color: hex,
-        clear: () => { activeCat = 'all'; render(); } });
-    }
-    if (activeStatus !== 'all') {
-      const sm = STATUS_META[activeStatus];
-      pills.push({ label: 'Status', value: sm.label, color: sm.dot,
-        clear: () => { activeStatus = 'all'; render(); } });
-    }
-    if (activeGeo !== 'all') {
-      const gm = GEOGRAPHY_META[activeGeo];
-      pills.push({ label: 'Geography', value: gm.label, color: resolve(gm.color),
-        clear: () => { activeGeo = 'all'; render(); } });
-    }
-    if (searchQuery.trim()) {
-      pills.push({ label: 'Search', value: `"${searchQuery.trim()}"`, color: 'var(--accent)',
-        clear: () => { searchQuery = ''; document.getElementById('searchInput').value = ''; render(); } });
-    }
-    bar.innerHTML = '';
-    bar.classList.toggle('has-filters', pills.length > 0);
-    pills.forEach(p => {
-      const pill = document.createElement('div');
-      pill.className = 'filter-pill';
-      pill.style.borderColor = p.color + '55';
-      pill.innerHTML = `<span class="fp-label">${p.label}</span><span style="color:${p.color}">${p.value}</span><span class="fp-x">×</span>`;
-      pill.querySelector('.fp-x').onclick = p.clear;
-      bar.appendChild(pill);
-    });
-    if (pills.length > 1) {
-      const btn = document.createElement('button');
-      btn.className = 'clear-all-btn';
-      btn.textContent = 'Clear all';
-      btn.onclick = () => {
-        activeCat = 'all'; activeStatus = 'all'; activeGeo = 'all';
-        searchQuery = ''; document.getElementById('searchInput').value = '';
-        render();
-      };
-      bar.appendChild(btn);
-    }
-  }
 
   // ── themes view ──────────────────────────────────────────────
   const CONFIDENCE_META = {
-    consensus: { label: 'Strong consensus', color: '#2E8B57', icon: '✓', desc: 'Multiple independent research streams reach the same conclusion. We treat this as a reliable foundation for institutional positioning.' },
+    consensus: { label: 'Strong consensus', color: '#2E8B57', icon: '✓', desc: 'Multiple independent research streams reach the same conclusion. The research base is stable and convergent across independent methodologies.' },
     emerging:  { label: 'Emerging evidence', color: '#2C3254', icon: '~', desc: 'The direction is clear but the evidence base is still developing. Worth tracking closely — conclusions may sharpen as more research accumulates.' },
     contested: { label: 'Contested',         color: '#C0392B', icon: '!', desc: 'Credible researchers reach meaningfully different conclusions. Institutional positions on this topic should be held with explicit acknowledgment of the disagreement.' },
   };
@@ -4123,7 +4083,7 @@ const POL_TO_RESEARCH_CATS = {
 
         <div class="theme-gaps-wrap">
           <div class="theme-gaps-label theme-section-toggle" role="button" tabindex="0" data-section="gaps">
-            Research gaps <span class="theme-section-chevron">▼</span>
+            Research gaps <span class="theme-gaps-count">${theme.gaps.length}</span><span class="theme-section-chevron">▼</span>
           </div>
           <p class="theme-box-desc">Known limitations in the current evidence base — areas where more research is needed before confident conclusions can be drawn.</p>
           <div class="theme-collapsible" data-collapsible="gaps">
@@ -4152,8 +4112,8 @@ const POL_TO_RESEARCH_CATS = {
       });
     });
 
-    // ── Default: collapse implication, risk, gaps; leave synthesis open ──
-    ['implication', 'risk', 'gaps'].forEach(section => {
+    // ── Default: collapse risk, gaps; leave synthesis + implication open ──
+    ['risk', 'gaps'].forEach(section => {
       card.querySelector(`.theme-collapsible[data-collapsible="${section}"]`)?.classList.add('is-collapsed');
       card.querySelector(`[data-section="${section}"]`)?.classList.add('is-collapsed');
     });
@@ -4209,13 +4169,6 @@ const POL_TO_RESEARCH_CATS = {
       tabNav.appendChild(pill);
     });
 
-    // Position counter
-    const counter = document.getElementById('themeNavCounter');
-    if (counter) {
-      const idx = THEMES.findIndex(t => t.id === activeThemeId);
-      counter.textContent = !themeShowAll && idx !== -1 ? `Theme ${idx + 1} of ${THEMES.length}` : '';
-    }
-
     const themesGrid = document.createElement('div');
     themesGrid.className = 'themes-grid';
     visibleThemes.forEach(theme => themesGrid.appendChild(buildThemeCard(theme, paperMap)));
@@ -4256,7 +4209,12 @@ const POL_TO_RESEARCH_CATS = {
       fb.innerHTML = `
         <div class="pol-filterbar-row">
           <span class="pol-filter-label">Activates at:</span>
-          <button class="pol-chip active" data-level="all">All</button>
+          <span class="pol-filter-info">i
+            <span class="pol-chip-tooltip">
+              <span class="pol-chip-tip-desc">Each policy is tagged by the stage of AI-driven labor disruption at which it becomes most relevant — from foundational reforms needed today to transformational responses for a post-work economy. Hover over each level to learn more.</span>
+            </span>
+          </span>
+          <button class="pol-chip active" data-level="all" style="--chip-color:#6B7280">All</button>
           ${DISRUPTION_LEVELS.map(l => `
             <button class="pol-chip" data-level="${l.id}" style="--chip-color:${l.color};color:${l.color};background:color-mix(in srgb,${l.color} 10%,white);border-color:color-mix(in srgb,${l.color} 30%,var(--border))">${l.label}
               <span class="pol-chip-tooltip">
@@ -4264,10 +4222,8 @@ const POL_TO_RESEARCH_CATS = {
                 <span class="pol-chip-tip-desc">${l.desc}</span>
               </span>
             </button>`).join('')}
-          <span class="pol-filter-sep"></span>
           <span class="pol-count-note" id="polCountNote"></span>
-        </div>
-        <div class="pol-scale-bar"></div>`;
+        </div>`;
       area.appendChild(fb);
 
       const levelMap = Object.fromEntries(DISRUPTION_LEVELS.map(l => [l.id, l]));
@@ -4401,7 +4357,7 @@ const POL_TO_RESEARCH_CATS = {
     document.getElementById('polModalCat').textContent     = catLabel;
     const researchSection = `
       <div class="pol-modal-section">
-        <div class="pol-modal-label">Related Research</div>
+        <div class="pol-modal-label">Precedents, Examples & Related Research</div>
         ${p.precedent ? `<div class="pol-modal-text muted">${p.precedent}</div>` : ''}
         ${basisHTML}
       </div>`;
@@ -4419,7 +4375,7 @@ const POL_TO_RESEARCH_CATS = {
         <div class="pol-modal-text">${p.summary}</div>
       </div>
       <div class="pol-modal-section">
-        <div class="pol-modal-label">What's the challenge</div>
+        <div class="pol-modal-label">The challenge</div>
         <div class="pol-modal-text">${p.rationale}</div>
       </div>
       ${researchSection}`;
@@ -4574,10 +4530,24 @@ const POL_TO_RESEARCH_CATS = {
   document.getElementById('viewThemes').addEventListener('click', () => setView('themes'));
   document.getElementById('viewPolicy').addEventListener('click', () => setView('policy'));
 
+  function updateSortBtn() {
+    const btn = document.getElementById('sortBtn');
+    const s = SORT_STATES[sortIdx];
+    document.getElementById('sortLabel').textContent = s.label;
+    btn.classList.toggle('sort-active', sortIdx !== 0);
+    const icons = {
+      desc:   '<path d="M3 6h18M7 12h10M11 18h2"/>',
+      asc:    '<path d="M11 6h2M7 12h10M3 18h18"/>',
+      status: '<path d="M3 6h18M3 12h18M3 18h18"/>',
+    };
+    btn.querySelector('svg').innerHTML = icons[s.order] || icons.desc;
+  }
+  updateSortBtn();
+
   document.getElementById('sortBtn').addEventListener('click', () => {
     sortIdx = (sortIdx + 1) % SORT_STATES.length;
     sortOrder = SORT_STATES[sortIdx].order;
-    document.getElementById('sortLabel').textContent = SORT_STATES[sortIdx].label;
+    updateSortBtn();
     render();
   });
 
@@ -4630,8 +4600,11 @@ const POL_TO_RESEARCH_CATS = {
   });
 
   // ── footer ───────────────────────────────────────────────────
-  const latest  = new Date(Math.max(...RESEARCH_DATA.map(r => new Date(r.date + 'T00:00:00'))));
-  const latestStr = latest.toLocaleDateString('en-US', { year: 'numeric', month: 'long' });
+  const latest  = new Date(Math.max(
+    ...RESEARCH_DATA.map(r => new Date(r.date + 'T00:00:00')),
+    new Date(LAST_CONTENT_UPDATE + 'T00:00:00')
+  ));
+  const latestStr = latest.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
   document.getElementById('headerLastUpdated').textContent = latestStr;
 
   // ── sources modal ─────────────────────────────────────────────
