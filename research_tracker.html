@@ -316,6 +316,7 @@
     padding: 12px 28px;
     display: flex; gap: 10px; align-items: center; flex-wrap: wrap;
   }
+  .topbar-about-wrap { display: none; align-items: center; gap: 6px; margin-left: auto; flex-shrink: 0; }
   .search-wrap { position: relative; flex: 1; min-width: 160px; max-width: 300px; }
   .search-wrap svg {
     position: absolute; left: 10px; top: 50%;
@@ -893,6 +894,14 @@
     background: rgba(35,40,73,0.35); z-index: 199;
   }
 
+  /* ── FILTER TOGGLE (mobile only) ────────────────────────────── */
+  .filter-toggle-btn { display: none; }
+  .filter-badge {
+    background: var(--accent); color: #fff;
+    font-size: 10px; font-weight: 700; letter-spacing: 0.03em;
+    border-radius: 10px; padding: 1px 6px; margin-left: 2px;
+  }
+
   @media (max-width: 900px) {
     .sidebar {
       position: fixed; left: calc(0px - var(--sidebar-w)); top: 0;
@@ -904,10 +913,63 @@
     .sidebar-toggle { display: flex; }
     .sidebar-backdrop.visible { display: block; }
     .cards-area { padding: 16px 16px 88px; }
-    .topbar { padding: 10px 16px; }
+    .topbar { padding: 10px 16px; flex-wrap: nowrap; }
     .cards-grid { grid-template-columns: 1fr; }
     .header-inner { flex-direction: column; gap: 12px; }
     .site-header { padding: 20px 20px 18px; }
+    .header-about-wrap { display: none !important; }
+    .topbar .view-toggle { margin-left: 0; }
+    .topbar-about-wrap { display: flex; margin-left: auto; }
+
+    /* Filter drawer */
+    .filter-toggle-btn {
+      display: flex; align-items: center; gap: 5px;
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 8px; padding: 7px 13px; font-size: 13px;
+      cursor: pointer; color: var(--muted); font-family: inherit;
+      min-height: 44px; white-space: nowrap; flex-shrink: 0;
+      transition: border-color 0.15s, color 0.15s;
+    }
+    .filter-toggle-btn[aria-expanded="true"] {
+      border-color: var(--accent); color: var(--text);
+    }
+    .inline-filters { display: none; padding: 10px 16px; }
+    .inline-filters.mobile-open { display: flex; }
+
+    /* Theme nav — horizontal scroll instead of wrapping */
+    .theme-nav-strip {
+      overflow-x: auto; flex-wrap: nowrap;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none; padding: 10px 16px;
+    }
+    .theme-nav-strip::-webkit-scrollbar { display: none; }
+    #themeTabNav { flex-wrap: nowrap; }
+
+    /* Policy filterbar — horizontal scroll instead of wrapping */
+    .pol-filterbar-row {
+      overflow-x: auto; flex-wrap: nowrap;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+    }
+    .pol-filterbar-row::-webkit-scrollbar { display: none; }
+
+    /* Touch targets */
+    .pol-filter-info {
+      min-width: 44px; min-height: 44px;
+    }
+    .expand-btn {
+      min-height: 44px; padding: 10px 0;
+    }
+    .theme-nav-btn {
+      min-height: 44px;
+    }
+
+    /* Controls bar */
+    .research-controls-bar { padding: 8px 16px; flex-wrap: wrap; }
+    .search-wrap { max-width: none; flex: 1; min-width: 0; }
+
+    /* Policy modal */
+    .pol-modal { padding: 20px 16px 16px; }
   }
 
   /* ── SOURCES MODAL ───────────────────────────────────────── */
@@ -1274,7 +1336,7 @@
 
   @media (max-width: 700px) {
     .policy-lab-header { padding-left: 16px; padding-right: 16px; }
-    .pol-filterbar-row { padding-left: 16px; padding-right: 16px; }
+    .pol-filterbar-row { padding-left: 16px; padding-right: 28px; }
     .pol-columns { padding-left: 16px; padding-right: 16px; grid-template-columns: 1fr; }
     .wnb-wrap { padding: 9px 16px; }
     .pol-chip-tooltip { display: none !important; }
@@ -3782,7 +3844,7 @@ const POL_TO_RESEARCH_CATS = {
       </p>
       <p class="header-updated">Last updated <span id="headerLastUpdated"></span></p>
     </div>
-    <div style="display:flex;align-items:center;gap:8px;flex-shrink:0;align-self:center;">
+    <div class="header-about-wrap" style="display:flex;align-items:center;gap:8px;flex-shrink:0;align-self:center;">
       <button class="about-link-btn" id="aboutInfoBtn" aria-label="About this site">About</button>
       <button class="info-btn" id="sourcesInfoBtn" title="View sources" aria-label="View sources">ⓘ</button>
     </div>
@@ -3825,6 +3887,10 @@ const POL_TO_RESEARCH_CATS = {
           Policy Lab
         </button>
       </div>
+      <div class="topbar-about-wrap">
+        <button class="about-link-btn" id="aboutInfoBtnTopbar" aria-label="About this site">About</button>
+        <button class="info-btn" id="sourcesInfoBtnTopbar" title="View sources" aria-label="View sources">ⓘ</button>
+      </div>
     </div>
 
     <div id="whatsNewBanner" aria-live="polite"></div>
@@ -3842,6 +3908,11 @@ const POL_TO_RESEARCH_CATS = {
         </svg>
         <input type="search" id="searchInput" placeholder="Search titles, sources, findings…">
       </div>
+      <button class="filter-toggle-btn" id="filterToggleBtn" aria-expanded="false" aria-controls="inlineFilters">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><line x1="4" y1="6" x2="20" y2="6"/><line x1="8" y1="12" x2="16" y2="12"/><line x1="11" y1="18" x2="13" y2="18"/></svg>
+        Filters
+        <span class="filter-badge" id="filterBadge" style="display:none"></span>
+      </button>
       <button class="ctrl-btn" id="sortBtn">
         <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
           <path d="M3 6h18M7 12h10M11 18h2"/>
@@ -4811,12 +4882,26 @@ const POL_TO_RESEARCH_CATS = {
 
 
   /* ── render ──────────────────────────────────────────────────── */
+  function updateFilterBadge() {
+    const btn   = document.getElementById('filterToggleBtn');
+    const badge = document.getElementById('filterBadge');
+    if (!btn || !badge) return;
+    const count = (activeCat !== 'all' ? 1 : 0) +
+                  (activeStatus !== 'all' ? 1 : 0) +
+                  (activeGeo !== 'all' ? 1 : 0) +
+                  (activeEvidence !== 'all' ? 1 : 0) +
+                  (searchQuery.trim() ? 1 : 0);
+    badge.textContent = count;
+    badge.style.display = count > 0 ? 'inline' : 'none';
+  }
+
   function render() {
     const grid  = document.getElementById('cardsGrid');
     const empty = document.getElementById('emptyState');
 
     buildCatNav();
     buildInlineFilters();
+    updateFilterBadge();
 
     document.body.classList.toggle('cards-view', activeView === 'cards');
 
@@ -4898,6 +4983,16 @@ const POL_TO_RESEARCH_CATS = {
     backdrop.classList.toggle('visible', open);
   });
   backdrop.addEventListener('click', closeSidebar);
+
+  // ── mobile filter drawer toggle ───────────────────────────────
+  const filterToggleBtn = document.getElementById('filterToggleBtn');
+  if (filterToggleBtn) {
+    filterToggleBtn.addEventListener('click', () => {
+      const bar = document.getElementById('inlineFilters');
+      const isOpen = bar.classList.toggle('mobile-open');
+      filterToggleBtn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    });
+  }
 
   // ── sidebar collapsible sections ─────────────────────────────
   function updateSectionCounts() {
@@ -5003,6 +5098,14 @@ const POL_TO_RESEARCH_CATS = {
     modal.addEventListener('click', e => { if (e.target === modal) closeModal(); });
     document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
   })();
+
+  // ── topbar About / ⓘ (mobile mirrors) ────────────────────────
+  document.getElementById('aboutInfoBtnTopbar')?.addEventListener('click', () => {
+    document.getElementById('aboutInfoBtn').click();
+  });
+  document.getElementById('sourcesInfoBtnTopbar')?.addEventListener('click', () => {
+    document.getElementById('sourcesInfoBtn').click();
+  });
 
   // ── init ─────────────────────────────────────────────────────
   render();
