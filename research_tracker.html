@@ -54,6 +54,8 @@
     --text:     #232849;
     --muted:    #3C4164;
     --accent:   #2C3254;
+    --tooltip-bg: #1e2235;
+    --tooltip-fg: #e8eaf0;
     --sidebar-w: 252px;
 
     --c0: #2C3254; --c1: #FF8361; --c2: #472B51; --c3: #70AD8F;
@@ -275,6 +277,9 @@
     transition: background 0.14s, color 0.14s;
     border-left: 2px solid transparent;
     user-select: none;
+    /* reset button defaults */
+    background: none; border-top: none; border-right: none; border-bottom: none;
+    border-radius: 0; width: 100%; text-align: left; font-family: inherit;
   }
   .nav-item:hover { background: var(--surface2); color: var(--text); }
   .nav-item.active { color: var(--text); background: var(--surface); }
@@ -291,6 +296,8 @@
     padding: 6px 20px 8px 18px;
     cursor: pointer; transition: background 0.14s;
     border-left: 2px solid transparent;
+    background: none; border-top: none; border-right: none; border-bottom: none;
+    border-radius: 0; width: 100%; text-align: left; font-family: inherit;
   }
   .status-nav-item:hover { background: var(--surface2); }
   .status-nav-item.active { background: var(--surface); }
@@ -371,9 +378,10 @@
     display: flex; align-items: center; gap: 6px; flex-wrap: wrap;
   }
   .if-sep { width: 1px; height: 14px; background: var(--border); margin: 0 2px; flex-shrink: 0; }
+  .if-break { flex-basis: 100%; height: 0; }
   .if-pill {
     font-size: 12px; font-weight: 500; cursor: pointer; white-space: nowrap;
-    background: none; border: 1px solid var(--border); border-radius: 20px;
+    background: none; border: 1px solid var(--border); border-radius: 5px;
     padding: 4px 11px; color: var(--muted); font-family: inherit;
     transition: border-color 0.15s, color 0.15s, background 0.15s;
   }
@@ -383,14 +391,22 @@
   .if-pill[data-tooltip] { position: relative; }
   .if-pill[data-tooltip]::after {
     content: attr(data-tooltip);
-    position: absolute; top: calc(100% + 7px); left: 50%; transform: translateX(-50%);
-    background: var(--surface2); border: 1px solid var(--border);
-    color: var(--muted); font-size: 12px; font-weight: 400; line-height: 1.45;
-    white-space: nowrap; border-radius: 7px; padding: 6px 10px;
+    position: absolute; top: calc(100% + 8px); left: 50%; transform: translateX(-50%);
+    background: var(--tooltip-bg); color: var(--tooltip-fg);
+    font-size: 12px; font-weight: 400; line-height: 1.45;
+    white-space: nowrap; border-radius: 8px; padding: 8px 12px;
+    box-shadow: 0 4px 18px rgba(0,0,0,0.22);
     pointer-events: none; z-index: 200;
     opacity: 0; transition: opacity 0.15s;
   }
-  .if-pill[data-tooltip]:hover::after { opacity: 1; }
+  .if-pill[data-tooltip]:hover::after,
+  .if-pill[data-tooltip]:focus-visible::after { opacity: 1; }
+
+  .sr-only {
+    position: absolute; width: 1px; height: 1px;
+    padding: 0; margin: -1px; overflow: hidden;
+    clip: rect(0,0,0,0); white-space: nowrap; border: 0;
+  }
 
   /* ── CARD GRID ───────────────────────────────────────────── */
   .cards-area { padding: 20px 28px 40px; flex: 1; }
@@ -1124,23 +1140,27 @@
   .pol-filter-info:hover .pol-chip-tooltip { display: block; }
   /* Disruption chips */
   .pol-chip {
-    font-size: 12px; font-weight: 500; padding: 3px 10px; border-radius: 20px;
-    border: 1px solid var(--border); background: var(--surface); cursor: pointer;
-    color: var(--muted); font-family: inherit; transition: all 0.12s;
+    font-size: 12px; font-weight: 500; padding: 4px 11px; border-radius: 20px;
+    border: 1px solid var(--border); background: none; cursor: pointer;
+    color: var(--muted); font-family: inherit;
+    transition: border-color 0.15s, color 0.15s, background 0.15s;
     position: relative;
   }
-  .pol-chip:hover { filter: brightness(0.93); }
+  .pol-chip:hover {
+    border-color: color-mix(in srgb, var(--chip-color, var(--muted)) 55%, var(--border));
+    background: color-mix(in srgb, var(--chip-color, var(--muted)) 7%, transparent);
+    color: var(--text);
+  }
   .pol-chip.active {
-    font-weight: 700;
+    font-weight: 600;
     color: color-mix(in srgb, var(--chip-color, var(--text)) 85%, #1a1a2e);
     border-color: var(--chip-color, var(--border));
-    background: color-mix(in srgb, var(--chip-color, var(--surface)) 14%, var(--surface));
-    box-shadow: inset 0 0 0 1px var(--chip-color, var(--border));
+    background: color-mix(in srgb, var(--chip-color, var(--muted)) 14%, transparent);
   }
   .pol-chip-tooltip {
     display: none; position: absolute; top: calc(100% + 8px); left: 50%;
     transform: translateX(-50%);
-    background: #1e2235; color: #e8eaf0;
+    background: var(--tooltip-bg); color: var(--tooltip-fg);
     border-radius: 8px; padding: 10px 13px;
     width: 260px; white-space: normal; text-align: left;
     z-index: 400; box-shadow: 0 4px 18px rgba(0,0,0,0.22);
@@ -1148,7 +1168,7 @@
   }
   .pol-chip-tooltip::after {
     content: ''; position: absolute; bottom: 100%; left: 50%; transform: translateX(-50%);
-    border: 5px solid transparent; border-bottom-color: #1e2235;
+    border: 5px solid transparent; border-bottom-color: var(--tooltip-bg);
   }
   .pol-chip:hover .pol-chip-tooltip { display: block; }
   .pol-chip-tip-sublabel {
@@ -1329,7 +1349,7 @@ const THEMES = [
       color: "#C0392B",
       summary: "<p>AI-driven wage divergence is accelerating faster than policy or institutions can respond. The risk is not theoretical displacement but compounding inequality — workers without AI skills fall further behind while productivity gains concentrate among those already above the median, and the gap widens annually.</p><p>Institutions that treat this as a future risk rather than a present one will fall behind the intervention window. The research suggests the divergence is already underway and is being measured in salary premiums and task-exposure data, not in projections.</p>"
     },
-    papers: [1, 2, 46, 60, 61, 15, 16, 30, 33, 34, 36, 37, 41, 59, 62, 63, 75, 97, 105, 109, 137, 138, 139, 140, 141, 142],
+    papers: [1, 2, 46, 60, 61, 15, 16, 30, 33, 34, 36, 37, 41, 59, 62, 63, 75, 97, 105, 109, 137, 138, 139, 140, 141, 142, 136],
   },
   {
     id: "equity",
@@ -1397,7 +1417,7 @@ const THEMES = [
       color: "#D4952A",
       summary: "<p>Regulatory fragmentation creates conditions where harmful AI deployments can proceed without oversight or accountability. The core risk is the gap between policy intent and enforcement capacity: laws are passing, but the infrastructure to act on them is largely absent, and this gap is widening faster than state agencies can close it.</p><p>There is also a capture risk: well-resourced AI developers are actively shaping the policy environment in ways that can appear aligned with equity goals while protecting market concentration. Institutions that do not maintain independent policy analysis capacity risk lending legitimacy to frameworks that do not serve their constituencies.</p><p>An underappreciated emerging risk: when government deploys AI in its own decision-making — drafting regulations, reviewing contracts, processing claims — the accountability mechanisms designed for private AI deployment do not automatically apply. Federal procurement and rulemaking processes are not yet equipped to assess or constrain the AI tools being introduced into them.</p>"
     },
-    papers: [77, 80, 82, 86, 101, 70, 113, 115, 122, 123, 124, 18, 28, 32, 38, 39, 40, 44, 45, 50, 52, 55, 56, 58, 67, 68, 71, 72, 78, 79, 83, 87, 88, 96, 99, 100, 111, 112, 143, 144, 145, 147, 148, 149],
+    papers: [77, 80, 82, 86, 101, 70, 113, 115, 122, 123, 124, 18, 28, 32, 38, 39, 40, 44, 45, 50, 52, 55, 56, 58, 67, 68, 71, 72, 78, 79, 83, 87, 88, 96, 99, 100, 111, 112, 143, 144, 145, 147, 148, 149, 146],
   },
   {
     id: "community",
@@ -1572,6 +1592,7 @@ const INST_META = {
   "Anticipation Hub":                                 { url: "https://www.anticipation-hub.org",                            type: "International development", note: "Social protection research and anticipatory action"        },
   // ── Civic Technology ──────────────────────────────────────────
   "Code for America":                                 { url: "https://codeforamerica.org",                                  type: "Civic technology nonprofit", note: "Government technology and service delivery, nonpartisan"   },
+  "AI Commons Project":                               { url: "https://www.aicommonsproject.org",                             type: "Worker research",            note: "Participatory research documenting worker experiences of AI in the economy" },
 };
 const INST_URLS = Object.fromEntries(Object.entries(INST_META).map(([k,v]) => [k, v.url]));
 
@@ -3252,7 +3273,7 @@ const RESEARCH_DATA = [
     title: "Copy, Paste, Govern: Microsoft Ghostwrote EU Policy That Keeps Data Centres' Energy Use Secret",
     source: "Corporate Europe Observatory and AlgorithmWatch",
     sourceUrl: "https://corporateeurope.org/en/2026/04/copy-paste-govern",
-    category: "corporate", geography: "eu",
+    category: "corporate", geography: "intl",
     keyFinding: "Microsoft's lobbying language was directly incorporated into EU regulatory text, classifying nearly all data centre energy and water consumption data as confidential trade secrets and contradicting the Energy Efficiency Directive's original transparency mandate.",
     takeaways: [
       "The EU Commission 'essentially plagiarised' Microsoft and DigitalEurope amendments into a Delegated Act, establishing a documented precedent of Big Tech lobby text being incorporated verbatim into binding regulatory instruments.",
@@ -3778,7 +3799,7 @@ const POL_TO_RESEARCH_CATS = {
         <span>Category</span>
         <span class="sidebar-heading-right">
           <span class="sidebar-section-count" id="secCategoryCount"></span>
-          <svg class="sidebar-chevron" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+          <svg class="sidebar-chevron" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
         </span>
       </div>
       <div class="sidebar-nav-wrap"><div id="catNav"></div></div>
@@ -3792,15 +3813,15 @@ const POL_TO_RESEARCH_CATS = {
     <div class="topbar" aria-label="Main navigation">
       <div class="view-toggle" role="tablist" aria-label="Select view">
         <button class="view-btn active" id="viewCards" role="tab" aria-selected="true" aria-label="View as research cards">
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
           Research
         </button>
         <button class="view-btn" id="viewThemes" role="tab" aria-selected="false" aria-label="View as themes">
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
           Themes
         </button>
         <button class="view-btn" id="viewPolicy" role="tab" aria-selected="false" aria-label="View policy lab">
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
           Policy Lab
         </button>
       </div>
@@ -3816,13 +3837,13 @@ const POL_TO_RESEARCH_CATS = {
 
     <div class="research-controls-bar">
       <div class="search-wrap">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
           <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
         </svg>
         <input type="search" id="searchInput" placeholder="Search titles, sources, findings…">
       </div>
       <button class="ctrl-btn" id="sortBtn">
-        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
           <path d="M3 6h18M7 12h10M11 18h2"/>
         </svg>
         <span id="sortLabel">Newest first</span>
@@ -3846,7 +3867,7 @@ const POL_TO_RESEARCH_CATS = {
       <div id="policyArea"></div>
       <div class="cards-grid" id="cardsGrid"></div>
       <div class="empty-state" id="emptyState">
-        <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+        <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
           <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
         </svg>
         <h3>No results</h3>
@@ -3931,7 +3952,7 @@ const POL_TO_RESEARCH_CATS = {
 
 <!-- Mobile sidebar toggle -->
 <button class="sidebar-toggle" id="sidebarToggle" aria-label="Toggle filters">
-  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
     <line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/>
   </svg>
 </button>
@@ -4028,12 +4049,14 @@ const POL_TO_RESEARCH_CATS = {
     el.innerHTML = '';
     const mk = (id, label, color, count) => {
       const isActive = activeCat === id;
-      const d = document.createElement('div');
+      const d = document.createElement('button');
       d.className = 'nav-item' + (isActive ? ' active' : '');
+      d.setAttribute('role', 'button');
+      d.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+      d.setAttribute('aria-label', `${label}, ${count} entries`);
       const hex = resolve(color || '');
       if (isActive && hex) d.style.borderLeftColor = hex;
       d.innerHTML = `
-        <span class="nav-dot" style="background:${hex || 'transparent'}"></span>
         <span class="nav-label">${label}</span>
         <span class="nav-count" style="${isActive && hex ? `color:${hex}` : ''}">${count}</span>`;
       d.onclick = () => { activeCat = id; render(); };
@@ -4057,7 +4080,16 @@ const POL_TO_RESEARCH_CATS = {
       btn.className = 'if-pill if-pill-fallback';
       btn.textContent = label;
       btn.style.setProperty('--pill-color', color);
-      if (tooltip) btn.dataset.tooltip = tooltip;
+      if (tooltip) {
+        btn.dataset.tooltip = tooltip;
+        const descId = 'pill-desc-' + Math.random().toString(36).slice(2);
+        const desc = document.createElement('span');
+        desc.id = descId;
+        desc.className = 'sr-only';
+        desc.textContent = tooltip;
+        btn.setAttribute('aria-describedby', descId);
+        btn.appendChild(desc);
+      }
       if (isActive) {
         btn.classList.add('active');
         try { btn.classList.remove('if-pill-fallback'); } catch(e) {}
@@ -4071,9 +4103,11 @@ const POL_TO_RESEARCH_CATS = {
     statusLabel.className = 'pol-filter-label';
     statusLabel.textContent = 'Status:';
     bar.appendChild(statusLabel);
-    bar.appendChild(mkPill('All', 'var(--muted)', activeStatus === 'all', () => { activeStatus = 'all'; render(); }));
+    const statusBase = filteredBase({ excludeStatus: true });
+    bar.appendChild(mkPill(`All (${statusBase.length})`, 'var(--muted)', activeStatus === 'all', () => { activeStatus = 'all'; render(); }));
     Object.entries(STATUS_META).forEach(([key, sm]) => {
-      bar.appendChild(mkPill(sm.label, sm.dot, activeStatus === key, () => { activeStatus = key; render(); }, sm.desc));
+      const n = statusBase.filter(r => r._status === key).length;
+      bar.appendChild(mkPill(`${sm.label} (${n})`, sm.dot, activeStatus === key, () => { activeStatus = key; render(); }, sm.desc));
     });
 
     // Separator
@@ -4086,15 +4120,17 @@ const POL_TO_RESEARCH_CATS = {
     geoLabel.className = 'pol-filter-label';
     geoLabel.textContent = 'Region:';
     bar.appendChild(geoLabel);
-    bar.appendChild(mkPill('All', 'var(--muted)', activeGeo === 'all', () => { activeGeo = 'all'; render(); }));
+    const geoBase = filteredBase({ excludeGeo: true });
+    bar.appendChild(mkPill(`All (${geoBase.length})`, 'var(--muted)', activeGeo === 'all', () => { activeGeo = 'all'; render(); }));
     Object.entries(GEOGRAPHY_META).forEach(([key, gm]) => {
-      bar.appendChild(mkPill(gm.label, resolve(gm.color), activeGeo === key, () => { activeGeo = key; render(); }));
+      const n = geoBase.filter(r => (r.geography || 'us') === key).length;
+      bar.appendChild(mkPill(`${gm.label} (${n})`, resolve(gm.color), activeGeo === key, () => { activeGeo = key; render(); }));
     });
 
-    // Separator
-    const sep3 = document.createElement('div');
-    sep3.className = 'if-sep';
-    bar.appendChild(sep3);
+    // Row break before evidence
+    const evBreak = document.createElement('div');
+    evBreak.className = 'if-break';
+    bar.appendChild(evBreak);
 
     // Evidence tier pills
     const evLabel = document.createElement('span');
@@ -4132,8 +4168,10 @@ const POL_TO_RESEARCH_CATS = {
 
     const statusBase = filteredBase({ excludeStatus: true });
     // All option
-    const allEl = document.createElement('div');
+    const allEl = document.createElement('button');
     allEl.className = 'nav-item' + (activeStatus === 'all' ? ' active' : '');
+    allEl.setAttribute('aria-pressed', activeStatus === 'all' ? 'true' : 'false');
+    allEl.setAttribute('aria-label', `All Statuses, ${statusBase.length} entries`);
     allEl.innerHTML = `<span class="nav-label">All Statuses</span><span class="nav-count">${statusBase.length}</span>`;
     allEl.onclick = () => { activeStatus = 'all'; render(); };
     el.appendChild(allEl);
@@ -4141,12 +4179,13 @@ const POL_TO_RESEARCH_CATS = {
     Object.entries(STATUS_META).forEach(([key, sm]) => {
       const n = statusBase.filter(r => r._status === key).length;
       const isActive = activeStatus === key;
-      const d = document.createElement('div');
+      const d = document.createElement('button');
       d.className = 'status-nav-item' + (isActive ? ' active' : '');
+      d.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+      d.setAttribute('aria-label', `${sm.label}, ${n} entries. ${sm.desc}`);
       if (isActive) d.style.borderLeftColor = sm.dot;
       d.innerHTML = `
         <div class="status-top">
-          <span class="nav-dot" style="background:${sm.dot}"></span>
           <span style="flex:1">${sm.label}</span>
           <span class="nav-count">${n}</span>
         </div>
@@ -4160,21 +4199,24 @@ const POL_TO_RESEARCH_CATS = {
     const el = document.getElementById('geoNav');
     el.innerHTML = '';
     const geoBase = filteredBase({ excludeGeo: true });
-    const allEl = document.createElement('div');
-    allEl.className = 'nav-item' + (activeGeo === 'all' ? ' active' : '');
-    allEl.innerHTML = `<span class="nav-label">All Geographies</span><span class="nav-count">${geoBase.length}</span>`;
-    allEl.onclick = () => { activeGeo = 'all'; render(); };
-    el.appendChild(allEl);
+    const allGeoEl = document.createElement('button');
+    allGeoEl.className = 'nav-item' + (activeGeo === 'all' ? ' active' : '');
+    allGeoEl.setAttribute('aria-pressed', activeGeo === 'all' ? 'true' : 'false');
+    allGeoEl.setAttribute('aria-label', `All Geographies, ${geoBase.length} entries`);
+    allGeoEl.innerHTML = `<span class="nav-label">All Geographies</span><span class="nav-count">${geoBase.length}</span>`;
+    allGeoEl.onclick = () => { activeGeo = 'all'; render(); };
+    el.appendChild(allGeoEl);
     Object.entries(GEOGRAPHY_META).forEach(([key, gm]) => {
       const n = geoBase.filter(r => (r.geography || 'us') === key).length;
       if (!n) return;
       const isActive = activeGeo === key;
       const hex = resolve(gm.color);
-      const d = document.createElement('div');
+      const d = document.createElement('button');
       d.className = 'nav-item' + (isActive ? ' active' : '');
+      d.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+      d.setAttribute('aria-label', `${gm.label}, ${n} entries`);
       if (isActive) { d.style.borderLeftColor = hex; d.style.color = hex; }
       d.innerHTML = `
-        <span class="nav-dot" style="background:${hex}"></span>
         <span class="nav-label">${gm.label}</span>
         <span class="nav-count">${n}</span>`;
       d.onclick = () => { activeGeo = key; render(); };
@@ -4228,13 +4270,13 @@ const POL_TO_RESEARCH_CATS = {
         </div>
         <div style="display:flex;align-items:baseline;gap:8px;margin-bottom:6px">
           ${titleEl.replace('class="card-title"', 'class="card-title" style="margin-bottom:0"')}
-          <span class="status-badge" style="flex-shrink:0;margin-left:auto"><span class="sdot" style="background:${sm.dot}"></span>${sm.label}</span>
+          <span class="status-badge" style="flex-shrink:0;margin-left:auto">${sm.label}</span>
         </div>
         <div class="card-finding">${entry.keyFinding}</div>
         ${polLinkHTML}
         <div class="card-footer">
           <div class="card-source">
-            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
               <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
             </svg>
             <div class="source-details">
@@ -4243,9 +4285,9 @@ const POL_TO_RESEARCH_CATS = {
               ${instDesc}
             </div>
           </div>
-          <button class="expand-btn">
+          <button class="expand-btn" aria-expanded="false" aria-label="Show all takeaways">
             All takeaways
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
               <polyline points="6 9 12 15 18 9"/>
             </svg>
           </button>
@@ -4260,7 +4302,9 @@ const POL_TO_RESEARCH_CATS = {
 
     card.querySelector('.expand-btn').addEventListener('click', e => {
       e.stopPropagation();
-      card.classList.toggle('expanded');
+      const expanded = card.classList.toggle('expanded');
+      e.currentTarget.setAttribute('aria-expanded', expanded ? 'true' : 'false');
+      e.currentTarget.setAttribute('aria-label', expanded ? 'Hide takeaways' : 'Show all takeaways');
     });
     card.querySelectorAll('.paper-theme-badge').forEach(badge => {
       badge.addEventListener('click', e => {
@@ -4398,6 +4442,12 @@ const POL_TO_RESEARCH_CATS = {
       card.querySelector(`[data-section="${section}"]`)?.classList.add('is-collapsed');
     });
 
+    // ── Set initial aria-expanded on all section toggles ──
+    card.querySelectorAll('.theme-section-toggle').forEach(toggle => {
+      const collapsed = toggle.classList.contains('is-collapsed');
+      toggle.setAttribute('aria-expanded', collapsed ? 'false' : 'true');
+    });
+
     // ── Internal section collapse toggles ──
     card.querySelectorAll('.theme-section-toggle').forEach(toggle => {
       const handler = () => {
@@ -4406,6 +4456,7 @@ const POL_TO_RESEARCH_CATS = {
         if (!content) return;
         const collapsed = content.classList.toggle('is-collapsed');
         toggle.classList.toggle('is-collapsed', collapsed);
+        toggle.setAttribute('aria-expanded', collapsed ? 'false' : 'true');
       };
       toggle.addEventListener('click', handler);
       toggle.addEventListener('keydown', e => {
@@ -4436,10 +4487,7 @@ const POL_TO_RESEARCH_CATS = {
       pill.className = 'theme-jump-pill' + (isActive ? ' active' : '');
       pill.style.setProperty('--pill-color', theme.color);
       pill.setAttribute('aria-label', theme.tag);
-      const dot = document.createElement('span');
-      dot.className = 'pill-dot';
       const label = document.createTextNode(theme.tag || theme.id);
-      pill.appendChild(dot);
       pill.appendChild(label);
       pill.addEventListener('click', () => {
         activeThemeId = theme.id;
@@ -4586,7 +4634,7 @@ const POL_TO_RESEARCH_CATS = {
             const chips = papers.map(r => {
               const href = r.sourceUrl ? ` href="${r.sourceUrl}" target="_blank" rel="noopener"` : '';
               const label = r.title.length > 50 ? r.title.slice(0, 50) + '…' : r.title;
-              return `<a class="pol-basis-chip"${href} onclick="event.stopPropagation()"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>${label}</a>`;
+              return `<a class="pol-basis-chip"${href} onclick="event.stopPropagation()"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>${label}</a>`;
             }).join('');
             return `<div class="pol-basis"><div class="pol-basis-label">Research Basis</div><div class="pol-basis-chips">${chips}</div></div>`;
           })() : '';
@@ -4630,6 +4678,7 @@ const POL_TO_RESEARCH_CATS = {
   function openPolModal(p, lvl, catLabel, basisHTML) {
     const backdrop = document.getElementById('polModal');
     const modal    = backdrop.querySelector('.pol-modal');
+    backdrop._lastFocus = document.activeElement;
     modal.style.setProperty('--pol-level-color', lvl.color || '#6B7280');
     document.getElementById('polModalTitle').textContent   = p.title;
     document.getElementById('polModalLevel').textContent   = lvl.label || p.level;
@@ -4661,6 +4710,7 @@ const POL_TO_RESEARCH_CATS = {
       ${researchSection}`;
     backdrop.classList.add('open');
     document.body.style.overflow = 'hidden';
+    requestAnimationFrame(() => { const cb = document.getElementById('polModalClose'); if (cb) cb.focus(); });
   }
 
   // Close policy modal
@@ -4672,6 +4722,7 @@ const POL_TO_RESEARCH_CATS = {
     function closePolModal() {
       backdrop.classList.remove('open');
       document.body.style.overflow = '';
+      if (backdrop._lastFocus) { backdrop._lastFocus.focus(); backdrop._lastFocus = null; }
     }
   })();
 
@@ -4895,6 +4946,7 @@ const POL_TO_RESEARCH_CATS = {
     const closeBtn= document.getElementById('sourcesModalClose');
 
     function openModal() {
+      modal._lastFocus = document.activeElement;
       if (!body.hasChildNodes()) {
         const intro = document.createElement('p');
         intro.className = 'modal-sources-intro';
@@ -4919,8 +4971,12 @@ const POL_TO_RESEARCH_CATS = {
         });
       }
       modal.classList.add('open');
+      requestAnimationFrame(() => { closeBtn.focus(); });
     }
-    function closeModal() { modal.classList.remove('open'); }
+    function closeModal() {
+      modal.classList.remove('open');
+      if (modal._lastFocus) { modal._lastFocus.focus(); modal._lastFocus = null; }
+    }
 
     openBtn.addEventListener('click', openModal);
     closeBtn.addEventListener('click', closeModal);
@@ -4933,8 +4989,15 @@ const POL_TO_RESEARCH_CATS = {
     const modal    = document.getElementById('aboutModal');
     const openBtn  = document.getElementById('aboutInfoBtn');
     const closeBtn = document.getElementById('aboutModalClose');
-    function openModal()  { modal.classList.add('open'); }
-    function closeModal() { modal.classList.remove('open'); }
+    function openModal()  {
+      modal._lastFocus = document.activeElement;
+      modal.classList.add('open');
+      requestAnimationFrame(() => { closeBtn.focus(); });
+    }
+    function closeModal() {
+      modal.classList.remove('open');
+      if (modal._lastFocus) { modal._lastFocus.focus(); modal._lastFocus = null; }
+    }
     openBtn.addEventListener('click', openModal);
     closeBtn.addEventListener('click', closeModal);
     modal.addEventListener('click', e => { if (e.target === modal) closeModal(); });
