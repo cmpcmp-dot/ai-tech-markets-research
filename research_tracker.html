@@ -441,7 +441,7 @@
   .status-badge {
     font-size: 11px; font-weight: 500; letter-spacing: 0.03em;
     display: inline-flex; align-items: center; gap: 4px;
-    padding: 2px 7px; border-radius: 20px;
+    padding: 3px 8px; border-radius: 5px;
     border: 1px solid var(--border);
     color: var(--muted); background: var(--surface);
   }
@@ -457,6 +457,12 @@
     background: rgba(44,50,84,0.08); color: var(--accent); border: 1px solid rgba(44,50,84,0.18);
   }
   .date-badge { font-size: 12px; color: var(--muted); margin-left: auto; white-space: nowrap; opacity: 0.85; }
+  .evidence-badge {
+    font-size: 11px; font-weight: 700; letter-spacing: 0.06em;
+    text-transform: uppercase; border-radius: 5px; padding: 3px 8px; white-space: nowrap;
+    border: 1px solid currentColor; opacity: 0.95;
+    font-family: 'Haas Grotesk', 'Helvetica Neue', Arial, sans-serif;
+  }
 
   .card-title { font-size: 16px; font-weight: 800; line-height: 1.35; margin-bottom: 6px; color: var(--text); text-decoration: none; display: block; font-family: 'Haas Grotesk', Georgia, serif; }
   a.card-title:hover { text-decoration: underline; text-underline-offset: 3px; text-decoration-color: var(--card-accent, var(--muted)); }
@@ -1573,6 +1579,36 @@ const GEOGRAPHY_META = {
   us:   { label: "United States",  short: "US",   color: "var(--g-us)"   },
   intl: { label: "International", short: "Intl", color: "var(--g-intl)" },
 };
+
+const EVIDENCE_META = {
+  'peer-reviewed': { label: 'Peer-Reviewed', color: '#2C3254', bg: 'rgba(44,50,84,0.07)',    desc: 'Published in a peer-reviewed academic journal or conference proceedings.'        },
+  'working-paper': { label: 'Working Paper', color: '#472B51', bg: 'rgba(71,43,81,0.07)',    desc: 'Pre-print or working paper (arXiv, NBER) — not yet formally peer-reviewed.'      },
+  'official':      { label: 'Official',      color: '#2A6B4A', bg: 'rgba(42,107,74,0.09)',   desc: 'Published by a government agency, legislative body, or international organization.' },
+  'analysis':      { label: 'Analysis',      color: '#3C4164', bg: 'rgba(60,65,100,0.07)',   desc: 'Research or policy analysis from think tanks, advocacy orgs, or civil society.'   },
+  'industry':      { label: 'Industry',      color: '#9B6B2A', bg: 'rgba(155,107,42,0.09)',  desc: 'Reports from consulting firms, investment banks, or AI labs.'                      },
+  'commentary':    { label: 'Commentary',    color: '#7A8699', bg: 'rgba(122,134,153,0.11)', desc: 'Journalism, independent writers, and opinion-based analysis.'                      },
+};
+
+function getEvidenceType(entry) {
+  if (entry.evidence) return entry.evidence;
+  const url = (entry.sourceUrl || '').toLowerCase();
+  if (url.includes('arxiv.org') || url.includes('nber.org/')) return 'working-paper';
+  const src = entry.source || '';
+  if (src.toLowerCase().includes('working paper')) return 'working-paper';
+  const inst = src.split(' — ').pop().trim();
+  const meta = INST_META[inst] || {};
+  const type = (meta.type || '').toLowerCase();
+  if (type.includes('academic journal') || type.includes('academic conference') || type.includes('academic publisher')) return 'peer-reviewed';
+  if (type.includes('economic research network') || type.includes('preprint')) return 'working-paper';
+  if (type.includes('federal') || type.includes('government') || type.includes('state agency') ||
+      type.includes('state legislative') || type.includes('international organization') ||
+      type.includes('international body') || type.includes('federal legislative') ||
+      type.includes('legislative body')) return 'official';
+  if (type.includes('consulting') || type.includes('investment bank') || type.includes('ai lab')) return 'industry';
+  if (type.includes('independent commentary') || type.includes('policy commentary') ||
+      type.includes('investigative journalism')) return 'commentary';
+  return 'analysis';
+}
 
 const PRIORITY_SOURCE_GROUPS = {
   "AI Industry": [
@@ -3910,9 +3946,10 @@ const POL_TO_RESEARCH_CATS = {
 
   // ── state ────────────────────────────────────────────────────
   let activeView    = 'cards';
-  let activeCat     = 'all';
-  let activeStatus  = 'all';
-  let activeGeo     = 'all';
+  let activeCat      = 'all';
+  let activeStatus   = 'all';
+  let activeGeo      = 'all';
+  let activeEvidence = 'all';
   let searchQuery   = '';
   let sortOrder     = 'desc';   // 'desc' | 'asc' | 'status'
   let activeThemeId = THEMES[0].id;
@@ -3945,11 +3982,12 @@ const POL_TO_RESEARCH_CATS = {
       { year: 'numeric', month: 'short', day: 'numeric' });
   }
   // ── filter + sort ────────────────────────────────────────────
-  function filteredBase({ excludeCat = false, excludeStatus = false, excludeGeo = false } = {}) {
+  function filteredBase({ excludeCat = false, excludeStatus = false, excludeGeo = false, excludeEvidence = false } = {}) {
     let data = RESEARCH_DATA.map(r => ({ ...r, _status: calcStatus(r) }));
-    if (!excludeCat    && activeCat    !== 'all') data = data.filter(r => r.category === activeCat);
-    if (!excludeStatus && activeStatus !== 'all') data = data.filter(r => r._status  === activeStatus);
-    if (!excludeGeo    && activeGeo    !== 'all') data = data.filter(r => (r.geography || 'us') === activeGeo);
+    if (!excludeCat      && activeCat      !== 'all') data = data.filter(r => r.category === activeCat);
+    if (!excludeStatus   && activeStatus   !== 'all') data = data.filter(r => r._status  === activeStatus);
+    if (!excludeGeo      && activeGeo      !== 'all') data = data.filter(r => (r.geography || 'us') === activeGeo);
+    if (!excludeEvidence && activeEvidence !== 'all') data = data.filter(r => getEvidenceType(r) === activeEvidence);
     if (searchQuery.trim()) {
       const q = searchQuery.toLowerCase();
       data = data.filter(r =>
@@ -4053,14 +4091,33 @@ const POL_TO_RESEARCH_CATS = {
       bar.appendChild(mkPill(gm.label, resolve(gm.color), activeGeo === key, () => { activeGeo = key; render(); }));
     });
 
+    // Separator
+    const sep3 = document.createElement('div');
+    sep3.className = 'if-sep';
+    bar.appendChild(sep3);
+
+    // Evidence tier pills
+    const evLabel = document.createElement('span');
+    evLabel.className = 'pol-filter-label';
+    evLabel.textContent = 'Methodology:';
+    bar.appendChild(evLabel);
+
+    const evBase = filteredBase({ excludeEvidence: true });
+    bar.appendChild(mkPill('All', 'var(--muted)', activeEvidence === 'all', () => { activeEvidence = 'all'; render(); }));
+    Object.entries(EVIDENCE_META).forEach(([key, em]) => {
+      const n = evBase.filter(r => getEvidenceType(r) === key).length;
+      if (!n) return;
+      bar.appendChild(mkPill(`${em.label} (${n})`, resolve('var(--accent)'), activeEvidence === key, () => { activeEvidence = key; render(); }));
+    });
+
     // Clear all
-    const hasFilters = activeStatus !== 'all' || activeGeo !== 'all' || activeCat !== 'all' || searchQuery.trim();
+    const hasFilters = activeStatus !== 'all' || activeGeo !== 'all' || activeCat !== 'all' || activeEvidence !== 'all' || searchQuery.trim();
     if (hasFilters) {
       const sep2 = document.createElement('div');
       sep2.className = 'if-sep';
       bar.appendChild(sep2);
       const clearBtn = mkPill('Clear all', '#FF8361', false, () => {
-        activeStatus = 'all'; activeGeo = 'all'; activeCat = 'all'; searchQuery = '';
+        activeStatus = 'all'; activeGeo = 'all'; activeCat = 'all'; activeEvidence = 'all'; searchQuery = '';
         const s = document.getElementById('searchInput'); if (s) s.value = '';
         render();
       });
@@ -4166,6 +4223,7 @@ const POL_TO_RESEARCH_CATS = {
       <div class="card-body">
         <div class="card-meta">
           <span class="cat-chip" style="background:${color}1e;color:${color}">${cat.label}</span>
+          ${(function(){ const ev = getEvidenceType(entry); const em = EVIDENCE_META[ev]; return `<span class="evidence-badge" style="background:${color}1e;color:${color}">${em.label}</span>`; })()}
           <span class="date-badge" style="margin-left:auto">${fmtDate(entry.date)}</span>
         </div>
         <div style="display:flex;align-items:baseline;gap:8px;margin-bottom:6px">
@@ -4722,12 +4780,12 @@ const POL_TO_RESEARCH_CATS = {
         ? `${visible.length} entries`
         : `${visible.length} of ${RESEARCH_DATA.length}`;
 
-    const hasFilters = activeCat !== 'all' || activeStatus !== 'all' || activeGeo !== 'all' || searchQuery.trim();
+    const hasFilters = activeCat !== 'all' || activeStatus !== 'all' || activeGeo !== 'all' || activeEvidence !== 'all' || searchQuery.trim();
     empty.classList.toggle('visible', visible.length === 0);
     const clearBtn = document.getElementById('emptyStateClear');
     clearBtn.style.display = visible.length === 0 && hasFilters ? 'inline-block' : 'none';
     clearBtn.onclick = () => {
-      activeCat = 'all'; activeStatus = 'all'; activeGeo = 'all';
+      activeCat = 'all'; activeStatus = 'all'; activeGeo = 'all'; activeEvidence = 'all';
       searchQuery = ''; document.getElementById('searchInput').value = '';
       render();
     };
