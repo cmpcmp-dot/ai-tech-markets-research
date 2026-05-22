@@ -1411,7 +1411,7 @@ const THEMES = [
       color: "#C0392B",
       summary: "<p>AI-driven wage divergence is accelerating faster than policy or institutions can respond. The risk is not theoretical displacement but compounding inequality — workers without AI skills fall further behind while productivity gains concentrate among those already above the median, and the gap widens annually.</p><p>Institutions that treat this as a future risk rather than a present one will fall behind the intervention window. The research suggests the divergence is already underway and is being measured in salary premiums and task-exposure data, not in projections.</p>"
     },
-    papers: [1, 2, 46, 60, 61, 15, 16, 30, 33, 34, 36, 37, 41, 59, 62, 63, 75, 97, 105, 109, 137, 138, 139, 140, 141, 142, 136, 152, 154],
+    papers: [1, 2, 46, 60, 61, 15, 16, 30, 33, 34, 36, 37, 41, 59, 62, 63, 75, 97, 105, 109, 137, 138, 139, 140, 141, 142, 136, 152, 154, 177, 179, 184, 190, 200, 206],
   },
   {
     id: "equity",
@@ -1428,7 +1428,7 @@ const THEMES = [
       color: "#C0392B",
       summary: "<p>Algorithmic bias in hiring, credit, healthcare, and housing is structural and self-reinforcing. Without upstream intervention at procurement and deployment stages, AI rollout at scale will deepen racial, gender, and class disparities faster than legal or advocacy mechanisms can address them. Healthcare is a particularly underregulated frontier: no federal standard requires commercial health algorithms to be audited for racial disparity before deployment, and the tools are embedded in clinical infrastructure used by millions of patients.</p><p>The adoption gap compounds the risk: if lower-income and marginalized workers adopt AI tools at lower rates and with less sophistication, the economic divergence documented in displacement research will be layered on top of pre-existing inequalities, producing outcomes that are harder to reverse over time.</p>"
     },
-    papers: [94, 95, 8, 9, 89, 117, 120, 121, 124, 10, 49, 66, 98, 108, 125, 126, 129, 130, 131, 132, 133, 134, 135, 170, 171, 172, 174, 175],
+    papers: [94, 95, 8, 9, 89, 117, 120, 121, 124, 10, 49, 66, 98, 108, 125, 126, 129, 130, 131, 132, 133, 134, 135, 170, 171, 172, 174, 175, 204, 205, 206],
   },
   {
     id: "criminal-justice",
@@ -1462,7 +1462,7 @@ const THEMES = [
       color: "#D4952A",
       summary: "<p>Legal frameworks governing AI in the workplace lag deployment by years. Workers in algorithmic management environments face measurable harm — elevated injury rates, turnover, and surveillance — with limited legal recourse, and the organizing infrastructure needed to negotiate AI contract terms is underdeveloped outside a handful of industries.</p><p>The risk intensifies in sectors without union density or advocacy infrastructure. Where workers lack the collective capacity to negotiate AI terms, employer discretion over deployment conditions is nearly unchecked — and the harms documented in warehouse and logistics contexts will replicate across industries as algorithmic management tools become cheaper and more accessible.</p>"
     },
-    papers: [3, 4, 7, 110, 76, 26, 47, 53, 64, 102, 104, 107, 150, 151, 153, 158, 167],
+    papers: [3, 4, 7, 110, 76, 26, 47, 53, 64, 102, 104, 107, 150, 151, 153, 158, 167, 180, 187, 189, 202],
   },
   {
     id: "policy",
@@ -1479,7 +1479,7 @@ const THEMES = [
       color: "#D4952A",
       summary: "<p>Regulatory fragmentation creates conditions where harmful AI deployments can proceed without oversight or accountability. The core risk is the gap between policy intent and enforcement capacity: laws are passing, but the infrastructure to act on them is largely absent, and this gap is widening faster than state agencies can close it.</p><p>There is also a capture risk: well-resourced AI developers are actively shaping the policy environment in ways that can appear aligned with equity goals while protecting market concentration. Institutions that do not maintain independent policy analysis capacity risk lending legitimacy to frameworks that do not serve their constituencies.</p><p>An underappreciated emerging risk: when government deploys AI in its own decision-making — drafting regulations, reviewing contracts, processing claims — the accountability mechanisms designed for private AI deployment do not automatically apply. Federal procurement and rulemaking processes are not yet equipped to assess or constrain the AI tools being introduced into them.</p>"
     },
-    papers: [77, 80, 82, 86, 101, 70, 113, 115, 122, 123, 124, 18, 28, 32, 38, 39, 40, 44, 45, 50, 52, 55, 56, 58, 67, 68, 71, 72, 78, 79, 83, 87, 88, 96, 99, 100, 111, 112, 143, 144, 145, 147, 148, 149, 146, 157, 159, 160, 161, 162, 164, 168, 169, 173, 176],
+    papers: [77, 80, 82, 86, 101, 70, 113, 115, 122, 123, 124, 18, 28, 32, 38, 39, 40, 44, 45, 50, 52, 55, 56, 58, 67, 68, 71, 72, 78, 79, 83, 87, 88, 96, 99, 100, 111, 112, 143, 144, 145, 147, 148, 149, 146, 157, 159, 160, 161, 162, 164, 168, 169, 173, 176, 181, 196, 197, 198, 199, 186, 200, 201, 202, 203, 204],
   },
   {
     id: "community",
@@ -1513,7 +1513,7 @@ const THEMES = [
       color: "#D4952A",
       summary: "<p>The risk is not that reskilling programs fail at the margins — it's that they fail predictably and at scale while being treated as sufficient responses to structural displacement. Resources directed toward training without wraparound support produce credentials without mobility, and may displace more effective systemic interventions by appearing to address the problem.</p><p>The AI usage gap adds a compounding risk: generic literacy programs that do not build toward collaborative, iterative AI use may actually widen skill gaps among participants. Institutions investing in workforce programming without evaluating usage quality — not just access — risk funding programs that accelerate the divergence they are designed to close.</p>"
     },
-    papers: [17, 84, 85, 29, 74, 25, 35, 90, 103, 143, 147],
+    papers: [17, 84, 85, 29, 74, 25, 35, 90, 103, 143, 147, 195, 201, 203],
   },
   {
     id: "experience",
@@ -1679,6 +1679,16 @@ const INST_META = {
   "Jacobin":                                          { url: "https://jacobin.com",                                          type: "Policy commentary",          note: "Socialist magazine; political economy of technology and labor" },
   // ── International Government ──────────────────────────────────
   "Singapore Parliament":                             { url: "https://www.parliament.gov.sg",                                type: "International government",   note: "Singapore legislative body; Platform Workers Act 2024 gig worker protections" },
+  // ── Civil Rights Advocacy ─────────────────────────────────────
+  "National Partnership for Women & Families":        { url: "https://nationalpartnership.org",                              type: "Civil rights advocacy",      note: "Progressive advocacy for women and families; AI displacement and equity research" },
+  // ── Law Firm Analysis ─────────────────────────────────────────
+  "Felhaber Larson":                                  { url: "https://www.felhaber.com",                                     type: "Law firm analysis",          note: "Employment law firm; AI labor relations and legislative risk analysis" },
+  "DarrowEverett LLP":                                { url: "https://darroweverett.com",                                    type: "Law firm analysis",          note: "Multi-practice law firm; AI hiring compliance and workforce management legal analysis" },
+  // ── Business School Research ─────────────────────────────────
+  "Wharton AI & Analytics Initiative":                { url: "https://ai.wharton.upenn.edu",                                 type: "University research",        note: "University of Pennsylvania Wharton School; AI strategy, workforce, and human-technology interaction research" },
+  // ── Federal Agencies (AI & Consumer Protection) ───────────────
+  "Executive Office of the President":                { url: "https://www.whitehouse.gov",                                   type: "Federal government",         note: "White House executive policy; official U.S. government AI legislative frameworks" },
+  "Federal Trade Commission":                         { url: "https://www.ftc.gov",                                          type: "Federal agency",             note: "Federal consumer protection and competition enforcement; generative AI and creative economy oversight" },
 };
 const INST_URLS = Object.fromEntries(Object.entries(INST_META).map(([k,v]) => [k, v.url]));
 
@@ -1727,6 +1737,7 @@ const PRIORITY_SOURCE_GROUPS = {
     "Cornell ILR School", "New England Journal of Medicine", "Council on Foreign Relations",
     "Science", "Nature Communications", "NYU Law Review", "Philosophy & Technology", "ACM FAccT", "arXiv",
     "Stanford Legal Design Lab", "Ohio State University Moritz College of Law",
+    "Wharton AI & Analytics Initiative",
   ],
   "Critical Technology Research": [
     "AI Now Institute", "Data & Society",
@@ -1752,6 +1763,7 @@ const PRIORITY_SOURCE_GROUPS = {
     "U.S. Equal Employment Opportunity Commission", "U.S. Senate Permanent Subcommittee on Investigations",
     "U.S. Department of Housing and Urban Development", "Federal Housing Finance Agency",
     "National Institute of Standards and Technology", "U.S. Senate",
+    "Executive Office of the President", "Federal Trade Commission",
   ],
   "State Government": [
     "New Jersey Department of Labor", "New Jersey Legislature",
@@ -1761,6 +1773,7 @@ const PRIORITY_SOURCE_GROUPS = {
     "Electronic Frontier Foundation", "The Leadership Conference on Civil and Human Rights",
     "TechEquity Collaborative", "Innocence Project",
     "Center for Democracy and Technology", "American Bar Association CRSJ",
+    "National Partnership for Women & Families",
   ],
   "Policy & Think Tanks": [
     "Economic Policy Institute", "Center for American Progress",
@@ -1777,6 +1790,7 @@ const PRIORITY_SOURCE_GROUPS = {
   "Commentary & Analysis": [
     "Anton Leicht", "AI Futures Project", "Harvard Business Review",
     "Skadden, Arps, Slate, Meagher & Flom LLP", "Jacobin",
+    "Felhaber Larson", "DarrowEverett LLP",
   ],
   "International Development": [
     "Anticipation Hub",
@@ -1790,6 +1804,20 @@ const PRIORITY_SOURCE_GROUPS = {
 };
 
 const RESEARCH_DATA = [
+  { id: 204, date: "2026-05-12",
+    title: "Patchwork AI Hiring Laws Create Rising Compliance Risks for Employers",
+    source: "Andrew J. Adams — DarrowEverett LLP",
+    sourceUrl: "https://darroweverett.com/ai-hiring-workforce-management-2026-legal-analysis-updates/",
+    category: "hiring", geography: "us",
+    evidence: "analysis",
+    keyFinding: "The absence of federal AI employment legislation has produced a fragmented, rapidly expanding patchwork of state and local regulations — Illinois HB 3773 (effective January 2026, private right of action), Colorado AI Act (algorithmic impact assessments, stayed pending litigation), NYC Local Law 144 (mandatory third-party bias audits since July 2023) — creating escalating compliance risk for multi-state employers, with Mobley v. Workday testing whether AI vendors can be held directly liable for discriminatory outputs.",
+    takeaways: [
+      "The compliance fragmentation is the structural problem: three leading jurisdictions have three different frameworks — Illinois requires candidate notice and creates a private right of action; Colorado mandates annual algorithmic impact assessments and AG notification (stayed by constitutional litigation brought by xAI); NYC mandates pre-deployment third-party bias audits with public results and ten-day candidate notice — meaning multi-state employers must simultaneously satisfy incompatible requirements with no federal floor.",
+      "Mobley v. Workday is the most consequential pending litigation: it tests whether AI vendors can be held directly liable for discriminatory hiring outputs, a ruling that would fundamentally restructure employer-vendor risk allocation and potentially expose software companies to civil rights liability they currently disclaim through contract terms.",
+      "AI-generated hiring reports may trigger Fair Credit Reporting Act obligations — a federal hook creating liability under existing law without waiting for new AI-specific legislation, and that most employers deploying algorithmic screening tools have not yet analyzed.",
+      "Minimum compliance posture requires: inventorying all algorithmic tools across the full hiring lifecycle; conducting bias audits meeting the most stringent applicable state standard; implementing notice and consent protocols; negotiating vendor contracts with robust indemnification provisions; and establishing cross-functional AI governance committees — because the legal exposure is present now, not contingent on future regulation."
+    ]
+  },
   { id: 158, date: "2026-05-07",
     title: "How Platform Labor Laws Are Shaping Gig Work in Singapore and Malaysia",
     source: "Lam Le — Tech Policy Press",
@@ -1874,6 +1902,118 @@ const RESEARCH_DATA = [
       "The governance architecture argument is the deepest: the problem is not data centers but the absence of democratic mechanisms to set conditions on how AI infrastructure is built and who benefits. Public wealth funds capturing a share of AI productivity gains and comprehensive labor displacement protections would extend democratic governance to AI's full economic impact, not only its environmental footprint."
     ]
   },
+  { id: 206, date: "2026-04-28",
+    title: "New Analysis: More Than 30 Percent of Workers in the Most AI-Vulnerable Jobs Are Women of Color",
+    source: "National Partnership for Women & Families",
+    sourceUrl: "https://nationalpartnership.org/news_post/new-analysis-more-than-30-percent-of-workers-in-the-most-ai-vulnerable-jobs-are-women-of-color/",
+    category: "equity", geography: "us",
+    evidence: "analysis",
+    keyFinding: "Women of color constitute more than 30% of workers in the most AI-exposed occupations, and women overall represent 83% of workers across the 15 most AI-vulnerable jobs — with white women, Latinas, and American Indian/Alaska Native women holding shares in AI-vulnerable roles nearly double their overall workforce representation, and Black and multiracial women overrepresented by more than 1.5 times — compounding in-workplace AI harms including algorithmic bias, surveillance, and pay-and-scheduling automation that fall disproportionately on the same populations.",
+    takeaways: [
+      "The overrepresentation is compounding, not uniform: women of color are concentrated in high-risk roles at rates 1.5–2x their share of the overall workforce — meaning the intersection of gender and race produces disproportionate AI displacement vulnerability that neither a race-neutral gender analysis nor a gender-neutral race analysis would fully capture.",
+      "Women represent 83% of workers in the 15 most AI-vulnerable occupations — a concentration so extreme that displacement policy designed around gender-neutral averages will systematically underserve the populations at greatest risk and misallocate protective resources toward workers facing lower actual exposure.",
+      "Beyond displacement risk, the analysis documents overlapping in-workplace AI harms disproportionately affecting women workers: algorithmic bias in hiring and performance management, AI-enabled harassment and surveillance, privacy violations through workplace monitoring tools, and lack of transparency in automated pay and scheduling decisions — establishing that women workers face AI risk across multiple dimensions simultaneously, not only through job loss.",
+      "The policy conclusion is that AI governance is a racial and gender equity issue requiring representation-conscious design, not merely a techno-economic one: regulatory frameworks applying neutral standards without accounting for documented overrepresentation will produce disparate outcomes even if technically non-discriminatory."
+    ]
+  },
+  { id: 202, date: "2026-04-08",
+    title: "The Looming Legislative and Labor Push Against Artificial Intelligence",
+    source: "Paul J. Zech — Felhaber Larson",
+    sourceUrl: "https://www.felhaber.com/the-looming-legislative-and-labor-push-against-artificial-intelligence/",
+    category: "workers", geography: "us",
+    evidence: "analysis",
+    keyFinding: "AI's rapid workplace expansion is generating significant and underappreciated legal and labor relations risk for employers: unions are securing enforceable AI restrictions through collective bargaining (ILA prohibitions on automated technologies, Las Vegas culinary mandatory-bargaining requirements), state legislatures are advancing private-right-of-action AI employment frameworks (Minnesota SF 4689, $2,500/day damages), and employers face potential NLRA unfair labor practice exposure for AI deployment without union consultation even before NLRB threshold guidance is settled.",
+    takeaways: [
+      "Union contract precedents are establishing enforceable AI limits now, before legislation: ILA agreements prohibit certain automated technologies outright; Las Vegas culinary union agreements require mandatory bargaining before introducing AI tools — creating replicable contractual frameworks that other unions can demand and that impose practical constraints ahead of any statutory requirement.",
+      "Minnesota Senate File 4689 represents the direction of travel in state AI employment legislation: requiring advance employee notice, consent, recordkeeping, disclosure of AI involvement in adverse employment decisions, appeal rights, and a private right of action with damages up to $2,500 per violation per day — a framework that would create significant employer liability for non-compliant deployment.",
+      "NLRA bargaining obligations for AI deployment are legally uncertain at the threshold level but already clear downstream: even without NLRB guidance on whether AI adoption itself requires bargaining, the downstream effects on terms and conditions of employment clearly do — meaning employers who deploy AI without union consultation face unfair labor practice exposure regardless of how the threshold question resolves.",
+      "Practical risk management requires acting now: employers should inventory AI tools across the full employment lifecycle, develop proactive union engagement strategies before bargaining demands arrive, monitor state legislative calendars, and document good-faith compliance efforts — because the legal uncertainty is more likely to resolve toward greater obligation than less."
+    ]
+  },
+  { id: 196, date: "2026-04-06",
+    title: "Advancing Responsible AI Adoption and Use in the Public Sector: Three Policy Priorities for State Legislation",
+    source: "Center for Democracy and Technology",
+    sourceUrl: "https://cdt.org/insights/advancing-responsible-ai-adoption-and-use-in-the-public-sector-three-policy-priorities-for-state-legislation/",
+    category: "policy", geography: "us",
+    evidence: "analysis",
+    keyFinding: "State legislatures should prioritize three structural pillars for responsible public-sector AI adoption: a designated chief AI officer with government-wide acceptable-use authority; public AI inventories and disclosure requirements for AI-influenced decisions; and employee training, third-party audits, and procurement safeguards — with Texas SB 1964 and Montana HB 178 cited as leading legislative models.",
+    takeaways: [
+      "States should designate a chief AI officer or equivalent leader to manage acceptable-use policies and govern AI tools government-wide — a structural accountability role that most state governments currently lack.",
+      "Public AI inventories documenting how AI is used, tested, and governed across agencies should be required and regularly updated — creating the transparency baseline that civil rights review, auditing, and oversight all depend on.",
+      "Notice and disclosure requirements for public-facing AI tools must include explanations of how outcomes were influenced by AI systems — giving affected residents the information needed to contest adverse algorithmic decisions.",
+      "Procurement safeguards and third-party audits — separate from internal agency oversight — are necessary to catch failures that self-assessment cannot reliably detect in AI systems making consequential public decisions."
+    ]
+  },
+  { id: 197, date: "2026-03-31",
+    title: "The Empty National AI Policy Framework: Who Is in Charge of Those in Charge?",
+    source: "Tom Wheeler, Bill Baer — Brookings Institution",
+    sourceUrl: "https://www.brookings.edu/articles/the-empty-national-ai-policy-framework-who-is-in-charge-of-those-in-charge/",
+    category: "policy", geography: "us",
+    evidence: "commentary",
+    keyFinding: "The Trump administration's National AI policy framework addresses symptoms rather than root causes — failing to establish accountability for those controlling AI's essential capabilities, sidestepping dangerous power concentration, and leaving the core question unanswered: whether AI rules will be written by those who wield its power or by democratic institutions answerable to the public.",
+    takeaways: [
+      "Big Tech firms made consequential AI decisions 'with little or no transparency and review' yet the framework ignores this accountability gap entirely — a structural omission that allows dominant players to set norms without democratic check.",
+      "Meaningful AI policy must address four principles: accountability (who answers for harms), access (who can use AI), agency (who controls AI decisions), and action (who enforces limits) — the framework lacks all four.",
+      "An expert federal agency with authority to set behavioral expectations for AI developers is necessary; the current framework relies on existing agencies and voluntary commitments that have already been shown to be inadequate.",
+      "The authors frame the fundamental governance question as whether AI power will be structured to serve the public or to entrench those who currently control it — a political choice that the framework avoids making."
+    ]
+  },
+  { id: 198, date: "2026-03-20",
+    title: "National Policy Framework for Artificial Intelligence: Legislative Recommendations",
+    source: "Executive Office of the President",
+    sourceUrl: "https://www.whitehouse.gov/wp-content/uploads/2026/03/03.20.26-National-Policy-Framework-for-Artificial-Intelligence-Legislative-Recommendations.pdf",
+    category: "policy", geography: "us",
+    evidence: "official",
+    keyFinding: "The Trump White House's national AI legislative framework recommends Congress act across seven areas — child protection, infrastructure, intellectual property, free speech, innovation, workforce, and federal preemption of conflicting state AI laws — favoring regulatory sandboxes and sector-specific oversight through existing agencies over new federal AI rulemaking bodies.",
+    takeaways: [
+      "The framework calls for federal preemption of state AI laws that conflict with a proposed national standard, while preserving state consumer and child-protection laws — a provision that would eliminate 40+ state AI frameworks and concentrate regulatory authority at the federal level.",
+      "Congress is urged to require AI platforms to implement safeguards against child sexual exploitation, establish age-assurance requirements, and give parents management tools — the most prescriptive and near-term legislative priority in the document.",
+      "The framework favors regulatory sandboxes and coordination through existing sector agencies over creating new federal AI oversight bodies — an institutional design choice that leaves AI governance fragmented across dozens of agencies without a coordinating accountability structure.",
+      "Workforce development recommendations include integrating AI training into education programs and expanding federal study of AI-driven workforce realignment — but contain no income support, benefit program, or displaced-worker assistance provisions."
+    ]
+  },
+  { id: 201, date: "2026-03-11",
+    title: "Lessons from Past Trade Adjustment Policies to Support Displaced Workers in the Era of Artificial Intelligence",
+    source: "Jacob Leibenluft — Washington Center for Equitable Growth",
+    sourceUrl: "https://equitablegrowth.org/research-paper/lessons-from-past-trade-adjustment-policies-to-support-displaced-workers-in-the-era-of-artificial-intelligence/",
+    category: "policy", geography: "us",
+    evidence: "analysis",
+    keyFinding: "Trade Adjustment Assistance historically failed to reach the majority of displaced workers it was designed to help — fewer than 130,000 workers per year received TAA coverage in 2004–2006 despite approximately 2 million jobs lost to China trade shocks — but workers who did participate earned roughly $50,000 more over 10 years post-retraining; future AI displacement policy must be designed around three principles: commitment (stable, guaranteed programs), speed (presumptive eligibility to prevent earnings-damaging non-employment spells), and agency (worker control over adjustment pathways).",
+    takeaways: [
+      "TAA's core failure was coverage, not design: from 1962–1969 not a single worker received approved assistance despite 26 applications; even at its best (1975–1981, 1.3 million workers covered), the program served a fraction of those displaced — meaning any AI displacement program must solve the reach problem before effectiveness questions can be meaningfully addressed.",
+      "Benjamin Hyman's rigorous Census-data analysis of TAA participants found approximately $50,000 in higher earnings over 10 years compared to non-participants — establishing that well-designed adjustment programs produce measurable long-run returns, but only for those they actually reach; program design and coverage are separable problems requiring separate solutions.",
+      "Three core design principles for AI displacement policy: Commitment (guaranteed, stable programs immune to political bargaining cycles); Speed (presumptive eligibility for immediate assistance, since extended non-employment causes lasting earnings damage); and Agency (workers need meaningful control over adjustment pathways rather than impersonal bureaucratic channeling).",
+      "Adjustment programs cannot serve as the sole policy response — they must complement pre-displacement prevention through augmentation-focused AI development, collective bargaining rights, universal safety nets, and tax policy discouraging automation; framing worker support exclusively as an adjustment problem implicitly accepts displacement as inevitable and shifts responsibility from policy choices onto the workers experiencing their consequences."
+    ]
+  },
+  { id: 205, date: "2026-03-07",
+    title: "Is AI Changing the Path to Gender Parity?",
+    source: "Sam Grayling — World Economic Forum",
+    sourceUrl: "https://www.weforum.org/stories/2026/03/ai-gender-parity-womens-history-month-jobs/",
+    category: "equity", geography: "intl",
+    evidence: "analysis",
+    keyFinding: "ILO research finds approximately 29% of jobs in female-dominated occupations are exposed to generative AI versus 16% in male-dominated occupations — with 16% of women's jobs in the highest displacement-risk category versus 3% for men — while the gender gap in AI skills has narrowed in 74 of 75 economies tracked since 2018; but women's representation in European tech roles fell from 22% to 19% in three years, and at current rates full gender parity remains 123 years away.",
+    takeaways: [
+      "The 29% vs. 16% occupational exposure gap documents structural inequality in AI displacement risk: female-dominated occupations are nearly twice as exposed as male-dominated ones, and women's concentration in the highest-risk category (16% vs. 3% for men) is a fivefold disparity that will compound into earnings and employment gaps as AI deployment accelerates.",
+      "McKinsey data shows women's representation in European tech roles fell from 22% in 2023 to 19% in 2026 despite rising AI sector activity — indicating that AI economic growth is not automatically generating proportionate gains for women, and that headline AI adoption statistics mask a gendered distribution of who captures the economic upside.",
+      "Structural access barriers compound displacement risk in low- and middle-income countries: GSMA data shows women are 7% less likely to own a phone and 19% less likely to have mobile internet access; in India only 18% of young women aged 20–29 are in paid work despite near-parity in higher education — establishing that AI governance in Global South contexts cannot separate gender equity from basic digital and economic access infrastructure.",
+      "The gender gap in AI skills narrowing in 74 of 75 economies is the most constructive finding, but skill acquisition alone cannot close the gap at adequate speed: structural interventions in labor market access, safe work environments, and AI sector hiring practices are necessary complements to reskilling investment, and the 123-year parity timeline at current rates demonstrates the inadequacy of market-only solutions."
+    ]
+  },
+  { id: 200, date: "2026-02-15",
+    title: "No Bailouts for Big Tech Billionaires: Policies for When the AI Bubble Bursts",
+    source: "Matthew U. Scherer et al. — Open Markets Institute",
+    sourceUrl: "https://www.openmarketsinstitute.org/publications/no-bailouts-for-big-tech-billionaires-policies-for-when-the-ai-bubble-bursts",
+    category: "corporate", geography: "us",
+    evidence: "analysis",
+    keyFinding: "The AI sector exhibits classic speculative bubble characteristics — eight U.S. tech companies valued at $22 trillion represent 36% of the S&P 500 (exceeding dot-com peak), five hyperscalers plan $770 billion in 2026 AI capex against only $25 billion in 2025 AI revenue, and AI infrastructure debt grew 7x year-over-year to $125 billion — while circular financing, special-purpose vehicles, and extended depreciation timelines may understate major tech company expenses by up to $176 billion over three years; policymakers should categorically refuse bailouts and redirect any public support to displaced workers.",
+    takeaways: [
+      "The scale disconnect is the core finding: $770 billion in planned 2026 AI capex against $25 billion in 2025 AI revenue — a 31:1 investment-to-revenue ratio — mirrors and exceeds the dot-com bubble's capital misallocation pattern, with combined public and private tech equity now at 354% of GDP versus 210% at the 2000 peak.",
+      "Anticipated pro-bailout arguments fail empirical scrutiny: generative AI is not militarily reliable (Army War College studies found agentic AI gives militaries a 'glass jaw' with no measurable productivity gain); AI companies lack the financial system interconnections that justified 2008 bank bailouts; and data centers serve proprietary tech interests rather than public utility functions — each of the three standard justifications for government rescue is empirically unsupported.",
+      "Suspect accounting inflates the industry's financial position: circular financing between interconnected companies, special-purpose vehicles hiding debt, and chip depreciation timelines of 5–6 years against 2–3 year actual replacement cycles may collectively understate major tech expenses by up to $176 billion over three years.",
+      "Policy recommendations: let failing AI companies proceed through bankruptcy; block 'failing firm' antitrust defenses that enable monopoly-consolidating mergers; strengthen accounting standards and require quarterly earnings disclosures for major private companies; redirect any public support to displaced workers and affected communities rather than tech executives and investors."
+    ]
+  },
   { id: 166, date: "2025-11-05",
     title: "San Francisco's 'Hack for Social Impact' Unleashes AI for Homelessness and Justice",
     source: "TokenRing — Hack for Social Impact",
@@ -1916,6 +2056,34 @@ const RESEARCH_DATA = [
       "Responsible AI design is built in from the outset — JusticeTech explicitly emphasizes accountability and 'looking under the hood,' reflecting a lesson from prior legal technology failures: responsible deployment standards are harder to retrofit after tools are in use than to build into initial design."
     ]
   },
+  { id: 203, date: "2025-05-16",
+    title: "AI Labor Displacement and the Limits of Worker Retraining",
+    source: "Julian Jacobs — Brookings Institution",
+    sourceUrl: "https://www.brookings.edu/articles/ai-labor-displacement-and-the-limits-of-worker-retraining/",
+    category: "policy", geography: "us",
+    evidence: "analysis",
+    keyFinding: "Worker retraining programs — the most commonly proposed policy response to AI displacement — have a weak historical track record: the rigorous National JTPA Study found no statistically significant employment or earnings improvement; a WIA evaluation found no positive earnings or employment impacts in 30 months post-enrollment; and three structural barriers (insufficient job availability, participation barriers facing displaced workers, unpredictable labor demand) mean retraining alone is an inadequate response requiring broader complementary policy.",
+    takeaways: [
+      "The historical evidence is not merely weak — it is actively negative: the JTPA randomized controlled trial found no statistically significant improvement in employment rates, earnings, or continuous employment; the WIA evaluation found no positive impacts in 30 months; and the 70% employment rates cited for current WIOA programs lack control groups, making causal claims impossible.",
+      "Three structural barriers compound the training design problem: (1) insufficient job availability — technological advancement may reduce skilled middle-wage openings faster than workers can retrain, with displaced workers often landing in lower-paying service positions empirically; (2) participation barriers — displaced workers disproportionately face poverty, caregiving, housing instability, and health challenges that prevent meaningful engagement; (3) demand unpredictability — it is genuinely difficult to identify which occupations will survive automation.",
+      "AI-specific limitations further complicate retraining design: existing displacement evidence is limited to early industrial robotics data and small experimental LLM deployments, meaning programs must be designed under genuine uncertainty about which skills will retain value as AI capability evolves.",
+      "Policy recommendations: avoid assuming retraining is the answer; design for multiple displacement scenarios; fund randomized experiments specifically targeting technology-displaced workers; and reconceptualize the employment-benefits relationship — potentially exploring non-employment forms of social contribution as bases for government support rather than treating paid employment as the only legitimate activity retraining should target."
+    ]
+  },
+  { id: 177, date: "2025-05-09",
+    title: "AI Is Reshaping the Workplace, but Entry-Level Hires Are Way Ahead of the Game",
+    source: "Stefano Puntoni — Wharton AI & Analytics Initiative",
+    sourceUrl: "https://ai.wharton.upenn.edu/focus-areas/human-technology-interaction/ai-is-reshaping-the-workplace-but-entry-level-hires-are-way-ahead-of-the-game/",
+    category: "labor", geography: "us",
+    evidence: "commentary",
+    keyFinding: "Entry-level employees are adopting generative AI tools more rapidly than their organizations — outpacing formal corporate rollout plans and revealing a structural gap between individual worker capability and institutional AI strategy that threatens to widen internal inequality as AI-fluent new hires pull ahead of colleagues operating without AI support.",
+    takeaways: [
+      "The adoption gap runs in an unexpected direction: newly hired employees are ahead of their organizations, not behind — creating a configuration where formal AI strategy lags the actual capabilities already operating on the ground.",
+      "This inversion has equity implications: if entry-level workers using AI informally are gaining productivity and skills that their organizations are not formally tracking or rewarding, the productivity gains may accrue to individuals without being captured in compensation or advancement.",
+      "Corporate AI strategy must reckon with a workforce that is already ahead of formal rollout plans — the governance question is whether organizations will channel that informal adoption into structured benefit-sharing or allow it to remain an unmanaged individual advantage.",
+      "The finding reinforces the broader pattern that AI adoption statistics measured at the organizational level undercount individual-level diffusion, particularly among younger workers who arrived with GenAI already in their toolkit."
+    ]
+  },
   { id: 167, date: "2025-01-01",
     title: "Platform Workers Act 2024 (Singapore)",
     source: "Singapore Parliament",
@@ -1942,6 +2110,188 @@ const RESEARCH_DATA = [
       "The convening of lenders, regulators, servicers, and technologists within a federal regulatory context establishes FHFA as an active participant in AI governance rather than a passive observer — creating leverage for embedding fair lending standards in AI tool design before commercial products are deployed at scale.",
       "The TechSprint model — structured rapid prototyping within a regulatory sandbox — builds agency technical capacity without waiting for rulemaking cycles: FHFA staff gain direct exposure to generative AI capabilities and limitations that inform the agency's ability to evaluate and supervise AI tools used by regulated entities.",
       "Lenders and servicers should anticipate AI-specific fair lending examination criteria emerging from FHFA's growing technical engagement: the institutional groundwork for supervisory expectations around generative AI in housing finance is being laid before those expectations are formalized."
+    ]
+  },
+  { id: 178, date: "2024-12-12",
+    title: "Creative Intelligence: AI and Creativity",
+    source: "Kartik Hosanagar — Wharton AI & Analytics Initiative",
+    sourceUrl: "https://ai.wharton.upenn.edu/events/creative-intelligence/",
+    category: "macro", geography: "us",
+    evidence: "commentary",
+    keyFinding: "A Wharton-hosted conversation between AI researcher Kartik Hosanagar and NYT technology reporter Cade Metz examined the societal stakes of rapid AI advancement — focusing on the mavericks driving AI at major tech companies, the dual promise and danger of the technology, and how society can shape rather than simply absorb AI's trajectory.",
+    takeaways: [
+      "Organizations face compounding pressure to understand AI's potential while managing its risks as deployment timelines accelerate faster than governance infrastructure can absorb.",
+      "The 'mavericks' framing — individuals at Google, Facebook, and OpenAI who shaped AI's direction — highlights how consequential AI decisions have been made by small groups without democratic input or accountability.",
+      "Hosanagar and Metz's exchange reflects the growing gap between AI expertise and the institutions — boards, legislatures, regulators — nominally responsible for governance but structurally underprepared to exercise it.",
+      "Public conversations anchored in both technical and journalistic perspectives are filling an information gap that formal governance processes have not yet addressed."
+    ]
+  },
+  { id: 179, date: "2024-08-20",
+    title: "AI Can't Replace You at Work. Here's Why.",
+    source: "Valery Yakubovich, Peter Cappelli, Prasanna Tambe — Wharton AI & Analytics Initiative",
+    sourceUrl: "https://ai.wharton.upenn.edu/focus-areas/human-technology-interaction/ai-cant-replace-you-at-work-heres-why/",
+    category: "labor", geography: "us",
+    evidence: "commentary",
+    keyFinding: "Generative AI currently requires intensive human oversight to function — it cannot feasibly automate even routine communication tasks without sacrificing critical contextual information, and worker replacement will occur at a substantially slower pace than most productivity and displacement forecasts assume.",
+    takeaways: [
+      "The finding challenges the dominant displacement narrative at its technical foundation: AI is not operationally close to autonomous execution of real workplace tasks, and the gap between benchmark performance and workplace deployment is larger than popular accounts suggest.",
+      "Human oversight is not a transitional phase until AI improves — it is a structural requirement for current systems, which means organizations treating 'human in the loop' as temporary are building governance frameworks on a false premise.",
+      "Routine communication tasks — a frequently cited candidate for near-term automation — cannot be fully automated without losing contextual information that determines whether the communication achieves its purpose.",
+      "The implication for organizations is that productivity gains from AI will come primarily from task augmentation and workflow acceleration, not from headcount reduction — and planning around the latter creates labor relations risks before the technology actually delivers it."
+    ]
+  },
+  { id: 180, date: "2024-07-25",
+    title: "Wharton's Inaugural AI and the Future of Work Conference: Key Findings",
+    source: "Wharton AI & Analytics Initiative",
+    sourceUrl: "https://ai.wharton.upenn.edu/thought-leadership/dozens-of-researchers-present-at-whartons-inaugural-ai-and-the-future-of-work-conference/",
+    category: "workers", geography: "us",
+    evidence: "commentary",
+    keyFinding: "Wharton's inaugural AI and Future of Work Conference surfaced a critical empirical finding: organizations implementing AI with a worker-first approach — prioritizing employee well-being over pure productivity metrics — achieved 10% higher profits and 34% higher sales per hour than productivity-first adopters, establishing well-being orientation as the higher-performing AI deployment strategy.",
+    takeaways: [
+      "The 10%/34% performance differential is the most operationally significant finding: worker-first AI deployment outperforms productivity-first deployment on the financial metrics that justify AI investment — directly challenging the assumption that employee-oriented constraints reduce returns.",
+      "Academic peer review is facing a structural challenge as AI-generated writing becomes indistinguishable from human writing — a research integrity problem that requires institutional responses, not just individual disclosure norms.",
+      "LLM deployment trends (plugins, personalized enterprise models, smaller open-source alternatives) are enabling broader research access and reducing the compute barrier — with implications for who can deploy and study AI and who remains dependent on major provider access.",
+      "Independence Blue Cross's AI-powered customer service deployment — designed to enhance agent efficiency rather than monitor performance — illustrates the worker-first model in practice: AI as a capability amplifier rather than a control mechanism."
+    ]
+  },
+  { id: 181, date: "2024-06-18",
+    title: "AI Tools Come with Risks. This Wharton Professor Is Teaching 'Accountable AI.'",
+    source: "Kevin Werbach — Wharton AI & Analytics Initiative",
+    sourceUrl: "https://ai.wharton.upenn.edu/thought-leadership/ai-tools-come-with-risks-this-wharton-professor-is-teaching-accountable-ai/",
+    category: "policy", geography: "us",
+    evidence: "commentary",
+    keyFinding: "Wharton professor Kevin Werbach argues that AI accountability requires structured organizational frameworks — not just technical safeguards — covering algorithmic bias, operational failure modes, and governance design, and is developing educational programs to build the business leadership capacity that AI accountability requires.",
+    takeaways: [
+      "Accountable AI is framed as an organizational design problem, not only a technical one: the failure modes that produce harm — bias, operational errors, insufficient oversight — are governed by decisions about how AI is deployed and governed within institutions, not just how it is built.",
+      "Business leaders lack the educational foundation to make AI governance decisions with full awareness of the risk landscape — a gap that formal accountability curricula at major business schools can begin to close.",
+      "AI accountability frameworks must address the full deployment lifecycle: from procurement and vendor selection through monitoring and incident response — not only initial design and testing.",
+      "Werbach's work signals a broader institutional shift: AI governance is moving from a technical specialty into general management education, reflecting that accountability decisions are made by people who will not write code but will deploy, configure, and oversee AI systems."
+    ]
+  },
+  { id: 182, date: "2024-06-14",
+    title: "Stefano Puntoni | Decision-Driven Analytics | Talks at Google",
+    source: "Stefano Puntoni — Wharton AI & Analytics Initiative",
+    sourceUrl: "https://ai.wharton.upenn.edu/thought-leadership/stefano-puntoni-decision-driven-analytics-talks-at-google/",
+    category: "macro", geography: "us",
+    evidence: "commentary",
+    keyFinding: "Effective data utilization requires combining human intelligence with analytical AI capabilities — organizations gain competitive advantage not from data volume or model sophistication alone but from frameworks that integrate human judgment with analytics-driven decision support.",
+    takeaways: [
+      "The 'decision-driven analytics' framing inverts the standard data-first model: rather than asking what insights the data contains, organizations should start from the decisions they need to make and design analytics to support those specific choices.",
+      "Human judgment and analytical capability are complements, not substitutes — the value of AI in decision support depends on the quality of the human decision framework it is integrated with.",
+      "Organizations that invest in developing analytical fluency across leadership (not just technical staff) can leverage AI decision tools more effectively than those that treat analytics as a specialist function.",
+      "The Google Talk format reflects the growing demand for practical AI decision-making frameworks from organizations that have access to powerful AI tools but need structured approaches to extract value from them."
+    ]
+  },
+  { id: 183, date: "2024-06-03",
+    title: "How Marketers Can Adapt to LLM-Powered Search",
+    source: "Stefano Puntoni — Wharton AI & Analytics Initiative",
+    sourceUrl: "https://ai.wharton.upenn.edu/thought-leadership/how-marketers-can-adapt-to-llm-powered-search/",
+    category: "macro", geography: "us",
+    evidence: "analysis",
+    keyFinding: "LLM-powered search fundamentally shifts consumer brand discovery: users receive direct conversational answers rather than link lists, requiring marketers to rethink visibility strategy from SEO optimization toward accurate brand representation in AI-generated responses — a shift that concentrates market power in the LLMs determining which brands are surfaced.",
+    takeaways: [
+      "LLM search operates as a 'new information pipeline' where brand visibility depends on accurate AI representation, not link placement — creating a new gatekeeping layer controlled by a small number of LLM providers.",
+      "The conversational, consultative nature of LLM interactions differs structurally from traditional web search: users receive conclusions rather than options, reducing the probability of exposure to non-dominant brands.",
+      "Marketers need to monitor and influence how their brands appear in AI-generated query responses — a governance challenge that requires engaging LLM providers directly, not just optimizing content for indexing algorithms.",
+      "The concentration of brand discovery in LLM outputs creates new competition policy questions: if a small number of AI systems determine which brands consumers encounter, the anticompetitive potential of biased or inaccurate brand representation is structurally greater than in traditional search."
+    ]
+  },
+  { id: 184, date: "2024-05-24",
+    title: "AI May Not Be a Job Killer, After All",
+    source: "Valery Yakubovich, Peter Cappelli, Prasanna Tambe — Wharton AI & Analytics Initiative",
+    sourceUrl: "https://ai.wharton.upenn.edu/focus-areas/human-technology-interaction/ai-may-not-be-a-job-killer-after-all/",
+    category: "labor", geography: "us",
+    evidence: "commentary",
+    keyFinding: "AI is expected to create more tasks for workers while making them more productive — challenging the dominant job-elimination narrative and suggesting AI's near-term effect will be task expansion rather than headcount reduction, with the caveat that value distribution between employers and workers is a policy choice, not a technological outcome.",
+    takeaways: [
+      "The task-expansion finding inverts the standard automation frame: rather than AI eliminating jobs by replacing task bundles, it may expand the set of tasks workers are expected to perform — which raises questions about workload, compensation, and who captures the resulting productivity gains.",
+      "Near-term AI productivity effects are more likely to manifest as increased output per worker than as reduced headcount — a dynamic that intensifies the political economy question of whether productivity gains are shared through wages or captured through margins.",
+      "The research contributes to the 'augmentation vs. automation' debate with a practical organizational implication: managers planning for near-term AI impact should model task composition changes, not just headcount scenarios.",
+      "Workforce dynamics may evolve alongside AI capability in ways that are more additive than subtractive — but this does not automatically translate to worker benefit without labor market conditions or policy frameworks that give workers leverage to capture a share of productivity gains."
+    ]
+  },
+  { id: 185, date: "2024-05-07",
+    title: "Meet the AI Expert Advising the White House, JPMorgan, Google and the Rest of Corporate America",
+    source: "Ethan Mollick — Wharton AI & Analytics Initiative",
+    sourceUrl: "https://ai.wharton.upenn.edu/focus-areas/future-of-work/meet-the-ai-expert-advising-the-white-house/",
+    category: "policy", geography: "us",
+    evidence: "commentary",
+    keyFinding: "Wharton professor Ethan Mollick has emerged as a leading practitioner-advocate for deliberate generative AI adoption, advising the White House and major corporations while arguing that society still retains agency to identify and call out harmful AI applications — and must actively use it before deployment norms become entrenched.",
+    takeaways: [
+      "Mollick's core policy argument is about timing: society currently possesses agency to shape AI deployment norms and call out harmful applications, but this window is closing as organizational and market practices lock in before governance frameworks are established.",
+      "General-purpose technologies inherently contain both beneficial and harmful consequences — the governance challenge is not to suppress the technology but to channel institutional and public pressure toward the harmful applications while enabling the beneficial ones.",
+      "Mollick's cross-sector influence reflects the vacuum in AI governance expertise: the same academic can credibly advise the White House, JPMorgan, and Google simultaneously because the supply of grounded, operationally informed AI policy expertise is structurally insufficient.",
+      "The profile-as-policy pattern — where individual experts fill governance gaps through advisory roles rather than institutional frameworks — is a structural symptom of the governance deficit, not a substitute for it."
+    ]
+  },
+  { id: 186, date: "2024-04-23",
+    title: "We're Focusing on the Wrong Kind of AI Apocalypse",
+    source: "Ethan Mollick — Wharton AI & Analytics Initiative",
+    sourceUrl: "https://ai.wharton.upenn.edu/focus-areas/future-of-work/were-focusing-on-the-wrong-kind-of-ai-apocalypse/",
+    category: "macro", geography: "us",
+    evidence: "commentary",
+    keyFinding: "Public AI discourse has fixated on speculative long-run catastrophic scenarios while overlooking more immediate, tangible threats — misinformation, deepfakes, and unchecked rapid deployment — that are already materializing and require near-term governance responses.",
+    takeaways: [
+      "The existential risk frame is crowding out attention to present-day harms: misinformation, synthetic media used for non-consensual purposes, and rapid deployment without safety evaluation are documented current harms that urgently require regulatory responses.",
+      "Organizations must proactively manage AI integration now — understanding workforce impacts, educational disruption, and deployment risks — rather than deferring governance to resolution of speculative long-run scenarios.",
+      "Strategic AI deployment requires genuine evaluation before deployment rather than retrospective harm mitigation — a governance design choice that is being made right now in most organizational contexts.",
+      "Redirecting public concern and institutional attention toward near-term materializing risks is essential for effective governance: organizations and policymakers who anchor AI risk assessment to existential scenarios are systematically underinvested in preventing the harms happening now."
+    ]
+  },
+  { id: 187, date: "2024-04-22",
+    title: "AI Will Change Work, for Better and Worse",
+    source: "Prasanna Tambe — Wharton AI & Analytics Initiative",
+    sourceUrl: "https://ai.wharton.upenn.edu/focus-areas/future-of-work/ai-will-change-work/",
+    category: "workers", geography: "us",
+    evidence: "commentary",
+    keyFinding: "AI carries dual consequences for workers — creating new tasks and enhancing productivity in some dimensions while displacing others and concentrating gains among already-advantaged workers — making the net impact on employment and wellbeing a function of deployment choices and policy context rather than a fixed technological outcome.",
+    takeaways: [
+      "The dual-consequences framing resists both optimistic and pessimistic totalization: AI will produce better and worse outcomes simultaneously, and the distribution of each is a function of institutional choices about who bears costs and who captures gains.",
+      "The impact of AI on workers extends beyond simple automation dynamics — human-technology interaction, task composition changes, and organizational power asymmetries all shape how AI affects worker welfare in ways not captured by employment rate statistics.",
+      "Organizations and policymakers must assess AI's dual effects in context, resisting aggregate frames that average away the concentrated costs borne by specific worker populations.",
+      "Research into human-AI collaboration is essential for managing the 'better and worse' distribution — the design of AI deployment, not just its adoption, determines which outcomes predominate."
+    ]
+  },
+  { id: 188, date: "2024-03-20",
+    title: "AI Horizons: AI and Innovation",
+    source: "Angie Basiouny — Wharton AI & Analytics Initiative",
+    sourceUrl: "https://ai.wharton.upenn.edu/updates/ai-horizons-ai-and-innovation/",
+    category: "macro", geography: "us",
+    evidence: "analysis",
+    keyFinding: "Generative AI faces a 'quantity-over-quality problem,' producing abundant but imprecise results; synthetic expert systems dramatically outperform base LLMs — 66x faster and 400x cheaper than GPT-4 on targeted tasks — while delivering more precise outputs; and human creativity retains superiority for breakthrough innovation, with AI excelling at recombination.",
+    takeaways: [
+      "Synthetic expert systems — specialized models built for specific tasks — vastly outperform large language models in speed and cost on targeted applications, suggesting that frontier model scale is not optimal for most organizational deployment contexts.",
+      "The quantity-quality tension is operationally important: AI tools that generate abundant output create filtering and evaluation burdens for organizations that may exceed the value of the raw generation.",
+      "Human creativity retains comparative advantage at breakthrough innovation; AI's strength is recombination of existing approaches at speed — making hybrid strategies (human ideation + AI elaboration and filtering) more valuable than either in isolation.",
+      "ChatGPT outperforms Google at answer retrieval but underperforms on fact-checking accuracy — an asymmetry that should inform which use cases organizations treat as appropriate for AI decision support and which require human verification."
+    ]
+  },
+  { id: 189, date: "2024-02-26",
+    title: "How Algorithmic Management Affects Employee Helpfulness",
+    source: "Armin Granulo, Stefano Puntoni — Wharton AI & Analytics Initiative",
+    sourceUrl: "https://ai.wharton.upenn.edu/updates/how-algorithmic-management-affects-employee-helpfulness/",
+    category: "workers", geography: "us",
+    evidence: "analysis",
+    keyFinding: "Employees managed by algorithms are measurably less likely to help their colleagues — particularly when algorithmic management takes the form of performance evaluation rather than other management functions — producing a documented prosocial motivation deficit that standard productivity metrics do not capture and that accumulates as a hidden organizational cost.",
+    takeaways: [
+      "The prosocial motivation deficit is distinct from the individual performance effects of algorithmic management: workers under algorithmic evaluation may maintain or improve personal output metrics while simultaneously reducing cooperative behavior that is foundational to organizational functioning.",
+      "The performance-evaluation mechanism is the most harmful configuration: algorithmic management that evaluates workers reduces helpfulness more severely than algorithmic management used for other functions, identifying performance scoring as the specific design choice that suppresses cooperation.",
+      "Social connection strategies — shared spaces, team rotations, organized events — effectively counteract algorithmic management's isolating effects, providing practical organizational levers that do not require removing the algorithmic system.",
+      "Algorithmic tools work best when paired with human judgment in performance assessment — the combination preserves the efficiency value of algorithmic monitoring while mitigating the prosocial harm of algorithmic evaluation."
+    ]
+  },
+  { id: 190, date: "2024-02-23",
+    title: "AI Horizons: AI and the Workforce",
+    source: "Angie Basiouny — Wharton AI & Analytics Initiative",
+    sourceUrl: "https://ai.wharton.upenn.edu/updates/ai-horizons-ai-and-the-workforce/",
+    category: "labor", geography: "us",
+    evidence: "analysis",
+    keyFinding: "When properly implemented, generative AI enhances employee performance by eliminating repetitive tasks and boosting morale — and organizations must communicate AI's purpose transparently, particularly to lower-skilled workers who fear displacement, because the adoption gap between high-skilled and lower-skilled workers is an equity risk that training and messaging can partially address.",
+    takeaways: [
+      "Organizations must transparently communicate AI's purpose to employees — especially lower-skilled workers who fear displacement — because perceived threat reduces adoption and amplifies the very inequality the adoption gap produces.",
+      "Highly skilled workers embrace AI more readily because it amplifies their existing capabilities; lower-skilled workers need tailored messaging and scaffolded support rather than the same adoption pathways designed for workers already at the top of the skill distribution.",
+      "Freelancers actively integrating LLMs gain measurable competitive advantages in client acquisition and project scope — demonstrating that AI tool proficiency is already differentiating outcomes in competitive labor markets.",
+      "As AI-generated resumes proliferate, writing quality becomes a less reliable hiring signal — elevating interview performance and human interaction as the primary differentiators, with equity implications for candidates who perform differently across written and oral assessment modes."
     ]
   },
   { id: 175, date: "2024-04-26",
@@ -2012,6 +2362,90 @@ const RESEARCH_DATA = [
       "The documented harms in HCBS eligibility algorithms — in Arkansas, Missouri, and Wisconsin — establish that algorithmic benefits denial is a present pattern, not a future risk, and that legal challenges grounded in constitutional due process, statutory rulemaking requirements, and ADA integration mandates can succeed in reversing automated cuts.",
       "The 'fight austerity policies' framing connects technology advocacy to underlying fiscal dynamics: algorithmic benefits systems are deployed primarily to reduce program costs, not improve accuracy. Advocacy contesting only technical implementation without addressing the political economy driving deployment will win individual battles while losing the structural fight.",
       "The coalition model (NHeLP's benefits law expertise + TechTonic Justice's policy analysis + Upturn's technology accountability research) demonstrates that effective benefits technology advocacy requires combining legal doctrine, policy analysis, and technical literacy — a capacity configuration that must be built deliberately since it doesn't exist in any single institution."
+    ]
+  },
+  { id: 199, date: "2023-12-15",
+    title: "Generative Artificial Intelligence and the Creative Economy Staff Report: Perspectives and Takeaways",
+    source: "Federal Trade Commission",
+    sourceUrl: "https://www.ftc.gov/system/files/ftc_gov/pdf/12-15-2023AICEStaffReport.pdf",
+    category: "policy", geography: "us",
+    evidence: "official",
+    keyFinding: "Generative AI is already harming creative professionals through style mimicry, non-consensual synthetic endorsements, and AI-generated content competing directly in venues where creatives seek work; the FTC urges opt-in (not opt-out) frameworks for training-data consent, citing structural deficiencies in opt-out approaches, and signals continued monitoring of generative AI markets using existing enforcement authority.",
+    takeaways: [
+      "AI-generated outputs are appearing directly in venues where creatives compete for work — making it harder for consumers and publishers to find human-made content and creating direct market displacement that does not require full job automation to impose economic harm.",
+      "Artists expressed concern about AI tools mimicking their unique styles, voices, and likenesses — enabling knockoffs and synthetic endorsements they never authorized — a harm that existing IP and right-of-publicity frameworks do not fully address.",
+      "Creative professionals called for opt-in rather than opt-out frameworks for AI training data: opt-outs only address future use, are undermined by developer opacity about what data is used, and shift the compliance burden onto the harmed parties rather than the extracting parties.",
+      "The FTC's stance — deploying targeted enforcement under existing authority while monitoring generative AI markets — establishes federal consumer protection jurisdiction over AI training practices and creative economy harms without requiring new statutory authority."
+    ]
+  },
+  { id: 191, date: "2023-11-10",
+    title: "How Will AI Transform Industries and Organizations?",
+    source: "Bob Meyer, Eric Bradlow — Wharton AI & Analytics Initiative",
+    sourceUrl: "https://ai.wharton.upenn.edu/updates/how-will-ai-transform-industries-and-organizations/",
+    category: "macro", geography: "us",
+    evidence: "commentary",
+    keyFinding: "Cross-sector discussion of practical AI implementations — from automated investment advisory to marketing and customer engagement — reveals that AI is already restructuring organizational strategy and market dynamics in ways that require business leaders to engage with AI as a current strategic variable rather than a future consideration.",
+    takeaways: [
+      "Real-world AI applications in finance and customer relations are restructuring organizational strategy now — not as a forecast but as a documented change in competitive dynamics already underway.",
+      "The investment advisory and marketing transformations illustrate a pattern: AI automation of information-intensive customer-facing functions is operating in parallel with ongoing debates about whether AI 'will' transform industries.",
+      "Business leaders who engage with AI transformation as a present-tense strategic reality rather than a planning horizon are better positioned to manage transitions proactively than those waiting for AI to become undeniable.",
+      "This is part of Wharton's 10-part series examining AI's broad influence on business — providing practitioner-oriented synthesis from academic researchers engaged with deployment-stage AI rather than theoretical capability."
+    ]
+  },
+  { id: 192, date: "2023-11-10",
+    title: "How Are AI and Robotics Redefining Productivity?",
+    source: "Lynn Wu, Eric Bradlow — Wharton AI & Analytics Initiative",
+    sourceUrl: "https://ai.wharton.upenn.edu/updates/how-are-ai-and-robotics-redefining-productivity/",
+    category: "macro", geography: "us",
+    evidence: "commentary",
+    keyFinding: "AI and robotics are redefining productivity in ways that require organizations to understand how new tools integrate into existing processes before implementing significant technological changes — adoption transforms workflows across all organizational levels simultaneously, requiring strategic assessment of fit rather than technology-first deployment.",
+    takeaways: [
+      "Adoption of AI and robotics fundamentally transforms organizational workflows — not through isolated task substitution but through systemic changes to how work is structured across the organization.",
+      "Automation and AI impact physical labor, knowledge work, and human resources simultaneously — requiring integrated planning rather than function-by-function deployment strategies.",
+      "Understanding the relationship between new AI tools and existing processes is prerequisite for successful adoption: deployments that ignore process integration constraints frequently produce waste, rework, and resistance.",
+      "Productivity redefinition is not uniform: AI and robotics may increase output per worker in some dimensions while creating new bottlenecks, quality problems, or coordination costs that offset headline productivity gains."
+    ]
+  },
+  { id: 193, date: "2023-11-10",
+    title: "How Is AI Affecting Innovation Management?",
+    source: "Christian Terwiesch, Valery Yakubovich, Eric Bradlow — Wharton AI & Analytics Initiative",
+    sourceUrl: "https://ai.wharton.upenn.edu/updates/how-is-ai-affecting-innovation-management/",
+    category: "macro", geography: "us",
+    evidence: "commentary",
+    keyFinding: "AI influences multiple dimensions of innovation management — from risk assessment and strategy to ideation, customer understanding, and value capture — with the most consequential finding being that AI can enhance ideation breadth while human judgment remains necessary to filter for truly valuable versus merely novel output.",
+    takeaways: [
+      "AI can enhance ideation processes significantly — generating broader option spaces than human brainstorming alone — but the strategic filtering problem (identifying which ideas are genuinely valuable) remains a human judgment task that AI exacerbates rather than resolves.",
+      "Risk assessment and organizational structure in innovation benefit from AI assistance: processing large volumes of market signals, patent landscapes, and competitor data at speed informs strategy in ways previously limited by human analytical capacity.",
+      "Customer understanding is a domain where AI can add value by processing survey and behavioral data at scale — but interpreting what that data means for innovation direction still requires contextual human expertise.",
+      "Value capture — how organizations extract benefit from their innovations — is the least-developed AI application in innovation management, and also the most strategically consequential: technical advantage that competitors can quickly replicate produces limited durable value."
+    ]
+  },
+  { id: 194, date: "2023-11-10",
+    title: "How Is AI Changing the Auto Industry?",
+    source: "John Paul MacDuffie, Eric Bradlow — Wharton AI & Analytics Initiative",
+    sourceUrl: "https://ai.wharton.upenn.edu/updates/how-is-ai-changing-the-auto-industry/",
+    category: "macro", geography: "us",
+    evidence: "commentary",
+    keyFinding: "AI is accelerating autonomous vehicle development and transforming vehicle architecture while creating significant tensions between established automakers and technology companies over AI development control — with open-source software emerging as a potential collaborator but also a competitive threat that disrupts legacy automaker AI strategies.",
+    takeaways: [
+      "AI is accelerating driverless car development and next-generation vehicle capabilities, compressing timelines that previously assumed a decade of incremental progress.",
+      "The competitive tension between automotive incumbents and technology companies over AI integration is a structural industry reorganization — not just a product feature race — with implications for who controls the software-defined vehicle architecture and the data it generates.",
+      "Open-source AI software creates a dual dynamic in automotive: collaborative platforms for non-differentiating features while intensifying competition in the AI capabilities that determine driver experience and safety.",
+      "The auto industry's AI transformation illustrates a broader pattern: sectors with legacy physical infrastructure face disruption not only in product capability but in the organizational control of AI systems that now govern core product functions."
+    ]
+  },
+  { id: 195, date: "2023-11-10",
+    title: "How Does AI Impact Education?",
+    source: "Ethan Mollick, Eric Bradlow — Wharton AI & Analytics Initiative",
+    sourceUrl: "https://ai.wharton.upenn.edu/updates/how-does-ai-impact-education/",
+    category: "education", geography: "us",
+    evidence: "commentary",
+    keyFinding: "Generative AI tools like ChatGPT are actively being used by students, forcing educators to grapple with questions of classroom integration, academic integrity, and what AI-era learning should produce — with thoughtful integration proving more effective than restriction, and AI raising fundamental questions about what skills and knowledge are worth developing in humans.",
+    takeaways: [
+      "Students are actively using generative AI regardless of institutional policy — making the relevant question not whether to allow AI but how to design learning experiences that remain valuable and intellectually honest in AI-assisted environments.",
+      "Educators face a genuine curriculum redesign challenge: if AI can produce competent first drafts, correct grammar, and generate research summaries, the educational value of traditional writing and research assignments must be reassessed rather than simply defended.",
+      "ChatGPT and similar tools represent significant developments for what the future workforce needs to know — AI fluency is becoming a baseline professional skill, and educational systems that treat AI literacy as optional are disadvantaging their students.",
+      "The academic integrity challenge is the most immediate institutional problem: AI-generated work detection is unreliable, policy is inconsistent, and the penalty frameworks designed for plagiarism do not map cleanly onto AI-assisted composition — creating enforcement challenges that are forcing a broader rethinking of assessment design."
     ]
   },
   { id: 170, date: "2022-05-23",
