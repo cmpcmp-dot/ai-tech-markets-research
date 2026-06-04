@@ -1939,6 +1939,16 @@ const INST_META = {
   // ── Federal Agencies (AI & Consumer Protection) ───────────────
   "Executive Office of the President":                { url: "https://www.whitehouse.gov",                                   type: "Federal government",         note: "White House executive policy; official U.S. government AI legislative frameworks" },
   "Federal Trade Commission":                         { url: "https://www.ftc.gov",                                          type: "Federal agency",             note: "Federal consumer protection and competition enforcement; generative AI and creative economy oversight" },
+  // ── Guaranteed Income Research ────────────────────────────────
+  "Economic Security Project":                        { url: "https://economicsecurityproject.org",                          type: "Policy advocacy",            note: "Progressive think tank focused on anti-monopoly policy and guaranteed income; funds pilots and commissions research" },
+  "University of Chicago Inclusive Economy Lab":      { url: "https://urbanlabs.uchicago.edu/labs/inclusive-economy",         type: "University research",        note: "Academic lab evaluating anti-poverty and income support programs; evaluator for Cook County Guaranteed Income Pilot" },
+  "Center for Guaranteed Income Research":            { url: "https://www.penncgir.org",                                      type: "University research",        note: "University of Pennsylvania School of Social Policy & Practice; primary U.S. academic center for GI research" },
+  "Center on Budget and Policy Priorities":           { url: "https://www.cbpp.org",                                          type: "Policy research",            note: "Nonpartisan research and advocacy center focused on fiscal and economic policy; progressive" },
+  "NYC Family Policy Project":                        { url: "https://familypolicynyc.org",                                   type: "Policy advocacy",            note: "New York City-focused research and advocacy on family economic support policy" },
+  "Nature Mental Health":                             { url: "https://www.nature.com/natmenthealth",                          type: "Academic journal",           note: "Peer-reviewed, Springer Nature, mental health research" },
+  "Frontiers in Psychology":                          { url: "https://www.frontiersin.org/journals/psychology",               type: "Academic journal",           note: "Peer-reviewed, open-access, broad psychology research" },
+  "International Journal of Social Welfare":          { url: "https://onlinelibrary.wiley.com/journal/14682397",             type: "Academic journal",           note: "Peer-reviewed, Wiley, international comparative social welfare research" },
+  "Basic Income Studies":                             { url: "https://www.degruyter.com/journal/key/bis/html",                type: "Academic journal",           note: "Peer-reviewed, De Gruyter, dedicated basic income research journal" },
 };
 const INST_URLS = Object.fromEntries(Object.entries(INST_META).map(([k,v]) => [k, v.url]));
 
@@ -1988,6 +1998,7 @@ const PRIORITY_SOURCE_GROUPS = {
     "Science", "Nature Communications", "NYU Law Review", "Philosophy & Technology", "ACM FAccT", "arXiv",
     "Stanford Legal Design Lab", "Ohio State University Moritz College of Law",
     "Wharton AI & Analytics Initiative",
+    "University of Chicago Inclusive Economy Lab", "Center for Guaranteed Income Research", "Basic Income Studies",
   ],
   "Critical Technology Research": [
     "AI Now Institute", "Data & Society",
@@ -2024,6 +2035,7 @@ const PRIORITY_SOURCE_GROUPS = {
     "TechEquity Collaborative", "Innocence Project",
     "Center for Democracy and Technology", "American Bar Association CRSJ",
     "National Partnership for Women & Families",
+    "NYC Family Policy Project",
   ],
   "Policy & Think Tanks": [
     "Economic Policy Institute", "Center for American Progress",
@@ -2036,6 +2048,7 @@ const PRIORITY_SOURCE_GROUPS = {
     "Digitalist Papers", "The Bully Pulpit", "Tech Policy Press",
     "Resources for the Future / Lincoln Institute", "U.S. National Science Foundation",
     "Benefits Tech Advocacy Hub",
+    "Economic Security Project", "Center on Budget and Policy Priorities",
   ],
   "Commentary & Analysis": [
     "Anton Leicht", "AI Futures Project", "Harvard Business Review",
@@ -2051,9 +2064,180 @@ const PRIORITY_SOURCE_GROUPS = {
   "International Government": [
     "Singapore Parliament",
   ],
+  "Academic Journals": [
+    "Nature Mental Health", "Frontiers in Psychology", "International Journal of Social Welfare",
+  ],
 };
 
 const RESEARCH_DATA = [
+  { id: 207, date: "2026-05-05",
+    title: "Recovering Wages and Wealth: What We Deserve in the Age of AI",
+    source: "Rayan Semery-Palumbo — Economic Security Project",
+    sourceUrl: "https://economicsecurityproject.org/resource/recovering-wages-and-wealth/",
+    category: "policy", geography: "us",
+    evidence: "analysis",
+    keyFinding: "This policy memo argues that since 1975, deliberate policy choices redirected approximately $79 trillion in income growth away from the bottom 90% of American workers — approximately $1 million per worker over a career — and proposes reframing guaranteed income programs as 'Recovered Wages & Wealth' rather than charity, a narrative shift the author argues is essential for building politically durable cash assistance in the age of AI-driven automation.",
+    takeaways: [
+      "The 'Recovered Wages' frame treats cash grants as partial compensation for underpaid labor — both formal employment and unpaid caregiving — recognizing contributions already made but never fully compensated, rather than presenting cash assistance as charity or economic obsolescence response.",
+      "The 'Recovered Wealth' frame addresses how wage suppression compounds across generations: Millennials are projected to lose $700,000 and Gen Z approximately $900,000 in lifetime wages and wealth relative to what equitable growth would have delivered.",
+      "Research cited shows Americans reject cash assistance framed as response to automation obsolescence but accept it when presented as recognition of underpayment — making the narrative architecture of GI programs as consequential as their design.",
+      "Historical precedent — particularly Social Security, framed as earned benefit — demonstrates that programs built on meritocratic deservingness language prove far more politically durable than those presented as needs-based assistance."
+    ]
+  },
+  { id: 208, date: "2026-02-04",
+    title: "Guaranteed Income and Employment in California",
+    source: "Economic Security Project",
+    sourceUrl: "https://economicsecurityproject.org/resource/guaranteed-income-and-employment-in-california/",
+    category: "labor", geography: "us",
+    evidence: "analysis",
+    keyFinding: "Synthesizing findings from over 60 California guaranteed income pilots, this brief documents that contrary to critics' predictions, unconditional cash increases full-time employment — with major pilot participants obtaining full-time work at up to double the rate of control groups and pursuing business ventures at five times the rate of controls, while also enabling workforce transitions by reducing the economic desperation that traps workers in inadequate jobs.",
+    takeaways: [
+      "Financial stability enables workforce mobility: Sacramento participants who could cover a $400 emergency expense increased from 15% to 34% after receiving guaranteed income, directly expanding the capacity for genuine labor market choice rather than desperation-driven employment decisions.",
+      "Cash enables education and skill development: nearly half of San Francisco's MOMentum participants enrolled in education or training programs while receiving guaranteed income, with 86% crediting the payments for making enrollment possible.",
+      "Guaranteed income supports working caregivers: Oakland participants attended more parent-teacher conferences while maintaining employment, documenting that cash resolves the caregiving-work trade-off that reduces labor force quality for parents in low-income households.",
+      "Policy implications include eliminating costly work requirements from existing safety net programs, ensuring GI payments do not affect eligibility for other benefits, and pairing programs with wraparound services for vulnerable populations including domestic violence survivors and people experiencing homelessness."
+    ]
+  },
+  { id: 209, date: "2025-10-17",
+    title: "Cash Transfers Improve Maternal, Infant, and Child Health Outcomes in the U.S.",
+    source: "Economic Security Project",
+    sourceUrl: "https://economicsecurityproject.org/resource/micc-memo/",
+    category: "wellbeing", geography: "us",
+    evidence: "analysis",
+    keyFinding: "This brief synthesizes research showing that monthly cash transfers of $250–$500 reduce maternal stress and associated health complications including preeclampsia, preterm birth, and low birthweight; with the RxKids program in Flint and Detroit achieving up to 18% reductions in preterm births and 29% decreases in NICU stays — producing approximately $8,342 in social benefits per $1,000 provided.",
+    takeaways: [
+      "Cash transfers of $1,000 during pregnancy reduce low birthweight by 2–3.5% and increase full-term births — establishing a direct biological pathway from income support to neonatal health outcomes independent of healthcare access.",
+      "The RxKids program's documented 18% preterm birth reduction and 29% NICU decrease are among the largest documented outcome improvements in the guaranteed income literature and directly demonstrate fiscal return on investment for health systems.",
+      "Cash improves mental health and reduces stress, decreasing anxiety among recipients — the psychological mechanism through which financial security translates to improved physical health outcomes during pregnancy.",
+      "Policy recommendations include federal reinstatement of expanded Child Tax Credits, maternal-infant cash pilots at federal level, and state use of TANF dollars and Medicaid waivers — positioning cash assistance as a cost-effective public health intervention."
+    ]
+  },
+  { id: 210, date: "2025-10-01",
+    title: "What We Know About the Effect of Guaranteed Income on Housing, Financial Security, and Employment",
+    source: "University of Chicago Inclusive Economy Lab",
+    sourceUrl: "https://urbanlabs.uchicago.edu/attachments/40baa6d7e49551dc92e9a4204af9cb10dbc566f9/store/596a5de8256dd10415e8c3125c8cd78d670908a4ed0672f3d0c824a3c293/Policymakers%27+Report.pdf",
+    category: "policy", geography: "us",
+    evidence: "analysis",
+    keyFinding: "This policymakers' report synthesizes findings from three of the most methodologically rigorous U.S. guaranteed income RCTs — OpenResearch Unconditional Cash Study (ORUS), Baby's First Years (BFY), and the Compton Pledge — finding that unconditional cash likely reduces poverty, boosts savings, cuts housing burden, and improves nutrition; while also documenting modest declines in labor force participation in more recent pilots, providing a nuanced evidence synthesis for policymakers designing the $42 million Cook County Promise Pilot.",
+    takeaways: [
+      "The three synthesized studies all used RCT designs with published pre-analysis plans and sufficient sample sizes — the gold-standard evidence base — making their convergent findings on poverty reduction, savings accumulation, and housing stability substantially more reliable than pilot self-reports or non-experimental evaluations.",
+      "More recent GI pilots find modest declines in labor force participation and earned income — a finding that complicates the simple narrative that cash always increases employment and requires honest communication with policymakers about the full evidence picture.",
+      "Cash reduces housing burdens and improves housing quality across multiple studies, establishing a cross-site pattern that extends beyond individual pilot contexts to a more generalizable finding about how recipients prioritize unconditional income.",
+      "The report frames its synthesis as a tool for policymakers navigating over 150 no-strings-attached cash programs launched across the U.S. in recent years — providing sober analysis of both promising and cautionary findings rather than advocacy."
+    ]
+  },
+  { id: 211, date: "2025-06-01",
+    title: "Guaranteed Income: A Policy Landscape Review of 105 Programs in the United States",
+    source: "Sarina Rodriguez et al. — Basic Income Studies",
+    sourceUrl: "https://gicp.info/wp-content/uploads/sites/164/2024_Brinkley_Basic-Income.pdf",
+    category: "policy", geography: "us",
+    evidence: "peer-reviewed",
+    keyFinding: "This peer-reviewed landscape review assembles and systematically analyzes 105 guaranteed income programs across the United States covering more than 40,000 beneficiaries, documenting that just over half use income-based eligibility, 84% incorporate place-based eligibility criteria, 28 programs are based in California, and a significant tension exists between community development framing used in program outreach and the economic or public health frameworks used for funding and evaluation.",
+    takeaways: [
+      "The framing-measurement mismatch — programs presented to communities in asset-building, empowerment language but evaluated through economic or public health outcome frameworks — may have structural implications for program sustainability and the alignment of lived experience with official accountability metrics.",
+      "California's outsized role (28 of 105 programs) and the prevalence of county-level programs (16) reflect a pattern of subnational policy innovation filling gaps left by federal inaction on guaranteed income.",
+      "The landscape reveals high heterogeneity in benefit levels, duration, and conditionality across programs — 'guaranteed income' encompasses a wide range of designs rather than a single model, making cross-program comparison methodologically challenging.",
+      "The inventory establishes a baseline for identifying gaps, redundancies, and opportunities for more rigorous comparative research — the field currently lacks standardized outcome measurement that would allow genuine learning across the 105+ programs operating simultaneously."
+    ]
+  },
+  { id: 212, date: "2026-01-16",
+    title: "State Fact Sheets: How States Spend Funds Under the TANF Block Grant",
+    source: "Center on Budget and Policy Priorities",
+    sourceUrl: "https://www.cbpp.org/research/income-security/state-fact-sheets-how-states-spend-funds-under-the-tanf-block-grant",
+    category: "policy", geography: "us",
+    evidence: "analysis",
+    keyFinding: "In 2023, states spent only approximately one-quarter of combined federal and state TANF funds on basic assistance — direct cash payments to families with children — with 19 states spending less than 10% of TANF funds on basic assistance, documenting the systematic redirection of the $16.5 billion annual federal block grant away from direct income support and establishing the scale of available resources that could fund guaranteed income programs through TANF repurposing.",
+    takeaways: [
+      "Only 9 states spent more than 30% of TANF on basic assistance; the majority redirect funds to activities unrelated to TANF's core poverty-reduction mandate — including using TANF as general state budget substitution — establishing that the political choices driving inadequate cash support are state-level, not federal funding constraints.",
+      "State-by-state variation is extreme: the same federal block grant produces radically different outcomes depending on state policy choices, meaning the path to guaranteed income expansion runs through state legislatures and governors as much as through federal authorization.",
+      "TANF repurposing represents one of the most immediately actionable funding mechanisms for guaranteed income pilots: states can redirect existing block grant dollars without new federal legislation, as several cities and counties have already demonstrated.",
+      "Research evidence shows that investments in cash assistance improve academic, health, and economic outcomes for children in families experiencing poverty — making the state spending pattern documented here not merely a fiscal anomaly but a documented contributor to child poverty and inequality."
+    ]
+  },
+  { id: 213, date: "2024-12-11",
+    title: "The Protective Power of Cash",
+    source: "NYC Family Policy Project",
+    sourceUrl: "https://familypolicynyc.org/report/cash/",
+    category: "equity", geography: "us",
+    evidence: "analysis",
+    keyFinding: "This report documents that New York City's cash assistance structure fails families through four structural problems — benefit levels below poverty thresholds, bureaucratic barriers, payment unpredictability, and inadequate responsiveness — and establishes a direct link between income support generosity and reduced child welfare system involvement, framing unconditional cash as a child welfare prevention tool for the city's 100,000+ families on cash assistance.",
+    takeaways: [
+      "Benefit unpredictability and conditionality create anxiety that actively hinders family reunification and self-sufficiency goals — the current system's design generates the instability it claims to address, documented through case studies of mothers fearful of losing benefits when circumstances improved.",
+      "Economic research establishes a direct causal pathway: protecting families from hardship reduces child welfare investigations and family separation, making increased cash assistance a cost-effective alternative to child welfare system involvement that costs far more per family.",
+      "Five policy recommendations — increasing benefit levels toward the poverty line, raising asset limits, reducing administrative burden, implementing targeted guaranteed income for families at critical transition points, and expanding emergency cash — provide a concrete state and city legislative agenda.",
+      "With approximately 25% of NYC children living in poverty, the scale of need makes unconditional cash not merely a pilot intervention but a necessary structural component of an adequate urban social safety net."
+    ]
+  },
+  { id: 214, date: "2024-01-01",
+    title: "Enhancing Economic Stability: The Role of Guaranteed Income in Comprehensive Support Systems",
+    source: "Stacia West et al. — Center for Guaranteed Income Research",
+    sourceUrl: "https://upenn.app.box.com/v/Enhancing-Economic-Stability",
+    category: "policy", geography: "us",
+    evidence: "analysis",
+    keyFinding: "This policy brief from Penn's Center for Guaranteed Income Research argues that guaranteed income functions as a stabilizing foundation that amplifies the effectiveness of wraparound services, workforce development programs, and social services — because financial insecurity creates cognitive and time burdens that prevent individuals from engaging productively with other support services, and GI resolves this bottleneck by providing predictable income that enables planning and investment.",
+    takeaways: [
+      "The 'cognitive tax' of financial insecurity — well-documented in behavioral economics research — means that poverty itself impairs the executive function and planning capacity needed to engage effectively with case management, job training, and other support services; GI resolves the underlying cause rather than treating symptoms.",
+      "GI should be integrated into existing program architectures rather than treated as a replacement for other services — the brief explicitly situates guaranteed income within a continuum of supports, addressing the common policymaker concern that GI competes with or displaces existing safety net programs.",
+      "The brief provides practical guidance on program design for GI integration: how to structure referral pathways, coordinate benefits, and design intake processes that connect GI recipients with complementary services without recreating the bureaucratic burden current programs impose.",
+      "The framing of GI as infrastructure for other services rather than a standalone intervention is strategically significant for policy adoption: it allows advocates to argue for GI within existing programmatic frameworks rather than as a disruptive replacement."
+    ]
+  },
+  { id: 215, date: "2024-11-01",
+    title: "A Policy Framework for Guaranteed Income and the Safety Net",
+    source: "Stacia West et al. — Center for Guaranteed Income Research",
+    sourceUrl: "https://upenn.app.box.com/v/GI-and-Safety-Net",
+    category: "policy", geography: "us",
+    evidence: "analysis",
+    keyFinding: "This policy brief develops a structured framework for integrating guaranteed income into the existing safety net, addressing the 'benefits cliff' problem where GI recipients lose other assistance as income rises — proposing design principles including benefit disregards, waiver mechanisms, and legislative changes to allow simultaneous receipt of GI and existing supports.",
+    takeaways: [
+      "The benefits cliff is the primary structural threat to GI program effectiveness: when unconditional cash triggers reductions in SNAP, Medicaid, housing assistance, or SSI, the net income gain can be neutral or negative — making benefit disregard provisions as consequential as the cash transfer amount itself.",
+      "Short-term workarounds (program-level waivers, as achieved in Chicago's SSI exemption for GI recipients) and longer-term structural reforms (legislative benefit disregards) require distinct advocacy strategies — the framework provides a roadmap for both timelines simultaneously.",
+      "Equity considerations are central: the framework specifically addresses ensuring programs reach marginalized populations — undocumented immigrants, people with disabilities, and justice-involved individuals — who are systematically excluded from current safety net programs and face the greatest barriers to GI access.",
+      "TANF repurposing, state general funds, and federal pilot authorization represent the three most viable funding mechanisms; each requires different administrative and legislative pathways and carries different conditionality implications for program design."
+    ]
+  },
+  { id: 216, date: "2023-07-01",
+    title: "Recurring Cash Transfers to Enhance the Mental Wellbeing of Americans",
+    source: "Stacia West et al. — Nature Mental Health",
+    sourceUrl: "https://www.nature.com/articles/s44220-023-00025-z",
+    category: "wellbeing", geography: "us",
+    evidence: "peer-reviewed",
+    keyFinding: "This perspective piece in Nature Mental Health argues that recurring unconditional cash transfers represent an underutilized mental health prevention strategy — addressing the economic root causes of psychological distress rather than treating downstream symptoms — with the key mechanism being that predictable, recurring income reduces the chronic financial anxiety and stress that poverty and volatility generate, distinct from the effects of absolute income level.",
+    takeaways: [
+      "The recurring and predictable nature of cash transfers — not just the income level — is the critical mechanism: it is financial volatility and the chronic anxiety of income uncertainty, not merely poverty per se, that drives many of the mental health disparities documented in low-income populations.",
+      "Reframing GI programs as mental health infrastructure investments rather than purely economic interventions opens new funding streams, political coalitions, and evaluation frameworks — mental health return on investment may be as compelling as economic return on investment for health system and government funders.",
+      "The argument extends to AI disruption context directly: as automation increases income volatility for workers in transitioning industries, the mental health case for guaranteed income becomes stronger independently of employment outcome effects.",
+      "International evidence from conditional cash transfer programs in lower-income countries and domestic GI pilots both support the mental health pathway, suggesting the mechanism is robust across very different program contexts and income levels."
+    ]
+  },
+  { id: 217, date: "2023-05-18",
+    title: "Guaranteed Income and Financial Treatment Trial (GIFT Trial): Reducing Financial Toxicity in Low-Income Cancer Patients",
+    source: "Meredith Doherty et al. — Frontiers in Psychology",
+    sourceUrl: "https://www.frontiersin.org/journals/psychology/articles/10.3389/fpsyg.2023.1179320/full",
+    category: "wellbeing", geography: "us",
+    evidence: "peer-reviewed",
+    keyFinding: "This study protocol describes an RCT testing whether $1,000/month unconditional cash transfers reduce 'financial toxicity' — economic hardship linked to anxiety, depression, treatment non-adherence, and increased mortality — among 250 low-income Medicaid-enrolled patients with Stage 3–4 cancer; the trial secured a first-of-its-kind SSI benefit waiver ensuring participants retain disability income while receiving GI payments.",
+    takeaways: [
+      "Approximately one-third of cancer patients experience significant financial hardship linked to treatment non-adherence and increased mortality — establishing that income loss from illness is a medical problem with clinical consequences that conventional oncology care does not address.",
+      "The SSI waiver negotiated for this trial — protecting disability income benefits while participants receive GI — represents a concrete administrative precedent for the benefits cliff problem documented across GI programs generally, with potential applicability beyond the cancer context.",
+      "The trial tests income support as a structural intervention in healthcare rather than navigation toward existing assistance programs — a conceptual shift from 'connect patients to resources' to 'provide resources directly' with implications for how health systems address social determinants.",
+      "Cost-benefit implications are direct: if $1,000/month reduces treatment non-adherence and improves mortality in Stage 3–4 cancer, the health system cost savings from better treatment outcomes may exceed the transfer cost — establishing GI as a health system investment rather than purely a social service."
+    ]
+  },
+  { id: 218, date: "2025-01-01",
+    title: "Renegotiating Deservedness: A Big Qual Analysis Across Eight Guaranteed Income Experiments",
+    source: "M. Philips et al. — International Journal of Social Welfare",
+    sourceUrl: "https://onlinelibrary.wiley.com/doi/10.1111/ijsw.70046",
+    category: "policy", geography: "us",
+    evidence: "peer-reviewed",
+    keyFinding: "Analyzing qualitative data from 1,517 survey respondents and 197 in-depth interviews across eight guaranteed income experiments, this study finds that GI receipt reduces internalized stigma and shifts participants' explanatory frameworks from self-blame to structural attribution — with respondents increasingly attributing poverty to systemic inequality rather than individual failure, a pattern consistent across both pre-pandemic (Stockton) and pandemic-era pilots.",
+    takeaways: [
+      "GI recipients exhibit lessened internalized stigma around receiving assistance and disengage from dominant blame narratives attributing poverty to individual moral failure — the attitudinal shift suggests unconditional cash operates on political consciousness as well as economic outcomes.",
+      "The consistency of findings across pre-pandemic (Stockton) and pandemic-era experiments — controlling for the confounding effect of COVID-19 — indicates that the structural attribution shift reflects a longer-term trend in how Americans conceptualize economic hardship, not merely a pandemic artifact.",
+      "The 'Big Qual' methodology — large-scale qualitative analysis across multiple studies — provides a methodological model for the GI field: individual pilots generate rich qualitative data that currently goes underutilized; pooled cross-site analysis reveals patterns invisible at the single-program level.",
+      "If GI recipients develop more structural views of poverty, this may translate into political mobilization for broader systemic reforms — establishing a potential feedback loop between income support policy and political capacity building that advocates should anticipate and cultivate."
+    ]
+  },
   { id: 204, date: "2026-05-12",
     title: "Patchwork AI Hiring Laws Create Rising Compliance Risks for Employers",
     source: "Andrew J. Adams — DarrowEverett LLP",
@@ -4867,6 +5051,11 @@ const POLICY_DATA = [
     summary:"Mandate ESOP contributions or profit-sharing stakes when firms deploy AI at scale; create a Worker Ownership Tax Credit incentivizing conversion of businesses to worker-owned cooperatives or employee trusts.<br><br>Firms employing 500 or more workers and deploying AI systems that generate measurable productivity gains above a benchmark would be required to contribute 1–3% of pre-tax profits to a worker ownership trust annually, with vesting schedules encouraging long-term employment. The Worker Ownership Tax Credit would provide a 25% credit for conversion costs when closely-held businesses transfer to ESOP or cooperative ownership, reducing the financial barrier to worker buyouts.",
     rationale:"If AI concentrates capital income, expanding worker ownership is the most durable redistribution mechanism — not through redistribution after the fact but by changing the ownership structure that determines who captures productivity growth in the first place.<br><br>Tax and transfer mechanisms redistribute income after AI has generated it as capital returns — an inherently reactive position. Worker ownership changes who holds the productive assets that generate AI returns before they accrue. ESOP-owned firms maintain employment more stably through recessions, invest more in worker development, and produce higher median employee wealth than comparable non-ESOP firms. Ownership is the upstream intervention; redistribution is the downstream response.",
     precedent:"The UK Employee Ownership Trust model (used by John Lewis Partnership) and the Mondragón cooperative network demonstrate large-scale feasibility. ESOP tax incentives in the U.S. currently cover approximately 14 million workers.<br><br>The UK's 2014 Employee Ownership Trust legislation, which enabled high-profile ownership transitions at Richer Sounds and Aardman Animations, provides a replicable model. The Biden administration's 2022 Employee Ownership Initiative provided $100M in SBA lending for ESOP conversions. Research by Blasi, Freeman, and Kruse finds that broad-based ownership programs increase worker productivity, reduce turnover, and improve financial resilience — a strong empirical case for policy-driven expansion." },
+  { id:"guaranteed-income", level:"high", category:"safety-net",
+    title:"Guaranteed Income",
+    summary:"Establish a federally funded guaranteed minimum income floor, providing every adult with a base level of cash support regardless of employment status — set above the poverty line and administered through existing tax infrastructure.<br><br>Unlike means-tested programs that phase out sharply as earnings rise or UI that requires prior employment, guaranteed income provides a stable floor. Benefit levels would be set at approximately $800–1,200 per month, with a gradual phase-out for higher earners. Administration through the IRS's existing infrastructure — using the advance Child Tax Credit model — makes rapid deployment feasible without building new bureaucracy.",
+    rationale:"As AI restructures labor markets, the frequency and duration of involuntary non-employment will increase. Workers facing displacement need a floor that is not contingent on prior earnings records, re-employment timelines, or means-testing bureaucracy. Guaranteed income decouples subsistence from employment outcomes — reducing the economic desperation that forces workers into inadequate jobs and enabling genuine mobility between sectors.<br><br>The evidence base is stronger than most income support proposals. The Stockton SEED pilot (2021) found guaranteed income recipients were more likely to gain full-time employment than the control group — directly contradicting the labor supply reduction concern. Finland's 2017–2018 trial and Kenya's ongoing GiveDirectly 12-year RCT both show sustained positive effects on investment, earnings, and psychological well-being. Unlike UBI, guaranteed income can be targeted to those most affected by displacement while building the administrative infrastructure for a more universal system.",
+    precedent:"The Stockton SEED pilot demonstrated administrative feasibility and showed that guaranteed income recipients moved into full-time employment at higher rates than controls. Finland's 2017–2018 basic income experiment found no negative employment effects and significantly improved well-being among recipients.<br><br>GiveDirectly's 12-year Kenya RCT — the longest and largest randomized controlled trial of guaranteed income — shows sustained positive effects on consumption, assets, psychological well-being, and local economic activity. Several U.S. cities (Los Angeles, Chicago, Atlanta) have launched guaranteed income pilots under Mayors for a Guaranteed Income. The 2021 advance Child Tax Credit demonstrated that monthly cash transfers can be administered at scale through IRS infrastructure within weeks of authorization." },
   /* ── Transformational ─────────────────────────────────────── */
   { id:"ubi", level:"transformational", category:"safety-net",
     title:"Universal Basic Income",
