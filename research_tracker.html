@@ -805,12 +805,10 @@
     cursor: pointer;
   }
   .theme-gaps-count { display: none; }
-  .theme-implication-layout {
+  .theme-synthesis-row {
     display: flex; align-items: flex-start; gap: 0 36px;
-    margin-top: 24px; padding-top: 20px;
-    border-top: 1px solid var(--border);
   }
-  .theme-implication-layout > div:first-child { flex: 1; min-width: 0; }
+  .theme-synthesis-main { flex: 1; min-width: 0; }
   .theme-research-sidebar {
     flex: 0 0 200px;
     padding-top: 2px;
@@ -5595,58 +5593,60 @@ const POL_TO_RESEARCH_CATS = {
 
     card.innerHTML = `
       <div class="theme-card-body">
-        <div class="theme-card-main">
-          <div class="theme-question">${theme.question}</div>
-          ${conf.desc ? `<div class="theme-framing">${conf.desc}</div>` : ''}
+        <div class="theme-question">${theme.question}</div>
+        ${conf.desc ? `<div class="theme-framing">${conf.desc}</div>` : ''}
 
-          <div class="theme-section-label theme-section-toggle" role="button" tabindex="0" data-section="synthesis" style="margin-top:12px; padding-top:0; border-top:none; justify-content:flex-start; gap:10px">
-            What the research shows <span class="theme-section-chevron"></span>
-          </div>
-          <div class="theme-collapsible" data-collapsible="synthesis">
-            <div class="theme-synthesis">${(activeLens === 'economist' && theme.econSynthesis) ? theme.econSynthesis : theme.synthesis}</div>
-          </div>
-
-          <div class="theme-risk-wrap" style="margin-top:0">
-            <div class="theme-section-label theme-section-toggle" role="button" tabindex="0" data-section="risk" style="margin-top:0">
-              Risks observed <span class="theme-section-chevron"></span>
+        <div class="theme-synthesis-row" style="margin-top:12px">
+          <div class="theme-synthesis-main">
+            <div class="theme-section-label theme-section-toggle" role="button" tabindex="0" data-section="synthesis" style="margin-top:0; padding-top:0; border-top:none; justify-content:flex-start; gap:10px">
+              What the research shows <span class="theme-section-chevron"></span>
             </div>
-            <div class="theme-collapsible" data-collapsible="risk">
-              <div class="theme-risk-body" style="margin-top:4px">${theme.risk.summary}</div>
+            <div class="theme-collapsible" data-collapsible="synthesis">
+              <div class="theme-synthesis">${(activeLens === 'economist' && theme.econSynthesis) ? theme.econSynthesis : theme.synthesis}</div>
             </div>
           </div>
+          ${paperChips ? `<aside class="theme-research-sidebar">
+            <div class="theme-papers">${paperChips}</div>
+          </aside>` : ''}
+        </div>
 
-          <div class="theme-implication-wrap">
-            <div class="theme-implication-label theme-section-toggle" role="button" tabindex="0" data-section="implication">
-              What this means for institutions <span class="theme-section-chevron"></span>
-            </div>
-            <div class="theme-collapsible" data-collapsible="implication">
-              <div class="theme-implication">${theme.implication}</div>
-            </div>
+        <div class="theme-risk-wrap" style="margin-top:0">
+          <div class="theme-section-label theme-section-toggle" role="button" tabindex="0" data-section="risk" style="margin-top:0">
+            Risks observed <span class="theme-section-chevron"></span>
           </div>
-
-          <div class="theme-gaps-wrap">
-            <div class="theme-gaps-label theme-section-toggle" role="button" tabindex="0" data-section="gaps">
-              Research gaps <span class="theme-gaps-count">${activeGaps.length}</span><span class="theme-section-chevron"></span>
-            </div>
-            <div class="theme-collapsible" data-collapsible="gaps">
-              <div class="theme-gaps">${gapItems}</div>
-            </div>
-          </div>
-
-          <div class="theme-prev-next">
-            <button class="theme-nav-btn theme-nav-prev" ${prev ? `data-theme-id="${prev.id}"` : 'disabled'} aria-label="${prev ? `Previous theme: ${prev.tag}` : 'First theme'}">
-              <span class="nav-arrow">←</span>
-              <span class="nav-label">${prev ? prev.tag : 'First theme'}</span>
-            </button>
-            <button class="theme-nav-btn theme-nav-next" ${next ? `data-theme-id="${next.id}"` : 'disabled'} aria-label="${next ? `Next theme: ${next.tag}` : 'Last theme'}">
-              <span class="nav-label">${next ? next.tag : 'Last theme'}</span>
-              <span class="nav-arrow">→</span>
-            </button>
+          <div class="theme-collapsible" data-collapsible="risk">
+            <div class="theme-risk-body" style="margin-top:4px">${theme.risk.summary}</div>
           </div>
         </div>
-        ${paperChips ? `<aside class="theme-research-sidebar">
-          <div class="theme-papers">${paperChips}</div>
-        </aside>` : ''}
+
+        <div class="theme-implication-wrap">
+          <div class="theme-implication-label theme-section-toggle" role="button" tabindex="0" data-section="implication">
+            What this means for institutions <span class="theme-section-chevron"></span>
+          </div>
+          <div class="theme-collapsible" data-collapsible="implication">
+            <div class="theme-implication">${theme.implication}</div>
+          </div>
+        </div>
+
+        <div class="theme-gaps-wrap">
+          <div class="theme-gaps-label theme-section-toggle" role="button" tabindex="0" data-section="gaps">
+            Research gaps <span class="theme-gaps-count">${activeGaps.length}</span><span class="theme-section-chevron"></span>
+          </div>
+          <div class="theme-collapsible" data-collapsible="gaps">
+            <div class="theme-gaps">${gapItems}</div>
+          </div>
+        </div>
+
+        <div class="theme-prev-next">
+          <button class="theme-nav-btn theme-nav-prev" ${prev ? `data-theme-id="${prev.id}"` : 'disabled'} aria-label="${prev ? `Previous theme: ${prev.tag}` : 'First theme'}">
+            <span class="nav-arrow">←</span>
+            <span class="nav-label">${prev ? prev.tag : 'First theme'}</span>
+          </button>
+          <button class="theme-nav-btn theme-nav-next" ${next ? `data-theme-id="${next.id}"` : 'disabled'} aria-label="${next ? `Next theme: ${next.tag}` : 'Last theme'}">
+            <span class="nav-label">${next ? next.tag : 'Last theme'}</span>
+            <span class="nav-arrow">→</span>
+          </button>
+        </div>
       </div>`;
 
     card.querySelectorAll('.theme-nav-btn[data-theme-id]').forEach(btn => {
