@@ -145,6 +145,7 @@
     font-size: 12px; color: #6B7280; font-style: italic; line-height: 1.4;
     font-family: 'Public Sans', sans-serif;
   }
+  .header-tab-desc-note { display: none; }
   .header-nav-btn {
     background: none; border: none; cursor: pointer;
     font-family: 'Public Sans', sans-serif;
@@ -209,23 +210,13 @@
     transition: border-color 0.15s, color 0.15s, background 0.15s;
   }
   .theme-jump-pill:hover {
-    border-color: color-mix(in srgb, var(--pill-color) 55%, var(--border));
-    background: color-mix(in srgb, var(--pill-color) 7%, transparent);
-    color: var(--text);
+    border-color: #2563EB; color: var(--text);
   }
   .theme-jump-pill.active {
-    color: color-mix(in srgb, var(--pill-color) 85%, #1a1a2e);
-    border-color: var(--pill-color);
-    background: color-mix(in srgb, var(--pill-color) 14%, transparent);
-    font-weight: 600;
+    color: #1D4ED8; border-color: #2563EB;
+    background: rgba(37,99,235,0.07); font-weight: 600;
   }
-  .pill-dot {
-    width: 8px; height: 8px; border-radius: 50%;
-    background: var(--pill-color); flex-shrink: 0; opacity: 0.55;
-    transition: opacity 0.15s;
-  }
-  .theme-jump-pill:hover .pill-dot,
-  .theme-jump-pill.active .pill-dot { opacity: 1; }
+  .pill-dot { display: none; }
   .theme-nav-strip {
     display: none; align-items: center; gap: 10px;
     padding: 10px 28px; border-bottom: 1px solid var(--border);
@@ -494,15 +485,15 @@
   /* ── CARD ────────────────────────────────────────────────── */
   .card {
     background: var(--surface); border: none;
-    border-left: 3px solid var(--card-accent, var(--border));
+    border-left: 3px solid var(--border);
     border-bottom: 1px solid var(--border);
     border-radius: 0; overflow: visible; position: relative;
-    transition: border-color 0.15s, background 0.15s;
+    transition: background 0.15s;
     padding-left: 16px;
   }
   .card:hover {
     background: #F8FAFE;
-    border-left-color: color-mix(in srgb, var(--card-accent, #2563EB) 80%, #2563EB);
+    border-left-color: var(--border);
   }
   .card::before { display: none; }
   .card::after { display: none; }
@@ -697,10 +688,11 @@
   .theme-card::before { display: none; }
   .theme-card::after  { display: none; }
   .theme-card-body {
+    display: flex; align-items: flex-start; gap: 36px;
     padding: 24px 32px 28px; flex: 1;
-    display: flex; flex-direction: column;
     position: relative; z-index: 1;
   }
+  .theme-card-main { flex: 1; min-width: 0; }
   .theme-prev-next { margin-top: 28px; }
   .theme-tag {
     display: inline-block;
@@ -763,15 +755,7 @@
   .theme-divider {
     height: 1px; background: var(--border); margin: 12px 0 0;
   }
-  .theme-risk-wrap {
-    margin-top: 24px;
-    padding-top: 20px; border-top: 1px solid var(--border);
-    border-left: 3px solid var(--risk-color);
-    border-right: 1px solid color-mix(in srgb, var(--risk-color) 30%, var(--border));
-    border-bottom: 1px solid color-mix(in srgb, var(--risk-color) 30%, var(--border));
-    border-radius: 0 0 8px 8px; padding: 10px 12px;
-    background: color-mix(in srgb, var(--risk-color) 5%, transparent);
-  }
+  .theme-risk-wrap { }
   .theme-risk-header {
     display: flex; align-items: center; gap: 8px; margin-bottom: 7px;
   }
@@ -805,13 +789,8 @@
     cursor: pointer;
   }
   .theme-gaps-count { display: none; }
-  .theme-synthesis-row {
-    display: flex; align-items: flex-start; gap: 0 36px;
-  }
-  .theme-synthesis-main { flex: 1; min-width: 0; }
   .theme-research-sidebar {
-    flex: 0 0 200px;
-    padding-top: 2px;
+    flex: 0 0 200px; padding-top: 2px;
     border-left: 1px solid var(--border);
     padding-left: 28px;
   }
@@ -912,13 +891,14 @@
 
   /* ── COLLAPSIBLE SECTIONS ───────────────────────────────────── */
   .theme-section-toggle {
-    display: flex; align-items: center; justify-content: space-between;
+    display: flex; align-items: center; justify-content: flex-start; gap: 8px;
     cursor: pointer; user-select: none;
   }
   .theme-section-toggle:hover .theme-section-chevron { opacity: 0.9; }
   .theme-section-chevron {
-    font-size: 14px; color: var(--muted); opacity: 0.5;
+    font-size: 18px; color: var(--text); opacity: 1;
     transition: none; display: inline-block; line-height: 1; font-style: normal;
+    font-weight: 300;
   }
   .theme-section-chevron::before { content: '−'; }
   .theme-section-toggle.is-collapsed .theme-section-chevron::before { content: '+'; }
@@ -1268,6 +1248,7 @@
     font-family: 'Haas Grotesk', 'Helvetica Neue', Arial, sans-serif;
   }
   .policy-view .policy-lab-header { display: none; }
+  .policy-view .lens-toggle { display: none !important; }
   .pol-header-title {
     display: block;
     font-size: 18px; font-weight: 700; color: var(--text);
@@ -1395,47 +1376,56 @@
   }
   .pol-col-count {
     display: inline-block; font-size: 10px; color: var(--muted);
-    margin-top: 6px; font-variant-numeric: tabular-nums;
-    background: var(--surface); border: 1px solid var(--border);
-    border-radius: 20px; padding: 1px 7px;
+    margin-top: 4px; font-variant-numeric: tabular-nums;
   }
   .pol-col-distbar { display: none; }
   .pol-col-distbar-seg { display: none; }
 
   /* ── Waterfall swimlane view ──────────────────────────────── */
   .pol-waterfall {
-    display: grid; grid-template-columns: repeat(5, 1fr);
-    gap: 14px; align-items: start; padding: 0 0 48px;
+    position: relative;
+    height: 720px; padding: 20px 28px 48px;
+    overflow: visible;
   }
   .pol-columns  { display: none; }
   .pol-col-hint { display: none; }
-  .pol-lane { display: flex; flex-direction: column; gap: 8px; }
+  .pol-lane {
+    position: absolute; width: 196px;
+    display: flex; flex-direction: column; gap: 0;
+  }
+  .pol-lane:not(:last-child)::after {
+    content: '→'; position: absolute;
+    top: 28px; right: -26px;
+    font-size: 18px; color: #BFDBFE; pointer-events: none;
+  }
   .pol-lane-header {
-    padding: 11px 13px 10px; background: white;
-    border: 1px solid var(--border); border-top: 3px solid var(--lane-color);
-    border-radius: 0 0 6px 6px; margin-bottom: 2px;
+    background: #1D4ED8; border: none;
+    border-radius: 100px; padding: 14px 22px;
+    margin-bottom: 10px; cursor: default;
   }
   .pol-lane-name {
     font-family: 'Publico Banner', Georgia, serif;
     font-size: 14px; font-weight: 700; letter-spacing: -0.01em;
-    color: var(--lane-color); line-height: 1.2; margin-bottom: 3px;
+    color: #FFFFFF; line-height: 1.2; margin-bottom: 3px;
   }
-  .pol-lane-meta { font-size: 10px; color: var(--muted); line-height: 1.4; }
+  .pol-lane-meta { font-size: 10px; color: rgba(255,255,255,0.65); line-height: 1.4; }
   .pol-lane-card {
     background: white; border: 1px solid var(--border);
-    border-radius: 8px; padding: 11px 13px; cursor: pointer;
+    border-radius: 8px; padding: 10px 12px; cursor: pointer;
+    margin-bottom: 6px;
     transition: border-color 0.15s, box-shadow 0.15s, transform 0.15s;
   }
   .pol-lane-card:hover {
-    border-color: var(--lane-color);
-    box-shadow: 0 2px 10px rgba(44,50,84,0.07); transform: translateY(-1px);
+    border-color: #2563EB;
+    box-shadow: 0 2px 10px rgba(37,99,235,0.1); transform: translateY(-1px);
   }
   .pol-lane-card-title {
     font-family: 'Publico Banner', Georgia, serif;
-    font-size: 13px; font-weight: 700; line-height: 1.3;
-    color: var(--text); margin-bottom: 4px;
+    font-size: 12px; font-weight: 700; line-height: 1.3;
+    color: var(--text); margin-bottom: 2px;
   }
-  .pol-lane-card-cat { font-size: 10px; color: var(--muted); }
+  .pol-lane-card-cat { font-size: 9px; color: var(--muted); }
+  .pol-lane-card-snippet { display: none; }
   /* View mode toggle */
   .pol-view-toggle {
     display: flex; align-items: center; margin-left: auto;
@@ -4914,7 +4904,7 @@ const POL_TO_RESEARCH_CATS = {
 <header class="site-header">
   <div class="header-inner">
     <div class="header-text">
-      <h1>AI, Tech and the Economy: Research Intelligence</h1>
+      <h1><a href="/" style="color:inherit;text-decoration:none;">AI, Tech and the Economy: Research Intelligence</a></h1>
     </div>
     <nav class="header-nav" role="tablist" aria-label="Select view">
       <button class="header-nav-btn active" id="viewCards" role="tab" aria-selected="true">Research</button>
@@ -4995,18 +4985,7 @@ const POL_TO_RESEARCH_CATS = {
             <div class="about-section-label">Created by</div>
             <p class="about-section-text">Christelle Prophete. This site is independently maintained and updated as new research emerges. The content does not reflect the opinions or perspectives of the creator.</p>
           </div>
-          <div class="about-section">
-            <div class="about-section-label">Research</div>
-            <p class="about-section-text">A filterable card database of individual research entries. Each entry is tagged by category and geographic scope. Cards can be filtered by methodology, region, and category, or searched by title, source, or finding.</p>
-          </div>
-          <div class="about-section">
-            <div class="about-section-label">Themes</div>
-            <p class="about-section-text">Cross-cutting syntheses of the research database, organized into themes. Each theme frames a key strategic question, presents an evidence consensus, identifies implications for institutional actors, and notes gaps in the current evidence base. Themes carry an editorial confidence rating: <em>Strong consensus</em>, <em>Emerging evidence</em>, or <em>Contested</em>.</p>
-          </div>
-          <div class="about-section">
-            <div class="about-section-label">Policy Lab</div>
-            <p class="about-section-text">Policy interventions organized by activation stage — from <em>Foundational</em> (reforms needed regardless of AI's trajectory) through <em>Transformational</em> (responses to large-scale displacement of the workforce). Each policy card includes a plain-language description, an account of the implementation challenge, and links to supporting research. Does not constitute policy advice.</p>
-          </div>
+
           <div class="about-section">
             <div class="about-section-label">AI Disclaimer</div>
             <p class="about-section-text">Summaries, key findings, and takeaways are AI-generated and reviewed for accuracy on an ongoing basis. They are intended as orientation aids — not substitutes for reading the original source. Always consult the primary publication before citing or acting on any finding.</p>
@@ -5285,10 +5264,10 @@ const POL_TO_RESEARCH_CATS = {
       d.setAttribute('aria-pressed', isActive ? 'true' : 'false');
       d.setAttribute('aria-label', `${label}, ${count} entries`);
       const hex = resolve(color || '');
-      if (isActive && hex) d.style.borderLeftColor = hex;
+      if (isActive) d.style.borderLeftColor = '#2563EB';
       d.innerHTML = `
         <span class="nav-label">${label}</span>
-        <span class="nav-count" style="${isActive && hex ? `color:${hex}` : ''}">${count}</span>`;
+        <span class="nav-count">${count}</span>`;
       d.onclick = () => { activeCat = id; render(); };
       el.appendChild(d);
     };
@@ -5452,7 +5431,7 @@ const POL_TO_RESEARCH_CATS = {
       d.className = 'nav-item' + (isActive ? ' active' : '');
       d.setAttribute('aria-pressed', isActive ? 'true' : 'false');
       d.setAttribute('aria-label', `${gm.label}, ${n} entries`);
-      if (isActive) { d.style.borderLeftColor = hex; d.style.color = hex; }
+      if (isActive) { d.style.borderLeftColor = '#2563EB'; }
       d.innerHTML = `
         <span class="nav-label">${gm.label}</span>
         <span class="nav-count">${n}</span>`;
@@ -5473,7 +5452,6 @@ const POL_TO_RESEARCH_CATS = {
     const card = document.createElement('div');
     card.className = 'card fade-in';
     card.style.animationDelay = Math.min(idx * 30, 350) + 'ms';
-    card.style.setProperty('--card-accent', color);
 
     const takeawaysHTML = (entry.takeaways || []).map((t, i) => `
       <div class="takeaway-item">
@@ -5593,60 +5571,58 @@ const POL_TO_RESEARCH_CATS = {
 
     card.innerHTML = `
       <div class="theme-card-body">
-        <div class="theme-question">${theme.question}</div>
-        ${conf.desc ? `<div class="theme-framing">${conf.desc}</div>` : ''}
+        <div class="theme-card-main">
+          <div class="theme-question">${theme.question}</div>
+          ${conf.desc ? `<div class="theme-framing">${conf.desc}</div>` : ''}
 
-        <div class="theme-synthesis-row" style="margin-top:12px">
-          <div class="theme-synthesis-main">
-            <div class="theme-section-label theme-section-toggle" role="button" tabindex="0" data-section="synthesis" style="margin-top:0; padding-top:0; border-top:none; justify-content:flex-start; gap:10px">
-              What the research shows <span class="theme-section-chevron"></span>
+          <div class="theme-section-label theme-section-toggle" role="button" tabindex="0" data-section="synthesis" style="margin-top:12px; padding-top:0; border-top:none; justify-content:flex-start; gap:10px">
+            What the research shows <span class="theme-section-chevron"></span>
+          </div>
+          <div class="theme-collapsible" data-collapsible="synthesis">
+            <div class="theme-synthesis">${(activeLens === 'economist' && theme.econSynthesis) ? theme.econSynthesis : theme.synthesis}</div>
+          </div>
+
+          <div class="theme-risk-wrap">
+            <div class="theme-section-label theme-section-toggle" role="button" tabindex="0" data-section="risk">
+              Risks observed <span class="theme-section-chevron"></span>
             </div>
-            <div class="theme-collapsible" data-collapsible="synthesis">
-              <div class="theme-synthesis">${(activeLens === 'economist' && theme.econSynthesis) ? theme.econSynthesis : theme.synthesis}</div>
+            <div class="theme-collapsible" data-collapsible="risk">
+              <div class="theme-risk-body" style="margin-top:4px">${theme.risk.summary}</div>
             </div>
           </div>
-          ${paperChips ? `<aside class="theme-research-sidebar">
-            <div class="theme-papers">${paperChips}</div>
-          </aside>` : ''}
-        </div>
 
-        <div class="theme-risk-wrap" style="margin-top:0">
-          <div class="theme-section-label theme-section-toggle" role="button" tabindex="0" data-section="risk" style="margin-top:0">
-            Risks observed <span class="theme-section-chevron"></span>
+          <div class="theme-implication-wrap">
+            <div class="theme-implication-label theme-section-toggle" role="button" tabindex="0" data-section="implication">
+              What this means for institutions <span class="theme-section-chevron"></span>
+            </div>
+            <div class="theme-collapsible" data-collapsible="implication">
+              <div class="theme-implication">${theme.implication}</div>
+            </div>
           </div>
-          <div class="theme-collapsible" data-collapsible="risk">
-            <div class="theme-risk-body" style="margin-top:4px">${theme.risk.summary}</div>
-          </div>
-        </div>
 
-        <div class="theme-implication-wrap">
-          <div class="theme-implication-label theme-section-toggle" role="button" tabindex="0" data-section="implication">
-            What this means for institutions <span class="theme-section-chevron"></span>
+          <div class="theme-gaps-wrap">
+            <div class="theme-gaps-label theme-section-toggle" role="button" tabindex="0" data-section="gaps">
+              Research gaps <span class="theme-gaps-count">${activeGaps.length}</span><span class="theme-section-chevron"></span>
+            </div>
+            <div class="theme-collapsible" data-collapsible="gaps">
+              <div class="theme-gaps">${gapItems}</div>
+            </div>
           </div>
-          <div class="theme-collapsible" data-collapsible="implication">
-            <div class="theme-implication">${theme.implication}</div>
-          </div>
-        </div>
 
-        <div class="theme-gaps-wrap">
-          <div class="theme-gaps-label theme-section-toggle" role="button" tabindex="0" data-section="gaps">
-            Research gaps <span class="theme-gaps-count">${activeGaps.length}</span><span class="theme-section-chevron"></span>
-          </div>
-          <div class="theme-collapsible" data-collapsible="gaps">
-            <div class="theme-gaps">${gapItems}</div>
+          <div class="theme-prev-next">
+            <button class="theme-nav-btn theme-nav-prev" ${prev ? `data-theme-id="${prev.id}"` : 'disabled'} aria-label="${prev ? `Previous theme: ${prev.tag}` : 'First theme'}">
+              <span class="nav-arrow">←</span>
+              <span class="nav-label">${prev ? prev.tag : 'First theme'}</span>
+            </button>
+            <button class="theme-nav-btn theme-nav-next" ${next ? `data-theme-id="${next.id}"` : 'disabled'} aria-label="${next ? `Next theme: ${next.tag}` : 'Last theme'}">
+              <span class="nav-label">${next ? next.tag : 'Last theme'}</span>
+              <span class="nav-arrow">→</span>
+            </button>
           </div>
         </div>
-
-        <div class="theme-prev-next">
-          <button class="theme-nav-btn theme-nav-prev" ${prev ? `data-theme-id="${prev.id}"` : 'disabled'} aria-label="${prev ? `Previous theme: ${prev.tag}` : 'First theme'}">
-            <span class="nav-arrow">←</span>
-            <span class="nav-label">${prev ? prev.tag : 'First theme'}</span>
-          </button>
-          <button class="theme-nav-btn theme-nav-next" ${next ? `data-theme-id="${next.id}"` : 'disabled'} aria-label="${next ? `Next theme: ${next.tag}` : 'Last theme'}">
-            <span class="nav-label">${next ? next.tag : 'Last theme'}</span>
-            <span class="nav-arrow">→</span>
-          </button>
-        </div>
+        ${paperChips ? `<aside class="theme-research-sidebar">
+          <div class="theme-papers">${paperChips}</div>
+        </aside>` : ''}
       </div>`;
 
     card.querySelectorAll('.theme-nav-btn[data-theme-id]').forEach(btn => {
@@ -5712,8 +5688,7 @@ const POL_TO_RESEARCH_CATS = {
       const isActive = !themeShowAll && activeThemeId === theme.id;
       const pill = document.createElement('button');
       pill.className = 'theme-jump-pill' + (isActive ? ' active' : '');
-      pill.style.setProperty('--pill-color', theme.color);
-      const displayTag = activeLens === 'economist' ? (ECON_THEME_CONFIG[theme.id] || theme.tag) : theme.tag;
+      const displayTag = theme.tag;
       pill.setAttribute('aria-label', displayTag);
       const label = document.createTextNode(displayTag);
       pill.appendChild(label);
@@ -5878,12 +5853,13 @@ const POL_TO_RESEARCH_CATS = {
       waterfall.id = 'polWaterfall';
       const catLabels = Object.fromEntries(Object.entries(POLICY_CATEGORIES));
 
-      DISRUPTION_LEVELS.forEach(lvl => {
+      DISRUPTION_LEVELS.forEach((lvl, laneIdx) => {
         const lvlPolicies = POLICY_DATA.filter(p => p.level === lvl.id);
         const lane = document.createElement('div');
         lane.className = 'pol-lane';
         lane.dataset.laneLevel = lvl.id;
-        lane.style.setProperty('--lane-color', lvl.color);
+        lane.style.top  = (laneIdx * 56) + 'px';
+        lane.style.left = (laneIdx * 206) + 'px';
         lane.innerHTML = `
           <div class="pol-lane-header">
             <div class="pol-lane-name">${lvl.label}</div>
@@ -5904,9 +5880,14 @@ const POL_TO_RESEARCH_CATS = {
           const card = document.createElement('div');
           card.className = 'pol-lane-card';
           card.dataset.level = p.level;
+          const rawSnippet = p.summary
+            ? p.summary.split('<br>')[0].replace(/<[^>]*>/g, '').replace(/&[^;]+;/g, ' ').trim()
+            : '';
+          const snippet = rawSnippet.length > 130 ? rawSnippet.slice(0, 127).replace(/\s\S*$/, '') + '…' : rawSnippet;
           card.innerHTML = `
             <div class="pol-lane-card-title">${p.title}</div>
-            <div class="pol-lane-card-cat">${cLabel}</div>`;
+            <div class="pol-lane-card-cat">${cLabel}</div>
+            ${snippet ? `<div class="pol-lane-card-snippet">${snippet}</div>` : ''}`;
           card.addEventListener('click', () => openPolModal(p, lvl, cLabel, basisHTML));
           lane.appendChild(card);
         });
