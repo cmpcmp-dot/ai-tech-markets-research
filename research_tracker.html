@@ -113,6 +113,16 @@
     margin-bottom: 6px; color: #1E2433;
     font-family: 'Publico Banner', Georgia, serif;
   }
+  .site-header h1 a {
+    color: inherit;
+    text-decoration: underline;
+    text-decoration-color: #2563EB;
+    text-underline-offset: 4px;
+    text-decoration-thickness: 2px;
+  }
+  .site-header h1 a:hover {
+    color: #2563EB;
+  }
   .header-intro { font-size: 14px; color: #6B7280; max-width: 620px; line-height: 1.6; }
   .header-updated { font-size: 11px; color: #2563EB; margin-top: 6px; letter-spacing: 0.02em; font-family: 'Public Sans', 'Helvetica Neue', Arial, sans-serif; }
   .header-disclaimer { font-size: 11px; color: rgba(28,25,23,0.4); margin-top: 5px; letter-spacing: 0.02em; font-style: italic; font-family: 'Public Sans', 'Helvetica Neue', Arial, sans-serif; max-width: 220px; text-align: right; line-height: 1.5; }
@@ -1596,7 +1606,7 @@ const THEMES = [
       color: "#C0392B",
       summary: "<p>AI-driven wage divergence is accelerating faster than policy or institutions can respond. The risk is not theoretical displacement but compounding inequality — workers without AI skills fall further behind while productivity gains concentrate among those already above the median, and the gap widens annually.</p><p>Institutions that treat this as a future risk rather than a present one will fall behind the intervention window. The research suggests the divergence is already underway and is being measured in salary premiums and task-exposure data, not in projections.</p>"
     },
-    papers: [1, 2, 46, 60, 61, 15, 16, 30, 33, 34, 36, 37, 41, 59, 62, 63, 75, 97, 105, 109, 137, 138, 139, 140, 141, 142, 136, 152, 154, 177, 179, 184, 190, 200, 206, 207, 208, 212],
+    papers: [1, 2, 46, 60, 61, 15, 16, 30, 33, 34, 36, 37, 41, 59, 62, 63, 75, 97, 105, 109, 137, 138, 139, 140, 141, 142, 136, 152, 154, 177, 179, 184, 190, 200, 206, 207, 208, 212, 219, 224],
   },
   {
     id: "equity",
@@ -1663,7 +1673,7 @@ const THEMES = [
       color: "#D4952A",
       summary: "<p>Legal frameworks governing AI in the workplace lag deployment by years. Workers in algorithmic management environments face measurable harm — elevated injury rates, turnover, and surveillance — with limited legal recourse, and the organizing infrastructure needed to negotiate AI contract terms is underdeveloped outside a handful of industries.</p><p>The risk intensifies in sectors without union density or advocacy infrastructure. Where workers lack the collective capacity to negotiate AI terms, employer discretion over deployment conditions is nearly unchecked — and the harms documented in warehouse and logistics contexts will replicate across industries as algorithmic management tools become cheaper and more accessible.</p>"
     },
-    papers: [3, 4, 7, 110, 76, 26, 47, 53, 64, 102, 104, 107, 150, 151, 153, 158, 167, 180, 187, 189, 202],
+    papers: [3, 4, 7, 110, 76, 26, 47, 53, 64, 102, 104, 107, 150, 151, 153, 158, 167, 180, 187, 189, 202, 219, 220, 221, 222, 223, 224],
   },
   {
     id: "policy",
@@ -1688,7 +1698,7 @@ const THEMES = [
       color: "#D4952A",
       summary: "<p>Regulatory fragmentation creates conditions where harmful AI deployments can proceed without oversight or accountability. The core risk is the gap between policy intent and enforcement capacity: laws are passing, but the infrastructure to act on them is largely absent, and this gap is widening faster than state agencies can close it.</p><p>There is also a capture risk: well-resourced AI developers are actively shaping the policy environment in ways that can appear aligned with equity goals while protecting market concentration. Institutions that do not maintain independent policy analysis capacity risk lending legitimacy to frameworks that do not serve their constituencies.</p><p>An underappreciated emerging risk: when government deploys AI in its own decision-making — drafting regulations, reviewing contracts, processing claims — the accountability mechanisms designed for private AI deployment do not automatically apply. Federal procurement and rulemaking processes are not yet equipped to assess or constrain the AI tools being introduced into them.</p>"
     },
-    papers: [77, 80, 82, 86, 101, 70, 113, 115, 122, 123, 124, 18, 28, 32, 38, 39, 40, 44, 45, 50, 52, 55, 56, 58, 67, 68, 71, 72, 78, 79, 83, 87, 88, 96, 99, 100, 111, 112, 143, 144, 145, 147, 148, 149, 146, 157, 159, 160, 161, 162, 164, 168, 169, 173, 176, 181, 196, 197, 198, 199, 186, 200, 201, 202, 203, 204, 207, 208, 210, 211, 212, 213, 214, 215, 218],
+    papers: [77, 80, 82, 86, 101, 70, 113, 115, 122, 123, 124, 18, 28, 32, 38, 39, 40, 44, 45, 50, 52, 55, 56, 58, 67, 68, 71, 72, 78, 79, 83, 87, 88, 96, 99, 100, 111, 112, 143, 144, 145, 147, 148, 149, 146, 157, 159, 160, 161, 162, 164, 168, 169, 173, 176, 181, 196, 197, 198, 199, 186, 200, 201, 202, 203, 204, 207, 208, 210, 211, 212, 213, 214, 215, 218, 219, 220, 221, 222, 223, 224],
   },
   {
     id: "community",
@@ -1841,6 +1851,7 @@ const INST_META = {
   "AFL-CIO":                                      { url: "https://aflcio.org",                                             type: "Labor federation",          note: "Labor-movement aligned, 63 affiliated unions"             },
   "Writers Guild of America":                     { url: "https://www.wga.org",                                            type: "Labor union",               note: "Labor-movement aligned, entertainment sector"             },
   "National Employment Law Project":              { url: "https://www.nelp.org",                                           type: "Worker advocacy",           note: "Labor-movement aligned, progressive"                      },
+  "Luddite Lab / DAIR Institute":                 { url: "https://labor.dair-institute.org",                               type: "Worker advocacy research",  note: "DAIR Institute project; resource hub for unions resisting AI deployment, with case studies and primers" },
   // ── Civil Rights & Equity ─────────────────────────────────────
   "National Consumer Law Center":                 { url: "https://www.nclc.org",                                           type: "Consumer advocacy",         note: "Consumer rights focus, progressive"                       },
   "National Fair Housing Alliance":               { url: "https://nationalfairhousing.org",                                type: "Civil rights advocacy",     note: "Progressive, housing and equity focus"                    },
@@ -4907,6 +4918,90 @@ const RESEARCH_DATA = [
       "The consistency of bias across 42 different scenario types suggests that name-based demographic discrimination is a general feature of how these models weight cues, not a domain-specific artifact.",
       "Partial mitigation through numerical anchors does not eliminate the disparity and may not be applicable in real-world contexts, meaning organizations deploying LLMs in evaluation or advisory roles face a bias risk that current prompt engineering cannot fully address."
     ]
+  },
+  { id: 219, date: "2025-01-01",
+    title: "Myths about Generative AI, Productivity, and Job Displacement",
+    source: "Luddite Lab / DAIR Institute",
+    sourceUrl: "https://cdn.sanity.io/files/uvgbyd32/production/45f1b26939d3502b2189c3839cfd352703ff5283.pdf",
+    category: "labor", geography: "us",
+    evidence: "analysis",
+    keyFinding: "This primer from Luddite Lab at the Distributed AI Research Institute systematically addresses the dominant myths about generative AI's productivity gains and job displacement, equipping labor organizers and worker advocates with tools to interrogate AI deployment narratives. The primer examines the empirical gaps between industry projections and documented worker experience, providing the analytical grounding needed to challenge employer claims about AI necessity and productivity gains in contract negotiations and policy debates.",
+    takeaways: [
+      "Industry productivity narratives around generative AI consistently outpace empirical evidence — claims of transformational productivity gains have not been validated at the occupational or firm level at the scale projected, and selectively citing best-case research obscures the uneven distribution of both gains and harms across workers.",
+      "Job displacement from generative AI is not technologically determined: deployment choices, contractual terms, and regulatory frameworks shape whether AI substitutes or complements worker labor — framing displacement as inevitable forecloses the negotiating space that workers and unions actually have.",
+      "Labor organizers and advocates need primer-level analytical tools to interrogate employer AI claims in bargaining contexts — this resource equips union members and worker advocates with frameworks to evaluate productivity and displacement arguments on their merits, not on employer or vendor assertions.",
+      "The gap between AI hype cycles and documented labor market outcomes creates both a challenge and an opportunity for worker organizing: challenging exaggerated displacement claims is as strategically important as resisting actual deployment, since premature capitulation to AI inevitability narratives weakens bargaining positions before organizing begins."
+    ]
+  },
+  { id: 220, date: "2024-06-01",
+    title: "Ziff Davis Creators Guild: AI Contract Protections Case Study",
+    source: "Luddite Lab / DAIR Institute",
+    sourceUrl: "https://cdn.sanity.io/files/uvgbyd32/production/03b3d86701d9c7d0a484c59bd5b78389dae5cc5f.pdf",
+    category: "workers", geography: "us",
+    evidence: "analysis",
+    keyFinding: "Documents how the Ziff Davis Creators Guild — 62 media workers within a 4,000-person corporate conglomerate — organized to win meaningful AI protections in their first successor collective bargaining agreement. The case study details the organizing strategy, the specific contract language won, and the lessons applicable to other media and digital content worker campaigns facing AI deployment without contractual protections.",
+    takeaways: [
+      "A small bargaining unit (62 workers) within a large conglomerate successfully won AI contract protections — demonstrating that AI governance provisions are achievable even without majority union density across a company, and that media workers can establish sector-leading precedents from positions of relative numerical weakness.",
+      "The campaign provides replicable contract language and organizing strategy for other media and content worker unions facing AI deployment — the specific provisions won (consent requirements, transparency obligations, and protections against AI substitution for covered work) are directly transferable to comparable bargaining contexts.",
+      "Employer AI deployment in media is accelerating in advance of any regulatory framework — workers without contract-specific AI protections face unlimited employer discretion over how and when AI replaces or supplements their labor, with no recourse under existing law.",
+      "The NewsGuild of New York context demonstrates that craft-based unions in journalism and digital media have particular leverage points around AI: the quality, institutional knowledge, and creative judgment that media workers bring to their work creates organizing arguments grounded in employer self-interest, not only worker rights."
+    ]
+  },
+  { id: 221, date: "2023-12-01",
+    title: "New York Times Tech Guild: Largest Tech Worker Strike Case Study",
+    source: "Luddite Lab / DAIR Institute",
+    sourceUrl: "https://cdn.sanity.io/files/uvgbyd32/production/3e70d64f1d5e4eaba145ce3939c92c08aa9370af.pdf",
+    category: "workers", geography: "us",
+    evidence: "analysis",
+    keyFinding: "Documents the New York Times Tech Guild's organizing campaign culminating in the largest tech worker strike in United States history — detailing the strategy, demands, and outcomes of tech workers at a major media company asserting collective power over AI deployment, workplace surveillance, and editorial technology decisions.",
+    takeaways: [
+      "The NYT Tech Guild strike represents a watershed in tech worker organizing: tech employees at a major media institution demonstrated that collective action around AI and technology governance is achievable — a precedent with direct implications for the broader tech industry where union density remains below 5%.",
+      "AI-related contract demands were central to the campaign — workers organized explicitly around how AI tools would be deployed in editorial and product contexts, establishing that AI governance is a collective bargaining issue, not only a management prerogative or a policy question.",
+      "The tech worker context within a media organization created a distinctive organizing environment: workers had both technical knowledge of AI capabilities and editorial standing to assess their impacts, giving the union unusual credibility in framing AI deployment risks to the public and to management.",
+      "The case study provides an organizing roadmap for tech workers at other companies facing AI deployment decisions — including how to build majority support, frame AI demands in terms of journalism quality and public trust, and sustain a credible strike threat without legacy union infrastructure."
+    ]
+  },
+  { id: 222, date: "2024-01-01",
+    title: "National Nurses United: Political Education Program on AI Case Study",
+    source: "Luddite Lab / DAIR Institute",
+    sourceUrl: "https://cdn.sanity.io/files/uvgbyd32/production/5b2c7e89a2238a38cbf8a94d7f303de348775ecb.pdf",
+    category: "workers", geography: "us",
+    evidence: "analysis",
+    keyFinding: "Documents how National Nurses United built a sustained political education program on AI and emerging technology to create an informed and engaged membership base capable of identifying and resisting harmful AI deployment in clinical settings. The case study details the program's structure, content, and outcomes as a model for other unions seeking to build member capacity on AI governance before deployment decisions are made.",
+    takeaways: [
+      "Political education on AI must be sustained and consistent — not a one-time workshop — to build the member knowledge base needed to identify AI deployment risks in real time and negotiate informed contract language; NNU's approach of regularly sharing emerging issues with members created the organizational capacity that reactive responses cannot.",
+      "Healthcare AI presents unique organizing challenges: AI in clinical settings is often framed as patient care improvement, requiring nurses to develop the analytical capacity to distinguish genuine care enhancements from surveillance, speed-up, and scope creep in ways that resonate with both patients and the public.",
+      "A politically educated membership is a structural asset for AI governance: when workers understand the issues, they can identify harmful deployments, report them accurately, build public coalitions, and sustain organizing pressure over the multi-year cycles that major hospital contract negotiations require.",
+      "The NNU model provides a replicable framework for other healthcare and professional sector unions — the program's design, content topics, delivery mechanisms, and member engagement strategies are transferable to nursing and allied health contexts where AI deployment is accelerating and union density provides organizing leverage."
+    ]
+  },
+  { id: 223, date: "2024-01-01",
+    title: "National Nurses United: Professional Practice Committees Case Study",
+    source: "Luddite Lab / DAIR Institute",
+    sourceUrl: "https://cdn.sanity.io/files/uvgbyd32/production/7c88723fbaf28433eff62ada17c629b0200d7462.pdf",
+    category: "workers", geography: "us",
+    evidence: "analysis",
+    keyFinding: "Documents National Nurses United's campaign to win registered nurse-controlled professional practice committees in every collective bargaining agreement — creating formal worker governance structures that give nurses democratic oversight over technology deployment, care protocols, and staffing decisions in clinical settings. The case study details the committee model, bargaining strategy, and how these structures are being used to govern AI and clinical technology deployment.",
+    takeaways: [
+      "Worker-controlled governance committees embedded in collective bargaining agreements provide the most durable form of AI oversight: they cannot be unilaterally dissolved by management, they are legally enforceable, and they create ongoing accountability rather than one-time contract protections that may become obsolete as AI capabilities evolve.",
+      "The registered nurse-controlled committee model establishes clinical workers — not managers, vendors, or administrators — as the authoritative voice on care protocols and technology deployment, directly challenging the framing that AI deployment decisions are technical questions outside the scope of collective bargaining.",
+      "The NNU case demonstrates that worker governance structures for AI are achievable through collective bargaining without waiting for legislation — and that healthcare provides a uniquely compelling organizing argument because patient safety and worker authority are aligned interests that can build broad public and institutional support.",
+      "Replicating this model requires sustained bargaining over multiple contract cycles and organizing capacity to hold the line as employers resist governance provisions — the case study provides the negotiating strategy, language, and counter-argument frameworks that other nursing and healthcare unions need to replicate NNU's approach in their own bargaining contexts."
+    ]
+  },
+  { id: 224, date: "2025-01-01",
+    title: "Luddite Lab Case Study Highlights: Common Insights Across Worker AI Campaigns",
+    source: "Luddite Lab / DAIR Institute",
+    sourceUrl: "https://cdn.sanity.io/files/uvgbyd32/production/24174957c8758c301a572b801bdf150f3024d8b1.pdf",
+    category: "workers", geography: "us",
+    evidence: "analysis",
+    keyFinding: "Synthesizes cross-cutting insights from Luddite Lab's case studies of worker campaigns resisting AI deployment, identifying common patterns in organizing strategy, contract language, and the conditions under which workers have successfully won AI governance provisions. Provides a comparative analysis of tactics and outcomes across journalism, media, and healthcare sectors.",
+    takeaways: [
+      "Successful worker AI campaigns share a common structural feature: they establish AI governance as a collective bargaining issue before deployment — organizing before the technology is embedded gives workers maximum leverage; organizing after deployment is structurally harder and produces weaker protections.",
+      "Political education and member capacity-building appear consistently in successful campaigns: workers who understand AI systems can identify deployment risks, develop credible demands, and sustain organizing pressure over multi-year cycles — informal knowledge is not a substitute for systematic member education.",
+      "Contract language won across these campaigns — consent requirements, transparency obligations, nurse-controlled committees, AI use disclosures — provides a replicable toolkit that other unions can adapt without starting from scratch; the most effective language is sector-specific and tied to existing worker expertise.",
+      "Worker AI organizing is expanding beyond legacy union industries: the combination of established union precedents in media and healthcare with rising organizing energy in tech creates conditions for a broader AI governance movement — the Luddite Lab case studies collectively document that worker power over AI is achievable, sector-specific, and accumulating across industries."
+    ]
   }
 ];
 
@@ -5125,7 +5220,7 @@ const POL_TO_RESEARCH_CATS = {
 <header class="site-header">
   <div class="header-inner">
     <div class="header-text">
-      <h1><a href="/" style="color:inherit;text-decoration:none;">AI, Tech and the Economy: Research Intelligence</a></h1>
+      <h1><a href="https://cmpcmp-dot.github.io/ai-tech-markets-research/research_tracker.html">AI, Tech and the Economy: Research Intelligence</a></h1>
     </div>
     <nav class="header-nav" role="tablist" aria-label="Select view">
       <button class="header-nav-btn active" id="viewCards" role="tab" aria-selected="true">Research</button>
@@ -5377,6 +5472,7 @@ const POL_TO_RESEARCH_CATS = {
     'Singapore Parliament','AI Commons Project',
     'Anton Leicht','AI Futures Project',
     'National Partnership for Women & Families','Benefits Tech Advocacy Hub',
+    'Luddite Lab / DAIR Institute',
   ]);
   const ECON_CAT_TO_SRC = {
     'econ-labor':  ['hiring','labor','workers'],
