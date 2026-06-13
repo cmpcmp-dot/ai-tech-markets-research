@@ -667,7 +667,11 @@
   }
   .card-pol-btn:hover { background: rgba(44,50,84,0.1); border-color: rgba(44,50,84,0.3); }
   .pol-basis { margin-top: 10px; }
-  .pol-basis-label { display: none; }
+  .pol-basis-label {
+    font-size: 11px; font-weight: 700; color: var(--muted);
+    margin-bottom: 8px;
+    font-family: 'Haas Grotesk', 'Helvetica Neue', Arial, sans-serif;
+  }
   .pol-basis-chips { display: flex; flex-wrap: wrap; gap: 6px; }
   .pol-basis-chip {
     display: inline-flex; align-items: center; gap: 4px;
@@ -685,6 +689,19 @@
   }
   .pol-basis-ref em { font-style: italic; }
   .pol-basis-ref:hover { color: var(--accent); }
+  .pol-basis-related { margin-top: 8px; }
+  .pol-basis-toggle {
+    display: inline-flex; align-items: center; gap: 6px;
+    margin-top: 12px; padding: 4px 0;
+    border: none; background: none; cursor: pointer;
+    color: var(--accent); font-size: 12px; font-weight: 600;
+    font-family: 'Haas Grotesk', 'Helvetica Neue', Arial, sans-serif;
+  }
+  .pol-basis-chevron {
+    display: inline-block; font-size: 15px; line-height: 1;
+    transition: transform 0.15s;
+  }
+  .pol-basis-toggle[aria-expanded="true"] .pol-basis-chevron { transform: rotate(90deg); }
 
   .takeaways {
     max-height: 0; overflow: hidden;
@@ -815,8 +832,7 @@
     font-size: 13px; color: var(--muted); line-height: 1.55;
   }
   .theme-gap-arrow {
-    color: color-mix(in srgb, var(--theme-color, #6B7280) 70%, var(--text));
-    font-weight: 700; flex-shrink: 0;
+    color: var(--accent); font-weight: 700; flex-shrink: 0;
   }
   .theme-divider {
     height: 1px; background: var(--border); margin: 12px 0 0;
@@ -826,7 +842,7 @@
     display: flex; gap: 10px; font-size: 13.5px; color: var(--text); line-height: 1.55;
   }
   .theme-working-check {
-    color: var(--s-emergent); font-weight: 700; font-size: 13px;
+    color: var(--accent); font-weight: 700; font-size: 13px;
     flex-shrink: 0; margin-top: 1px;
   }
   .theme-risk-wrap { }
@@ -853,13 +869,13 @@
   .theme-risk-body p:last-child { margin-bottom: 0; }
   .theme-leverage {
     margin-top: 14px; padding: 12px 16px;
-    background: color-mix(in srgb, var(--s-emergent) 7%, transparent);
-    border-left: 3px solid var(--s-emergent);
+    background: color-mix(in srgb, var(--accent) 8%, transparent);
+    border-left: 3px solid var(--accent);
     border-radius: 0 8px 8px 0;
   }
   .theme-leverage-label {
-    font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
-    color: #3F7A5E; margin-bottom: 6px;
+    font-size: 12px; font-weight: 700;
+    color: var(--accent); margin-bottom: 6px;
     font-family: 'Haas Grotesk', 'Helvetica Neue', Arial, sans-serif;
   }
   .theme-leverage-body {
@@ -901,6 +917,32 @@
   }
   .theme-ref em { font-style: italic; }
   .theme-ref:hover { color: var(--accent); }
+  .theme-refs-wrap {
+    margin-top: 24px; padding-top: 20px;
+    border-top: 1px solid var(--border);
+  }
+  .theme-refs-heading {
+    font-family: 'Publico Banner', Georgia, serif;
+    font-size: 17px; font-weight: 700; letter-spacing: -0.01em;
+    color: var(--text); margin-bottom: 12px;
+  }
+  .theme-refs {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(420px, 1fr));
+    gap: 9px 32px;
+  }
+  .theme-refs-toggle {
+    display: inline-flex; align-items: center; gap: 6px;
+    margin-top: 14px; padding: 4px 0;
+    border: none; background: none; cursor: pointer;
+    color: var(--accent); font-size: 12px; font-weight: 600;
+    font-family: 'Haas Grotesk', 'Helvetica Neue', Arial, sans-serif;
+  }
+  .theme-refs-chevron {
+    display: inline-block; font-size: 15px; line-height: 1;
+    transition: transform 0.15s;
+  }
+  .theme-refs-toggle[aria-expanded="true"] .theme-refs-chevron { transform: rotate(90deg); }
+  .theme-refs-related { margin-top: 12px; }
   .syn-cite {
     color: var(--accent); text-decoration: none;
     border-bottom: 1px dotted color-mix(in srgb, var(--accent) 45%, transparent);
@@ -1274,10 +1316,10 @@
   .pol-modal-section:last-child { padding-bottom: 0; border-bottom: none; }
   .pol-modal-label {
     font-family: 'Publico Banner', Georgia, serif;
-    font-size: 15px; font-weight: 700; letter-spacing: -0.01em;
+    font-size: 16px; font-weight: 700; letter-spacing: -0.01em;
     color: var(--text);
   }
-  .pol-modal-text { font-size: 13.5px; color: var(--text); line-height: 1.7; }
+  .pol-modal-text { font-size: 14px; color: var(--text); line-height: 1.7; }
   .pol-modal-text.muted { color: var(--muted); }
   .pol-modal-activation { background: none; border-bottom: 1px solid var(--border) !important; padding: 0 0 16px; margin-bottom: 0; }
   .pol-modal-activation .pol-modal-label { color: var(--text); }
@@ -5228,10 +5270,10 @@ const POLICY_DATA = [
     title:"Algorithmic Transparency Mandates",
     summary:"Require employers to notify workers when AI is used in hiring, performance, scheduling, or termination decisions; establish a legal right to human review of AI-generated determinations.<br><br>Covered systems would include resume screeners, interview assessment tools, shift-scheduling algorithms, productivity monitoring systems, and AI-generated performance reviews. Employers would be required to maintain documentation on system design and training data, and workers would have 30 days to request human reconsideration of any AI-generated adverse employment action.",
     rationale:"Workers have no right to know when they are evaluated or terminated by an algorithm. This is a due process gap that exists independent of AI's displacement effects. EEOC guidance and NYC Local Law 144 establish precedent, but federal coverage is absent.<br><br>Estimates suggest over 70% of Fortune 500 companies use AI tools in at least one stage of hiring. Without transparency requirements, workers cannot contest decisions they don't know were made by algorithms, and employers face no accountability for systems with measurable disparate impact. Disclosure mandates create the audit trail enforcement requires.",
-    precedent:"NYC Local Law 144 (enacted 2021, enforcement effective July 5, 2023) requires annual bias audits for automated employment decision tools. Colorado's AI Act (2024) established disclosure requirements. The EU AI Act creates binding obligations for high-risk AI in employment contexts. New Jersey's S.1840 (introduced January 2026, pending in the Senate Labor Committee) would create mandatory disclosure requirements for AI-driven layoffs by employers with 100+ employees, alongside governance requirements for high-risk AI systems — the most comprehensive state-level worker-facing AI transparency framework introduced in the U.S.<br><br>The AI-Related Job Impacts Clarity Act (S.3108, introduced by Sen. Hawley with Sen. Warner co-sponsoring, 119th Congress) extends the disclosure logic to workforce impacts, requiring covered entities to report AI-related job changes quarterly to the Department of Labor. Illinois's AEDT Act (2020) required notification and consent for AI video interview analysis. Maryland prohibits AI facial recognition in hiring interviews without consent. The rollback of Biden-era DOL and EEOC AI guidance under EO 14179 (January 2025) has made state-level transparency mandates the primary worker protection layer." },
+    precedent:"NYC Local Law 144 (enacted 2021, enforcement effective July 5, 2023) requires annual bias audits for automated employment decision tools. Colorado's AI Act (2024) established disclosure requirements. The EU AI Act creates binding obligations for high-risk AI in employment contexts. New Jersey's S.1840 (introduced January 2026, pending in the Senate Labor Committee) would create mandatory disclosure requirements for AI-driven layoffs by employers with 100+ employees, alongside governance requirements for high-risk AI systems. It is the most comprehensive state-level worker-facing AI transparency framework introduced in the U.S.<br><br>The AI-Related Job Impacts Clarity Act (S.3108, introduced by Sen. Hawley with Sen. Warner co-sponsoring, 119th Congress) extends the disclosure logic to workforce impacts, requiring covered entities to report AI-related job changes quarterly to the Department of Labor. Illinois's AEDT Act (2020) required notification and consent for AI video interview analysis. Maryland prohibits AI facial recognition in hiring interviews without consent. The rollback of Biden-era DOL and EEOC AI guidance under EO 14179 (January 2025) has made state-level transparency mandates the primary worker protection layer." },
   { id:"eitc-expansion", level:"baseline", category:"safety-net",
     title:"EITC Expansion",
-    summary:"Expand the Earned Income Tax Credit to increase benefit levels, extend coverage to childless adults, and redesign phase-out cliffs to accommodate workers with non-traditional income patterns.<br><br>The expansion would raise the maximum credit for childless workers from approximately $600 to $2,000, lower the eligibility age from 25 to 19, and smooth the benefit phase-out so that workers with variable or platform-based income don't face sharp marginal tax rates that penalize earnings growth. An optional monthly payment, similar to the advance CTC, would convert the EITC from an annual tax event into a monthly income stabilizer.",
+    summary:"Expand the Earned Income Tax Credit to increase benefit levels, extend coverage to childless adults, and redesign phase-out cliffs to accommodate workers with non-traditional income patterns.<br><br>The expansion would raise the maximum credit for childless workers from approximately $600 to $2,000, and lower the eligibility age from 25 to 19. It would also smooth the benefit phase-out so that workers with variable or platform-based income don't face sharp marginal tax rates that penalize earnings growth. An optional monthly payment, similar to the advance CTC, would convert the EITC from an annual tax event into a monthly income stabilizer.",
     rationale:"The EITC is the most effective existing income support tool for working families, but its current design penalizes irregular income, exactly the pattern AI-driven transition will produce. Expansion provides income floor infrastructure that can be scaled as disruption intensifies.<br><br>The core design flaw: the EITC rewards wage employment more than self-employment or contract work, penalizing the labor market transitions AI disruption creates. Workers cycling between gig work, part-time employment, and periods of retraining face unpredictable benefit amounts and phase-out penalties that reduce the safety net when transitions are most expensive.",
     precedent:"The American Rescue Plan's temporary EITC expansion for childless adults (2021) reduced poverty measurably. Multiple states have enacted their own EITC enhancements, and bipartisan political support makes this among the most actionable short-term policies.<br><br>California, Colorado, New York, and 30 other states maintain state EITC programs that supplement the federal credit. CBO analysis of expansion proposals consistently shows strong poverty reduction per dollar of federal expenditure. The IRS's recent efforts to reduce improper payment rates have strengthened the administrative foundation for a more ambitious expansion." },
   { id:"worker-data-rights", level:"baseline", category:"labor-rights",
@@ -5248,7 +5290,7 @@ const POLICY_DATA = [
     title:"Mandatory AI Job Impact Reporting",
     summary:"Require employers above a size threshold to report AI-related workforce changes — including layoffs, role eliminations, and significant task shifts — to the Department of Labor on a quarterly basis, creating the first systematic federal dataset on AI-driven labor market displacement.<br><br>Covered entities would submit quarterly reports within 30 days of each quarter's end, disclosing headcount changes attributable to AI deployment alongside the nature of the impacted roles. The Department of Labor would aggregate and publish sector-level data annually, enabling evidence-based calibration of displaced worker programs, wage insurance triggers, and retraining investments. Small employers (under 100 workers) would be exempt; phased implementation would begin with large employers before extending to mid-size firms.",
     rationale:"No systematic federal data exists on AI-driven workforce displacement. Policy responses — including displaced worker programs, wage insurance, and retraining accounts — are currently calibrated against projections and surveys rather than actual employer-reported impacts. Without a reporting floor, the gap between AI's documented deployment pace and the available evidence base will widen until displacement is already irreversible.<br><br>Employers can implement AI systems that eliminate thousands of positions with no obligation to disclose the scale, timing, or nature of those changes. This prevents both early-warning interventions and evidence-based scaling of support programs. If a firm is eliminating roles through AI deployment, that decision should be part of the public record, creating incentives for responsible deployment that are absent from the current environment.",
-    precedent:"The AI-Related Job Impacts Clarity Act (S.3108, introduced by Sen. Hawley with Sen. Warner co-sponsoring, 119th Congress) establishes the congressional template — requiring covered entities to report AI-related job impacts to the Secretary of Labor quarterly. New Jersey's S.1840 (introduced January 2026, pending) would create a state-level disclosure requirement for AI-driven layoffs. WARN Act reporting requirements for large-scale layoffs provide the administrative precedent for employer-level workforce disclosures; AI reporting would extend this logic to AI-attributable changes below WARN Act thresholds.<br><br>EU AI Act requirements for high-risk AI in employment contexts include transparency obligations that create a partial international precedent. BLS's existing workforce survey infrastructure provides the data collection architecture into which quarterly employer reports could be integrated without building new systems from scratch." },
+    precedent:"The AI-Related Job Impacts Clarity Act (S.3108, introduced by Sen. Hawley with Sen. Warner co-sponsoring, 119th Congress) establishes the congressional template, requiring covered entities to report AI-related job impacts to the Secretary of Labor quarterly. New Jersey's S.1840 (introduced January 2026, pending) would create a state-level disclosure requirement for AI-driven layoffs. WARN Act reporting requirements for large-scale layoffs provide the administrative precedent for employer-level workforce disclosures; AI reporting would extend this logic to AI-attributable changes below WARN Act thresholds.<br><br>EU AI Act requirements for high-risk AI in employment contexts include transparency obligations that create a partial international precedent. BLS's existing workforce survey infrastructure provides the data collection architecture into which quarterly employer reports could be integrated without building new systems from scratch." },
   /* ── Emerging ──────────────────────────────────────────────── */
   { id:"portable-benefits", level:"emerging", category:"healthcare",
     title:"Portable Benefits System",
@@ -5285,7 +5327,7 @@ const POLICY_DATA = [
     title:"Mandatory Profit Sharing for AI Deployment",
     summary:"Require firms that deploy AI above a measurable productivity-impact threshold to share a portion of gains with workers, through ESOP contributions, profit-sharing pools, or mandatory wage indexing.<br><br>Firms with 100 or more employees using AI systems that generate measurable productivity improvements would be required to distribute 10–15% of measured gains to workers, either as direct profit-sharing, equity contributions to worker ownership accounts, or wage increases tied to productivity benchmarks. The Department of Labor would develop measurement protocols in consultation with BLS, with an appeals process for firms disputing productivity attribution.",
     rationale:"AI productivity gains currently flow almost entirely to shareholders and executives. A profit-sharing mandate lets workers capture a portion of the gains they helped generate, regardless of union status or bargaining power.<br><br>Corporate governance structures give workers no formal claim on productivity gains generated through AI systems they interact with, train, or are replaced by. The disconnect between productivity growth and compensation growth has widened dramatically since the 1970s, and AI is accelerating it. Mandatory profit sharing creates a statutory floor on workers' share of gains that complements but does not depend on collective bargaining.",
-    precedent:"France requires \"participation\" (mandatory profit-sharing) for firms above 50 employees — a legally distinct scheme from \"intéressement,\" which is voluntary at all firm sizes. Denmark's labor-management agreements often include productivity sharing. Multiple U.S. tax incentives for ESOPs provide a framework for voluntary worker ownership expansion.<br><br>France's Participation Law (1967) created mandatory profit-sharing as a post-WWII social compact, now covering around 8 million workers. German co-determination law gives workers board representation in large firms, structurally embedding worker voice in productivity-gain allocation. The U.S. already has the legal infrastructure for voluntary profit-sharing and ESOPs; a mandate would extend coverage to the 90% of workers currently outside any such arrangement." },
+    precedent:"France requires \"participation\" (mandatory profit-sharing) for firms above 50 employees, a legally distinct scheme from \"intéressement,\" which is voluntary at all firm sizes. Denmark's labor-management agreements often include productivity sharing. Multiple U.S. tax incentives for ESOPs provide a framework for voluntary worker ownership expansion.<br><br>France's Participation Law (1967) created mandatory profit-sharing as a post-WWII social compact, now covering around 8 million workers. German co-determination law gives workers board representation in large firms, structurally embedding worker voice in productivity-gain allocation. The U.S. already has the legal infrastructure for voluntary profit-sharing and ESOPs; a mandate would extend coverage to the 90% of workers currently outside any such arrangement." },
   { id:"universal-child-benefit", level:"elevated", category:"safety-net",
     title:"Universal Child Benefit",
     summary:"Monthly universal cash payments per child (~$250–500/month), reducing child poverty and stabilizing family income during transition periods. Income-phased above $100,000 to maintain progressive incidence.<br><br>Administration would be handled through the IRS's existing Child Tax Credit infrastructure, with an opt-in monthly payment mechanism similar to the 2021 advance CTC. Benefit levels would be indexed to inflation, with an enhanced rate for children under six. The benefit would be refundable and available regardless of parents' employment or immigration status.",
@@ -5340,14 +5382,14 @@ const POLICY_DATA = [
     precedent:"Stockton's SEED pilot (2021) showed guaranteed income recipients were more likely to gain full-time employment than the control group, contradicting the labor supply reduction concern. Finland's 2017–2018 trial and Kenya's ongoing GiveDirectly 12-year RCT provide additional evidence. The Alaska Permanent Fund Dividend ($1,312 in 2023) distributes oil revenues universally, the closest existing model.<br><br>GiveDirectly's Kenya study is the largest and longest UBI RCT ever conducted, with preliminary results showing sustained positive effects on investment, earnings, and psychological well-being. GiveDirectly's AI-supported program deploys satellite imagery and machine learning to identify beneficiaries in data-scarce regions, demonstrating that AI can reduce the administrative costs of cash transfers and extend their reach to populations outside conventional administrative systems. The Alaska Permanent Fund demonstrates the political durability of universal cash transfers when funded by shared resource revenue." },
   { id:"ai-dividend", level:"transformational", category:"tax-wealth",
     title:"AI Productivity Dividend",
-    summary:"Distribute a share of GDP growth attributable to AI productivity gains directly to all citizens as a periodic dividend — an explicit mechanism ensuring AI-generated prosperity has universal rather than concentrated beneficiaries.<br><br>The dividend would be calculated annually based on AI-attributable total factor productivity growth, estimated by BLS using sector-level productivity data and AI adoption metrics. Distributions would be made quarterly to all adults, financed through a combination of a corporate income tax surcharge on AI-intensive sectors and a dedicated trust fund funded by a levy on AI patent licensing revenue. Initial estimates suggest a feasible dividend of $800–1,500 per person annually at current adoption rates.",
+    summary:"Distribute a share of GDP growth attributable to AI productivity gains directly to all citizens as a periodic dividend, an explicit mechanism ensuring AI-generated prosperity has universal rather than concentrated beneficiaries.<br><br>The dividend would be calculated annually based on AI-attributable total factor productivity growth, estimated by BLS using sector-level productivity data and AI adoption metrics. Distributions would be made quarterly to all adults, financed through a combination of a corporate income tax surcharge on AI-intensive sectors and a dedicated trust fund funded by a levy on AI patent licensing revenue. Initial estimates suggest a feasible dividend of $800–1,500 per person annually at current adoption rates.",
     rationale:"AI systems are trained on data generated by society, deployed in markets built on public investment, and derive value from infrastructure maintained collectively. A public dividend on AI productivity follows from this: the public created the conditions for the gains.<br><br>The normative case draws on natural resource dividend logic: if a country's AI systems generate value from collective data, public education, internet infrastructure, and publicly funded research, then returns belong partly to the public. The practical case is distributional: without a dividend mechanism, AI productivity gains will accrue almost exclusively to capital owners and high-skill workers, widening the gap between AI beneficiaries and those displaced.",
     precedent:"The Alaska Permanent Fund Dividend provides the most direct model: an annual dividend from natural resource revenues distributed to all residents. Data dividend proposals from Governor Newsom (California) apply similar logic to citizen data. Several economists have developed AI dividend frameworks using sovereign fund logic.<br><br>Norway's Government Pension Fund demonstrates the long-term institutional model: resource revenues accumulated as public capital, managed professionally, with returns distributed as social spending. Congressman Ro Khanna's proposed National Technology and Innovation Dividend Fund applies sovereign fund logic to AI specifically. Economists Posner and Weyl have proposed a data labor payment framework in which individuals are compensated for contributing AI training data." },
   { id:"sovereign-wealth-fund", level:"transformational", category:"tax-wealth",
     title:"Sovereign Wealth Fund from AI Productivity",
     summary:"Accumulate a portion of AI-derived productivity gains as public capital in a sovereign wealth fund, invested on behalf of all citizens, building socialized ownership of productive capacity as AI concentrates private capital.<br><br>The fund would be seeded by a 5% levy on AI-attributable corporate profits above a threshold, building toward a target of 5–10% of GDP over 20 years. The fund would invest across public equities, private markets, infrastructure, and clean energy, targeting returns sufficient to fund a meaningful annual dividend while preserving capital. Governance would be independent of political control, modeled on Norway's Norges Bank Investment Management structure.",
     rationale:"Private capital accumulation from AI will concentrate wealth to a degree that undermines democratic governance without a countervailing mechanism for public capital formation. A sovereign wealth fund converts AI productivity gains into shared productive assets rather than individual wealth transfers.<br><br>AI returns accrue to equity holders, who are increasingly concentrated among the top 1% of households. Without a mechanism for public capital accumulation, democratic societies face a widening divergence between economic power and political equality. A sovereign wealth fund creates a public counterbalance: a pool of productive assets owned collectively, growing in proportion to the private wealth concentration it offsets.",
-    precedent:"Norway's Government Pension Fund Global ($1.7T) is the largest sovereign wealth fund globally and the most complete model for AI dividend logic. Singapore's Temasek and the Alaska Permanent Fund provide additional precedents.<br><br>Stewart Lansley and Howard Reed's Citizens' Wealth Fund proposal (IPPR, 2018) developed a detailed UK implementation framework. Scotland's National Investment Bank provides a smaller-scale domestic model. The IMF's 2023 fiscal monitor explicitly identified sovereign wealth funds as a mechanism for managing windfall revenues from concentrated industries — AI fits this framework directly." },
+    precedent:"Norway's Government Pension Fund Global ($1.7T) is the largest sovereign wealth fund globally and the most complete model for AI dividend logic. Singapore's Temasek and the Alaska Permanent Fund provide additional precedents.<br><br>Stewart Lansley and Howard Reed's Citizens' Wealth Fund proposal (IPPR, 2018) developed a detailed UK implementation framework. Scotland's National Investment Bank provides a smaller-scale domestic model. The IMF's 2023 fiscal monitor explicitly identified sovereign wealth funds as a mechanism for managing windfall revenues from concentrated industries. AI fits this framework directly." },
   { id:"global-min-tax", level:"transformational", category:"international",
     title:"Global Minimum Tax on AI Profits",
     summary:"Extend the OECD/G20 global minimum tax framework to specifically address AI-derived profits, closing loopholes that allow AI companies to shift profits to low-tax jurisdictions while drawing social value from high-tax economies.<br><br>The extension would add a sector-specific pillar establishing a 21% minimum effective tax rate on AI-derived profits and creating a nexus rule attributing AI profits to the jurisdiction where training data was generated and where users are located. This closes the current gap that allows AI companies to book profits in low-tax jurisdictions while generating value from high-tax economies' infrastructure, talent, and institutions.",
@@ -6116,10 +6158,21 @@ const POL_TO_RESEARCH_CATS = {
 
     const paperIds = overridePaperIds !== undefined ? overridePaperIds : (theme.papers || []);
     const linkedPapers = paperIds.map(id => paperMap[id]).filter(Boolean);
-    const paperChips = [...linkedPapers]
-      .sort((a, b) => (a.source || '').localeCompare(b.source || ''))
-      .map(p => `<a class="theme-ref" href="${p.sourceUrl}" target="_blank" rel="noopener noreferrer" title="${p.title.replace(/"/g, '&quot;')}">${formatAPACitation(p)}</a>`)
-      .join('');
+    const renderRef = p => `<a class="theme-ref" href="${p.sourceUrl}" target="_blank" rel="noopener noreferrer" title="${p.title.replace(/"/g, '&quot;')}">${formatAPACitation(p)}</a>`;
+    const bySource = (a, b) => (a.source || '').localeCompare(b.source || '');
+    const activeSyn = (activeLens === 'economist' && theme.econSynthesis) ? theme.econSynthesis : theme.synthesis;
+    const citedIds = new Set([...(activeSyn || '').matchAll(/\{\{citep?:(\d+)\}\}/g)].map(m => +m[1]));
+    const citedPapers = [...citedIds].map(id => paperMap[id]).filter(Boolean).sort(bySource);
+    const citedKey = new Set(citedPapers.map(p => p.id));
+    const relatedPapers = linkedPapers.filter(p => !citedKey.has(p.id)).sort(bySource);
+    const relN = relatedPapers.length;
+    const refsSectionHTML = (citedPapers.length || relN) ? `
+          <div class="theme-refs-wrap">
+            <div class="theme-refs-heading">References</div>
+            ${citedPapers.length ? `<div class="theme-refs">${citedPapers.map(renderRef).join('')}</div>` : ''}
+            ${relN ? `<button class="theme-refs-toggle" type="button" aria-expanded="false"><span class="theme-refs-chevron">&rsaquo;</span><span class="theme-refs-toggle-text">Show ${relN} related ${relN === 1 ? 'study' : 'studies'}</span></button>
+            <div class="theme-refs theme-refs-related" style="display:none">${relatedPapers.map(renderRef).join('')}</div>` : ''}
+          </div>` : '';
 
     const activeGaps = (activeLens === 'economist' && theme.econGaps) ? theme.econGaps : theme.gaps;
     const gapItems = activeGaps.map(g =>
@@ -6146,7 +6199,7 @@ const POL_TO_RESEARCH_CATS = {
           ${conf.label ? `<div class="theme-confidence-note"><span class="conf-label">${conf.label}:</span> ${conf.desc}</div>` : ''}
           ${theme.framing ? `<div class="theme-framing"><span class="framing-label">Thesis:</span> ${theme.framing}</div>` : ''}
 
-          <div class="theme-section-label theme-section-toggle" role="button" tabindex="0" data-section="synthesis" style="margin-top:12px; padding-top:0; border-top:none; justify-content:flex-start; gap:10px">
+          <div class="theme-section-label theme-section-toggle" role="button" tabindex="0" data-section="synthesis" style="justify-content:flex-start; gap:10px">
             What the research shows <span class="theme-section-chevron"></span>
           </div>
           <div class="theme-collapsible" data-collapsible="synthesis">
@@ -6164,12 +6217,12 @@ const POL_TO_RESEARCH_CATS = {
 
           <div class="theme-risk-wrap">
             <div class="theme-section-label theme-section-toggle" role="button" tabindex="0" data-section="risk">
-              Risks observed &amp; where the leverage is <span class="theme-section-chevron"></span>
+              Risks observed &amp; points of leverage <span class="theme-section-chevron"></span>
             </div>
             <div class="theme-collapsible" data-collapsible="risk">
               <div class="theme-risk-body" style="margin-top:4px">${theme.risk.summary}</div>
               ${theme.risk.leverage ? `<div class="theme-leverage">
-                <div class="theme-leverage-label">Where the leverage is</div>
+                <div class="theme-leverage-label">Points of leverage</div>
                 <div class="theme-leverage-body">${theme.risk.leverage}</div>
               </div>` : ''}
             </div>
@@ -6193,6 +6246,8 @@ const POL_TO_RESEARCH_CATS = {
             </div>
           </div>
 
+          ${refsSectionHTML}
+
           <div class="theme-prev-next">
             <button class="theme-nav-btn theme-nav-prev" ${prev ? `data-theme-id="${prev.id}"` : 'disabled'} aria-label="${prev ? `Previous theme: ${prev.tag}` : 'First theme'}">
               <span class="nav-arrow">←</span>
@@ -6204,10 +6259,6 @@ const POL_TO_RESEARCH_CATS = {
             </button>
           </div>
         </div>
-        ${paperChips ? `<aside class="theme-research-sidebar">
-          <div class="theme-refs-label">References</div>
-          <div class="theme-refs">${paperChips}</div>
-        </aside>` : ''}
       </div>`;
 
     card.querySelectorAll('.theme-nav-btn[data-theme-id]').forEach(btn => {
@@ -6218,6 +6269,20 @@ const POL_TO_RESEARCH_CATS = {
         document.getElementById('cardsGrid').scrollIntoView({ behavior: 'smooth', block: 'start' });
       });
     });
+
+    // ── Related-studies toggle in References ──
+    const refsToggle = card.querySelector('.theme-refs-toggle');
+    if (refsToggle) {
+      const related = card.querySelector('.theme-refs-related');
+      const tEl = refsToggle.querySelector('.theme-refs-toggle-text');
+      const relCount = related ? related.querySelectorAll('.theme-ref').length : 0;
+      refsToggle.addEventListener('click', () => {
+        const open = refsToggle.getAttribute('aria-expanded') === 'true';
+        refsToggle.setAttribute('aria-expanded', open ? 'false' : 'true');
+        if (related) related.style.display = open ? 'none' : 'grid';
+        if (tEl) tEl.textContent = open ? `Show ${relCount} related ${relCount === 1 ? 'study' : 'studies'}` : 'Hide related studies';
+      });
+    }
 
     // ── Default: collapse risk, gaps; leave synthesis + implication open ──
     ['risk', 'gaps'].forEach(section => {
@@ -6306,7 +6371,23 @@ const POL_TO_RESEARCH_CATS = {
     if (!cats.length) return [];
     const matches = RESEARCH_DATA.filter(r => cats.includes(r.category));
     matches.sort((a, b) => new Date(b.date) - new Date(a.date));
-    return matches.slice(0, 4);
+    return matches.slice(0, 16);
+  }
+
+  // Build the policy "Research basis" reference list: top few shown, rest behind a toggle.
+  function buildPolicyBasis(papers) {
+    if (!papers.length) return '';
+    const renderRef = r => {
+      const href = r.sourceUrl ? ` href="${r.sourceUrl}" target="_blank" rel="noopener"` : '';
+      return `<a class="pol-basis-ref"${href} onclick="event.stopPropagation()">${formatAPACitation(r)}</a>`;
+    };
+    const SHOWN = 4;
+    const shown = papers.slice(0, SHOWN), rest = papers.slice(SHOWN);
+    return `<div class="pol-basis"><div class="pol-basis-label">Research basis</div>`
+      + `<div class="pol-basis-refs">${shown.map(renderRef).join('')}</div>`
+      + (rest.length ? `<button class="pol-basis-toggle" type="button" aria-expanded="false"><span class="pol-basis-chevron">&rsaquo;</span><span class="pol-basis-toggle-text">Show ${rest.length} more related ${rest.length === 1 ? 'study' : 'studies'}</span></button>`
+        + `<div class="pol-basis-refs pol-basis-related" style="display:none">${rest.map(renderRef).join('')}</div>` : '')
+      + `</div>`;
   }
 
   // APA-style citation: Author. (Year). Title. Organization.
@@ -6432,14 +6513,7 @@ const POL_TO_RESEARCH_CATS = {
 
         policies.forEach(p => {
           const lvl = levelMap[p.level] || {};
-          const papers = getResearchBasis(p.category);
-          const basisHTML = papers.length ? (() => {
-            const refs = papers.map(r => {
-              const href = r.sourceUrl ? ` href="${r.sourceUrl}" target="_blank" rel="noopener"` : '';
-              return `<a class="pol-basis-ref"${href} onclick="event.stopPropagation()">${formatAPACitation(r)}</a>`;
-            }).join('');
-            return `<div class="pol-basis"><div class="pol-basis-label">Research basis</div><div class="pol-basis-refs">${refs}</div></div>`;
-          })() : '';
+          const basisHTML = buildPolicyBasis(getResearchBasis(p.category));
 
           const wrap = document.createElement('div');
           wrap.className = 'pol-item-wrap';
@@ -6516,14 +6590,7 @@ const POL_TO_RESEARCH_CATS = {
 
           catPolicies.filter(p => p.level === lvl.id).forEach(p => {
             const origCatLabel = POLICY_CATEGORIES[p.category] || p.category;
-            const papers = getResearchBasis(p.category);
-            const basisHTML = papers.length ? (() => {
-              const refs = papers.map(r => {
-                const href = r.sourceUrl ? ` href="${r.sourceUrl}" target="_blank" rel="noopener"` : '';
-                return `<a class="pol-basis-ref"${href} onclick="event.stopPropagation()">${formatAPACitation(r)}</a>`;
-              }).join('');
-              return `<div class="pol-basis"><div class="pol-basis-label">Research basis</div><div class="pol-basis-refs">${refs}</div></div>`;
-            })() : '';
+            const basisHTML = buildPolicyBasis(getResearchBasis(p.category));
 
             const card = document.createElement('div');
             card.className = 'pol-matrix-card';
@@ -6569,6 +6636,18 @@ const POL_TO_RESEARCH_CATS = {
         <div class="pol-modal-text">${p.rationale}</div>
       </div>
       ${researchSection}`;
+    const rbToggle = document.getElementById('polModalBody').querySelector('.pol-basis-toggle');
+    if (rbToggle) {
+      const rel = document.getElementById('polModalBody').querySelector('.pol-basis-related');
+      const tEl = rbToggle.querySelector('.pol-basis-toggle-text');
+      const n = rel ? rel.querySelectorAll('.pol-basis-ref').length : 0;
+      rbToggle.addEventListener('click', () => {
+        const open = rbToggle.getAttribute('aria-expanded') === 'true';
+        rbToggle.setAttribute('aria-expanded', open ? 'false' : 'true');
+        if (rel) rel.style.display = open ? 'none' : 'flex';
+        if (tEl) tEl.textContent = open ? `Show ${n} more related ${n === 1 ? 'study' : 'studies'}` : 'Hide related studies';
+      });
+    }
     backdrop.classList.add('open');
     document.body.style.overflow = 'hidden';
     requestAnimationFrame(() => { const cb = document.getElementById('polModalClose'); if (cb) cb.focus(); });
