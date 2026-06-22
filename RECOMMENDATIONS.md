@@ -1,9 +1,27 @@
 # Research Tracker — Refinement Recommendations
 
-**Product:** AI, Tech and the Economy: Research Intelligence (`research_tracker.html`)
+**Product:** AI, Tech and the Economy: Research Intelligence (`index.html`)
 **Assessment date:** 2026-06-14
 **Scope:** Full-site review for a more impactful product — content, information architecture, distribution, trust, accessibility, and technical maintainability.
 **Status:** #1, #4, #5, #6, #7, #8, #10, #11, #12, and #15 implemented on the `fable-pilot` branch (2026-06-14); #3 wired (pending your analytics account code). The remaining items are proposals. See the Status column below.
+
+---
+
+## Project state & how to resume (for a fresh session)
+
+- **Working file:** `index.html` (renamed from `research_tracker.html`, which is now a redirect stub). Single-file app; data is inline: `RESEARCH_DATA` (223 entries), `THEMES` (9), `POLICY_DATA` (27).
+- **Repo / deploy:** `github.com/cmpcmp-dot/ai-tech-markets-research`, branch `fable-pilot` (main is `main`); GitHub Pages at `cmpcmp-dot.github.io/ai-tech-markets-research/`.
+- **Local preview:** served from `/tmp/tracker_preview/` via `/tmp/serve_tracker.py` (regenerable; the macOS sandbox blocks serving directly from `~/Documents`). Copy `index.html` into that mirror and start the `research-tracker` launch config.
+- **To resume:** read this file, pick an open item (#2, #9, #13, #14, #16, #17), and continue.
+
+### Design & content conventions (keep consistent)
+- **Color:** signature blue = `var(--accent)` (#2563EB light / #6fa1f5 dark). All interactive elements and markers (gap arrows →, takeaway triangles ▸, working checks ✓), the leverage callout, reference toggles, and key-finding stats/links use it.
+- **Type:** Publico Banner (serif) for headings/section labels; Public Sans for body. Sentence case for labels (never ALL CAPS or Title Case).
+- **Prose style:** no em-dash connector clauses (use commas/periods); paired parenthetical em-dashes are fine; the " — " inside a `source` field is the author/organization separator (keep it). Keep sentences to roughly 42 words or fewer.
+- **Citations:** inline tokens `{{cite:ID}}` (renders "(Year)") and `{{citep:ID}}` (renders "(Author, Year)"), resolved by `injectCitations()` against `RESEARCH_DATA`; APA via `formatAPACitation()`. References use a cited-then-"related" toggle with APA hanging indent.
+- **Dark mode:** automatic via `prefers-color-scheme`; all colors flow through CSS variables, with a lightened per-theme palette in the dark block.
+- **Default landing tab:** Themes.
+- **Editing workflow:** make content edits via Python scripts that assert each anchor is unique, preserve every `{{cite}}` token and numeric figure, and check for em-dashes / raw double quotes / over-length sentences before writing. Verify in the preview — computed styles are authoritative; the panel's screenshots are intermittently blank.
 
 ---
 

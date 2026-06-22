@@ -1809,7 +1809,7 @@ const STATUS_META = {
 };
 
 // Update this date whenever themes or policy lab content changes
-const LAST_CONTENT_UPDATE = "2026-05-06";
+const LAST_CONTENT_UPDATE = "2026-06-14";
 
 const THEMES = [
   {
@@ -2359,6 +2359,58 @@ const PRIORITY_SOURCE_GROUPS = {
 };
 
 const RESEARCH_DATA = [
+  { id: 225, date: "2026-06-01",
+    title: "Policy on the AI Exponential: Macroeconomics and Tax Policy",
+    source: "Dario Amodei",
+    sourceUrl: "https://darioamodei.com/post/policy-on-the-ai-exponential#2-macroeconomics-and-tax-policy",
+    category: "macro", geography: "us",
+    evidence: "commentary",
+    keyFinding: "In the macroeconomics and tax policy section of this essay, Anthropic CEO Dario Amodei argues that powerful AI could reverse the usual growth-versus-equity tradeoff, driving rapid growth while causing large-scale, enduring labor displacement. The central policy challenge then becomes ensuring the gains are broadly shared rather than stimulating growth. He frames enduring job displacement as undesirable and dangerous, warranting active prevention rather than acceptance.",
+    takeaways: [
+      "Amodei outlines a staged response: measurement and tracking of AI's labor effects, pro-employment incentives such as wage insurance, retention tax credits, and workforce training, and longer-term income support including universal basic income financed through corporate or capital gains taxation.",
+      "He argues AI's recursive self-improvement could supercharge growth by accelerating science and technology, but that growth alone will not distribute its benefits without deliberate policy.",
+      "He warns that economic instability may surface indirectly as public hostility toward data centers unless policy addresses the broader anxieties underneath, and notes AI companies should absorb energy-cost increases, a step Anthropic has pledged to take."
+    ]
+  },
+  { id: 226, date: "2026-06-01",
+    title: "A Policy Framework for AI's Impact on Work (Anthropic Economic Policy Framework)",
+    source: "Anthropic",
+    sourceUrl: "https://www-cdn.anthropic.com/files/4zrzovbb/website/9ea607a5dd67c168093829b701f3a0a6d21156d5.pdf",
+    category: "policy", geography: "us",
+    evidence: "industry",
+    keyFinding: "Anthropic's June 2026 policy framework organizes US responses to AI's labor impact by severity, separating steps that make sense now from responses to hold ready if displacement worsens. It states the company is not seeking job displacement and is working to prevent or minimize it, and that financial support for affected workers, while necessary, is not sufficient because there is dignity in work. The stated aim is to buy time by making the economy more flexible and resilient as AI accelerates.",
+    takeaways: [
+      "The framework stresses that adaptation is not automatic: whether an AI economy creates reachable new work depends on deliberate choices by governments and firms, and it urges companies to deploy AI to expand capacity rather than default to headcount reduction.",
+      "Concrete firm-level steps include building workforce training into AI deployment, deciding in advance how freed-up capacity is used, retraining and redeploying workers as roles change, and redesigning early-career roles around AI.",
+      "It cites early US evidence that entry-level workers in the occupations most exposed to AI have seen weaker employment growth, and situates its recommendations against forecasts ranging from modest productivity growth to scenarios where output doubles but wages collapse."
+    ]
+  },
+  { id: 227, date: "2026-06-01",
+    title: "AI, the Economy, and You: A People-Centered AI Agenda",
+    source: "Dennis Kelleher, Evan LeFlore — Better Markets",
+    sourceUrl: "https://bettermarkets.org/wp-content/uploads/2026/06/BetterMarkets_AI_The_Economy_and_You_June2026.pdf",
+    category: "macro", geography: "us",
+    evidence: "analysis",
+    keyFinding: "This Better Markets report argues that AI is fundamentally a story about its impact on everyday Americans and the economic, financial, and democratic systems they depend on, not primarily a technology story. Its premise is that 'change is certain, progress is not,' and that firms racing for first-mover advantage and short-term profit are driving AI development with the public interest treated as an afterthought. It calls for a people-centered AI mindset, framework, and agenda to channel change into broadly shared progress.",
+    takeaways: [
+      "The report maps AI's near-term reach into consequential individual decisions: whether someone gets a credit or debit card and at what rate, qualifies for a loan or insurance, has a claim paid, or keeps a job or earns a raise.",
+      "At the macro level it frames a set of either/or stakes, including whether AI creates broad-based growth or concentrates gains at the top, strengthens or destabilizes the financial system, reduces or worsens inequality, and protects or exploits consumers, investors, and depositors.",
+      "It positions responsible developers and corporate leaders as necessary allies, arguing that collaborative and inclusive decision-making determines whether AI's outcomes improve or worsen Americans' lives."
+    ]
+  },
+  { id: 228, date: "2026-02-23",
+    title: "Building Pro-Worker Artificial Intelligence",
+    source: "Daron Acemoglu, David Autor, Simon Johnson — The Hamilton Project (Brookings)",
+    sourceUrl: "https://www.hamiltonproject.org/wp-content/uploads/2026/02/20260223_THP_ProWorkerAI_Paper.pdf",
+    category: "labor", geography: "us",
+    evidence: "analysis",
+    keyFinding: "This Hamilton Project paper defines pro-worker technologies as those that make human skills and expertise more valuable by expanding worker capabilities. It distinguishes five categories of technological change (labor-augmenting, capital-augmenting, automating, expertise-leveling, and new-task-creating) and argues only the new-task-creating category is unambiguously pro-worker. While AI's capacity to automate is substantial, the authors argue its underexploited potential to collaborate, by extending human judgment, enabling new tasks, and accelerating skill acquisition, is equally transformative.",
+    takeaways: [
+      "The authors identify market failures, including misaligned firm and developer incentives, path dependence, and a pervasive pro-automation ideology, that lead to systematic underinvestment in pro-worker AI.",
+      "They propose nine policy directions to reshape incentives toward pro-worker AI, including targeted investments in health care and education, tax code reform, antitrust enforcement, and intellectual property protections for worker expertise.",
+      "The framework is illustrated through examples spanning aviation maintenance, electrical services, custodial work, education, patent examination, and gig delivery, showing how the same AI capability can either commodify or augment expertise depending on design and deployment."
+    ]
+  },
   { id: 207, date: "2026-05-05",
     title: "Recovering Wages and Wealth: What We Deserve in the Age of AI",
     source: "Rayan Semery-Palumbo — Economic Security Project",
