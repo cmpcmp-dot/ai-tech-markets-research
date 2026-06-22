@@ -3,7 +3,7 @@
 **Product:** AI, Tech and the Economy: Research Intelligence (`research_tracker.html`)
 **Assessment date:** 2026-06-14
 **Scope:** Full-site review for a more impactful product — content, information architecture, distribution, trust, accessibility, and technical maintainability.
-**Status:** Recommendations only. Nothing here is implemented yet.
+**Status:** #1, #4, #5, #6, #7, #8, #10, #11, #12, and #15 implemented on the `fable-pilot` branch (2026-06-14); #3 wired (pending your analytics account code). The remaining items are proposals. See the Status column below.
 
 ---
 
@@ -17,20 +17,21 @@ The three content tabs (Research, Themes, Policy Lab) share one cohesive system:
 
 | # | Recommendation | Tier | Effort | Impact | Status |
 |---|----------------|------|--------|--------|--------|
-| 1 | Social / SEO metadata (OG, Twitter, description, structured data) | 1 Distribution | S | High | Not started |
+| 1 | Social / SEO metadata (OG, Twitter, description, structured data) | 1 Distribution | S | High | Done |
 | 2 | Shareable & citable findings (deep links + copy/cite) | 1 Distribution | M | High | Not started |
-| 3 | Privacy-friendly analytics | 1 Distribution | S | Med–High | Not started |
-| 4 | Clean URL / custom domain | 1 Distribution | S | Med | Not started |
-| 15 | Key-finding cards open a source-excerpt modal (not jump to Themes) | 1–2 | M | High | Not started |
+| 3 | Privacy-friendly analytics | 1 Distribution | S | Med–High | Wired — add account code |
+| 4 | Clean URL / custom domain | 1 Distribution | S | Med | Clean URL done; domain pending |
+| 15 | Key-finding cards open a source-excerpt modal (not jump to Themes) | 1–2 | M | High | Done |
 | 16 | Inline citations throughout all theme & policy cards (not just the synthesis) | 1–2 | M–L | Med–High | Not started |
-| 5 | Reconsider landing / first-visit orientation | 2 Trust | M | Med–High | Not started |
-| 6 | Methodology / expand the About tab | 2 Trust | M | High | Not started |
-| 7 | Reframe the AI disclaimer alongside methodology | 2 Trust | S | Med | Not started |
-| 8 | Clarify the General / Focused lens value | 2 Trust | S | Med | Not started |
+| 5 | Reconsider landing / first-visit orientation | 2 Trust | M | Med–High | Done |
+| 6 | Methodology / expand the About tab | 2 Trust | M | High | Done |
+| 7 | Reframe the AI disclaimer alongside methodology | 2 Trust | S | Med | Done |
+| 8 | Clarify the General / Focused lens value | 2 Trust | S | Med | Done |
 | 9 | Subscribe / follow + changelog | 3 Engagement | M | Med | Not started |
-| 10 | Dark mode | 4 Accessibility | M | Low–Med | Not started |
-| 11 | WCAG AA contrast + keyboard/focus audit | 4 Accessibility | M | Med | Not started |
-| 12 | Policy Lab mobile layout | 5 Polish | M | Med | Not started |
+| 10 | Dark mode | 4 Accessibility | M | Low–Med | Done |
+| 11 | WCAG AA contrast + keyboard/focus audit | 4 Accessibility | M | Med | Done |
+| 17 | Screen-reader accessibility (headings, ARIA, citation labels, skip link) | 4 Accessibility | M | Med | Not started |
+| 12 | Policy Lab mobile layout | 5 Polish | M | Med | Done |
 | 13 | Remove dead CSS | 5 Polish | S | Low | Not started |
 | 14 | Extract data to JSON | 5 Polish | L | Low–Med | Not started |
 
@@ -51,8 +52,12 @@ The URL never changes — you can't send someone "this specific finding/theme/po
 ### 3. No analytics
 There's no way to see what resonates — which findings get clicked, which themes get read, where people drop. A privacy-friendly tracker (e.g., Plausible) creates the feedback loop that makes future refinements evidence-based.
 
+*Status (2026-06-14): GoatCounter snippet added to `<head>`, commented and ready. To activate: create a free site at goatcounter.com, replace `YOURCODE`, and uncomment the tag. Swappable for Plausible/Fathom/Cloudflare with one line.*
+
 ### 4. The URL reads like a file, not a product
 Currently `…github.io/ai-tech-markets-research/research_tracker.html`. A clean root (`index.html`, ideally a custom domain) makes it feel and share like a destination.
+
+*Status (2026-06-14): Renamed `research_tracker.html` → `index.html`, so the URL is now `…/ai-tech-markets-research/`. Self-references (canonical, og:url, header link) updated; a redirect stub at the old filename preserves existing links. Custom domain still open — needs a domain you own; I can add the CNAME + DNS guidance once you pick one.*
 
 ### 15. Key-finding cards should open a source-excerpt modal, not jump to Themes
 *(Added 2026-06-14; belongs in Tier 1–2, tightly coupled to #2.)*
@@ -125,6 +130,25 @@ No `prefers-color-scheme` support — many professional/research users expect it
 Specific spots were patched (e.g., the community gold), but a systematic WCAG AA pass on the colored category links and small markers is worth doing, plus a keyboard/focus audit of the modals and collapsibles.
 
 ---
+
+### 17. Screen-reader accessibility
+*(Added 2026-06-14; extends #11. Audit only — not implemented.)*
+
+**Already in place:** landmarks (`header`/`nav`/`main`/`footer`/`aside`); nav as `role="tablist"` with `aria-selected` tabs; modals with `role="dialog"` + `aria-modal` + Escape + focus trap + focus restore; `aria-expanded` on collapsible sections; `aria-label`s on icon-only buttons; two `aria-live` regions (what's-new banner, result count).
+
+**High-value core:**
+1. **Real heading structure** *(biggest gap)*. Theme questions, card titles, modal titles, section labels, the "Key findings" label, and the References heading are all `<div>`s, so SR users have no headings to navigate by — the page is one flat stream. Make them semantic headings (theme question → `h2`, section labels → `h3`, modal title → `h2`, "Key findings" → `h2`, Research card titles → `h3`), styled to look identical.
+2. **Citation link context.** Inline `(2025)` citations announce as bare "link, 2025." Add an `aria-label` carrying the full citation (e.g., "World Economic Forum, 2025, opens in new tab") in the citation renderer.
+3. **Announce/focus on view change.** Switching tab/lens/theme swaps content silently with focus left on the button. Move focus to the new view's main heading on switch and/or announce via a live region; consider completing the tab pattern (the content area has no `role="tabpanel"`).
+4. **Skip link.** Add a visually-hidden "Skip to main content" link as the first focusable element.
+5. **Search input name.** The search box relies on a `placeholder` only; add `aria-label="Search the research database"` (and check the filter controls).
+
+**Polish:**
+6. **Hide decorative glyphs.** Gap arrows (→), takeaway triangles (▸), chevrons, and nav arrows are read aloud; add `aria-hidden="true"`.
+7. **Name the two unlabeled dialogs.** Policy and key-finding modals have `role="dialog"` but no `aria-labelledby`; point it at their title elements.
+8. **Signal new-tab links.** Source links open in new tabs with no warning; folding "(opens in new tab)" into the citation/reference labels (#2) covers most.
+
+**Note:** after implementing, validate with a real screen reader (VoiceOver on macOS, NVDA on Windows) — automated checks miss reading-flow and focus issues.
 
 ## Tier 5 — Polish & maintainability
 
