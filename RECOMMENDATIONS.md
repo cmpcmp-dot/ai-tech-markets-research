@@ -3,7 +3,7 @@
 **Product:** AI, Tech and the Economy: Research Intelligence (`index.html`)
 **Assessment date:** 2026-06-14
 **Scope:** Full-site review for a more impactful product — content, information architecture, distribution, trust, accessibility, and technical maintainability.
-**Status:** #1, #4, #5, #6, #7, #8, #10, #11, #12, and #15 implemented on the `fable-pilot` branch (2026-06-14); #3 wired (pending your analytics account code). The remaining items are proposals. See the Status column below.
+**Status:** #1, #4, #5, #6, #7, #8, #10, #11, #12, and #15 implemented on the `fable-pilot` branch (2026-06-14); #16 and #13 implemented (2026-06-22); #3 wired (pending your analytics account code). The remaining items are proposals. See the Status column below.
 
 ---
 
@@ -12,7 +12,7 @@
 - **Working file:** `index.html` (renamed from `research_tracker.html`, which is now a redirect stub). Single-file app; data is inline: `RESEARCH_DATA` (223 entries), `THEMES` (9), `POLICY_DATA` (27).
 - **Repo / deploy:** `github.com/cmpcmp-dot/ai-tech-markets-research`, branch `fable-pilot` (main is `main`); GitHub Pages at `cmpcmp-dot.github.io/ai-tech-markets-research/`.
 - **Local preview:** served from `/tmp/tracker_preview/` via `/tmp/serve_tracker.py` (regenerable; the macOS sandbox blocks serving directly from `~/Documents`). Copy `index.html` into that mirror and start the `research-tracker` launch config.
-- **To resume:** read this file, pick an open item (#2, #9, #13, #14, #16, #17), and continue.
+- **To resume:** read this file, pick an open item (#2, #9, #14, #17), and continue.
 
 ### Design & content conventions (keep consistent)
 - **Color:** signature blue = `var(--accent)` (#2563EB light / #6fa1f5 dark). All interactive elements and markers (gap arrows →, takeaway triangles ▸, working checks ✓), the leverage callout, reference toggles, and key-finding stats/links use it.
@@ -40,7 +40,7 @@ The three content tabs (Research, Themes, Policy Lab) share one cohesive system:
 | 3 | Privacy-friendly analytics | 1 Distribution | S | Med–High | Wired — add account code |
 | 4 | Clean URL / custom domain | 1 Distribution | S | Med | Clean URL done; domain pending |
 | 15 | Key-finding cards open a source-excerpt modal (not jump to Themes) | 1–2 | M | High | Done |
-| 16 | Inline citations throughout all theme & policy cards (not just the synthesis) | 1–2 | M–L | Med–High | Not started |
+| 16 | Inline citations throughout all theme & policy cards (not just the synthesis) | 1–2 | M–L | Med–High | Done |
 | 5 | Reconsider landing / first-visit orientation | 2 Trust | M | Med–High | Done |
 | 6 | Methodology / expand the About tab | 2 Trust | M | High | Done |
 | 7 | Reframe the AI disclaimer alongside methodology | 2 Trust | S | Med | Done |
@@ -50,7 +50,7 @@ The three content tabs (Research, Themes, Policy Lab) share one cohesive system:
 | 11 | WCAG AA contrast + keyboard/focus audit | 4 Accessibility | M | Med | Done |
 | 17 | Screen-reader accessibility (headings, ARIA, citation labels, skip link) | 4 Accessibility | M | Med | Not started |
 | 12 | Policy Lab mobile layout | 5 Polish | M | Med | Done |
-| 13 | Remove dead CSS | 5 Polish | S | Low | Not started |
+| 13 | Remove dead CSS | 5 Polish | S | Low | Done |
 | 14 | Extract data to JSON | 5 Polish | L | Low–Med | Not started |
 
 **Top 3 priorities:** #1 (metadata), #2 (shareable/citable findings, with #15), #6 (methodology + #3 analytics).
@@ -96,7 +96,14 @@ Currently `…github.io/ai-tech-markets-research/research_tracker.html`. A clean
 - Edge case: a few band stats are composite/derived (e.g., "78M" = WEF's 170M − 92M; "31:1" is a ratio). Those need the underlying source paragraph (WEF, Open Markets) as the excerpt — a couple may need a lightly curated excerpt rather than a verbatim pull.
 
 ### 16. Inline citations throughout all theme and policy cards
-*(Added 2026-06-14; extends #2 and #15.)*
+*(Added 2026-06-14; extends #2 and #15. **Implemented 2026-06-22.**)*
+
+**Status (2026-06-22): Done.**
+- **Renderer (themes).** `buildThemeCard` now runs `injectCitations()` on `working`, `gaps`/`econGaps`, `implication`, `risk.summary`, and `risk.leverage` (previously synthesis-only). The "cited vs. related" References split now scans all of those active-lens fields, so a paper cited only in (say) the implication correctly surfaces under cited References instead of being buried under "related."
+- **Renderer (policy).** Added `injectPolicyLinks()` (runs `injectCitations` then resolves a new cross-reference token), applied to the modal's `summary` / `rationale` / `precedent`. New token `{{pol:policy-id|link text}}` renders an inline `.pol-xref` link that opens the target policy via `openPolModalById()`; click + Enter/Space handled, focus-restore preserved across policy→policy navigation; tokens with no matching policy degrade to plain text.
+- **Annotation.** 74 theme citations (propagated from each theme's own synthesis citation IDs into its other sections — high-confidence, no new source→ID guesses), plus 7 policy paper citations and 5 policy cross-references (`automation-levy`→reskilling/portable-benefits, `guaranteed-income`→ui-reform/ubi, `ubi`→sovereign-wealth-fund). Applied via verify-before-write Python scripts (`/tmp/annotate_themes.py`, `/tmp/annotate_policy.py`) that assert each anchor is unique and that edits only insert tokens (never alter prose/figures).
+- **Scope.** Per the caveat below, only named sources with a real DB paper (and a `sourceUrl`) were linked; most policy precedents name laws/programs not in the database, so they stay plain text. Verified in preview: 106 distinct citation IDs all resolve, 5 cross-refs valid, cross-ref navigation works, no leaked tokens, no console errors.
+- **Follow-ups:** the remaining theme `gaps`/`risk.summary` prose that names no specific source stays unlinked (correct); a few legislative references (S.1840, S.3108) are linked in theme cards but left plain in policy precedent prose to avoid double-parenthetical clutter next to their inline "(introduced …)" descriptions.
 
 **Problem.** Inline citation links currently exist only in the Themes "What the research shows" synthesis. The other theme sections — "What's working," "Points of leverage," "What this means for institutions," the risk summary, and "Research gaps" — name studies and sources with no hyperlink. The Policy Lab cards have no inline citations at all: their prose refers both to specific papers *and to other policy recommendations* (e.g., "wage insurance," "UBI," "EITC expansion") with no direct link to them. A reader hits a named source or a cross-referenced policy and has no way to jump to it.
 
@@ -175,6 +182,8 @@ Its 5-phase layout is ~758px wide, so on a 375px screen it overflows. It needs a
 
 ### 13. Dead CSS has accumulated
 Leftovers include `theme-research-sidebar`, `theme-risk-badge`, `pol-basis-chip`, and orphaned confidence classes. A cleanup pass would help maintainability.
+
+**Status (2026-06-22): Done.** Removed 159 dead rule blocks (~22.8 KB; CSS 72.2 KB → 49.5 KB, file 756 KB → 733 KB) covering 97 class selectors that were defined in the `<style>` block but referenced nowhere outside it — mostly orphans from prior redesigns (old header `header-eyebrow`/`header-updated`/`header-disclaimer`, the removed `sidebar-*`/`stat-bar`/`card-meta*` research-card layout, `theme-confidence-*`/`theme-expand-btn`/`theme-detail` theme-card design, `pol-chip*`/`pol-filterbar*`/`pol-modal-activation*`, plus the named suspects). Method: a comment/string/brace-aware detector (`/tmp/find_dead_css.py`) cross-checked every class against all markup, JS template strings, and `classList`/`querySelector` calls; first verified there is **no** dynamic class construction in the codebase (every `classList` call uses string literals; the only fragment concatenations build element *ids*). Removal (`/tmp/strip_dead_css.py`) deletes a rule only when **all** its selectors are dead and prunes dead selectors from mixed groups — 0 mixed groups occurred, so no live rule was altered. Guards: balanced-brace assertion + a core-live-class allowlist that must survive. Verified in preview: header/research/themes/policy/about all render unchanged, no removed class is present on any live element, no console errors.
 
 ### 14. All data is inline in a ~716KB HTML file
 Fine today, but extracting the data to JSON would make it far easier to maintain, reuse, or eventually feed an API/newsletter.
