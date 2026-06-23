@@ -1067,27 +1067,32 @@
   #whatsNewBanner { display: none; }
   .wnb-wrap {
     display: flex; align-items: center; gap: 12px;
-    background: #FFF5F0; border-bottom: 1px solid #FFCBB8;
+    background: #EEF3FE; border-bottom: 1px solid #D3E0FB;
     padding: 9px 28px;
   }
   .wnb-dot {
     width: 8px; height: 8px; border-radius: 50%;
-    background: #FF8361; flex-shrink: 0;
+    background: var(--accent); flex-shrink: 0;
   }
   .wnb-text { font-size: 13px; color: var(--text); flex: 1; }
   .wnb-view-btn {
-    font-size: 12px; font-weight: 600; color: #c85f3e;
-    background: none; border: 1px solid #FFCBB8; border-radius: 20px;
+    font-size: 12px; font-weight: 600; color: var(--accent);
+    background: none; border: 1px solid #B5D0F7; border-radius: 20px;
     padding: 4px 13px; cursor: pointer; font-family: inherit;
     transition: background 0.13s, color 0.13s, border-color 0.13s; white-space: nowrap;
   }
-  .wnb-view-btn:hover { background: #FF8361; color: #fff; border-color: #FF8361; }
+  .wnb-view-btn:hover { background: var(--accent); color: #fff; border-color: var(--accent); }
   .wnb-dismiss {
     background: none; border: none; cursor: pointer; color: var(--muted);
     font-size: 15px; padding: 2px 5px; line-height: 1; border-radius: 4px;
     transition: color 0.12s; flex-shrink: 0;
   }
   .wnb-dismiss:hover { color: var(--text); }
+  .nav-new-badge {
+    display: none; background: var(--accent); color: #fff;
+    font-size: 11px; font-weight: 600; line-height: 1;
+    border-radius: 999px; padding: 2px 6px; margin-left: 5px; vertical-align: 1px;
+  }
 
   /* ── Policy Lab intro bar (matches theme-disclaimer-bar) ─── */
   .policy-lab-header {
@@ -1324,6 +1329,9 @@
     }
     /* gap arrows use theme color via inline --theme-color; keep them on the accent */
     .theme-gap-arrow { color: var(--accent); }
+    .wnb-wrap { background: rgba(111,161,245,0.12); border-bottom-color: rgba(111,161,245,0.32); }
+    .wnb-view-btn { border-color: rgba(111,161,245,0.4); }
+    .nav-new-badge { color: #11161f; }
   }
 </style>
 </head>
@@ -1400,7 +1408,7 @@ const THEMES = [
       summary: "<p>AI-driven wage divergence is accelerating faster than policy or institutions can respond. The risk is not theoretical displacement but compounding inequality: workers without AI skills fall further behind while productivity gains concentrate among those already above the median, and the gap widens annually.</p><p>Institutions that treat this as a future risk rather than a present one will fall behind the intervention window. The research suggests the divergence is already underway and is being measured in salary premiums and task-exposure data, not in projections.</p>",
       leverage: "<p>Wage insurance carries rare tested evidence {{cite:34}}: it raises long-run earnings, speeds re-employment, and may pay for itself. The augmentation data points the same direction, with AI's largest documented gains accruing to newer, lower-skilled workers, meaning deployment choices can narrow gaps rather than widen them. The Acemoglu-Autor-Johnson framework {{cite:41}} identifies levers available now: procurement rules, research investment, and antitrust action can redirect investment toward augmentation without waiting for new legislation.</p>"
     },
-    papers: [1, 2, 46, 60, 61, 15, 16, 30, 33, 34, 36, 37, 41, 59, 62, 63, 75, 97, 105, 109, 137, 138, 139, 140, 141, 142, 136, 152, 154, 177, 179, 184, 190, 200, 206, 207, 208, 212, 219, 224],
+    papers: [1, 2, 46, 60, 61, 15, 16, 30, 33, 34, 36, 37, 41, 59, 62, 63, 75, 97, 105, 109, 137, 138, 139, 140, 141, 142, 136, 152, 154, 177, 179, 184, 190, 200, 206, 207, 208, 212, 219, 224, 232],
   },
   {
     id: "equity",
@@ -1485,7 +1493,7 @@ const THEMES = [
       summary: "<p>Legal frameworks governing AI in the workplace lag deployment by years. Workers in algorithmic management environments face measurable harm, elevated injury rates, turnover, and surveillance, with limited legal recourse, and the organizing infrastructure needed to negotiate AI contract terms is underdeveloped outside a handful of industries.</p><p>The risk intensifies in sectors without union density or advocacy infrastructure. Where workers lack the collective capacity to negotiate AI terms, employer discretion over deployment conditions is nearly unchecked, and the harms documented in warehouse and logistics contexts will replicate across industries as algorithmic management tools become cheaper and more accessible.</p>",
       leverage: "<p>The contract record proves AI governance is winnable now: WGA and SAG-AFTRA {{cite:3}} won enforceable AI provisions before any legislation existed, and the ILO's 54-country tripartite conclusions {{cite:107}} give advocates a legitimacy anchor even where union density is low. The window for establishing precedents in key industries is open, and contract language developed now becomes the template other sectors can demand.</p>"
     },
-    papers: [3, 4, 7, 110, 76, 26, 47, 53, 64, 102, 104, 107, 150, 151, 153, 158, 167, 180, 187, 189, 202, 219, 220, 221, 222, 223, 224],
+    papers: [3, 4, 7, 110, 76, 26, 47, 53, 64, 102, 104, 107, 150, 151, 153, 158, 167, 180, 187, 189, 202, 219, 220, 221, 222, 223, 224, 229],
   },
   {
     id: "policy",
@@ -1517,7 +1525,7 @@ const THEMES = [
       summary: "<p>Regulatory fragmentation creates conditions where harmful AI deployments can proceed without oversight or accountability. The core risk is the gap between policy intent and enforcement capacity: laws are passing, but the infrastructure to act on them is largely absent, and this gap is widening faster than state agencies can close it.</p><p>There is also a capture risk: well-resourced AI developers are actively shaping the policy environment in ways that can appear aligned with equity goals while protecting market concentration. Institutions that do not maintain independent policy analysis capacity risk lending legitimacy to frameworks that do not serve their constituencies.</p><p>An underappreciated emerging risk: when government deploys AI in its own decision-making, drafting regulations, reviewing contracts, and processing claims, the accountability mechanisms designed for private AI deployment do not automatically apply. Federal procurement and rulemaking processes are not yet equipped to assess or constrain the AI tools being introduced into them.</p>",
       leverage: "<p>Much of the needed legal authority already exists: EEOC enforcement {{cite:101}}, disparate impact doctrine, and procurement standards are usable today, and the binding constraint is enforcement will and capacity rather than statutory power. State momentum is replicable. New Jersey's S.1840 {{cite:148}} and workforce directive {{cite:147}} provide templates other states can adopt, and funding implementation infrastructure is the highest-leverage investment because laws are passing faster than the capacity to enforce them.</p>"
     },
-    papers: [77, 80, 82, 86, 101, 70, 113, 115, 122, 123, 124, 18, 28, 32, 38, 39, 40, 44, 45, 50, 52, 55, 56, 58, 67, 68, 71, 72, 78, 79, 83, 87, 88, 96, 99, 100, 111, 112, 143, 144, 145, 147, 148, 149, 146, 157, 159, 160, 161, 162, 164, 168, 169, 173, 176, 181, 196, 197, 198, 199, 186, 200, 201, 202, 203, 204, 207, 208, 210, 211, 212, 213, 214, 215, 218, 219, 220, 221, 222, 223, 224],
+    papers: [77, 80, 82, 86, 101, 70, 113, 115, 122, 123, 124, 18, 28, 32, 38, 39, 40, 44, 45, 50, 52, 55, 56, 58, 67, 68, 71, 72, 78, 79, 83, 87, 88, 96, 99, 100, 111, 112, 143, 144, 145, 147, 148, 149, 146, 157, 159, 160, 161, 162, 164, 168, 169, 173, 176, 181, 196, 197, 198, 199, 186, 200, 201, 202, 203, 204, 207, 208, 210, 211, 212, 213, 214, 215, 218, 219, 220, 221, 222, 223, 224, 229, 230, 232],
   },
   {
     id: "community",
@@ -1571,7 +1579,7 @@ const THEMES = [
       summary: "<p>Reskilling programs fail predictably and at scale, not merely at the margins, while being treated as sufficient responses to structural displacement. Resources directed toward training without wraparound support produce credentials without mobility, and may displace more effective systemic interventions by appearing to address the problem.</p><p>The AI usage gap adds a compounding risk: generic literacy programs that do not build toward collaborative, iterative AI use may actually widen skill gaps among participants. Institutions investing in workforce programming without evaluating usage quality, not just access, risk funding programs that accelerate the divergence they are designed to close.</p>",
       leverage: "<p>The failure mode is known and therefore fixable: pairing training with wraparound support (income stability, childcare, transportation) is the documented difference between credentials and mobility. New Jersey's workforce directive {{cite:147}} shows states can integrate AI skills through existing WIOA infrastructure without new federal action, and wage insurance offers a tested, fiscally defensible complement that scales if disruption exceeds projections.</p>"
     },
-    papers: [17, 84, 85, 29, 74, 25, 35, 90, 103, 143, 147, 195, 201, 203, 207, 208, 210, 211, 212],
+    papers: [17, 84, 85, 29, 74, 25, 35, 90, 103, 143, 147, 195, 201, 203, 207, 208, 210, 211, 212, 231],
   },
   {
     id: "experience",
@@ -1594,7 +1602,7 @@ const THEMES = [
       summary: "<p>Using aggregate sentiment as a proxy for worker wellbeing risks systematically underestimating concentrated harm. Institutions that rely primarily on survey data without participatory research may make program and resource decisions that miss or inadvertently worsen conditions for the most affected workers.</p><p>The normalization dynamic documented by DAIR and others, where workers adapt to or internalize AI management harm rather than report it, means the risk is likely undercounted in standard data sources. Institutions that do not invest in direct, community-grounded research will be operating on evidence that structurally underrepresents the populations they aim to serve.</p>",
       leverage: "<p>The sentiment data contains an opening: hope and alarm coexist within the same individuals, meaning openness to AI runs broader than the harm record would predict, and workers respond to deployment terms they can trust. High adopters report real satisfaction gains where AI removes drudgery. Community-based participatory research gives institutions a near-term method for designing deployments around lived worker experience rather than survey averages.</p>"
     },
-    papers: [3, 7, 14, 106, 29, 5, 6, 13, 42, 43, 54, 73, 151, 153, 156, 209, 216, 217],
+    papers: [3, 7, 14, 106, 29, 5, 6, 13, 42, 43, 54, 73, 151, 153, 156, 209, 216, 217, 230, 231],
   },
   {
     id: "macro-risk",
@@ -1625,7 +1633,7 @@ const THEMES = [
       summary: "<p>The combination of speculative bubble characteristics at unprecedented scale, market concentration with no adequate regulatory response, and a distributional gap with no institutional mechanism to address it constitutes a systemic macroeconomic risk, not a sector-specific concern. The bubble risk and concentration risk are mutually reinforcing: if the AI sector corrects, the concentration of ownership means losses will be felt unevenly, while the concentration of productive AI infrastructure in a small number of firms means the recovery will also be uneven.</p><p>The uncertainty range in productivity projections is itself a risk: institutions, governments, and workers are making decisions with long-term consequences inside an epistemic gap that may not resolve until outcomes are visible. Acting as if the optimistic projections are correct when they may not be, or dismissing displacement risk because the pessimistic projections are more reassuring, both represent failures of risk management rather than defensible positions under uncertainty.</p>",
       leverage: "<p>Scenario planning is cheap relative to the cost of betting on a single forecast: institutions can hold the optimistic and pessimistic projections simultaneously and invest in instruments that perform across both, such as wage insurance and adjustment capacity. Antitrust is a live lever, as the Google search case {{cite:160}} demonstrates that concentration is contestable with existing tools, and the distributional question of who captures productivity gains remains open to policy influence.</p>"
     },
-    papers: [15, 16, 61, 62, 75, 105, 109, 30, 33, 152, 160, 191, 192, 197, 200],
+    papers: [15, 16, 61, 62, 75, 105, 109, 30, 33, 152, 160, 191, 192, 197, 200, 229, 230, 231, 232],
   },
 ];
 THEMES.sort((a, b) => a.tag.localeCompare(b.tag));
@@ -1699,6 +1707,7 @@ const INST_META = {
   "U.S. Senate Permanent Subcommittee on Investigations": { url: "https://www.hsgac.senate.gov/subcommittees/investigations/", type: "Government oversight", note: "Federal legislative oversight body"                      },
   // ── Academic Journals ─────────────────────────────────────────
   "Nature Communications":                        { url: "https://www.nature.com/ncomms",                                  type: "Academic journal",           note: "Peer-reviewed, Springer Nature, multidisciplinary"        },
+  "Journal of Economic Perspectives":             { url: "https://www.aeaweb.org/journals/jep",                            type: "Academic journal",           note: "Peer-reviewed, American Economic Association"             },
   "Science":                                      { url: "https://www.science.org",                                        type: "Academic journal",           note: "Peer-reviewed, multidisciplinary"                         },
   "NYU Law Review":                               { url: "https://www.nyulawreview.org",                                   type: "Academic journal",           note: "Peer-reviewed, nonpartisan"                               },
   "Philosophy & Technology":                      { url: "https://link.springer.com/journal/13347",                        type: "Academic journal",           note: "Peer-reviewed, technology ethics"                         },
@@ -1841,7 +1850,7 @@ const PRIORITY_SOURCE_GROUPS = {
     "Stanford HAI", "NBER", "MIT Work of the Future", "MIT Media Lab",
     "Brookings Institution", "Opportunity@Work & Brookings Metro",
     "Cornell ILR School", "New England Journal of Medicine", "Council on Foreign Relations",
-    "Science", "Nature Communications", "NYU Law Review", "Philosophy & Technology", "ACM FAccT", "arXiv",
+    "Science", "Nature Communications", "Journal of Economic Perspectives", "NYU Law Review", "Philosophy & Technology", "ACM FAccT", "arXiv",
     "Stanford Legal Design Lab", "Ohio State University Moritz College of Law",
     "Wharton AI & Analytics Initiative",
     "University of Chicago Inclusive Economy Lab", "Center for Guaranteed Income Research", "Basic Income Studies",
@@ -1916,6 +1925,58 @@ const PRIORITY_SOURCE_GROUPS = {
 };
 
 const RESEARCH_DATA = [
+  { id: 229, date: "2026-06-01",
+    title: "Automation and Repression",
+    source: "Daron Acemoglu, A. Arda Gitmez & Mehdi Shadmehr — NBER",
+    sourceUrl: "https://www.nber.org/papers/w35336",
+    category: "macro", geography: "us",
+    keyFinding: "A formal political-economy model finds a complementarity between automation and repression. As capital accumulates, decentralized automation raises the capital share of national income and the likelihood of a successful worker revolt. The capitalist state's preferred response, unless the revolt threat is very weak, is repression rather than redistribution, and higher capital stock encourages more automation, which encourages still more repression. The long-run trajectory tends toward authoritarianism.",
+    takeaways: [
+      "Decentralized automation decisions raise capital's share of national income and increase the probability of a successful worker revolt, generating a political reaction to the resulting inequality.",
+      "The capitalist state trades off redistribution and repression. Repression dominates unless the revolt threat is very weak or the capital stock is very low, and a higher capital stock encourages more automation, which encourages more repression.",
+      "The complementarity holds even when firms can also invest in new labor-intensive tasks, meaning the standard new-task-creation counterweight to automation does not by itself rule out a repression-automation trajectory.",
+      "Starting in a democracy, capital accumulation and automation make capitalists more willing to support a coup, framing the model as a structural account of democratic backsliding in technologically advanced capitalist economies."
+    ]
+  },
+  { id: 230, date: "2026-04-01",
+    title: "How AI Aggregation Affects Knowledge",
+    source: "Daron Acemoglu, Tianyi Lin, Asuman Ozdaglar & James Siderius — NBER",
+    sourceUrl: "https://www.nber.org/papers/w35036",
+    category: "experience", geography: "us",
+    keyFinding: "An extended DeGroot social-learning model with an AI aggregator trained on population beliefs identifies a sharp threshold on aggregator update speed. When the aggregator updates too quickly, no positive-measure set of training weights robustly improves long-run learning across environments. Slow enough updating restores a set of weights that robustly improves learning, making aggregator update frequency a first-order policy parameter independent of the model's raw accuracy.",
+    takeaways: [
+      "Embedding an AI aggregator into social-learning dynamics changes the long-run outcome substantively. Aggregator training weights determine whether population beliefs converge toward, or diverge from, the efficient benchmark.",
+      "The model identifies a sharp speed threshold. Too-fast aggregator updating eliminates any robustly learning-improving weight choice, while sufficiently slow updating restores a positive-measure set of configurations that improve learning.",
+      "The result implies a governance dimension to AI aggregator design that has no analog in static prediction quality. How often models retrain on the population's beliefs is a first-order parameter for the social-information ecosystem.",
+      "The threshold result holds across a broad class of environments rather than a specific application, suggesting it functions as a structural constraint on AI aggregator deployment rather than an implementation detail to tune."
+    ]
+  },
+  { id: 231, date: "2026-02-01",
+    title: "AI, Human Cognition and Knowledge Collapse",
+    source: "Daron Acemoglu, Dingwen Kong & Asuman Ozdaglar — NBER",
+    sourceUrl: "https://www.nber.org/papers/w34910",
+    category: "experience", geography: "us",
+    keyFinding: "A dynamic model of generative and agentic AI use finds that personalized AI advice can undermine the human effort that produces shared general knowledge, driving the economy toward a knowledge-collapse steady state in which general knowledge erodes despite high-quality personalized AI outputs. Welfare peaks at intermediate AI accuracy, not maximum accuracy, and improved aggregation of human-generated knowledge consistently enhances both welfare and resilience.",
+    takeaways: [
+      "Generative AI provides superior context-specific recommendations, but that same superiority erodes the incentives for human learning that historically generated shared, general knowledge spillovers.",
+      "The model identifies a knowledge-collapse steady state in which general knowledge effectively disappears even as personalized AI advice remains accurate, an information-ecosystem failure that pure efficiency metrics do not register.",
+      "Maximum AI accuracy is not the welfare-optimal target. Welfare is maximized at intermediate AI accuracy, providing a formal foundation for information-design regulations that intentionally constrain AI capability or coverage in some domains.",
+      "Improved aggregation of human-generated general knowledge robustly improves welfare and resilience, suggesting public knowledge infrastructure (open archives, peer review, attribution standards) may matter more than constraints on AI accuracy itself."
+    ]
+  },
+  { id: 232, date: "2019-05-01",
+    title: "Automation and New Tasks: How Technology Displaces and Reinstates Labor",
+    source: "Daron Acemoglu & Pascal Restrepo — Journal of Economic Perspectives",
+    sourceUrl: "https://www.aeaweb.org/articles?id=10.1257/jep.33.2.3",
+    category: "labor", geography: "us",
+    keyFinding: "A task-content framework decomposes automation into displacement effects (capital replacing labor in specific tasks, always reducing the labor share) and reinstatement effects (creation of new tasks where labor has comparative advantage, always raising the labor share). An empirical decomposition attributes slower U.S. employment growth over three decades to an accelerated displacement effect, especially in manufacturing, a weaker reinstatement effect, and slower overall productivity growth than in previous decades.",
+    takeaways: [
+      "The task-content framework formalizes the long-running debate over automation by separating two effects that move the labor share in opposite directions. Displacement always lowers it, reinstatement always raises it.",
+      "Automation can reduce aggregate labor demand even as it raises productivity, contradicting the assumption that productivity growth automatically translates into wage growth, an assumption embedded in many AI-era productivity narratives.",
+      "The empirical decomposition shows that slower U.S. employment growth in recent decades reflects three reinforcing trends: faster displacement (most pronounced in manufacturing), weaker reinstatement of new labor-intensive tasks, and slower overall productivity growth.",
+      "The framework provides the foundational vocabulary for AI labor-market analysis. Many subsequent AI displacement studies build on its displacement/reinstatement decomposition, including the authors' own AI-specific work and the broader pro-worker AI research direction."
+    ]
+  },
   { id: 225, date: "2026-06-01",
     title: "Policy on the AI Exponential: Macroeconomics and Tax Policy",
     source: "Dario Amodei",
@@ -1969,6 +2030,7 @@ const RESEARCH_DATA = [
     ]
   },
   { id: 207, date: "2026-05-05",
+    highlight: { stat: "$79T", text: "redirected away from the bottom 90% of American workers since 1975, roughly $1M per worker over a career.", themeId: "displacement" },
     title: "Recovering Wages and Wealth: What We Deserve in the Age of AI",
     source: "Rayan Semery-Palumbo — Economic Security Project",
     sourceUrl: "https://economicsecurityproject.org/resource/recovering-wages-and-wealth/",
@@ -2193,6 +2255,7 @@ const RESEARCH_DATA = [
     ]
   },
   { id: 160, date: "2026-05-04",
+    highlight: { stat: "40%", text: "syndication cap proposed in Google antitrust remedies as a supply-side path to competition that injunctions cannot deliver.", themeId: "macro-risk" },
     title: "Search Remedies in Google Antitrust Case Can Work Even if Company Stays on Top",
     source: "Sumit Sharma — Tech Policy Press",
     sourceUrl: "https://www.techpolicy.press/search-remedies-in-google-antitrust-case-can-work-even-if-company-stays-on-top/",
@@ -2235,6 +2298,7 @@ const RESEARCH_DATA = [
     ]
   },
   { id: 206, date: "2026-04-28",
+    highlight: { stat: "83%", text: "of workers in the 15 most AI-vulnerable jobs are women, with women of color making up more than 30%.", themeId: "equity" },
     title: "New Analysis: More Than 30 Percent of Workers in the Most AI-Vulnerable Jobs Are Women of Color",
     source: "National Partnership for Women & Families",
     sourceUrl: "https://nationalpartnership.org/news_post/new-analysis-more-than-30-percent-of-workers-in-the-most-ai-vulnerable-jobs-are-women-of-color/",
@@ -2851,6 +2915,7 @@ const RESEARCH_DATA = [
     ]
   },
   { id: 155, date: "2026-05-06",
+    highlight: { stat: "5 GW", text: "natural gas plant Microsoft is developing as AI data-center expansion outpaces its 2030 clean-energy commitment.", themeId: "community" },
     title: "Microsoft's AI Data Center Push Is Colliding with Its Clean Power Goals",
     source: "Tim De Chant — TechCrunch",
     sourceUrl: "https://techcrunch.com/2026/05/06/microsofts-ai-data-center-push-is-colliding-with-its-clean-power-goals/",
@@ -4444,6 +4509,7 @@ const RESEARCH_DATA = [
   },
   {
     id: 107, date: "2026-04-21",
+    highlight: { stat: "54", text: "countries negotiated the first global tripartite agreement on AI in manufacturing, covering nearly 500M workers.", themeId: "worker-power" },
     title: "ILO Adopts First-Ever Conclusions on AI in Manufacturing Work",
     source: "International Labour Organization",
     sourceUrl: "https://www.ilo.org/resource/news/ilo-adopts-first-ever-conclusions-ai-manufacturing-work",
@@ -4782,6 +4848,7 @@ const RESEARCH_DATA = [
   },
   {
     id: 136, date: "2026-05-01",
+    highlight: { stat: "236", text: "first-person worker accounts document 12 distinct patterns of AI-driven job loss across the labor pipeline.", themeId: "displacement" },
     title: "AI Commons: Worker Stories from the AI Economy",
     source: "AI Commons Project",
     sourceUrl: "https://www.aicommonsproject.org/stories",
@@ -5136,7 +5203,7 @@ const POL_TO_RESEARCH_CATS = {
       <h1><a href="https://cmpcmp-dot.github.io/ai-tech-markets-research/">AI, Tech and the Economy: Research Intelligence</a></h1>
     </div>
     <nav class="header-nav" role="tablist" aria-label="Select view">
-      <button class="header-nav-btn" id="viewCards" role="tab" aria-selected="false">Research</button>
+      <button class="header-nav-btn" id="viewCards" role="tab" aria-selected="false">Research<span class="nav-new-badge" id="viewCardsBadge" aria-hidden="true"></span></button>
       <button class="header-nav-btn active" id="viewThemes" role="tab" aria-selected="true">Themes</button>
       <button class="header-nav-btn" id="viewPolicy" role="tab" aria-selected="false">Policy Lab</button>
       <button class="header-nav-btn" id="viewAbout" aria-label="About this site">About</button>
@@ -5147,6 +5214,8 @@ const POL_TO_RESEARCH_CATS = {
     </div>
   </div>
 </header>
+
+<div id="whatsNewBanner" aria-live="polite"></div>
 
 <main class="app-layout">
 
@@ -5176,89 +5245,14 @@ const POL_TO_RESEARCH_CATS = {
     </div>
     <span class="header-tab-desc-text" id="headerTabDescText">A curated database of peer-reviewed studies, policy reports, and investigative journalism on AI, automation, and labor markets.</span>
     <div class="key-findings-band" id="keyFindingsBand">
-      <div class="key-findings-label">Key findings from the research</div>
-      <div class="key-findings-row">
-        <button class="key-finding-card" data-paper-id="138" data-theme-id="displacement" style="--kf-color:#2C3254">
-          <span class="key-finding-stat">57%</span>
-          <span class="key-finding-text">of real-world AI usage augments human work rather than automating it.</span>
-          <span class="key-finding-source">Anthropic Economic Index, 4M+ conversations</span>
-          <span class="key-finding-link">Displacement &amp; Wages →</span>
-        </button>
-        <button class="key-finding-card" data-paper-id="62" data-theme-id="displacement" style="--kf-color:#2C3254">
-          <span class="key-finding-stat">78M</span>
-          <span class="key-finding-text">projected net gain in jobs by 2030: 170M new roles against 92M displaced.</span>
-          <span class="key-finding-source">World Economic Forum, 2025</span>
-          <span class="key-finding-link">Displacement &amp; Wages →</span>
-        </button>
-        <button class="key-finding-card" data-paper-id="137" data-theme-id="displacement" style="--kf-color:#2C3254">
-          <span class="key-finding-stat">34%</span>
-          <span class="key-finding-text">productivity gain for newer, lower-skilled workers given AI tools, the largest gains in the biggest randomized deployment study.</span>
-          <span class="key-finding-source">Brynjolfsson, Li &amp; Raymond, 5,179 agents</span>
-          <span class="key-finding-link">Displacement &amp; Wages →</span>
-        </button>
-        <button class="key-finding-card" data-paper-id="107" data-theme-id="worker-power" style="--kf-color:#472B51">
-          <span class="key-finding-stat">54</span>
-          <span class="key-finding-text">countries negotiated the first global tripartite agreement on AI in manufacturing, covering nearly 500M workers.</span>
-          <span class="key-finding-source">International Labour Organization, 2026</span>
-          <span class="key-finding-link">Worker Power →</span>
-        </button>
-        <button class="key-finding-card" data-paper-id="2" data-theme-id="displacement" data-excerpt="Emerging 'AI premiums' in starting salaries (11–25% above equivalent roles) risk entrenching a two-tier labor market within professional services." style="--kf-color:#2C3254">
-          <span class="key-finding-stat">11–25%</span>
-          <span class="key-finding-text">salary premium commanded by AI-skilled workers over equivalent roles.</span>
-          <span class="key-finding-source">Brookings Institution, 2024</span>
-          <span class="key-finding-link">Displacement &amp; Wages →</span>
-        </button>
-        <button class="key-finding-card" data-paper-id="148" data-theme-id="policy" style="--kf-color:#3F7A5E">
-          <span class="key-finding-stat">1st</span>
-          <span class="key-finding-text">comprehensive state AI workforce framework: New Jersey's S.1840 pairs an AI-funded displacement fund with employer disclosure rules.</span>
-          <span class="key-finding-source">New Jersey S.1840, 2026</span>
-          <span class="key-finding-link">Policy &amp; Regulation →</span>
-        </button>
-        <button class="key-finding-card" data-paper-id="29" data-theme-id="experience" style="--kf-color:#472B51">
-          <span class="key-finding-stat">80K+</span>
-          <span class="key-finding-text">people in one of the largest global AI attitude studies: hope and alarm coexist within the same individuals, not between demographic camps.</span>
-          <span class="key-finding-source">Anthropic global study, 80,508 participants</span>
-          <span class="key-finding-link">Worker Experience →</span>
-        </button>
-        <button class="key-finding-card" data-paper-id="76" data-theme-id="worker-power" style="--kf-color:#472B51">
-          <span class="key-finding-stat">15M</span>
-          <span class="key-finding-text">workers represented by Workers First, the first comprehensive labor movement AI agenda, spanning 63 unions.</span>
-          <span class="key-finding-source">AFL-CIO, October 2025</span>
-          <span class="key-finding-link">Worker Power →</span>
-        </button>
-        <button class="key-finding-card" data-paper-id="92" data-theme-id="criminal-justice" style="--kf-color:#B03030">
-          <span class="key-finding-stat">1 in 2</span>
-          <span class="key-finding-text">American adults are enrolled in law enforcement facial recognition networks, mostly through driver's license databases, without knowledge or consent.</span>
-          <span class="key-finding-source">Georgetown Law, Perpetual Line-Up</span>
-          <span class="key-finding-link">Criminal Justice &amp; Policing →</span>
-        </button>
-        <button class="key-finding-card" data-paper-id="127" data-theme-id="equity" style="--kf-color:#BD4F1E">
-          <span class="key-finding-stat">189</span>
-          <span class="key-finding-text">algorithms tested across 18.27M images in NIST's federal audit: false positive disparities are a systemic feature of deployed facial recognition, not an outlier.</span>
-          <span class="key-finding-source">NIST Face Recognition Vendor Test, 2019</span>
-          <span class="key-finding-link">Equity &amp; Civil Rights →</span>
-        </button>
-        <button class="key-finding-card" data-paper-id="11" data-theme-id="community" style="--kf-color:#8C6A14">
-          <span class="key-finding-stat">60%</span>
-          <span class="key-finding-text">of new AI jobs are concentrated in the top 20 metro areas, none of them rural.</span>
-          <span class="key-finding-source">Brookings Metro</span>
-          <span class="key-finding-link">Communities &amp; Infrastructure →</span>
-        </button>
-        <button class="key-finding-card" data-paper-id="200" data-theme-id="macro-risk" style="--kf-color:#3A6186">
-          <span class="key-finding-stat">31:1</span>
-          <span class="key-finding-text">AI capital spending dwarfs revenue: $770B in planned 2026 capex against $25B in 2025 AI revenue.</span>
-          <span class="key-finding-source">Open Markets Institute, 2026</span>
-          <span class="key-finding-link">Macroeconomic Risk →</span>
-        </button>
-      </div>
+      <div class="key-findings-label">From recent research</div>
+      <div class="key-findings-row" id="keyFindingsRow"></div>
     </div>
     <span class="header-tab-desc-note" id="headerTabDescNote">Summaries and key findings are AI-generated and reviewed for accuracy. Always consult the original source before citing.</span>
   </div>
 
   <!-- ── MAIN ── -->
   <div class="main-content">
-
-    <div id="whatsNewBanner" aria-live="polite"></div>
 
     <div class="research-header-bar">
       <span class="pol-header-title">Research</span>
@@ -5274,7 +5268,7 @@ const POL_TO_RESEARCH_CATS = {
 
     <div class="theme-disclaimer-bar">
       <span class="pol-header-title">Themes</span>
-      <span class="theme-intro-line">Cross-cutting syntheses of the research database, organized into eight themes — each framing a key question, evidence consensus, and implications for institutions.</span>
+      <span class="theme-intro-line">Cross-cutting syntheses of the research database — each framing a key question, evidence consensus, and implications for institutions.</span>
       <span class="theme-disclaimer-line">Synthesized from the research database. Does not constitute strategic advice or reflect the opinions of the creator.</span>
     </div>
     <div class="theme-nav-strip">
@@ -5297,12 +5291,11 @@ const POL_TO_RESEARCH_CATS = {
             <div class="about-section-label">How to read it</div>
             <p class="about-section-text"><strong>Three tabs.</strong> Research is the full, filterable database of individual sources. Themes synthesizes the database into cross-cutting questions, each with the evidence, what is working, the risks, and the implications. Policy Lab maps policy interventions across categories and five implementation phases.</p>
             <p class="about-section-text"><strong>Confidence.</strong> Each theme is tagged Strong consensus (independent research streams converge), Emerging evidence (the direction is clear but still developing), or Contested (credible researchers reach different conclusions).</p>
-            <p class="about-section-text"><strong>Recency.</strong> Each source carries a status: Emergent (under 90 days), Current (3 to 18 months), or Stale (18+ months, useful as a baseline).</p>
             <p class="about-section-text"><strong>Lens.</strong> The General lens is written for a broad audience. The Focused lens filters to peer-reviewed and institutional research, organized around economic outcome domains.</p>
           </div>
           <div class="about-section">
             <div class="about-section-label">Updates</div>
-            <p class="about-section-text">The database is updated as new research emerges. Each entry carries a recency status, the current build date appears in the footer, and recent changes are flagged in the &ldquo;what&rsquo;s new&rdquo; banner.</p>
+            <p class="about-section-text">The database is updated as new research emerges. The current build date appears in the footer, and recent changes are flagged in the &ldquo;what&rsquo;s new&rdquo; banner.</p>
           </div>
           <div class="about-section">
             <div class="about-section-label">Sourcing &amp; AI</div>
@@ -5354,15 +5347,15 @@ const POL_TO_RESEARCH_CATS = {
       </div>
       <div class="modal-group">
         <div class="modal-group-name">Research tab</div>
-        <p class="modal-sources-intro">A filterable card database of individual research entries. Each entry is tagged by category, geographic scope, and recency status — <em>Emergent</em> (under 90 days, preliminary), <em>Current</em> (3–18 months, active in the research conversation), or <em>Stale</em> (18+ months, useful as baseline but context may have shifted). Cards can be filtered by category, status, and geography, or searched by title, source, or finding.</p>
+        <p class="modal-sources-intro">A filterable card database of individual research entries, tagged by category and geographic scope. Cards can be filtered by category and geography, or searched by title, source, or finding.</p>
       </div>
       <div class="modal-group">
         <div class="modal-group-name">Themes tab</div>
-        <p class="modal-sources-intro">Cross-cutting syntheses of the research database, organized into eight themes. Each theme frames a key strategic question, presents an evidence consensus, identifies implications for institutional actors, and notes gaps in the current evidence base. Themes carry an editorial confidence rating: <em>Strong consensus</em>, <em>Emerging evidence</em>, or <em>Contested</em>.</p>
+        <p class="modal-sources-intro">Cross-cutting syntheses of the research database. Each theme frames a key strategic question, presents an evidence consensus, identifies implications for institutional actors, and notes gaps in the current evidence base. Themes carry an editorial confidence rating: <em>Strong consensus</em>, <em>Emerging evidence</em>, or <em>Contested</em>.</p>
       </div>
       <div class="modal-group">
         <div class="modal-group-name">Policy Lab tab</div>
-        <p class="modal-sources-intro">Twenty-five policy interventions organized by category and mapped to five stages of AI-driven labor disruption — from <em>Foundational</em> (reforms needed regardless of AI's trajectory) through <em>Transformational</em> (responses to large-scale displacement of the workforce). Each policy card includes a plain-language description, an account of the implementation challenge, and links to supporting research in the database. Does not constitute policy advice.</p>
+        <p class="modal-sources-intro">Twenty-seven policy interventions organized by category and mapped to five stages of AI-driven labor disruption — from <em>Repair</em> (fixes needed regardless of AI's trajectory) through <em>Transform</em> (responses to large-scale displacement of the workforce). Each policy card includes a plain-language description, an account of the implementation challenge, and links to supporting research in the database. Does not constitute policy advice.</p>
       </div>
       <div class="modal-group">
         <div class="modal-group-name">AI Disclaimer</div>
@@ -6442,37 +6435,67 @@ const POL_TO_RESEARCH_CATS = {
   function applyPolFilters() {}
 
   /* ── What's New banner ───────────────────────────────────────── */
+  // "New" = entries under 90 days old (emergent). The banner/badge stay hidden once
+  // the newest entry has been seen, and reappear only when a newer entry is added.
+  function whatsNewState() {
+    const emergent   = RESEARCH_DATA.filter(e => calcStatus(e) === 'emergent');
+    const newestDate = RESEARCH_DATA.reduce((m, e) => (e.date > m ? e.date : m), '');
+    const seen       = localStorage.getItem('wnbSeen');
+    const unseen     = emergent.length > 0 && !!newestDate && (!seen || seen < newestDate);
+    return { count: emergent.length, newestDate, unseen };
+  }
+
+  function dismissWhatsNew() {
+    const { newestDate } = whatsNewState();
+    if (newestDate) localStorage.setItem('wnbSeen', newestDate);
+    const banner = document.getElementById('whatsNewBanner');
+    if (banner) banner.style.display = 'none';
+    updateWhatsNewBadge();
+  }
+
+  // Count badge on the Research tab — discoverable from any tab (including the
+  // default Themes landing), since the banner itself only renders in the Research view.
+  function updateWhatsNewBadge() {
+    const tab   = document.getElementById('viewCards');
+    const badge = document.getElementById('viewCardsBadge');
+    if (!tab || !badge) return;
+    const { count, unseen } = whatsNewState();
+    if (unseen) {
+      badge.textContent = count;
+      badge.style.display = 'inline-block';
+      tab.setAttribute('aria-label', `Research, ${count} new ${count === 1 ? 'entry' : 'entries'}`);
+    } else {
+      badge.style.display = 'none';
+      tab.removeAttribute('aria-label');
+    }
+  }
+
   function initWhatsNewBanner() {
     const banner = document.getElementById('whatsNewBanner');
     if (!banner) return;
-    if (sessionStorage.getItem('wnbDismissed') === '1') return;
+    const { count, unseen } = whatsNewState();
+    if (!unseen) { banner.style.display = 'none'; return; }
 
-    const newEntries = RESEARCH_DATA.filter(e => calcStatus(e) === 'emergent');
-    if (newEntries.length === 0) return;
-
-    // Build once
+    const copy = `<strong>${count} new entr${count===1?'y':'ies'}</strong> added in the last 90 days`;
     if (!banner.hasChildNodes()) {
-      const n = newEntries.length;
       banner.innerHTML = `
         <div class="wnb-wrap">
           <div class="wnb-dot"></div>
-          <span class="wnb-text"><strong>${n} new entr${n===1?'y':'ies'}</strong> added in the last 90 days</span>
+          <span class="wnb-text">${copy}</span>
           <button class="wnb-view-btn" id="wnbViewBtn">View new entries →</button>
           <button class="wnb-dismiss" id="wnbDismiss" aria-label="Dismiss">✕</button>
         </div>`;
       document.getElementById('wnbViewBtn').addEventListener('click', () => {
-        sessionStorage.setItem('wnbDismissed', '1');
-        banner.style.display = 'none';
+        dismissWhatsNew();
         activeStatus = 'emergent';
         setView('cards');
       });
-      document.getElementById('wnbDismiss').addEventListener('click', () => {
-        sessionStorage.setItem('wnbDismissed', '1');
-        banner.style.display = 'none';
-      });
+      document.getElementById('wnbDismiss').addEventListener('click', dismissWhatsNew);
+    } else {
+      const t = banner.querySelector('.wnb-text');
+      if (t) t.innerHTML = copy;
     }
-
-    banner.style.display = '';
+    banner.style.display = 'block';
   }
 
 
@@ -6496,6 +6519,7 @@ const POL_TO_RESEARCH_CATS = {
     buildCatNav();
     buildInlineFilters();
     updateFilterBadge();
+    updateWhatsNewBadge();
 
     document.body.classList.toggle('cards-view', activeView === 'cards');
     const introLine = document.getElementById('researchIntroLine');
@@ -6675,12 +6699,43 @@ const POL_TO_RESEARCH_CATS = {
     document.addEventListener('keydown', e => { if (e.key === 'Escape' && backdrop.classList.contains('open')) closeFindingModal(); });
   })();
 
-  document.querySelectorAll('.key-finding-card[data-theme-id]').forEach(card => {
-    card.addEventListener('click', () => {
-      if (card.dataset.paperId) openFindingModal(card);
-      else goToTheme(card.dataset.themeId);
-    });
+  // Build the band dynamically from emergent papers (under 90 days) that carry
+  // a `highlight` field. Click handling uses event delegation so cards added
+  // after script-load still respond.
+  function buildKeyFindingsBand() {
+    const band = document.getElementById('keyFindingsBand');
+    const row  = document.getElementById('keyFindingsRow');
+    if (!band || !row) return;
+    const themeMap = Object.fromEntries(THEMES.map(t => [t.id, t]));
+    const cards = RESEARCH_DATA
+      .filter(p => p.highlight && calcStatus(p) === 'emergent')
+      .sort((a, b) => new Date(b.date) - new Date(a.date))
+      .map(p => {
+        const t = themeMap[p.highlight.themeId];
+        if (!t) return '';
+        const inst = (p.source || '').split(' \u2014 ').pop().trim();
+        const year = p.date ? p.date.slice(0, 4) : '';
+        const sourceLine = p.highlight.source || `${inst}, ${year}`;
+        return `<button class="key-finding-card" data-paper-id="${p.id}" data-theme-id="${p.highlight.themeId}" style="--kf-color:${t.color}">`
+             + `<span class="key-finding-stat">${p.highlight.stat}</span>`
+             + `<span class="key-finding-text">${p.highlight.text}</span>`
+             + `<span class="key-finding-source">${sourceLine}</span>`
+             + `<span class="key-finding-link">${t.tag} \u2192</span>`
+             + `</button>`;
+      }).join('');
+    if (!cards) { band.style.display = 'none'; return; }
+    row.innerHTML = cards;
+    band.style.display = '';
+  }
+
+  document.getElementById('keyFindingsBand').addEventListener('click', e => {
+    const card = e.target.closest('.key-finding-card[data-theme-id]');
+    if (!card) return;
+    if (card.dataset.paperId) openFindingModal(card);
+    else goToTheme(card.dataset.themeId);
   });
+
+  buildKeyFindingsBand();
 
   function updateSortBtn() {
     const btn = document.getElementById('sortBtn');
