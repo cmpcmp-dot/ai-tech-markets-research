@@ -732,6 +732,16 @@
   }
   .pol-xref:hover { border-bottom-style: solid; }
   .pol-xref:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 2px; }
+  .if-status-chip {
+    display: inline-flex; align-items: center; gap: 7px;
+    background: color-mix(in srgb, var(--accent) 8%, transparent);
+    border: 1px solid color-mix(in srgb, var(--accent) 30%, transparent);
+    color: var(--text); font-weight: 500;
+  }
+  .if-status-chip:hover { background: color-mix(in srgb, var(--accent) 14%, transparent); }
+  .if-status-dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
+  .if-status-x { font-size: 11px; color: var(--muted); margin-left: 1px; }
+  .if-status-chip:hover .if-status-x { color: var(--text); }
   .theme-implication-wrap {
     margin-top: 24px; padding-top: 20px;
     border-top: 1px solid var(--border);
@@ -2030,7 +2040,7 @@ const RESEARCH_DATA = [
     ]
   },
   { id: 207, date: "2026-05-05",
-    highlight: { stat: "$79T", text: "redirected away from the bottom 90% of American workers since 1975, roughly $1M per worker over a career.", themeId: "displacement" },
+    highlight: { stat: "$79 trillion", text: "redirected away from the bottom 90% of American workers since 1975, roughly $1 million per worker over a career.", themeId: "displacement" },
     title: "Recovering Wages and Wealth: What We Deserve in the Age of AI",
     source: "Rayan Semery-Palumbo — Economic Security Project",
     sourceUrl: "https://economicsecurityproject.org/resource/recovering-wages-and-wealth/",
@@ -2298,7 +2308,7 @@ const RESEARCH_DATA = [
     ]
   },
   { id: 206, date: "2026-04-28",
-    highlight: { stat: "83%", text: "of workers in the 15 most AI-vulnerable jobs are women, with women of color making up more than 30%.", themeId: "equity" },
+    highlight: { stat: "83%", text: "of workers in the 15 jobs most vulnerable to artificial intelligence are women, with women of color making up more than 30%.", themeId: "equity" },
     title: "New Analysis: More Than 30 Percent of Workers in the Most AI-Vulnerable Jobs Are Women of Color",
     source: "National Partnership for Women & Families",
     sourceUrl: "https://nationalpartnership.org/news_post/new-analysis-more-than-30-percent-of-workers-in-the-most-ai-vulnerable-jobs-are-women-of-color/",
@@ -2915,7 +2925,7 @@ const RESEARCH_DATA = [
     ]
   },
   { id: 155, date: "2026-05-06",
-    highlight: { stat: "5 GW", text: "natural gas plant Microsoft is developing as AI data-center expansion outpaces its 2030 clean-energy commitment.", themeId: "community" },
+    highlight: { stat: "5 gigawatts", text: "natural gas plant Microsoft is developing as artificial intelligence data-center expansion outpaces its 2030 clean-energy commitment.", themeId: "community" },
     title: "Microsoft's AI Data Center Push Is Colliding with Its Clean Power Goals",
     source: "Tim De Chant — TechCrunch",
     sourceUrl: "https://techcrunch.com/2026/05/06/microsofts-ai-data-center-push-is-colliding-with-its-clean-power-goals/",
@@ -4509,7 +4519,7 @@ const RESEARCH_DATA = [
   },
   {
     id: 107, date: "2026-04-21",
-    highlight: { stat: "54", text: "countries negotiated the first global tripartite agreement on AI in manufacturing, covering nearly 500M workers.", themeId: "worker-power" },
+    highlight: { stat: "54", text: "countries negotiated the first global tripartite agreement on artificial intelligence in manufacturing, covering nearly 500 million workers.", themeId: "worker-power" },
     title: "ILO Adopts First-Ever Conclusions on AI in Manufacturing Work",
     source: "International Labour Organization",
     sourceUrl: "https://www.ilo.org/resource/news/ilo-adopts-first-ever-conclusions-ai-manufacturing-work",
@@ -4848,7 +4858,7 @@ const RESEARCH_DATA = [
   },
   {
     id: 136, date: "2026-05-01",
-    highlight: { stat: "236", text: "first-person worker accounts document 12 distinct patterns of AI-driven job loss across the labor pipeline.", themeId: "displacement" },
+    highlight: { stat: "236", text: "first-person worker accounts document 12 distinct patterns through which artificial intelligence drives job loss across the labor pipeline.", themeId: "displacement" },
     title: "AI Commons: Worker Stories from the AI Economy",
     source: "AI Commons Project",
     sourceUrl: "https://www.aicommonsproject.org/stories",
@@ -5620,6 +5630,22 @@ const POL_TO_RESEARCH_CATS = {
     if (!bar) return;
     bar.innerHTML = '';
 
+    // Active-status chip: when the user lands on the cards view with a status
+    // filter already applied (typically via the What's New banner), show a
+    // visible chip in the filter bar so the filter is both discoverable and
+    // dismissable in one click.
+    if (activeStatus !== 'all') {
+      const sm = STATUS_META[activeStatus] || {};
+      const chip = document.createElement('button');
+      chip.className = 'if-pill if-status-chip';
+      chip.setAttribute('aria-label', `Filtered to ${sm.label || activeStatus}. Click to show all statuses.`);
+      chip.innerHTML = `<span class="if-status-dot" style="background:${sm.dot || 'var(--accent)'}" aria-hidden="true"></span>`
+                     + `<span>${sm.label || activeStatus}</span>`
+                     + `<span class="if-status-x" aria-hidden="true">\u2715</span>`;
+      chip.addEventListener('click', () => { activeStatus = 'all'; render(); });
+      bar.appendChild(chip);
+    }
+
     const mkPill = (label, color, isActive, onClick, tooltip) => {
       const btn = document.createElement('button');
       btn.className = 'if-pill if-pill-fallback';
@@ -5695,7 +5721,7 @@ const POL_TO_RESEARCH_CATS = {
     });
 
     // Clear all
-    const hasFilters = activeGeo !== 'all' || activeCat !== 'all' || activeEvidence !== 'all' || searchQuery.trim();
+    const hasFilters = activeStatus !== 'all' || activeGeo !== 'all' || activeCat !== 'all' || activeEvidence !== 'all' || searchQuery.trim();
     if (hasFilters) {
       const sep2 = document.createElement('div');
       sep2.className = 'if-sep';
