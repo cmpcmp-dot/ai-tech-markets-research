@@ -1415,7 +1415,7 @@ const STATUS_META = {
 };
 
 // Update this date whenever themes or policy lab content changes
-const LAST_CONTENT_UPDATE = "2026-06-14";
+const LAST_CONTENT_UPDATE = "2026-07-05";
 
 const THEMES = [
   {
@@ -1449,7 +1449,7 @@ const THEMES = [
       summary: "<p>AI-driven wage divergence is accelerating faster than policy or institutions can respond. The risk is not theoretical displacement but compounding inequality: workers without AI skills fall further behind while productivity gains concentrate among those already above the median, and the gap widens annually.</p><p>Institutions that treat this as a future risk rather than a present one will fall behind the intervention window. The research suggests the divergence is already underway and is being measured in salary premiums and task-exposure data, not in projections.</p>",
       leverage: "<p>Wage insurance carries rare tested evidence {{cite:34}}: it raises long-run earnings, speeds re-employment, and may pay for itself. The augmentation data points the same direction, with AI's largest documented gains accruing to newer, lower-skilled workers, meaning deployment choices can narrow gaps rather than widen them. The Acemoglu-Autor-Johnson framework {{cite:41}} identifies levers available now: procurement rules, research investment, and antitrust action can redirect investment toward augmentation without waiting for new legislation.</p>"
     },
-    papers: [1, 2, 46, 60, 61, 15, 16, 30, 33, 34, 36, 37, 41, 59, 62, 63, 75, 97, 105, 109, 137, 138, 139, 140, 141, 142, 136, 152, 154, 177, 179, 184, 190, 200, 206, 207, 208, 212, 219, 224, 232],
+    papers: [1, 2, 46, 60, 61, 15, 16, 30, 33, 34, 36, 37, 41, 59, 62, 63, 75, 97, 105, 109, 137, 138, 139, 140, 141, 142, 136, 152, 154, 177, 179, 184, 190, 200, 206, 207, 208, 212, 219, 224, 232, 235, 237, 244],
   },
   {
     id: "equity",
@@ -1480,7 +1480,7 @@ const THEMES = [
       summary: "<p>Algorithmic bias in hiring, credit, healthcare, and housing is structural and self-reinforcing. Without upstream intervention at procurement and deployment stages, AI rollout at scale will deepen racial, gender, and class disparities faster than legal or advocacy mechanisms can address them. Healthcare is a particularly underregulated frontier: no federal standard requires commercial health algorithms to be audited for racial disparity before deployment, and the tools are embedded in clinical infrastructure used by millions of patients.</p><p>The adoption gap compounds the risk. If lower-income and marginalized workers adopt AI tools at lower rates and with less sophistication, the economic divergence documented in displacement research will be layered on top of pre-existing inequalities, producing outcomes that are harder to reverse over time.</p>",
       leverage: "<p>The audit evidence shows measured bias varies with deliberate engineering investment, which makes reduction a resource and accountability choice rather than a technical impossibility. Disparate impact doctrine already applies to algorithmic discrimination, and procurement is the actionable pressure point: institutions can embed audit requirements and demographic performance disclosure at purchase and deployment, before harm scales, without waiting for new law.</p>"
     },
-    papers: [94, 95, 8, 9, 89, 117, 120, 121, 124, 10, 49, 66, 98, 108, 125, 126, 129, 130, 131, 132, 133, 134, 135, 170, 171, 172, 174, 175, 204, 205, 206, 209, 213],
+    papers: [94, 95, 8, 9, 89, 117, 120, 121, 124, 10, 49, 66, 98, 108, 125, 126, 129, 130, 131, 132, 133, 134, 135, 170, 171, 172, 174, 175, 204, 205, 206, 209, 213, 239],
   },
   {
     id: "criminal-justice",
@@ -1503,7 +1503,7 @@ const THEMES = [
       summary: "<p>Documented racial disparities in risk assessment, facial recognition, and predictive policing are structural and self-reinforcing. Proprietary algorithms, absent audit requirements, and no defendant access to model documentation mean these systems operate without the accountability mechanisms considered standard for other high-stakes government decisions.</p><p>The feedback loop in predictive policing, biased data producing biased predictions producing biased enforcement producing more biased data, compounds over time and becomes harder to disentangle the longer it runs. Jurisdictions that have been using these systems for a decade are now several cycles deep into that loop.</p>",
       leverage: "<p>Procurement is the most actionable near-term intervention: jurisdictions can require training data provenance, subgroup accuracy disclosure, and independent audit access as conditions of contract today, without waiting for state or federal legislation. The litigation posture is also strengthening. NIST's demographic findings {{cite:127}} and the documented wrongful arrests {{cite:128}} give public defenders and civil rights litigators an evidentiary foundation that did not exist five years ago, and existing disparate impact doctrine applies; the constraint is legal capacity and access, not legal authority.</p>"
     },
-    papers: [91, 92, 93, 81, 127, 128],
+    papers: [91, 92, 93, 81, 127, 128, 234, 236],
   },
   {
     id: "worker-power",
@@ -1534,7 +1534,7 @@ const THEMES = [
       summary: "<p>Legal frameworks governing AI in the workplace lag deployment by years. Workers in algorithmic management environments face measurable harm, elevated injury rates, turnover, and surveillance, with limited legal recourse, and the organizing infrastructure needed to negotiate AI contract terms is underdeveloped outside a handful of industries.</p><p>The risk intensifies in sectors without union density or advocacy infrastructure. Where workers lack the collective capacity to negotiate AI terms, employer discretion over deployment conditions is nearly unchecked, and the harms documented in warehouse and logistics contexts will replicate across industries as algorithmic management tools become cheaper and more accessible.</p>",
       leverage: "<p>The contract record proves AI governance is winnable now: WGA and SAG-AFTRA {{cite:3}} won enforceable AI provisions before any legislation existed, and the ILO's 54-country tripartite conclusions {{cite:107}} give advocates a legitimacy anchor even where union density is low. The window for establishing precedents in key industries is open, and contract language developed now becomes the template other sectors can demand.</p>"
     },
-    papers: [3, 4, 7, 110, 76, 26, 47, 53, 64, 102, 104, 107, 150, 151, 153, 158, 167, 180, 187, 189, 202, 219, 220, 221, 222, 223, 224, 229],
+    papers: [3, 4, 7, 110, 76, 26, 47, 53, 64, 102, 104, 107, 150, 151, 153, 158, 167, 180, 187, 189, 202, 219, 220, 221, 222, 223, 224, 229, 237],
   },
   {
     id: "policy",
@@ -1566,7 +1566,7 @@ const THEMES = [
       summary: "<p>Regulatory fragmentation creates conditions where harmful AI deployments can proceed without oversight or accountability. The core risk is the gap between policy intent and enforcement capacity: laws are passing, but the infrastructure to act on them is largely absent, and this gap is widening faster than state agencies can close it.</p><p>There is also a capture risk: well-resourced AI developers are actively shaping the policy environment in ways that can appear aligned with equity goals while protecting market concentration. Institutions that do not maintain independent policy analysis capacity risk lending legitimacy to frameworks that do not serve their constituencies.</p><p>An underappreciated emerging risk: when government deploys AI in its own decision-making, drafting regulations, reviewing contracts, and processing claims, the accountability mechanisms designed for private AI deployment do not automatically apply. Federal procurement and rulemaking processes are not yet equipped to assess or constrain the AI tools being introduced into them.</p>",
       leverage: "<p>Much of the needed legal authority already exists: EEOC enforcement {{cite:101}}, disparate impact doctrine, and procurement standards are usable today, and the binding constraint is enforcement will and capacity rather than statutory power. State momentum is replicable. New Jersey's S.1840 {{cite:148}} and workforce directive {{cite:147}} provide templates other states can adopt, and funding implementation infrastructure is the highest-leverage investment because laws are passing faster than the capacity to enforce them.</p>"
     },
-    papers: [77, 80, 82, 86, 101, 70, 113, 115, 122, 123, 124, 18, 28, 32, 38, 39, 40, 44, 45, 50, 52, 55, 56, 58, 67, 68, 71, 72, 78, 79, 83, 87, 88, 96, 99, 100, 111, 112, 143, 144, 145, 147, 148, 149, 146, 157, 159, 160, 161, 162, 164, 168, 169, 173, 176, 181, 196, 197, 198, 199, 186, 200, 201, 202, 203, 204, 207, 208, 210, 211, 212, 213, 214, 215, 218, 219, 220, 221, 222, 223, 224, 229, 230, 232],
+    papers: [77, 80, 82, 86, 101, 70, 113, 115, 122, 123, 124, 18, 28, 32, 38, 39, 40, 44, 45, 50, 52, 55, 56, 58, 67, 68, 71, 72, 78, 79, 83, 87, 88, 96, 99, 100, 111, 112, 143, 144, 145, 147, 148, 149, 146, 157, 159, 160, 161, 162, 164, 168, 169, 173, 176, 181, 196, 197, 198, 199, 186, 200, 201, 202, 203, 204, 207, 208, 210, 211, 212, 213, 214, 215, 218, 219, 220, 221, 222, 223, 224, 229, 230, 232, 233, 238, 240, 236, 243, 245, 246],
   },
   {
     id: "community",
@@ -1674,7 +1674,7 @@ const THEMES = [
       summary: "<p>The combination of speculative bubble characteristics at unprecedented scale, market concentration with no adequate regulatory response, and a distributional gap with no institutional mechanism to address it constitutes a systemic macroeconomic risk, not a sector-specific concern. The bubble risk and concentration risk are mutually reinforcing: if the AI sector corrects, the concentration of ownership means losses will be felt unevenly, while the concentration of productive AI infrastructure in a small number of firms means the recovery will also be uneven.</p><p>The uncertainty range in productivity projections is itself a risk: institutions, governments, and workers are making decisions with long-term consequences inside an epistemic gap that may not resolve until outcomes are visible. Acting as if the optimistic projections are correct when they may not be, or dismissing displacement risk because the pessimistic projections are more reassuring, both represent failures of risk management rather than defensible positions under uncertainty.</p>",
       leverage: "<p>Scenario planning is cheap relative to the cost of betting on a single forecast: institutions can hold the optimistic and pessimistic projections simultaneously and invest in instruments that perform across both, such as wage insurance and adjustment capacity. Antitrust is a live lever, as the Google search case {{cite:160}} demonstrates that concentration is contestable with existing tools, and the distributional question of who captures productivity gains remains open to policy influence.</p>"
     },
-    papers: [15, 16, 61, 62, 75, 105, 109, 30, 33, 152, 160, 191, 192, 197, 200, 229, 230, 231, 232],
+    papers: [15, 16, 61, 62, 75, 105, 109, 30, 33, 152, 160, 191, 192, 197, 200, 229, 230, 231, 232, 241, 242],
   },
 ];
 THEMES.sort((a, b) => a.tag.localeCompare(b.tag));
@@ -1966,6 +1966,190 @@ const PRIORITY_SOURCE_GROUPS = {
 };
 
 const RESEARCH_DATA = [
+  { id: 241, date: "2026-07-02",
+    title: "OpenAI Proposes U.S. Government Own 5% Stake to Address Political Blowback",
+    source: "CNBC",
+    sourceUrl: "https://www.cnbc.com/2026/07/02/openai-proposes-us-government-own-5percent-stake-to-address-political-blowback.html",
+    category: "macro", geography: "us",
+    evidence: "commentary",
+    keyFinding: "OpenAI has proposed giving the U.S. government a 5% ownership stake — worth roughly $42.6 billion at the company's $852 billion valuation — as a mechanism for defusing political pressure and sharing AI's financial upside with the public. CEO Sam Altman has pitched the concept to the Trump administration since early 2025; the proposal envisions other major AI companies (Anthropic, Google, Meta) ceding similar stakes through a sovereign wealth fund vehicle.",
+    takeaways: [
+      "The proposed 5% government stake would be worth approximately $42.6 billion at OpenAI's most recent $852 billion valuation, making it one of the largest proposed public equity stakes in a private technology company.",
+      "Altman frames government equity as a way to give the public a financial interest in AI's success — positioning the stake as a public benefit mechanism rather than a regulatory concession.",
+      "The proposal envisions other leading AI companies including Anthropic, Google, and Meta making similar equity concessions through a sovereign wealth fund vehicle, though it is unclear whether any of these companies would agree.",
+      "The pitch follows over a year of mounting political pressure on major U.S. AI firms over cybersecurity concerns and rising competition from Chinese open-source models."
+    ]
+  },
+  { id: 242, date: "2026-07-02",
+    title: "Preparing for the Unpredictable",
+    source: "Lucy Brewster — Brew Markets",
+    sourceUrl: "https://www.brewmarkets.com/stories/preparing-for-the-unpredictable",
+    category: "macro", geography: "us",
+    evidence: "commentary",
+    keyFinding: "An interview with Joe Quinlan, head of market strategy at Bank of America's private bank, on AI's current macro footprint and investor positioning. Quinlan observes that AI productivity gains remain minimal in aggregate due to low adoption rates, though adoption is accelerating and impacts are visible in corporate earnings in energy, transportation, and financial services — consistent with historical patterns in which technology's macroeconomic benefits surface two to four years after adoption accelerates.",
+    takeaways: [
+      "AI productivity gains are not yet visible in broad macroeconomic data despite accelerating corporate adoption; Quinlan attributes the lag to still-low economy-wide adoption rates, consistent with historical patterns where technology revolution benefits surface years after adoption reaches scale.",
+      "Quinlan identifies overlooked investment opportunity in AI end-user sectors — healthcare, industrials, transportation — rather than infrastructure providers, arguing companies that deploy AI to operate more efficiently and boost margins are undervalued relative to the infrastructure layer.",
+      "Key macro risks cited: higher-than-expected inflation, the Federal Reserve raising rates three times (a contrarian but possible scenario), and geopolitical tensions involving Iran potentially triggering an oil shock that offsets productivity gains."
+    ]
+  },
+  { id: 243, date: "2026-06-30",
+    title: "New Jersey A3481: Revises Homelessness Prevention Program, Establishes Eviction Filing Fee",
+    source: "New Jersey Legislature",
+    sourceUrl: "https://njleg.state.nj.us/bill-search/2026/A3481",
+    category: "policy", geography: "us",
+    evidence: "official",
+    keyFinding: "New Jersey A3481 revises the state's Homelessness Prevention Program by codifying eviction-prevention services in statute and establishing a new $75 landlord filing fee for eviction actions to fund those services. The bill passed the Assembly 55-19-4 and was engrossed June 30, 2026. It exempts small landlords (three units or fewer) and prohibits passing the fee to tenants. This bill addresses housing stability as a safety-net policy; it does not directly regulate AI.",
+    takeaways: [
+      "The $75 eviction filing fee funds an Office of Eviction Prevention to support resource navigators, relocation and rapid rehousing assistance, social services, rental assistance, and legal services for tenants facing displacement.",
+      "Small landlords with three or fewer units are exempt from the new fee, and the bill explicitly prohibits passing the cost to tenants — targeting the measure at larger-scale eviction filers.",
+      "New Jersey A3481 reflects state-level legislative movement on housing stability as a safety-net measure, a policy category directly relevant to economic displacement from workforce transitions including AI-driven ones."
+    ]
+  },
+  { id: 244, date: "2026-06-01",
+    title: "Tracking AI-Related Job Loss Using Unemployment Insurance Claims Data in California",
+    source: "Hyman, von Wachter, Herrera, Moghadam, Morris, Motghare & Segal — California Policy Lab",
+    sourceUrl: "https://capolicylab.org/wp-content/uploads/2026/06/Tracking-AI-Related-Job-Loss-Using-Unemployment-Insurance-Claims-Data-in-California.pdf",
+    category: "labor", geography: "us",
+    keyFinding: "The California AI-Unemployment Tracker (CAIT), developed by the California Policy Lab with the state Employment Development Department, links UI claims to occupational AI exposure measures to monitor potential AI-related job loss in near-real-time. Statewide data through May 2026 shows no aggregate surge in claims from AI-exposed occupations, but reveals elevated and sustained claims among college-educated workers, Bay Area workers, and workers in Information and Professional Services — subgroups plausibly most affected by AI at their workplaces.",
+    takeaways: [
+      "Since ChatGPT-3.5's release in November 2022, statewide California UI claims show no statistically significant increase attributable to AI exposure, consistent with national data showing no nationwide link between AI exposure and unemployment — but this aggregate finding masks concentrated effects in specific subgroups.",
+      "UI claims from college-educated workers in high-AI-exposure occupations rose over 50% from November 2022 to July 2023 (from roughly 13,000 to 22,000 per month) and remained elevated at about 16,000 claims per month through May 2026 — above pre-pandemic baselines — a pattern difficult to explain by COVID-era labor market dynamics at this distance.",
+      "High-AI-exposure UI claims in the San Francisco Bay Area increased by over 50% post-ChatGPT-3.5 and remained elevated relative to the rest of California; claims were also persistently elevated in Information and Professional Services statewide.",
+      "30.3% of initial California UI claims from 2023-2025 came from high-AI-exposure occupations (top quartile), validating UI data as a relevant detection instrument and contradicting the assumption that AI-exposed workers with stronger reemployment prospects would be unlikely to file.",
+      "Validation analysis of six announced AI-driven mass layoffs (March 2024 to April 2025) found clear UI claim spikes at layoff dates with disproportionately high-AI-exposure workers among claimants — confirming the tracker is sensitive enough to detect AI-driven job loss when it occurs, even if aggregate effects remain below detection threshold."
+    ]
+  },
+  { id: 245, date: "2026-06-25",
+    title: "Prompt Governance? On Governing Technologies Governed by Natural Language",
+    source: "Anna Neumann, Holli Sargeant & Jatinder Singh — ACM FAccT",
+    sourceUrl: "https://dl.acm.org/doi/10.1145/3805689.3806763",
+    category: "policy", geography: "intl",
+    evidence: "peer-reviewed",
+    keyFinding: "This FAccT 2026 paper examines how AI systems are increasingly governed through natural language instructions — principally system prompts — and argues that prompt-mediated control creates governance challenges distinct from those addressed by training-time or code-based regulatory frameworks. Existing governance regimes do not adequately address transparency, accountability, and legitimacy questions that arise when behavioral constraints are expressed in natural language rather than technical architecture.",
+    takeaways: [
+      "System prompts function as a de facto governance layer for large language models and AI agents — setting behavioral constraints and defining permissible outputs — but they are invisible to users and largely unaddressed by existing regulatory frameworks designed for technical systems.",
+      "Natural language governance creates novel accountability gaps: prompts can be modified without altering underlying model architecture, meaning behavioral changes can occur without the transparency requirements or audit trails that attach to training or code-level interventions.",
+      "The authors argue that governing AI through natural language requires new policy approaches, including disclosure requirements for system-level instructions, legitimacy standards for who may set behavioral constraints, and accountability mechanisms for prompt modification — none of which are covered by current AI governance frameworks."
+    ]
+  },
+  { id: 246, date: "2026-07-01",
+    title: "Federal Trade Commission's Proposed Policy Statement Concerning the Suppression of Accuracy in Artificial Intelligence Systems",
+    source: "Federal Trade Commission",
+    sourceUrl: "https://www.ftc.gov/system/files/ftc_gov/pdf/ai-policy-statement_0.pdf",
+    category: "policy", geography: "us",
+    evidence: "official",
+    keyFinding: "The FTC's proposed policy statement takes the position that AI companies that train or configure their models to pursue undisclosed ideological objectives — steering outputs away from what users request or would reasonably expect — may be engaging in deceptive acts or practices in violation of Section 5 of the FTC Act. The statement distinguishes intentional ideological steering (potentially deceptive) from AI hallucinations (not by themselves a Section 5 concern). The public comment period closes July 31, 2026.",
+    takeaways: [
+      "The FTC's core position: steering an AI model's outputs toward undisclosed ideological objectives, whether self-initiated or in response to a state law requirement, can constitute consumer deception under Section 5 of the FTC Act regardless of motivation — commercial, political, or legal compliance.",
+      "An AI company can avoid Section 5 liability through clear, conspicuous, and adequate disclosures that its system prioritizes certain objectives over what users request or would otherwise expect — disclosure is framed as the primary defense mechanism.",
+      "The statement singles out Colorado's Artificial Intelligence Act as an example of state law that may pressure AI companies to suppress output accuracy to avoid disparate impact liability, concluding such a state law may be impliedly preempted by federal Section 5 — a preemption argument with potential implications for state AI equity regulations nationwide.",
+      "The FTC distinguishes hallucinations (arising from technological limitations, not an enforcement concern by themselves) from intentional suppression (a design choice subject to Section 5 enforcement), establishing a framework that focuses on intentional conduct and reinforces disclosure as the governing mechanism."
+    ]
+  },
+  { id: 233, date: "2026-06-23",
+    title: "Medicare's AI Push Snarls Patients and Doctors in Errors and Delays",
+    source: "Darius Tahir — KFF Health News",
+    sourceUrl: "https://kffhealthnews.org/medicare/medicare-ai-prior-authorization-wiser-delays-errors/",
+    category: "policy", geography: "us",
+    evidence: "commentary",
+    keyFinding: "Medicare's WISeR pilot, launched in January 2026 to apply AI-assisted prior authorization to 13 medical services across six states, has produced processing delays, payment backlogs, and apparent AI errors rather than the promised streamlining. Reporting documents denials and confusion among providers and patients, contradicting the administration's stated goal of reducing prior-authorization burdens.",
+    takeaways: [
+      "The University of Washington medical system reported nearly 100 patients waiting for epidural injections amid WISeR delays, and physicians described payment delays of six to eight weeks against a promised fifteen days.",
+      "Documented errors include a denial asserting a patient was ineligible for thoracic procedures when the patient actually needed a neck injection, illustrating the risk of AI mistakes in coverage decisions.",
+      "Roughly 84% of commercial insurers already use AI tools for prior authorization, yet Medicare's seven-month rollout left vendors still adding features into spring 2026, underscoring the gap between deployment pace and operational readiness."
+    ]
+  },
+  { id: 234, date: "2022-11-03",
+    title: "Soccer Fans, You're Being Watched",
+    source: "Vas Panagiotopoulos — WIRED",
+    sourceUrl: "https://www.wired.com/story/soccer-world-cup-biometric-surveillance/",
+    category: "surveillance", geography: "intl",
+    evidence: "commentary",
+    keyFinding: "WIRED reports that stadiums hosting the 2026 World Cup across the United States, Canada, and Mexico are deploying an array of surveillance technologies on fans, from facial recognition to anti-drone systems. The coverage details how large sporting events become testing grounds for biometric and crowd-surveillance tools with limited public oversight.",
+    takeaways: [
+      "Facial recognition is among the technologies used to identify and screen fans entering 2026 World Cup venues.",
+      "Anti-drone systems and other crowd-surveillance tools form part of the security apparatus across the United States, Canada, and Mexico host sites.",
+      "The tournament subjects attendees to an array of surveillance technologies, illustrating how mega-events expand biometric monitoring of the public."
+    ]
+  },
+  { id: 235, date: "2026-06-17",
+    title: "AI Is Taking Over Hospitals",
+    source: "Benjamin Mazer — The Atlantic",
+    sourceUrl: "https://www.theatlantic.com/health/2026/06/ai-healthcare-uber-moment/687567/",
+    category: "labor", geography: "us",
+    evidence: "commentary",
+    keyFinding: "In this Atlantic essay, pathologist Benjamin Mazer argues that AI is being absorbed into United States health care faster than evidence and safeguards can keep up, calling it health care's Uber moment. He points to an April 2026 study, published in Science, in which ChatGPT outperformed hundreds of physicians on diagnostic challenges, while warning that real-world clinical deployment is outpacing validation.",
+    takeaways: [
+      "A study led primarily by Harvard and Stanford researchers, published in Science, found ChatGPT beat hundreds of physicians on written diagnostic cases; lead author Adam Rodman cautioned the result does not prove AI is ready for routine clinical practice.",
+      "AI tools are already entering hospital workflows ahead of robust evidence and safety standards, a dynamic the author compares to the disruptive, regulation-outrunning expansion of ride-hailing.",
+      "The piece frames AI's clinical adoption as a question of governance and trust, not just capability, given the gap between benchmark performance and validated patient care."
+    ]
+  },
+  { id: 236, date: "2026-06-01",
+    title: "The Tech Behind ICE: Oligarchs, Immigration Enforcement, and the Threat to Democracy",
+    source: "Mijente, Just Futures Law & Surveillance Resistance Lab",
+    sourceUrl: "https://notechforice.com/wp-content/uploads/2026/06/Tech-Behind-ICE-Oligarchs-Immigration-Enforcement-and-the-Threat-to-Democracy.pdf",
+    category: "surveillance", geography: "us",
+    evidence: "analysis",
+    keyFinding: "This report documents how the Department of Homeland Security and the Trump administration are rapidly expanding immigration enforcement through AI, biometric tools, drones, and surveillance systems supplied by a small group of powerful technology companies. It frames the convergence of immigration policing and a technology oligarchy as a threat to democratic protections and maps the corporations, money flows, and mechanisms involved.",
+    takeaways: [
+      "The report argues immigration enforcement, pursued under a domestic-terrorism framing, serves as the justification and testing ground for a broader police-state infrastructure built on federal investment in surveillance and AI.",
+      "It traces a revolving door between government and major technology firms, following contracts and financial ties that channel public money into surveillance and enforcement systems.",
+      "Drawing on commissioned research, it names the major corporate actors and outlines non-violent strategies to disrupt the entanglement of big technology, immigration enforcement, and militarism."
+    ]
+  },
+  { id: 237, date: "2026-06-18",
+    title: "Amazon's Next Warehouse Efficiency Drive Is About Moving Humans, Not Just Packages",
+    source: "Eugene Kim — Business Insider",
+    sourceUrl: "https://www.businessinsider.com/amazon-warehouse-automation-moving-workers-labor-hours-robots-2026-6",
+    category: "surveillance", geography: "us",
+    evidence: "commentary",
+    keyFinding: "Business Insider reports, citing internal Amazon documents, that the company is testing software to direct where warehouse workers are deployed, aiming to save millions of labor hours per year. The reporting frames Amazon's next automation push as optimizing the movement of human workers, not only packages, deepening algorithmic management of warehouse labor.",
+    takeaways: [
+      "Internal documents show Amazon developing software to reallocate workers across tasks and locations to cut labor hours, extending automation from goods handling to the scheduling of human labor.",
+      "The stated goal is saving millions of labor hours annually, signaling productivity gains that translate into reduced labor demand per unit of output.",
+      "The initiative illustrates how algorithmic management increasingly governs where and how warehouse employees work, a frontier of workplace automation distinct from physical robotics."
+    ]
+  },
+  { id: 238, date: "2026-05-01",
+    title: "Privacy Without Remedy: An Assessment of Data Broker Compliance with California Privacy Law",
+    source: "Gueorguieva, King, Panidapu & Ho — arXiv",
+    sourceUrl: "https://arxiv.org/abs/2605.21376",
+    category: "datarights", geography: "us",
+    keyFinding: "This empirical study provides the first assessment of data-broker compliance with California's Consumer Privacy Act and 2023 Delete Act, finding widespread non-compliance. Despite California's strong privacy statutes, most registered data brokers fail transparency requirements and erect friction that prevents consumers from exercising their rights.",
+    takeaways: [
+      "Only 9% of 522 registered data brokers fully complied with transparency requirements after the Delete Act took effect, with only slight improvement over time.",
+      "An audit of 250 data brokers found 43% made it impossible for consumers to exercise all privacy rights, and 64% used design features that created substantial friction.",
+      "The authors attribute the compliance gap to decentralized compliance decisions, weak enforcement, and regulatory ambiguity, and propose reforms to strengthen consumer privacy and transparency."
+    ]
+  },
+  { id: 239, date: "2026-06-17",
+    title: "2026 AI Report — Build for Everyone: A Framework for LGBTQ Representation and Safety in AI",
+    source: "GLAAD",
+    sourceUrl: "https://glaad.org/2026-ai-report-build-for-everyone/",
+    category: "equity", geography: "us",
+    evidence: "analysis",
+    keyFinding: "GLAAD's inaugural AI report presents a framework for LGBTQ representation and safety in artificial intelligence, documenting how AI systems both affect LGBTQ people and shape public perceptions of the community. It argues that AI development must account for LGBTQ users and offers recommendations for safer, more representative systems.",
+    takeaways: [
+      "The report identifies distinct ways AI systems impact LGBTQ people, from how they are represented in model outputs to safety and content-moderation harms.",
+      "It frames inclusive design as a requirement rather than an afterthought, calling on developers to build for everyone.",
+      "As GLAAD's first dedicated AI report, it establishes an advocacy framework and recommendations for LGBTQ representation and safety across AI products."
+    ]
+  },
+  { id: 240, date: "2026-04-16",
+    title: "Acceleration Is Not a Strategy: A Framework for Directing AI Towards Public Value Before It's Too Late",
+    source: "Roa Powell, Carsten Jung — IPPR",
+    sourceUrl: "https://www.ippr.org/articles/acceleration-is-not-a-strategy",
+    category: "policy", geography: "intl",
+    evidence: "analysis",
+    keyFinding: "This IPPR report argues that governments must actively steer AI development toward public value rather than treating acceleration as a strategy in itself. It warns that passive, risk-management-only approaches risk a public backlash, and calls for bold near-term policy to direct AI innovation toward demonstrable public benefit.",
+    takeaways: [
+      "The authors contend governments have been too cautious and must intervene actively in citizens' interests, setting ambitious policy targets rather than relying on defensive risk management.",
+      "They argue that accelerating technical capability alone is not a public strategy, and that the absence of a clear governing vision risks eroding public trust in AI.",
+      "The report offers European policymakers a framework and near-term priorities for channeling AI toward measurable public value."
+    ]
+  },
   { id: 229, date: "2026-06-01",
     title: "Automation and Repression",
     source: "Daron Acemoglu, A. Arda Gitmez & Mehdi Shadmehr — NBER",
