@@ -3,13 +3,13 @@
 **Product:** AI, Tech and the Economy: Research Intelligence (`index.html`)
 **Assessment date:** 2026-06-14
 **Scope:** Full-site review for a more impactful product — content, information architecture, distribution, trust, accessibility, and technical maintainability.
-**Status:** #1, #4, #5, #6, #7, #8, #10, #11, #12, and #15 implemented on the `fable-pilot` branch (2026-06-14); #16 and #13 implemented (2026-06-22); #3 wired (pending your analytics account code). The remaining items are proposals. See the Status column below.
+**Status:** #1, #4, #5, #6, #7, #8, #10, #11, #12, and #15 implemented on the `fable-pilot` branch (2026-06-14); #16 and #13 implemented (2026-06-22). A substantial round of content work followed on 2026-06-26 (Policy Lab primer expansion, What's New banner fix, new research entries, acronym pass, policy-wide citation sweep, deep fact-check) — see the **Update log** below. #17 (screen-reader accessibility) implemented 2026-07-06. #3 remains wired (pending your analytics account code). The three open items (#2, #9, #14) are unchanged. See the Status column and Update log below.
 
 ---
 
 ## Project state & how to resume (for a fresh session)
 
-- **Working file:** `index.html` (renamed from `research_tracker.html`, which is now a redirect stub). Single-file app; data is inline: `RESEARCH_DATA` (223 entries), `THEMES` (9), `POLICY_DATA` (27).
+- **Working file:** `index.html` (renamed from `research_tracker.html`, which is now a redirect stub). Single-file app; data is inline: `RESEARCH_DATA` (241 entries as of 2026-06-26), `THEMES` (9), `POLICY_DATA` (27, each now carrying primer-style fields — feasibility, strengths, risks, considerations, landscape, press, lastReviewed).
 - **Repo / deploy:** `github.com/cmpcmp-dot/ai-tech-markets-research`, branch `fable-pilot` (main is `main`); GitHub Pages at `cmpcmp-dot.github.io/ai-tech-markets-research/`.
 - **Local preview:** served from `/tmp/tracker_preview/` via `/tmp/serve_tracker.py` (regenerable; the macOS sandbox blocks serving directly from `~/Documents`). Copy `index.html` into that mirror and start the `research-tracker` launch config.
 - **To resume:** read this file, pick an open item (#2, #9, #14, #17), and continue.
@@ -48,12 +48,46 @@ The three content tabs (Research, Themes, Policy Lab) share one cohesive system:
 | 9 | Subscribe / follow + changelog | 3 Engagement | M | Med | Not started |
 | 10 | Dark mode | 4 Accessibility | M | Low–Med | Done |
 | 11 | WCAG AA contrast + keyboard/focus audit | 4 Accessibility | M | Med | Done |
-| 17 | Screen-reader accessibility (headings, ARIA, citation labels, skip link) | 4 Accessibility | M | Med | Not started |
+| 17 | Screen-reader accessibility (headings, ARIA, citation labels, skip link) | 4 Accessibility | M | Med | Done |
 | 12 | Policy Lab mobile layout | 5 Polish | M | Med | Done |
 | 13 | Remove dead CSS | 5 Polish | S | Low | Done |
 | 14 | Extract data to JSON | 5 Polish | L | Low–Med | Not started |
 
 **Top 3 priorities:** #1 (metadata), #2 (shareable/citable findings, with #15), #6 (methodology + #3 analytics).
+
+---
+
+## Update log — 2026-07-06
+
+- **#17 Screen-reader accessibility — implemented** (see the #17 section for the full item-by-item breakdown). Verified in preview with no console errors and no visual change.
+- **Recency taxonomy renamed (Option B).** The status labels are now **Recent / Current / Older** (were Emergent / Current / Stale); internal keys (`emergent`/`current`/`stale`) and all filter logic are unchanged, so `calcStatus`, the status filter, and the What's New banner still work. The banner flow now reads coherently: "N new entries added in the last 90 days" → the resulting chip says "Recent."
+- **Data-integrity fix.** Entries #230 and #231 (the two Acemoglu NBER knowledge papers) had `category: "experience"` — a *theme* id, not one of the 14 categories — so they rendered a gray fallback chip and matched no category filter. Corrected both to `macro`. A full sweep confirms zero entries now carry an invalid category.
+
+## Update log — 2026-06-26 (reflects the current live version)
+
+Substantial work beyond the original recommendation scope. The four open items (#2, #9, #14, #17) remain open; everything below is additive and was verified against the current `index.html`.
+
+**Content & data**
+- **Research data grew 223 → 241 entries** (max id 246). Added: an Acemoglu et al. NBER trio plus the JEP "Automation and New Tasks"; KFF (Medicare WISeR), The Atlantic (AI in hospitals), arXiv (data-broker privacy compliance), IPPR ("Acceleration is not a strategy"), GLAAD (LGBTQ AI report), the Mijente / Just Futures Law / Surveillance Resistance Lab ICE report, and Business Insider (Amazon warehouse automation). A further ~6 entries (ids 241–246: OpenAI 5%-stake, FTC accuracy-suppression statement, a California unemployment-claims job-loss tracker, NJ A3481, and others) were added subsequently.
+- **Acronym-expansion passes** across Policy Lab fields and the About tab (e.g., "unemployment insurance," "Earned Income Tax Credit," "Trade Adjustment Assistance" spelled out; proper-noun acronyms like NBER kept).
+- **Policy-wide inline-citation sweep** (extends #16): citations propagated into every policy field where a claim maps to a database paper, plus a de-AI-style prose pass on the new fields.
+
+**Policy Lab primer expansion** *(net-new; not an original recommendation)*
+- Every policy card gained six structured deliberation fields — **feasibility, strengths, risks, considerations, political landscape, press** — plus a **`lastReviewed`** date, and the modal was widened. Matrix positioning is unchanged; the modal is now primer-depth. An editorial "recommendation" field was deliberately omitted to preserve neutrality.
+
+**What's New banner — fixed** *(revises the premise of #9)*
+- The banner was **broken** (never rendered: a `display:none` bug, and it only lived on the Research tab while the default landing is Themes). Now fixed, recolored coral → signature blue, moved full-width under the header, given a **Research-tab count badge** (discoverable from any tab), and switched to **dismiss-until-next-update** persistence. #9's subscribe / RSS / changelog remains not started.
+
+**Other UI**
+- **Dynamic "From recent research" band** — the key-findings band now pulls only emergent (<90-day) papers and was relabeled.
+- **Salary-premium key-finding card** — the one card that jumped to a theme instead of opening a modal (an #15 edge case) was wired to its source paper with a curated excerpt.
+- **About tab currency pass** — removed the outdated recency-status description, corrected theme/policy counts, updated the separate info-modal.
+
+**Deep fact-check of the Policy Lab (2026-06-26)** — partial (batch 1 live-verified via web; the rest knowledge-assessed after a spend-limit interruption).
+- **Applied:** two verified minimum-wage corrections — "23 states" → "20 states + D.C. (~13 currently indexing)" (3 places) and "BLS publishes indices monthly" → "CPI monthly, ECI quarterly."
+- **Open — verify, then correct:** NY Fast Food Wage Board "60,000 workers"; the "RAND" job-lock attribution (likely Madrian 1994); "CBO scored $400–700B" for a job guarantee (likely Levy Institute); the Ro Khanna "National Technology and Innovation Dividend Fund" bill name; Biden 2022 Employee Ownership Initiative "$100M SBA"; UCL IGP "£10,000 per person"; Switzerland "federal and cantonal wealth taxes" (Switzerland has no federal wealth tax); France Participation "~8 million workers"; the "six" US state sovereign-wealth-fund count.
+- **Open — add research entries to back claims:** hiring-AI adoption ("70% of Fortune 500"); 2021 Child Tax Credit child-poverty −46% (Census SPM / Columbia); NLIHC 7M-unit shortage + Section 8 "1 in 4"; CFPB algorithmic-credit circular + NIST AI RMF; the Stockton SEED evaluation (heavily referenced, not yet in the database); NCEO ESOP participation data; UCL IGP Universal Basic Services report; OECD Pillar Two primary source.
+- **Data caveats on new entries:** the WIRED World Cup piece carries a 2022-11-03 metadata date despite 2026 content; the Amazon (filed under *surveillance*) and Atlantic (filed under *labor*) category assignments are judgment calls.
 
 ---
 
@@ -126,7 +160,7 @@ Currently `…github.io/ai-tech-markets-research/research_tracker.html`. A clean
 ## Tier 2 — Orientation & trust
 
 ### 5. The default landing is the raw database
-A first-time visitor meets 219 cards before the argument. The key-findings band helps, but the *synthesis* (Themes) is the more persuasive entry. Consider orienting newcomers — lead with the themes/findings, or add a brief "start here."
+A first-time visitor meets 241 cards before the argument. The key-findings band helps, but the *synthesis* (Themes) is the more persuasive entry. Consider orienting newcomers — lead with the themes/findings, or add a brief "start here."
 
 ### 6. The About tab is the weakest surface
 Currently just Purpose, Created by, and an AI disclaimer. For a research tool this is where credibility is won or lost. It should explain methodology: inclusion criteria, how sources are chosen, what the confidence / status / lens labels mean, and the update cadence. The sophisticated confidence/recency system is never explained to the user.
@@ -157,9 +191,21 @@ Specific spots were patched (e.g., the community gold), but a systematic WCAG AA
 ---
 
 ### 17. Screen-reader accessibility
-*(Added 2026-06-14; extends #11. Audit only — not implemented.)*
+*(Added 2026-06-14; extends #11. **Implemented 2026-07-06.**)*
 
-**Already in place:** landmarks (`header`/`nav`/`main`/`footer`/`aside`); nav as `role="tablist"` with `aria-selected` tabs; modals with `role="dialog"` + `aria-modal` + Escape + focus trap + focus restore; `aria-expanded` on collapsible sections; `aria-label`s on icon-only buttons; two `aria-live` regions (what's-new banner, result count).
+**Status (2026-07-06): Done.** All eight audited items shipped and verified in preview (no console errors; computed styles confirm zero visual change):
+1. **Real heading structure.** Theme questions → `h2`; the five theme section labels (What the research shows / What's working / Risks & leverage / What this means for institutions / Research gaps) → `h3` using the ARIA accordion pattern (an `h3.theme-section-heading` wrapping the existing `role="button"` toggle, so both heading and button semantics are exposed and the collapse behavior is untouched); References heading → `h3`; research card titles → `h3` (wrapper around the source link); the "From recent research" band label → `h2`; all four modal titles → `h2`; About section labels → `h2`. A CSS normalization block strips UA heading margins so every converted element looks identical.
+2. **Citation link context.** `injectCitations()` now adds an `aria-label` to each inline `(Year)` link carrying the full source and "Opens in new tab" (e.g., "Tim De Chant, TechCrunch, 2026. Opens in new tab."), so they no longer announce as a bare "link, 2026."
+3. **View-change announcement + tab pattern.** `.main-content` is now `role="tabpanel"` with `aria-labelledby` tracking the active tab; all four nav buttons carry `aria-controls` and About is now a proper `role="tab"`; a visually-hidden `aria-live` region announces "Research/Themes/Policy Lab/About view" on switch.
+4. **Skip link.** A visually-hidden "Skip to main content" link is the first focusable element, targeting `#mainContent` (`<main tabindex="-1">`).
+5. **Search input name.** `aria-label="Search the research database"`.
+6. **Decorative glyphs hidden.** `aria-hidden` on gap arrows (→), takeaway triangles (▸), working checks (✓), section/reference chevrons, and prev/next nav arrows.
+7. **Named the two unlabeled dialogs.** Policy modal → `aria-labelledby="polModalTitle"`; key-finding modal → `aria-labelledby="findingModalStat findingModalTitle"`.
+8. **New-tab signal** folded into the citation `aria-label` (item 2), covering the inline citations.
+
+**Follow-up:** validate with a real screen reader (VoiceOver / NVDA) — automated checks miss reading-flow and focus nuances. The policy-matrix cards were left as-is (each is a single click target; converting their titles to headings would reintroduce the heading/button dual-role question and is low value).
+
+**Original audit (2026-06-14) — already in place at that time:** landmarks (`header`/`nav`/`main`/`footer`/`aside`); nav as `role="tablist"` with `aria-selected` tabs; modals with `role="dialog"` + `aria-modal` + Escape + focus trap + focus restore; `aria-expanded` on collapsible sections; `aria-label`s on icon-only buttons; two `aria-live` regions (what's-new banner, result count).
 
 **High-value core:**
 1. **Real heading structure** *(biggest gap)*. Theme questions, card titles, modal titles, section labels, the "Key findings" label, and the References heading are all `<div>`s, so SR users have no headings to navigate by — the page is one flat stream. Make them semantic headings (theme question → `h2`, section labels → `h3`, modal title → `h2`, "Key findings" → `h2`, Research card titles → `h3`), styled to look identical.
@@ -185,5 +231,5 @@ Leftovers include `theme-research-sidebar`, `theme-risk-badge`, `pol-basis-chip`
 
 **Status (2026-06-22): Done.** Removed 159 dead rule blocks (~22.8 KB; CSS 72.2 KB → 49.5 KB, file 756 KB → 733 KB) covering 97 class selectors that were defined in the `<style>` block but referenced nowhere outside it — mostly orphans from prior redesigns (old header `header-eyebrow`/`header-updated`/`header-disclaimer`, the removed `sidebar-*`/`stat-bar`/`card-meta*` research-card layout, `theme-confidence-*`/`theme-expand-btn`/`theme-detail` theme-card design, `pol-chip*`/`pol-filterbar*`/`pol-modal-activation*`, plus the named suspects). Method: a comment/string/brace-aware detector (`/tmp/find_dead_css.py`) cross-checked every class against all markup, JS template strings, and `classList`/`querySelector` calls; first verified there is **no** dynamic class construction in the codebase (every `classList` call uses string literals; the only fragment concatenations build element *ids*). Removal (`/tmp/strip_dead_css.py`) deletes a rule only when **all** its selectors are dead and prunes dead selectors from mixed groups — 0 mixed groups occurred, so no live rule was altered. Guards: balanced-brace assertion + a core-live-class allowlist that must survive. Verified in preview: header/research/themes/policy/about all render unchanged, no removed class is present on any live element, no console errors.
 
-### 14. All data is inline in a ~716KB HTML file
-Fine today, but extracting the data to JSON would make it far easier to maintain, reuse, or eventually feed an API/newsletter.
+### 14. All data is inline in a ~825KB HTML file
+Fine today, but extracting the data to JSON would make it far easier to maintain, reuse, or eventually feed an API/newsletter. *(Update 2026-06-26: the single file has grown from ~716KB to ~825KB as research entries [223 → 241] and the policy-primer fields expanded — strengthening this case.)*
