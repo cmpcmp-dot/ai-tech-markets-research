@@ -604,6 +604,26 @@
   .theme-card-main { flex: 1; min-width: 0; }
   .theme-prev-next { margin-top: 28px; }
 
+  /* ── Accessibility: skip link, visually-hidden, heading normalization ── */
+  .skip-link {
+    position: absolute; left: 8px; top: -60px; z-index: 2000;
+    background: var(--accent); color: #fff; padding: 8px 14px;
+    border-radius: 0 0 8px 8px; text-decoration: none; font-size: 14px;
+    font-family: 'Public Sans', 'Segoe UI', system-ui, sans-serif;
+    transition: top 0.15s ease;
+  }
+  .skip-link:focus { top: 0; }
+  .sr-only {
+    position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+    overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+  }
+  /* Headings that replaced styled <div>s keep their look: strip UA margins */
+  .theme-section-heading { margin: 0; padding: 0; font: inherit; display: block; }
+  .card-title-h { margin: 0; font: inherit; display: block; }
+  h2.theme-question, h3.theme-refs-heading, h2.key-findings-label,
+  h2.about-section-label { margin-top: 0; }
+  h2.modal-title, h2.pol-modal-title { margin: 0; }
+
   .theme-question {
     font-size: 25px; font-weight: 700; line-height: 1.25; color: var(--text);
     margin-bottom: 8px; letter-spacing: -0.02em;
@@ -1378,6 +1398,8 @@
 </head>
 <body>
 
+<a class="skip-link" href="#mainContent">Skip to main content</a>
+
 <!-- ═══════════════════════════════════════════════════════════
      DATA
      ═══════════════════════════════════════════════════════════ -->
@@ -1401,16 +1423,16 @@ const CATEGORIES = [
 
 const STATUS_META = {
   emergent: {
-    label: "Emergent", dot: "#26de81",
-    desc: "Under 90 days old — preliminary, not yet widely cited."
+    label: "Recent", dot: "#26de81",
+    desc: "Added in the last 90 days."
   },
   current: {
     label: "Current", dot: "#45aaf2",
-    desc: "3–18 months — active in the research conversation."
+    desc: "3 to 18 months old; active in the research conversation."
   },
   stale: {
-    label: "Stale", dot: "#778ca3",
-    desc: "18+ months — use as baseline; context may have shifted."
+    label: "Older", dot: "#778ca3",
+    desc: "18+ months old; useful as a baseline."
   },
 };
 
@@ -2167,7 +2189,7 @@ const RESEARCH_DATA = [
     title: "How AI Aggregation Affects Knowledge",
     source: "Daron Acemoglu, Tianyi Lin, Asuman Ozdaglar & James Siderius — NBER",
     sourceUrl: "https://www.nber.org/papers/w35036",
-    category: "experience", geography: "us",
+    category: "macro", geography: "us",
     keyFinding: "An extended DeGroot social-learning model with an AI aggregator trained on population beliefs identifies a sharp threshold on aggregator update speed. When the aggregator updates too quickly, no positive-measure set of training weights robustly improves long-run learning across environments. Slow enough updating restores a set of weights that robustly improves learning, making aggregator update frequency a first-order policy parameter independent of the model's raw accuracy.",
     takeaways: [
       "Embedding an AI aggregator into social-learning dynamics changes the long-run outcome substantively. Aggregator training weights determine whether population beliefs converge toward, or diverge from, the efficient benchmark.",
@@ -2180,7 +2202,7 @@ const RESEARCH_DATA = [
     title: "AI, Human Cognition and Knowledge Collapse",
     source: "Daron Acemoglu, Dingwen Kong & Asuman Ozdaglar — NBER",
     sourceUrl: "https://www.nber.org/papers/w34910",
-    category: "experience", geography: "us",
+    category: "macro", geography: "us",
     keyFinding: "A dynamic model of generative and agentic AI use finds that personalized AI advice can undermine the human effort that produces shared general knowledge, driving the economy toward a knowledge-collapse steady state in which general knowledge erodes despite high-quality personalized AI outputs. Welfare peaks at intermediate AI accuracy, not maximum accuracy, and improved aggregation of human-generated knowledge consistently enhances both welfare and resilience.",
     takeaways: [
       "Generative AI provides superior context-specific recommendations, but that same superiority erodes the incentives for human learning that historically generated shared, general knowledge spillovers.",
@@ -5294,11 +5316,11 @@ const POLICY_DATA = [
     title:"Federal Minimum Wage Indexing",
     summary:"Index the federal minimum wage to median wage growth or inflation, ending the political cycle in which legislative increases lag economic conditions by years or decades.<br><br>The indexing mechanism would tie the minimum wage to the Employment Cost Index or to 50% of the median hourly wage, whichever is higher, with annual automatic adjustments beginning 18 months after enactment. Regional cost-of-living adjustments for high-cost metropolitan areas would allow the index to reflect actual living costs rather than a national average that masks wide geographic variation.",
     rationale:"The federal minimum wage has not been raised since 2009, the longest gap in U.S. history. If AI productivity gains concentrate among capital owners, a wage floor indexed to productivity ensures some pass-through to low-wage workers without requiring repeated legislative action.<br><br>Discretionary minimum wage legislation is a poor mechanism for maintaining wage floors: it requires political consensus in a polarized environment and typically lags inflation by 5–10 years. Automatic indexing removes this vulnerability. In a labor market shaped by AI productivity gains that are difficult to attribute to individual workers, an indexed floor ensures macroeconomic growth has some distributional consequence.",
-    precedent:"Australia's Fair Work Commission adjusts the minimum wage annually. Canada's provinces use inflation indexing. Washington D.C. and California have implemented indexed increases at the state level.<br><br>Twenty-three U.S. states and D.C. have enacted automatic adjustment provisions for their state minimum wages. Economic research by Dube, Lester, and Reich has consistently found that indexed minimum wages reduce poverty without significant employment effects. Automatic adjustment is administratively straightforward; the binding constraint is political, not technical.",
-    feasibility:"Administratively trivial. The Bureau of Labor Statistics publishes the relevant indices monthly. Twenty-three states and the District of Columbia already index their minimum wages. Federal action requires Congressional consensus, which has not materialized since 2007. The last federal minimum wage increase took effect in 2009.",
+    precedent:"Australia's Fair Work Commission adjusts the minimum wage annually. Canada's provinces use inflation indexing. Washington D.C. and California have implemented indexed increases at the state level.<br><br>Twenty U.S. states and D.C. have adopted automatic adjustment provisions for their state minimum wages, with roughly thirteen currently indexing and the rest phasing in. Economic research by Dube, Lester, and Reich has consistently found that indexed minimum wages reduce poverty without significant employment effects. Automatic adjustment is administratively straightforward; the binding constraint is political, not technical.",
+    feasibility:"Administratively trivial. The Bureau of Labor Statistics already publishes the relevant indices (the Consumer Price Index monthly, the Employment Cost Index quarterly). Twenty states and the District of Columbia have adopted minimum-wage indexing, with roughly thirteen currently indexing. Federal action requires Congressional consensus, which has not materialized since 2007. The last federal minimum wage increase took effect in 2009.",
     strengths:["Removes the political bottleneck on wage-floor maintenance. Australia's Fair Work Commission and Canadian provinces have demonstrated this model for decades.","Indexed floors track productivity automatically, particularly relevant in an artificial-intelligence productivity boom that may otherwise concentrate gains in capital.","Research by Dube, Lester, and Reich consistently finds modest employment effects. The evidence base is strong.","Regional cost-of-living adjustments can address geographic variation that a single national floor cannot capture."],
     risks:["Indexed minimums can ratchet during recessions when employment effects may be larger.","Employer associations argue automatic increases compound during downturns. Small-business opposition is durable.","Industry-specific carveouts, including tipped wages and agricultural workers, remain contested and often persist after reform.","Federal preemption can block states from going higher unless the index is structured as a floor."],
-    landscape:"Indexed minimums have precedent in 23 United States states and the District of Columbia. Congressional vehicles include the Raise the Wage Act series, led by Democrats. Republican opposition has been near-uniform at the federal level. Bipartisan agreement exists only in narrow state pilots.",
+    landscape:"Indexed minimums have precedent in 20 states and the District of Columbia. Congressional vehicles include the Raise the Wage Act series, led by Democrats. Republican opposition has been near-uniform at the federal level. Bipartisan agreement exists only in narrow state pilots.",
     press:[],
     lastReviewed:"2026-06-23"   },
   { id:"ai-displacement-reporting", level:"baseline", category:"labor-rights",
@@ -5605,10 +5627,10 @@ const POL_TO_RESEARCH_CATS = {
       <h1><a href="https://cmpcmp-dot.github.io/ai-tech-markets-research/">AI, Tech and the Economy: Research Intelligence</a></h1>
     </div>
     <nav class="header-nav" role="tablist" aria-label="Select view">
-      <button class="header-nav-btn" id="viewCards" role="tab" aria-selected="false">Research<span class="nav-new-badge" id="viewCardsBadge" aria-hidden="true"></span></button>
-      <button class="header-nav-btn active" id="viewThemes" role="tab" aria-selected="true">Themes</button>
-      <button class="header-nav-btn" id="viewPolicy" role="tab" aria-selected="false">Policy Lab</button>
-      <button class="header-nav-btn" id="viewAbout" aria-label="About this site">About</button>
+      <button class="header-nav-btn" id="viewCards" role="tab" aria-selected="false" aria-controls="viewPanel">Research<span class="nav-new-badge" id="viewCardsBadge" aria-hidden="true"></span></button>
+      <button class="header-nav-btn active" id="viewThemes" role="tab" aria-selected="true" aria-controls="viewPanel">Themes</button>
+      <button class="header-nav-btn" id="viewPolicy" role="tab" aria-selected="false" aria-controls="viewPanel">Policy Lab</button>
+      <button class="header-nav-btn" id="viewAbout" role="tab" aria-selected="false" aria-controls="viewPanel" aria-label="About this site">About</button>
     </nav>
     <div style="display:none;">
       <button id="aboutInfoBtn" aria-label="About this site"></button>
@@ -5619,7 +5641,9 @@ const POL_TO_RESEARCH_CATS = {
 
 <div id="whatsNewBanner" aria-live="polite"></div>
 
-<main class="app-layout">
+<div id="viewAnnounce" class="sr-only" aria-live="polite" aria-atomic="true"></div>
+
+<main class="app-layout" id="mainContent" tabindex="-1">
 
   <!-- ── SIDEBAR ── -->
   <aside class="sidebar" id="sidebar">
@@ -5628,7 +5652,7 @@ const POL_TO_RESEARCH_CATS = {
       <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
         <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
       </svg>
-      <input type="search" id="searchInput" placeholder="Search…">
+      <input type="search" id="searchInput" placeholder="Search…" aria-label="Search the research database">
     </div>
 
     <div class="sidebar-section" id="secCategory">
@@ -5647,14 +5671,14 @@ const POL_TO_RESEARCH_CATS = {
     </div>
     <span class="header-tab-desc-text" id="headerTabDescText">A curated database of peer-reviewed studies, policy reports, and investigative journalism on AI, automation, and labor markets.</span>
     <div class="key-findings-band" id="keyFindingsBand">
-      <div class="key-findings-label">From recent research</div>
+      <h2 class="key-findings-label">From recent research</h2>
       <div class="key-findings-row" id="keyFindingsRow"></div>
     </div>
     <span class="header-tab-desc-note" id="headerTabDescNote">Summaries and key findings are AI-generated and reviewed for accuracy. Always consult the original source before citing.</span>
   </div>
 
   <!-- ── MAIN ── -->
-  <div class="main-content">
+  <div class="main-content" id="viewPanel" role="tabpanel" aria-labelledby="viewThemes">
 
     <div class="research-header-bar">
       <span class="pol-header-title">Research</span>
@@ -5682,29 +5706,29 @@ const POL_TO_RESEARCH_CATS = {
       <div id="aboutArea">
         <div class="about-content">
           <div class="about-section">
-            <div class="about-section-label">Purpose</div>
+            <h2 class="about-section-label">Purpose</h2>
             <p class="about-section-text">This tracker curates and synthesizes research at the intersection of artificial intelligence, automation, and the economy. It aggregates peer-reviewed studies, policy reports, and investigative journalism into a structured database, then synthesizes that research into cross-cutting themes and a policy framework, to support institutional positioning, workforce strategy, and policy analysis.</p>
           </div>
           <div class="about-section">
-            <div class="about-section-label">What&rsquo;s included</div>
+            <h2 class="about-section-label">What&rsquo;s included</h2>
             <p class="about-section-text">The database covers AI&rsquo;s economic and labor impacts across 14 research categories, from labor markets and worker power to equity, criminal justice, and macroeconomic risk. Entries are selected for relevance to those impacts, the credibility of the source, and coverage across categories and viewpoints. Source types include peer-reviewed research, institutional and government reports, and investigative journalism, and every entry links to its original, publicly available publication.</p>
           </div>
           <div class="about-section">
-            <div class="about-section-label">How to read it</div>
+            <h2 class="about-section-label">How to read it</h2>
             <p class="about-section-text"><strong>Three tabs.</strong> Research is the full, filterable database of individual sources. Themes synthesizes the database into cross-cutting questions, each with the evidence, what is working, the risks, and the implications. Policy Lab maps policy interventions across categories and five implementation phases.</p>
             <p class="about-section-text"><strong>Confidence.</strong> Each theme is tagged Strong consensus (independent research streams converge), Emerging evidence (the direction is clear but still developing), or Contested (credible researchers reach different conclusions).</p>
             <p class="about-section-text"><strong>Lens.</strong> The General lens is written for a broad audience. The Focused lens filters to peer-reviewed and institutional research, organized around economic outcome domains.</p>
           </div>
           <div class="about-section">
-            <div class="about-section-label">Updates</div>
+            <h2 class="about-section-label">Updates</h2>
             <p class="about-section-text">The database is updated as new research emerges. The current build date appears in the footer, and recent changes are flagged in the &ldquo;what&rsquo;s new&rdquo; banner.</p>
           </div>
           <div class="about-section">
-            <div class="about-section-label">Sourcing &amp; AI</div>
+            <h2 class="about-section-label">Sourcing &amp; AI</h2>
             <p class="about-section-text">Every entry links to a named, publicly available source, and its summary is checked against that original. Summaries, key findings, and takeaways are drafted with AI assistance and reviewed for accuracy. They are orientation aids, not substitutes for the source: always consult the primary publication before citing or acting on a finding.</p>
           </div>
           <div class="about-section">
-            <div class="about-section-label">Created by</div>
+            <h2 class="about-section-label">Created by</h2>
             <p class="about-section-text">Christelle Prophete. This site is independently maintained. The content does not reflect the opinions or perspectives of the creator.</p>
           </div>
         </div>
@@ -5735,7 +5759,7 @@ const POL_TO_RESEARCH_CATS = {
 <div class="modal-backdrop" id="aboutModal">
   <div class="modal" role="dialog" aria-modal="true" aria-labelledby="aboutModalTitle">
     <div class="modal-header">
-      <div class="modal-title" id="aboutModalTitle">About</div>
+      <h2 class="modal-title" id="aboutModalTitle">About</h2>
       <button class="modal-close" id="aboutModalClose" aria-label="Close">✕</button>
     </div>
     <div class="modal-body" id="aboutModalBody">
@@ -5768,11 +5792,11 @@ const POL_TO_RESEARCH_CATS = {
 </div>
 
 <!-- Policy pop-out modal -->
-<div class="modal-backdrop" id="polModal" role="dialog" aria-modal="true">
+<div class="modal-backdrop" id="polModal" role="dialog" aria-modal="true" aria-labelledby="polModalTitle">
   <div class="pol-modal">
     <div class="pol-modal-header">
       <div>
-        <div class="pol-modal-title" id="polModalTitle"></div>
+        <h2 class="pol-modal-title" id="polModalTitle"></h2>
         <div class="pol-modal-meta">
           <span class="pol-modal-level" id="polModalLevel"></span>
           <span class="pol-modal-meta-sep"></span>
@@ -5787,12 +5811,12 @@ const POL_TO_RESEARCH_CATS = {
 </div>
 
 <!-- Key Finding Modal -->
-<div class="modal-backdrop" id="findingModal" role="dialog" aria-modal="true">
+<div class="modal-backdrop" id="findingModal" role="dialog" aria-modal="true" aria-labelledby="findingModalStat findingModalTitle">
   <div class="pol-modal">
     <div class="pol-modal-header">
       <div>
         <div class="finding-modal-stat" id="findingModalStat"></div>
-        <div class="pol-modal-title" id="findingModalTitle"></div>
+        <h2 class="pol-modal-title" id="findingModalTitle"></h2>
       </div>
       <button class="pol-modal-close" id="findingModalClose" aria-label="Close">✕</button>
     </div>
@@ -5804,7 +5828,7 @@ const POL_TO_RESEARCH_CATS = {
 <div class="modal-backdrop" id="sourcesModal">
   <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
     <div class="modal-header">
-      <div class="modal-title" id="modalTitle">Sources</div>
+      <h2 class="modal-title" id="modalTitle">Sources</h2>
       <button class="modal-close" id="sourcesModalClose" aria-label="Close">✕</button>
     </div>
     <div class="modal-body" id="sourcesModalBody"></div>
@@ -6205,7 +6229,7 @@ const POL_TO_RESEARCH_CATS = {
 
     const takeawaysHTML = (entry.takeaways || []).map((t, i) => `
       <div class="takeaway-item">
-        <span class="takeaway-num">▸</span>
+        <span class="takeaway-num" aria-hidden="true">▸</span>
         <span>${t}</span>
       </div>`).join('');
 
@@ -6222,13 +6246,14 @@ const POL_TO_RESEARCH_CATS = {
     const instDesc     = instMeta
       ? `<span class="inst-meta">${instMeta.type}${instMeta.note ? ` · ${instMeta.note}` : ''}</span>`
       : '';
-    const titleEl      = entry.sourceUrl
+    const titleInner   = entry.sourceUrl
       ? `<a class="card-title" href="${entry.sourceUrl}" target="_blank" rel="noopener" onclick="event.stopPropagation()">${entry.title}</a>`
-      : `<div class="card-title">${entry.title}</div>`;
+      : `<span class="card-title">${entry.title}</span>`;
+    const titleEl      = `<h3 class="card-title-h">${titleInner}</h3>`;
 
     const ev = getEvidenceType(entry);
     const em = EVIDENCE_META[ev] || {};
-    const statusInitial = { emergent: 'E', current: 'C', stale: 'S' }[status] || '·';
+    const statusInitial = { emergent: 'R', current: 'C', stale: 'O' }[status] || '·';
 
     card.innerHTML = `
       <div class="card-body">
@@ -6321,19 +6346,19 @@ const POL_TO_RESEARCH_CATS = {
     const relN = relatedPapers.length;
     const refsSectionHTML = (citedPapers.length || relN) ? `
           <div class="theme-refs-wrap">
-            <div class="theme-refs-heading">References</div>
+            <h3 class="theme-refs-heading">References</h3>
             ${citedPapers.length ? `<div class="theme-refs">${citedPapers.map(renderRef).join('')}</div>` : ''}
-            ${relN ? `<button class="theme-refs-toggle" type="button" aria-expanded="false"><span class="theme-refs-chevron">&rsaquo;</span><span class="theme-refs-toggle-text">Show ${relN} related ${relN === 1 ? 'study' : 'studies'}</span></button>
+            ${relN ? `<button class="theme-refs-toggle" type="button" aria-expanded="false"><span class="theme-refs-chevron" aria-hidden="true">&rsaquo;</span><span class="theme-refs-toggle-text">Show ${relN} related ${relN === 1 ? 'study' : 'studies'}</span></button>
             <div class="theme-refs theme-refs-related" style="display:none">${relatedPapers.map(renderRef).join('')}</div>` : ''}
           </div>` : '';
 
     const activeGaps = (activeLens === 'economist' && theme.econGaps) ? theme.econGaps : theme.gaps;
     const gapItems = activeGaps.map(g =>
-      `<div class="theme-gap-item"><span class="theme-gap-arrow">→</span><span>${injectCitations(g, paperMap)}</span></div>`
+      `<div class="theme-gap-item"><span class="theme-gap-arrow" aria-hidden="true">→</span><span>${injectCitations(g, paperMap)}</span></div>`
     ).join('');
 
     const workingItems = (theme.working || []).map(w =>
-      `<div class="theme-working-item"><span class="theme-working-check">✓</span><span>${injectCitations(w, paperMap)}</span></div>`
+      `<div class="theme-working-item"><span class="theme-working-check" aria-hidden="true">✓</span><span>${injectCitations(w, paperMap)}</span></div>`
     ).join('');
 
     const conf = CONFIDENCE_META[theme.confidence] || CONFIDENCE_META.emerging;
@@ -6348,30 +6373,30 @@ const POL_TO_RESEARCH_CATS = {
     card.innerHTML = `
       <div class="theme-card-body">
         <div class="theme-card-main">
-          <div class="theme-question">${theme.question}</div>
+          <h2 class="theme-question">${theme.question}</h2>
           ${conf.label ? `<div class="theme-confidence-note"><span class="conf-label">${conf.label}:</span> ${conf.desc}</div>` : ''}
           ${theme.framing ? `<div class="theme-framing"><span class="framing-label">Thesis:</span> ${theme.framing}</div>` : ''}
 
-          <div class="theme-section-label theme-section-toggle" role="button" tabindex="0" data-section="synthesis" style="justify-content:flex-start; gap:10px">
-            What the research shows <span class="theme-section-chevron"></span>
-          </div>
+          <h3 class="theme-section-heading"><span class="theme-section-label theme-section-toggle" role="button" tabindex="0" data-section="synthesis" style="justify-content:flex-start; gap:10px">
+            What the research shows <span class="theme-section-chevron" aria-hidden="true"></span>
+          </span></h3>
           <div class="theme-collapsible" data-collapsible="synthesis">
             <div class="theme-synthesis">${injectCitations((activeLens === 'economist' && theme.econSynthesis) ? theme.econSynthesis : theme.synthesis, paperMap)}</div>
           </div>
 
           ${workingItems ? `<div class="theme-working-wrap">
-            <div class="theme-section-label theme-section-toggle" role="button" tabindex="0" data-section="working">
-              What's working <span class="theme-section-chevron"></span>
-            </div>
+            <h3 class="theme-section-heading"><span class="theme-section-label theme-section-toggle" role="button" tabindex="0" data-section="working">
+              What's working <span class="theme-section-chevron" aria-hidden="true"></span>
+            </span></h3>
             <div class="theme-collapsible" data-collapsible="working">
               <div class="theme-working">${workingItems}</div>
             </div>
           </div>` : ''}
 
           <div class="theme-risk-wrap">
-            <div class="theme-section-label theme-section-toggle" role="button" tabindex="0" data-section="risk">
-              Risks observed &amp; points of leverage <span class="theme-section-chevron"></span>
-            </div>
+            <h3 class="theme-section-heading"><span class="theme-section-label theme-section-toggle" role="button" tabindex="0" data-section="risk">
+              Risks observed &amp; points of leverage <span class="theme-section-chevron" aria-hidden="true"></span>
+            </span></h3>
             <div class="theme-collapsible" data-collapsible="risk">
               <div class="theme-risk-body" style="margin-top:4px">${injectCitations(theme.risk.summary, paperMap)}</div>
               ${theme.risk.leverage ? `<div class="theme-leverage">
@@ -6382,18 +6407,18 @@ const POL_TO_RESEARCH_CATS = {
           </div>
 
           <div class="theme-implication-wrap">
-            <div class="theme-implication-label theme-section-toggle" role="button" tabindex="0" data-section="implication">
-              What this means for institutions <span class="theme-section-chevron"></span>
-            </div>
+            <h3 class="theme-section-heading"><span class="theme-implication-label theme-section-toggle" role="button" tabindex="0" data-section="implication">
+              What this means for institutions <span class="theme-section-chevron" aria-hidden="true"></span>
+            </span></h3>
             <div class="theme-collapsible" data-collapsible="implication">
               <div class="theme-implication">${injectCitations(theme.implication, paperMap)}</div>
             </div>
           </div>
 
           <div class="theme-gaps-wrap">
-            <div class="theme-gaps-label theme-section-toggle" role="button" tabindex="0" data-section="gaps">
-              Research gaps <span class="theme-gaps-count">${activeGaps.length}</span><span class="theme-section-chevron"></span>
-            </div>
+            <h3 class="theme-section-heading"><span class="theme-gaps-label theme-section-toggle" role="button" tabindex="0" data-section="gaps">
+              Research gaps <span class="theme-gaps-count">${activeGaps.length}</span><span class="theme-section-chevron" aria-hidden="true"></span>
+            </span></h3>
             <div class="theme-collapsible" data-collapsible="gaps">
               <div class="theme-gaps">${gapItems}</div>
             </div>
@@ -6403,12 +6428,12 @@ const POL_TO_RESEARCH_CATS = {
 
           <div class="theme-prev-next">
             <button class="theme-nav-btn theme-nav-prev" ${prev ? `data-theme-id="${prev.id}"` : 'disabled'} aria-label="${prev ? `Previous theme: ${prev.tag}` : 'First theme'}">
-              <span class="nav-arrow">←</span>
+              <span class="nav-arrow" aria-hidden="true">←</span>
               <span class="nav-label">${prev ? prev.tag : 'First theme'}</span>
             </button>
             <button class="theme-nav-btn theme-nav-next" ${next ? `data-theme-id="${next.id}"` : 'disabled'} aria-label="${next ? `Next theme: ${next.tag}` : 'Last theme'}">
               <span class="nav-label">${next ? next.tag : 'Last theme'}</span>
-              <span class="nav-arrow">→</span>
+              <span class="nav-arrow" aria-hidden="true">→</span>
             </button>
           </div>
         </div>
@@ -6576,7 +6601,8 @@ const POL_TO_RESEARCH_CATS = {
           : authorPart;
         label = `${author}, ${year}`;
       }
-      return ` (<a class="syn-cite" href="${p.sourceUrl}" target="_blank" rel="noopener noreferrer">${label}</a>)`;
+      const aria = `${(p.source || '').replace(/\s*—\s*/g, ', ')}, ${year}. Opens in new tab.`.replace(/"/g, '&quot;');
+      return ` (<a class="syn-cite" href="${p.sourceUrl}" target="_blank" rel="noopener noreferrer" aria-label="${aria}">${label}</a>)`;
     });
   }
 
@@ -7092,6 +7118,14 @@ const POL_TO_RESEARCH_CATS = {
     document.body.classList.toggle('policy-view',   view === 'policy');
     document.body.classList.toggle('about-view',    view === 'about');
     render();
+    const activeTabId = 'view' + view.charAt(0).toUpperCase() + view.slice(1);
+    const panel = document.getElementById('viewPanel');
+    if (panel) panel.setAttribute('aria-labelledby', activeTabId);
+    const ann = document.getElementById('viewAnnounce');
+    if (ann) {
+      const names = { cards: 'Research', themes: 'Themes', policy: 'Policy Lab', about: 'About' };
+      ann.textContent = (names[view] || view) + ' view';
+    }
   }
   document.getElementById('viewCards').addEventListener('click',  () => setView('cards'));
   document.getElementById('viewThemes').addEventListener('click', () => setView('themes'));
