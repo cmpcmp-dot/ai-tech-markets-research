@@ -3,16 +3,16 @@
 **Product:** AI, Tech and the Economy: Research Intelligence (`index.html`)
 **Assessment date:** 2026-06-14
 **Scope:** Full-site review for a more impactful product — content, information architecture, distribution, trust, accessibility, and technical maintainability.
-**Status:** #1, #4, #5, #6, #7, #8, #10, #11, #12, and #15 implemented on the `fable-pilot` branch (2026-06-14); #16 and #13 implemented (2026-06-22). A substantial round of content work followed on 2026-06-26 (Policy Lab primer expansion, What's New banner fix, new research entries, acronym pass, policy-wide citation sweep, deep fact-check) — see the **Update log** below. #17 (screen-reader accessibility) implemented 2026-07-06. #3 remains wired (pending your analytics account code). The three open items (#2, #9, #14) are unchanged. See the Status column and Update log below.
+**Status:** #1, #4, #5, #6, #7, #8, #10, #11, #12, and #15 implemented on the `fable-pilot` branch (2026-06-14); #16 and #13 implemented (2026-06-22). A substantial round of content work followed on 2026-06-26 (Policy Lab primer expansion, What's New banner fix, new research entries, acronym pass, policy-wide citation sweep, deep fact-check) — see the **Update log** below. #17 (screen-reader accessibility) implemented 2026-07-06. #3 remains wired (pending your analytics account code). A **product assessment (2026-07-06)** reframed the tracker as a working tool for a team that develops policy primers and responds to the AI/tech landscape, producing recommendations **R1–R9** — R2, R5, and R8 absorb the remaining open items #2, #9, and #14. See the **Product assessment** section below.
 
 ---
 
 ## Project state & how to resume (for a fresh session)
 
-- **Working file:** `index.html` (renamed from `research_tracker.html`, which is now a redirect stub). Single-file app; data is inline: `RESEARCH_DATA` (241 entries as of 2026-06-26), `THEMES` (9), `POLICY_DATA` (27, each now carrying primer-style fields — feasibility, strengths, risks, considerations, landscape, press, lastReviewed).
-- **Repo / deploy:** `github.com/cmpcmp-dot/ai-tech-markets-research`, branch `fable-pilot` (main is `main`); GitHub Pages at `cmpcmp-dot.github.io/ai-tech-markets-research/`.
-- **Local preview:** served from `/tmp/tracker_preview/` via `/tmp/serve_tracker.py` (regenerable; the macOS sandbox blocks serving directly from `~/Documents`). Copy `index.html` into that mirror and start the `research-tracker` launch config.
-- **To resume:** read this file, pick an open item (#2, #9, #14, #17), and continue.
+- **Working files:** `index.html` (app shell: styles, markup, app script; ~170KB) + **`data/tracker-data.js`** (the data layer, extracted 2026-07-07; ~690KB): `RESEARCH_DATA` (251 entries as of 2026-07-07, each with `added:` intake date), `THEMES` (9, each with `lastReviewed`), `POLICY_DATA` (27, each with primer fields, `lastReviewed`, and curated `paperIds`), plus the category/status/institution tables and `calcStatus`. Loaded as a classic `<script src>`, so there is still no build step and file:// still works. **Content edits go to the data file; UI edits go to index.html.** (`research_tracker.html` remains a redirect stub.)
+- **Repo / deploy:** `github.com/cmpcmp-dot/ai-tech-markets-research`; working branch `policy_primer_pilot`, merged to `main` via pull requests (working tree verified identical to `main` on 2026-07-06, so the live site is current); GitHub Pages at `cmpcmp-dot.github.io/ai-tech-markets-research/`.
+- **Local preview:** served from `/tmp/tracker_preview/` via `/tmp/serve_tracker.py` (regenerable; the macOS sandbox blocks serving directly from `~/Documents`). Copy **both** `index.html` and `data/tracker-data.js` (keeping the `data/` subfolder) into that mirror and start the `research-tracker` launch config.
+- **To resume:** read this file, then pick from the **R-series** in the Product assessment section (suggested sequence: R1+R2, then R4+R5, with R3's fact-check burn-down in parallel). The remaining #-items (#2, #9, #14) are absorbed into R2, R5, and R8.
 
 ### Design & content conventions (keep consistent)
 - **Color:** signature blue = `var(--accent)` (#2563EB light / #6fa1f5 dark). All interactive elements and markers (gap arrows →, takeaway triangles ▸, working checks ✓), the leverage callout, reference toggles, and key-finding stats/links use it.
@@ -22,6 +22,7 @@
 - **Dark mode:** automatic via `prefers-color-scheme`; all colors flow through CSS variables, with a lightened per-theme palette in the dark block.
 - **Default landing tab:** Themes.
 - **Editing workflow:** make content edits via Python scripts that assert each anchor is unique, preserve every `{{cite}}` token and numeric figure, and check for em-dashes / raw double quotes / over-length sentences before writing. Verify in the preview — computed styles are authoritative; the panel's screenshots are intermittently blank.
+- **New research entries (intake):** add entries to **`data/tracker-data.js`** (not index.html). Every entry carries `added: "YYYY-MM-DD"` (the date it entered the tracker) alongside `date` (publication). "Recent" status, the What's New banner, and the changelog all key off `added` — omit it and the entry degrades to publication-based recency. A console-only validation guard (R7) flags unknown categories, broken theme/policy paper links, and unresolvable citation tokens at load — check the browser console after data edits.
 
 ---
 
@@ -36,7 +37,7 @@ The three content tabs (Research, Themes, Policy Lab) share one cohesive system:
 | # | Recommendation | Tier | Effort | Impact | Status |
 |---|----------------|------|--------|--------|--------|
 | 1 | Social / SEO metadata (OG, Twitter, description, structured data) | 1 Distribution | S | High | Done |
-| 2 | Shareable & citable findings (deep links + copy/cite) | 1 Distribution | M | High | Not started |
+| 2 | Shareable & citable findings (deep links + copy/cite) | 1 Distribution | M | High | Done via R2 (2026-07-06) |
 | 3 | Privacy-friendly analytics | 1 Distribution | S | Med–High | Wired — add account code |
 | 4 | Clean URL / custom domain | 1 Distribution | S | Med | Clean URL done; domain pending |
 | 15 | Key-finding cards open a source-excerpt modal (not jump to Themes) | 1–2 | M | High | Done |
@@ -45,20 +46,87 @@ The three content tabs (Research, Themes, Policy Lab) share one cohesive system:
 | 6 | Methodology / expand the About tab | 2 Trust | M | High | Done |
 | 7 | Reframe the AI disclaimer alongside methodology | 2 Trust | S | Med | Done |
 | 8 | Clarify the General / Focused lens value | 2 Trust | S | Med | Done |
-| 9 | Subscribe / follow + changelog | 3 Engagement | M | Med | Not started |
+| 9 | Subscribe / follow + changelog | 3 Engagement | M | Med | Changelog done via R5 (2026-07-06); subscribe/RSS still open |
 | 10 | Dark mode | 4 Accessibility | M | Low–Med | Done |
 | 11 | WCAG AA contrast + keyboard/focus audit | 4 Accessibility | M | Med | Done |
 | 17 | Screen-reader accessibility (headings, ARIA, citation labels, skip link) | 4 Accessibility | M | Med | Done |
 | 12 | Policy Lab mobile layout | 5 Polish | M | Med | Done |
 | 13 | Remove dead CSS | 5 Polish | S | Low | Done |
-| 14 | Extract data to JSON | 5 Polish | L | Low–Med | Not started |
+| 14 | Extract data to JSON | 5 Polish | L | Low–Med | Absorbed into R8 |
 
-**Top 3 priorities:** #1 (metadata), #2 (shareable/citable findings, with #15), #6 (methodology + #3 analytics).
+**Current priorities (2026-07-07): the full R-series (R1–R9) is implemented.** Remaining open threads: #3 analytics (needs your account code), #4 custom domain, #9's subscribe/RSS half, the Focused-lens keep-or-simplify decision (R9), and the ~14 user-added entries from early July that have not had a fact-check pass. *(The original top-3 line — #1, #2, #6 — is superseded.)*
 
 ---
 
+## Product assessment — 2026-07-06: the tracker as a policy-primer engine
+
+*(Full-site review under a new goal: make the tracker a working tool for a team that develops policy primers and responds to the AI/tech landscape — not just a publication people read. A team like that needs to **take things out** of the tracker — evidence, citations, primer drafts — and **put things in** — new research, updated positions — on a news cycle's clock. Judged that way, the tracker is content-rich but workflow-poor. R2, R5, and R8 below absorb open items #2, #9, and #14.)*
+
+**Evidence snapshot (audited in the live app and code, 2026-07-06):**
+- **Nothing can leave the site.** No export, no print stylesheet, no copy-to-clipboard, no deep links — zero occurrences of any of these in the code. A teammate who wants to use a Policy Lab card in a primer must retype it.
+- **"New" means published, not added.** `calcStatus` keys off the publication date; there is no record of when an entry was added to the tracker. An older-but-important paper added today lands as "Older" and never surfaces in the What's New banner.
+- **Evidence is thinnest where primers need it most.** Policies inline-cite only 25 distinct papers of 241; each policy's "Research basis" is auto-generated (the 16 most recent same-category entries), not curated. The fact-check backlog (9 unverified claims, 8 missing sources — see the 2026-06-26 log) sits on exactly this surface.
+- **No freshness accounting on syntheses.** All 27 policies share one `lastReviewed` stamp (2026-06-23); themes have none. Nothing flags which syntheses new entries affect.
+- **Reach and recency.** 230/241 entries are linked to a theme; 11 are orphans (in no theme, cited nowhere — invisible outside the Research tab). Recency split: 38 Recent / 75 Current / 128 Older, so 53% of the database is 18+ months old (fine as a baseline library; worth knowing).
+- **Tab-level notes.** Research: the methodology filter (17 peer-reviewed, 19 working papers, 26 official) is genuinely useful for primer sourcing, but there is no way to act on a filtered set. Themes: the strongest synthesis surface; its "Research gaps" sections read as a ready-made team research agenda but are not actionable. Policy Lab: post-primer-expansion, each card is two-thirds of a primer; the last mile (export) is missing. About: explains the site's methodology but nothing about the team workflow (how entries get added, verified, challenged).
+
+### Job A — Produce a primer (highest leverage)
+
+- **R1. Policy export: "Copy as draft" + print-to-PDF.** Two affordances on the policy modal: a button that copies the full card as formatted Markdown (title, phase, summary, rationale, the six primer fields, precedent, APA references), and a print stylesheet so ⌘P yields a clean one-pager. *Rationale: the Policy Lab already holds primer-grade content structured on the ESP model, but it is trapped in a modal. This single feature converts the tracker from reference site to first-draft generator, and it is cheap because the content model is already right.*
+- **R2. Deep links + copy-cite** *(absorbs #2)*. Hash routes (`#policy/ubi`, `#theme/displacement`, `#entry/230`), a copy-link button on modals, and a "cite this" action (APA/BibTeX) on research entries. *Rationale: team coordination happens in Slack and docs — "look at this policy" must be a pasteable URL, or the tracker stays a solo tool. Also makes the tracker itself citable inside primers.*
+- **R3. Curated evidence per policy + fact-check burn-down.** Give each policy a hand-picked `paperIds` list (falling back to the current category-based list), then work the 9 verify-then-correct claims and add the 8 missing source entries. *Rationale: "recent same-category papers" is fine for browsing, not for evidence. The moment a staffer checks a primer claim, curation is what stands up.*
+
+### Job B — Respond to the landscape
+
+- **R4. Record when entries are added, separately from publication date.** New `added:` field at intake; the What's New banner and "Recent" logic key off it (publication date keeps driving scholarly recency). *Rationale: the banner's "38 new entries" currently means "38 recent publications." For rapid response, "new to us" is the signal that matters, and today it is structurally invisible.*
+- **R5. Changelog view** *(lightweight #9)*. A dated feed of entries added and policies re-reviewed, generated from data already present once R4 exists; RSS/email can follow. *Rationale: a returning teammate's first question is "what changed since Tuesday?" The banner answers "how many," not "what."*
+- **R6. Theme freshness accounting.** Add `lastReviewed` to themes and surface "N entries added in this theme's categories since review." *Rationale: turns intake into a review queue — new research automatically flags which syntheses may be stale, institutionalizing the respond-to-the-landscape loop.*
+
+### Job C — Operate as a team
+
+- **R7. Data-validation guard.** A startup assertion (console-only) that every entry's category, theme links, and citation ids resolve. *Rationale: the #230/#231 invalid-category bug shipped silently and sat live; entries are now also added by hand. A ~20-line guard catches the whole class at load.*
+- **R8. Extract data to JSON + a documented intake path** *(upgrades #14 from polish to operational)*. *Rationale: with all data inline in an ~828KB HTML file, exactly one person can safely update it, via full-file replace. JSON files make edits diffable and reviewable through the existing PR flow — which the merge history shows already works — and open the door to teammates contributing entries.*
+- **R9. Hygiene.** Reconnect (or consciously accept) the 11 orphan entries; keep this file's deploy note current; revisit whether the Focused lens's parallel econ fields (6 of 9 themes carry them) still earn their maintenance cost for a team-internal audience.
+
+### Suggested sequence
+
+1. **R1 + R2 together** — same modal surfaces; together they flip the product's identity (any policy becomes a linkable, exportable primer draft).
+2. **R4 + R5** — the rapid-response loop — with **R3's** fact-check backlog as parallel content work.
+3. **R6–R8** — operational hardening once the team is actively using it.
+
+### R-series tracking
+
+| R# | Recommendation | Job | Effort | Status |
+|----|----------------|-----|--------|--------|
+| R1 | Policy export (copy-as-Markdown + print stylesheet) | A Primer | M | Done 2026-07-06 |
+| R2 | Deep links + copy-cite (absorbs #2) | A Primer | M | Done 2026-07-06 |
+| R3 | Curated policy evidence + fact-check burn-down | A Primer | M–L | Done 2026-07-07 |
+| R4 | `added` date; What's New keys off it | B Response | S–M | Done 2026-07-06 |
+| R5 | Changelog view (lightweight #9) | B Response | M | Done 2026-07-06 |
+| R6 | Theme `lastReviewed` + staleness counter | B Response | S–M | Done 2026-07-07 |
+| R7 | Data-validation guard | C Ops | S | Done 2026-07-07 |
+| R8 | Data extracted to `data/tracker-data.js` + intake path (upgrades #14) | C Ops | L | Done 2026-07-07 |
+| R9 | Hygiene: orphans, doc currency, lens cost | C Ops | S | Done 2026-07-07 (lens decision left open) |
+
+---
+
+## Update log — 2026-07-07
+
+- **R6 Theme freshness — implemented.** All 9 themes now carry `lastReviewed: "2026-06-22"` (the date of the last systematic pass over every theme field, the #16 citation sweep). Each theme card ends with an italic freshness line: "Synthesis last reviewed <date>." plus, when applicable, "N newer entries in this theme's categories since review" — computed live as entries whose `added` date postdates the review, whose category matches the categories the theme's linked papers span, and which are not yet linked. Intake now automatically surfaces which syntheses need re-review.
+- **R7 Data-validation guard — implemented.** A console-only check runs at load: duplicate/unknown entry ids, categories, geographies, malformed `date`/`added` values; theme `papers` and policy `paperIds` that resolve to no entry; `{{cite}}`/`{{citep}}` tokens with no target; `{{pol:…}}` cross-references with no policy; policy category/level validity. Current dataset: zero problems. This is the class of bug that shipped silently as #230/#231's invalid category.
+- **R8 Data extracted — implemented.** The entire data layer moved from an inline `<script>` block to **`data/tracker-data.js`** (index.html: 862KB → 171KB; data file ~690KB), loaded as a classic script so there is still no build step and GitHub Pages/file:// behavior is unchanged. Data edits are now isolated, diffable commits reviewable through the existing PR flow; the file opens with an intake-convention comment. Preview mirrors must copy both files.
+- **R9 Hygiene — done.** Of the 11 orphan entries (linked to no theme, cited nowhere, in no curated list): the four substantive policy/economy pieces (#225 Policy on the AI Exponential → Macroeconomic Risk; #226 Anthropic policy framework → Policy & Regulation; #227 People-Centered AI Agenda → Macroeconomic Risk; #228 Building Pro-Worker AI → Worker Power) are now linked into those themes' papers. The remaining seven (#178, #182, #183, #185, #188, #193, #194 — business-strategy/marketing talks, mostly `macro`) are **consciously accepted** as Research-tab-only: they fit no synthesis and would dilute theme References. **Left open for a product decision:** whether the Focused lens's parallel econ fields (6 of 9 themes carry `econSynthesis`/`econGaps`) still earn their maintenance cost for a team-internal audience — no change made.
+- **R3 Curated policy evidence + fact-check burn-down — implemented.** Three parts, all verified live:
+  - **Fact-check (web-verified via parallel research agents).** Of the nine flagged claims: five wrong, three partly wrong, one correct. Corrections applied (15 prose replacements): NY Fast Food Wage Board covered **~136,000** workers, not 60,000 (two places); the job-lock finding is **Madrian (Quarterly Journal of Economics, 1994)**, not RAND, and the figure is ~25% lower turnover; **CBO has never scored a federal job guarantee** — the leading estimate is the Levy Economics Institute (2018, >$500B/yr gross); the "Ro Khanna National Technology and Innovation Dividend Fund" **does not exist** — replaced with Sanders's American AI Sovereign Wealth Fund Act (2026) (two places); the 2022 employee-ownership measure is the **WORK Act's $50M in DOL grants** (SBA lending came from the 2018 Main Street Employee Ownership Act) (two places); the UCL Universal Basic Services costing is **£42.2bn/yr (2.3% of GDP, ~£126/week to the poorest households)**, not "£10,000 per person"; Switzerland's wealth taxes are **cantonal/municipal only** and the ~4% share is of **total** (not federal) tax revenue (two places); **~23 states** (not six) maintain sovereign wealth funds; the unsourced "70% of Fortune 500" hiring claim replaced with the Harvard Business School-backed ">90% of employers use ATS/RMS"; two loose "CBO scoring" attributions softened to "budget scoring and academic research." France's Participation "~8 million workers" **verified correct** (DARES 2023: 7.7M) — no change.
+  - **Evidence entries added (ids 247–256, `added: 2026-07-07`, entries now 251):** Harvard Business School "Hidden Workers"; Census P60-277 (2021 SPM, child poverty −46%); NLIHC "The Gap" (7.2M shortage); CBPP federal rental assistance (1-in-4); CFPB Circular 2022-03; NIST AI RMF 1.0; Stockton SEED first-year analysis; NCEO "Employee Ownership by the Numbers" (6,609 ESOPs / 15.1M participants); UCL IGP Universal Basic Services (2017); OECD Pillar Two statement (2021). Ten inline citations wired into the policy prose making those claims.
+  - **Curated research basis.** Policies now carry hand-picked `paperIds` (17 of 27 seeded from their inline citations plus curated extras); the modal's "Research basis" shows the curated list in full, with the category-derived list demoted to a deduplicated "Show N related studies" toggle. Policies without `paperIds` keep the old behavior. The R1 Markdown export's References section includes curated papers.
+
 ## Update log — 2026-07-06
 
+- **R4 Added-date semantics — implemented.** Every research entry now carries `added: "YYYY-MM-DD"` (its intake date), **backfilled from git history** — a script mined all 51 commits touching the tracker file and recorded the first commit each entry id appears in (11 distinct intake dates, 2026-04-30 initial import of 107 through 14 entries on 2026-07-06). `calcStatus` now returns **Recent = added to the tracker within 30 days** (the window was tightened from 90 because the whole tracker is only ~10 weeks old — a 90-day added-window would mark all 241 entries Recent); Current/Older remain publication-based (18-month boundary). The What's New banner and Research-tab badge key off intake dates, so importing an old-but-important paper now correctly surfaces as new (verified: entry #230, published April, added June 23 → Recent; 2023 papers from the initial import → Older). The "From recent research" band now shows the 8 most recently added highlight papers, so it can never go empty. Status distribution moved 38/75/128 → 28/93/120.
+- **R5 Changelog — implemented.** A "What's changed" modal presents a dated feed built from data already in the file: research entries added (grouped by intake date, newest first; bulk groups >20 collapse to a count line, with the 107-entry initial import labeled as such) and Policy Lab review passes (from `lastReviewed`). Reachable from a persistent **footer link**, a link in the About Updates section, and the **`#changelog` deep link**; clicking an entry closes the modal and deep-links to the card. Subscribe/RSS (the rest of #9) remains open.
+- **R1 Policy export — implemented.** Every policy modal now carries three actions under its header: **Copy as draft** (the full card as formatted Markdown: title, phase/domain line, all primer sections in order, press links, and a References section of every paper cited in the card, in plain-text APA with URLs; `{{cite}}`/`{{pol}}` tokens resolve to text), **Copy link** (the policy's deep link), and **Print** (a `@media print` stylesheet renders just the open modal as a clean one-pager — related studies expanded, press URLs printed inline). Verified: a 5.5KB Markdown draft with 10 sections and zero leaked tokens/HTML.
+- **R2 Deep links + copy-cite — implemented.** Hash routes: `#research` / `#themes` / `#policy` / `#about` (tabs), `#theme/<id>`, `#policy/<id>` (opens the modal), `#entry/<id>` (switches to Research, clears filters, scrolls to the card with a brief accent-outline flash; switches lens if needed). The address bar tracks navigation via `replaceState`; `hashchange` handles pasted links and back/forward; unknown hashes fall back to the default landing. Research cards gained a **Cite** button (Copy APA / Copy BibTeX / Copy link, with a "Copied ✓" flash); theme cards gained **Copy link** in the prev/next row. All copy formats and routes verified live, no console errors.
 - **#17 Screen-reader accessibility — implemented** (see the #17 section for the full item-by-item breakdown). Verified in preview with no console errors and no visual change.
 - **Recency taxonomy renamed (Option B).** The status labels are now **Recent / Current / Older** (were Emergent / Current / Stale); internal keys (`emergent`/`current`/`stale`) and all filter logic are unchanged, so `calcStatus`, the status filter, and the What's New banner still work. The banner flow now reads coherently: "N new entries added in the last 90 days" → the resulting chip says "Recent."
 - **Data-integrity fix.** Entries #230 and #231 (the two Acemoglu NBER knowledge papers) had `category: "experience"` — a *theme* id, not one of the 14 categories — so they rendered a gray fallback chip and matched no category filter. Corrected both to `macro`. A full sweep confirms zero entries now carry an invalid category.
@@ -85,8 +153,8 @@ Substantial work beyond the original recommendation scope. The four open items (
 
 **Deep fact-check of the Policy Lab (2026-06-26)** — partial (batch 1 live-verified via web; the rest knowledge-assessed after a spend-limit interruption).
 - **Applied:** two verified minimum-wage corrections — "23 states" → "20 states + D.C. (~13 currently indexing)" (3 places) and "BLS publishes indices monthly" → "CPI monthly, ECI quarterly."
-- **Open — verify, then correct:** NY Fast Food Wage Board "60,000 workers"; the "RAND" job-lock attribution (likely Madrian 1994); "CBO scored $400–700B" for a job guarantee (likely Levy Institute); the Ro Khanna "National Technology and Innovation Dividend Fund" bill name; Biden 2022 Employee Ownership Initiative "$100M SBA"; UCL IGP "£10,000 per person"; Switzerland "federal and cantonal wealth taxes" (Switzerland has no federal wealth tax); France Participation "~8 million workers"; the "six" US state sovereign-wealth-fund count.
-- **Open — add research entries to back claims:** hiring-AI adoption ("70% of Fortune 500"); 2021 Child Tax Credit child-poverty −46% (Census SPM / Columbia); NLIHC 7M-unit shortage + Section 8 "1 in 4"; CFPB algorithmic-credit circular + NIST AI RMF; the Stockton SEED evaluation (heavily referenced, not yet in the database); NCEO ESOP participation data; UCL IGP Universal Basic Services report; OECD Pillar Two primary source.
+- ~~**Open — verify, then correct**~~ **Resolved 2026-07-07** (see the R3 entry in the 2026-07-07 log): all nine claims web-verified; eight corrected, France Participation confirmed accurate.
+- ~~**Open — add research entries to back claims**~~ **Resolved 2026-07-07**: all eight source groups added as entries 247–256 and cited inline where the claims live.
 - **Data caveats on new entries:** the WIRED World Cup piece carries a 2022-11-03 metadata date despite 2026 content; the Amazon (filed under *surveillance*) and Atlantic (filed under *labor*) category assignments are judgment calls.
 
 ---
