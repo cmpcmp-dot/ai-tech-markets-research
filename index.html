@@ -148,6 +148,7 @@
     display: flex; align-items: center; gap: 0;
     flex-shrink: 0;
   }
+  .header-tabs { display: flex; align-items: center; }
   .header-tab-desc {
     border-bottom: 1px solid var(--border);
     padding: 16px 28px 14px;
@@ -963,7 +964,11 @@
     .cards-area { padding: 16px 16px 88px; }
     .topbar { padding: 10px 16px; flex-wrap: nowrap; }
     .cards-grid { grid-template-columns: 1fr; }
-    .header-inner { flex-direction: column; gap: 12px; }
+    /* Stacked header: title on its own centered row; the tabs and the compact
+       What's-new button share the next row instead of the button getting a
+       full-height row of its own. */
+    .header-inner { flex-wrap: wrap; justify-content: center; gap: 12px; }
+    .header-text { flex-basis: 100%; text-align: center; }
     .site-header { padding: 20px 20px 18px; }
 
     /* Filter drawer */
@@ -1016,7 +1021,7 @@
     display: flex; align-items: center; justify-content: space-between;
     margin-bottom: 18px; flex-shrink: 0;
   }
-  .modal-title { font-size: 16px; font-weight: 800; font-family: 'Haas Grotesk', Georgia, serif; }
+  .modal-title { font-size: 18px; font-weight: 700; letter-spacing: -0.01em; font-family: 'Publico Banner', Georgia, serif; }
 
   .modal-close {
     background: none; border: none; cursor: pointer;
@@ -1208,39 +1213,39 @@
     font-family: 'Public Sans', sans-serif;
   }
   .about-section-text em { font-style: italic; }
-  /* hide banner on non-cards views */
-  .policy-view   #whatsNewBanner     { display: none !important; }
-  .strategy-view #whatsNewBanner     { display: none !important; }
-
-  /* ── What's New banner ───────────────────────────────────── */
-  #whatsNewBanner { display: none; }
-  .wnb-wrap {
-    display: flex; align-items: center; gap: 12px;
-    background: #EEF3FE; border-bottom: 1px solid #D3E0FB;
-    padding: 9px 28px;
+  /* ── What's new (header button + count pill) ─────────────── */
+  /* Styled as a nav item: identical type and spacing to .header-nav-btn,
+     distinguished only by the count pill. */
+  .header-changed-btn {
+    display: inline-flex; align-items: center;
+    background: none; border: none; cursor: pointer;
+    font-family: 'Public Sans', sans-serif;
+    font-size: 14px; font-weight: 500; letter-spacing: 0.01em;
+    color: var(--muted); padding: 6px 14px;
+    border-bottom: 2px solid transparent;
+    transition: color 0.15s;
+    white-space: nowrap;
   }
-  .wnb-dot {
-    width: 8px; height: 8px; border-radius: 50%;
-    background: var(--accent); flex-shrink: 0;
+  .header-changed-btn:hover { color: var(--text); }
+  .header-changed-pill {
+    display: inline-flex; align-items: center; justify-content: center;
+    min-width: 18px; height: 18px; padding: 0 5px; margin-left: 7px;
+    border-radius: 999px; background: var(--accent); color: #fff;
+    font-size: 11px; font-weight: 700; line-height: 1;
   }
-  .wnb-text { font-size: 13px; color: var(--text); flex: 1; }
-  .wnb-view-btn {
-    font-size: 12px; font-weight: 600; color: var(--accent);
-    background: none; border: 1px solid #B5D0F7; border-radius: 20px;
-    padding: 4px 13px; cursor: pointer; font-family: inherit;
-    transition: background 0.13s, color 0.13s, border-color 0.13s; white-space: nowrap;
+  .header-changed-pill[hidden] { display: none; }
+  @keyframes wc-pulse {
+    0%   { box-shadow: 0 0 0 0 color-mix(in srgb, var(--accent) 45%, transparent); }
+    70%  { box-shadow: 0 0 0 9px transparent; }
+    100% { box-shadow: 0 0 0 0 transparent; }
   }
-  .wnb-view-btn:hover { background: var(--accent); color: #fff; border-color: var(--accent); }
-  .wnb-dismiss {
-    background: none; border: none; cursor: pointer; color: var(--muted);
-    font-size: 15px; padding: 2px 5px; line-height: 1; border-radius: 4px;
-    transition: color 0.12s; flex-shrink: 0;
+  .header-changed-pill.pulse { animation: wc-pulse 1.3s ease-out 2; }
+  @media (prefers-reduced-motion: reduce) {
+    .header-changed-pill.pulse { animation: none; }
   }
-  .wnb-dismiss:hover { color: var(--text); }
-  .nav-new-badge {
-    display: none; background: var(--accent); color: #fff;
-    font-size: 11px; font-weight: 600; line-height: 1;
-    border-radius: 999px; padding: 2px 6px; margin-left: 5px; vertical-align: 1px;
+  /* Narrow phones: tighten the row so all five nav items share one line */
+  @media (max-width: 560px) {
+    .header-nav-btn, .header-changed-btn { padding: 6px 6px; letter-spacing: 0; }
   }
 
   /* ── Policy Lab intro bar (matches theme-disclaimer-bar) ─── */
@@ -1428,7 +1433,6 @@
     .policy-lab-header { padding-left: 16px; padding-right: 16px; }
 
     .pol-columns { padding-left: 16px; padding-right: 16px; grid-template-columns: 1fr; }
-    .wnb-wrap { padding: 9px 16px; }
 
     /* Policy Lab waterfall: stack by category, phase as a per-card label */
     .pol-waterfall { padding: 18px 16px 40px; }
@@ -1478,9 +1482,7 @@
     }
     /* gap arrows use theme color via inline --theme-color; keep them on the accent */
     .theme-gap-arrow { color: var(--accent); }
-    .wnb-wrap { background: rgba(111,161,245,0.12); border-bottom-color: rgba(111,161,245,0.32); }
-    .wnb-view-btn { border-color: rgba(111,161,245,0.4); }
-    .nav-new-badge { color: #11161f; }
+    .header-changed-pill { color: #11161f; }
   }
 </style>
 </head>
@@ -1502,11 +1504,14 @@
     <div class="header-text">
       <h1><a href="https://cmpcmp-dot.github.io/ai-tech-markets-research/">AI, Tech and the Economy: Research Intelligence</a></h1>
     </div>
-    <nav class="header-nav" role="tablist" aria-label="Select view">
-      <button class="header-nav-btn" id="viewCards" role="tab" aria-selected="false" aria-controls="viewPanel">Research<span class="nav-new-badge" id="viewCardsBadge" aria-hidden="true"></span></button>
-      <button class="header-nav-btn active" id="viewThemes" role="tab" aria-selected="true" aria-controls="viewPanel">Themes</button>
-      <button class="header-nav-btn" id="viewPolicy" role="tab" aria-selected="false" aria-controls="viewPanel">Policy Lab</button>
-      <button class="header-nav-btn" id="viewAbout" role="tab" aria-selected="false" aria-controls="viewPanel" aria-label="About this site">About</button>
+    <nav class="header-nav" aria-label="Primary">
+      <div class="header-tabs" role="tablist" aria-label="Select view">
+        <button class="header-nav-btn" id="viewCards" role="tab" aria-selected="false" aria-controls="viewPanel">Research</button>
+        <button class="header-nav-btn active" id="viewThemes" role="tab" aria-selected="true" aria-controls="viewPanel">Themes</button>
+        <button class="header-nav-btn" id="viewPolicy" role="tab" aria-selected="false" aria-controls="viewPanel">Policy Lab</button>
+        <button class="header-nav-btn" id="viewAbout" role="tab" aria-selected="false" aria-controls="viewPanel" aria-label="About this site">About</button>
+      </div>
+      <button class="header-changed-btn" id="whatsChangedBtn" aria-label="What's New">What's New<span class="header-changed-pill" id="whatsChangedPill" hidden></span></button>
     </nav>
     <div style="display:none;">
       <button id="aboutInfoBtn" aria-label="About this site"></button>
@@ -1514,8 +1519,6 @@
     </div>
   </div>
 </header>
-
-<div id="whatsNewBanner" aria-live="polite"></div>
 
 <div id="viewAnnounce" class="sr-only" aria-live="polite" aria-atomic="true"></div>
 
@@ -1597,7 +1600,7 @@
           </div>
           <div class="about-section">
             <h2 class="about-section-label">Updates</h2>
-            <p class="about-section-text">The database is updated as new research emerges. The current build date appears in the footer, recent changes are flagged in the &ldquo;what&rsquo;s new&rdquo; banner, and a dated feed of additions and policy reviews is available in the <a href="#changelog">what&rsquo;s-changed log</a>.</p>
+            <p class="about-section-text">The database is updated as new research emerges. The current build date appears in the footer, and a dated feed of additions and policy reviews is available in the <a href="#changelog">What&rsquo;s New log</a>, reachable from the header (where a count marks entries added since your last look) and the footer.</p>
           </div>
           <div class="about-section">
             <h2 class="about-section-label">Sourcing &amp; AI</h2>
@@ -1628,7 +1631,7 @@
   AI, Tech and the Economy: Research Intelligence ·
   Created by Christelle Prophete ·
   Last updated <span id="headerLastUpdated"></span> ·
-  <a class="footer-changelog-link" href="#changelog">What's changed</a>
+  <a class="footer-changelog-link" href="#changelog">What's New</a>
 </footer>
 
 
@@ -1717,7 +1720,7 @@
 <div class="modal-backdrop" id="changelogModal">
   <div class="modal" role="dialog" aria-modal="true" aria-labelledby="changelogModalTitle">
     <div class="modal-header">
-      <h2 class="modal-title" id="changelogModalTitle">What's changed</h2>
+      <h2 class="modal-title" id="changelogModalTitle">What's New</h2>
       <button class="modal-close" id="changelogModalClose" aria-label="Close">✕</button>
     </div>
     <div class="modal-body" id="changelogModalBody"></div>
@@ -3048,6 +3051,7 @@
     body.innerHTML = buildChangelogHTML();
     backdrop.classList.add('open');
     document.body.style.overflow = 'hidden';
+    markChangesSeen();
     setHash('changelog');
     requestAnimationFrame(() => { const cb = document.getElementById('changelogModalClose'); if (cb) cb.focus(); });
   }
@@ -3151,70 +3155,37 @@
     }
   }
 
-  /* ── What's New banner ───────────────────────────────────────── */
-  // "New" = entries added to the tracker in the last 30 days (emergent). The banner/badge
-  // stay hidden once the newest addition has been seen, and reappear on the next intake.
-  function whatsNewState() {
-    const emergent   = RESEARCH_DATA.filter(e => calcStatus(e) === 'emergent');
-    // Keyed on intake date (added), so the banner reappears when entries are
-    // added to the tracker, not when a recently published paper is imported.
-    const newestDate = RESEARCH_DATA.reduce((m, e) => { const d = e.added || e.date; return d > m ? d : m; }, '');
-    const seen       = localStorage.getItem('wnbSeen');
-    const unseen     = emergent.length > 0 && !!newestDate && (!seen || seen < newestDate);
-    return { count: emergent.length, newestDate, unseen };
+  /* ── What's new (header count pill) ──────────────────────────── */
+  // The pill counts entries added since the log was last opened (day
+  // granularity), falling back to the 30-day window for first-time visitors.
+  // Reads the old banner's wnbSeen marker so existing visitors migrate cleanly.
+  function whatsChangedState() {
+    const fallback = new Date(Date.now() - 30 * 86400000).toISOString().slice(0, 10);
+    const seen = localStorage.getItem('wcSeen') || localStorage.getItem('wnbSeen') || fallback;
+    const count = RESEARCH_DATA.filter(e => (e.added || e.date) > seen).length;
+    const newest = RESEARCH_DATA.reduce((m, e) => { const d = e.added || e.date; return d > m ? d : m; }, '');
+    return { count, newest };
   }
 
-  function dismissWhatsNew() {
-    const { newestDate } = whatsNewState();
-    if (newestDate) localStorage.setItem('wnbSeen', newestDate);
-    const banner = document.getElementById('whatsNewBanner');
-    if (banner) banner.style.display = 'none';
-    updateWhatsNewBadge();
+  function markChangesSeen() {
+    const { newest } = whatsChangedState();
+    if (newest) localStorage.setItem('wcSeen', newest);
+    updateWhatsChangedPill();
   }
 
-  // Count badge on the Research tab — discoverable from any tab (including the
-  // default Themes landing), since the banner itself only renders in the Research view.
-  function updateWhatsNewBadge() {
-    const tab   = document.getElementById('viewCards');
-    const badge = document.getElementById('viewCardsBadge');
-    if (!tab || !badge) return;
-    const { count, unseen } = whatsNewState();
-    if (unseen) {
-      badge.textContent = count;
-      badge.style.display = 'inline-block';
-      tab.setAttribute('aria-label', `Research, ${count} new ${count === 1 ? 'entry' : 'entries'}`);
+  function updateWhatsChangedPill() {
+    const btn  = document.getElementById('whatsChangedBtn');
+    const pill = document.getElementById('whatsChangedPill');
+    if (!btn || !pill) return;
+    const { count } = whatsChangedState();
+    if (count > 0) {
+      pill.textContent = count;
+      pill.hidden = false;
+      btn.setAttribute('aria-label', `What's New, ${count} new ${count === 1 ? 'entry' : 'entries'}`);
     } else {
-      badge.style.display = 'none';
-      tab.removeAttribute('aria-label');
+      pill.hidden = true;
+      btn.setAttribute('aria-label', "What's New");
     }
-  }
-
-  function initWhatsNewBanner() {
-    const banner = document.getElementById('whatsNewBanner');
-    if (!banner) return;
-    const { count, unseen } = whatsNewState();
-    if (!unseen) { banner.style.display = 'none'; return; }
-
-    const copy = `<strong>${count} new entr${count===1?'y':'ies'}</strong> added in the last 30 days`;
-    if (!banner.hasChildNodes()) {
-      banner.innerHTML = `
-        <div class="wnb-wrap">
-          <div class="wnb-dot"></div>
-          <span class="wnb-text">${copy}</span>
-          <button class="wnb-view-btn" id="wnbViewBtn">View new entries →</button>
-          <button class="wnb-dismiss" id="wnbDismiss" aria-label="Dismiss">✕</button>
-        </div>`;
-      document.getElementById('wnbViewBtn').addEventListener('click', () => {
-        dismissWhatsNew();
-        activeStatus = 'emergent';
-        setView('cards');
-      });
-      document.getElementById('wnbDismiss').addEventListener('click', dismissWhatsNew);
-    } else {
-      const t = banner.querySelector('.wnb-text');
-      if (t) t.innerHTML = copy;
-    }
-    banner.style.display = 'block';
   }
 
 
@@ -3238,7 +3209,7 @@
     buildCatNav();
     buildInlineFilters();
     updateFilterBadge();
-    updateWhatsNewBadge();
+    updateWhatsChangedPill();
 
     document.body.classList.toggle('cards-view', activeView === 'cards');
     const introLine = document.getElementById('researchIntroLine');
@@ -3252,7 +3223,6 @@
     if (activeView === 'policy') { buildPolicyView(); return; }
     if (activeView === 'about')  { return; }
 
-    initWhatsNewBanner();
     grid.innerHTML = '';
     const visible = getVisible();
     const econPool = activeLens === 'economist' ? RESEARCH_DATA.filter(isEconRelevant).length : RESEARCH_DATA.length;
@@ -3687,6 +3657,18 @@
   // R2: honor a deep link if one is present; otherwise land on Themes.
   if (!applyHashRoute()) setView('themes');
   window.addEventListener('hashchange', applyHashRoute);
+
+  // What's new: open the log from the header button; pulse the pill once
+  // per page load when there is something unseen (skipped if a #changelog
+  // deep link already opened the log and cleared the count).
+  document.getElementById('whatsChangedBtn')?.addEventListener('click', openChangelog);
+  updateWhatsChangedPill();
+  (() => {
+    const pill = document.getElementById('whatsChangedPill');
+    if (!pill || pill.hidden) return;
+    pill.classList.add('pulse');
+    pill.addEventListener('animationend', () => pill.classList.remove('pulse'), { once: true });
+  })();
 
 })();
 </script>
