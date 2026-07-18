@@ -378,7 +378,7 @@
       if (!paperIds.has(f.paperId)) console.warn('killer-facts: unknown paperId', f.paperId, f.id);
       (f.keywords || []).forEach(k => { if (!KW_OK.has(k)) console.warn('killer-facts: unknown keyword', k, f.id); });
       if (!EV_OK.has(f.evidenceType)) console.warn('killer-facts: unknown evidenceType', f.evidenceType, f.id);
-      ['fact','factPlain','context','provenance','caveat','politicalWhy','truthWhy','methodNote','added'].forEach(k => {
+      ['fact','factPlain','context','provenance','caveat','politicalWhy','truthWhy','methodNote','model','added'].forEach(k => {
         if (!f[k]) console.warn('killer-facts: missing field', k, f.id);
       });
       if (!(f.political >= 1 && f.political <= 5)) console.warn('killer-facts: bad political rating', f.id);
@@ -516,7 +516,8 @@
       </div>
       <p class="fact-meta">
         <strong>Method:</strong> ${esc(f.methodNote)}<br>
-        <strong>Where it comes from:</strong> ${esc(f.provenance)}${f.suggestedUse ? `<br><strong>Suggested use:</strong> ${esc(f.suggestedUse)}` : ''}
+        <strong>Where it comes from:</strong> ${esc(f.provenance)}${f.suggestedUse ? `<br><strong>Suggested use:</strong> ${esc(f.suggestedUse)}` : ''}<br>
+        <strong>Extracted and rated by:</strong> ${esc(f.model || 'unrecorded')}, ${esc(f.added || '')}
       </p>
       <button class="ctx-toggle" aria-expanded="false" data-ctx="${esc(f.id)}-ctx"><span class="chev" aria-hidden="true">&#8250;</span> Show surrounding paragraph</button>
       <div class="fact-context" id="${esc(f.id)}-ctx" role="region" aria-label="Surrounding paragraph from the source">${esc(f.context)}</div>

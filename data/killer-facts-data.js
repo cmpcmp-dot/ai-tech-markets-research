@@ -23,6 +23,7 @@ const KILLER_FACTS = [
     caveat: "These protections apply only to WGA-covered projects under the 2023 MBA, not to non-union writing work. Cite as contract terms won through the 2023 strike, not as law.",
     suggestedUse: "Bargaining one-pager showing unions can win enforceable AI protections",
     sourceAccess: "full",
+    model: "Fable 5",
     added: "2026-07-17",
   },
   {
@@ -43,6 +44,7 @@ const KILLER_FACTS = [
     caveat: "Applies to MBA-covered projects only. The protection is contractual, won by a 148-day strike, and depends on union enforcement.",
     suggestedUse: "Explainer for other unions drafting AI contract language on compensation",
     sourceAccess: "full",
+    model: "Fable 5",
     added: "2026-07-17",
   },
   {
@@ -63,6 +65,7 @@ const KILLER_FACTS = [
     caveat: "Covers WGA-covered writing services only; a writer's own AI use still requires company consent under the same provision.",
     suggestedUse: "Model contract language in a labor-AI bargaining toolkit",
     sourceAccess: "full",
+    model: "Fable 5",
     added: "2026-07-17",
   },
   {
@@ -83,6 +86,7 @@ const KILLER_FACTS = [
     caveat: "This is a projection, not a measurement. Say 'projected to use as much as 399 billion gallons by 2030' and attribute it to the HARC/University of Houston study, ideally citing that study directly.",
     suggestedUse: "testimony at state or county hearings on data center water permits in Texas",
     sourceAccess: "full",
+    model: "Fable 5",
     added: "2026-07-17",
   },
   {
@@ -103,6 +107,7 @@ const KILLER_FACTS = [
     caveat: "Attribute to Lincoln Institute reporting. The 500,000 gallons a day is one Meta facility, the 10 percent share is of Newton County's consumption, and pending permit requests (up to 6 million gallons a day) are proposals, not current use.",
     suggestedUse: "local organizing fact sheet opposing unconditioned data center tax breaks",
     sourceAccess: "full",
+    model: "Fable 5",
     added: "2026-07-17",
   },
   {
@@ -123,6 +128,7 @@ const KILLER_FACTS = [
     caveat: "Keep the hedge: data centers are among the reasons bills rose at twice the rate of inflation, not the sole cause. Do not convert this into 'data centers doubled your electric bill.'",
     suggestedUse: "press release tying data center subsidies to rising household utility bills",
     sourceAccess: "full",
+    model: "Fable 5",
     added: "2026-07-17",
   },
   {
@@ -143,6 +149,7 @@ const KILLER_FACTS = [
     caveat: "Say 'exposed to automation,' never 'will lose their jobs.' Attribute it: 'Goldman Sachs projects.' The same report expects displacement to be offset by new job creation, so do not quote it as a net job loss forecast.",
     suggestedUse: "Setting the stakes in testimony or a fact sheet on the scale of AI labor market disruption.",
     sourceAccess: "full",
+    model: "Fable 5",
     added: "2026-07-17",
   },
   {
@@ -163,6 +170,7 @@ const KILLER_FACTS = [
     caveat: "Always attribute: 'Goldman Sachs estimates.' It is a conditional 10-year projection assuming widespread adoption, not a forecast, and says nothing about how the gains are distributed.",
     suggestedUse: "Framing who captures the gains in a piece arguing AI's dividends should be broadly shared.",
     sourceAccess: "full",
+    model: "Fable 5",
     added: "2026-07-17",
   },
   {
@@ -183,6 +191,7 @@ const KILLER_FACTS = [
     caveat: "Use this to keep the 300 million figure honest, not as a standalone forecast. The 7/63/30 split comes from illustrative cutoffs the authors chose for exposition.",
     suggestedUse: "Rebutting overclaimed 'AI will take all our jobs' headlines that cite this same Goldman Sachs report.",
     sourceAccess: "full",
+    model: "Fable 5",
     added: "2026-07-17",
   },
   {
@@ -203,6 +212,7 @@ const KILLER_FACTS = [
     caveat: "These are effects of eligibility for wage insurance under TAA for trade-displaced workers age 50 and over. Say the policy 'raised employment and earnings for eligible displaced workers,' and note the evidence comes from trade layoffs, not AI layoffs.",
     suggestedUse: "Testimony or fact sheet proposing wage insurance as part of an AI displacement safety-net package",
     sourceAccess: "full",
+    model: "Fable 5",
     added: "2026-07-17",
   },
   {
@@ -223,6 +233,7 @@ const KILLER_FACTS = [
     caveat: "Say the program 'more than paid for itself in this study through lower UI payments and higher tax revenue.' The result assumes the program stays small; the authors note scaling it up could change the math.",
     suggestedUse: "Rebuttal to fiscal-cost objections in a legislative debate over wage insurance",
     sourceAccess: "full",
+    model: "Fable 5",
     added: "2026-07-17",
   },
   {
@@ -243,6 +254,7 @@ const KILLER_FACTS = [
     caveat: "Say 'exposed to generative AI,' never 'will lose their jobs.' The ILO calls this an upper threshold of potential exposure if the technology were fully adopted, not a measurement of actual job loss.",
     suggestedUse: "Framing statistic in a report or op-ed on governing the AI transition for workers",
     sourceAccess: "full",
+    model: "Fable 5",
     added: "2026-07-17",
   },
   {
@@ -263,6 +275,7 @@ const KILLER_FACTS = [
     caveat: "This is exposure, not job loss. Say women's jobs are 'about twice as exposed' to potential GenAI automation at the highest-risk level, reflecting where women work, especially clerical roles.",
     suggestedUse: "Fact sheet on gender equity in AI and workforce policy",
     sourceAccess: "full",
+    model: "Fable 5",
     added: "2026-07-17",
   },
   {
@@ -283,6 +296,7 @@ const KILLER_FACTS = [
     caveat: "Exposure, not predicted job loss. Low exposure in poor countries partly reflects infrastructure and occupational mix, so it can mean missing AI's gains as well as being spared its harms.",
     suggestedUse: "Background section of a report on AI and global economic inequality",
     sourceAccess: "full",
+    model: "Fable 5",
     added: "2026-07-17",
   },
   {
@@ -303,6 +317,7 @@ const KILLER_FACTS = [
     caveat: "Data run through 2015, before generative AI; use it to describe the pre-AI record, not to predict AI's future effects. Occupational churn also is not the only way technology can harm workers.",
     suggestedUse: "Op-ed or testimony rebutting claims that today's technological disruption of jobs is historically unprecedented.",
     sourceAccess: "full",
+    model: "Fable 5",
     added: "2026-07-17",
   },
   {
@@ -323,6 +338,7 @@ const KILLER_FACTS = [
     caveat: "Say wage growth for the bottom 90 percent has 'lagged productivity,' not that pay never grew. The exact size of the gap depends on measurement choices; the divergence itself is robust.",
     suggestedUse: "Fact sheet grounding AI wage policy in the four-decade gap between productivity and typical workers' pay.",
     sourceAccess: "full",
+    model: "Fable 5",
     added: "2026-07-17",
   },
   {
@@ -343,6 +359,7 @@ const KILLER_FACTS = [
     caveat: "Say 'Acemoglu estimates' or 'a leading MIT economist projects'. This is a 10-year US projection of total factor productivity, not a measured outcome, and the paper's stricter bound is 0.53 percent once hard-to-learn tasks are accounted for.",
     suggestedUse: "Rebuttal to industry productivity hype in testimony or op-eds on AI investment and data center subsidies",
     sourceAccess: "full",
+    model: "Fable 5",
     added: "2026-07-17",
   },
   {
@@ -363,6 +380,7 @@ const KILLER_FACTS = [
     caveat: "Present as an illustrative calculation that Acemoglu himself calls very speculative. It shows GDP can rise while welfare falls, not that it will.",
     suggestedUse: "Fact sheet on why GDP alone is the wrong yardstick for AI's social effects",
     sourceAccess: "full",
+    model: "Fable 5",
     added: "2026-07-17",
   },
   {
@@ -383,6 +401,7 @@ const KILLER_FACTS = [
     caveat: "This is a directional model prediction with no headline number; say 'is predicted to widen the capital-labor gap', not 'has widened'. Wage declines for low-education women are described as small.",
     suggestedUse: "Supporting evidence in a report on AI, inequality, and the case for pro-worker countervailing policy",
     sourceAccess: "full",
+    model: "Fable 5",
     added: "2026-07-17",
   },
   {
@@ -403,6 +422,7 @@ const KILLER_FACTS = [
     caveat: "Always say 'the World Economic Forum projects' and 'based on employer surveys'. These are expectations for 2025-2030, not measured job losses, and they cover formal employment only.",
     suggestedUse: "Framing paragraph in reports on transition policy: even optimistic projections imply 92 million displaced workers needing reemployment support.",
     sourceAccess: "full",
+    model: "Fable 5",
     added: "2026-07-17",
   },
   {
@@ -423,6 +443,7 @@ const KILLER_FACTS = [
     caveat: "Attribute it: 'the World Economic Forum's employer survey finds 41% of employers expect to downsize as AI can replicate their workers' roles'. These are stated plans for 2025-2030, not layoffs that have happened; the report's summary states it as 40%.",
     suggestedUse: "Press release lede for campaigns demanding advance notice, severance, and retraining obligations when employers automate.",
     sourceAccess: "full",
+    model: "Fable 5",
     added: "2026-07-17",
   },
   {
@@ -443,6 +464,7 @@ const KILLER_FACTS = [
     caveat: "This is employers' own projection, so say 'employers surveyed by the World Economic Forum expect'. Note the '11 in 100' are workers unlikely to be offered training, not workers already displaced. The word 'upkskilling' is a typo in the original report text.",
     suggestedUse: "Testimony supporting publicly funded retraining, since employers themselves concede they will leave one in nine workers untrained.",
     sourceAccess: "full",
+    model: "Fable 5",
     added: "2026-07-17",
   },
   {
@@ -463,6 +485,7 @@ const KILLER_FACTS = [
     caveat: "Always attribute: 'BCG projects.' This is a proprietary consultancy model of potential role transformation, explicitly not an employment forecast, and its methodology cannot be independently verified.",
     suggestedUse: "Attributed setup statistic in an op-ed arguing workers need bargaining power over how AI reshapes their jobs",
     sourceAccess: "full",
+    model: "Fable 5",
     added: "2026-07-17",
   },
   {
@@ -483,6 +506,7 @@ const KILLER_FACTS = [
     caveat: "Say 'BCG estimates 10 to 15 percent of US jobs could be eliminated,' keeping 'could' and the five-years-or-longer horizon; BCG explicitly disclaims this as an unemployment forecast.",
     suggestedUse: "Attributed statistic in testimony making the case for proactive displacement policy like wage insurance and retraining",
     sourceAccess: "full",
+    model: "Fable 5",
     added: "2026-07-17",
   },
   {
@@ -503,6 +527,7 @@ const KILLER_FACTS = [
     caveat: "The algorithm never used race as an input; the bias came from predicting health costs instead of illness while less is spent on Black patients with equal need. Say 'underestimated Black patients' health needs,' not 'was programmed to discriminate.'",
     suggestedUse: "press release or testimony on algorithmic accountability rules in healthcare",
     sourceAccess: "full",
+    model: "Fable 5",
     added: "2026-07-17",
   },
   {
@@ -523,6 +548,7 @@ const KILLER_FACTS = [
     caveat: "Say 'by industry estimates, roughly 200 million people' and make clear the bias finding itself was measured at one health system; the 200 million describes the reach of this class of tools, not the count of people harmed.",
     suggestedUse: "scale-setting sentence in a report on regulating clinical algorithms",
     sourceAccess: "full",
+    model: "Fable 5",
     added: "2026-07-17",
   },
   {
@@ -543,6 +569,7 @@ const KILLER_FACTS = [
     caveat: "Say measured bias fell 84 percent when the algorithm predicted health instead of cost in the researchers' experiment; do not claim the deployed commercial products were fixed.",
     suggestedUse: "testimony that algorithmic bias audits work and should be required before deployment",
     sourceAccess: "full",
+    model: "Fable 5",
     added: "2026-07-17",
   },
   {
@@ -563,6 +590,7 @@ const KILLER_FACTS = [
     caveat: "The report documents that denials surged while automation initiatives rolled out; it does not prove the algorithms caused the denials. Say 'as it automated reviews, denials more than doubled', not 'AI denied the claims'. Also note this is a majority (Democratic) staff report.",
     suggestedUse: "Press release or hearing testimony on regulating algorithmic claim denials in Medicare Advantage",
     sourceAccess: "full",
+    model: "Fable 5",
     added: "2026-07-17",
   },
   {
@@ -583,6 +611,7 @@ const KILLER_FACTS = [
     caveat: "These are denial rates for prior authorization requests, not shares of patients harmed, and the report is a majority staff product; insurers dispute the framing. The line the data supports is that post-acute care was denied at far higher rates than other care.",
     suggestedUse: "Fact sheet on prior authorization reform for post-acute care",
     sourceAccess: "full",
+    model: "Fable 5",
     added: "2026-07-17",
   },
   {
@@ -603,6 +632,7 @@ const KILLER_FACTS = [
     caveat: "Attribute precisely: 'CVS internally estimated', across all its lines of business, not Medicare Advantage alone. The per-denial arithmetic is the report's framing of CVS's own numbers.",
     suggestedUse: "Press release lede on the financial incentive behind AI-assisted claim denials",
     sourceAccess: "full",
+    model: "Fable 5",
     added: "2026-07-17",
   },
   {
@@ -623,6 +653,7 @@ const KILLER_FACTS = [
     caveat: "Sama disputes the figures, saying pay ranged from $1.46 to $3.74 per hour after taxes. Attribute to TIME's review of payslips, and note the article's context that Nairobi's minimum wage for a receptionist was then $1.52 per hour.",
     suggestedUse: "Fact sheet on the global labor supply chain behind AI models",
     sourceAccess: "full",
+    model: "Fable 5",
     added: "2026-07-17",
   },
   {
@@ -643,6 +674,7 @@ const KILLER_FACTS = [
     caveat: "Sama notes the $12.50 rate covered all project costs, not just wages. Say 'workers took home a fraction of the contract rate', not 'Sama pocketed the difference'.",
     suggestedUse: "Report section on outsourcing and value capture in AI supply chains",
     sourceAccess: "full",
+    model: "Fable 5",
     added: "2026-07-17",
   },
   {
@@ -663,6 +695,7 @@ const KILLER_FACTS = [
     caveat: "Sama disputes the workload, saying workers were asked to label 70 passages per nine-hour shift. Attribute to worker accounts reported by TIME, and keep the trauma claim tied to the four interviewed workers.",
     suggestedUse: "Testimony on labor standards for content moderation and data work",
     sourceAccess: "full",
+    model: "Fable 5",
     added: "2026-07-17",
   },
   {
@@ -683,6 +716,7 @@ const KILLER_FACTS = [
     caveat: "These are 2017 error rates on binary gender classification for three named systems; several vendors improved after publication, so use the past tense and name the study and year.",
     suggestedUse: "press release or testimony supporting restrictions on facial recognition in policing and public agencies",
     sourceAccess: "full",
+    model: "Fable 5",
     added: "2026-07-17",
   },
   {
@@ -703,6 +737,7 @@ const KILLER_FACTS = [
     caveat: "This describes two specific benchmark datasets as of 2017, not every training dataset in the industry; say benchmark datasets used to evaluate these systems.",
     suggestedUse: "one-pager on why AI audit and data transparency requirements belong in procurement rules",
     sourceAccess: "full",
+    model: "Fable 5",
     added: "2026-07-17",
   },
   {
@@ -723,6 +758,7 @@ const KILLER_FACTS = [
     caveat: "This is about false positives (wrongly matching two different people), the error type behind misidentification. Effects vary a lot by algorithm, and the most accurate algorithms show much smaller differentials. Note the quote's 'false positives rates' phrasing is verbatim from the source.",
     suggestedUse: "Press release or testimony supporting limits on police and government use of facial recognition.",
     sourceAccess: "full",
+    model: "Fable 5",
     added: "2026-07-17",
   },
   {
@@ -743,6 +779,7 @@ const KILLER_FACTS = [
     caveat: "The 68-fold figure is one featured algorithm, not an average; ordering varies by algorithm and sex. Say 'highest false match rates' rather than 'always misidentifies.' Findings are from 2019; top algorithms have improved since.",
     suggestedUse: "Fact sheet on facial recognition harms to Native American and Black communities in policing.",
     sourceAccess: "full",
+    model: "Fable 5",
     added: "2026-07-17",
   },
   {
@@ -763,6 +800,7 @@ const KILLER_FACTS = [
     caveat: "This is for false positives (wrong-person matches) in one-to-one verification; the multiple varies by algorithm and demographic, and the race effect is larger than the sex effect.",
     suggestedUse: "Supporting evidence in advocacy on gender bias in biometric surveillance systems.",
     sourceAccess: "full",
+    model: "Fable 5",
     added: "2026-07-17",
   },
   {
@@ -783,6 +821,7 @@ const KILLER_FACTS = [
     caveat: "Say 'more likely to be denied than similar white applicants', not 'because of an algorithm alone'. The analysis controls 17 factors but not credit scores, which the CFPB removes from public data; the CFPB's own analysis with credit scores found the disparities do not disappear.",
     suggestedUse: "Press release or testimony on algorithmic discrimination in mortgage lending and the need for underwriting transparency.",
     sourceAccess: "full",
+    model: "Fable 5",
     added: "2026-07-17",
   },
   {
@@ -803,6 +842,7 @@ const KILLER_FACTS = [
     caveat: "Scope it to 2019 conventional home-purchase loans. Say 'denied more often than white applicants with more debt', and acknowledge credit scores could not be included, while noting the CFPB found scores do not explain the gap.",
     suggestedUse: "Social post or fact sheet rebutting claims that mortgage denial gaps just reflect income or debt differences.",
     sourceAccess: "full",
+    model: "Fable 5",
     added: "2026-07-17",
   },
   {
@@ -823,6 +863,7 @@ const KILLER_FACTS = [
     caveat: "Use the metro number for your own metro only if it is among the 89 with significant disparities; otherwise cite the national rates. Same credit-score data limitation applies.",
     suggestedUse: "Local press release or city council testimony on lending discrimination using the metro-specific figure.",
     sourceAccess: "full",
+    model: "Fable 5",
     added: "2026-07-17",
   },
   {
@@ -843,6 +884,7 @@ const KILLER_FACTS = [
     caveat: "Say productivity of customer support agents at one large software firm rose 14 percent, not that AI raises productivity 14 percent everywhere. The paper says nothing about wages, employment levels, or whether workers shared the gains.",
     suggestedUse: "testimony or fact sheet arguing AI deployment should come with training and gains-sharing for lower-paid workers",
     sourceAccess: "full",
+    model: "Fable 5",
     added: "2026-07-17",
   },
   {
@@ -863,6 +905,7 @@ const KILLER_FACTS = [
     caveat: "Present as suggestive, not causal: turnover fell about 40 percent among newer agents, but the paper's authors warn this estimate is weaker than their headline productivity result.",
     suggestedUse: "supporting point in a policy brief on AI and job quality in call center and outsourced service work",
     sourceAccess: "full",
+    model: "Fable 5",
     added: "2026-07-17",
   },
   {
@@ -883,6 +926,7 @@ const KILLER_FACTS = [
     caveat: "Say new workers performed like six-month veterans while using the tool; the paper cannot fully separate genuine learning from dependence on the AI's suggestions.",
     suggestedUse: "fact sheet on AI and workforce training for entry-level service jobs",
     sourceAccess: "full",
+    model: "Fable 5",
     added: "2026-07-17",
   },
   {
@@ -903,6 +947,7 @@ const KILLER_FACTS = [
     caveat: "Say occupations 'show AI usage' on one major platform, Claude.ai, as of early 2025. Usage is not job loss, and a conversation mapped to an occupation may come from a student or hobbyist rather than a worker in that job.",
     suggestedUse: "Testimony or briefings arguing that AI labor-market effects are already measurable and broad, not hypothetical.",
     sourceAccess: "full",
+    model: "Fable 5",
     added: "2026-07-17",
   },
   {
@@ -923,6 +968,7 @@ const KILLER_FACTS = [
     caveat: "These are shares of chat conversations, not shares of jobs or workers. Say 'most AI use today looks like collaboration rather than full hand-off', and note the split varies by occupation and could shift as capabilities advance.",
     suggestedUse: "Fact sheet on how AI is actually used at work, countering claims that mass automation of whole jobs is already the dominant pattern.",
     sourceAccess: "full",
+    model: "Fable 5",
     added: "2026-07-17",
   },
   {
@@ -943,6 +989,7 @@ const KILLER_FACTS = [
     caveat: "These are shares of Claude.ai queries, not shares of the workforce affected. A platform popular with developers will overweight coding; say 'on one major AI platform'.",
     suggestedUse: "Background slide on which occupations are encountering AI first in briefings for labor and workforce policymakers.",
     sourceAccess: "full",
+    model: "Fable 5",
     added: "2026-07-17",
   },
   {
@@ -963,6 +1010,7 @@ const KILLER_FACTS = [
     caveat: "Say workers 'report' monitoring: the figure measures worker-perceived surveillance, not audited employer practice, and covers any of several monitoring types.",
     suggestedUse: "Press release lede for workplace surveillance legislation or rulemaking comments",
     sourceAccess: "full",
+    model: "Fable 5",
     added: "2026-07-17",
   },
   {
@@ -983,6 +1031,7 @@ const KILLER_FACTS = [
     caveat: "An association, not proven causation: say constantly monitored workers 'are three times as likely to report' unsafe work speeds, and note the report also finds injuries roughly double (9 percent vs 4 percent).",
     suggestedUse: "Testimony or press release supporting limits on electronic productivity monitoring as a health and safety issue",
     sourceAccess: "full",
+    model: "Fable 5",
     added: "2026-07-17",
   },
   {
@@ -1003,6 +1052,7 @@ const KILLER_FACTS = [
     caveat: "Say Black and Hispanic workers 'report' higher monitoring rates; the gap partly reflects the jobs and industries workers of color are concentrated in, which is itself the equity point, not a confound to hide.",
     suggestedUse: "Fact sheet linking workplace surveillance regulation to racial justice",
     sourceAccess: "full",
+    model: "Fable 5",
     added: "2026-07-17",
   },
   {
@@ -1023,6 +1073,7 @@ const KILLER_FACTS = [
     caveat: "Say 'jobs researchers rank most vulnerable to AI', not 'jobs AI will eliminate'. Vulnerability combines projected AI exposure with low capacity to transition to new work; it is not a measured job-loss count.",
     suggestedUse: "Press release or testimony on centering women of color in AI workforce policy",
     sourceAccess: "full",
+    model: "Fable 5",
     added: "2026-07-17",
   },
   {
@@ -1043,6 +1094,7 @@ const KILLER_FACTS = [
     caveat: "Overrepresentation is measured against each group's share of the overall workforce, within occupations ranked most AI-vulnerable by projection. Do not read as predicted layoff counts.",
     suggestedUse: "Fact sheet on the racial and gender geography of AI job risk",
     sourceAccess: "full",
+    model: "Fable 5",
     added: "2026-07-17",
   },
   {
@@ -1063,6 +1115,7 @@ const KILLER_FACTS = [
     caveat: "Say claims 'rose in AI-exposed occupations,' not 'AI caused these layoffs.' The authors warn post-pandemic tech retrenchment and other factors may contribute, and statewide claims show no aggregate surge.",
     suggestedUse: "Press release or briefing urging states to build AI-aware unemployment monitoring and support for displaced white-collar workers",
     sourceAccess: "full",
+    model: "Fable 5",
     added: "2026-07-17",
   },
   {
@@ -1083,6 +1136,7 @@ const KILLER_FACTS = [
     caveat: "This is 'no surge yet' in one state, not 'AI is not costing jobs.' The same report finds sustained elevated claims among college-educated, Bay Area, and tech-sector AI-exposed workers.",
     suggestedUse: "Grounding statistic in testimony arguing for monitoring and targeted worker support rather than blanket AI panic",
     sourceAccess: "full",
+    model: "Fable 5",
     added: "2026-07-17",
   },
   {
@@ -1103,6 +1157,7 @@ const KILLER_FACTS = [
     caveat: "Descriptive, not causal. The increase partly predates ChatGPT and overlaps with tech-sector unwinding after the remote-work boom; say claims 'rose and stayed elevated in AI-exposed occupations,' not 'AI laid off these workers.'",
     suggestedUse: "Regional briefing for California officials on where AI-related displacement is surfacing first",
     sourceAccess: "full",
+    model: "Fable 5",
     added: "2026-07-17",
   },
   {
@@ -1123,6 +1178,7 @@ const KILLER_FACTS = [
     caveat: "Say 'a Harvard Business School survey of over 2,200 executives found.' The figure covers the US, UK, and Germany combined and reflects employer self-reports from 2021.",
     suggestedUse: "Press release lede for legislation requiring audits of automated hiring systems.",
     sourceAccess: "full",
+    model: "Fable 5",
     added: "2026-07-17",
   },
   {
@@ -1143,6 +1199,7 @@ const KILLER_FACTS = [
     caveat: "This is what employers say their systems do, not a measured rejection rate. Phrase as 'employers themselves report' and note it covers the US, UK, and Germany.",
     suggestedUse: "Testimony on automated hiring discrimination, quoting employers against their own screening software.",
     sourceAccess: "full",
+    model: "Fable 5",
     added: "2026-07-17",
   },
   {
@@ -1163,6 +1220,7 @@ const KILLER_FACTS = [
     caveat: "Not an unemployment count: 63% of the 27 million are employed people seeking more hours. Say 'an estimated 27 million,' cite Harvard Business School, and note the March 2020 vintage.",
     suggestedUse: "One-pager on why hiring algorithm reform expands the labor pool employers say they cannot find.",
     sourceAccess: "full",
+    model: "Fable 5",
     added: "2026-07-17",
   },
   {
@@ -1183,6 +1241,7 @@ const KILLER_FACTS = [
     caveat: "Specify the Supplemental Poverty Measure. The drop reflects pandemic-era relief as a whole, the expanded Child Tax Credit plus stimulus payments, and child poverty rebounded after those expansions expired.",
     suggestedUse: "press release lede for Child Tax Credit expansion campaigns",
     sourceAccess: "full",
+    model: "Fable 5",
     added: "2026-07-17",
   },
   {
@@ -1203,6 +1262,7 @@ const KILLER_FACTS = [
     caveat: "These are accounting estimates that hold all else equal, with no behavioral responses. Say 'kept out of poverty' under the Supplemental Poverty Measure, and note these were the temporary 2021 expansions.",
     suggestedUse: "testimony supporting restoration of the expanded, fully refundable Child Tax Credit",
     sourceAccess: "full",
+    model: "Fable 5",
     added: "2026-07-17",
   },
   {
@@ -1223,6 +1283,7 @@ const KILLER_FACTS = [
     caveat: "An accounting estimate holding all else equal; without Social Security people might work or save differently, so say 'kept 26.3 million people above the poverty line' rather than predicting what abolition would do.",
     suggestedUse: "fact sheet defending Social Security in budget fights",
     sourceAccess: "full",
+    model: "Fable 5",
     added: "2026-07-17",
   },
   {
@@ -1243,6 +1304,7 @@ const KILLER_FACTS = [
     caveat: "Say 'in the Stockton pilot, full-time employment rose from 28 to 40 percent among recipients versus 32 to 37 percent for controls'. It is one small pilot of 125 people in one city, first-year pre-pandemic results, not proof for national labor markets.",
     suggestedUse: "Testimony or op-ed defending guaranteed income pilots against work-disincentive attacks.",
     sourceAccess: "full",
+    model: "Fable 5",
     added: "2026-07-17",
   },
   {
@@ -1263,6 +1325,7 @@ const KILLER_FACTS = [
     caveat: "Volatility here means month-to-month income fluctuation, not income level. One small pilot; pair the percentages with 'in the Stockton experiment'.",
     suggestedUse: "Fact sheet on income volatility and why unconditional cash beats conditional programs at smoothing family budgets.",
     sourceAccess: "full",
+    model: "Fable 5",
     added: "2026-07-17",
   },
   {
@@ -1283,6 +1346,7 @@ const KILLER_FACTS = [
     caveat: "This is self-reported ability to cover a $400 expense in one small randomized pilot. Say 'more than doubled among recipients while the control group barely changed'.",
     suggestedUse: "Press release linking guaranteed income to the well-known finding that many Americans cannot cover a $400 emergency.",
     sourceAccess: "full",
+    model: "Fable 5",
     added: "2026-07-17",
   },
 ];
