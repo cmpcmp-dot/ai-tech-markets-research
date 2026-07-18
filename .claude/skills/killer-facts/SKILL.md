@@ -105,6 +105,7 @@ Records live in `data/killer-facts-data.js` in a `const KILLER_FACTS = [...]` ar
 {
   id: "kf-94-1",              // kf-<paperId>-<n>
   paperId: 94,                 // must exist in RESEARCH_DATA
+  pubDate: "2020-10-01",       // source publication date, copied from the tracker entry's `date`
   fact: "...",                 // VERBATIM quote, 1-2 sentences, contains the number
   factPlain: "...",            // plain-English restatement, fact-sheet ready
   context: "...",              // VERBATIM surrounding paragraph from the source
@@ -127,6 +128,7 @@ Records live in `data/killer-facts-data.js` in a `const KILLER_FACTS = [...]` ar
 
 Field notes:
 
+- **`pubDate`** is mandatory. It is the source's publication date, copied verbatim from the matching tracker entry's `date` field (do not invent or re-derive it). It powers the "Published" label and the newest-first sort on the Killer Facts page, and it keeps each fact's recency legible without a lookup back into the tracker.
 - **`model`** is mandatory. Record the model that performed the extraction and ratings (e.g. "Fable 5", "Sonnet 5", "Haiku 4.5") — in a fan-out run, the model the subagents ran on. This lets maintainers compare extraction and rating quality across models and re-rate selectively if one model's ratings drift.
 - **`caveat`** is mandatory. It is the one line that keeps a community organizer from overclaiming: say "exposed to automation," not "will lose their jobs"; say "a projection by Goldman Sachs," not "research shows"; note when a finding is short-run, one country, or one sector. If a fact genuinely needs no caveat, write "None needed" deliberately, not by omission.
 - **`factPlain`** should read aloud well at a rally or in a one-pager: short sentences, no jargon, no em-dashes, keep the number.
@@ -141,6 +143,7 @@ When a source is not fully readable, append it to `PENDING_SOURCES.md` in the re
 - No em-dash connector clauses in any prose field; use commas or periods. (Verbatim `fact`/`context` quotes keep the source's own punctuation.)
 - Sentence case for labels. Keep written sentences to roughly 42 words or fewer.
 - Every record needs `added:` with the extraction date.
+- Every record needs `pubDate:` copied from the source's tracker `date`.
 - After editing `killer-facts-data.js`, open `killer_facts.html` in a browser and check the console: the page validates that every `paperId` resolves, ids are unique, and vocabularies are respected.
 
 ## Batch runs

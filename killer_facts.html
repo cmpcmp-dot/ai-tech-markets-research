@@ -214,6 +214,7 @@
   .chip-caution { color: var(--caution); border-color: var(--caution); }
   .chip-access { font-style: italic; }
   .chip-kw { color: var(--accent); background: rgba(37,99,235,0.06); }
+  .chip-date { font-variant-numeric: tabular-nums; }
 
   .fact-quote {
     font-family: 'Publico Banner', Georgia, serif;
@@ -378,7 +379,7 @@
       if (!paperIds.has(f.paperId)) console.warn('killer-facts: unknown paperId', f.paperId, f.id);
       (f.keywords || []).forEach(k => { if (!KW_OK.has(k)) console.warn('killer-facts: unknown keyword', k, f.id); });
       if (!EV_OK.has(f.evidenceType)) console.warn('killer-facts: unknown evidenceType', f.evidenceType, f.id);
-      ['fact','factPlain','context','provenance','caveat','politicalWhy','truthWhy','methodNote','model','added'].forEach(k => {
+      ['fact','factPlain','context','provenance','caveat','politicalWhy','truthWhy','methodNote','model','added','pubDate'].forEach(k => {
         if (!f[k]) console.warn('killer-facts: missing field', k, f.id);
       });
       if (!(f.political >= 1 && f.political <= 5)) console.warn('killer-facts: bad political rating', f.id);
@@ -425,6 +426,18 @@
   }
   function apaPlain(p) {
     return formatAPACitation(p).replace(/<\/?em>/g, '');
+  }
+  const MONTHS = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  // Publication date lives on the fact (pubDate); fall back to the tracker entry's date.
+  function pubDateOf(f) {
+    return f.pubDate || (paperMap[f.paperId] || {}).date || '';
+  }
+  function formatPubDate(d) {
+    if (!d) return '';
+    const parts = d.split('-');
+    const y = parts[0];
+    const mi = parts[1] ? parseInt(parts[1], 10) - 1 : null;
+    return (mi != null && MONTHS[mi]) ? `${MONTHS[mi]} ${y}` : y;
   }
   function esc(s) {
     return String(s == null ? '' : s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
@@ -485,7 +498,7 @@
   }
 
   function sortFacts(arr) {
-    const byPaperDate = f => (paperMap[f.paperId] || {}).date || '';
+    const byPaperDate = f => pubDateOf(f);
     return arr.sort((a, b) => {
       if (sortBy === 'political') return b.political - a.political || b.truth - a.truth || byPaperDate(b).localeCompare(byPaperDate(a));
       if (sortBy === 'truth') return b.truth - a.truth || b.political - a.political || byPaperDate(b).localeCompare(byPaperDate(a));
@@ -501,13 +514,15 @@
     const accessChip = f.sourceAccess && f.sourceAccess !== 'full'
       ? `<span class="chip chip-access">Quote from ${esc(f.sourceAccess)}</span>` : '';
     const cautionChip = lowTruth ? `<span class="chip chip-caution">Use with caution</span>` : '';
+    const pd = formatPubDate(pubDateOf(f));
+    const dateChip = pd ? `<span class="chip chip-date">Published ${esc(pd)}</span>` : '';
     return `
     <article class="fact-card fade-in" id="${esc(f.id)}">
       <div class="fact-chips">
         <span class="chip chip-rating" title="${esc(f.politicalWhy)}">Political <span class="dots" aria-hidden="true">${dots(f.political)}</span><span class="sr-only">${f.political} of 5</span></span>
         <span class="chip chip-rating" title="${esc(f.truthWhy)}">Truth <span class="dots" aria-hidden="true">${dots(f.truth)}</span><span class="sr-only">${f.truth} of 5</span></span>
         <span class="chip">${esc(EV_LABELS[f.evidenceType] || f.evidenceType)}</span>
-        ${cautionChip}${accessChip}${kwChips}
+        ${dateChip}${cautionChip}${accessChip}${kwChips}
       </div>
       <blockquote class="fact-quote">${esc(f.fact)}</blockquote>
       <p class="fact-plain"><span class="lbl">In plain English:</span> ${esc(f.factPlain)}</p>
@@ -515,6 +530,7 @@
         <span class="lbl">How to say it</span>${esc(f.caveat)}
       </div>
       <p class="fact-meta">
+        ${pubDateOf(f) ? `<strong>Published:</strong> ${esc(pubDateOf(f))}<br>` : ''}
         <strong>Method:</strong> ${esc(f.methodNote)}<br>
         <strong>Where it comes from:</strong> ${esc(f.provenance)}${f.suggestedUse ? `<br><strong>Suggested use:</strong> ${esc(f.suggestedUse)}` : ''}<br>
         <strong>Extracted and rated by:</strong> ${esc(f.model || 'unrecorded')}, ${esc(f.added || '')}
