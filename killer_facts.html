@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Killer Facts — AI, Tech and the Economy: Research Intelligence</title>
+<meta name="description" content="Short, citable, number-bearing facts from the research tracker, each quoted verbatim from its source and rated for political usefulness and truthfulness, for organizers, communicators, and researchers.">
+<meta name="theme-color" content="#FFFFFF" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#14161c" media="(prefers-color-scheme: dark)">
+<style>
+  @font-face {
+    font-family: 'Publico Banner';
+    src: url('fonts/PublicoBannerBold.otf') format('opentype');
+    font-weight: 700; font-style: normal;
+  }
+  @font-face {
+    font-family: 'Publico Banner';
+    src: url('fonts/PublicoBannerMedium.otf') format('opentype');
+    font-weight: 500; font-style: normal;
+  }
+  @font-face {
+    font-family: 'Publico Banner';
+    src: url('fonts/PublicoBannerRoman.otf') format('opentype');
+    font-weight: 400; font-style: normal;
+  }
+  @font-face {
+    font-family: 'Haas Grotesk';
+    src: url('fonts/HaasGrotDisp55Roman.otf') format('opentype');
+    font-weight: 400; font-style: normal;
+  }
+  @font-face {
+    font-family: 'Public Sans';
+    src: url('fonts/PublicSans-Regular.ttf') format('truetype');
+    font-weight: 400; font-style: normal;
+  }
+  @font-face {
+    font-family: 'Public Sans';
+    src: url('fonts/PublicSans-Medium.ttf') format('truetype');
+    font-weight: 500; font-style: normal;
+  }
+  @font-face {
+    font-family: 'Public Sans';
+    src: url('fonts/PublicSans-SemiBold.ttf') format('truetype');
+    font-weight: 600; font-style: normal;
+  }
+  @font-face {
+    font-family: 'Public Sans';
+    src: url('fonts/PublicSans-Bold.ttf') format('truetype');
+    font-weight: 700; font-style: normal;
+  }
+
+  :root {
+    --bg:       #FFFFFF;
+    --surface:  #FFFFFF;
+    --surface2: #F1F3F7;
+    --border:   #E2E6EF;
+    --text:     #1E2433;
+    --muted:    #6B7280;
+    --accent:   #2563EB;
+    --caution:  #B03030;
+    --tooltip-bg: #1e2235;
+    --tooltip-fg: #e8eaf0;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg:       #14161c;
+      --surface:  #1c1f28;
+      --surface2: #262b36;
+      --border:   #333947;
+      --text:     #e6e8f0;
+      --muted:    #9aa3b4;
+      --accent:   #6fa1f5;
+      --caution:  #e57373;
+      --tooltip-bg: #e6e8f0;
+      --tooltip-fg: #14161c;
+    }
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    zoom: 1.05;
+    background: var(--bg); color: var(--text);
+    font-family: 'Public Sans', 'Segoe UI', system-ui, -apple-system, sans-serif;
+    min-height: 100vh; line-height: 1.6;
+    display: flex; flex-direction: column;
+  }
+
+  .skip-link {
+    position: absolute; left: 8px; top: -60px; z-index: 2000;
+    background: var(--accent); color: #fff; padding: 8px 14px;
+    border-radius: 0 0 8px 8px; text-decoration: none; font-size: 14px;
+    transition: top 0.15s ease;
+  }
+  .skip-link:focus { top: 0; }
+  .sr-only {
+    position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+    overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+  }
+
+  /* ── HEADER ─────────────────────────────────────────────── */
+  .site-header {
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    padding: 24px 32px 22px;
+    flex-shrink: 0;
+  }
+  .header-inner {
+    max-width: 1100px; margin: 0 auto;
+    display: flex; align-items: center; justify-content: space-between; gap: 24px;
+    border-left: 3px solid var(--accent); padding-left: 16px;
+  }
+  .site-header h1 {
+    font-size: clamp(22px, 2.8vw, 32px); font-weight: 700; letter-spacing: -0.015em;
+    margin-bottom: 6px; color: var(--text);
+    font-family: 'Publico Banner', Georgia, serif;
+  }
+  .site-header h1 a { color: inherit; text-decoration: none; }
+  .site-header h1 a:hover { color: var(--accent); }
+  .header-sub { font-size: 13px; color: var(--muted); }
+  .header-nav { display: flex; align-items: center; flex-shrink: 0; }
+  .header-nav a {
+    font-size: 14px; font-weight: 500; letter-spacing: 0.01em;
+    color: var(--muted); padding: 6px 14px; text-decoration: none;
+    border-bottom: 2px solid transparent; white-space: nowrap;
+    transition: color 0.15s, border-color 0.15s;
+  }
+  .header-nav a:hover { color: var(--text); }
+  .header-nav a.active { color: var(--text); font-weight: 600; border-bottom-color: var(--accent); }
+
+  /* ── PAGE FRAME ─────────────────────────────────────────── */
+  .page { max-width: 1100px; margin: 0 auto; width: 100%; flex: 1; padding: 0 28px 48px; }
+
+  .intro-bar {
+    padding: 18px 0 16px; border-bottom: 1px solid var(--border);
+  }
+  .intro-title {
+    font-family: 'Publico Banner', Georgia, serif;
+    font-size: 22px; font-weight: 700; letter-spacing: -0.01em; margin-bottom: 5px;
+  }
+  .intro-text { font-size: 14px; line-height: 1.6; max-width: 76ch; }
+  .intro-note { font-size: 12px; font-style: italic; color: var(--muted); margin-top: 6px; max-width: 76ch; }
+
+  /* ── CONTROLS ───────────────────────────────────────────── */
+  .controls {
+    position: sticky; top: 0; z-index: 100;
+    background: var(--bg); border-bottom: 1px solid var(--border);
+    padding: 12px 0 10px;
+  }
+  .controls-row { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
+  .search-wrap { position: relative; flex: 1; min-width: 220px; }
+  .search-wrap svg {
+    position: absolute; left: 10px; top: 50%; transform: translateY(-50%);
+    color: var(--muted); pointer-events: none;
+  }
+  input[type="search"] {
+    width: 100%; background: var(--surface); border: 1px solid var(--border);
+    color: var(--text); border-radius: 8px; padding: 7px 10px 7px 33px;
+    font-size: 13px; outline: none; transition: border-color 0.18s; font-family: inherit;
+  }
+  input[type="search"]:focus { border-color: var(--accent); }
+  input[type="search"]::placeholder { color: var(--muted); }
+
+  select {
+    background: var(--surface); border: 1px solid var(--border); color: var(--text);
+    border-radius: 8px; padding: 7px 8px; font-size: 13px; font-family: inherit;
+    outline: none; cursor: pointer;
+  }
+  select:focus { border-color: var(--accent); }
+  .ctl-label { font-size: 12px; color: var(--muted); white-space: nowrap; }
+
+  .pill-row { display: flex; flex-wrap: wrap; gap: 6px; padding: 10px 0 2px; }
+  .kw-pill {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-size: 12px; font-weight: 500; cursor: pointer; white-space: nowrap;
+    background: none; border: 1px solid var(--border); border-radius: 20px;
+    padding: 4px 11px; color: var(--muted); font-family: inherit;
+    transition: border-color 0.15s, color 0.15s, background 0.15s;
+  }
+  .kw-pill:hover { border-color: var(--accent); color: var(--text); }
+  .kw-pill[aria-pressed="true"] {
+    color: var(--accent); border-color: var(--accent);
+    background: rgba(37,99,235,0.07); font-weight: 600;
+  }
+  .kw-count { font-size: 11px; opacity: 0.75; font-variant-numeric: tabular-nums; }
+
+  .result-line { font-size: 12px; color: var(--muted); padding: 12px 0 2px; }
+
+  /* ── FACT CARDS ─────────────────────────────────────────── */
+  .facts-list { display: flex; flex-direction: column; }
+  .fact-card {
+    background: var(--surface);
+    border-left: 3px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    padding: 20px 8px 20px 20px;
+    transition: background 0.15s;
+  }
+  .fact-card:hover { background: var(--surface2); }
+  .fact-card.fade-in { animation: fadeUp 0.28s ease both; }
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(8px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .fact-chips { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 10px; align-items: center; }
+  .chip {
+    display: inline-flex; align-items: center; gap: 5px;
+    font-size: 11px; font-weight: 600; border-radius: 6px; padding: 2px 8px;
+    background: var(--surface2); border: 1px solid var(--border); color: var(--muted);
+    font-family: 'Haas Grotesk', 'Helvetica Neue', Arial, sans-serif;
+    letter-spacing: 0.02em;
+  }
+  .chip-rating { color: var(--text); }
+  .chip-rating .dots { letter-spacing: 1.5px; color: var(--accent); font-size: 10px; }
+  .chip-caution { color: var(--caution); border-color: var(--caution); }
+  .chip-access { font-style: italic; }
+  .chip-kw { color: var(--accent); background: rgba(37,99,235,0.06); }
+
+  .fact-quote {
+    font-family: 'Publico Banner', Georgia, serif;
+    font-size: 19px; font-weight: 500; line-height: 1.45; letter-spacing: -0.005em;
+    color: var(--text); max-width: 78ch;
+  }
+  .fact-quote::before { content: "\201C"; color: var(--accent); }
+  .fact-quote::after  { content: "\201D"; color: var(--accent); }
+
+  .fact-plain {
+    font-size: 13.5px; line-height: 1.6; color: var(--text);
+    margin-top: 10px; max-width: 78ch;
+  }
+  .fact-plain .lbl { font-weight: 600; color: var(--muted); font-size: 12px; letter-spacing: 0.02em; }
+
+  .fact-caveat {
+    margin-top: 10px; padding: 8px 12px; max-width: 78ch;
+    background: var(--surface2); border-left: 3px solid var(--accent); border-radius: 0 8px 8px 0;
+    font-size: 12.5px; line-height: 1.55; color: var(--text);
+  }
+  .fact-caveat .lbl { font-weight: 700; font-size: 11px; letter-spacing: 0.03em; color: var(--accent); display: block; margin-bottom: 1px; }
+  .fact-caveat.warn { border-left-color: var(--caution); }
+  .fact-caveat.warn .lbl { color: var(--caution); }
+
+  .fact-meta { font-size: 12px; color: var(--muted); margin-top: 10px; line-height: 1.55; max-width: 82ch; }
+  .fact-meta strong { font-weight: 600; color: var(--text); }
+
+  .ctx-toggle {
+    display: inline-flex; align-items: center; gap: 6px; margin-top: 10px;
+    border: none; background: none; cursor: pointer; padding: 4px 0;
+    color: var(--accent); font-size: 12px; font-weight: 600; font-family: inherit;
+  }
+  .ctx-toggle .chev { display: inline-block; transition: transform 0.15s; font-size: 14px; line-height: 1; }
+  .ctx-toggle[aria-expanded="true"] .chev { transform: rotate(90deg); }
+  .fact-context {
+    display: none; margin-top: 8px; padding: 10px 14px; max-width: 78ch;
+    border: 1px solid var(--border); border-radius: 8px;
+    font-size: 13px; line-height: 1.65; color: var(--muted); font-style: italic;
+  }
+  .fact-context.open { display: block; }
+
+  .fact-footer { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin-top: 12px; }
+  .fact-cite {
+    font-size: 12px; line-height: 1.5; color: var(--muted); text-decoration: none;
+    max-width: 66ch;
+  }
+  .fact-cite em { font-style: italic; }
+  .fact-cite:hover { color: var(--accent); }
+  .fact-actions { display: flex; gap: 8px; margin-left: auto; flex-shrink: 0; }
+  .act-btn {
+    background: var(--surface2); border: 1px solid var(--border); color: var(--accent);
+    border-radius: 7px; padding: 4px 11px; font-size: 12px; font-weight: 600;
+    cursor: pointer; font-family: inherit; white-space: nowrap; text-decoration: none;
+    transition: background 0.15s, border-color 0.15s;
+  }
+  .act-btn:hover {
+    background: color-mix(in srgb, var(--accent) 10%, transparent);
+    border-color: color-mix(in srgb, var(--accent) 40%, transparent);
+  }
+  .act-btn.copied { color: var(--text); border-color: var(--accent); }
+
+  .empty-state { padding: 48px 0; text-align: center; color: var(--muted); font-size: 14px; }
+
+  /* ── FOOTER ─────────────────────────────────────────────── */
+  .site-footer {
+    border-top: 1px solid var(--border); padding: 18px 32px;
+    font-size: 12px; color: var(--muted); text-align: center;
+  }
+  .site-footer a { color: var(--accent); text-decoration: none; }
+  .site-footer a:hover { text-decoration: underline; }
+
+  @media (max-width: 720px) {
+    .site-header { padding: 18px 16px; }
+    .header-inner { flex-direction: column; align-items: flex-start; gap: 10px; }
+    .page { padding: 0 16px 40px; }
+    .fact-actions { margin-left: 0; }
+  }
+</style>
+</head>
+<body>
+
+<a class="skip-link" href="#factsList">Skip to facts</a>
+
+<script src="data/tracker-data.js"></script>
+<script src="data/killer-facts-data.js"></script>
+
+<header class="site-header">
+  <div class="header-inner">
+    <div>
+      <h1><a href="./">AI, Tech and the Economy: Research Intelligence</a></h1>
+      <div class="header-sub">Killer Facts: citable numbers from the research, rated for usefulness and rigor</div>
+    </div>
+    <nav class="header-nav" aria-label="Site">
+      <a href="./#research">Research</a>
+      <a href="./#themes">Themes</a>
+      <a href="./#policy">Policy Lab</a>
+      <a href="killer_facts.html" class="active" aria-current="page">Killer Facts</a>
+    </nav>
+  </div>
+</header>
+
+<main class="page" id="mainContent">
+
+  <div class="intro-bar">
+    <h2 class="intro-title">Killer Facts</h2>
+    <p class="intro-text">Every fact below is a short, number-bearing statement quoted <strong>verbatim</strong> from a source in the research tracker. Each is rated on two independent scales: how <strong>politically noteworthy</strong> it is for progressive advocacy (inequality, corporate power, environment, worker power) and how <strong>truthful</strong> its underlying evidence is. A fact can score high on one and low on the other; the point is to know which is which before you use it.</p>
+    <p class="intro-note">Pilot release. Ratings are editorial judgments made against a written rubric and reviewed by hand; the "how to say it" line under each fact is the defensible phrasing. Click through to the tracker entry or the source before publishing a number.</p>
+  </div>
+
+  <div class="controls" role="region" aria-label="Search and filters">
+    <div class="controls-row">
+      <div class="search-wrap">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+        <input type="search" id="kfSearch" placeholder="Search facts, sources, keywords…" aria-label="Search killer facts">
+      </div>
+      <label class="ctl-label" for="kfEvidence">Evidence</label>
+      <select id="kfEvidence" aria-label="Filter by evidence type">
+        <option value="all">All types</option>
+      </select>
+      <label class="ctl-label" for="kfMinPol">Political</label>
+      <select id="kfMinPol" aria-label="Minimum political noteworthiness">
+        <option value="1">1+</option><option value="2">2+</option><option value="3">3+</option><option value="4">4+</option><option value="5">5</option>
+      </select>
+      <label class="ctl-label" for="kfMinTruth">Truth</label>
+      <select id="kfMinTruth" aria-label="Minimum truthfulness rating">
+        <option value="1">1+</option><option value="2">2+</option><option value="3">3+</option><option value="4">4+</option><option value="5">5</option>
+      </select>
+      <label class="ctl-label" for="kfSort">Sort</label>
+      <select id="kfSort" aria-label="Sort facts">
+        <option value="political">Most noteworthy</option>
+        <option value="truth">Most rigorous</option>
+        <option value="date">Newest research</option>
+        <option value="paper">By paper</option>
+      </select>
+    </div>
+    <div class="pill-row" id="kwPills" role="group" aria-label="Filter by keyword"></div>
+    <div class="result-line" id="resultLine" aria-live="polite"></div>
+  </div>
+
+  <div class="facts-list" id="factsList"></div>
+
+</main>
+
+<footer class="site-footer">
+  Part of <a href="./">AI, Tech and the Economy: Research Intelligence</a>. Facts are verbatim quotes; ratings are editorial. Always confirm scope against the cited source before publication.
+</footer>
+
+<script>
+(function () {
+  'use strict';
+
+  /* ── Validation guard (console only) ─────────────────────── */
+  (function validate() {
+    if (typeof KILLER_FACTS === 'undefined') { console.error('killer-facts: KILLER_FACTS not loaded'); return; }
+    const paperIds = new Set(RESEARCH_DATA.map(p => p.id));
+    const seen = new Set();
+    const KW_OK = new Set(['inequality','corporate-power','tech-democracy','environment-energy','displacement','worker-power','wages','surveillance','discrimination','gender','race','gig-work','healthcare','housing','education','safety-net','global-south','solutions']);
+    const EV_OK = new Set(['rct','natural-experiment','administrative-data','audit-study','survey','model-projection','meta-analysis','descriptive-statistics','investigative','legal-policy-analysis']);
+    KILLER_FACTS.forEach(f => {
+      if (seen.has(f.id)) console.warn('killer-facts: duplicate id', f.id);
+      seen.add(f.id);
+      if (!paperIds.has(f.paperId)) console.warn('killer-facts: unknown paperId', f.paperId, f.id);
+      (f.keywords || []).forEach(k => { if (!KW_OK.has(k)) console.warn('killer-facts: unknown keyword', k, f.id); });
+      if (!EV_OK.has(f.evidenceType)) console.warn('killer-facts: unknown evidenceType', f.evidenceType, f.id);
+      ['fact','factPlain','context','provenance','caveat','politicalWhy','truthWhy','methodNote','added'].forEach(k => {
+        if (!f[k]) console.warn('killer-facts: missing field', k, f.id);
+      });
+      if (!(f.political >= 1 && f.political <= 5)) console.warn('killer-facts: bad political rating', f.id);
+      if (!(f.truth >= 1 && f.truth <= 5)) console.warn('killer-facts: bad truth rating', f.id);
+    });
+    console.info('killer-facts: validated ' + KILLER_FACTS.length + ' facts.');
+  })();
+
+  const paperMap = Object.fromEntries(RESEARCH_DATA.map(p => [p.id, p]));
+
+  const EV_LABELS = {
+    'rct': 'Randomized experiment',
+    'natural-experiment': 'Natural experiment',
+    'administrative-data': 'Administrative data',
+    'audit-study': 'Audit study',
+    'survey': 'Survey',
+    'model-projection': 'Projection / model',
+    'meta-analysis': 'Meta-analysis',
+    'descriptive-statistics': 'Descriptive statistics',
+    'investigative': 'Investigative journalism',
+    'legal-policy-analysis': 'Legal / policy analysis'
+  };
+  const KW_LABELS = {
+    'inequality': 'Inequality', 'corporate-power': 'Corporate power', 'tech-democracy': 'Tech & democracy',
+    'environment-energy': 'Environment & energy', 'displacement': 'Displacement', 'worker-power': 'Worker power',
+    'wages': 'Wages', 'surveillance': 'Surveillance', 'discrimination': 'Discrimination', 'gender': 'Gender',
+    'race': 'Race', 'gig-work': 'Gig work', 'healthcare': 'Healthcare', 'housing': 'Housing',
+    'education': 'Education', 'safety-net': 'Safety net', 'global-south': 'Global South', 'solutions': 'Solutions'
+  };
+
+  function formatAPACitation(p) {
+    const year = p.date ? p.date.slice(0, 4) : 'n.d.';
+    const src = (p.source || '').trim();
+    let author = src, org = '';
+    if (src.includes(' — ')) {
+      const parts = src.split(' — ');
+      author = parts[0].trim();
+      org = parts.slice(1).join(' — ').trim();
+    }
+    const orgPart = org && org.toLowerCase() !== author.toLowerCase() ? ` ${org}.` : '';
+    const authorDot = author.endsWith('.') ? '' : '.';
+    const titleDot = /[.?!]$/.test(p.title) ? '' : '.';
+    return `${author}${authorDot} (${year}). <em>${p.title}</em>${titleDot}${orgPart}`;
+  }
+  function apaPlain(p) {
+    return formatAPACitation(p).replace(/<\/?em>/g, '');
+  }
+  function esc(s) {
+    return String(s == null ? '' : s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+  }
+  function dots(n) {
+    return '●'.repeat(n) + '○'.repeat(5 - n);
+  }
+
+  /* ── State ───────────────────────────────────────────────── */
+  let q = '', evType = 'all', minPol = 1, minTruth = 1, sortBy = 'political';
+  const activeKw = new Set();
+
+  /* ── Build controls ──────────────────────────────────────── */
+  const evSelect = document.getElementById('kfEvidence');
+  [...new Set(KILLER_FACTS.map(f => f.evidenceType))].sort().forEach(t => {
+    const o = document.createElement('option');
+    o.value = t; o.textContent = EV_LABELS[t] || t;
+    evSelect.appendChild(o);
+  });
+
+  const kwCounts = {};
+  KILLER_FACTS.forEach(f => (f.keywords || []).forEach(k => { kwCounts[k] = (kwCounts[k] || 0) + 1; }));
+  const pillWrap = document.getElementById('kwPills');
+  Object.keys(kwCounts).sort((a, b) => kwCounts[b] - kwCounts[a]).forEach(k => {
+    const b = document.createElement('button');
+    b.className = 'kw-pill';
+    b.setAttribute('aria-pressed', 'false');
+    b.dataset.kw = k;
+    b.innerHTML = `${esc(KW_LABELS[k] || k)} <span class="kw-count">${kwCounts[k]}</span>`;
+    b.addEventListener('click', () => {
+      if (activeKw.has(k)) { activeKw.delete(k); b.setAttribute('aria-pressed', 'false'); }
+      else { activeKw.add(k); b.setAttribute('aria-pressed', 'true'); }
+      render();
+    });
+    pillWrap.appendChild(b);
+  });
+
+  document.getElementById('kfSearch').addEventListener('input', e => { q = e.target.value.toLowerCase(); render(); });
+  evSelect.addEventListener('change', e => { evType = e.target.value; render(); });
+  document.getElementById('kfMinPol').addEventListener('change', e => { minPol = +e.target.value; render(); });
+  document.getElementById('kfMinTruth').addEventListener('change', e => { minTruth = +e.target.value; render(); });
+  document.getElementById('kfSort').addEventListener('change', e => { sortBy = e.target.value; render(); });
+
+  /* ── Render ──────────────────────────────────────────────── */
+  const list = document.getElementById('factsList');
+  const resultLine = document.getElementById('resultLine');
+
+  function matches(f) {
+    if (f.political < minPol || f.truth < minTruth) return false;
+    if (evType !== 'all' && f.evidenceType !== evType) return false;
+    if (activeKw.size && ![...activeKw].every(k => (f.keywords || []).includes(k))) return false;
+    if (q) {
+      const p = paperMap[f.paperId] || {};
+      const hay = [f.fact, f.factPlain, f.caveat, f.provenance, f.suggestedUse, (f.keywords || []).join(' '), p.title, p.source].join(' ').toLowerCase();
+      if (!hay.includes(q)) return false;
+    }
+    return true;
+  }
+
+  function sortFacts(arr) {
+    const byPaperDate = f => (paperMap[f.paperId] || {}).date || '';
+    return arr.sort((a, b) => {
+      if (sortBy === 'political') return b.political - a.political || b.truth - a.truth || byPaperDate(b).localeCompare(byPaperDate(a));
+      if (sortBy === 'truth') return b.truth - a.truth || b.political - a.political || byPaperDate(b).localeCompare(byPaperDate(a));
+      if (sortBy === 'date') return byPaperDate(b).localeCompare(byPaperDate(a)) || b.political - a.political;
+      return a.paperId - b.paperId || a.id.localeCompare(b.id);
+    });
+  }
+
+  function cardHTML(f) {
+    const p = paperMap[f.paperId];
+    const kwChips = (f.keywords || []).map(k => `<span class="chip chip-kw">${esc(KW_LABELS[k] || k)}</span>`).join('');
+    const lowTruth = f.truth <= 2;
+    const accessChip = f.sourceAccess && f.sourceAccess !== 'full'
+      ? `<span class="chip chip-access">Quote from ${esc(f.sourceAccess)}</span>` : '';
+    const cautionChip = lowTruth ? `<span class="chip chip-caution">Use with caution</span>` : '';
+    return `
+    <article class="fact-card fade-in" id="${esc(f.id)}">
+      <div class="fact-chips">
+        <span class="chip chip-rating" title="${esc(f.politicalWhy)}">Political <span class="dots" aria-hidden="true">${dots(f.political)}</span><span class="sr-only">${f.political} of 5</span></span>
+        <span class="chip chip-rating" title="${esc(f.truthWhy)}">Truth <span class="dots" aria-hidden="true">${dots(f.truth)}</span><span class="sr-only">${f.truth} of 5</span></span>
+        <span class="chip">${esc(EV_LABELS[f.evidenceType] || f.evidenceType)}</span>
+        ${cautionChip}${accessChip}${kwChips}
+      </div>
+      <blockquote class="fact-quote">${esc(f.fact)}</blockquote>
+      <p class="fact-plain"><span class="lbl">In plain English:</span> ${esc(f.factPlain)}</p>
+      <div class="fact-caveat${lowTruth ? ' warn' : ''}">
+        <span class="lbl">How to say it</span>${esc(f.caveat)}
+      </div>
+      <p class="fact-meta">
+        <strong>Method:</strong> ${esc(f.methodNote)}<br>
+        <strong>Where it comes from:</strong> ${esc(f.provenance)}${f.suggestedUse ? `<br><strong>Suggested use:</strong> ${esc(f.suggestedUse)}` : ''}
+      </p>
+      <button class="ctx-toggle" aria-expanded="false" data-ctx="${esc(f.id)}-ctx"><span class="chev" aria-hidden="true">&#8250;</span> Show surrounding paragraph</button>
+      <div class="fact-context" id="${esc(f.id)}-ctx" role="region" aria-label="Surrounding paragraph from the source">${esc(f.context)}</div>
+      <div class="fact-footer">
+        <a class="fact-cite" href="${esc(p.sourceUrl)}" target="_blank" rel="noopener noreferrer">${formatAPACitation(p)}</a>
+        <div class="fact-actions">
+          <a class="act-btn" href="./#entry/${p.id}">View in tracker</a>
+          <button class="act-btn" data-copy="${esc(f.id)}">Copy fact + citation</button>
+        </div>
+      </div>
+    </article>`;
+  }
+
+  function render() {
+    const shown = sortFacts(KILLER_FACTS.filter(matches));
+    resultLine.textContent = `${shown.length} of ${KILLER_FACTS.length} facts, drawn from ${new Set(shown.map(f => f.paperId)).size} sources.`;
+    list.innerHTML = shown.length
+      ? shown.map(cardHTML).join('')
+      : '<div class="empty-state">No facts match the current filters.</div>';
+  }
+
+  /* ── Delegated interactions ──────────────────────────────── */
+  list.addEventListener('click', e => {
+    const tgl = e.target.closest('.ctx-toggle');
+    if (tgl) {
+      const ctx = document.getElementById(tgl.dataset.ctx);
+      const open = ctx.classList.toggle('open');
+      tgl.setAttribute('aria-expanded', String(open));
+      tgl.innerHTML = `<span class="chev" aria-hidden="true">&#8250;</span> ${open ? 'Hide' : 'Show'} surrounding paragraph`;
+      return;
+    }
+    const cp = e.target.closest('[data-copy]');
+    if (cp) {
+      const f = KILLER_FACTS.find(x => x.id === cp.dataset.copy);
+      const p = paperMap[f.paperId];
+      const text = `"${f.fact}"\n\nSource: ${apaPlain(p)} ${p.sourceUrl}`;
+      navigator.clipboard.writeText(text).then(() => {
+        cp.textContent = 'Copied';
+        cp.classList.add('copied');
+        setTimeout(() => { cp.textContent = 'Copy fact + citation'; cp.classList.remove('copied'); }, 1600);
+      });
+    }
+  });
+
+  render();
+
+  /* Deep link: killer_facts.html#kf-94-1 scrolls to and flashes that fact */
+  if (location.hash) {
+    const el = document.getElementById(location.hash.slice(1));
+    if (el) setTimeout(() => { el.scrollIntoView({ behavior: 'smooth', block: 'center' }); }, 60);
+  }
+})();
+</script>
+
+</body>
+</html>
