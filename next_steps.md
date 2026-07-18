@@ -33,7 +33,7 @@ model re-rate.
 
 ## Batches (226 entries, by tracker id)
 
-### Batch 1 [ ]
+### Batch 1 [x]
 
 - 1 — GPTs are GPTs: An Early Look at the Labor Market Impact Potential of Large Language Models (OpenAI / University of Pennsylvania, 2023)
 - 2 — New Data Show No AI Jobs Apocalypse — For Now (Brookings Institution, 2024)
