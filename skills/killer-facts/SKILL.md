@@ -9,7 +9,7 @@ description: Extract 1-3 "killer facts" from a research tracker entry (or a batc
 
 This skill turns entries in the research tracker (`data/tracker-data.js`, `RESEARCH_DATA`) into **killer facts**: one- to two-sentence factual statements, each with a number or concrete factoid, quoted verbatim from the source, rated for political usefulness and truthfulness, and stored in `data/killer-facts-data.js` for the Killer Facts page (`killer_facts.html`).
 
-The audience is **not just experts**. Progressive organizers, communications staff, and everyday people familiar with the issues should be able to lift a fact, with its citation and its "how to say it" caveat, straight into a press release, fact sheet, testimony, or social post, and have it survive a hostile fact-check.
+The audience is **not just experts**. Progressive organizers, communications staff, and everyday people familiar with the issues should be able to lift a fact, with its citation and its "how to say it” caveat to protect the person from overstating the fact, straight into a press release, fact sheet, testimony, or social post, and have it survive a hostile fact-check.
 
 ## What counts as a killer fact
 
@@ -27,11 +27,12 @@ Extract **one to three** killer facts per paper. If a paper genuinely has none (
 
 **The best killer facts are almost always in the abstract, executive summary, or key-findings section.** Authors put their strongest, most defensible numbers there. Start there, and treat those passages as your primary hunting ground.
 
-But **you must still read the body of the paper** before finalizing a fact, for three reasons:
+But **you must still read the body of the paper** before finalizing a fact, for four reasons:
 
 1. **Scope.** The abstract's headline number often has a quieter definition in the methods section (exposure vs. displacement, tasks vs. jobs, projection vs. measurement, subgroup vs. population). The `caveat` and `factPlain` fields depend on knowing the real scope.
 2. **Context.** The `context` field is the verbatim paragraph around the fact, and the richest version of a finding sometimes sits in the results section with detail the abstract compresses away.
 3. **Methodology.** The `truth` rating and `methodNote` cannot be assessed from an abstract. Skim methods, sample, and limitations before rating.
+4. **Caveat.** The `caveat` field is there to provide context and limitations of the killer fact, and to understand this it needs to be assessed from the full research picture.
 
 So the workflow is: mine the abstract/summary for candidates, then verify each candidate against the body before recording it.
 
@@ -128,7 +129,7 @@ Records live in `data/killer-facts-data.js` in a `const KILLER_FACTS = [...]` ar
 Field notes:
 
 - **`model`** is mandatory. Record the model that performed the extraction and ratings (e.g. "Fable 5", "Sonnet 5", "Haiku 4.5") — in a fan-out run, the model the subagents ran on. This lets maintainers compare extraction and rating quality across models and re-rate selectively if one model's ratings drift.
-- **`caveat`** is mandatory. It is the one line that keeps a community organizer from overclaiming: say "exposed to automation," not "will lose their jobs"; say "a projection by Goldman Sachs," not "research shows"; note when a finding is short-run, one country, or one sector. If a fact genuinely needs no caveat, write "None needed" deliberately, not by omission.
+- **`caveat`** is mandatory and essential. This is the note to the reader about the limitations and potential vulnerabilities of the fact. An essential part of any research advisor is knowing the limitations of what one knows and protecting the person using this knowledge from being embarrassed in the future. Provide that here. This is the one line that keeps anyone from overclaiming: say "exposed to automation," not "will lose their jobs"; say "a projection by Goldman Sachs," not "research shows"; note when a finding is short-run, one country, or one sector. If a fact genuinely needs no caveat, write "None needed" deliberately, not by omission.
 - **`factPlain`** should read aloud well at a rally or in a one-pager: short sentences, no jargon, no em-dashes, keep the number.
 - **`suggestedUse`** is one concrete deployment, not a list.
 

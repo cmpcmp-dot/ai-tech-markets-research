@@ -46,7 +46,7 @@ model re-rate.
 - 11 — Local Implications of Data Centers and the Tech Layoff Wave on Regional Labor Markets (Brookings Metro, 2023)
 - 13 — Always-On Work Culture and AI Assistant Adoption: Boundary Erosion Among Knowledge Workers (American Psychological Association, 2024)
 
-### Batch 2 [ ]
+### Batch 2 [x]
 
 - 14 — Behind the Screen: Content Moderation in the Shadows of Social Media (Data and Society Research Institute, 2023)
 - 15 — The Economic Potential of Generative AI: The Next Productivity Frontier (McKinsey Global Institute, 2023)
