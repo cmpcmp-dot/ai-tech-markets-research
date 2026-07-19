@@ -1,8 +1,7 @@
 # Killer Facts: next steps
 
 Queue for extracting killer facts from the remaining tracker entries. The pilot
-plus the first six batches are done and have been removed from this queue; what
-remains (166 entries) is below.
+plus batches 1-12 are done; what remains (119 entries, batches 13-23) is below.
 
 The queue is now sorted newest first by publication year: 2026 papers come first,
 then 2025, and so on. Work the recent years first. Within a year, order does not
@@ -116,7 +115,7 @@ stronger model re-rate.
 
 ### 2025 (27 entries)
 
-#### Batch 7 [ ]
+#### Batch 7 [x]
 
 - 76 — Workers First: AI Principles to Protect Workers (AFL-CIO, 2025)
 - 78 — How ProPublica Uses AI Responsibly in Its Investigations (ProPublica, 2025)
@@ -129,7 +128,7 @@ stronger model re-rate.
 - 141 — AI and Jobs: Two Phases of Automation (Anton Leicht, 2025)
 - 142 — AI as Profoundly Abnormal Technology (AI Futures Project, 2025)
 
-#### Batch 8 [ ]
+#### Batch 8 [x]
 
 - 143 — What Happens When Jobs Disappear? A Guide to Displaced Worker Programs in the U.S. (Bipartisan Policy Center, 2025)
 - 144 — Trump's Rollback of AI Guardrails Leaves US Workers 'At Real Risk' (The Guardian, 2025)
@@ -142,7 +141,7 @@ stronger model re-rate.
 - 167 — Platform Workers Act 2024 (Singapore) (Singapore Parliament, 2025)
 - 177 — AI Is Reshaping the Workplace, but Entry-Level Hires Are Way Ahead of the Game (Wharton AI & Analytics Initiative, 2025)
 
-#### Batch 9 [ ]
+#### Batch 9 [x]
 
 - 203 — AI Labor Displacement and the Limits of Worker Retraining (Brookings Institution, 2025)
 - 209 — Cash Transfers Improve Maternal, Infant, and Child Health Outcomes in the U.S. (Economic Security Project, 2025)
@@ -155,7 +154,7 @@ stronger model re-rate.
 
 ### 2024 (43 entries)
 
-#### Batch 10 [ ]
+#### Batch 10 [x]
 
 - 81 — Police Departments Are Turning to AI to Sift Through Millions of Hours of Unreviewed Body-Cam Footage (ProPublica, 2024)
 - 83 — To Implement AI Responsibly, Third-Party Deployments Must Require Safeguards (Center for American Progress, 2024)
@@ -168,7 +167,7 @@ stronger model re-rate.
 - 90 — Fact Sheet: Recommendations for the Department of Education To Take Further Action on AI (Center for American Progress, 2024)
 - 105 — Mind the AI Divide: Shaping a Global Perspective on the Future of Work (International Labour Organization, 2024)
 
-#### Batch 11 [ ]
+#### Batch 11 [x]
 
 - 110 — Algorithmic Management Practices in Regular Workplaces: Case Studies in Logistics and Healthcare (International Labour Organization, 2024)
 - 119 — Record Costs: Collateral Consequences of Eviction Court Filings in Pennsylvania (University of Michigan Poverty Solutions, 2024)
@@ -181,7 +180,7 @@ stronger model re-rate.
 - 146 — GiveDirectly: AI-Supported Triggers for Cash Transfers (Anticipation Hub, 2024)
 - 168 — AI and Access to Justice Initiative (Stanford Legal Design Lab, 2024)
 
-#### Batch 12 [ ]
+#### Batch 12 [x]
 
 - 169 — FHFA 2024 Generative AI in Housing Finance TechSprint (Federal Housing Finance Agency, 2024)
 - 174 — AI in Education: Addressing Biases and Discrimination, Privacy & Surveillance (American Bar Association CRSJ, 2024)
