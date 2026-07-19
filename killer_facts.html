@@ -5,89 +5,74 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Killer Facts — AI, Tech and the Economy: Research Intelligence</title>
 <meta name="description" content="Short, citable, number-bearing facts from the research tracker, each quoted verbatim from its source and rated for political usefulness and truthfulness, for organizers, communicators, and researchers.">
-<meta name="theme-color" content="#FFFFFF" media="(prefers-color-scheme: light)">
-<meta name="theme-color" content="#14161c" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#2c3254">
 <style>
-  @font-face {
-    font-family: 'Publico Banner';
-    src: url('fonts/PublicoBannerBold.otf') format('opentype');
-    font-weight: 700; font-style: normal;
-  }
+  /* ── ESP brand fonts ────────────────────────────────────── */
   @font-face {
     font-family: 'Publico Banner';
     src: url('fonts/PublicoBannerMedium.otf') format('opentype');
-    font-weight: 500; font-style: normal;
+    font-weight: 500; font-style: normal; font-display: swap;
   }
   @font-face {
     font-family: 'Publico Banner';
     src: url('fonts/PublicoBannerRoman.otf') format('opentype');
-    font-weight: 400; font-style: normal;
+    font-weight: 400; font-style: normal; font-display: swap;
   }
   @font-face {
     font-family: 'Haas Grotesk';
     src: url('fonts/HaasGrotDisp55Roman.otf') format('opentype');
-    font-weight: 400; font-style: normal;
+    font-weight: 400 600; font-style: normal; font-display: swap;
   }
   @font-face {
     font-family: 'Public Sans';
     src: url('fonts/PublicSans-Regular.ttf') format('truetype');
-    font-weight: 400; font-style: normal;
+    font-weight: 400; font-style: normal; font-display: swap;
   }
   @font-face {
     font-family: 'Public Sans';
     src: url('fonts/PublicSans-Medium.ttf') format('truetype');
-    font-weight: 500; font-style: normal;
+    font-weight: 500; font-style: normal; font-display: swap;
   }
   @font-face {
     font-family: 'Public Sans';
     src: url('fonts/PublicSans-SemiBold.ttf') format('truetype');
-    font-weight: 600; font-style: normal;
+    font-weight: 600; font-style: normal; font-display: swap;
   }
   @font-face {
     font-family: 'Public Sans';
     src: url('fonts/PublicSans-Bold.ttf') format('truetype');
-    font-weight: 700; font-style: normal;
+    font-weight: 700; font-style: normal; font-display: swap;
   }
 
+  /* ── ESP C3 tokens ──────────────────────────────────────── */
   :root {
-    --bg:       #FFFFFF;
-    --surface:  #FFFFFF;
-    --surface2: #F1F3F7;
-    --border:   #E2E6EF;
-    --text:     #1E2433;
-    --muted:    #6B7280;
-    --accent:   #2563EB;
-    --caution:  #B03030;
-    --tooltip-bg: #1e2235;
-    --tooltip-fg: #e8eaf0;
-  }
-  @media (prefers-color-scheme: dark) {
-    :root {
-      --bg:       #14161c;
-      --surface:  #1c1f28;
-      --surface2: #262b36;
-      --border:   #333947;
-      --text:     #e6e8f0;
-      --muted:    #9aa3b4;
-      --accent:   #6fa1f5;
-      --caution:  #e57373;
-      --tooltip-bg: #e6e8f0;
-      --tooltip-fg: #14161c;
-    }
+    --navy:        #2c3254;  /* Warm Navy — anchor */
+    --beige:       #f4f2e4;  /* Beige — anchor */
+    --light-beige: #fffdf2;  /* Light Beige — card surface */
+    --green:       #70ad8f;  /* Soft Green — C3 accent */
+    --green-hover: #84cca8;
+    --purple:      #472b51;  /* Deep Purple — secondary */
+    --gold:        #ebc382;  /* Warm Gold — secondary (used for caution) */
+    --pink:        #ffbfa7;  /* Warm Pink — secondary */
+    --headline:    #232849;  /* Headline Black */
+    --text:        #3c4164;  /* Text Black */
+    --divider:     #caccd4;  /* Divider Grey */
+    --serif:  'Publico Banner', Georgia, serif;
+    --grot:   'Haas Grotesk', 'Helvetica Neue', Arial, sans-serif;
+    --sans:   'Public Sans', -apple-system, 'Segoe UI', system-ui, sans-serif;
   }
 
   * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
   body {
-    zoom: 1.05;
-    background: var(--bg); color: var(--text);
-    font-family: 'Public Sans', 'Segoe UI', system-ui, -apple-system, sans-serif;
-    min-height: 100vh; line-height: 1.6;
-    display: flex; flex-direction: column;
+    background: var(--beige); color: var(--text);
+    font-family: var(--sans); font-size: 15px; line-height: 1.6;
+    min-height: 100vh; display: flex; flex-direction: column;
   }
 
   .skip-link {
     position: absolute; left: 8px; top: -60px; z-index: 2000;
-    background: var(--accent); color: #fff; padding: 8px 14px;
+    background: var(--navy); color: var(--beige); padding: 8px 14px;
     border-radius: 0 0 8px 8px; text-decoration: none; font-size: 14px;
     transition: top 0.15s ease;
   }
@@ -97,215 +82,326 @@
     overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
   }
 
-  /* ── HEADER ─────────────────────────────────────────────── */
+  /* ── HEADER (Warm Navy band) ────────────────────────────── */
   .site-header {
-    background: var(--surface);
-    border-bottom: 1px solid var(--border);
-    padding: 24px 32px 22px;
-    flex-shrink: 0;
+    background: var(--navy); color: var(--beige);
+    padding: 26px 32px 24px; flex-shrink: 0;
   }
   .header-inner {
-    max-width: 1100px; margin: 0 auto;
-    display: flex; align-items: center; justify-content: space-between; gap: 24px;
-    border-left: 3px solid var(--accent); padding-left: 16px;
+    max-width: 1140px; margin: 0 auto;
+    display: flex; align-items: center; justify-content: space-between; gap: 28px;
   }
+  .header-brand { display: flex; align-items: center; gap: 20px; min-width: 0; }
+  .header-brand img { height: 44px; width: auto; flex-shrink: 0; }
   .site-header h1 {
-    font-size: clamp(22px, 2.8vw, 32px); font-weight: 700; letter-spacing: -0.015em;
-    margin-bottom: 6px; color: var(--text);
-    font-family: 'Publico Banner', Georgia, serif;
+    font-family: var(--serif); font-weight: 500;
+    font-size: clamp(20px, 2.6vw, 28px); letter-spacing: -0.01em;
+    line-height: 1.2; margin-bottom: 4px;
   }
-  .site-header h1 a { color: inherit; text-decoration: none; }
-  .site-header h1 a:hover { color: var(--accent); }
-  .header-sub { font-size: 13px; color: var(--muted); }
-  .header-nav { display: flex; align-items: center; flex-shrink: 0; }
+  .site-header h1 a { color: var(--beige); text-decoration: none; }
+  .site-header h1 a:hover { color: var(--green-hover); }
+  .header-sub {
+    font-family: var(--grot); font-size: 13px; letter-spacing: 0.02em;
+    color: var(--divider);
+  }
+  .header-nav { display: flex; align-items: center; flex-shrink: 0; flex-wrap: wrap; }
   .header-nav a {
-    font-size: 14px; font-weight: 500; letter-spacing: 0.01em;
-    color: var(--muted); padding: 6px 14px; text-decoration: none;
+    font-family: var(--grot); font-size: 14px; font-weight: 500; letter-spacing: 0.02em;
+    color: var(--divider); padding: 6px 13px; text-decoration: none;
     border-bottom: 2px solid transparent; white-space: nowrap;
     transition: color 0.15s, border-color 0.15s;
   }
-  .header-nav a:hover { color: var(--text); }
-  .header-nav a.active { color: var(--text); font-weight: 600; border-bottom-color: var(--accent); }
+  .header-nav a:hover { color: var(--beige); }
+  .header-nav a.active { color: #fff; font-weight: 600; border-bottom-color: var(--green); }
 
   /* ── PAGE FRAME ─────────────────────────────────────────── */
-  .page { max-width: 1100px; margin: 0 auto; width: 100%; flex: 1; padding: 0 28px 48px; }
+  .page { max-width: 1140px; margin: 0 auto; width: 100%; flex: 1; padding: 0 28px 56px; }
 
-  .intro-bar {
-    padding: 18px 0 16px; border-bottom: 1px solid var(--border);
-  }
+  .intro-bar { padding: 26px 0 20px; border-bottom: 2px solid var(--navy); }
   .intro-title {
-    font-family: 'Publico Banner', Georgia, serif;
-    font-size: 22px; font-weight: 700; letter-spacing: -0.01em; margin-bottom: 5px;
+    font-family: var(--serif); font-weight: 500; color: var(--headline);
+    font-size: 30px; letter-spacing: -0.01em; margin-bottom: 8px;
   }
-  .intro-text { font-size: 14px; line-height: 1.6; max-width: 76ch; }
-  .intro-note { font-size: 12px; font-style: italic; color: var(--muted); margin-top: 6px; max-width: 76ch; }
+  .intro-text { font-size: 14.5px; line-height: 1.65; }
+  .intro-note { font-size: 12.5px; font-style: italic; color: var(--purple); margin-top: 8px; }
+
+  /* ── MODE TOGGLE ────────────────────────────────────────── */
+  .mode-toggle {
+    display: flex; gap: 10px; padding: 18px 0 4px; flex-wrap: wrap;
+  }
+  .mode-btn {
+    flex: 1; min-width: 240px; text-align: left; cursor: pointer;
+    background: var(--light-beige); border: 1.5px solid var(--divider);
+    border-radius: 12px; padding: 13px 18px 12px;
+    font-family: var(--grot); color: var(--text);
+    transition: border-color 0.15s, background 0.15s, color 0.15s;
+  }
+  .mode-btn .mode-name {
+    display: block; font-size: 16px; font-weight: 600; letter-spacing: 0.01em;
+    color: var(--headline); margin-bottom: 2px;
+  }
+  .mode-btn .mode-desc { display: block; font-family: var(--sans); font-size: 12.5px; }
+  .mode-btn:hover { border-color: var(--green); }
+  .mode-btn[aria-pressed="true"] {
+    background: var(--navy); border-color: var(--navy);
+  }
+  .mode-btn[aria-pressed="true"] .mode-name { color: #fff; }
+  .mode-btn[aria-pressed="true"] .mode-name::before {
+    content: ""; display: inline-block; width: 9px; height: 9px; border-radius: 50%;
+    background: var(--green); margin-right: 8px; vertical-align: 1px;
+  }
+  .mode-btn[aria-pressed="true"] .mode-desc { color: var(--divider); }
 
   /* ── CONTROLS ───────────────────────────────────────────── */
   .controls {
     position: sticky; top: 0; z-index: 100;
-    background: var(--bg); border-bottom: 1px solid var(--border);
+    background: var(--beige); border-bottom: 1px solid var(--divider);
     padding: 12px 0 10px;
   }
-  .controls-row { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
+  .controls-row { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+  .controls-row2 { margin-top: 8px; }
   .search-wrap { position: relative; flex: 1; min-width: 220px; }
   .search-wrap svg {
-    position: absolute; left: 10px; top: 50%; transform: translateY(-50%);
-    color: var(--muted); pointer-events: none;
+    position: absolute; left: 11px; top: 50%; transform: translateY(-50%);
+    color: var(--text); opacity: 0.55; pointer-events: none;
   }
   input[type="search"] {
-    width: 100%; background: var(--surface); border: 1px solid var(--border);
-    color: var(--text); border-radius: 8px; padding: 7px 10px 7px 33px;
-    font-size: 13px; outline: none; transition: border-color 0.18s; font-family: inherit;
+    width: 100%; background: var(--light-beige); border: 1px solid var(--divider);
+    color: var(--text); border-radius: 9px; padding: 8px 12px 8px 34px;
+    font-size: 13.5px; outline: none; transition: border-color 0.18s; font-family: var(--sans);
   }
-  input[type="search"]:focus { border-color: var(--accent); }
-  input[type="search"]::placeholder { color: var(--muted); }
+  input[type="search"]:focus { border-color: var(--green); }
+  input[type="search"]::placeholder { color: var(--text); opacity: 0.5; }
 
   select {
-    background: var(--surface); border: 1px solid var(--border); color: var(--text);
-    border-radius: 8px; padding: 7px 8px; font-size: 13px; font-family: inherit;
+    background: var(--light-beige); border: 1px solid var(--divider); color: var(--text);
+    border-radius: 9px; padding: 8px 8px; font-size: 13px; font-family: var(--sans);
     outline: none; cursor: pointer;
   }
-  select:focus { border-color: var(--accent); }
-  .ctl-label { font-size: 12px; color: var(--muted); white-space: nowrap; }
+  select:focus { border-color: var(--green); }
+  .ctl-label {
+    font-family: var(--grot); font-size: 12px; font-weight: 500; letter-spacing: 0.03em;
+    color: var(--headline); white-space: nowrap;
+  }
 
-  .pill-row { display: flex; flex-wrap: wrap; gap: 6px; padding: 10px 0 2px; }
+  .kw-toggle {
+    display: inline-flex; align-items: center; gap: 7px; cursor: pointer;
+    background: var(--light-beige); border: 1px solid var(--divider); border-radius: 9px;
+    padding: 8px 13px; font-family: var(--grot); font-size: 13px; font-weight: 500;
+    color: var(--headline); white-space: nowrap; transition: border-color 0.15s;
+  }
+  .kw-toggle:hover { border-color: var(--green); }
+  .kw-toggle .chev { transition: transform 0.18s; font-size: 11px; line-height: 1; }
+  .kw-toggle[aria-expanded="true"] .chev { transform: rotate(180deg); }
+  .kw-toggle .kw-active-count {
+    background: var(--green); color: var(--headline); border-radius: 10px;
+    font-size: 11px; font-weight: 600; padding: 0 7px; line-height: 17px;
+  }
+
+  .kw-panel { display: grid; grid-template-rows: 0fr; transition: grid-template-rows 0.25s ease; }
+  .kw-panel.open { grid-template-rows: 1fr; }
+  .kw-panel > div { overflow: hidden; min-height: 0; }
+  .pill-row { display: flex; flex-wrap: wrap; gap: 6px; padding: 12px 2px 4px; }
   .kw-pill {
     display: inline-flex; align-items: center; gap: 6px;
-    font-size: 12px; font-weight: 500; cursor: pointer; white-space: nowrap;
-    background: none; border: 1px solid var(--border); border-radius: 20px;
-    padding: 4px 11px; color: var(--muted); font-family: inherit;
-    transition: border-color 0.15s, color 0.15s, background 0.15s;
+    font-family: var(--grot); font-size: 12px; font-weight: 500; cursor: pointer; white-space: nowrap;
+    background: var(--light-beige); border: 1px solid var(--divider); border-radius: 20px;
+    padding: 4px 12px; color: var(--text);
+    transition: border-color 0.15s, background 0.15s;
   }
-  .kw-pill:hover { border-color: var(--accent); color: var(--text); }
+  .kw-pill:hover { border-color: var(--green); }
   .kw-pill[aria-pressed="true"] {
-    color: var(--accent); border-color: var(--accent);
-    background: rgba(37,99,235,0.07); font-weight: 600;
+    background: var(--navy); border-color: var(--navy); color: var(--beige); font-weight: 600;
   }
-  .kw-count { font-size: 11px; opacity: 0.75; font-variant-numeric: tabular-nums; }
+  .kw-count { font-size: 11px; opacity: 0.7; font-variant-numeric: tabular-nums; }
 
-  .result-line { font-size: 12px; color: var(--muted); padding: 12px 0 2px; }
-
-  /* ── FACT CARDS ─────────────────────────────────────────── */
-  .facts-list { display: flex; flex-direction: column; }
-  .fact-card {
-    background: var(--surface);
-    border-left: 3px solid var(--border);
-    border-bottom: 1px solid var(--border);
-    padding: 20px 8px 20px 20px;
-    transition: background 0.15s;
-  }
-  .fact-card:hover { background: var(--surface2); }
-  .fact-card.fade-in { animation: fadeUp 0.28s ease both; }
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(8px); }
-    to   { opacity: 1; transform: translateY(0); }
+  .result-line {
+    font-family: var(--grot); font-size: 12px; letter-spacing: 0.02em;
+    color: var(--text); padding: 10px 0 0;
   }
 
-  .fact-chips { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 10px; align-items: center; }
-  .chip {
-    display: inline-flex; align-items: center; gap: 5px;
-    font-size: 11px; font-weight: 600; border-radius: 6px; padding: 2px 8px;
-    background: var(--surface2); border: 1px solid var(--border); color: var(--muted);
-    font-family: 'Haas Grotesk', 'Helvetica Neue', Arial, sans-serif;
-    letter-spacing: 0.02em;
+  /* ── COLLAPSE MACHINERY (animated filtering + expansion) ── */
+  .cwrap {
+    display: grid; grid-template-rows: 1fr;
+    transition: grid-template-rows 0.3s ease, opacity 0.22s ease;
+    opacity: 1;
   }
-  .chip-rating { color: var(--text); }
-  .chip-rating .dots { letter-spacing: 1.5px; color: var(--accent); font-size: 10px; }
-  .chip-caution { color: var(--caution); border-color: var(--caution); }
-  .chip-access { font-style: italic; }
-  .chip-kw { color: var(--accent); background: rgba(37,99,235,0.06); }
-  .chip-date { font-variant-numeric: tabular-nums; }
+  .cwrap.hidden { grid-template-rows: 0fr; opacity: 0; pointer-events: none; }
+  .cwrap > .cinner { overflow: hidden; min-height: 0; }
 
+  .details { display: grid; grid-template-rows: 0fr; transition: grid-template-rows 0.28s ease; }
+  .details > .dinner { overflow: hidden; min-height: 0; }
+  .open > .details, .open .details { grid-template-rows: 1fr; }
+
+  /* ── SHARED CARD PIECES ─────────────────────────────────── */
+  .lbl-grot {
+    font-family: var(--grot); font-weight: 600; font-size: 11px;
+    letter-spacing: 0.06em; text-transform: uppercase; color: var(--headline);
+  }
   .fact-quote {
-    font-family: 'Publico Banner', Georgia, serif;
-    font-size: 19px; font-weight: 500; line-height: 1.45; letter-spacing: -0.005em;
-    color: var(--text); max-width: 78ch;
+    font-family: var(--serif); font-weight: 400;
+    font-size: 15px; line-height: 1.55; letter-spacing: 0;
+    color: var(--text);
   }
-  .fact-quote::before { content: "\201C"; color: var(--accent); }
-  .fact-quote::after  { content: "\201D"; color: var(--accent); }
-
-  .fact-plain {
-    font-size: 13.5px; line-height: 1.6; color: var(--text);
-    margin-top: 10px; max-width: 78ch;
-  }
-  .fact-plain .lbl { font-weight: 600; color: var(--muted); font-size: 12px; letter-spacing: 0.02em; }
+  .fact-quote::before { content: "\201C"; color: var(--green); }
+  .fact-quote::after  { content: "\201D"; color: var(--green); }
 
   .fact-caveat {
-    margin-top: 10px; padding: 8px 12px; max-width: 78ch;
-    background: var(--surface2); border-left: 3px solid var(--accent); border-radius: 0 8px 8px 0;
-    font-size: 12.5px; line-height: 1.55; color: var(--text);
+    margin-top: 12px; padding: 9px 14px;
+    background: var(--beige); border-left: 3px solid var(--green); border-radius: 0 8px 8px 0;
+    font-size: 13px; line-height: 1.55;
   }
-  .fact-caveat .lbl { font-weight: 700; font-size: 11px; letter-spacing: 0.03em; color: var(--accent); display: block; margin-bottom: 1px; }
-  .fact-caveat.warn { border-left-color: var(--caution); }
-  .fact-caveat.warn .lbl { color: var(--caution); }
+  .fact-caveat .lbl-grot { display: block; margin-bottom: 2px; }
+  .fact-caveat.warn { border-left-color: var(--gold); background: rgba(235,195,130,0.16); }
 
-  .fact-meta { font-size: 12px; color: var(--muted); margin-top: 10px; line-height: 1.55; max-width: 82ch; }
-  .fact-meta strong { font-weight: 600; color: var(--text); }
-
-  .ctx-toggle {
-    display: inline-flex; align-items: center; gap: 6px; margin-top: 10px;
-    border: none; background: none; cursor: pointer; padding: 4px 0;
-    color: var(--accent); font-size: 12px; font-weight: 600; font-family: inherit;
+  .chips { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+  .chip {
+    display: inline-flex; align-items: center; gap: 5px;
+    font-family: var(--grot); font-size: 11px; font-weight: 500; letter-spacing: 0.02em;
+    border-radius: 6px; padding: 2.5px 9px;
+    background: var(--beige); border: 1px solid var(--divider); color: var(--text);
   }
-  .ctx-toggle .chev { display: inline-block; transition: transform 0.15s; font-size: 14px; line-height: 1; }
-  .ctx-toggle[aria-expanded="true"] .chev { transform: rotate(90deg); }
+  .chip-rating { color: var(--headline); font-weight: 600; }
+  .chip .dots { letter-spacing: 1.5px; color: var(--green); font-size: 10px; }
+  .chip-caution { background: rgba(235,195,130,0.3); border-color: var(--gold); color: var(--headline); font-weight: 600; }
+  .chip-access { font-style: italic; }
+  .chip-kw { background: rgba(112,173,143,0.16); border-color: rgba(112,173,143,0.55); color: var(--headline); }
+
+  .fact-meta { font-size: 12.5px; color: var(--text); line-height: 1.6; }
+  .fact-meta strong { font-weight: 600; color: var(--headline); }
+
   .fact-context {
-    display: none; margin-top: 8px; padding: 10px 14px; max-width: 78ch;
-    border: 1px solid var(--border); border-radius: 8px;
-    font-size: 13px; line-height: 1.65; color: var(--muted); font-style: italic;
+    margin-top: 10px; padding: 10px 14px;
+    border: 1px solid var(--divider); border-radius: 8px; background: var(--beige);
+    font-size: 12.5px; line-height: 1.65; font-style: italic;
   }
-  .fact-context.open { display: block; }
+  .fact-context .lbl-grot { display: block; font-style: normal; margin-bottom: 3px; }
 
-  .fact-footer { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin-top: 12px; }
-  .fact-cite {
-    font-size: 12px; line-height: 1.5; color: var(--muted); text-decoration: none;
-    max-width: 66ch;
+  .rating-desc { margin-top: 12px; display: flex; flex-direction: column; gap: 8px; }
+  .rating-desc .rd-row { font-size: 12.5px; line-height: 1.55; }
+  .rating-desc .rd-row .rd-head {
+    font-family: var(--grot); font-weight: 600; font-size: 12px; letter-spacing: 0.03em;
+    color: var(--headline);
   }
-  .fact-cite em { font-style: italic; }
-  .fact-cite:hover { color: var(--accent); }
-  .fact-actions { display: flex; gap: 8px; margin-left: auto; flex-shrink: 0; }
+  .rating-desc .rd-row .rd-head .dots { letter-spacing: 1.5px; color: var(--green); font-size: 10px; }
+
+  .cite-link {
+    font-size: 12.5px; line-height: 1.5; color: var(--text); text-decoration: underline;
+    text-decoration-color: var(--green); text-underline-offset: 3px; text-decoration-thickness: 1.5px;
+  }
+  .cite-link em { font-style: italic; }
+  .cite-link:hover { color: var(--headline); text-decoration-color: var(--navy); }
+  .cite-date {
+    font-family: var(--grot); font-size: 11.5px; letter-spacing: 0.03em;
+    color: var(--purple); white-space: nowrap;
+  }
+
   .act-btn {
-    background: var(--surface2); border: 1px solid var(--border); color: var(--accent);
-    border-radius: 7px; padding: 4px 11px; font-size: 12px; font-weight: 600;
-    cursor: pointer; font-family: inherit; white-space: nowrap; text-decoration: none;
-    transition: background 0.15s, border-color 0.15s;
+    background: transparent; border: 1px solid var(--navy); color: var(--navy);
+    border-radius: 7px; padding: 4px 12px; font-family: var(--grot);
+    font-size: 12px; font-weight: 600; letter-spacing: 0.02em;
+    cursor: pointer; white-space: nowrap; text-decoration: none;
+    transition: background 0.15s, color 0.15s;
   }
-  .act-btn:hover {
-    background: color-mix(in srgb, var(--accent) 10%, transparent);
-    border-color: color-mix(in srgb, var(--accent) 40%, transparent);
-  }
-  .act-btn.copied { color: var(--text); border-color: var(--accent); }
+  .act-btn:hover { background: var(--navy); color: var(--beige); }
+  .act-btn.copied { background: var(--green); border-color: var(--green); color: var(--headline); }
 
-  .empty-state { padding: 48px 0; text-align: center; color: var(--muted); font-size: 14px; }
+  .expand-hint {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-family: var(--grot); font-size: 11.5px; font-weight: 600; letter-spacing: 0.04em;
+    color: var(--purple); background: none; border: none; cursor: pointer; padding: 0;
+  }
+  .expand-hint .chev { display: inline-block; transition: transform 0.2s; font-size: 13px; line-height: 1; }
+  .open .expand-hint .chev { transform: rotate(90deg); }
+
+  .empty-state { padding: 48px 0; text-align: center; color: var(--text); font-size: 14px; }
+
+  /* ── MODE 1: BY PAPER ───────────────────────────────────── */
+  .paper-group {
+    background: var(--light-beige); border: 1px solid var(--divider); border-radius: 12px;
+    margin-top: 18px; overflow: hidden;
+  }
+  .pg-facts { display: flex; flex-direction: column; }
+  .simple-card {
+    padding: 16px 20px 14px; cursor: pointer;
+    border-bottom: 1px solid var(--divider); border-left: 3px solid transparent;
+    transition: border-color 0.15s, background 0.15s;
+  }
+  .pg-facts .cwrap:last-of-type .simple-card { border-bottom: none; }
+  .simple-card:hover { border-left-color: var(--green); background: #fdfaef; }
+  .simple-card.open { border-left-color: var(--green); }
+  .sc-top { display: flex; gap: 12px; align-items: baseline; }
+  .sc-plain {
+    flex: 1; font-size: 15px; font-weight: 500; line-height: 1.55; color: var(--headline);
+  }
+  .sc-body { padding-top: 4px; }
+  .sc-actions { display: flex; gap: 8px; margin-top: 14px; flex-wrap: wrap; }
+
+  .pg-footer {
+    display: flex; align-items: flex-end; justify-content: space-between; gap: 16px;
+    padding: 13px 20px 14px; background: var(--beige); border-top: 1px solid var(--divider);
+    flex-wrap: wrap;
+  }
+  .pg-cite { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+  .pg-count { font-family: var(--grot); font-size: 11.5px; letter-spacing: 0.04em; color: var(--purple); white-space: nowrap; }
+
+  /* ── MODE 2: ALL FACTS ──────────────────────────────────── */
+  .fact-card {
+    background: var(--light-beige); border: 1px solid var(--divider); border-radius: 12px;
+    border-left: 3px solid var(--green);
+    padding: 18px 22px 16px; margin-top: 14px; cursor: pointer;
+    transition: background 0.15s;
+  }
+  .fact-card:hover { background: #fdfaef; }
+  .fc-plain { font-size: 15px; font-weight: 500; line-height: 1.55; color: var(--headline); }
+  .fc-quote-block { margin-top: 12px; }
+  .fc-quote-block .lbl-grot { display: block; margin-bottom: 4px; }
+  .fc-details-body { padding-top: 14px; }
+  .fc-details-body .fact-meta { margin-top: 12px; }
+  .fact-footer {
+    display: flex; align-items: flex-end; gap: 14px; flex-wrap: wrap;
+    margin-top: 14px; padding-top: 12px; border-top: 1px solid var(--divider);
+  }
+  .fact-footer .fc-cite { display: flex; flex-direction: column; gap: 2px; flex: 1; min-width: 220px; }
+  .fact-actions { display: flex; gap: 8px; align-items: center; flex-shrink: 0; }
 
   /* ── FOOTER ─────────────────────────────────────────────── */
   .site-footer {
-    border-top: 1px solid var(--border); padding: 18px 32px;
-    font-size: 12px; color: var(--muted); text-align: center;
+    background: var(--navy); color: var(--divider);
+    padding: 20px 32px; font-size: 12.5px; text-align: center;
   }
-  .site-footer a { color: var(--accent); text-decoration: none; }
-  .site-footer a:hover { text-decoration: underline; }
+  .site-footer a { color: var(--beige); text-decoration: underline; text-decoration-color: var(--green); text-underline-offset: 3px; }
+  .site-footer a:hover { color: #fff; }
 
-  @media (max-width: 720px) {
+  @media (max-width: 760px) {
     .site-header { padding: 18px 16px; }
-    .header-inner { flex-direction: column; align-items: flex-start; gap: 10px; }
-    .page { padding: 0 16px 40px; }
-    .fact-actions { margin-left: 0; }
+    .header-inner { flex-direction: column; align-items: flex-start; gap: 12px; }
+    .page { padding: 0 14px 40px; }
+    .mode-btn { min-width: 100%; }
+    .fact-card, .simple-card { padding-left: 15px; padding-right: 15px; }
+    .pg-footer { padding-left: 15px; padding-right: 15px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .cwrap, .details, .kw-panel, .expand-hint .chev, .kw-toggle .chev { transition: none; }
+    html { scroll-behavior: auto; }
   }
 </style>
 </head>
 <body>
 
-<a class="skip-link" href="#factsList">Skip to facts</a>
+<a class="skip-link" href="#factsArea">Skip to facts</a>
 
 <script src="data/tracker-data.js"></script>
 <script src="data/killer-facts-data.js"></script>
 
 <header class="site-header">
   <div class="header-inner">
-    <div>
-      <h1><a href="./">AI, Tech and the Economy: Research Intelligence</a></h1>
-      <div class="header-sub">Killer Facts: citable numbers from the research, rated for usefulness and rigor</div>
+    <div class="header-brand">
+      <img src="assets/esp-c3-white.png" alt="Economic Security Project">
+      <div>
+        <h1><a href="./">AI, Tech and the Economy: Research Intelligence</a></h1>
+        <div class="header-sub">Killer Facts: citable numbers from the research, rated for usefulness and rigor</div>
+      </div>
     </div>
     <nav class="header-nav" aria-label="Site">
       <a href="./#research">Research</a>
@@ -321,7 +417,18 @@
   <div class="intro-bar">
     <h2 class="intro-title">Killer Facts</h2>
     <p class="intro-text">Every fact below is a short, number-bearing statement quoted <strong>verbatim</strong> from a source in the research tracker. Each is rated on two independent scales: how <strong>politically noteworthy</strong> it is for progressive advocacy (inequality, corporate power, environment, worker power) and how <strong>truthful</strong> its underlying evidence is. A fact can score high on one and low on the other; the point is to know which is which before you use it.</p>
-    <p class="intro-note">Pilot release. Ratings are editorial judgments made against a written rubric and reviewed by hand; the "how to say it" line under each fact is the defensible phrasing. Click through to the tracker entry or the source before publishing a number.</p>
+    <p class="intro-note">Pilot release. Ratings are editorial judgments made against a written rubric and reviewed by hand; the "take note" line under each fact is the defensible phrasing. Click through to the tracker entry or the source before publishing a number.</p>
+  </div>
+
+  <div class="mode-toggle" role="group" aria-label="Display mode">
+    <button class="mode-btn" id="modePaper" aria-pressed="true">
+      <span class="mode-name">Plain English</span>
+      <span class="mode-desc">One-line takeaways, grouped by paper. Click any fact for the full version.</span>
+    </button>
+    <button class="mode-btn" id="modeAll" aria-pressed="false">
+      <span class="mode-name">All Facts</span>
+      <span class="mode-desc">Every fact with its full quote and usage guidance. Click a card for methods and ratings.</span>
+    </button>
   </div>
 
   <div class="controls" role="region" aria-label="Search and filters">
@@ -342,19 +449,31 @@
       <select id="kfMinTruth" aria-label="Minimum truthfulness rating">
         <option value="1">1+</option><option value="2">2+</option><option value="3">3+</option><option value="4">4+</option><option value="5">5</option>
       </select>
-      <label class="ctl-label" for="kfSort">Sort</label>
+      <label class="ctl-label" for="kfSort" id="sortLabel">Sort</label>
       <select id="kfSort" aria-label="Sort facts">
+        <option value="date" selected>Most recent</option>
         <option value="political">Most noteworthy</option>
         <option value="truth">Most rigorous</option>
-        <option value="date">Newest research</option>
-        <option value="paper">By paper</option>
       </select>
     </div>
-    <div class="pill-row" id="kwPills" role="group" aria-label="Filter by keyword"></div>
+    <div class="controls-row controls-row2">
+      <button class="kw-toggle" id="kwToggle" aria-expanded="false" aria-controls="kwPanel">
+        Keywords <span class="kw-active-count" id="kwActiveCount" hidden></span> <span class="chev" aria-hidden="true">&#9662;</span>
+      </button>
+    </div>
+    <div class="kw-panel" id="kwPanel">
+      <div>
+        <div class="pill-row" id="kwPills" role="group" aria-label="Filter by keyword"></div>
+      </div>
+    </div>
     <div class="result-line" id="resultLine" aria-live="polite"></div>
   </div>
 
-  <div class="facts-list" id="factsList"></div>
+  <div id="factsArea">
+    <div id="byPaperView"></div>
+    <div id="allFactsView" hidden></div>
+    <div class="empty-state" id="emptyState" hidden>No facts match the current filters.</div>
+  </div>
 
 </main>
 
@@ -371,17 +490,10 @@
     if (typeof KILLER_FACTS === 'undefined') { console.error('killer-facts: KILLER_FACTS not loaded'); return; }
     const paperIds = new Set(RESEARCH_DATA.map(p => p.id));
     const seen = new Set();
-    const KW_OK = new Set(['inequality','corporate-power','tech-democracy','environment-energy','displacement','worker-power','wages','surveillance','discrimination','gender','race','gig-work','healthcare','housing','education','safety-net','global-south','solutions']);
-    const EV_OK = new Set(['rct','natural-experiment','administrative-data','audit-study','survey','model-projection','meta-analysis','descriptive-statistics','investigative','legal-policy-analysis']);
     KILLER_FACTS.forEach(f => {
       if (seen.has(f.id)) console.warn('killer-facts: duplicate id', f.id);
       seen.add(f.id);
       if (!paperIds.has(f.paperId)) console.warn('killer-facts: unknown paperId', f.paperId, f.id);
-      (f.keywords || []).forEach(k => { if (!KW_OK.has(k)) console.warn('killer-facts: unknown keyword', k, f.id); });
-      if (!EV_OK.has(f.evidenceType)) console.warn('killer-facts: unknown evidenceType', f.evidenceType, f.id);
-      ['fact','factPlain','context','provenance','caveat','politicalWhy','truthWhy','methodNote','model','added','pubDate'].forEach(k => {
-        if (!f[k]) console.warn('killer-facts: missing field', k, f.id);
-      });
       if (!(f.political >= 1 && f.political <= 5)) console.warn('killer-facts: bad political rating', f.id);
       if (!(f.truth >= 1 && f.truth <= 5)) console.warn('killer-facts: bad truth rating', f.id);
     });
@@ -424,14 +536,10 @@
     const titleDot = /[.?!]$/.test(p.title) ? '' : '.';
     return `${author}${authorDot} (${year}). <em>${p.title}</em>${titleDot}${orgPart}`;
   }
-  function apaPlain(p) {
-    return formatAPACitation(p).replace(/<\/?em>/g, '');
-  }
+  function apaPlain(p) { return formatAPACitation(p).replace(/<\/?em>/g, ''); }
+
   const MONTHS = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-  // Publication date lives on the fact (pubDate); fall back to the tracker entry's date.
-  function pubDateOf(f) {
-    return f.pubDate || (paperMap[f.paperId] || {}).date || '';
-  }
+  function pubDateOf(f) { return f.pubDate || (paperMap[f.paperId] || {}).date || ''; }
   function formatPubDate(d) {
     if (!d) return '';
     const parts = d.split('-');
@@ -442,15 +550,13 @@
   function esc(s) {
     return String(s == null ? '' : s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
   }
-  function dots(n) {
-    return '●'.repeat(n) + '○'.repeat(5 - n);
-  }
+  function dots(n) { return '●'.repeat(n) + '○'.repeat(5 - n); }
 
   /* ── State ───────────────────────────────────────────────── */
-  let q = '', evType = 'all', minPol = 1, minTruth = 1, sortBy = 'political';
+  let q = '', evType = 'all', minPol = 1, minTruth = 1, sortBy = 'date', mode = 'paper';
   const activeKw = new Set();
 
-  /* ── Build controls ──────────────────────────────────────── */
+  /* ── Build filter controls ───────────────────────────────── */
   const evSelect = document.getElementById('kfEvidence');
   [...new Set(KILLER_FACTS.map(f => f.evidenceType))].sort().forEach(t => {
     const o = document.createElement('option');
@@ -461,6 +567,7 @@
   const kwCounts = {};
   KILLER_FACTS.forEach(f => (f.keywords || []).forEach(k => { kwCounts[k] = (kwCounts[k] || 0) + 1; }));
   const pillWrap = document.getElementById('kwPills');
+  const kwActiveCount = document.getElementById('kwActiveCount');
   Object.keys(kwCounts).sort((a, b) => kwCounts[b] - kwCounts[a]).forEach(k => {
     const b = document.createElement('button');
     b.className = 'kw-pill';
@@ -470,21 +577,193 @@
     b.addEventListener('click', () => {
       if (activeKw.has(k)) { activeKw.delete(k); b.setAttribute('aria-pressed', 'false'); }
       else { activeKw.add(k); b.setAttribute('aria-pressed', 'true'); }
-      render();
+      kwActiveCount.hidden = activeKw.size === 0;
+      kwActiveCount.textContent = activeKw.size;
+      applyFilters();
     });
     pillWrap.appendChild(b);
   });
 
-  document.getElementById('kfSearch').addEventListener('input', e => { q = e.target.value.toLowerCase(); render(); });
-  evSelect.addEventListener('change', e => { evType = e.target.value; render(); });
-  document.getElementById('kfMinPol').addEventListener('change', e => { minPol = +e.target.value; render(); });
-  document.getElementById('kfMinTruth').addEventListener('change', e => { minTruth = +e.target.value; render(); });
-  document.getElementById('kfSort').addEventListener('change', e => { sortBy = e.target.value; render(); });
+  const kwToggle = document.getElementById('kwToggle');
+  const kwPanel = document.getElementById('kwPanel');
+  kwToggle.addEventListener('click', () => {
+    const open = kwPanel.classList.toggle('open');
+    kwToggle.setAttribute('aria-expanded', String(open));
+  });
 
-  /* ── Render ──────────────────────────────────────────────── */
-  const list = document.getElementById('factsList');
+  document.getElementById('kfSearch').addEventListener('input', e => { q = e.target.value.toLowerCase(); applyFilters(); });
+  evSelect.addEventListener('change', e => { evType = e.target.value; applyFilters(); });
+  document.getElementById('kfMinPol').addEventListener('change', e => { minPol = +e.target.value; applyFilters(); });
+  document.getElementById('kfMinTruth').addEventListener('change', e => { minTruth = +e.target.value; applyFilters(); });
+  document.getElementById('kfSort').addEventListener('change', e => { sortBy = e.target.value; resortAll(); resortPapers(); applyFilters(); });
+
+  /* ── Shared card fragments ───────────────────────────────── */
+  function ratingDescHTML(f) {
+    return `
+    <div class="rating-desc">
+      <div class="rd-row"><span class="rd-head">Political <span class="dots" aria-hidden="true">${dots(f.political)}</span><span class="sr-only">${f.political} of 5</span> ${f.political}/5</span> — ${esc(f.politicalWhy)}</div>
+      <div class="rd-row"><span class="rd-head">Truth <span class="dots" aria-hidden="true">${dots(f.truth)}</span><span class="sr-only">${f.truth} of 5</span> ${f.truth}/5</span> — ${esc(f.truthWhy)}</div>
+      <div class="rd-row"><span class="rd-head">Evidence: ${esc(EV_LABELS[f.evidenceType] || f.evidenceType)}</span> — ${esc(f.methodNote)}</div>
+    </div>`;
+  }
+  function kwChipsHTML(f) {
+    return (f.keywords || []).map(k => `<span class="chip chip-kw">${esc(KW_LABELS[k] || k)}</span>`).join('');
+  }
+  function statusChipsHTML(f) {
+    const caution = f.truth <= 2 ? `<span class="chip chip-caution">Use with caution</span>` : '';
+    const access = f.sourceAccess && f.sourceAccess !== 'full'
+      ? `<span class="chip chip-access">Quote from ${esc(f.sourceAccess)}</span>` : '';
+    return caution + access;
+  }
+  function metaHTML(f, opts) {
+    const rows = [];
+    if (!opts || !opts.skipMethod) rows.push(`<strong>Method:</strong> ${esc(f.methodNote)}`);
+    rows.push(`<strong>Where it comes from:</strong> ${esc(f.provenance)}`);
+    if (f.suggestedUse) rows.push(`<strong>Suggested use:</strong> ${esc(f.suggestedUse)}`);
+    rows.push(`<strong>Extracted and rated by:</strong> ${esc(f.model || 'unrecorded')}, ${esc(f.added || '')}`);
+    return `<p class="fact-meta">${rows.join('<br>')}</p>`;
+  }
+  function contextHTML(f) {
+    return `<div class="fact-context"><span class="lbl-grot">Surrounding paragraph from the source</span>${esc(f.context)}</div>`;
+  }
+  function caveatHTML(f) {
+    return `<div class="fact-caveat${f.truth <= 2 ? ' warn' : ''}"><span class="lbl-grot">Take note</span>${esc(f.caveat)}</div>`;
+  }
+  function citeHTML(p, f) {
+    const pd = formatPubDate(pubDateOf(f));
+    return `<a class="cite-link" href="${esc(p.sourceUrl)}" target="_blank" rel="noopener noreferrer">${formatAPACitation(p)}</a>
+            ${pd ? `<span class="cite-date">Published ${esc(pd)}</span>` : ''}`;
+  }
+
+  /* ── MODE 1: By-paper view ───────────────────────────────── */
+  function simpleCardHTML(f) {
+    const p = paperMap[f.paperId];
+    return `
+    <div class="cwrap" data-fid="${esc(f.id)}"><div class="cinner">
+      <div class="simple-card" id="${esc(f.id)}" tabindex="0" role="button" aria-expanded="false">
+        <div class="sc-top">
+          <p class="sc-plain">${esc(f.factPlain)}</p>
+          <span class="expand-hint"><span class="chev" aria-hidden="true">&#8250;</span></span>
+        </div>
+        <div class="details"><div class="dinner"><div class="sc-body">
+          <div class="fc-quote-block">
+            <span class="lbl-grot">Full quote</span>
+            <blockquote class="fact-quote">${esc(f.fact)}</blockquote>
+          </div>
+          ${caveatHTML(f)}
+          ${ratingDescHTML(f)}
+          <div class="chips" style="margin-top:10px">${statusChipsHTML(f)}${kwChipsHTML(f)}</div>
+          <div style="margin-top:12px">${metaHTML(f, { skipMethod: true })}</div>
+          ${contextHTML(f)}
+          <div class="sc-actions">
+            <a class="act-btn" href="./#entry/${p.id}">View in tracker</a>
+            <button class="act-btn" data-copy="${esc(f.id)}">Copy fact + citation</button>
+          </div>
+        </div></div></div>
+      </div>
+    </div></div>`;
+  }
+
+  function paperGroupHTML(pid, facts) {
+    const p = paperMap[pid];
+    const n = facts.length;
+    return `
+    <div class="cwrap pg-wrap" data-pid="${esc(String(pid))}"><div class="cinner">
+      <section class="paper-group" aria-label="${esc(p.title)}">
+        <div class="pg-facts">${facts.map(simpleCardHTML).join('')}</div>
+        <div class="pg-footer">
+          <div class="pg-cite">${citeHTML(p, facts[0])}</div>
+          <span class="pg-count">${n} fact${n === 1 ? '' : 's'} &middot; <a class="cite-link" href="./#entry/${p.id}">View in tracker</a></span>
+        </div>
+      </section>
+    </div></div>`;
+  }
+
+  /* ── MODE 2: All-facts view ──────────────────────────────── */
+  function factCardHTML(f) {
+    const p = paperMap[f.paperId];
+    return `
+    <div class="cwrap" data-fid="${esc(f.id)}"><div class="cinner">
+      <article class="fact-card" id="all-${esc(f.id)}" tabindex="0" role="button" aria-expanded="false">
+        <p class="fc-plain">${esc(f.factPlain)}</p>
+        <div class="fc-quote-block">
+          <span class="lbl-grot">Full quote</span>
+          <blockquote class="fact-quote">${esc(f.fact)}</blockquote>
+        </div>
+        ${caveatHTML(f)}
+        <div class="details"><div class="dinner"><div class="fc-details-body">
+          <div class="chips">
+            <span class="chip chip-rating">Political <span class="dots" aria-hidden="true">${dots(f.political)}</span><span class="sr-only">${f.political} of 5</span></span>
+            <span class="chip chip-rating">Truth <span class="dots" aria-hidden="true">${dots(f.truth)}</span><span class="sr-only">${f.truth} of 5</span></span>
+            <span class="chip">${esc(EV_LABELS[f.evidenceType] || f.evidenceType)}</span>
+            ${statusChipsHTML(f)}${kwChipsHTML(f)}
+          </div>
+          ${metaHTML(f)}
+          ${contextHTML(f)}
+        </div></div></div>
+        <div class="fact-footer">
+          <div class="fc-cite">${citeHTML(p, f)}</div>
+          <div class="fact-actions">
+            <a class="act-btn" href="./#entry/${p.id}">View in tracker</a>
+            <button class="act-btn" data-copy="${esc(f.id)}">Copy fact + citation</button>
+            <span class="expand-hint"><span class="chev" aria-hidden="true">&#8250;</span> Details</span>
+          </div>
+        </div>
+      </article>
+    </div></div>`;
+  }
+
+  /* ── Sorting / grouping ──────────────────────────────────── */
+  function factSorter(a, b) {
+    const da = pubDateOf(a), db = pubDateOf(b);
+    if (sortBy === 'political') return b.political - a.political || b.truth - a.truth || db.localeCompare(da);
+    if (sortBy === 'truth') return b.truth - a.truth || b.political - a.political || db.localeCompare(da);
+    return db.localeCompare(da) || b.political - a.political;
+  }
+
+  /* ── Render both views once ──────────────────────────────── */
+  const byPaperView = document.getElementById('byPaperView');
+  const allFactsView = document.getElementById('allFactsView');
+  const emptyState = document.getElementById('emptyState');
   const resultLine = document.getElementById('resultLine');
 
+  // Group by paper, papers ordered newest first.
+  const byPaper = {};
+  KILLER_FACTS.forEach(f => { (byPaper[f.paperId] = byPaper[f.paperId] || []).push(f); });
+  const paperOrder = Object.keys(byPaper).sort((a, b) => {
+    const da = Math.max(...byPaper[a].map(f => pubDateOf(f) || '')) ;
+    const dbb = Math.max(...byPaper[b].map(f => pubDateOf(f) || ''));
+    return String(dbb).localeCompare(String(da));
+  });
+  // Order-safe: compute max dates as strings.
+  paperOrder.sort((a, b) => {
+    const da = byPaper[a].map(f => pubDateOf(f)).sort().pop() || '';
+    const db = byPaper[b].map(f => pubDateOf(f)).sort().pop() || '';
+    return db.localeCompare(da);
+  });
+  byPaperView.innerHTML = paperOrder.map(pid => paperGroupHTML(pid, byPaper[pid])).join('');
+  allFactsView.innerHTML = [...KILLER_FACTS].sort(factSorter).map(factCardHTML).join('');
+
+  function resortAll() {
+    const wraps = Object.fromEntries([...allFactsView.children].map(w => [w.dataset.fid, w]));
+    [...KILLER_FACTS].sort(factSorter).forEach(f => allFactsView.appendChild(wraps[f.id]));
+  }
+
+  // Paper groups sort by their strongest fact on the chosen dimension.
+  function resortPapers() {
+    const metric = pid => {
+      const fs = byPaper[pid];
+      if (sortBy === 'political') return Math.max(...fs.map(f => f.political));
+      if (sortBy === 'truth') return Math.max(...fs.map(f => f.truth));
+      return 0;
+    };
+    const latest = pid => byPaper[pid].map(f => pubDateOf(f)).sort().pop() || '';
+    const wraps = Object.fromEntries([...byPaperView.children].map(w => [w.dataset.pid, w]));
+    [...paperOrder].sort((a, b) => metric(b) - metric(a) || latest(b).localeCompare(latest(a)))
+      .forEach(pid => byPaperView.appendChild(wraps[pid]));
+  }
+
+  /* ── Filtering (animated collapse on every keystroke) ────── */
   function matches(f) {
     if (f.political < minPol || f.truth < minTruth) return false;
     if (evType !== 'all' && f.evidenceType !== evType) return false;
@@ -497,93 +776,90 @@
     return true;
   }
 
-  function sortFacts(arr) {
-    const byPaperDate = f => pubDateOf(f);
-    return arr.sort((a, b) => {
-      if (sortBy === 'political') return b.political - a.political || b.truth - a.truth || byPaperDate(b).localeCompare(byPaperDate(a));
-      if (sortBy === 'truth') return b.truth - a.truth || b.political - a.political || byPaperDate(b).localeCompare(byPaperDate(a));
-      if (sortBy === 'date') return byPaperDate(b).localeCompare(byPaperDate(a)) || b.political - a.political;
-      return a.paperId - b.paperId || a.id.localeCompare(b.id);
+  function applyFilters() {
+    const shown = new Set(KILLER_FACTS.filter(matches).map(f => f.id));
+
+    // All-facts view: toggle each card wrapper.
+    [...allFactsView.querySelectorAll(':scope > .cwrap')].forEach(w => {
+      w.classList.toggle('hidden', !shown.has(w.dataset.fid));
+    });
+
+    // By-paper view: toggle fact wrappers, then whole groups with zero matches.
+    let visiblePapers = 0;
+    [...byPaperView.querySelectorAll(':scope > .pg-wrap')].forEach(gw => {
+      let any = 0;
+      [...gw.querySelectorAll('.cwrap[data-fid]')].forEach(w => {
+        const on = shown.has(w.dataset.fid);
+        w.classList.toggle('hidden', !on);
+        if (on) any++;
+      });
+      gw.classList.toggle('hidden', any === 0);
+      if (any) visiblePapers++;
+    });
+
+    const nPapers = mode === 'paper' ? visiblePapers : new Set(KILLER_FACTS.filter(matches).map(f => f.paperId)).size;
+    resultLine.textContent = `${shown.size} of ${KILLER_FACTS.length} facts, drawn from ${nPapers} sources.`;
+    emptyState.hidden = shown.size !== 0;
+  }
+
+  /* ── Mode toggle ─────────────────────────────────────────── */
+  const modePaperBtn = document.getElementById('modePaper');
+  const modeAllBtn = document.getElementById('modeAll');
+
+  function setMode(m) {
+    mode = m;
+    modePaperBtn.setAttribute('aria-pressed', String(m === 'paper'));
+    modeAllBtn.setAttribute('aria-pressed', String(m === 'all'));
+    byPaperView.hidden = m !== 'paper';
+    allFactsView.hidden = m !== 'all';
+    applyFilters();
+  }
+  modePaperBtn.addEventListener('click', () => setMode('paper'));
+  modeAllBtn.addEventListener('click', () => setMode('all'));
+
+  /* ── Delegated interactions (both views) ─────────────────── */
+  function handleCardEvents(root) {
+    root.addEventListener('click', e => {
+      const cp = e.target.closest('[data-copy]');
+      if (cp) {
+        const f = KILLER_FACTS.find(x => x.id === cp.dataset.copy);
+        const p = paperMap[f.paperId];
+        const text = `"${f.fact}"\n\nSource: ${apaPlain(p)} ${p.sourceUrl}`;
+        navigator.clipboard.writeText(text).then(() => {
+          cp.textContent = 'Copied';
+          cp.classList.add('copied');
+          setTimeout(() => { cp.textContent = 'Copy fact + citation'; cp.classList.remove('copied'); }, 1600);
+        });
+        return;
+      }
+      if (e.target.closest('a, select, input')) return;
+      const card = e.target.closest('.simple-card, .fact-card');
+      if (card) toggleCard(card);
+    });
+    root.addEventListener('keydown', e => {
+      if ((e.key === 'Enter' || e.key === ' ') && e.target.matches('.simple-card, .fact-card')) {
+        e.preventDefault();
+        toggleCard(e.target);
+      }
     });
   }
-
-  function cardHTML(f) {
-    const p = paperMap[f.paperId];
-    const kwChips = (f.keywords || []).map(k => `<span class="chip chip-kw">${esc(KW_LABELS[k] || k)}</span>`).join('');
-    const lowTruth = f.truth <= 2;
-    const accessChip = f.sourceAccess && f.sourceAccess !== 'full'
-      ? `<span class="chip chip-access">Quote from ${esc(f.sourceAccess)}</span>` : '';
-    const cautionChip = lowTruth ? `<span class="chip chip-caution">Use with caution</span>` : '';
-    const pd = formatPubDate(pubDateOf(f));
-    const dateChip = pd ? `<span class="chip chip-date">Published ${esc(pd)}</span>` : '';
-    return `
-    <article class="fact-card fade-in" id="${esc(f.id)}">
-      <div class="fact-chips">
-        <span class="chip chip-rating" title="${esc(f.politicalWhy)}">Political <span class="dots" aria-hidden="true">${dots(f.political)}</span><span class="sr-only">${f.political} of 5</span></span>
-        <span class="chip chip-rating" title="${esc(f.truthWhy)}">Truth <span class="dots" aria-hidden="true">${dots(f.truth)}</span><span class="sr-only">${f.truth} of 5</span></span>
-        <span class="chip">${esc(EV_LABELS[f.evidenceType] || f.evidenceType)}</span>
-        ${dateChip}${cautionChip}${accessChip}${kwChips}
-      </div>
-      <blockquote class="fact-quote">${esc(f.fact)}</blockquote>
-      <p class="fact-plain"><span class="lbl">In plain English:</span> ${esc(f.factPlain)}</p>
-      <div class="fact-caveat${lowTruth ? ' warn' : ''}">
-        <span class="lbl">How to say it</span>${esc(f.caveat)}
-      </div>
-      <p class="fact-meta">
-        ${pubDateOf(f) ? `<strong>Published:</strong> ${esc(pubDateOf(f))}<br>` : ''}
-        <strong>Method:</strong> ${esc(f.methodNote)}<br>
-        <strong>Where it comes from:</strong> ${esc(f.provenance)}${f.suggestedUse ? `<br><strong>Suggested use:</strong> ${esc(f.suggestedUse)}` : ''}<br>
-        <strong>Extracted and rated by:</strong> ${esc(f.model || 'unrecorded')}, ${esc(f.added || '')}
-      </p>
-      <button class="ctx-toggle" aria-expanded="false" data-ctx="${esc(f.id)}-ctx"><span class="chev" aria-hidden="true">&#8250;</span> Show surrounding paragraph</button>
-      <div class="fact-context" id="${esc(f.id)}-ctx" role="region" aria-label="Surrounding paragraph from the source">${esc(f.context)}</div>
-      <div class="fact-footer">
-        <a class="fact-cite" href="${esc(p.sourceUrl)}" target="_blank" rel="noopener noreferrer">${formatAPACitation(p)}</a>
-        <div class="fact-actions">
-          <a class="act-btn" href="./#entry/${p.id}">View in tracker</a>
-          <button class="act-btn" data-copy="${esc(f.id)}">Copy fact + citation</button>
-        </div>
-      </div>
-    </article>`;
+  function toggleCard(card) {
+    const open = card.classList.toggle('open');
+    card.setAttribute('aria-expanded', String(open));
   }
+  handleCardEvents(byPaperView);
+  handleCardEvents(allFactsView);
 
-  function render() {
-    const shown = sortFacts(KILLER_FACTS.filter(matches));
-    resultLine.textContent = `${shown.length} of ${KILLER_FACTS.length} facts, drawn from ${new Set(shown.map(f => f.paperId)).size} sources.`;
-    list.innerHTML = shown.length
-      ? shown.map(cardHTML).join('')
-      : '<div class="empty-state">No facts match the current filters.</div>';
-  }
+  /* ── Init ────────────────────────────────────────────────── */
+  setMode('paper');
 
-  /* ── Delegated interactions ──────────────────────────────── */
-  list.addEventListener('click', e => {
-    const tgl = e.target.closest('.ctx-toggle');
-    if (tgl) {
-      const ctx = document.getElementById(tgl.dataset.ctx);
-      const open = ctx.classList.toggle('open');
-      tgl.setAttribute('aria-expanded', String(open));
-      tgl.innerHTML = `<span class="chev" aria-hidden="true">&#8250;</span> ${open ? 'Hide' : 'Show'} surrounding paragraph`;
-      return;
-    }
-    const cp = e.target.closest('[data-copy]');
-    if (cp) {
-      const f = KILLER_FACTS.find(x => x.id === cp.dataset.copy);
-      const p = paperMap[f.paperId];
-      const text = `"${f.fact}"\n\nSource: ${apaPlain(p)} ${p.sourceUrl}`;
-      navigator.clipboard.writeText(text).then(() => {
-        cp.textContent = 'Copied';
-        cp.classList.add('copied');
-        setTimeout(() => { cp.textContent = 'Copy fact + citation'; cp.classList.remove('copied'); }, 1600);
-      });
-    }
-  });
-
-  render();
-
-  /* Deep link: killer_facts.html#kf-94-1 scrolls to and flashes that fact */
+  /* Deep link: killer_facts.html#kf-94-1 opens that fact in the by-paper view */
   if (location.hash) {
     const el = document.getElementById(location.hash.slice(1));
-    if (el) setTimeout(() => { el.scrollIntoView({ behavior: 'smooth', block: 'center' }); }, 60);
+    if (el && el.classList.contains('simple-card')) {
+      toggleCard(el);
+      setTimeout(() => { el.scrollIntoView({ behavior: 'smooth', block: 'center' }); }, 80);
+    }
   }
 })();
 </script>
