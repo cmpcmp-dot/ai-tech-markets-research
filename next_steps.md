@@ -66,7 +66,7 @@ stronger model re-rate.
 - 160 — Search Remedies in Google Antitrust Case Can Work Even if Company Stays on Top (Tech Policy Press, 2026)
 - 161 — AI Efficiency Can Undermine Accountability Even With Humans in the Loop (Tech Policy Press, 2026)
 
-#### Batch 3 [ ]
+#### Batch 3 [x]
 
 - 162 — Tech Policy Is on the Front Line of Fascism vs. Democracy. Pick a Side. (Tech Policy Press, 2026)
 - 163 — Democratic Governance of AI Is the Real Solution (Jacobin, 2026)
@@ -79,7 +79,7 @@ stronger model re-rate.
 - 204 — Patchwork AI Hiring Laws Create Rising Compliance Risks for Employers (DarrowEverett LLP, 2026)
 - 205 — Is AI Changing the Path to Gender Parity? (World Economic Forum, 2026)
 
-#### Batch 4 [ ]
+#### Batch 4 [x]
 
 - 207 — Recovering Wages and Wealth: What We Deserve in the Age of AI (Economic Security Project, 2026)
 - 208 — Guaranteed Income and Employment in California (Economic Security Project, 2026)
@@ -92,7 +92,7 @@ stronger model re-rate.
 - 230 — How AI Aggregation Affects Knowledge (NBER, 2026)
 - 231 — AI, Human Cognition and Knowledge Collapse (NBER, 2026)
 
-#### Batch 5 [ ]
+#### Batch 5 [x]
 
 - 233 — Medicare's AI Push Snarls Patients and Doctors in Errors and Delays (KFF Health News, 2026)
 - 235 — AI Is Taking Over Hospitals (The Atlantic, 2026)
@@ -105,7 +105,7 @@ stronger model re-rate.
 - 242 — Preparing for the Unpredictable (Brew Markets, 2026)
 - 243 — New Jersey A3481: Revises Homelessness Prevention Program, Establishes Eviction Filing Fee (New Jersey Legislature, 2026)
 
-#### Batch 6 [ ]
+#### Batch 6 [x]
 
 - 245 — Prompt Governance? On Governing Technologies Governed by Natural Language (ACM FAccT, 2026)
 - 246 — Federal Trade Commission's Proposed Policy Statement Concerning the Suppression of Accuracy in Artificial Intelligence Systems (Federal Trade Commission, 2026)
