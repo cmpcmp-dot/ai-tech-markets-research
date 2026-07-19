@@ -1,7 +1,7 @@
 # Killer Facts: next steps
 
 Queue for extracting killer facts from the remaining tracker entries. The pilot
-plus batches 1-12 are done; what remains (119 entries, batches 13-23) is below.
+plus batches 1-13 are done; what remains (109 entries, batches 14-23) is below.
 
 The queue is now sorted newest first by publication year: 2026 papers come first,
 then 2025, and so on. Work the recent years first. Within a year, order does not
@@ -193,7 +193,7 @@ stronger model re-rate.
 - 182 — Stefano Puntoni / Decision-Driven Analytics / Talks at Google (Wharton AI & Analytics Initiative, 2024)
 - 183 — How Marketers Can Adapt to LLM-Powered Search (Wharton AI & Analytics Initiative, 2024)
 
-#### Batch 13 [ ]
+#### Batch 13 [x]
 
 - 184 — AI May Not Be a Job Killer, After All (Wharton AI & Analytics Initiative, 2024)
 - 185 — Meet the AI Expert Advising the White House, JPMorgan, Google and the Rest of Corporate America (Wharton AI & Analytics Initiative, 2024)
