@@ -1,5 +1,5 @@
 // Killer Facts — data layer. Loaded by killer_facts.html as a classic script.
-// Each record is one killer fact extracted per .claude/skills/killer-facts/SKILL.md:
+// Each record is one killer fact extracted per .claude/skills/killer-ai-facts/SKILL.md:
 // a verbatim, number-bearing quote from a tracker source (paperId -> RESEARCH_DATA),
 // rated for political noteworthiness and truthfulness on independent 1-5 scales.
 // Sources that could not be fully read are listed in PENDING_SOURCES.md, not here.

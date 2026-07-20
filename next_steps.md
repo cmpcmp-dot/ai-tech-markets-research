@@ -11,8 +11,8 @@ not spend time there until the recent years are cleared.
 ## How to run a batch
 
 1. Open this file and pick the first unchecked batch (top of the file = most recent year).
-2. Invoke the killer-facts skill (`skills/killer-facts/SKILL.md`, mirrored at
-   `.claude/skills/killer-facts/SKILL.md`) on those paper ids. Follow it
+2. Invoke the killer-ai-facts skill (`skills/killer-ai-facts/SKILL.md`, mirrored at
+   `.claude/skills/killer-ai-facts/SKILL.md`) on those paper ids. Follow it
    exactly: verbatim quotes from fetched text only, abstracts first but verify
    in the body, both rating rubrics, the controlled vocabularies.
 3. Record the extracting model in each fact's `model` field, and copy each

@@ -1,15 +1,15 @@
 ---
-name: killer-facts
-description: Extract 1-3 "killer facts" from a research tracker entry (or a batch of entries) into data/killer-facts-data.js. A killer fact is a short, citable, number-bearing factual statement progressive organizers can drop into press releases and fact sheets. Use when asked to extract killer facts, process new tracker entries for facts, or refresh the killer facts page.
+name: killer-ai-facts
+description: Extract 1-3 "killer facts" from entries in the AI research tracker (data/tracker-data.js, RESEARCH_DATA) in the ai-tech-markets-research repo, into data/killer-facts-data.js for the killer_facts.html page. Use whenever working in this repo and asked to extract killer facts, process new or pending tracker entries for facts, or refresh the killer facts page. For extracting killer facts from arbitrary sources outside this repo's tracker, use the general killer-facts skill instead.
 ---
 
-# Killer Facts for Progressives
+# Killer AI Facts for Progressives
 
 ## Purpose
 
 This skill turns entries in the research tracker (`data/tracker-data.js`, `RESEARCH_DATA`) into **killer facts**: one- to two-sentence factual statements, each with a number or concrete factoid, quoted verbatim from the source, rated for political usefulness and truthfulness, and stored in `data/killer-facts-data.js` for the Killer Facts page (`killer_facts.html`).
 
-The audience is **not just experts**. Progressive organizers, communications staff, and everyday people familiar with the issues should be able to lift a fact, with its citation and its "how to say it" caveat, straight into a press release, fact sheet, testimony, or social post, and have it survive a hostile fact-check.
+The audience is **not just experts**. Progressive organizers, communications staff, and everyday people familiar with the issues should be able to lift a fact, with its citation and its "how to say it” caveat to protect the person from overstating the fact, straight into a press release, fact sheet, testimony, or social post, and have it survive a hostile fact-check.
 
 ## What counts as a killer fact
 
@@ -21,17 +21,18 @@ A killer fact is:
 - **Citable.** It ties to exactly one tracker entry (`paperId`) so a reader can hunt down the methodology.
 - **Usable.** Another researcher or organizer could deploy it without reading the paper.
 
-Extract **one to three** killer facts per paper. If a paper genuinely has none (pure theory, pure commentary with no concrete findings), record zero and say so; do not manufacture one.
+Extract **one to three** killer facts per paper. If a paper genuinely has none (pure theory, pure commentary with no concrete findings), record zero and say so; do not manufacture one. If a paper has **well more than three**, still extract only the top three, and flag the source as foundational (see `foundational` in the schema notes); do not exceed the cap.
 
 ## Where to look: abstracts first, but read the paper
 
 **The best killer facts are almost always in the abstract, executive summary, or key-findings section.** Authors put their strongest, most defensible numbers there. Start there, and treat those passages as your primary hunting ground.
 
-But **you must still read the body of the paper** before finalizing a fact, for three reasons:
+But **you must still read the body of the paper** before finalizing a fact, for four reasons:
 
 1. **Scope.** The abstract's headline number often has a quieter definition in the methods section (exposure vs. displacement, tasks vs. jobs, projection vs. measurement, subgroup vs. population). The `caveat` and `factPlain` fields depend on knowing the real scope.
 2. **Context.** The `context` field is the verbatim paragraph around the fact, and the richest version of a finding sometimes sits in the results section with detail the abstract compresses away.
 3. **Methodology.** The `truth` rating and `methodNote` cannot be assessed from an abstract. Skim methods, sample, and limitations before rating.
+4. **Caveat.** The `caveat` field is there to provide context and limitations of the killer fact, and to understand this it needs to be assessed from the full research picture.
 
 So the workflow is: mine the abstract/summary for candidates, then verify each candidate against the body before recording it.
 
@@ -122,7 +123,9 @@ Records live in `data/killer-facts-data.js` in a `const KILLER_FACTS = [...]` ar
   suggestedUse: "...",         // e.g. "press release or testimony on algorithmic bias in healthcare"
   sourceAccess: "full",        // full | abstract-only | blocked | dead
   model: "Fable 5",            // the AI model that extracted and rated this fact
-  added: "YYYY-MM-DD"          // date extracted
+  added: "YYYY-MM-DD",         // date extracted
+  foundational: true,          // OPTIONAL: source has well over 3 killer facts; omit otherwise
+  foundationalWhy: "..."       // required when foundational: what else is in there and where, with 3-5 one-line stubs of unextracted facts
 }
 ```
 
@@ -130,9 +133,10 @@ Field notes:
 
 - **`pubDate`** is mandatory. It is the source's publication date, copied verbatim from the matching tracker entry's `date` field (do not invent or re-derive it). It powers the "Published" label and the newest-first sort on the Killer Facts page, and it keeps each fact's recency legible without a lookup back into the tracker.
 - **`model`** is mandatory. Record the model that performed the extraction and ratings (e.g. "Fable 5", "Sonnet 5", "Haiku 4.5") — in a fan-out run, the model the subagents ran on. This lets maintainers compare extraction and rating quality across models and re-rate selectively if one model's ratings drift.
-- **`caveat`** is mandatory. It is the one line that keeps a community organizer from overclaiming: say "exposed to automation," not "will lose their jobs"; say "a projection by Goldman Sachs," not "research shows"; note when a finding is short-run, one country, or one sector. If a fact genuinely needs no caveat, write "None needed" deliberately, not by omission.
+- **`caveat`** is mandatory and essential. This is the note to the reader about the limitations and potential vulnerabilities of the fact. An essential part of any research advisor is knowing the limitations of what one knows and protecting the person using this knowledge from being embarrassed in the future. Provide that here. This is the one line that keeps anyone from overclaiming: say "exposed to automation," not "will lose their jobs"; say "a projection by Goldman Sachs," not "research shows"; note when a finding is short-run, one country, or one sector. If a fact genuinely needs no caveat, write "None needed" deliberately, not by omission.
 - **`factPlain`** should read aloud well at a rally or in a one-pager: short sentences, no jargon, no em-dashes, keep the number.
 - **`suggestedUse`** is one concrete deployment, not a list.
+- **`foundational`** flags a source so dense with killer facts that the 1-3 cap leaves real material on the table. The cap still holds: extract the top three, do not raise it. Set `foundational: true` on every record from that source (denormalized, like `pubDate`) and write `foundationalWhy` once and copy it to each: one line on what else is in there and where, then 3-5 one-line stubs of the strongest unextracted candidates (number + topic, no verbatim verification needed, e.g. "ch. 4: union coverage fell 8pp in adopting firms"). The stubs are breadcrumbs for a maintainer-requested deep pass, which needs no schema change, ids just continue kf-<paperId>-4, -5, and so on. Reserve the flag for genuine wellsprings, roughly one source in ten or fewer; if most sources are foundational, none are. The page badges these records.
 
 ## Pending sources
 
@@ -152,4 +156,8 @@ For multi-entry runs, fan out subagents with each agent handling 3-6 entries. Gi
 
 ## Canonical copy
 
-This file is mirrored at `skills/killer-facts/SKILL.md` in the repo root so others can download it (`.claude/` is gitignored except for this skill). When editing either copy, sync the other in the same commit.
+This file is mirrored at `skills/killer-ai-facts/SKILL.md` in the repo root so others can download it (`.claude/` is gitignored except for this skill). When editing either copy, sync the other in the same commit.
+
+## Relationship to the general killer-facts skill
+
+This skill is the project-specific sibling of the general `killer-facts` skill, which extracts killer facts from any source on any topic without this repo's tracker pipeline. The two share their core machinery (verbatim quotes, dual ratings, caveat discipline, evidence types). When improving the rubrics or extraction procedure in one, consider syncing the improvement to the other.

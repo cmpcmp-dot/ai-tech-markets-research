@@ -266,6 +266,8 @@
   .chip-caution { background: rgba(235,195,130,0.3); border-color: var(--gold); color: var(--headline); font-weight: 600; }
   .chip-access { font-style: italic; }
   .chip-kw { background: rgba(112,173,143,0.16); border-color: rgba(112,173,143,0.55); color: var(--headline); }
+  .chip-foundational { background: rgba(235,195,130,0.18); border-color: var(--gold); color: var(--headline); font-weight: 600; cursor: help; }
+  .ctl-check { display: inline-flex; align-items: center; gap: 5px; font-size: 12px; color: var(--headline); cursor: pointer; white-space: nowrap; }
 
   .fact-meta { font-size: 12.5px; color: var(--text); line-height: 1.6; }
   .fact-meta strong { font-weight: 600; color: var(--headline); }
@@ -455,6 +457,7 @@
         <option value="political">Most noteworthy</option>
         <option value="truth">Most rigorous</option>
       </select>
+      <label class="ctl-check" for="kfFoundational"><input type="checkbox" id="kfFoundational"> Foundational sources</label>
     </div>
     <div class="controls-row controls-row2">
       <button class="kw-toggle" id="kwToggle" aria-expanded="false" aria-controls="kwPanel">
@@ -553,7 +556,7 @@
   function dots(n) { return '●'.repeat(n) + '○'.repeat(5 - n); }
 
   /* ── State ───────────────────────────────────────────────── */
-  let q = '', evType = 'all', minPol = 1, minTruth = 1, sortBy = 'date', mode = 'paper';
+  let q = '', evType = 'all', minPol = 1, minTruth = 1, sortBy = 'date', mode = 'paper', onlyFoundational = false;
   const activeKw = new Set();
 
   /* ── Build filter controls ───────────────────────────────── */
@@ -595,6 +598,7 @@
   evSelect.addEventListener('change', e => { evType = e.target.value; applyFilters(); });
   document.getElementById('kfMinPol').addEventListener('change', e => { minPol = +e.target.value; applyFilters(); });
   document.getElementById('kfMinTruth').addEventListener('change', e => { minTruth = +e.target.value; applyFilters(); });
+  document.getElementById('kfFoundational').addEventListener('change', e => { onlyFoundational = e.target.checked; applyFilters(); });
   document.getElementById('kfSort').addEventListener('change', e => { sortBy = e.target.value; resortAll(); resortPapers(); applyFilters(); });
 
   /* ── Shared card fragments ───────────────────────────────── */
@@ -613,13 +617,16 @@
     const caution = f.truth <= 2 ? `<span class="chip chip-caution">Use with caution</span>` : '';
     const access = f.sourceAccess && f.sourceAccess !== 'full'
       ? `<span class="chip chip-access">Quote from ${esc(f.sourceAccess)}</span>` : '';
-    return caution + access;
+    const foundational = f.foundational
+      ? `<span class="chip chip-foundational" title="${esc(f.foundationalWhy || 'This source contains many more citable facts than the ones extracted.')}">Foundational source</span>` : '';
+    return caution + access + foundational;
   }
   function metaHTML(f, opts) {
     const rows = [];
     if (!opts || !opts.skipMethod) rows.push(`<strong>Method:</strong> ${esc(f.methodNote)}`);
     rows.push(`<strong>Where it comes from:</strong> ${esc(f.provenance)}`);
     if (f.suggestedUse) rows.push(`<strong>Suggested use:</strong> ${esc(f.suggestedUse)}`);
+    if (f.foundational && f.foundationalWhy) rows.push(`<strong>Foundational source:</strong> ${esc(f.foundationalWhy)}`);
     rows.push(`<strong>Extracted and rated by:</strong> ${esc(f.model || 'unrecorded')}, ${esc(f.added || '')}`);
     return `<p class="fact-meta">${rows.join('<br>')}</p>`;
   }
@@ -673,7 +680,7 @@
         <div class="pg-facts">${facts.map(simpleCardHTML).join('')}</div>
         <div class="pg-footer">
           <div class="pg-cite">${citeHTML(p, facts[0])}</div>
-          <span class="pg-count">${n} fact${n === 1 ? '' : 's'} &middot; <a class="cite-link" href="./#entry/${p.id}">View in tracker</a></span>
+          <span class="pg-count">${facts.some(f => f.foundational) ? `<span class="chip chip-foundational" title="${esc((facts.find(f => f.foundational) || {}).foundationalWhy || '')}">Foundational source</span> &middot; ` : ''}${n} fact${n === 1 ? '' : 's'} &middot; <a class="cite-link" href="./#entry/${p.id}">View in tracker</a></span>
         </div>
       </section>
     </div></div>`;
@@ -766,11 +773,12 @@
   /* ── Filtering (animated collapse on every keystroke) ────── */
   function matches(f) {
     if (f.political < minPol || f.truth < minTruth) return false;
+    if (onlyFoundational && !f.foundational) return false;
     if (evType !== 'all' && f.evidenceType !== evType) return false;
     if (activeKw.size && ![...activeKw].every(k => (f.keywords || []).includes(k))) return false;
     if (q) {
       const p = paperMap[f.paperId] || {};
-      const hay = [f.fact, f.factPlain, f.caveat, f.provenance, f.suggestedUse, (f.keywords || []).join(' '), p.title, p.source].join(' ').toLowerCase();
+      const hay = [f.fact, f.factPlain, f.caveat, f.provenance, f.suggestedUse, f.foundationalWhy, (f.keywords || []).join(' '), p.title, p.source].join(' ').toLowerCase();
       if (!hay.includes(q)) return false;
     }
     return true;
