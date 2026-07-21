@@ -2410,7 +2410,7 @@ const RESEARCH_DATA = [
     id: 25, date: "2026-02-04", added: "2026-04-30",
     title: "(404) Job Not Found: How Government Can Help AI Education Deliver Real Benefits for Workers",
     source: "Serena Oduro, Anuli Akanegbu — Data & Society",
-    sourceUrl: "https://datasociety.net/library/404-job-not-found-policy-brief/",
+    sourceUrl: "https://datasociety.net/library/404-job-not-found/",
     category: "education", geography: "us",
     keyFinding: "Workers from disadvantaged backgrounds enroll in AI literacy programs but find they lead only to short-term, low-wage, and unsteady work, revealing a fundamental mismatch between digital skilling initiatives and the actual barriers workers face.",
     takeaways: [
