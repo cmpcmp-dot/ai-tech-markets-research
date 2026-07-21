@@ -1093,10 +1093,15 @@
   }
   .pol-press-list a:hover { border-bottom-style: solid; }
   .pol-modal-lastreviewed {
-    margin-top: 4px; padding-top: 12px; border-top: 1px solid var(--border);
+    margin-top: 4px; padding: 12px 0;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
     font-family: 'Public Sans', sans-serif; font-size: 12px; color: var(--muted);
     font-style: italic;
   }
+  /* the section right above the last-reviewed line would otherwise draw a
+     second rule 4px above its border-top */
+  .pol-modal-section:has(+ .pol-modal-lastreviewed) { border-bottom: none; }
   .pol-modal-header {
     display: flex; align-items: flex-start; justify-content: space-between;
     flex-wrap: wrap;
@@ -2713,7 +2718,7 @@
       hdr.className = 'policy-lab-header';
       hdr.innerHTML = `
         <span class="pol-header-title">Policy Lab</span>
-        <span class="theme-intro-line">Twenty-seven policy interventions mapped across four policy domains and five implementation phases. Read across a row to see how each domain's policies escalate from Repair to Transform. Click any policy for rationale, precedents, and supporting research.</span>
+        <span class="theme-intro-line">Twenty-seven policy interventions mapped across ten policy domains and five implementation phases. Read across a row to see how each domain's policies escalate from Repair to Transform. Click any policy for rationale, precedents, and supporting research.</span>
         <span class="theme-disclaimer-line">Synthesized from the research database. Does not constitute policy advice or reflect the opinions of the creator.</span>`;
       area.appendChild(hdr);
 
