@@ -1158,6 +1158,31 @@
   }
   .pol-modal-text { font-size: 14px; color: var(--text); line-height: 1.7; }
   .pol-modal-text.muted { color: var(--muted); }
+
+  /* How it interacts — pairs (green) / competes (amber), echoing the map legend */
+  :root { --rel-pair: #2e8b57; --rel-compete: #b8791a; }
+  @media (prefers-color-scheme: dark) { :root { --rel-pair: #82c4a4; --rel-compete: #ecc784; } }
+  :root[data-theme="dark"] { --rel-pair: #82c4a4; --rel-compete: #ecc784; }
+  :root[data-theme="light"] { --rel-pair: #2e8b57; --rel-compete: #b8791a; }
+  .pol-rel-group { margin-top: 12px; }
+  .pol-rel-group:first-of-type { margin-top: 2px; }
+  .pol-rel-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 4px 26px; }
+  .pol-rel-cols .pol-rel-group { margin-top: 0; }
+  @media (max-width: 720px) { .pol-rel-cols { grid-template-columns: 1fr; gap: 12px; } }
+  .pol-rel-head {
+    display: flex; align-items: center; gap: 8px;
+    font-family: 'Public Sans', sans-serif; font-size: 11px; font-weight: 700;
+    letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 8px;
+  }
+  .pol-rel-head .pol-rel-glyph { width: 20px; border-top: 2.5px solid currentColor; }
+  .pol-rel-head.pairs { color: var(--rel-pair); }
+  .pol-rel-head.competes { color: var(--rel-compete); }
+  .pol-rel-head.competes .pol-rel-glyph { border-top-style: dashed; }
+  .pol-rel-item { padding: 3px 0 3px 12px; border-left: 2px solid var(--border); margin-bottom: 9px; }
+  .g-pairs .pol-rel-item { border-left-color: color-mix(in srgb, var(--rel-pair) 55%, var(--border)); }
+  .g-competes .pol-rel-item { border-left-color: color-mix(in srgb, var(--rel-compete) 55%, var(--border)); }
+  .pol-rel-item .pol-xref { font-size: 13.5px; font-weight: 600; }
+  .pol-rel-why { display: block; font-size: 12.5px; color: var(--muted); line-height: 1.5; margin-top: 2px; }
   .finding-modal-stat {
     font-family: 'Publico Banner', Georgia, serif;
     font-size: 30px; font-weight: 700; line-height: 1; color: var(--accent);
@@ -2679,19 +2704,26 @@
         arr.forEach(item => md.push(`- ${plain(item)}`));
       }
     };
+    const polTitleMD = id => { const t = POLICY_DATA.find(x => x.id === id); return t ? t.title : id; };
+    const relListSection = (label, arr) => {
+      if (Array.isArray(arr) && arr.length) {
+        md.push('', `## ${label}`, '');
+        arr.forEach(r => md.push(`- ${polTitleMD(r.id)}: ${plain(r.why)}`));
+      }
+    };
     section('What it is', p.summary);
     section('The challenge', p.rationale);
     listSection('Strengths', p.strengths);
     listSection('Risks', p.risks);
-    section('Feasibility', p.feasibility);
-    section('Policy considerations', p.considerations);
-    section('Political landscape', p.landscape);
-    section('Precedents, examples & related research', p.precedent);
+    relListSection('Pairs with', p.pairsWith);
+    relListSection('Competes with', p.competesWith);
+    section('Where it stands', p.landscape);
+    section('Precedents and examples', p.precedent);
     if (Array.isArray(p.press) && p.press.length) {
       md.push('', '## Press & resources', '');
       p.press.forEach(it => md.push(`- ${it.label}: ${it.url}`));
     }
-    const fieldText = [p.summary, p.rationale, p.feasibility, p.considerations, p.landscape, p.precedent,
+    const fieldText = [p.summary, p.rationale, p.feasibility, p.landscape, p.precedent,
       ...(p.strengths || []), ...(p.risks || [])].join(' ');
     const citedIds = [...new Set([
       ...(p.paperIds || []),
@@ -2921,19 +2953,33 @@
           <ul class="pol-modal-list">${li(p.risks)}</ul>
         </div>` : '<div></div>'}
       </div>` : '';
-    const feasibilityHTML = p.feasibility ? `
+    // How it interacts — replaces the former Feasibility section. Relationships
+    // are cross-links (.pol-xref) wired to openPolModalById below.
+    const polTitle = id => { const t = POLICY_DATA.find(x => x.id === id); return t ? t.title : id; };
+    const relRow = r => `<div class="pol-rel-item"><a class="pol-xref" data-pol-id="${r.id}" role="link" tabindex="0">${polTitle(r.id)}</a><span class="pol-rel-why">${r.why}</span></div>`;
+    const hasPairs = Array.isArray(p.pairsWith) && p.pairsWith.length;
+    const hasCompetes = Array.isArray(p.competesWith) && p.competesWith.length;
+    const pairsBlock = hasPairs ? `<div class="pol-rel-group g-pairs">
+          <div class="pol-rel-head pairs"><span class="pol-rel-glyph"></span>Pairs with</div>
+          ${p.pairsWith.map(relRow).join('')}
+        </div>` : '';
+    const competesBlock = hasCompetes ? `<div class="pol-rel-group g-competes">
+          <div class="pol-rel-head competes"><span class="pol-rel-glyph"></span>Competes with</div>
+          ${p.competesWith.map(relRow).join('')}
+        </div>` : '';
+    // Two columns (Pairs | Competes) when both exist, mirroring Strengths/Risks;
+    // a single group spans full width rather than leaving a half-empty row.
+    const relInner = (hasPairs && hasCompetes)
+      ? `<div class="pol-rel-cols">${pairsBlock}${competesBlock}</div>`
+      : pairsBlock + competesBlock;
+    const relHTML = (hasPairs || hasCompetes) ? `
       <div class="pol-modal-section">
-        <div class="pol-modal-label">Feasibility</div>
-        <div class="pol-modal-text">${injectPolicyLinks(p.feasibility, paperMap)}</div>
-      </div>` : '';
-    const considerationsHTML = p.considerations ? `
-      <div class="pol-modal-section">
-        <div class="pol-modal-label">Policy considerations</div>
-        <div class="pol-modal-text">${injectPolicyLinks(p.considerations, paperMap)}</div>
+        <div class="pol-modal-label">How it interacts</div>
+        ${relInner}
       </div>` : '';
     const landscapeHTML = p.landscape ? `
       <div class="pol-modal-section">
-        <div class="pol-modal-label">Political landscape</div>
+        <div class="pol-modal-label">Where it stands</div>
         <div class="pol-modal-text">${injectPolicyLinks(p.landscape, paperMap)}</div>
       </div>` : '';
     const pressHTML = (Array.isArray(p.press) && p.press.length) ? `
@@ -2943,7 +2989,7 @@
       </div>` : '';
     const researchSection = `
       <div class="pol-modal-section">
-        <div class="pol-modal-label">Precedents, examples & related research</div>
+        <div class="pol-modal-label">Precedents and examples</div>
         ${p.precedent ? `<div class="pol-modal-text muted">${injectPolicyLinks(p.precedent, paperMap)}</div>` : ''}
         ${basisHTML ? `<div style="border-top:1px solid var(--border);margin-top:14px;padding-top:12px">${basisHTML}</div>` : ''}
       </div>`;
@@ -2958,8 +3004,7 @@
         <div class="pol-modal-text">${injectPolicyLinks(p.rationale, paperMap)}</div>
       </div>
       ${prosConsHTML}
-      ${feasibilityHTML}
-      ${considerationsHTML}
+      ${relHTML}
       ${landscapeHTML}
       ${researchSection}
       ${pressHTML}
