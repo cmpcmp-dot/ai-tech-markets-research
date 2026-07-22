@@ -1,0 +1,3726 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI, Tech and the Economy: Research Intelligence</title>
+<meta name="description" content="A curated research database and synthesis on AI, automation, and the economy: peer-reviewed studies, policy reports, and investigative journalism on labor markets, equity, worker power, and policy responses.">
+<meta name="author" content="Christelle Prophete">
+<meta name="theme-color" content="#FFFFFF" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#14161c" media="(prefers-color-scheme: dark)">
+<link rel="canonical" href="https://cmpcmp-dot.github.io/ai-tech-markets-research/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="AI, Tech and the Economy: Research Intelligence">
+<meta property="og:title" content="AI, Tech and the Economy: Research Intelligence">
+<meta property="og:description" content="A curated research database and synthesis on AI, automation, and the economy: peer-reviewed studies, policy reports, and investigative journalism on labor markets, equity, worker power, and policy responses.">
+<meta property="og:url" content="https://cmpcmp-dot.github.io/ai-tech-markets-research/">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="AI, Tech and the Economy: Research Intelligence">
+<meta name="twitter:description" content="A curated research database and synthesis on AI, automation, and the economy: peer-reviewed studies, policy reports, and investigative journalism on labor markets, equity, worker power, and policy responses.">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "AI, Tech and the Economy: Research Intelligence",
+  "url": "https://cmpcmp-dot.github.io/ai-tech-markets-research/",
+  "description": "A curated research database and synthesis on AI, automation, and the economy: peer-reviewed studies, policy reports, and investigative journalism on labor markets, equity, worker power, and policy responses.",
+  "author": { "@type": "Person", "name": "Christelle Prophete" }
+}
+</script>
+<!-- Privacy-friendly analytics (GoatCounter — free, no cookies, GDPR-friendly).
+     TO ACTIVATE: create a free site at https://www.goatcounter.com/ , then replace
+     YOURCODE below with your code and uncomment the script tag.
+     Prefer Plausible/Fathom/Cloudflare? Swap this single tag for theirs. -->
+<!-- <script data-goatcounter="https://YOURCODE.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script> -->
+<style>
+  @font-face {
+    font-family: 'Publico Banner';
+    src: url('fonts/PublicoBannerBold.otf') format('opentype');
+    font-weight: 700; font-style: normal;
+  }
+  @font-face {
+    font-family: 'Publico Banner';
+    src: url('fonts/PublicoBannerMedium.otf') format('opentype');
+    font-weight: 500; font-style: normal;
+  }
+  @font-face {
+    font-family: 'Publico Banner';
+    src: url('fonts/PublicoBannerRoman.otf') format('opentype');
+    font-weight: 400; font-style: normal;
+  }
+  @font-face {
+    font-family: 'Haas Grotesk';
+    src: url('fonts/HaasGrotDisp55Roman.otf') format('opentype');
+    font-weight: 400; font-style: normal;
+  }
+  @font-face {
+    font-family: 'Public Sans';
+    src: url('fonts/PublicSans-Regular.ttf') format('truetype');
+    font-weight: 400; font-style: normal;
+  }
+  @font-face {
+    font-family: 'Public Sans';
+    src: url('fonts/PublicSans-Medium.ttf') format('truetype');
+    font-weight: 500; font-style: normal;
+  }
+  @font-face {
+    font-family: 'Public Sans';
+    src: url('fonts/PublicSans-SemiBold.ttf') format('truetype');
+    font-weight: 600; font-style: normal;
+  }
+  @font-face {
+    font-family: 'Public Sans';
+    src: url('fonts/PublicSans-Bold.ttf') format('truetype');
+    font-weight: 700; font-style: normal;
+  }
+
+  :root {
+    --bg:       #FFFFFF;
+    --surface:  #FFFFFF;
+    --surface2: #F1F3F7;
+    --border:   #E2E6EF;
+    --text:     #1E2433;
+    --muted:    #6B7280;
+    --accent:   #2563EB;
+    --tooltip-bg: #1e2235;
+    --tooltip-fg: #e8eaf0;
+    --sidebar-w: 252px;
+
+    --c0: #2C3254; --c1: #FF8361; --c2: #472B51; --c3: #70AD8F;
+    --c4: #EBC382; --c5: #2C3254; --c6: #472B51; --c7: #70AD8F;
+    --c8: #FF8361; --c9: #3C4164; --c10: #2C3254; --c11: #70AD8F;
+    --c12: #EBC382; --c13: #B03030;
+
+    --s-emergent: #70AD8F;
+    --s-current:  #2C3254;
+    --s-stale:    #9BA5B5;
+    --g-us:       #2C3254;
+    --g-intl:     #FF8361;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    zoom: 1.05;
+    background: var(--bg); color: var(--text);
+    font-family: 'Public Sans', 'Segoe UI', system-ui, -apple-system, sans-serif;
+    min-height: 100vh; line-height: 1.6;
+    display: flex; flex-direction: column;
+    background-image:
+      radial-gradient(ellipse at 70% 0%, rgba(44,50,84,0.045) 0%, transparent 55%),
+      radial-gradient(ellipse at 15% 80%, rgba(255,131,97,0.03) 0%, transparent 45%);
+  }
+
+  /* ── HEADER ─────────────────────────────────────────────── */
+  .site-header {
+    background: var(--surface);
+    border-top: none;
+    border-bottom: 1px solid var(--border);
+    padding: 24px 32px 22px;
+    position: relative; overflow: hidden; flex-shrink: 0;
+  }
+  .site-header::before { display: none; }
+  .site-header::after  { display: none; }
+  .header-inner {
+    max-width: calc(var(--sidebar-w) + 1100px);
+    margin: 0 auto;
+    display: flex; align-items: center; justify-content: space-between; gap: 24px;
+    position: relative;
+    border-left: 3px solid var(--accent);
+    padding-left: 16px;
+  }
+
+  .header-text { flex: 1; }
+
+  .site-header h1 {
+    font-size: clamp(22px, 2.8vw, 32px); font-weight: 700; letter-spacing: -0.015em;
+    margin-bottom: 6px; color: var(--text);
+    font-family: 'Publico Banner', Georgia, serif;
+  }
+  .site-header h1 a {
+    color: inherit;
+    text-decoration: none;
+  }
+  .site-header h1 a:hover {
+    color: var(--accent);
+  }
+
+  .header-nav {
+    display: flex; align-items: center; gap: 0;
+    flex-shrink: 0;
+  }
+  .header-tabs { display: flex; align-items: center; }
+  .header-tab-desc {
+    border-bottom: 1px solid var(--border);
+    padding: 16px 28px 14px;
+    background: var(--surface);
+    display: flex; flex-direction: column; gap: 3px;
+  }
+  .header-tab-desc-row {
+    display: flex; align-items: center; justify-content: space-between;
+    margin-bottom: 6px;
+  }
+  .header-tab-desc-title {
+    font-size: 18px; font-weight: 700; letter-spacing: -0.01em;
+    color: var(--text);
+    font-family: 'Publico Banner', Georgia, serif;
+  }
+  .header-tab-desc-text {
+    font-size: 14px; color: var(--text); line-height: 1.5;
+    font-family: 'Public Sans', sans-serif;
+  }
+  .header-tab-desc-note {
+    font-size: 12px; color: var(--muted); font-style: italic; line-height: 1.4;
+    font-family: 'Public Sans', sans-serif;
+  }
+  .header-tab-desc-note { display: none; }
+  .header-nav-btn {
+    background: none; border: none; cursor: pointer;
+    font-family: 'Public Sans', sans-serif;
+    font-size: 14px; font-weight: 500; letter-spacing: 0.01em;
+    color: var(--muted); padding: 6px 14px;
+    border-bottom: 2px solid transparent;
+    transition: color 0.15s, border-color 0.15s;
+    white-space: nowrap;
+  }
+  .header-nav-btn:hover { color: var(--text); }
+  .header-nav-btn.active {
+    color: var(--text); font-weight: 600;
+    border-bottom-color: var(--accent);
+  }
+
+  /* ── APP LAYOUT ─────────────────────────────────────────── */
+  .app-layout {
+    display: grid;
+    grid-template-columns: var(--sidebar-w) 1fr;
+    grid-template-rows: auto 1fr;
+    flex: 1;
+    max-width: calc(var(--sidebar-w) + 1100px);
+    margin: 0 auto; width: 100%;
+  }
+  .header-tab-desc {
+    grid-column: 1 / -1;
+  }
+  .sidebar     { grid-column: 1; grid-row: 2; }
+  .main-content { grid-column: 2; grid-row: 2; }
+  .strategy-view .sidebar { display: none; }
+  .strategy-view .app-layout { grid-template-columns: 1fr; }
+  .strategy-view .main-content { grid-column: 1 / -1; }
+  .strategy-view .inline-filters { display: none; }
+  .strategy-view .app-layout { max-width: calc(var(--sidebar-w) + 1100px); }
+  .strategy-view .cards-area { padding: 8px 0 40px; }
+  .strategy-view .cards-grid { display: block; }
+  .strategy-view .themes-grid { display: flex; flex-direction: column; width: 100%; gap: 0; }
+  .strategy-view .theme-card { width: 100%; border-radius: 0; border-left: none; border-right: none; border-top: none; }
+
+  #themeTabNav {
+    display: flex; align-items: center; justify-content: flex-start; gap: 6px;
+    flex-wrap: wrap; min-width: 0; flex: 1;
+  }
+
+  .theme-jump-pill {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-size: 12px; font-weight: 500; cursor: pointer; white-space: nowrap;
+    background: none; border: 1px solid var(--border); border-radius: 20px;
+    padding: 4px 11px; color: var(--muted); font-family: inherit;
+    transition: border-color 0.15s, color 0.15s, background 0.15s;
+  }
+  .theme-jump-pill:hover {
+    border-color: var(--accent); color: var(--text);
+  }
+  .theme-jump-pill.active {
+    color: var(--accent); border-color: var(--accent);
+    background: rgba(37,99,235,0.07); font-weight: 600;
+  }
+
+  .theme-nav-strip {
+    display: none; align-items: center; gap: 10px;
+    padding: 10px 28px; border-bottom: 1px solid var(--border);
+    background: var(--bg);
+  }
+  .strategy-view .theme-nav-strip { display: flex; }
+  .research-header-bar { display: none !important; }
+  .cards-view .research-header-bar { display: block; }
+
+  .theme-disclaimer-bar {
+    display: none; padding: 14px 28px 13px;
+    border-bottom: 1px solid var(--border);
+    font-family: 'Haas Grotesk', 'Helvetica Neue', Arial, sans-serif;
+  }
+  .strategy-view .theme-disclaimer-bar { display: none; }
+  .theme-intro-line {
+    display: block; font-size: 13px; font-weight: 500; font-style: normal;
+    color: var(--text); margin-bottom: 3px;
+  }
+  .theme-disclaimer-line {
+    display: block; font-size: 11px; font-style: italic; color: var(--muted);
+  }
+
+  /* ── KEY FINDINGS BAND ───────────────────────────────────── */
+  .key-findings-band {
+    display: none; padding: 16px 0 2px;
+    margin-top: 8px; border-top: 1px solid var(--border);
+  }
+  .cards-view .key-findings-band { display: block; }
+  .key-findings-label {
+    font-family: 'Publico Banner', Georgia, serif;
+    font-size: 16px; font-weight: 700; letter-spacing: -0.01em;
+    color: var(--text); margin-bottom: 11px;
+  }
+  .key-findings-row {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+    gap: 10px;
+  }
+  .key-finding-card {
+    display: flex; flex-direction: column; gap: 5px;
+    background: var(--surface); border: 1px solid var(--border); border-radius: 10px;
+    padding: 13px 15px 11px; cursor: pointer; text-align: left;
+    font-family: inherit; transition: border-color 0.15s, box-shadow 0.15s, transform 0.15s;
+  }
+  .key-finding-card:hover, .key-finding-card:focus-visible {
+    border-color: var(--accent);
+    box-shadow: 0 2px 10px rgba(30,36,51,0.08);
+    transform: translateY(-1px);
+  }
+  .key-finding-stat {
+    font-family: 'Publico Banner', Georgia, serif;
+    font-size: 25px; font-weight: 700; line-height: 1.1; letter-spacing: -0.01em;
+    color: var(--accent);
+  }
+  .key-finding-text { font-size: 12px; line-height: 1.45; color: var(--text); }
+  .key-finding-source { font-size: 10.5px; font-style: italic; color: var(--muted); }
+  .key-finding-link {
+    margin-top: auto; padding-top: 7px;
+    font-size: 11px; font-weight: 600;
+    color: var(--accent);
+    font-family: 'Haas Grotesk', 'Helvetica Neue', Arial, sans-serif;
+  }
+
+  /* ── SIDEBAR ─────────────────────────────────────────────── */
+  .sidebar {
+    width: var(--sidebar-w); flex-shrink: 0;
+    border-right: 1px solid var(--border);
+    position: sticky; top: 0; height: 100vh;
+    overflow-y: auto; display: flex; flex-direction: column;
+    scrollbar-width: none;
+  }
+  .sidebar::-webkit-scrollbar { display: none; }
+
+  .stat-item {
+    flex: 1; font-size: 11px; color: var(--muted); text-align: center;
+    padding: 9px 4px 8px;
+    background: var(--surface2); border-radius: 8px;
+    border: 1px solid var(--border);
+  }
+  .stat-item strong {
+    display: block; font-size: 21px; font-weight: 700;
+    color: var(--text); line-height: 1.15; letter-spacing: -0.03em;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .sidebar-section { padding: 0; border-bottom: 1px solid var(--border); }
+  .sidebar-section:last-child { border-bottom: none; }
+  .sidebar-heading {
+    padding: 12px 20px 10px;
+    font-size: 11px; font-weight: 600; letter-spacing: 0.03em;
+    color: var(--muted);
+    font-family: 'Haas Grotesk', 'Helvetica Neue', Arial, sans-serif;
+    display: flex; align-items: center;
+  }
+
+  .sidebar-nav-wrap { padding-bottom: 6px; }
+  .sidebar-search {
+    position: relative; padding: 14px 16px 10px;
+    border-bottom: 1px solid var(--border);
+  }
+  .sidebar-search svg {
+    position: absolute; left: 26px; top: 50%;
+    transform: translateY(-50%); color: var(--muted); pointer-events: none;
+  }
+  .sidebar-search input[type="search"] {
+    width: 100%; background: var(--surface2); border: 1px solid var(--border);
+    color: var(--text); border-radius: 6px; padding: 7px 10px 7px 30px;
+    font-size: 13px; outline: none; transition: border-color 0.18s;
+    font-family: inherit;
+  }
+  .sidebar-search input[type="search"]:focus { border-color: var(--accent); background: var(--surface); }
+  .sidebar-search input[type="search"]::placeholder { color: var(--muted); }
+
+  .nav-item {
+    display: flex; align-items: center; gap: 9px;
+    padding: 6px 20px 6px 18px;
+    cursor: pointer; font-size: 13.5px; color: var(--muted);
+    transition: background 0.14s, color 0.14s;
+    border-left: 2px solid transparent;
+    user-select: none;
+    /* reset button defaults */
+    background: none; border-top: none; border-right: none; border-bottom: none;
+    border-radius: 0; width: 100%; text-align: left; font-family: inherit;
+  }
+  .nav-item:hover { background: var(--surface2); color: var(--text); }
+  .nav-item.active { color: var(--text); background: var(--surface); }
+
+  .nav-label { flex: 1; line-height: 1.35; }
+  .nav-count {
+    font-size: 11px; color: var(--muted); flex-shrink: 0;
+    font-variant-numeric: tabular-nums;
+  }
+  .nav-item.active .nav-count { color: var(--text); }
+
+  .status-nav-item {
+    padding: 6px 20px 8px 18px;
+    cursor: pointer; transition: background 0.14s;
+    border-left: 2px solid transparent;
+    background: none; border-top: none; border-right: none; border-bottom: none;
+    border-radius: 0; width: 100%; text-align: left; font-family: inherit;
+  }
+  .status-nav-item:hover { background: var(--surface2); }
+  .status-nav-item.active { background: var(--surface); }
+  .status-top { display: flex; align-items: center; gap: 8px; font-size: 13.5px; color: var(--muted); }
+  .status-nav-item.active .status-top { color: var(--text); }
+  .status-desc { font-size: 12px; color: var(--muted); margin-top: 2px; padding-left: 17px; line-height: 1.4; opacity: 0; max-height: 0; overflow: hidden; transition: opacity 0.2s, max-height 0.2s; }
+  .status-nav-item.active .status-desc,
+  .status-nav-item:hover .status-desc { opacity: 1; max-height: 40px; }
+
+  /* ── MAIN CONTENT ────────────────────────────────────────── */
+  .main-content { flex: 1; min-width: 0; display: flex; flex-direction: column; }
+
+  .topbar {
+    position: sticky; top: 0; z-index: 100;
+    background: var(--bg); border-bottom: 1px solid var(--border);
+    padding: 12px 28px;
+    display: flex; gap: 10px; align-items: center; flex-wrap: wrap;
+  }
+
+  /* ── Lens toggle ──────────────────────────────────────────────── */
+  .lens-toggle {
+    display: flex; align-items: center;
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 20px; padding: 3px; gap: 2px; flex-shrink: 0;
+  }
+  .lens-btn {
+    padding: 5px 14px; font-size: 12px; font-weight: 500;
+    border: none; background: transparent; border-radius: 16px;
+    cursor: pointer; color: var(--muted); font-family: inherit;
+    transition: all 0.15s; white-space: nowrap; letter-spacing: 0.015em;
+  }
+  .lens-btn.active { background: var(--accent); color: #fff; font-weight: 600; }
+  .lens-btn:hover:not(.active) { color: var(--text); background: rgba(58,97,134,0.07); }
+
+  input[type="search"] {
+    width: 100%; background: var(--surface); border: 1px solid var(--border);
+    color: var(--text); border-radius: 8px; padding: 7px 10px 7px 33px;
+    font-size: 13px; outline: none; transition: border-color 0.18s;
+  }
+  input[type="search"]:focus { border-color: var(--accent); }
+  input[type="search"]::placeholder { color: var(--muted); }
+
+  /* ── STAT BAR ───────────────────────────────────────────── */
+
+  /* ── INLINE FILTERS ─────────────────────────────────────── */
+  .inline-filters {
+    padding: 10px 28px 14px; display: flex; flex-wrap: wrap;
+    align-items: center; gap: 0; border-bottom: 1px solid var(--border);
+    margin-bottom: 20px; row-gap: 2px;
+  }
+  .if-sep { width: 1px; height: 14px; background: var(--border); margin: 0 14px; flex-shrink: 0; }
+  .if-break { flex-basis: 100%; height: 3px; }
+  .if-pill {
+    display: inline-flex; align-items: center;
+    font-size: 13px; font-weight: 400; cursor: pointer;
+    background: none !important; border: none !important;
+    border-radius: 0; padding: 6px 0;
+    color: var(--muted); font-family: inherit;
+    border-bottom: 2px solid transparent;
+    transition: color 0.15s, border-color 0.15s;
+    margin-right: 18px;
+  }
+  .if-pill.active {
+    color: var(--text); font-weight: 600;
+    border-bottom-color: var(--accent);
+  }
+  .sort-btn { margin-right: 0; gap: 5px; }
+  .sort-btn.sort-active { color: var(--text); font-weight: 600; border-bottom-color: transparent; }
+  .if-pill:hover:not(.active) { color: var(--text); }
+  .if-pill-fallback.active { color: var(--text); border-bottom-color: var(--accent); }
+  .if-pill[data-tooltip] { position: relative; }
+  .if-pill[data-tooltip]::after {
+    content: attr(data-tooltip);
+    position: absolute; top: calc(100% + 8px); left: 50%; transform: translateX(-50%);
+    background: var(--tooltip-bg); color: var(--tooltip-fg);
+    font-size: 12px; font-weight: 400; line-height: 1.45;
+    white-space: nowrap; border-radius: 8px; padding: 8px 12px;
+    box-shadow: 0 4px 18px rgba(0,0,0,0.22);
+    pointer-events: none; z-index: 200;
+    opacity: 0; transition: opacity 0.15s;
+  }
+  .if-pill[data-tooltip]:hover::after,
+  .if-pill[data-tooltip]:focus-visible::after { opacity: 1; }
+
+  .sr-only {
+    position: absolute; width: 1px; height: 1px;
+    padding: 0; margin: -1px; overflow: hidden;
+    clip: rect(0,0,0,0); white-space: nowrap; border: 0;
+  }
+
+  /* ── CARD GRID ───────────────────────────────────────────── */
+  .cards-area { padding: 20px 28px 40px; flex: 1; }
+  .cards-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+
+  /* ── CARD ────────────────────────────────────────────────── */
+  .card {
+    background: var(--surface); border: none;
+    border-left: 3px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    border-radius: 0; overflow: visible; position: relative;
+    transition: background 0.15s;
+    padding-left: 16px;
+  }
+  .card:hover {
+    background: #F8FAFE;
+    border-left-color: var(--border);
+  }
+  .card::before { display: none; }
+  .card::after { display: none; }
+  .card.fade-in { animation: fadeUp 0.28s ease both; }
+  @keyframes fadeUp {
+    from { opacity:0; transform:translateY(8px); }
+    to   { opacity:1; transform:translateY(0); }
+  }
+
+  .card-body {
+    display: grid; grid-template-columns: 185px 1fr;
+    gap: 0 32px; padding: 20px 20px 20px 0;
+    position: relative; z-index: 1;
+  }
+  .card-meta-col {
+    display: flex; flex-direction: column;
+    padding-top: 2px; min-width: 0;
+  }
+  .card-meta-col-inst {
+    font-size: 12px; color: var(--muted); line-height: 1.5; margin-top: 10px;
+  }
+  .card-meta-col-inst a { color: var(--accent); text-decoration: none; }
+  .card-meta-col-inst a:hover { text-decoration: underline; }
+  .card-meta-col-type { font-size: 11px; color: var(--muted); opacity: 0.65; margin-top: 3px; }
+  .card-meta-col-date { font-size: 11px; color: var(--muted); opacity: 0.6; margin-top: 6px; }
+  .card-content-col { min-width: 0; }
+
+  .card-section-slug {
+    font-size: 10px; font-weight: 600; letter-spacing: 0.04em;
+    color: var(--muted); font-family: 'Public Sans', 'Helvetica Neue', Arial, sans-serif;
+  }
+
+  .card-title { font-size: 18px; font-weight: 700; line-height: 1.28; margin-bottom: 0; color: var(--text); text-decoration: none; display: block; font-family: 'Publico Banner', Georgia, serif; }
+  a.card-title:hover { text-decoration: underline; text-underline-offset: 3px; text-decoration-color: var(--card-accent, var(--muted)); }
+  .card-finding { font-size: 14px; line-height: 1.7; color: var(--text); margin-bottom: 0; }
+
+  .card-footer { display: flex; align-items: flex-start; gap: 10px; flex-wrap: wrap; }
+
+  .inst-meta { font-size: 11.5px; color: var(--muted); opacity: 0.85; margin-top: 3px; display: block; line-height: 1.4; }
+
+  .expand-btn {
+    display: flex; align-items: center; gap: 4px; font-size: 12px; color: var(--accent);
+    background: none; border: none; cursor: pointer; padding: 0;
+    font-family: inherit; transition: color 0.15s; flex-shrink: 0; white-space: nowrap;
+  }
+  .expand-btn:hover { color: var(--accent); }
+  .expand-btn:hover { opacity: 0.7; }
+  .expand-btn svg { transition: transform 0.24s; }
+  .card.expanded .expand-btn svg { transform: rotate(180deg); }
+
+  /* ── CROSS-VIEW LINKS ───────────────────────────────────────── */
+
+  .pol-basis { margin-top: 10px; }
+  .pol-basis-label {
+    font-family: 'Publico Banner', Georgia, serif;
+    font-size: 16px; font-weight: 700; letter-spacing: -0.01em;
+    color: var(--text); margin-bottom: 8px;
+  }
+
+  .pol-basis-refs { display: flex; flex-direction: column; gap: 8px; }
+  .pol-basis-ref {
+    display: block; font-size: 12px; line-height: 1.55; color: var(--muted);
+    text-decoration: none; word-break: break-word;
+    padding-left: 14px; text-indent: -14px;
+  }
+  .pol-basis-ref em { font-style: italic; }
+  .pol-basis-ref:hover { color: var(--accent); }
+  .pol-basis-related { margin-top: 8px; }
+  .pol-basis-toggle {
+    display: inline-flex; align-items: center; gap: 6px;
+    margin-top: 12px; padding: 4px 0;
+    border: none; background: none; cursor: pointer;
+    color: var(--accent); font-size: 12px; font-weight: 600;
+    font-family: 'Haas Grotesk', 'Helvetica Neue', Arial, sans-serif;
+  }
+  .pol-basis-chevron {
+    display: inline-block; font-size: 15px; line-height: 1;
+    transition: transform 0.15s;
+  }
+  .pol-basis-toggle[aria-expanded="true"] .pol-basis-chevron { transform: rotate(90deg); }
+
+  .takeaways {
+    max-height: 0; overflow: hidden;
+    transition: max-height 0.32s ease, opacity 0.28s ease; opacity: 0;
+  }
+  .card.expanded .takeaways { max-height: 1400px; opacity: 1; }
+  .takeaways-inner { border-top: 1px solid var(--border); margin-top: 12px; padding-top: 12px; }
+
+  .takeaway-item {
+    display: flex; gap: 9px; align-items: baseline;
+    font-size: 13px; color: var(--muted);
+    margin-bottom: 7px; line-height: 1.55;
+  }
+  .takeaway-item:last-child { margin-bottom: 0; }
+  .takeaway-num {
+    font-size: 12px; flex-shrink: 0; color: var(--accent);
+  }
+
+  /* ── VIEW TOGGLE ────────────────────────────────────────── */
+
+  /* ── THEMES VIEW ─────────────────────────────────────────── */
+  .themes-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .theme-card {
+    background: var(--surface); border: none;
+    border-bottom: 1px solid var(--border);
+    border-radius: 0; overflow: visible; position: relative;
+    display: flex; flex-direction: column;
+    grid-column: 1 / -1;
+  }
+  .theme-card::before { display: none; }
+  .theme-card::after  { display: none; }
+  .theme-card-body {
+    display: flex; align-items: flex-start; gap: 36px;
+    padding: 24px 32px 28px; flex: 1;
+    position: relative; z-index: 1;
+  }
+  .theme-card-main { flex: 1; min-width: 0; }
+  .theme-prev-next { margin-top: 28px; }
+
+  /* ── Accessibility: skip link, visually-hidden, heading normalization ── */
+  .skip-link {
+    position: absolute; left: 8px; top: -60px; z-index: 2000;
+    background: var(--accent); color: #fff; padding: 8px 14px;
+    border-radius: 0 0 8px 8px; text-decoration: none; font-size: 14px;
+    font-family: 'Public Sans', 'Segoe UI', system-ui, sans-serif;
+    transition: top 0.15s ease;
+  }
+  .skip-link:focus { top: 0; }
+  .sr-only {
+    position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+    overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+  }
+  /* Headings that replaced styled <div>s keep their look: strip UA margins */
+  .theme-section-heading { margin: 0; padding: 0; font: inherit; display: block; }
+  .card-title-h { margin: 0; font: inherit; display: block; }
+  h2.theme-question, h3.theme-refs-heading, h2.key-findings-label,
+  h2.about-section-label { margin-top: 0; }
+  h2.modal-title, h2.pol-modal-title { margin: 0; }
+
+  /* ── R1/R2: export, copy-cite & deep-link affordances ───────── */
+  .pol-modal-header > div:first-child { flex: 1; min-width: 0; }
+  .pol-modal-actions {
+    display: flex; gap: 8px; flex-wrap: wrap; justify-content: flex-end;
+    flex-shrink: 0; margin: 0 14px 0 16px;
+  }
+  @media (max-width: 720px) {
+    .pol-modal-header { flex-wrap: wrap; }
+    .pol-modal-actions { order: 3; flex-basis: 100%; justify-content: flex-start; margin: 12px 0 0; }
+  }
+  .cite-act, .pol-action-btn, .theme-copy-link {
+    background: var(--surface2); border: 1px solid var(--border); color: var(--accent);
+    border-radius: 7px; padding: 4px 11px; font-size: 12px; font-weight: 600;
+    cursor: pointer; font-family: 'Public Sans', 'Segoe UI', system-ui, sans-serif;
+    transition: background 0.15s, border-color 0.15s; white-space: nowrap;
+  }
+  .pol-action-btn { padding: 5px 12px; }
+  .cite-act:hover, .pol-action-btn:hover, .theme-copy-link:hover {
+    background: color-mix(in srgb, var(--accent) 10%, transparent);
+    border-color: color-mix(in srgb, var(--accent) 40%, transparent);
+  }
+  .cite-act.copied, .pol-action-btn.copied, .theme-copy-link.copied {
+    color: var(--text); border-color: var(--accent);
+  }
+  .cite-btn {
+    display: flex; align-items: center; font-size: 12px; color: var(--accent);
+    background: none; border: none; cursor: pointer; padding: 0;
+    font-family: inherit; white-space: nowrap;
+  }
+  .cite-btn:hover { opacity: 0.7; }
+  .cite-row { display: flex; gap: 8px; margin-top: 10px; flex-wrap: wrap; }
+  .cite-row[hidden] { display: none; }
+  .theme-copy-link { color: var(--muted); font-weight: 500; }
+  .theme-copy-link:hover { color: var(--accent); }
+  .deep-link-flash { outline: 2px solid var(--accent); outline-offset: 3px; }
+  .deep-link-flash.fading { outline-color: transparent; transition: outline-color 1.2s ease; }
+
+  /* R6: theme freshness */
+  .theme-lastreviewed {
+    margin-top: 20px; padding-top: 14px; border-top: 1px solid var(--border);
+    font-family: 'Public Sans', sans-serif; font-size: 12px; color: var(--muted);
+    font-style: italic;
+  }
+
+  /* R5: changelog */
+  .footer-changelog-link { color: var(--accent); text-decoration: none; }
+  .footer-changelog-link:hover { text-decoration: underline; text-underline-offset: 2px; }
+  .clog-group { padding: 14px 0; border-bottom: 1px solid var(--border); }
+  .clog-group:first-child { padding-top: 0; }
+  .clog-group:last-child { border-bottom: none; padding-bottom: 0; }
+  .clog-date {
+    font-family: 'Publico Banner', Georgia, serif;
+    font-size: 15px; font-weight: 700; letter-spacing: -0.01em;
+    color: var(--text); margin: 0 0 8px;
+  }
+  .clog-line { font-size: 13px; line-height: 1.6; color: var(--muted); margin-bottom: 6px; }
+  .clog-entry { display: block; font-size: 13px; line-height: 1.55; margin-bottom: 6px; }
+  .clog-entry a { color: var(--text); text-decoration: none; font-weight: 600; }
+  .clog-entry a:hover { color: var(--accent); }
+  .clog-entry-src { color: var(--muted); font-weight: 400; }
+  .clog-intro { font-size: 13px; line-height: 1.6; color: var(--muted); margin-bottom: 14px; }
+
+  /* R1: print an open policy modal as a clean one-pager (⌘P / Print button) */
+  @media print {
+    body.pol-modal-open > *:not(#polModal) { display: none !important; }
+    body.pol-modal-open #polModal {
+      position: static !important; display: block !important;
+      background: #fff !important; padding: 0 !important; overflow: visible !important;
+    }
+    body.pol-modal-open .pol-modal {
+      max-width: 100% !important; width: 100% !important; max-height: none !important;
+      overflow: visible !important; box-shadow: none !important;
+      border: none !important; border-radius: 0 !important;
+    }
+    body.pol-modal-open .pol-modal-body { overflow: visible !important; max-height: none !important; }
+    body.pol-modal-open .pol-modal-close,
+    body.pol-modal-open .pol-modal-actions,
+    body.pol-modal-open .pol-basis-toggle { display: none !important; }
+    body.pol-modal-open .pol-basis-related { display: flex !important; }
+    body.pol-modal-open .pol-press-list a::after {
+      content: " (" attr(href) ")"; font-size: 9px; color: #555; word-break: break-all;
+    }
+    body.pol-modal-open .syn-cite, body.pol-modal-open .pol-xref { color: inherit; border-bottom: none; }
+  }
+
+  .theme-question {
+    font-size: 25px; font-weight: 700; line-height: 1.25; color: var(--text);
+    margin-bottom: 8px; letter-spacing: -0.02em;
+    font-family: 'Publico Banner', Georgia, serif;
+  }
+  .theme-framing {
+    font-size: 14px; line-height: 1.7; color: var(--text);
+    margin-bottom: 10px;
+    font-family: 'Public Sans', 'Segoe UI', system-ui, sans-serif;
+  }
+  .theme-framing .framing-label { font-weight: 700; }
+  .theme-confidence-note {
+    font-size: 14px; line-height: 1.7; color: var(--text);
+    margin-bottom: 10px;
+    font-family: 'Public Sans', 'Segoe UI', system-ui, sans-serif;
+  }
+  .theme-confidence-note .conf-label {
+    color: var(--text); font-weight: 700;
+  }
+  .theme-section-label {
+    font-family: 'Publico Banner', Georgia, serif;
+    font-size: 17px; font-weight: 700; letter-spacing: -0.01em;
+    color: var(--text); margin-bottom: 8px; margin-top: 24px;
+    padding-top: 20px; border-top: 1px solid var(--border);
+  }
+  .theme-synthesis {
+    font-size: 14px; color: var(--text); line-height: 1.7;
+  }
+  .theme-synthesis p, .theme-implication p { margin: 0 0 9px; }
+  .theme-synthesis p:last-child, .theme-implication p:last-child { margin-bottom: 0; }
+
+  .theme-gaps { display: flex; flex-direction: column; gap: 10px; }
+  .theme-gap-item {
+    display: flex; gap: 9px; align-items: baseline;
+    font-size: 13px; color: var(--muted); line-height: 1.55;
+  }
+  .theme-gap-arrow {
+    color: var(--accent); font-weight: 700; flex-shrink: 0;
+  }
+
+  .theme-working { display: flex; flex-direction: column; gap: 10px; margin-top: 4px; }
+  .theme-working-item {
+    display: flex; gap: 10px; font-size: 13.5px; color: var(--text); line-height: 1.55;
+  }
+  .theme-working-check {
+    color: var(--accent); font-weight: 700; font-size: 13px;
+    flex-shrink: 0; margin-top: 1px;
+  }
+  .theme-risk-wrap { }
+
+  .theme-risk-body {
+    font-size: 13.5px; line-height: 1.6; color: var(--muted);
+  }
+  .theme-risk-body p { margin: 0 0 9px; }
+  .theme-risk-body p:last-child { margin-bottom: 0; }
+  .theme-leverage {
+    margin-top: 14px; padding: 12px 16px;
+    background: color-mix(in srgb, var(--accent) 8%, transparent);
+    border-left: 3px solid var(--accent);
+    border-radius: 0 8px 8px 0;
+  }
+  .theme-leverage-label {
+    font-size: 12px; font-weight: 700;
+    color: var(--accent); margin-bottom: 6px;
+    font-family: 'Haas Grotesk', 'Helvetica Neue', Arial, sans-serif;
+  }
+  .theme-leverage-body {
+    font-size: 13.5px; line-height: 1.6; color: var(--text);
+  }
+  .theme-leverage-body p { margin: 0 0 9px; }
+  .theme-leverage-body p:last-child { margin-bottom: 0; }
+  .theme-gaps-wrap {
+    margin-top: 24px; padding-top: 20px;
+    border-top: 1px solid var(--border);
+  }
+  .theme-gaps-label {
+    font-family: 'Publico Banner', Georgia, serif;
+    font-size: 17px; font-weight: 700; letter-spacing: -0.01em;
+    color: var(--text); margin-bottom: 8px;
+    display: flex; align-items: center; justify-content: space-between;
+    cursor: pointer;
+  }
+  .theme-gaps-count { display: none; }
+
+  .theme-ref {
+    display: block; font-size: 11px; line-height: 1.5; color: var(--muted);
+    text-decoration: none; word-break: break-word;
+    padding-left: 12px; text-indent: -12px;
+  }
+  .theme-ref em { font-style: italic; }
+  .theme-ref:hover { color: var(--accent); }
+  .theme-refs-wrap {
+    margin-top: 24px; padding-top: 20px;
+    border-top: 1px solid var(--border);
+  }
+  .theme-refs-heading {
+    font-family: 'Publico Banner', Georgia, serif;
+    font-size: 17px; font-weight: 700; letter-spacing: -0.01em;
+    color: var(--text); margin-bottom: 12px;
+  }
+  .theme-refs {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(420px, 1fr));
+    gap: 9px 32px;
+  }
+  .theme-refs-toggle {
+    display: inline-flex; align-items: center; gap: 6px;
+    margin-top: 14px; padding: 4px 0;
+    border: none; background: none; cursor: pointer;
+    color: var(--accent); font-size: 12px; font-weight: 600;
+    font-family: 'Haas Grotesk', 'Helvetica Neue', Arial, sans-serif;
+  }
+  .theme-refs-chevron {
+    display: inline-block; font-size: 15px; line-height: 1;
+    transition: transform 0.15s;
+  }
+  .theme-refs-toggle[aria-expanded="true"] .theme-refs-chevron { transform: rotate(90deg); }
+  .theme-refs-related { margin-top: 12px; }
+  .syn-cite {
+    color: var(--accent); text-decoration: none;
+    border-bottom: 1px dotted color-mix(in srgb, var(--accent) 45%, transparent);
+  }
+  .syn-cite:hover { border-bottom-style: solid; }
+  .pol-xref {
+    color: var(--accent); text-decoration: none; cursor: pointer;
+    border-bottom: 1px dotted color-mix(in srgb, var(--accent) 45%, transparent);
+  }
+  .pol-xref:hover { border-bottom-style: solid; }
+  .pol-xref:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 2px; }
+  .if-status-chip {
+    display: inline-flex; align-items: center; gap: 7px;
+    background: color-mix(in srgb, var(--accent) 8%, transparent);
+    border: 1px solid color-mix(in srgb, var(--accent) 30%, transparent);
+    color: var(--text); font-weight: 500;
+  }
+  .if-status-chip:hover { background: color-mix(in srgb, var(--accent) 14%, transparent); }
+  .if-status-dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
+  .if-status-x { font-size: 11px; color: var(--muted); margin-left: 1px; }
+  .if-status-chip:hover .if-status-x { color: var(--text); }
+  .theme-implication-wrap {
+    margin-top: 24px; padding-top: 20px;
+    border-top: 1px solid var(--border);
+    background: none; border-left: none; border-right: none; border-bottom: none;
+  }
+  .theme-implication-label {
+    font-family: 'Publico Banner', Georgia, serif;
+    font-size: 17px; font-weight: 700; letter-spacing: -0.01em;
+    color: var(--text); margin-bottom: 8px;
+  }
+  .theme-implication {
+    font-size: 14px; line-height: 1.7; color: var(--text);
+  }
+  .theme-implication p { margin-bottom: 18px; }
+  .theme-implication p:last-child { margin-bottom: 0; }
+  .impl-label {
+    font-weight: 700; color: var(--text);
+  }
+  .impl-label::after { content: ': '; }
+
+  /* ── THEME CARD HEADER (tag + position) ─────────────────────── */
+
+  /* ── THEME PREV / NEXT NAV ───────────────────────────────────── */
+  .theme-prev-next {
+    display: flex; justify-content: space-between; align-items: center;
+    border-top: 1px solid var(--border); margin-top: 28px; padding-top: 16px;
+    gap: 10px;
+  }
+  .theme-nav-btn {
+    font-size: 13px; font-weight: 400; color: var(--muted);
+    background: none; border: none; border-radius: 0;
+    padding: 0; cursor: pointer; font-family: inherit;
+    transition: color 0.15s;
+    max-width: 46%; display: flex; align-items: center; gap: 6px;
+  }
+  .theme-nav-btn:hover:not(:disabled) { color: var(--text); }
+  .theme-nav-btn:disabled { opacity: 0.35; cursor: default; }
+  .theme-nav-btn .nav-arrow { font-size: 14px; flex-shrink: 0; }
+  .theme-nav-btn .nav-label { line-height: 1.4; }
+
+  /* ── THEME CARD COMPACT / EXPAND ────────────────────────────── */
+
+  /* ── COLLAPSIBLE SECTIONS ───────────────────────────────────── */
+  .theme-section-toggle {
+    display: flex; align-items: center; justify-content: flex-start; gap: 8px;
+    cursor: pointer; user-select: none;
+  }
+  .theme-section-toggle:hover .theme-section-chevron { opacity: 0.9; }
+  .theme-section-chevron {
+    font-size: 18px; color: var(--text); opacity: 1;
+    transition: none; display: inline-block; line-height: 1; font-style: normal;
+    font-weight: 300;
+  }
+  .theme-section-chevron::before { content: '−'; }
+  .theme-section-toggle.is-collapsed .theme-section-chevron::before { content: '+'; }
+  .theme-collapsible {
+    overflow: hidden; max-height: 3000px; opacity: 1;
+    transition: max-height 0.28s ease, opacity 0.2s;
+  }
+  .theme-collapsible.is-collapsed { max-height: 0; opacity: 0; }
+
+  /* ── PAPER THEME BADGES (Papers view) ───────────────────────── */
+  .paper-theme-badge {
+    font-size: 9px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase;
+    border-radius: 20px; padding: 1px 5px; cursor: pointer; white-space: nowrap;
+    border: 1px solid; background: none; font-family: inherit; line-height: 1.4;
+    opacity: 0.55; transition: opacity 0.15s;
+  }
+  .paper-theme-badge:hover { opacity: 1; }
+
+  /* ── FILTER PILLS ───────────────────────────────────────── */
+
+  /* ── EMPTY STATE ─────────────────────────────────────────── */
+  .empty-state { display: none; text-align: center; padding: 80px 20px; color: var(--muted); }
+  .empty-state svg { opacity: 0.25; margin-bottom: 14px; }
+  .empty-state h3 { font-size: 18px; margin-bottom: 7px; color: var(--text); }
+  .empty-state p { font-size: 14px; }
+  .empty-state.visible { display: block; }
+
+  /* ── FOOTER ──────────────────────────────────────────────── */
+  footer {
+    border-top: 1px solid var(--border); padding: 18px 32px;
+    text-align: center; font-size: 12px; color: var(--muted);
+    flex-shrink: 0;
+  }
+
+  /* ── MOBILE SIDEBAR TOGGLE ───────────────────────────────── */
+  .sidebar-toggle {
+    display: none; position: fixed; bottom: 20px; left: 20px; z-index: 300;
+    background: var(--accent); border: none; border-radius: 50%;
+    width: 44px; height: 44px; cursor: pointer;
+    align-items: center; justify-content: center;
+    box-shadow: 0 4px 16px rgba(44,50,84,0.3); color: #fff;
+    transition: transform 0.18s;
+  }
+  .sidebar-toggle:hover { transform: scale(1.06); }
+  .sidebar-backdrop {
+    display: none; position: fixed; inset: 0;
+    background: rgba(35,40,73,0.35); z-index: 199;
+  }
+
+  /* ── FILTER TOGGLE (mobile only) ────────────────────────────── */
+
+  @media (max-width: 900px) {
+    .sidebar {
+      position: fixed; left: calc(0px - var(--sidebar-w)); top: 0;
+      height: 100vh; z-index: 200; background: var(--bg);
+      transition: left 0.25s cubic-bezier(.4,0,.2,1);
+      box-shadow: none;
+    }
+    .sidebar.open { left: 0; box-shadow: 4px 0 24px rgba(44,50,84,0.12); }
+    .sidebar-toggle { display: flex; }
+    .sidebar-backdrop.visible { display: block; }
+    .cards-area { padding: 16px 16px 88px; }
+    .topbar { padding: 10px 16px; flex-wrap: nowrap; }
+    .cards-grid { grid-template-columns: 1fr; }
+    /* Stacked header: title on its own centered row; the tabs and the compact
+       What's-new button share the next row instead of the button getting a
+       full-height row of its own. */
+    .header-inner { flex-wrap: wrap; justify-content: center; gap: 12px; }
+    .header-text { flex-basis: 100%; text-align: center; }
+    .site-header { padding: 20px 20px 18px; }
+
+    /* Filter drawer */
+
+    .inline-filters { display: none; padding: 10px 16px; }
+    .inline-filters.mobile-open { display: flex; }
+
+    /* Theme nav — horizontal scroll instead of wrapping */
+    .theme-nav-strip {
+      overflow-x: auto; flex-wrap: nowrap;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none; padding: 10px 16px;
+    }
+    .theme-nav-strip::-webkit-scrollbar { display: none; }
+    #themeTabNav { flex-wrap: nowrap; }
+
+    /* Policy filterbar — horizontal scroll instead of wrapping */
+
+    /* Touch targets */
+
+    .expand-btn {
+      min-height: 44px; padding: 10px 0;
+    }
+    .theme-nav-btn {
+      min-height: 44px;
+    }
+
+    /* Controls bar */
+
+    /* Policy modal */
+    .pol-modal { padding: 20px 16px 16px; }
+  }
+
+  /* ── SOURCES MODAL ───────────────────────────────────────── */
+
+  .modal-backdrop {
+    display: none; position: fixed; inset: 0; z-index: 500;
+    background: rgba(35,40,73,0.4); backdrop-filter: blur(3px);
+    align-items: center; justify-content: center;
+  }
+  .modal-backdrop.open { display: flex; }
+  .modal {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 14px; padding: 28px 28px 24px;
+    max-width: 640px; width: calc(100% - 40px);
+    max-height: 80vh; display: flex; flex-direction: column;
+    box-shadow: 0 8px 40px rgba(44,50,84,0.18);
+  }
+  .modal-header {
+    display: flex; align-items: center; justify-content: space-between;
+    margin-bottom: 18px; flex-shrink: 0;
+  }
+  .modal-title { font-size: 18px; font-weight: 700; letter-spacing: -0.01em; font-family: 'Publico Banner', Georgia, serif; }
+
+  .modal-close {
+    background: none; border: none; cursor: pointer;
+    color: var(--muted); font-size: 19px; line-height: 1; padding: 4px;
+    border-radius: 6px; transition: color 0.15s;
+  }
+  .modal-close:hover { color: var(--text); }
+  .modal-body { overflow-y: auto; scrollbar-width: thin; }
+  .modal-group { margin-bottom: 18px; }
+  .modal-group:last-child { margin-bottom: 0; }
+  .modal-group-name {
+    font-size: 11px; font-weight: 700; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--accent); margin-bottom: 7px;
+    font-family: 'Haas Grotesk', 'Helvetica Neue', Arial, sans-serif;
+  }
+  .modal-sources-intro {
+    font-size: 13px; color: var(--muted); line-height: 1.55;
+    margin-bottom: 20px; padding-bottom: 16px;
+    border-bottom: 1px solid var(--border); flex-shrink: 0;
+  }
+  .modal-sources-list { display: flex; flex-direction: column; }
+  .modal-source-row {
+    display: flex; flex-direction: column;
+    padding: 9px 0; border-bottom: 1px solid var(--border);
+  }
+  .modal-source-row:last-child { border-bottom: none; padding-bottom: 0; }
+  .modal-source-top { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+  .modal-source-link {
+    font-size: 13px; font-weight: 600; color: var(--text);
+    text-decoration: none; transition: color 0.15s;
+  }
+  .modal-source-link:hover { color: var(--accent); text-decoration: underline; }
+  .modal-source-ext { font-size: 10px; opacity: 0.45; margin-left: 1px; }
+
+  /* ── Policy pop-out modal ───────────────────────────────── */
+  .pol-modal {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 14px; padding: 0;
+    max-width: 940px; width: calc(100% - 40px);
+    max-height: 88vh; display: flex; flex-direction: column;
+    box-shadow: 0 8px 40px rgba(44,50,84,0.2);
+    overflow: hidden;
+    border-top: none;
+  }
+  .pol-modal-list {
+    margin: 0; padding: 0 0 0 18px;
+    display: flex; flex-direction: column; gap: 7px;
+    font-family: 'Public Sans', sans-serif;
+    font-size: 13.5px; line-height: 1.55; color: var(--text);
+  }
+  .pol-modal-list li { padding-left: 2px; }
+  .pol-modal-list li::marker { color: var(--accent); }
+  .pol-modal-twocol {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 22px;
+    padding-bottom: 16px; border-bottom: 1px solid var(--border);
+  }
+  .pol-modal-twocol > div { display: flex; flex-direction: column; gap: 8px; }
+  @media (max-width: 720px) {
+    .pol-modal-twocol { grid-template-columns: 1fr; gap: 18px; }
+  }
+  .pol-press-list {
+    list-style: none; padding: 0; margin: 0;
+    display: flex; flex-direction: column; gap: 6px;
+    font-family: 'Public Sans', sans-serif; font-size: 13.5px; line-height: 1.5;
+  }
+  .pol-press-list a {
+    color: var(--accent); text-decoration: none;
+    border-bottom: 1px dotted color-mix(in srgb, var(--accent) 45%, transparent);
+  }
+  .pol-press-list a:hover { border-bottom-style: solid; }
+  .pol-modal-lastreviewed {
+    margin-top: 4px; padding: 12px 0;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    font-family: 'Public Sans', sans-serif; font-size: 12px; color: var(--muted);
+    font-style: italic;
+  }
+  /* the section right above the last-reviewed line would otherwise draw a
+     second rule 4px above its border-top */
+  .pol-modal-section:has(+ .pol-modal-lastreviewed) { border-bottom: none; }
+  .pol-modal-header {
+    display: flex; align-items: flex-start; justify-content: space-between;
+    flex-wrap: wrap;
+    padding: 20px 22px 16px; flex-shrink: 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .pol-modal-title {
+    font-family: 'Publico Banner', Georgia, serif;
+    font-size: 20px; font-weight: 700; letter-spacing: -0.01em;
+    color: var(--text); line-height: 1.25; flex: 1; margin-right: 12px;
+  }
+  .pol-modal-meta {
+    display: flex; align-items: center; gap: 6px; margin-top: 6px; flex-wrap: wrap;
+  }
+  .pol-modal-level {
+    font-size: 11px; font-weight: 500; color: var(--muted);
+    background: none; border: none; padding: 0; border-radius: 0; letter-spacing: 0;
+    font-family: 'Public Sans', sans-serif;
+  }
+  .pol-modal-meta-sep {
+    display: inline-block; width: 1px; height: 12px;
+    background: var(--border); margin: 0 6px; vertical-align: middle;
+    opacity: 0.8;
+  }
+  .pol-modal-cat {
+    font-size: 11px; font-weight: 500; color: var(--muted);
+    font-family: 'Public Sans', sans-serif;
+  }
+  .pol-modal-phase-desc {
+    font-size: 13px; color: var(--muted); line-height: 1.55;
+    margin-top: 8px; font-family: 'Public Sans', sans-serif;
+    flex-basis: 100%;
+  }
+  .pol-modal-phase-desc:empty { display: none; }
+  .pol-modal-close {
+    background: none; border: none; cursor: pointer;
+    color: var(--muted); font-size: 18px; line-height: 1; padding: 4px;
+    border-radius: 6px; transition: color 0.15s; flex-shrink: 0;
+  }
+  .pol-modal-close:hover { color: var(--text); }
+  .pol-modal-body {
+    overflow-y: auto; scrollbar-width: thin;
+    padding: 18px 22px 22px; display: flex; flex-direction: column; gap: 16px;
+  }
+  .pol-modal-section {
+    display: flex; flex-direction: column; gap: 6px;
+    padding-bottom: 16px; border-bottom: 1px solid var(--border);
+  }
+  .pol-modal-section:last-child { padding-bottom: 0; border-bottom: none; }
+  .pol-modal-label {
+    font-family: 'Publico Banner', Georgia, serif;
+    font-size: 16px; font-weight: 700; letter-spacing: -0.01em;
+    color: var(--text);
+  }
+  .pol-modal-text { font-size: 14px; color: var(--text); line-height: 1.7; }
+  .pol-modal-text.muted { color: var(--muted); }
+
+  /* How it interacts — pairs (green) / competes (amber), echoing the map legend */
+  :root { --rel-pair: #2e8b57; --rel-compete: #b8791a; }
+  @media (prefers-color-scheme: dark) { :root { --rel-pair: #82c4a4; --rel-compete: #ecc784; } }
+  :root[data-theme="dark"] { --rel-pair: #82c4a4; --rel-compete: #ecc784; }
+  :root[data-theme="light"] { --rel-pair: #2e8b57; --rel-compete: #b8791a; }
+  .pol-rel-group { margin-top: 12px; }
+  .pol-rel-group:first-of-type { margin-top: 2px; }
+  .pol-rel-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 4px 26px; }
+  .pol-rel-cols .pol-rel-group { margin-top: 0; }
+  @media (max-width: 720px) { .pol-rel-cols { grid-template-columns: 1fr; gap: 12px; } }
+  .pol-rel-head {
+    display: flex; align-items: center; gap: 8px;
+    font-family: 'Public Sans', sans-serif; font-size: 11px; font-weight: 700;
+    letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 8px;
+  }
+  .pol-rel-head .pol-rel-glyph { width: 20px; border-top: 2.5px solid currentColor; }
+  .pol-rel-head.pairs { color: var(--rel-pair); }
+  .pol-rel-head.competes { color: var(--rel-compete); }
+  .pol-rel-head.competes .pol-rel-glyph { border-top-style: dashed; }
+  .pol-rel-item { padding: 3px 0 3px 12px; border-left: 2px solid var(--border); margin-bottom: 9px; }
+  .g-pairs .pol-rel-item { border-left-color: color-mix(in srgb, var(--rel-pair) 55%, var(--border)); }
+  .g-competes .pol-rel-item { border-left-color: color-mix(in srgb, var(--rel-compete) 55%, var(--border)); }
+  .pol-rel-item .pol-xref { font-size: 13.5px; font-weight: 600; }
+  .pol-rel-why { display: block; font-size: 12.5px; color: var(--muted); line-height: 1.5; margin-top: 2px; }
+  .finding-modal-stat {
+    font-family: 'Publico Banner', Georgia, serif;
+    font-size: 30px; font-weight: 700; line-height: 1; color: var(--accent);
+    margin-bottom: 8px;
+  }
+  .finding-modal-source {
+    display: block; font-size: 13px; line-height: 1.55; color: var(--text);
+    text-decoration: none; margin-bottom: 10px;
+    padding-left: 16px; text-indent: -16px;
+  }
+  .finding-modal-source em { font-style: italic; }
+  .finding-modal-source:hover { color: var(--accent); }
+  .finding-theme-link {
+    border: none; background: none; cursor: pointer; padding: 0;
+    color: var(--accent); font-size: 13px; font-weight: 600;
+    font-family: 'Haas Grotesk', 'Helvetica Neue', Arial, sans-serif;
+  }
+
+  /* ── POLICY LAB VIEW ─────────────────────────────────────── */
+  .policy-view .sidebar              { display: none; }
+  .policy-view .inline-filters       { display: none; }
+
+  .policy-view .theme-nav-strip      { display: none; }
+  .policy-view .theme-disclaimer-bar { display: none; }
+
+  .policy-view .cards-grid           { display: none !important; }
+  .policy-view .empty-state          { display: none !important; }
+  .policy-view .app-layout           { max-width: calc(var(--sidebar-w) + 1100px); grid-template-columns: 1fr; }
+  .policy-view .main-content         { grid-column: 1 / -1; }
+  .policy-view .cards-area           { padding: 0; }
+  #policyArea                        { display: none; }
+  .policy-view #policyArea           { display: block; }
+  #aboutArea                         { display: none; }
+  .about-view #aboutArea             { display: block; }
+  .about-view .sidebar               { display: none; }
+  .about-view .inline-filters        { display: none; }
+
+  .about-view .cards-grid            { display: none; }
+  .about-view .lens-toggle           { display: none; }
+  .about-view .header-tab-desc       { display: none; }
+  .about-view .app-layout            { grid-template-columns: 1fr; }
+  .about-view .main-content          { grid-column: 1 / -1; }
+  .about-content {
+    max-width: 660px; margin: 0 auto; padding: 40px 28px 60px;
+  }
+  .about-section {
+    border-bottom: 1px solid var(--border);
+    padding: 20px 0 24px;
+  }
+  .about-section:last-child { border-bottom: none; }
+  .about-section-label {
+    font-family: 'Publico Banner', Georgia, serif;
+    font-size: 17px; font-weight: 700; letter-spacing: -0.01em;
+    color: var(--text); margin-bottom: 10px;
+  }
+  .about-section-text {
+    font-size: 14px; line-height: 1.75; color: var(--text);
+    font-family: 'Public Sans', sans-serif;
+  }
+  .about-section-text em { font-style: italic; }
+  /* ── What's new (header button + count pill) ─────────────── */
+  /* Styled as a nav item: identical type and spacing to .header-nav-btn,
+     distinguished only by the count pill. */
+  .header-changed-btn {
+    display: inline-flex; align-items: center;
+    background: none; border: none; cursor: pointer;
+    font-family: 'Public Sans', sans-serif;
+    font-size: 14px; font-weight: 500; letter-spacing: 0.01em;
+    color: var(--muted); padding: 6px 14px;
+    border-bottom: 2px solid transparent;
+    transition: color 0.15s;
+    white-space: nowrap;
+  }
+  .header-changed-btn:hover { color: var(--text); }
+  .header-changed-pill {
+    display: inline-flex; align-items: center; justify-content: center;
+    min-width: 18px; height: 18px; padding: 0 5px; margin-left: 7px;
+    border-radius: 999px; background: var(--accent); color: #fff;
+    font-size: 11px; font-weight: 700; line-height: 1;
+  }
+  .header-changed-pill[hidden] { display: none; }
+  @keyframes wc-pulse {
+    0%   { box-shadow: 0 0 0 0 color-mix(in srgb, var(--accent) 45%, transparent); }
+    70%  { box-shadow: 0 0 0 9px transparent; }
+    100% { box-shadow: 0 0 0 0 transparent; }
+  }
+  .header-changed-pill.pulse { animation: wc-pulse 1.3s ease-out 2; }
+  @media (prefers-reduced-motion: reduce) {
+    .header-changed-pill.pulse { animation: none; }
+  }
+  /* Narrow phones: tighten the row so all five nav items share one line */
+  @media (max-width: 560px) {
+    .header-nav-btn, .header-changed-btn { padding: 6px 6px; letter-spacing: 0; }
+  }
+
+  /* ── Policy Lab intro bar (matches theme-disclaimer-bar) ─── */
+  .policy-lab-header {
+    display: none; padding: 14px 28px 13px;
+    border-bottom: 1px solid var(--border);
+    font-family: 'Haas Grotesk', 'Helvetica Neue', Arial, sans-serif;
+  }
+  .policy-view .policy-lab-header { display: none; }
+  .policy-view .lens-toggle { display: none !important; }
+  .pol-header-title {
+    display: block;
+    font-size: 18px; font-weight: 700; color: var(--text);
+    letter-spacing: -0.01em; margin-bottom: 5px;
+    font-family: 'Haas Grotesk', Georgia, serif;
+  }
+
+  /* ── Policy filter bar (matches theme-nav-strip) ─────────── */
+
+  .pol-filter-label {
+    font-size: 13px; font-weight: 400; letter-spacing: 0;
+    color: var(--muted); white-space: nowrap;
+    flex-shrink: 0; margin-right: 10px;
+    font-family: 'Public Sans', 'Helvetica Neue', Arial, sans-serif;
+  }
+
+  /* Disruption chips */
+
+  .pol-empty-msg {
+    display: none; padding: 36px 40px;
+    font-size: 13px; color: var(--muted); font-style: italic;
+  }
+
+  /* ── Policy Matrix ───────────────────────────────────────── */
+  /* ── Policy Overview (Column Grid) ─────────────────────────── */
+  .pol-columns { display: none; }
+  .pol-col {
+    border: 1px solid var(--border);
+    border-radius: 12px; overflow: hidden;
+    border-top: 2px solid color-mix(in srgb, var(--pol-cat-color, var(--border)) 45%, var(--border));
+    background: var(--surface);
+  }
+  .pol-col-header {
+    padding: 12px 14px 10px;
+    background: transparent;
+    border-bottom: 1px solid var(--border);
+  }
+  .pol-col-title {
+    font-size: 15px; font-weight: 700; letter-spacing: -0.01em;
+    color: color-mix(in srgb, var(--pol-cat-color, var(--text)) 45%, var(--text));
+    font-family: 'Publico Banner', Georgia, serif;
+    line-height: 1.3; margin-bottom: 4px;
+  }
+  .pol-col-desc {
+    font-size: 10.5px; color: var(--muted); line-height: 1.45;
+    font-family: 'Haas Grotesk', 'Helvetica Neue', Arial, sans-serif;
+  }
+  .pol-col-count {
+    display: inline-block; font-size: 10px; color: var(--muted);
+    margin-top: 4px; font-variant-numeric: tabular-nums;
+  }
+  .pol-col-distbar { display: none; }
+  .pol-col-distbar-seg { display: none; }
+
+  /* ── Policy matrix layout ─────────────────────────────────── */
+  .pol-waterfall {
+    width: 100%; padding: 32px 28px 60px;
+  }
+  .pol-matrix-header,
+  .pol-matrix-row {
+    display: grid;
+    grid-template-columns: 180px repeat(5, 1fr);
+    gap: 0 20px;
+    padding: 0 28px;
+  }
+  .pol-matrix-header {
+    padding-bottom: 12px;
+    border-bottom: 2px solid var(--border);
+    margin-bottom: 0;
+  }
+  /* Phase column header (top row) */
+  .pol-matrix-phase-col { padding: 8px 0 4px; }
+  .pol-matrix-phase-label {
+    font-family: 'Publico Banner', Georgia, serif;
+    font-size: 15px; font-weight: 700; letter-spacing: -0.01em;
+    color: var(--text); line-height: 1.2;
+  }
+  .pol-matrix-phase-blurb {
+    font-size: 11px; font-weight: 400; color: var(--muted);
+    line-height: 1.5; margin-top: 4px;
+    font-family: 'Public Sans', sans-serif;
+  }
+  /* Category row label (left cell of each row) */
+  .pol-matrix-row {
+    border-top: 1px solid var(--border);
+    padding-top: 16px; padding-bottom: 16px;
+    align-items: start;
+  }
+  .pol-matrix-cat-row-label {
+    padding: 2px 12px 2px 0;
+  }
+  .pol-matrix-cat-label {
+    font-family: 'Publico Banner', Georgia, serif;
+    font-size: 14px; font-weight: 700; letter-spacing: -0.01em;
+    color: var(--text); line-height: 1.3;
+  }
+  .pol-matrix-cat-desc {
+    font-size: 11px; color: var(--muted); line-height: 1.5;
+    margin-top: 3px; font-family: 'Public Sans', sans-serif;
+  }
+  .pol-matrix-cell {
+    display: flex; flex-direction: column; gap: 0; min-height: 4px;
+  }
+  .pol-matrix-card {
+    background: var(--surface); border: none;
+    border-left: 3px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    border-radius: 0; padding: 10px 0 10px 12px; cursor: pointer;
+    transition: background 0.15s, border-color 0.15s;
+    margin-bottom: 4px;
+  }
+  .pol-matrix-card:last-child { margin-bottom: 0; }
+  .pol-matrix-card:hover {
+    background: #F8FAFE;
+    border-left-color: var(--accent);
+  }
+  .pol-matrix-card-phase { display: none; }
+  .pol-matrix-card-title {
+    font-family: 'Public Sans', sans-serif;
+    font-size: 13px; font-weight: 500; line-height: 1.4;
+    color: var(--text);
+  }
+  .pol-matrix-card-open {
+    font-size: 11px; color: var(--muted); display: none;
+    margin-top: 4px; font-family: 'Public Sans', sans-serif;
+    transition: color 0.15s;
+  }
+  .pol-matrix-card:hover .pol-matrix-card-open { display: block; color: var(--text); }
+  /* View mode toggle */
+
+  .pol-item-list {
+    display: flex; flex-direction: column; gap: 8px; padding: 10px;
+  }
+  .pol-item-wrap {
+    border: 1px solid color-mix(in srgb, var(--level-color, var(--border)) 18%, var(--border));
+    border-radius: 10px; overflow: hidden; position: relative;
+    background: color-mix(in srgb, var(--level-color, #ffffff) 6%, #ffffff);
+    transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+  }
+  .pol-item-wrap::before {
+    content: ''; position: absolute; inset: 0; border-radius: inherit;
+    background: linear-gradient(135deg, var(--level-color, transparent) 0%, transparent 45%);
+    opacity: 0.06; pointer-events: none; z-index: 0;
+  }
+  .pol-item-wrap::after {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+    background: linear-gradient(to right, color-mix(in srgb, var(--level-color, transparent) 60%, transparent) 0%, transparent 65%);
+    border-radius: 10px 10px 0 0;
+  }
+  .pol-item-wrap:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 16px rgba(44,50,84,0.1);
+    border-color: color-mix(in srgb, var(--level-color, var(--border)) 35%, var(--border));
+  }
+  .pol-item {
+    display: flex; flex-direction: row; align-items: flex-start; gap: 8px;
+    padding: 10px 12px 11px; cursor: pointer;
+    position: relative; z-index: 1;
+  }
+  .pol-item-badge {
+    display: inline-block; flex-shrink: 0; margin-top: 1px;
+    font-size: 10px; font-weight: 500; letter-spacing: 0.01em;
+    color: color-mix(in srgb, var(--level-color, var(--muted)) 65%, var(--muted));
+    background: color-mix(in srgb, var(--level-color, var(--muted)) 7%, transparent);
+    border: 1px solid color-mix(in srgb, var(--level-color, var(--muted)) 18%, var(--border));
+    border-radius: 4px; padding: 2px 7px;
+    white-space: nowrap;
+  }
+  .pol-item-title {
+    font-size: 11.5px; font-weight: 500; color: var(--text); line-height: 1.35; flex: 1;
+  }
+  .pol-item-wrap:hover .pol-item-title { color: var(--accent); }
+
+  @media (max-width: 700px) {
+    .policy-lab-header { padding-left: 16px; padding-right: 16px; }
+
+    .pol-columns { padding-left: 16px; padding-right: 16px; grid-template-columns: 1fr; }
+
+    /* Policy Lab waterfall: stack by category, phase as a per-card label */
+    .pol-waterfall { padding: 18px 16px 40px; }
+    .pol-matrix-header { display: none; }
+    .pol-matrix-row { display: block; grid-template-columns: none; gap: 0; padding: 16px 16px 6px; }
+    .pol-matrix-cat-row-label { padding: 0 0 10px; }
+    .pol-matrix-cell { display: block; }
+    .pol-matrix-cell:empty { display: none; }
+    .pol-matrix-card { margin-bottom: 8px; padding: 9px 12px; }
+    .pol-matrix-card-phase {
+      display: block; font-size: 10px; font-weight: 700; letter-spacing: 0.07em;
+      text-transform: uppercase; color: var(--muted); margin-bottom: 3px;
+      font-family: 'Haas Grotesk', 'Helvetica Neue', Arial, sans-serif;
+    }
+    .pol-matrix-card-open { display: block; }
+  }
+
+  /* ── FOCUS STYLES (Fix 1) ────────────────────────────────── */
+  :focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+    border-radius: 3px;
+  }
+  button:focus-visible, [role="button"]:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+  }
+
+  /* ── DARK MODE (auto, follows OS) ─────────────────────────── */
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg:       #14161c;
+      --surface:  #1c1f28;
+      --surface2: #262b36;
+      --border:   #333947;
+      --text:     #e6e8f0;
+      --muted:    #9aa3b4;
+      --accent:   #6fa1f5;
+      --tooltip-bg: #e6e8f0;
+      --tooltip-fg: #14161c;
+      --c0: #8b96c8; --c1: #ff9a7d; --c2: #b48fc4; --c3: #82c4a4;
+      --c4: #ecc784; --c5: #8b96c8; --c6: #b48fc4; --c7: #82c4a4;
+      --c8: #ff9a7d; --c9: #8a93bd; --c10: #8b96c8; --c11: #82c4a4;
+      --c12: #ecc784; --c13: #e57373;
+      --s-emergent: #82c4a4; --s-current: #8b96c8; --s-stale: #9BA5B5;
+      --g-us: #8b96c8; --g-intl: #ff9a7d;
+    }
+    /* gap arrows use theme color via inline --theme-color; keep them on the accent */
+    .theme-gap-arrow { color: var(--accent); }
+    .header-changed-pill { color: #11161f; }
+  }
+</style>
+</head>
+<body>
+
+<a class="skip-link" href="#mainContent">Skip to main content</a>
+
+<!-- ═══════════════════════════════════════════════════════════
+     DATA
+     ═══════════════════════════════════════════════════════════ -->
+<script src="data/tracker-data.js"></script>
+
+<!-- ═══════════════════════════════════════════════════════════
+     HTML
+     ═══════════════════════════════════════════════════════════ -->
+
+<header class="site-header">
+  <div class="header-inner">
+    <div class="header-text">
+      <h1><a href="https://cmpcmp-dot.github.io/ai-tech-markets-research/">AI, Tech and the Economy: Research Intelligence</a></h1>
+    </div>
+    <nav class="header-nav" aria-label="Primary">
+      <div class="header-tabs" role="tablist" aria-label="Select view">
+        <button class="header-nav-btn" id="viewCards" role="tab" aria-selected="false" aria-controls="viewPanel">Research</button>
+        <button class="header-nav-btn active" id="viewThemes" role="tab" aria-selected="true" aria-controls="viewPanel">Themes</button>
+        <button class="header-nav-btn" id="viewPolicy" role="tab" aria-selected="false" aria-controls="viewPanel">Policy Lab</button>
+        <button class="header-nav-btn" id="viewAbout" role="tab" aria-selected="false" aria-controls="viewPanel" aria-label="About this site">About</button>
+      </div>
+      <button class="header-changed-btn" id="whatsChangedBtn" aria-label="What's New">What's New<span class="header-changed-pill" id="whatsChangedPill" hidden></span></button>
+    </nav>
+    <div style="display:none;">
+      <button id="aboutInfoBtn" aria-label="About this site"></button>
+      <button id="sourcesInfoBtn" aria-label="View sources"></button>
+    </div>
+  </div>
+</header>
+
+<div id="viewAnnounce" class="sr-only" aria-live="polite" aria-atomic="true"></div>
+
+<main class="app-layout" id="mainContent" tabindex="-1">
+
+  <!-- ── SIDEBAR ── -->
+  <aside class="sidebar" id="sidebar">
+
+    <div class="sidebar-search">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+        <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+      </svg>
+      <input type="search" id="searchInput" placeholder="Search…" aria-label="Search the research database">
+    </div>
+
+    <div class="sidebar-section" id="secCategory">
+      <div class="sidebar-nav-wrap"><div id="catNav"></div></div>
+    </div>
+
+  </aside>
+
+  <div class="header-tab-desc" id="headerTabDesc">
+    <div class="header-tab-desc-row">
+      <span class="header-tab-desc-title" id="headerTabDescTitle">Research</span>
+      <div class="lens-toggle" role="group" aria-label="Research lens">
+        <button class="lens-btn active" id="lensGeneral" data-lens="general" title="Written for a broad audience" aria-label="General lens: written for a broad audience">General</button>
+        <button class="lens-btn" id="lensEconomist" data-lens="economist" title="Peer-reviewed and institutional research, organized around economic outcomes" aria-label="Focused lens: peer-reviewed and institutional research, organized around economic outcomes">Focused</button>
+      </div>
+    </div>
+    <span class="header-tab-desc-text" id="headerTabDescText">A curated database of peer-reviewed studies, policy reports, and investigative journalism on AI, automation, and labor markets.</span>
+    <div class="key-findings-band" id="keyFindingsBand">
+      <h2 class="key-findings-label">From recent research</h2>
+      <div class="key-findings-row" id="keyFindingsRow"></div>
+    </div>
+    <span class="header-tab-desc-note" id="headerTabDescNote">Summaries and key findings are AI-generated and reviewed for accuracy. Always consult the original source before citing.</span>
+  </div>
+
+  <!-- ── MAIN ── -->
+  <div class="main-content" id="viewPanel" role="tabpanel" aria-labelledby="viewThemes">
+
+    <div class="research-header-bar">
+      <span class="pol-header-title">Research</span>
+      <span class="theme-intro-line" id="researchIntroLine">A curated database of peer-reviewed studies, policy reports, and investigative journalism on AI, automation, and labor markets.</span>
+      <span class="theme-disclaimer-line">Summaries and key findings are AI-generated and reviewed for accuracy on an ongoing basis. Always consult the original source before citing.</span>
+    </div>
+
+
+
+    <span id="resultCount" style="display:none" aria-live="polite" aria-atomic="true"></span>
+
+    <div class="inline-filters" id="inlineFilters"></div>
+
+    <div class="theme-disclaimer-bar">
+      <span class="pol-header-title">Themes</span>
+      <span class="theme-intro-line">Cross-cutting syntheses of the research database — each framing a key question, evidence consensus, and implications for institutions.</span>
+      <span class="theme-disclaimer-line">Synthesized from the research database. Does not constitute strategic advice or reflect the opinions of the creator.</span>
+    </div>
+    <div class="theme-nav-strip">
+      <div id="themeTabNav"></div>
+    </div>
+
+    <div class="cards-area">
+      <div id="policyArea"></div>
+      <div id="aboutArea">
+        <div class="about-content">
+          <div class="about-section">
+            <h2 class="about-section-label">Purpose</h2>
+            <p class="about-section-text">This tracker curates and synthesizes research at the intersection of artificial intelligence, automation, and the economy. It aggregates peer-reviewed studies, policy reports, and investigative journalism into a structured database, then synthesizes that research into cross-cutting themes and a policy framework, to support institutional positioning, workforce strategy, and policy analysis.</p>
+          </div>
+          <div class="about-section">
+            <h2 class="about-section-label">What&rsquo;s included</h2>
+            <p class="about-section-text">The database covers AI&rsquo;s economic and labor impacts across 14 research categories, from labor markets and worker power to equity, criminal justice, and macroeconomic risk. Entries are selected for relevance to those impacts, the credibility of the source, and coverage across categories and viewpoints. Source types include peer-reviewed research, institutional and government reports, and investigative journalism, and every entry links to its original, publicly available publication.</p>
+          </div>
+          <div class="about-section">
+            <h2 class="about-section-label">How to read it</h2>
+            <p class="about-section-text"><strong>Three tabs.</strong> Research is the full, filterable database of individual sources. Themes synthesizes the database into cross-cutting questions, each with the evidence, what is working, the risks, and the implications. Policy Lab maps policy interventions across categories and five implementation phases.</p>
+            <p class="about-section-text"><strong>Confidence.</strong> Each theme is tagged Strong consensus (independent research streams converge), Emerging evidence (the direction is clear but still developing), or Contested (credible researchers reach different conclusions).</p>
+            <p class="about-section-text"><strong>Lens.</strong> The General lens is written for a broad audience. The Focused lens filters to peer-reviewed and institutional research, organized around economic outcome domains.</p>
+          </div>
+          <div class="about-section">
+            <h2 class="about-section-label">Updates</h2>
+            <p class="about-section-text">The database is updated as new research emerges. The current build date appears in the footer, and a dated feed of additions and policy reviews is available in the <a href="#changelog">What&rsquo;s New log</a>, reachable from the header (where a count marks entries added since your last look) and the footer.</p>
+          </div>
+          <div class="about-section">
+            <h2 class="about-section-label">Sourcing &amp; AI</h2>
+            <p class="about-section-text">Every entry links to a named, publicly available source, and its summary is checked against that original. Summaries, key findings, and takeaways are drafted with AI assistance and reviewed for accuracy. They are orientation aids, not substitutes for the source: always consult the primary publication before citing or acting on a finding.</p>
+          </div>
+          <div class="about-section">
+            <h2 class="about-section-label">Created by</h2>
+            <p class="about-section-text">Christelle Prophete. This site is independently maintained. The content does not reflect the opinions or perspectives of the creator.</p>
+          </div>
+        </div>
+      </div>
+      <div class="cards-grid" id="cardsGrid"></div>
+      <div class="empty-state" id="emptyState">
+        <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+          <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+        </svg>
+        <h3>No results</h3>
+        <p>Try adjusting your search or clearing filters.</p>
+        <button id="emptyStateClear" style="display:none;margin-top:12px;background:var(--surface2);border:1px solid var(--border);color:var(--accent);border-radius:8px;padding:7px 16px;font-size: 13px;cursor:pointer;font-family:inherit">Clear all filters</button>
+      </div>
+    </div>
+
+  </div><!-- /main-content -->
+
+</main><!-- /app-layout -->
+
+<footer>
+  AI, Tech and the Economy: Research Intelligence ·
+  Created by Christelle Prophete ·
+  Last updated <span id="headerLastUpdated"></span> ·
+  <a class="footer-changelog-link" href="#changelog">What's New</a>
+</footer>
+
+
+<!-- About Modal -->
+<div class="modal-backdrop" id="aboutModal">
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="aboutModalTitle">
+    <div class="modal-header">
+      <h2 class="modal-title" id="aboutModalTitle">About</h2>
+      <button class="modal-close" id="aboutModalClose" aria-label="Close">✕</button>
+    </div>
+    <div class="modal-body" id="aboutModalBody">
+      <div class="modal-group">
+        <div class="modal-group-name">Purpose</div>
+        <p class="modal-sources-intro">This tracker is a curated research intelligence tool at the intersection of artificial intelligence, automation, and labor markets. It aggregates peer-reviewed studies, policy reports, and investigative journalism into a structured database — and synthesizes that research into strategic themes and policy frameworks — to support institutional positioning, workforce strategy, and policy analysis.</p>
+      </div>
+      <div class="modal-group">
+        <div class="modal-group-name">Created by</div>
+        <p class="modal-sources-intro">Christelle Prophete. This site is independently maintained and updated as new research emerges. The content does not reflect the opinions or perspectives of the creator.</p>
+      </div>
+      <div class="modal-group">
+        <div class="modal-group-name">Research tab</div>
+        <p class="modal-sources-intro">A filterable card database of individual research entries, tagged by category and geographic scope. Cards can be filtered by category and geography, or searched by title, source, or finding.</p>
+      </div>
+      <div class="modal-group">
+        <div class="modal-group-name">Themes tab</div>
+        <p class="modal-sources-intro">Cross-cutting syntheses of the research database. Each theme frames a key strategic question, presents an evidence consensus, identifies implications for institutional actors, and notes gaps in the current evidence base. Themes carry an editorial confidence rating: <em>Strong consensus</em>, <em>Emerging evidence</em>, or <em>Contested</em>.</p>
+      </div>
+      <div class="modal-group">
+        <div class="modal-group-name">Policy Lab tab</div>
+        <p class="modal-sources-intro">Twenty-seven policy interventions organized by category and mapped to five stages of AI-driven labor disruption — from <em>Repair</em> (fixes needed regardless of AI's trajectory) through <em>Transform</em> (responses to large-scale displacement of the workforce). Each policy card includes a plain-language description, an account of the implementation challenge, and links to supporting research in the database. Does not constitute policy advice.</p>
+      </div>
+      <div class="modal-group">
+        <div class="modal-group-name">AI Disclaimer</div>
+        <p class="modal-sources-intro">Summaries, key findings, and takeaways are AI-generated and reviewed for accuracy on an ongoing basis. They are intended as orientation aids — not substitutes for reading the original source. Always consult the primary publication before citing or acting on any finding.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Policy pop-out modal -->
+<div class="modal-backdrop" id="polModal" role="dialog" aria-modal="true" aria-labelledby="polModalTitle">
+  <div class="pol-modal">
+    <div class="pol-modal-header">
+      <div>
+        <h2 class="pol-modal-title" id="polModalTitle"></h2>
+        <div class="pol-modal-meta">
+          <span class="pol-modal-level" id="polModalLevel"></span>
+          <span class="pol-modal-meta-sep"></span>
+          <span class="pol-modal-cat" id="polModalCat"></span>
+        </div>
+      </div>
+      <div class="pol-modal-actions" id="polModalActions"></div>
+      <button class="pol-modal-close" id="polModalClose" aria-label="Close">✕</button>
+      <div class="pol-modal-phase-desc" id="polModalPhaseDesc"></div>
+    </div>
+    <div class="pol-modal-body" id="polModalBody"></div>
+  </div>
+</div>
+
+<!-- Key Finding Modal -->
+<div class="modal-backdrop" id="findingModal" role="dialog" aria-modal="true" aria-labelledby="findingModalStat findingModalTitle">
+  <div class="pol-modal">
+    <div class="pol-modal-header">
+      <div>
+        <div class="finding-modal-stat" id="findingModalStat"></div>
+        <h2 class="pol-modal-title" id="findingModalTitle"></h2>
+      </div>
+      <button class="pol-modal-close" id="findingModalClose" aria-label="Close">✕</button>
+    </div>
+    <div class="pol-modal-body" id="findingModalBody"></div>
+  </div>
+</div>
+
+<!-- Priority Sources Modal -->
+<div class="modal-backdrop" id="sourcesModal">
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal-header">
+      <h2 class="modal-title" id="modalTitle">Sources</h2>
+      <button class="modal-close" id="sourcesModalClose" aria-label="Close">✕</button>
+    </div>
+    <div class="modal-body" id="sourcesModalBody"></div>
+  </div>
+</div>
+
+<!-- Changelog Modal (R5) -->
+<div class="modal-backdrop" id="changelogModal">
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="changelogModalTitle">
+    <div class="modal-header">
+      <h2 class="modal-title" id="changelogModalTitle">What's New</h2>
+      <button class="modal-close" id="changelogModalClose" aria-label="Close">✕</button>
+    </div>
+    <div class="modal-body" id="changelogModalBody"></div>
+  </div>
+</div>
+
+<!-- Mobile sidebar toggle -->
+<button class="sidebar-toggle" id="sidebarToggle" aria-label="Toggle filters">
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+    <line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/>
+  </svg>
+</button>
+<div class="sidebar-backdrop" id="sidebarBackdrop"></div>
+
+
+<!-- ═══════════════════════════════════════════════════════════
+     ENGINE
+     ═══════════════════════════════════════════════════════════ -->
+<script>
+(function () {
+
+  // ── state ────────────────────────────────────────────────────
+  let activeView    = 'cards';
+  let activeCat      = 'all';
+  let activeStatus   = 'all';
+  let activeGeo      = 'all';
+  let activeEvidence = 'all';
+  let searchQuery   = '';
+  let sortOrder     = 'desc';   // 'desc' | 'asc' | 'status'
+  let activeThemeId = THEMES[0].id;
+  let themeShowAll  = false;
+  let activeLens    = 'general'; // 'general' | 'economist'
+  const SORT_STATES = [
+    { order: 'desc',   label: 'Newest first' },
+    { order: 'asc',    label: 'Oldest first' },
+  ];
+  let sortIdx = 0;
+  const STATUS_ORDER = { emergent: 0, current: 1, stale: 2 };
+
+  // ── Economist lens data ───────────────────────────────────────
+  const ECON_INSTITUTIONS = new Set([
+    'Stanford HAI','NBER','NBER Working Paper',
+    'MIT Work of the Future Task Force','MIT Work of the Future',
+    'Cornell ILR School','Brookings Institution','Brookings Metro',
+    'Opportunity@Work & Brookings Metro','New England Journal of Medicine',
+    'Council on Foreign Relations','arXiv','Nature Communications',
+    'Science','NYU Law Review','Philosophy & Technology','ACM FAccT',
+    'University of Michigan Poverty Solutions',
+    'Georgetown Journal on Poverty Law & Policy',
+    'AI Now Institute','AI Now Institute et al.',
+    'AI Now Institute, Aapti Institute, The Maybe',
+    'Data & Society','Data and Society Research Institute',
+    'Georgetown CSET','Georgetown Law Center on Privacy & Technology','Upturn',
+    'Economic Policy Institute','Center for American Progress',
+    'Open Markets Institute','Open Markets Institute & Mozilla',
+    'Open Markets Institute & Mission:data Coalition',
+    'American Economic Liberties Project',
+    'International Labour Organization','OECD Competition Committee',
+    'World Economic Forum','Washington Center for Equitable Growth',
+    'Bipartisan Policy Center','European Parliament Research Service',
+    'German Marshall Fund of the United States',
+    'Tony Blair Institute for Global Change','Centre for Future Generations',
+    'Digitalist Papers','Tech Policy Press',
+    'Resources for the Future / Lincoln Institute',
+    'U.S. National Science Foundation','Anticipation Hub',
+    'AFL-CIO','National Employment Law Project',
+    'National Consumer Law Center','National Fair Housing Alliance',
+    'The Leadership Conference on Civil and Human Rights',
+    'U.S. Equal Employment Opportunity Commission',
+    'U.S. Senate Permanent Subcommittee on Investigations',
+    'U.S. Department of Housing and Urban Development',
+    'Federal Housing Finance Agency','Federal Trade Commission',
+    'National Institute of Standards and Technology',
+    'U.S. Senate','Executive Office of the President',
+    'New Jersey Department of Labor','New Jersey Legislature',
+    'McKinsey Global Institute','Goldman Sachs Global Investment Research',
+    'BCG Henderson Institute','IDC',
+    'Anthropic','OpenAI','OpenAI / University of Pennsylvania',
+    'Wharton AI & Analytics Initiative',
+    'Singapore Parliament','AI Commons Project',
+    'Anton Leicht','AI Futures Project',
+    'National Partnership for Women & Families','Benefits Tech Advocacy Hub',
+    'Luddite Lab / DAIR Institute',
+  ]);
+  const ECON_CAT_TO_SRC = {
+    'econ-labor':  ['hiring','labor','workers'],
+    'econ-macro':  ['macro','corporate'],
+    'econ-dist':   ['equity','wellbeing'],
+    'econ-policy': ['policy','reskilling','education'],
+  };
+  const ECON_CATS = [
+    { id: 'econ-labor',  label: 'Labor Markets',             color: '#2C3254' },
+    { id: 'econ-macro',  label: 'Productivity & Macro',      color: '#3A6186' },
+    { id: 'econ-dist',   label: 'Distribution & Inequality', color: '#FF8361' },
+    { id: 'econ-policy', label: 'Policy & Adjustment',       color: '#70AD8F' },
+  ];
+  const ECON_THEME_CONFIG = {
+    'displacement': 'Do productivity gains reach workers?',
+    'macro-risk':   'Is AI creating systemic financial risk?',
+    'worker-power': 'What leverage do workers have?',
+    'reskilling':   'What adjustment policy actually works?',
+    'equity':       'Who bears the distributional costs?',
+    'policy':       'What governance gaps remain?',
+  };
+  const GENERAL_EXCLUDED = new Set(['macro-risk']);
+
+  // ── lookups ──────────────────────────────────────────────────
+  const catMap = Object.fromEntries(CATEGORIES.map(c => [c.id, c]));
+  const getCat = id => catMap[id] || { label: id, color: '#888' };
+
+  // resolve CSS var to hex for use in inline styles that need a real color
+  const COLOR_MAP = {
+    'var(--c0)':'#2C3254','var(--c1)':'#FF8361','var(--c2)':'#472B51','var(--c3)':'#70AD8F',
+    'var(--c4)':'#EBC382','var(--c5)':'#2C3254','var(--c6)':'#472B51','var(--c7)':'#70AD8F',
+    'var(--c8)':'#FF8361','var(--c9)':'#3C4164','var(--c10)':'#2C3254','var(--c11)':'#70AD8F',
+    'var(--c12)':'#EBC382','var(--c13)':'#B03030','var(--g-us)':'#2C3254','var(--g-intl)':'#FF8361',
+    'var(--s-emergent)':'#70AD8F','var(--s-current)':'#2C3254','var(--s-stale)':'#9BA5B5',
+  };
+  const resolve = v => COLOR_MAP[v] || v;
+
+  // ── utils ────────────────────────────────────────────────────
+  function fmtDate(str) {
+    return new Date(str + 'T00:00:00').toLocaleDateString('en-US',
+      { year: 'numeric', month: 'short', day: 'numeric' });
+  }
+  // ── filter + sort ────────────────────────────────────────────
+  function filteredBase({ excludeCat = false, excludeStatus = false, excludeGeo = false, excludeEvidence = false } = {}) {
+    let data = RESEARCH_DATA.map(r => ({ ...r, _status: calcStatus(r) }));
+    if (activeLens === 'economist') data = data.filter(isEconRelevant);
+    if (!excludeCat && activeCat !== 'all') {
+      const srcCats = ECON_CAT_TO_SRC[activeCat];
+      data = srcCats
+        ? data.filter(r => srcCats.includes(r.category))
+        : data.filter(r => r.category === activeCat);
+    }
+    if (!excludeStatus   && activeStatus   !== 'all') data = data.filter(r => r._status  === activeStatus);
+    if (!excludeGeo      && activeGeo      !== 'all') data = data.filter(r => (r.geography || 'us') === activeGeo);
+    if (!excludeEvidence && activeEvidence !== 'all') data = data.filter(r => getEvidenceType(r) === activeEvidence);
+    if (searchQuery.trim()) {
+      const q = searchQuery.toLowerCase();
+      data = data.filter(r =>
+        r.title.toLowerCase().includes(q) ||
+        r.source.toLowerCase().includes(q) ||
+        r.keyFinding.toLowerCase().includes(q) ||
+        (r.takeaways || []).some(t => t.toLowerCase().includes(q))
+      );
+    }
+    return data;
+  }
+
+  function isEconRelevant(entry) {
+    const evidence = getEvidenceType(entry);
+    const inst = entry.source ? entry.source.split(' — ').pop().trim() : entry.source || '';
+    const excluded = new Set(['criminal-justice', 'surveillance']);
+    if (excluded.has(entry.category)) return false;
+    if (evidence === 'peer-reviewed' || evidence === 'industry') return true;
+    return ECON_INSTITUTIONS.has(inst);
+  }
+
+  function getVisible() {
+    let data = filteredBase();
+    data.sort((a, b) => {
+      if (sortOrder === 'status') {
+        const sd = (STATUS_ORDER[a._status] ?? 3) - (STATUS_ORDER[b._status] ?? 3);
+        if (sd !== 0) return sd;
+        return new Date(b.date) - new Date(a.date);
+      }
+      const d = new Date(a.date) - new Date(b.date);
+      return sortOrder === 'desc' ? -d : d;
+    });
+    return data;
+  }
+
+  // ── sidebar builders ─────────────────────────────────────────
+  function buildSidebarStats() {
+    const el = document.getElementById('sidebarStats');
+    el.innerHTML = `
+      <div class="stat-item"><strong>${RESEARCH_DATA.length}</strong>Entries</div>
+      <div class="stat-item"><strong>${CATEGORIES.length}</strong>Categories</div>
+      <div class="stat-item"><strong>${new Set(RESEARCH_DATA.map(r=>r.source)).size}</strong>Sources</div>`;
+  }
+
+  function buildCatNav() {
+    const el = document.getElementById('catNav');
+    el.innerHTML = '';
+    const mk = (id, label, color, count) => {
+      const isActive = activeCat === id;
+      const d = document.createElement('button');
+      d.className = 'nav-item' + (isActive ? ' active' : '');
+      d.setAttribute('role', 'button');
+      d.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+      d.setAttribute('aria-label', `${label}, ${count} entries`);
+      const hex = resolve(color || '');
+      if (isActive) d.style.borderLeftColor = '#2563EB';
+      d.innerHTML = `
+        <span class="nav-label">${label}</span>
+        <span class="nav-count">${count}</span>`;
+      d.onclick = () => { activeCat = id; render(); };
+      el.appendChild(d);
+    };
+    const base = filteredBase({ excludeCat: true });
+    mk('all', 'All Research', null, base.length);
+    const cats = activeLens === 'economist' ? ECON_CATS : CATEGORIES;
+    cats.forEach(cat => {
+      const srcCats = ECON_CAT_TO_SRC[cat.id];
+      const n = srcCats
+        ? base.filter(r => srcCats.includes(r.category)).length
+        : base.filter(r => r.category === cat.id).length;
+      mk(cat.id, cat.label, cat.color, n);
+    });
+  }
+
+  function buildInlineFilters() {
+    const bar = document.getElementById('inlineFilters');
+    if (!bar) return;
+    bar.innerHTML = '';
+
+    // Active-status chip: when the user lands on the cards view with a status
+    // filter already applied (typically via the What's New banner), show a
+    // visible chip in the filter bar so the filter is both discoverable and
+    // dismissable in one click.
+    if (activeStatus !== 'all') {
+      const sm = STATUS_META[activeStatus] || {};
+      const chip = document.createElement('button');
+      chip.className = 'if-pill if-status-chip';
+      chip.setAttribute('aria-label', `Filtered to ${sm.label || activeStatus}. Click to show all statuses.`);
+      chip.innerHTML = `<span class="if-status-dot" style="background:${sm.dot || 'var(--accent)'}" aria-hidden="true"></span>`
+                     + `<span>${sm.label || activeStatus}</span>`
+                     + `<span class="if-status-x" aria-hidden="true">\u2715</span>`;
+      chip.addEventListener('click', () => { activeStatus = 'all'; render(); });
+      bar.appendChild(chip);
+    }
+
+    const mkPill = (label, color, isActive, onClick, tooltip) => {
+      const btn = document.createElement('button');
+      btn.className = 'if-pill if-pill-fallback';
+      btn.textContent = label;
+      btn.style.setProperty('--pill-color', color);
+      if (tooltip) {
+        btn.dataset.tooltip = tooltip;
+        const descId = 'pill-desc-' + Math.random().toString(36).slice(2);
+        const desc = document.createElement('span');
+        desc.id = descId;
+        desc.className = 'sr-only';
+        desc.textContent = tooltip;
+        btn.setAttribute('aria-describedby', descId);
+        btn.appendChild(desc);
+      }
+      if (isActive) {
+        btn.classList.add('active');
+        try { btn.classList.remove('if-pill-fallback'); } catch(e) {}
+      }
+      btn.addEventListener('click', onClick);
+      return btn;
+    };
+
+    // Methodology pills
+    const evLabel = document.createElement('span');
+    evLabel.className = 'pol-filter-label';
+    evLabel.textContent = 'Methodology:';
+    bar.appendChild(evLabel);
+
+    const evBase = filteredBase({ excludeEvidence: true });
+    bar.appendChild(mkPill('All', 'var(--muted)', activeEvidence === 'all', () => { activeEvidence = 'all'; render(); }));
+    Object.entries(EVIDENCE_META).forEach(([key, em]) => {
+      const n = evBase.filter(r => getEvidenceType(r) === key).length;
+      if (!n) return;
+      bar.appendChild(mkPill(`${em.label} (${n})`, resolve('var(--accent)'), activeEvidence === key, () => { activeEvidence = key; render(); }));
+    });
+
+    // Sort button — right-aligned on the Methodology row
+    const sortIcons = {
+      desc:   '<path d="M3 6h18M7 12h10M11 18h2"/>',
+      asc:    '<path d="M11 6h2M7 12h10M3 18h18"/>',
+      status: '<path d="M3 6h18M3 12h18M3 18h18"/>',
+    };
+    const sortSpacer = document.createElement('span');
+    sortSpacer.style.marginLeft = 'auto';
+    bar.appendChild(sortSpacer);
+    const sb = document.createElement('button');
+    sb.id = 'sortBtn';
+    sb.className = 'if-pill sort-btn' + (sortIdx !== 0 ? ' sort-active' : '');
+    sb.innerHTML = `<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">${sortIcons[SORT_STATES[sortIdx].order] || sortIcons.desc}</svg><span id="sortLabel">${SORT_STATES[sortIdx].label}</span>`;
+    sb.addEventListener('click', () => {
+      sortIdx = (sortIdx + 1) % SORT_STATES.length;
+      sortOrder = SORT_STATES[sortIdx].order;
+      render();
+    });
+    bar.appendChild(sb);
+
+    // Row break before region
+    const evBreak = document.createElement('div');
+    evBreak.className = 'if-break';
+    bar.appendChild(evBreak);
+
+    // Geo pills
+    const geoLabel = document.createElement('span');
+    geoLabel.className = 'pol-filter-label';
+    geoLabel.textContent = 'Region:';
+    bar.appendChild(geoLabel);
+    const geoBase = filteredBase({ excludeGeo: true });
+    bar.appendChild(mkPill(`All (${geoBase.length})`, 'var(--muted)', activeGeo === 'all', () => { activeGeo = 'all'; render(); }));
+    Object.entries(GEOGRAPHY_META).forEach(([key, gm]) => {
+      const n = geoBase.filter(r => (r.geography || 'us') === key).length;
+      bar.appendChild(mkPill(`${gm.label} (${n})`, resolve(gm.color), activeGeo === key, () => { activeGeo = key; render(); }));
+    });
+
+    // Clear all
+    const hasFilters = activeStatus !== 'all' || activeGeo !== 'all' || activeCat !== 'all' || activeEvidence !== 'all' || searchQuery.trim();
+    if (hasFilters) {
+      const sep2 = document.createElement('div');
+      sep2.className = 'if-sep';
+      bar.appendChild(sep2);
+      const clearBtn = mkPill('Clear all', '#FF8361', false, () => {
+        activeStatus = 'all'; activeGeo = 'all'; activeCat = 'all'; activeEvidence = 'all'; searchQuery = '';
+        const s = document.getElementById('searchInput'); if (s) s.value = '';
+        render();
+      });
+      clearBtn.style.setProperty('--pill-color', '#FF8361');
+      bar.appendChild(clearBtn);
+    }
+  }
+
+  function buildStatusNav() {
+    const el = document.getElementById('statusNav');
+    el.innerHTML = '';
+
+    const statusBase = filteredBase({ excludeStatus: true });
+    // All option
+    const allEl = document.createElement('button');
+    allEl.className = 'nav-item' + (activeStatus === 'all' ? ' active' : '');
+    allEl.setAttribute('aria-pressed', activeStatus === 'all' ? 'true' : 'false');
+    allEl.setAttribute('aria-label', `All Statuses, ${statusBase.length} entries`);
+    allEl.innerHTML = `<span class="nav-label">All Statuses</span><span class="nav-count">${statusBase.length}</span>`;
+    allEl.onclick = () => { activeStatus = 'all'; render(); };
+    el.appendChild(allEl);
+
+    Object.entries(STATUS_META).forEach(([key, sm]) => {
+      const n = statusBase.filter(r => r._status === key).length;
+      const isActive = activeStatus === key;
+      const d = document.createElement('button');
+      d.className = 'status-nav-item' + (isActive ? ' active' : '');
+      d.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+      d.setAttribute('aria-label', `${sm.label}, ${n} entries. ${sm.desc}`);
+      if (isActive) d.style.borderLeftColor = sm.dot;
+      d.innerHTML = `
+        <div class="status-top">
+          <span style="flex:1">${sm.label}</span>
+          <span class="nav-count">${n}</span>
+        </div>
+        <div class="status-desc">${sm.desc}</div>`;
+      d.onclick = () => { activeStatus = key; render(); };
+      el.appendChild(d);
+    });
+  }
+
+  function buildGeoNav() {
+    const el = document.getElementById('geoNav');
+    el.innerHTML = '';
+    const geoBase = filteredBase({ excludeGeo: true });
+    const allGeoEl = document.createElement('button');
+    allGeoEl.className = 'nav-item' + (activeGeo === 'all' ? ' active' : '');
+    allGeoEl.setAttribute('aria-pressed', activeGeo === 'all' ? 'true' : 'false');
+    allGeoEl.setAttribute('aria-label', `All Geographies, ${geoBase.length} entries`);
+    allGeoEl.innerHTML = `<span class="nav-label">All Geographies</span><span class="nav-count">${geoBase.length}</span>`;
+    allGeoEl.onclick = () => { activeGeo = 'all'; render(); };
+    el.appendChild(allGeoEl);
+    Object.entries(GEOGRAPHY_META).forEach(([key, gm]) => {
+      const n = geoBase.filter(r => (r.geography || 'us') === key).length;
+      if (!n) return;
+      const isActive = activeGeo === key;
+      const hex = resolve(gm.color);
+      const d = document.createElement('button');
+      d.className = 'nav-item' + (isActive ? ' active' : '');
+      d.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+      d.setAttribute('aria-label', `${gm.label}, ${n} entries`);
+      if (isActive) { d.style.borderLeftColor = '#2563EB'; }
+      d.innerHTML = `
+        <span class="nav-label">${gm.label}</span>
+        <span class="nav-count">${n}</span>`;
+      d.onclick = () => { activeGeo = key; render(); };
+      el.appendChild(d);
+    });
+  }
+
+  // ── card ─────────────────────────────────────────────────────
+  function buildCard(entry, idx) {
+    const cat    = getCat(entry.category);
+    const color  = resolve(cat.color);
+    const status = entry._status;
+    const sm     = STATUS_META[status] || STATUS_META.stale;
+    const geo    = GEOGRAPHY_META[entry.geography || 'us'] || GEOGRAPHY_META.us;
+    const geoHex = resolve(geo.color);
+
+    const card = document.createElement('div');
+    card.className = 'card fade-in';
+    card.dataset.entryId = entry.id;
+    card.style.animationDelay = Math.min(idx * 30, 350) + 'ms';
+
+    const takeawaysHTML = (entry.takeaways || []).map((t, i) => `
+      <div class="takeaway-item">
+        <span class="takeaway-num" aria-hidden="true">▸</span>
+        <span>${t}</span>
+      </div>`).join('');
+
+    const polLinkHTML = '';
+
+    const sourceParts  = entry.source.split(' — ');
+    const institution  = sourceParts[sourceParts.length - 1];
+    const authors      = sourceParts.length > 1 ? sourceParts.slice(0, -1).join(' — ') : '';
+    const instMeta     = INST_META[institution];
+    const instHomeUrl  = instMeta?.url || INST_URLS[institution];
+    const instLink     = instHomeUrl
+      ? `<a href="${instHomeUrl}" target="_blank" rel="noopener" onclick="event.stopPropagation()">${institution}</a>`
+      : institution;
+    const instDesc     = instMeta
+      ? `<span class="inst-meta">${instMeta.type}${instMeta.note ? ` · ${instMeta.note}` : ''}</span>`
+      : '';
+    const titleInner   = entry.sourceUrl
+      ? `<a class="card-title" href="${entry.sourceUrl}" target="_blank" rel="noopener" onclick="event.stopPropagation()">${entry.title}</a>`
+      : `<span class="card-title">${entry.title}</span>`;
+    const titleEl      = `<h3 class="card-title-h">${titleInner}</h3>`;
+
+    const ev = getEvidenceType(entry);
+    const em = EVIDENCE_META[ev] || {};
+    const statusInitial = { emergent: 'R', current: 'C', stale: 'O' }[status] || '·';
+
+    card.innerHTML = `
+      <div class="card-body">
+        <div class="card-meta-col">
+          <span class="card-section-slug">${cat.label}</span>
+          <div class="card-meta-col-inst">${authors ? `${authors}<br>` : ''}${instLink}</div>
+          ${instMeta ? `<div class="card-meta-col-type">${instMeta.type}</div>` : ''}
+          <div class="card-meta-col-date">${fmtDate(entry.date)}</div>
+        </div>
+        <div class="card-content-col">
+          ${titleEl}
+          <div class="card-finding" style="margin-top:10px">${entry.keyFinding}</div>
+          ${polLinkHTML}
+          <div class="card-footer" style="margin-top:14px">
+            <button class="expand-btn" aria-expanded="false" aria-label="Show takeaways">
+              Takeaways
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+                <polyline points="6 9 12 15 18 9"/>
+              </svg>
+            </button>
+            <button class="cite-btn" aria-expanded="false" aria-controls="citeRow-${entry.id}" aria-label="Citation and link options">Cite</button>
+          </div>
+          <div class="cite-row" id="citeRow-${entry.id}" hidden>
+            <button class="cite-act" data-fmt="apa">Copy APA</button>
+            <button class="cite-act" data-fmt="bibtex">Copy BibTeX</button>
+            <button class="cite-act" data-fmt="link">Copy link</button>
+          </div>
+          <div class="takeaways">
+            <div class="takeaways-inner">
+              ${takeawaysHTML}
+            </div>
+          </div>
+        </div>
+      </div>`;
+
+    card.querySelector('.expand-btn').addEventListener('click', e => {
+      e.stopPropagation();
+      const expanded = card.classList.toggle('expanded');
+      e.currentTarget.setAttribute('aria-expanded', expanded ? 'true' : 'false');
+      e.currentTarget.setAttribute('aria-label', expanded ? 'Hide takeaways' : 'Show takeaways');
+    });
+    // R2: cite / copy-link actions
+    const citeBtn = card.querySelector('.cite-btn');
+    const citeRow = card.querySelector('.cite-row');
+    citeBtn.addEventListener('click', e => {
+      e.stopPropagation();
+      const show = citeRow.hidden;
+      citeRow.hidden = !show;
+      citeBtn.setAttribute('aria-expanded', show ? 'true' : 'false');
+    });
+    citeRow.querySelectorAll('.cite-act').forEach(b => b.addEventListener('click', e => {
+      e.stopPropagation();
+      const fmt = b.dataset.fmt;
+      const text = fmt === 'apa' ? formatAPAPlain(entry)
+                 : fmt === 'bibtex' ? formatBibTeX(entry)
+                 : appURL('entry/' + entry.id);
+      copyText(text, b);
+    }));
+    card.querySelectorAll('.paper-theme-badge').forEach(badge => {
+      badge.addEventListener('click', e => {
+        e.stopPropagation();
+        activeView    = 'themes';
+        activeThemeId = badge.dataset.themeId;
+        themeShowAll  = false;
+        document.getElementById('viewThemes').classList.add('active');
+        document.getElementById('viewCards').classList.remove('active');
+        document.getElementById('sortBtn')?.style && (document.getElementById('sortBtn').style.display = 'none');
+        document.body.classList.add('strategy-view');
+        render();
+        requestAnimationFrame(() => {
+          document.getElementById('cardsGrid').scrollIntoView({ behavior: 'smooth', block: 'start' });
+        });
+      });
+    });
+    return card;
+  }
+
+
+  // ── themes view ──────────────────────────────────────────────
+  const CONFIDENCE_META = {
+    consensus: { label: 'Strong consensus', color: '#2E8B57', icon: '✓', desc: 'Multiple independent research streams reach the same conclusion. The research base is stable and convergent across independent methodologies.' },
+    emerging:  { label: 'Emerging evidence', color: '#2C3254', icon: '~', desc: 'The direction is clear but the evidence base is still developing. Worth tracking closely, as conclusions may sharpen as more research accumulates.' },
+    contested: { label: 'Contested',         color: '#C0392B', icon: '!', desc: 'Credible researchers reach meaningfully different conclusions. Institutional positions on this topic should be held with explicit acknowledgment of the disagreement.' },
+  };
+
+  function buildThemeCard(theme, paperMap, overridePaperIds) {
+    const i = THEMES.indexOf(theme);
+    const card = document.createElement('div');
+    card.className = 'theme-card';
+    card.id = 'theme-' + theme.id;
+    card.style.setProperty('--theme-color', theme.color);
+
+    // R6: freshness accounting — entries added since this theme's last review,
+    // in the categories its linked papers span, that aren't linked yet.
+    let reviewedHTML = '';
+    if (theme.lastReviewed) {
+      const themeCats = new Set((theme.papers || []).map(id => paperMap[id]?.category).filter(Boolean));
+      const linkedSet = new Set(theme.papers || []);
+      const newer = RESEARCH_DATA.filter(e =>
+        (e.added || e.date) > theme.lastReviewed && themeCats.has(e.category) && !linkedSet.has(e.id)).length;
+      const revDate = new Date(theme.lastReviewed + 'T00:00:00')
+        .toLocaleDateString(undefined, { year: 'numeric', month: 'long', day: 'numeric' });
+      reviewedHTML = `<div class="theme-lastreviewed">Synthesis last reviewed ${revDate}.${
+        newer ? ` ${newer} newer ${newer === 1 ? 'entry' : 'entries'} in this theme's categories since review.` : ''}</div>`;
+    }
+
+    const paperIds = overridePaperIds !== undefined ? overridePaperIds : (theme.papers || []);
+    const linkedPapers = paperIds.map(id => paperMap[id]).filter(Boolean);
+    const renderRef = p => `<a class="theme-ref" href="${p.sourceUrl}" target="_blank" rel="noopener noreferrer" title="${p.title.replace(/"/g, '&quot;')}">${formatAPACitation(p)}</a>`;
+    const bySource = (a, b) => (a.source || '').localeCompare(b.source || '');
+    const activeSyn = (activeLens === 'economist' && theme.econSynthesis) ? theme.econSynthesis : theme.synthesis;
+    const activeGapsForCites = (activeLens === 'economist' && theme.econGaps) ? theme.econGaps : theme.gaps;
+    // Cited = any paper referenced inline anywhere in the card's active-lens prose,
+    // not just the synthesis, so the References list reflects every inline citation.
+    const citedSourceText = [
+      activeSyn || '',
+      ...(theme.working || []),
+      theme.implication || '',
+      (theme.risk && theme.risk.summary) || '',
+      (theme.risk && theme.risk.leverage) || '',
+      ...(activeGapsForCites || [])
+    ].join(' ');
+    const citedIds = new Set([...citedSourceText.matchAll(/\{\{citep?:(\d+)\}\}/g)].map(m => +m[1]));
+    const citedPapers = [...citedIds].map(id => paperMap[id]).filter(Boolean).sort(bySource);
+    const citedKey = new Set(citedPapers.map(p => p.id));
+    const relatedPapers = linkedPapers.filter(p => !citedKey.has(p.id)).sort(bySource);
+    const relN = relatedPapers.length;
+    const refsSectionHTML = (citedPapers.length || relN) ? `
+          <div class="theme-refs-wrap">
+            <h3 class="theme-refs-heading">References</h3>
+            ${citedPapers.length ? `<div class="theme-refs">${citedPapers.map(renderRef).join('')}</div>` : ''}
+            ${relN ? `<button class="theme-refs-toggle" type="button" aria-expanded="false"><span class="theme-refs-chevron" aria-hidden="true">&rsaquo;</span><span class="theme-refs-toggle-text">Show ${relN} related ${relN === 1 ? 'study' : 'studies'}</span></button>
+            <div class="theme-refs theme-refs-related" style="display:none">${relatedPapers.map(renderRef).join('')}</div>` : ''}
+          </div>` : '';
+
+    const activeGaps = (activeLens === 'economist' && theme.econGaps) ? theme.econGaps : theme.gaps;
+    const gapItems = activeGaps.map(g =>
+      `<div class="theme-gap-item"><span class="theme-gap-arrow" aria-hidden="true">→</span><span>${injectCitations(g, paperMap)}</span></div>`
+    ).join('');
+
+    const workingItems = (theme.working || []).map(w =>
+      `<div class="theme-working-item"><span class="theme-working-check" aria-hidden="true">✓</span><span>${injectCitations(w, paperMap)}</span></div>`
+    ).join('');
+
+    const conf = CONFIDENCE_META[theme.confidence] || CONFIDENCE_META.emerging;
+
+    const visibleSet = activeLens === 'economist'
+      ? THEMES.filter(t => ECON_THEME_CONFIG[t.id])
+      : THEMES.filter(t => !GENERAL_EXCLUDED.has(t.id));
+    const vi = visibleSet.indexOf(theme);
+    const prev = visibleSet[vi - 1];
+    const next = visibleSet[vi + 1];
+
+    card.innerHTML = `
+      <div class="theme-card-body">
+        <div class="theme-card-main">
+          <h2 class="theme-question">${theme.question}</h2>
+          ${conf.label ? `<div class="theme-confidence-note"><span class="conf-label">${conf.label}:</span> ${conf.desc}</div>` : ''}
+          ${theme.framing ? `<div class="theme-framing"><span class="framing-label">Thesis:</span> ${theme.framing}</div>` : ''}
+
+          <h3 class="theme-section-heading"><span class="theme-section-label theme-section-toggle" role="button" tabindex="0" data-section="synthesis" style="justify-content:flex-start; gap:10px">
+            What the research shows <span class="theme-section-chevron" aria-hidden="true"></span>
+          </span></h3>
+          <div class="theme-collapsible" data-collapsible="synthesis">
+            <div class="theme-synthesis">${injectCitations((activeLens === 'economist' && theme.econSynthesis) ? theme.econSynthesis : theme.synthesis, paperMap)}</div>
+          </div>
+
+          ${workingItems ? `<div class="theme-working-wrap">
+            <h3 class="theme-section-heading"><span class="theme-section-label theme-section-toggle" role="button" tabindex="0" data-section="working">
+              What's working <span class="theme-section-chevron" aria-hidden="true"></span>
+            </span></h3>
+            <div class="theme-collapsible" data-collapsible="working">
+              <div class="theme-working">${workingItems}</div>
+            </div>
+          </div>` : ''}
+
+          <div class="theme-risk-wrap">
+            <h3 class="theme-section-heading"><span class="theme-section-label theme-section-toggle" role="button" tabindex="0" data-section="risk">
+              Risks observed &amp; points of leverage <span class="theme-section-chevron" aria-hidden="true"></span>
+            </span></h3>
+            <div class="theme-collapsible" data-collapsible="risk">
+              <div class="theme-risk-body" style="margin-top:4px">${injectCitations(theme.risk.summary, paperMap)}</div>
+              ${theme.risk.leverage ? `<div class="theme-leverage">
+                <div class="theme-leverage-label">Points of leverage</div>
+                <div class="theme-leverage-body">${injectCitations(theme.risk.leverage, paperMap)}</div>
+              </div>` : ''}
+            </div>
+          </div>
+
+          <div class="theme-implication-wrap">
+            <h3 class="theme-section-heading"><span class="theme-implication-label theme-section-toggle" role="button" tabindex="0" data-section="implication">
+              What this means for institutions <span class="theme-section-chevron" aria-hidden="true"></span>
+            </span></h3>
+            <div class="theme-collapsible" data-collapsible="implication">
+              <div class="theme-implication">${injectCitations(theme.implication, paperMap)}</div>
+            </div>
+          </div>
+
+          <div class="theme-gaps-wrap">
+            <h3 class="theme-section-heading"><span class="theme-gaps-label theme-section-toggle" role="button" tabindex="0" data-section="gaps">
+              Research gaps <span class="theme-gaps-count">${activeGaps.length}</span><span class="theme-section-chevron" aria-hidden="true"></span>
+            </span></h3>
+            <div class="theme-collapsible" data-collapsible="gaps">
+              <div class="theme-gaps">${gapItems}</div>
+            </div>
+          </div>
+
+          ${refsSectionHTML}
+          ${reviewedHTML}
+
+          <div class="theme-prev-next">
+            <button class="theme-nav-btn theme-nav-prev" ${prev ? `data-theme-id="${prev.id}"` : 'disabled'} aria-label="${prev ? `Previous theme: ${prev.tag}` : 'First theme'}">
+              <span class="nav-arrow" aria-hidden="true">←</span>
+              <span class="nav-label">${prev ? prev.tag : 'First theme'}</span>
+            </button>
+            <button class="theme-copy-link" type="button" aria-label="Copy a shareable link to this theme">Copy link</button>
+            <button class="theme-nav-btn theme-nav-next" ${next ? `data-theme-id="${next.id}"` : 'disabled'} aria-label="${next ? `Next theme: ${next.tag}` : 'Last theme'}">
+              <span class="nav-label">${next ? next.tag : 'Last theme'}</span>
+              <span class="nav-arrow" aria-hidden="true">→</span>
+            </button>
+          </div>
+        </div>
+      </div>`;
+
+    card.querySelectorAll('.theme-nav-btn[data-theme-id]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        activeThemeId = btn.dataset.themeId;
+        themeShowAll  = false;
+        buildThemesView();
+        document.getElementById('cardsGrid').scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+    });
+
+    // R2: shareable deep link to this theme
+    const themeCopyLink = card.querySelector('.theme-copy-link');
+    if (themeCopyLink) themeCopyLink.addEventListener('click', e => copyText(appURL('theme/' + theme.id), e.currentTarget));
+
+    // ── Related-studies toggle in References ──
+    const refsToggle = card.querySelector('.theme-refs-toggle');
+    if (refsToggle) {
+      const related = card.querySelector('.theme-refs-related');
+      const tEl = refsToggle.querySelector('.theme-refs-toggle-text');
+      const relCount = related ? related.querySelectorAll('.theme-ref').length : 0;
+      refsToggle.addEventListener('click', () => {
+        const open = refsToggle.getAttribute('aria-expanded') === 'true';
+        refsToggle.setAttribute('aria-expanded', open ? 'false' : 'true');
+        if (related) related.style.display = open ? 'none' : 'grid';
+        if (tEl) tEl.textContent = open ? `Show ${relCount} related ${relCount === 1 ? 'study' : 'studies'}` : 'Hide related studies';
+      });
+    }
+
+    // ── Default: collapse risk, gaps; leave synthesis + implication open ──
+    ['risk', 'gaps'].forEach(section => {
+      card.querySelector(`.theme-collapsible[data-collapsible="${section}"]`)?.classList.add('is-collapsed');
+      card.querySelector(`[data-section="${section}"]`)?.classList.add('is-collapsed');
+    });
+
+    // ── Set initial aria-expanded on all section toggles ──
+    card.querySelectorAll('.theme-section-toggle').forEach(toggle => {
+      const collapsed = toggle.classList.contains('is-collapsed');
+      toggle.setAttribute('aria-expanded', collapsed ? 'false' : 'true');
+    });
+
+    // ── Internal section collapse toggles ──
+    card.querySelectorAll('.theme-section-toggle').forEach(toggle => {
+      const handler = () => {
+        const section = toggle.dataset.section;
+        const content = card.querySelector(`.theme-collapsible[data-collapsible="${section}"]`);
+        if (!content) return;
+        const collapsed = content.classList.toggle('is-collapsed');
+        toggle.classList.toggle('is-collapsed', collapsed);
+        toggle.setAttribute('aria-expanded', collapsed ? 'false' : 'true');
+      };
+      toggle.addEventListener('click', handler);
+      toggle.addEventListener('keydown', e => {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); handler(); }
+      });
+    });
+
+    return card;
+  }
+
+  function buildThemesView() {
+    const grid = document.getElementById('cardsGrid');
+    const empty = document.getElementById('emptyState');
+    grid.innerHTML = '';
+    empty.classList.remove('visible');
+    document.getElementById('emptyStateClear').style.display = 'none';
+
+    const paperMap = Object.fromEntries(RESEARCH_DATA.map(r => [r.id, r]));
+
+    const visibleThemeSet = activeLens === 'economist'
+      ? THEMES.filter(t => ECON_THEME_CONFIG[t.id])
+      : THEMES.filter(t => !GENERAL_EXCLUDED.has(t.id));
+    const visibleThemes = themeShowAll
+      ? visibleThemeSet
+      : visibleThemeSet.filter(t => t.id === activeThemeId);
+
+    // Tab nav strip
+    const tabNav = document.getElementById('themeTabNav');
+    tabNav.innerHTML = '';
+    visibleThemeSet.forEach((theme, idx) => {
+      const isActive = !themeShowAll && activeThemeId === theme.id;
+      const pill = document.createElement('button');
+      pill.className = 'theme-jump-pill' + (isActive ? ' active' : '');
+      const displayTag = theme.tag;
+      pill.setAttribute('aria-label', displayTag);
+      const label = document.createTextNode(displayTag);
+      pill.appendChild(label);
+      pill.addEventListener('click', () => {
+        activeThemeId = theme.id;
+        themeShowAll  = false;
+        buildThemesView();
+      });
+      tabNav.appendChild(pill);
+    });
+
+    const themesGrid = document.createElement('div');
+    themesGrid.className = 'themes-grid';
+    visibleThemes.forEach(theme => {
+      const overridePaperIds = activeLens === 'economist'
+        ? (theme.papers || []).filter(id => paperMap[id] && isEconRelevant(paperMap[id]))
+        : undefined;
+      themesGrid.appendChild(buildThemeCard(theme, paperMap, overridePaperIds));
+    });
+    grid.appendChild(themesGrid);
+    if (activeView === 'themes') setHash(currentRoute());
+  }
+
+  // ── render ───────────────────────────────────────────────────
+  /* ── Policy Lab ─────────────────────────────────────────────── */
+  let polLevelFilter = 'all';
+  let polViewMode    = 'grid';
+
+  // R3: curated evidence first. A policy's hand-picked `paperIds` (order preserved)
+  // are the visible research basis; the category-derived list is demoted to a
+  // deduplicated "related" set behind the toggle. Policies without paperIds keep
+  // the old behavior (top few category matches visible, rest behind the toggle).
+  function getResearchBasis(pol) {
+    const paperMap = Object.fromEntries(RESEARCH_DATA.map(r => [r.id, r]));
+    const curated = (pol.paperIds || []).map(id => paperMap[id]).filter(Boolean);
+    const curatedIds = new Set(curated.map(r => r.id));
+    const cats = POL_TO_RESEARCH_CATS[pol.category] || [];
+    const related = cats.length
+      ? RESEARCH_DATA
+          .filter(r => cats.includes(r.category) && !curatedIds.has(r.id))
+          .sort((a, b) => new Date(b.date) - new Date(a.date))
+          .slice(0, 16)
+      : [];
+    return { curated, related };
+  }
+
+  // Build the policy "Research basis" reference list.
+  function buildPolicyBasis(basis) {
+    const curated = (basis && basis.curated) || [];
+    const related = (basis && basis.related) || [];
+    if (!curated.length && !related.length) return '';
+    const renderRef = r => {
+      const href = r.sourceUrl ? ` href="${r.sourceUrl}" target="_blank" rel="noopener"` : '';
+      return `<a class="pol-basis-ref"${href} onclick="event.stopPropagation()">${formatAPACitation(r)}</a>`;
+    };
+    const SHOWN = 4;
+    const shown = curated.length ? curated : related.slice(0, SHOWN);
+    const rest  = curated.length ? related : related.slice(SHOWN);
+    const restLabel = curated.length ? 'related' : 'more related';
+    return `<div class="pol-basis"><div class="pol-basis-label">Research basis</div>`
+      + `<div class="pol-basis-refs">${shown.map(renderRef).join('')}</div>`
+      + (rest.length ? `<button class="pol-basis-toggle" type="button" aria-expanded="false"><span class="pol-basis-chevron" aria-hidden="true">&rsaquo;</span><span class="pol-basis-toggle-text">Show ${rest.length} ${restLabel} ${rest.length === 1 ? 'study' : 'studies'}</span></button>`
+        + `<div class="pol-basis-refs pol-basis-related" style="display:none">${rest.map(renderRef).join('')}</div>` : '')
+      + `</div>`;
+  }
+
+  // APA-style citation: Author. (Year). Title. Organization.
+  // The `source` field stores "Author — Organization"; a bare organization stands alone.
+  function formatAPACitation(p) {
+    const year = p.date ? p.date.slice(0, 4) : 'n.d.';
+    const src = (p.source || '').trim();
+    let author = src, org = '';
+    if (src.includes(' — ')) {
+      const parts = src.split(' — ');
+      author = parts[0].trim();
+      org = parts.slice(1).join(' — ').trim();
+    }
+    const orgPart = org && org.toLowerCase() !== author.toLowerCase() ? ` ${org}.` : '';
+    const authorDot = author.endsWith('.') ? '' : '.';
+    const titleDot = /[.?!]$/.test(p.title) ? '' : '.';
+    return `${author}${authorDot} (${year}). <em>${p.title}</em>${titleDot}${orgPart}`;
+  }
+
+  // Inline citations: {{cite:ID}} renders a hyperlinked (Year) after an author
+  // named in the prose; {{citep:ID}} renders a parenthetical (Author, Year).
+  function injectCitations(html, paperMap) {
+    if (!html) return html;
+    return html.replace(/ ?\{\{(citep?):(\d+)\}\}/g, (m, kind, id) => {
+      const p = paperMap[+id];
+      if (!p || !p.sourceUrl) return '';
+      const year = p.date ? p.date.slice(0, 4) : 'n.d.';
+      let label = year;
+      if (kind === 'citep') {
+        const authorPart = (p.source || '').split(' — ')[0].trim();
+        const author = authorPart.includes(',')
+          ? authorPart.split(',')[0].trim() + ' et al.'
+          : authorPart;
+        label = `${author}, ${year}`;
+      }
+      const aria = `${(p.source || '').replace(/\s*—\s*/g, ', ')}, ${year}. Opens in new tab.`.replace(/"/g, '&quot;');
+      return ` (<a class="syn-cite" href="${p.sourceUrl}" target="_blank" rel="noopener noreferrer" aria-label="${aria}">${label}</a>)`;
+    });
+  }
+
+  // Policy prose links. Runs inline paper citations ({{cite}}/{{citep}}), then
+  // resolves cross-reference tokens {{pol:id|text}} into inline links that open
+  // the named policy's modal. Tokens with no matching policy degrade to plain text.
+  function injectPolicyLinks(html, paperMap) {
+    if (!html) return html;
+    return injectCitations(html, paperMap)
+      .replace(/\{\{pol:([a-z0-9-]+)\|([^}]+)\}\}/g, (m, id, text) => {
+        const target = POLICY_DATA.find(p => p.id === id);
+        if (!target) return text;
+        return `<a class="pol-xref" data-pol-id="${id}" role="link" tabindex="0" title="See policy: ${target.title.replace(/"/g, '&quot;')}">${text}</a>`;
+      });
+  }
+
+  // Open a policy modal given only its id (used by cross-reference links).
+  function openPolModalById(id) {
+    const p = POLICY_DATA.find(x => x.id === id);
+    if (!p) return;
+    const lvl = DISRUPTION_LEVELS.find(l => l.id === p.level) || {};
+    const catLabel = POLICY_CATEGORIES[p.category] || '';
+    const basisHTML = buildPolicyBasis(getResearchBasis(p));
+    openPolModal(p, lvl, catLabel, basisHTML);
+  }
+
+  /* ── R1/R2: export, citation & deep-link helpers ─────────────── */
+
+  // Copy text to the clipboard with a brief "Copied ✓" flash on the trigger button.
+  function copyText(text, btn) {
+    const done = () => {
+      if (!btn) return;
+      if (!btn.dataset.origLabel) btn.dataset.origLabel = btn.textContent;
+      btn.textContent = 'Copied ✓';
+      btn.classList.add('copied');
+      setTimeout(() => { btn.textContent = btn.dataset.origLabel; btn.classList.remove('copied'); }, 1600);
+    };
+    const fallback = () => {
+      const ta = document.createElement('textarea');
+      ta.value = text; ta.setAttribute('readonly', '');
+      ta.style.position = 'fixed'; ta.style.opacity = '0';
+      document.body.appendChild(ta); ta.select();
+      try { document.execCommand('copy'); done(); } catch (e) { /* clipboard unavailable */ }
+      ta.remove();
+    };
+    if (navigator.clipboard && window.isSecureContext) navigator.clipboard.writeText(text).then(done, fallback);
+    else fallback();
+  }
+
+  // Absolute URL for an in-app route, e.g. appURL('policy/ubi').
+  function appURL(route) {
+    return location.origin + location.pathname + '#' + route;
+  }
+
+  // Convert prose carrying {{cite}}/{{citep}}/{{pol}} tokens and light HTML to plain text.
+  function tokensToPlain(s, paperMap) {
+    if (!s) return '';
+    return String(s)
+      .replace(/<br\s*\/?\s*>/gi, '\n')
+      .replace(/ ?\{\{(citep?):(\d+)\}\}/g, (m, kind, id) => {
+        const p = paperMap[+id];
+        if (!p) return '';
+        const year = p.date ? p.date.slice(0, 4) : 'n.d.';
+        if (kind === 'citep') {
+          const ap = (p.source || '').split(' — ')[0].trim();
+          const author = ap.includes(',') ? ap.split(',')[0].trim() + ' et al.' : ap;
+          return ` (${author}, ${year})`;
+        }
+        return ` (${year})`;
+      })
+      .replace(/\{\{pol:[a-z0-9-]+\|([^}]+)\}\}/g, '$1')
+      .replace(/<[^>]+>/g, '')
+      .replace(/&amp;/g, '&').replace(/&rsquo;/g, '’').replace(/&ldquo;/g, '“').replace(/&rdquo;/g, '”').replace(/&quot;/g, '"')
+      .trim();
+  }
+
+  // Plain-text APA (for the clipboard): strips <em> markup and appends the source URL.
+  function formatAPAPlain(p) {
+    const apa = formatAPACitation(p).replace(/<\/?em>/g, '');
+    return p.sourceUrl ? `${apa} ${p.sourceUrl}` : apa;
+  }
+
+  // BibTeX record for a research entry.
+  function formatBibTeX(p) {
+    const year = p.date ? p.date.slice(0, 4) : 'n.d.';
+    const src = (p.source || '').trim();
+    const author = src.includes(' — ') ? src.split(' — ')[0].trim() : src;
+    const org = src.includes(' — ') ? src.split(' — ').slice(1).join(' — ').trim() : '';
+    const lines = [
+      `@misc{aitracker${p.id},`,
+      `  author = {${author}},`,
+      `  title = {${p.title}},`,
+      `  year = {${year}},`,
+    ];
+    if (org) lines.push(`  publisher = {${org}},`);
+    if (p.sourceUrl) lines.push(`  howpublished = {\\url{${p.sourceUrl}}},`);
+    lines.push(`  note = {Via AI, Tech and the Economy: Research Intelligence, entry ${p.id}}`);
+    lines.push('}');
+    return lines.join('\n');
+  }
+
+  // R1: assemble a policy card as a Markdown primer draft, with citations
+  // resolved to (Author, Year) text and a References section of cited papers.
+  function policyToMarkdown(p, lvl, catLabel) {
+    const paperMap = Object.fromEntries(RESEARCH_DATA.map(r => [r.id, r]));
+    const plain = s => tokensToPlain(s, paperMap);
+    const fmtD = s => { if (!s) return ''; const d = new Date(s + 'T00:00:00'); return d.toLocaleDateString(undefined, { year: 'numeric', month: 'long', day: 'numeric' }); };
+    const md = [];
+    md.push(`# ${p.title}`);
+    md.push('');
+    md.push(`**Phase:** ${lvl.label || p.level}${catLabel ? ` · **Domain:** ${catLabel}` : ''}`);
+    md.push('');
+    md.push(`*Draft prepared from AI, Tech and the Economy: Research Intelligence (${appURL('policy/' + p.id)})${p.lastReviewed ? `. Last reviewed ${fmtD(p.lastReviewed)}` : ''}.*`);
+    const section = (label, body) => { if (body) { md.push('', `## ${label}`, '', plain(body)); } };
+    const listSection = (label, arr) => {
+      if (Array.isArray(arr) && arr.length) {
+        md.push('', `## ${label}`, '');
+        arr.forEach(item => md.push(`- ${plain(item)}`));
+      }
+    };
+    const polTitleMD = id => { const t = POLICY_DATA.find(x => x.id === id); return t ? t.title : id; };
+    const relListSection = (label, arr) => {
+      if (Array.isArray(arr) && arr.length) {
+        md.push('', `## ${label}`, '');
+        arr.forEach(r => md.push(`- ${polTitleMD(r.id)}: ${plain(r.why)}`));
+      }
+    };
+    section('What it is', p.summary);
+    section('The challenge', p.rationale);
+    listSection('Strengths', p.strengths);
+    listSection('Risks', p.risks);
+    relListSection('Pairs with', p.pairsWith);
+    relListSection('Competes with', p.competesWith);
+    section('Where it stands', p.landscape);
+    section('Precedents and examples', p.precedent);
+    if (Array.isArray(p.press) && p.press.length) {
+      md.push('', '## Press & resources', '');
+      p.press.forEach(it => md.push(`- ${it.label}: ${it.url}`));
+    }
+    const fieldText = [p.summary, p.rationale, p.feasibility, p.landscape, p.precedent,
+      ...(p.strengths || []), ...(p.risks || [])].join(' ');
+    const citedIds = [...new Set([
+      ...(p.paperIds || []),
+      ...[...fieldText.matchAll(/\{\{citep?:(\d+)\}\}/g)].map(m => +m[1]),
+    ])];
+    const cited = citedIds.map(id => paperMap[id]).filter(Boolean)
+      .sort((a, b) => (a.source || '').localeCompare(b.source || ''));
+    if (cited.length) {
+      md.push('', '## References', '');
+      cited.forEach(r => md.push(`- ${formatAPAPlain(r)}`));
+    }
+    md.push('');
+    return md.join('\n');
+  }
+
+  function buildPolicyView() {
+    const area = document.getElementById('policyArea');
+
+    // First visit: build the DOM
+    if (!area.hasChildNodes()) {
+
+      // Intro bar — matches theme-disclaimer-bar
+      const hdr = document.createElement('div');
+      hdr.className = 'policy-lab-header';
+      hdr.innerHTML = `
+        <span class="pol-header-title">Policy Lab</span>
+        <span class="theme-intro-line">Twenty-seven policy interventions mapped across ten policy domains and five implementation phases. Read across a row to see how each domain's policies escalate from Repair to Transform. Click any policy for rationale, precedents, and supporting research.</span>
+        <span class="theme-disclaimer-line">Synthesized from the research database. Does not constitute policy advice or reflect the opinions of the creator.</span>`;
+      area.appendChild(hdr);
+
+
+      const levelMap = Object.fromEntries(DISRUPTION_LEVELS.map(l => [l.id, l]));
+      const POL_CAT_COLORS = {
+        'safety-net':    '#5B7A9E',
+        'labor-rights':  '#7B6B9E',
+        'tax-wealth':    '#4F8E77',
+        'healthcare':    '#8E5B5B',
+        'work-structure':'#8E7B52',
+        'education':     '#4F7D8E',
+        'antitrust':     '#8E6B4F',
+        'housing':       '#5E8A52',
+        'jobs':          '#4F8E87',
+        'international': '#7B5B8E',
+      };
+
+      // Empty state msg
+      const emptyMsg = document.createElement('div');
+      emptyMsg.className = 'pol-empty-msg';
+      emptyMsg.id = 'polEmptyMsg';
+      emptyMsg.textContent = 'No policies match the current filters.';
+      area.appendChild(emptyMsg);
+
+      // Short descriptions per policy category
+      const POL_CAT_DESCS = {
+        'safety-net':    'Income floors and social insurance programs',
+        'labor-rights':  'Worker protections and employment standards',
+        'tax-wealth':    'Redistribution through progressive taxation',
+        'healthcare':    'Health coverage decoupled from employment',
+        'work-structure':'Flexible work arrangements and job design',
+        'education':     'Skills training and lifelong learning systems',
+        'antitrust':     'Market competition and platform regulation',
+        'housing':       'Affordable housing and place-based support',
+        'jobs':          'Direct job creation and sectoral investment',
+        'international': 'Cross-border coordination and trade policy',
+      };
+
+
+      const columns = document.createElement('div');
+      columns.className = 'pol-columns';
+
+      Object.entries(POLICY_CATEGORIES).forEach(([catId, catLabel]) => {
+        const policies = POLICY_DATA.filter(p => p.category === catId);
+        if (!policies.length) return;
+
+        const col = document.createElement('div');
+        col.className = 'pol-col';
+        col.dataset.cat = catId;
+        const catColor = POL_CAT_COLORS[catId] || '#6B7280';
+        col.style.setProperty('--pol-cat-color', catColor);
+
+        // Header — with level distribution bar
+        const desc = POL_CAT_DESCS[catId] || '';
+        const distSegs = DISRUPTION_LEVELS.map(l => {
+          const count = policies.filter(p => p.level === l.id).length;
+          if (!count) return '';
+          const pct = (count / policies.length * 100).toFixed(1);
+          return `<span class="pol-col-distbar-seg" style="background:${l.color};width:${pct}%" title="${l.label}: ${count}"></span>`;
+        }).join('');
+        col.innerHTML = `
+          <div class="pol-col-header">
+            <div class="pol-col-title">${catLabel}</div>
+            <div class="pol-col-desc">${desc}</div>
+            <span class="pol-col-count">${policies.length} polic${policies.length===1?'y':'ies'}</span>
+            <div class="pol-col-distbar">${distSegs}</div>
+          </div>
+          <div class="pol-item-list"></div>`;
+
+        const itemList = col.querySelector('.pol-item-list');
+
+        policies.forEach(p => {
+          const lvl = levelMap[p.level] || {};
+          const basisHTML = buildPolicyBasis(getResearchBasis(p));
+
+          const wrap = document.createElement('div');
+          wrap.className = 'pol-item-wrap';
+          wrap.dataset.level = p.level;
+          wrap.dataset.id = p.id;
+          if (lvl.color) wrap.style.setProperty('--level-color', lvl.color);
+
+          wrap.innerHTML = `
+            <div class="pol-item">
+              <div class="pol-item-title">${p.title}</div>
+              <span class="pol-item-badge">${lvl.label || p.level}</span>
+            </div>`;
+
+          wrap.querySelector('.pol-item').addEventListener('click', () => {
+            openPolModal(p, lvl, catLabel, basisHTML);
+          });
+          itemList.appendChild(wrap);
+        });
+
+        columns.appendChild(col);
+      });
+      area.appendChild(columns);
+
+      // ── Matrix container ────────────────────────────────────
+      const waterfall = document.createElement('div');
+      waterfall.className = 'pol-waterfall';
+      waterfall.id = 'polWaterfall';
+      const levelMap2 = Object.fromEntries(DISRUPTION_LEVELS.map(l => [l.id, l]));
+
+      // Build reverse lookup: mergedCatId → array of original catIds
+      const mergedToOriginal = {};
+      Object.keys(MERGED_POLICY_CATEGORIES).forEach(mc => { mergedToOriginal[mc] = []; });
+      Object.entries(CATEGORY_MERGE_MAP).forEach(([orig, merged]) => {
+        mergedToOriginal[merged].push(orig);
+      });
+
+      // ── Header row (phase column labels) ─────────────────────
+      const header = document.createElement('div');
+      header.className = 'pol-matrix-header';
+      // Empty corner cell
+      header.appendChild(document.createElement('div'));
+      DISRUPTION_LEVELS.forEach((lvl, i) => {
+        const col = document.createElement('div');
+        col.className = 'pol-matrix-phase-col';
+        const arrow = i < DISRUPTION_LEVELS.length - 1
+          ? '<span style="font-weight:400;opacity:0.35;margin-left:5px;font-family:\'Public Sans\',sans-serif;font-size:13px;">→</span>'
+          : '';
+        col.innerHTML = `<div class="pol-matrix-phase-label">${lvl.label}${arrow}</div>
+          <div class="pol-matrix-phase-blurb">${lvl.blurb}</div>`;
+        header.appendChild(col);
+      });
+      waterfall.appendChild(header);
+
+      // ── Merged category rows ─────────────────────────────────
+      Object.entries(MERGED_POLICY_CATEGORIES).forEach(([mcId, mcLabel]) => {
+        const origCats = mergedToOriginal[mcId] || [];
+        const catPolicies = POLICY_DATA.filter(p => origCats.includes(p.category));
+        if (!catPolicies.length) return;
+
+        const row = document.createElement('div');
+        row.className = 'pol-matrix-row';
+
+        // Left cell: category label + desc
+        const catCell = document.createElement('div');
+        catCell.className = 'pol-matrix-cat-row-label';
+        catCell.innerHTML = `<div class="pol-matrix-cat-label">${mcLabel}</div>
+          <div class="pol-matrix-cat-desc">${MERGED_CAT_DESCS[mcId] || ''}</div>`;
+        row.appendChild(catCell);
+
+        // 5 phase cells
+        DISRUPTION_LEVELS.forEach(lvl => {
+          const cell = document.createElement('div');
+          cell.className = 'pol-matrix-cell';
+
+          catPolicies.filter(p => p.level === lvl.id).forEach(p => {
+            const origCatLabel = POLICY_CATEGORIES[p.category] || p.category;
+            const basisHTML = buildPolicyBasis(getResearchBasis(p));
+
+            const card = document.createElement('div');
+            card.className = 'pol-matrix-card';
+            card.innerHTML = `<div class="pol-matrix-card-phase">${lvl.label}</div><div class="pol-matrix-card-title">${p.title}</div><div class="pol-matrix-card-open">Open details →</div>`;
+            card.addEventListener('click', () => openPolModal(p, lvl, origCatLabel, basisHTML));
+            cell.appendChild(card);
+          });
+
+          row.appendChild(cell);
+        });
+
+        waterfall.appendChild(row);
+      });
+
+      area.appendChild(waterfall);
+
+    }
+
+    applyPolFilters();
+  }
+
+  function openPolModal(p, lvl, catLabel, basisHTML) {
+    const backdrop = document.getElementById('polModal');
+    const modal    = backdrop.querySelector('.pol-modal');
+    const paperMap = Object.fromEntries(RESEARCH_DATA.map(r => [r.id, r]));
+    // Preserve the original trigger when navigating policy → policy via cross-links.
+    if (!backdrop.classList.contains('open')) backdrop._lastFocus = document.activeElement;
+    document.getElementById('polModalTitle').textContent     = p.title;
+    document.getElementById('polModalLevel').textContent     = lvl.label || p.level;
+    document.getElementById('polModalCat').textContent       = catLabel;
+    document.getElementById('polModalPhaseDesc').textContent = lvl.blurb || lvl.sublabel || '';
+    const li = (arr) => (arr || []).map(item => `<li>${injectPolicyLinks(item, paperMap)}</li>`).join('');
+    const fmtDate = s => {
+      if (!s) return '';
+      const d = new Date(s + 'T00:00:00');
+      return d.toLocaleDateString(undefined, { year: 'numeric', month: 'long', day: 'numeric' });
+    };
+    const hasPros = Array.isArray(p.strengths) && p.strengths.length;
+    const hasCons = Array.isArray(p.risks) && p.risks.length;
+    const prosConsHTML = (hasPros || hasCons) ? `
+      <div class="pol-modal-twocol">
+        ${hasPros ? `<div>
+          <div class="pol-modal-label">Strengths</div>
+          <ul class="pol-modal-list">${li(p.strengths)}</ul>
+        </div>` : '<div></div>'}
+        ${hasCons ? `<div>
+          <div class="pol-modal-label">Risks</div>
+          <ul class="pol-modal-list">${li(p.risks)}</ul>
+        </div>` : '<div></div>'}
+      </div>` : '';
+    // How it interacts — replaces the former Feasibility section. Relationships
+    // are cross-links (.pol-xref) wired to openPolModalById below.
+    const polTitle = id => { const t = POLICY_DATA.find(x => x.id === id); return t ? t.title : id; };
+    const relRow = r => `<div class="pol-rel-item"><a class="pol-xref" data-pol-id="${r.id}" role="link" tabindex="0">${polTitle(r.id)}</a><span class="pol-rel-why">${r.why}</span></div>`;
+    const hasPairs = Array.isArray(p.pairsWith) && p.pairsWith.length;
+    const hasCompetes = Array.isArray(p.competesWith) && p.competesWith.length;
+    const pairsBlock = hasPairs ? `<div class="pol-rel-group g-pairs">
+          <div class="pol-rel-head pairs"><span class="pol-rel-glyph"></span>Pairs with</div>
+          ${p.pairsWith.map(relRow).join('')}
+        </div>` : '';
+    const competesBlock = hasCompetes ? `<div class="pol-rel-group g-competes">
+          <div class="pol-rel-head competes"><span class="pol-rel-glyph"></span>Competes with</div>
+          ${p.competesWith.map(relRow).join('')}
+        </div>` : '';
+    // Two columns (Pairs | Competes) when both exist, mirroring Strengths/Risks;
+    // a single group spans full width rather than leaving a half-empty row.
+    const relInner = (hasPairs && hasCompetes)
+      ? `<div class="pol-rel-cols">${pairsBlock}${competesBlock}</div>`
+      : pairsBlock + competesBlock;
+    const relHTML = (hasPairs || hasCompetes) ? `
+      <div class="pol-modal-section">
+        <div class="pol-modal-label">How it interacts</div>
+        ${relInner}
+      </div>` : '';
+    const landscapeHTML = p.landscape ? `
+      <div class="pol-modal-section">
+        <div class="pol-modal-label">Where it stands</div>
+        <div class="pol-modal-text">${injectPolicyLinks(p.landscape, paperMap)}</div>
+      </div>` : '';
+    const pressHTML = (Array.isArray(p.press) && p.press.length) ? `
+      <div class="pol-modal-section">
+        <div class="pol-modal-label">Press & resources</div>
+        <ul class="pol-press-list">${p.press.map(it => `<li><a href="${it.url}" target="_blank" rel="noopener noreferrer">${it.label}</a></li>`).join('')}</ul>
+      </div>` : '';
+    const researchSection = `
+      <div class="pol-modal-section">
+        <div class="pol-modal-label">Precedents and examples</div>
+        ${p.precedent ? `<div class="pol-modal-text muted">${injectPolicyLinks(p.precedent, paperMap)}</div>` : ''}
+        ${basisHTML ? `<div style="border-top:1px solid var(--border);margin-top:14px;padding-top:12px">${basisHTML}</div>` : ''}
+      </div>`;
+    const lastReviewedHTML = p.lastReviewed ? `<div class="pol-modal-lastreviewed">Last reviewed: ${fmtDate(p.lastReviewed)}</div>` : '';
+    document.getElementById('polModalBody').innerHTML = `
+      <div class="pol-modal-section">
+        <div class="pol-modal-label">What it is</div>
+        <div class="pol-modal-text">${injectPolicyLinks(p.summary, paperMap)}</div>
+      </div>
+      <div class="pol-modal-section">
+        <div class="pol-modal-label">The challenge</div>
+        <div class="pol-modal-text">${injectPolicyLinks(p.rationale, paperMap)}</div>
+      </div>
+      ${prosConsHTML}
+      ${relHTML}
+      ${landscapeHTML}
+      ${researchSection}
+      ${pressHTML}
+      ${lastReviewedHTML}`;
+    const rbToggle = document.getElementById('polModalBody').querySelector('.pol-basis-toggle');
+    if (rbToggle) {
+      const rel = document.getElementById('polModalBody').querySelector('.pol-basis-related');
+      const tEl = rbToggle.querySelector('.pol-basis-toggle-text');
+      const n = rel ? rel.querySelectorAll('.pol-basis-ref').length : 0;
+      rbToggle.addEventListener('click', () => {
+        const open = rbToggle.getAttribute('aria-expanded') === 'true';
+        rbToggle.setAttribute('aria-expanded', open ? 'false' : 'true');
+        if (rel) rel.style.display = open ? 'none' : 'flex';
+        if (tEl) tEl.textContent = open ? `Show ${n} more related ${n === 1 ? 'study' : 'studies'}` : 'Hide related studies';
+      });
+    }
+    // Wire policy cross-reference links to open their target policy's modal.
+    document.getElementById('polModalBody').querySelectorAll('.pol-xref').forEach(a => {
+      const go = e => { e.stopPropagation(); openPolModalById(a.dataset.polId); };
+      a.addEventListener('click', go);
+      a.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); go(e); } });
+    });
+    // R1/R2: export & share actions for this policy
+    const actions = document.getElementById('polModalActions');
+    if (actions) {
+      actions.innerHTML = `
+        <button class="pol-action-btn" id="polCopyDraft" title="Copy this policy as a Markdown primer draft">Copy as draft</button>
+        <button class="pol-action-btn" id="polCopyLink" title="Copy a shareable link to this policy">Copy link</button>
+        <button class="pol-action-btn" id="polPrint" title="Print or save as a PDF">Print</button>`;
+      document.getElementById('polCopyDraft').addEventListener('click', e => copyText(policyToMarkdown(p, lvl, catLabel), e.currentTarget));
+      document.getElementById('polCopyLink').addEventListener('click', e => copyText(appURL('policy/' + p.id), e.currentTarget));
+      document.getElementById('polPrint').addEventListener('click', () => window.print());
+    }
+    backdrop.classList.add('open');
+    document.body.classList.add('pol-modal-open');
+    document.body.style.overflow = 'hidden';
+    setHash('policy/' + p.id);
+    requestAnimationFrame(() => { const cb = document.getElementById('polModalClose'); if (cb) cb.focus(); });
+  }
+
+  // Close policy modal
+  (function() {
+    const backdrop = document.getElementById('polModal');
+    document.getElementById('polModalClose').addEventListener('click', closePolModal);
+    backdrop.addEventListener('click', e => { if (e.target === backdrop) closePolModal(); });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape' && backdrop.classList.contains('open')) closePolModal(); });
+    function closePolModal() {
+      backdrop.classList.remove('open');
+      document.body.classList.remove('pol-modal-open');
+      document.body.style.overflow = '';
+      setHash(currentRoute());
+      if (backdrop._lastFocus) { backdrop._lastFocus.focus(); backdrop._lastFocus = null; }
+    }
+  })();
+
+  /* ── R5: changelog — a dated feed of database additions & policy reviews ── */
+  function buildChangelogHTML() {
+    const fmtD = s => new Date(s + 'T00:00:00').toLocaleDateString(undefined, { year: 'numeric', month: 'long', day: 'numeric' });
+    const groups = {};
+    RESEARCH_DATA.forEach(e => {
+      const d = e.added || e.date;
+      (groups[d] = groups[d] || { entries: [], policies: 0 }).entries.push(e);
+    });
+    POLICY_DATA.forEach(p => {
+      if (!p.lastReviewed) return;
+      (groups[p.lastReviewed] = groups[p.lastReviewed] || { entries: [], policies: 0 }).policies++;
+    });
+    const dates = Object.keys(groups).sort().reverse();
+    const firstDate = dates[dates.length - 1];
+    const html = dates.map(d => {
+      const g = groups[d];
+      const parts = [`<h3 class="clog-date">${fmtD(d)}</h3>`];
+      if (g.policies) parts.push(`<div class="clog-line">Policy Lab: ${g.policies === POLICY_DATA.length ? 'all ' : ''}${g.policies} ${g.policies === 1 ? 'policy' : 'policies'} reviewed</div>`);
+      if (g.entries.length > 20) {
+        parts.push(`<div class="clog-line">${g.entries.length} research entries added${d === firstDate ? ' (initial database import)' : ''}</div>`);
+      } else if (g.entries.length) {
+        g.entries
+          .slice()
+          .sort((a, b) => (a.title || '').localeCompare(b.title || ''))
+          .forEach(e => parts.push(
+            `<div class="clog-entry"><a href="#entry/${e.id}">${e.title}</a><span class="clog-entry-src"> — ${e.source}</span></div>`
+          ));
+      }
+      return `<div class="clog-group">${parts.join('')}</div>`;
+    }).join('');
+    return `<div class="clog-intro">Every dated change to the tracker: research entries added (by intake date) and Policy Lab review passes. Click an entry to jump to it.</div>${html}`;
+  }
+
+  function openChangelog() {
+    const backdrop = document.getElementById('changelogModal');
+    const body = document.getElementById('changelogModalBody');
+    if (!backdrop || !body) return;
+    if (!backdrop.classList.contains('open')) backdrop._lastFocus = document.activeElement;
+    body.innerHTML = buildChangelogHTML();
+    backdrop.classList.add('open');
+    document.body.style.overflow = 'hidden';
+    markChangesSeen();
+    setHash('changelog');
+    requestAnimationFrame(() => { const cb = document.getElementById('changelogModalClose'); if (cb) cb.focus(); });
+  }
+
+  // Close changelog modal
+  (function () {
+    const backdrop = document.getElementById('changelogModal');
+    if (!backdrop) return;
+    function closeChangelog() {
+      backdrop.classList.remove('open');
+      document.body.style.overflow = '';
+      setHash(currentRoute());
+      if (backdrop._lastFocus) { backdrop._lastFocus.focus(); backdrop._lastFocus = null; }
+    }
+    document.getElementById('changelogModalClose').addEventListener('click', closeChangelog);
+    backdrop.addEventListener('click', e => {
+      if (e.target === backdrop) { closeChangelog(); return; }
+      // Entry links: close the modal, then the hashchange router takes over.
+      if (e.target.closest('a[href^="#entry/"]')) closeChangelog();
+    });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape' && backdrop.classList.contains('open')) closeChangelog(); });
+  })();
+
+  function applyPolFilters() {}
+
+  /* ── R2: deep-link routing ────────────────────────────────────
+     Routes: #research · #themes · #policy · #about (tabs)
+             #theme/<theme-id> · #policy/<policy-id> · #entry/<entry-id>
+     The address bar tracks navigation via replaceState (no history spam);
+     hashchange handles pasted links and back/forward. */
+  let routeApplying = false;
+  let viewInitialized = false;   // set on the first setView; changelog-on-cold-start needs a base view
+
+  // Write the address-bar hash without triggering hashchange.
+  function setHash(route) {
+    if (routeApplying) return;
+    const target = '#' + route;
+    if (location.hash === target) return;
+    history.replaceState(null, '', target);
+  }
+
+  // The canonical route for the current view state (modal-free).
+  function currentRoute() {
+    if (activeView === 'cards')  return 'research';
+    if (activeView === 'policy') return 'policy';
+    if (activeView === 'about')  return 'about';
+    return themeShowAll ? 'themes' : 'theme/' + activeThemeId;
+  }
+
+  // Apply location.hash to the app. Returns true if it matched a route.
+  function applyHashRoute() {
+    const h = decodeURIComponent(location.hash.replace(/^#/, ''));
+    if (!h) return false;
+    routeApplying = true;
+    try {
+      const [head, tail] = h.split('/');
+      if (head === 'research' && !tail) { setView('cards');  return true; }
+      if (head === 'themes'   && !tail) { setView('themes'); return true; }
+      if (head === 'about'    && !tail) { setView('about');  return true; }
+      if (head === 'policy'   && !tail) { setView('policy'); return true; }
+      if (head === 'changelog' && !tail) {
+        if (!viewInitialized) setView('themes');
+        openChangelog();
+        return true;
+      }
+      if (head === 'theme' && tail && THEMES.some(t => t.id === tail)) {
+        if (activeLens === 'economist' && !ECON_THEME_CONFIG[tail]) setLens('general');
+        else if (activeLens === 'general' && GENERAL_EXCLUDED.has(tail)) setLens('economist');
+        activeThemeId = tail;
+        themeShowAll  = false;
+        setView('themes');
+        return true;
+      }
+      if (head === 'policy' && tail && POLICY_DATA.some(pl => pl.id === tail)) {
+        setView('policy');
+        openPolModalById(tail);
+        return true;
+      }
+      if (head === 'entry' && tail && RESEARCH_DATA.some(r => r.id === +tail)) {
+        const entry = RESEARCH_DATA.find(r => r.id === +tail);
+        if (activeLens === 'economist' && !isEconRelevant(entry)) setLens('general');
+        activeCat = 'all'; activeStatus = 'all'; activeGeo = 'all'; activeEvidence = 'all';
+        searchQuery = '';
+        const si = document.getElementById('searchInput'); if (si) si.value = '';
+        setView('cards');
+        // setTimeout rather than requestAnimationFrame: rAF never fires in a
+        // background tab, and shared links routinely open in one.
+        setTimeout(() => {
+          const el = document.querySelector(`.card[data-entry-id="${+tail}"]`);
+          if (!el) return;
+          el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          el.classList.add('deep-link-flash');
+          setTimeout(() => el.classList.add('fading'), 1600);
+          setTimeout(() => el.classList.remove('deep-link-flash', 'fading'), 3000);
+        }, 60);
+        return true;
+      }
+      return false;
+    } finally {
+      routeApplying = false;
+    }
+  }
+
+  /* ── What's new (header count pill) ──────────────────────────── */
+  // The pill counts entries added since the log was last opened (day
+  // granularity), falling back to the 30-day window for first-time visitors.
+  // Reads the old banner's wnbSeen marker so existing visitors migrate cleanly.
+  function whatsChangedState() {
+    const fallback = new Date(Date.now() - 30 * 86400000).toISOString().slice(0, 10);
+    const seen = localStorage.getItem('wcSeen') || localStorage.getItem('wnbSeen') || fallback;
+    const count = RESEARCH_DATA.filter(e => (e.added || e.date) > seen).length;
+    const newest = RESEARCH_DATA.reduce((m, e) => { const d = e.added || e.date; return d > m ? d : m; }, '');
+    return { count, newest };
+  }
+
+  function markChangesSeen() {
+    const { newest } = whatsChangedState();
+    if (newest) localStorage.setItem('wcSeen', newest);
+    updateWhatsChangedPill();
+  }
+
+  function updateWhatsChangedPill() {
+    const btn  = document.getElementById('whatsChangedBtn');
+    const pill = document.getElementById('whatsChangedPill');
+    if (!btn || !pill) return;
+    const { count } = whatsChangedState();
+    if (count > 0) {
+      pill.textContent = count;
+      pill.hidden = false;
+      btn.setAttribute('aria-label', `What's New, ${count} new ${count === 1 ? 'entry' : 'entries'}`);
+    } else {
+      pill.hidden = true;
+      btn.setAttribute('aria-label', "What's New");
+    }
+  }
+
+
+  /* ── render ──────────────────────────────────────────────────── */
+  function updateFilterBadge() {
+    const btn   = document.getElementById('filterToggleBtn');
+    const badge = document.getElementById('filterBadge');
+    if (!btn || !badge) return;
+    const count = (activeCat !== 'all' ? 1 : 0) +
+                  (activeGeo !== 'all' ? 1 : 0) +
+                  (activeEvidence !== 'all' ? 1 : 0) +
+                  (searchQuery.trim() ? 1 : 0);
+    badge.textContent = count;
+    badge.style.display = count > 0 ? 'inline' : 'none';
+  }
+
+  function render() {
+    const grid  = document.getElementById('cardsGrid');
+    const empty = document.getElementById('emptyState');
+
+    buildCatNav();
+    buildInlineFilters();
+    updateFilterBadge();
+    updateWhatsChangedPill();
+
+    document.body.classList.toggle('cards-view', activeView === 'cards');
+    const introLine = document.getElementById('researchIntroLine');
+    if (introLine) {
+      introLine.textContent = activeLens === 'economist'
+        ? 'Filtered to peer-reviewed research, institutional analysis, and official reports — organized around economic outcome domains.'
+        : 'A curated database of peer-reviewed studies, policy reports, and investigative journalism on AI, automation, and labor markets.';
+    }
+
+    if (activeView === 'themes') { buildThemesView(); return; }
+    if (activeView === 'policy') { buildPolicyView(); return; }
+    if (activeView === 'about')  { return; }
+
+    grid.innerHTML = '';
+    const visible = getVisible();
+    const econPool = activeLens === 'economist' ? RESEARCH_DATA.filter(isEconRelevant).length : RESEARCH_DATA.length;
+    document.getElementById('resultCount').textContent =
+      visible.length === econPool
+        ? `${visible.length} entries`
+        : `${visible.length} of ${econPool}`;
+
+    const hasFilters = activeCat !== 'all' || activeGeo !== 'all' || activeEvidence !== 'all' || searchQuery.trim();
+    empty.classList.toggle('visible', visible.length === 0);
+    const clearBtn = document.getElementById('emptyStateClear');
+    clearBtn.style.display = visible.length === 0 && hasFilters ? 'inline-block' : 'none';
+    clearBtn.onclick = () => {
+      activeCat = 'all'; activeStatus = 'all'; activeGeo = 'all'; activeEvidence = 'all';
+      searchQuery = ''; document.getElementById('searchInput').value = '';
+      render();
+    };
+    visible.forEach((e, i) => grid.appendChild(buildCard(e, i)));
+  }
+
+  // ── lens control ─────────────────────────────────────────────
+  function setLens(mode) {
+    activeLens = mode;
+    document.body.classList.toggle('lens-economist', mode === 'economist');
+    document.getElementById('lensGeneral').classList.toggle('active', mode === 'general');
+    document.getElementById('lensEconomist').classList.toggle('active', mode === 'economist');
+    activeCat = 'all'; activeEvidence = 'all'; activeStatus = 'all'; activeGeo = 'all';
+    searchQuery = '';
+    const si = document.getElementById('searchInput');
+    if (si) si.value = '';
+    if (mode === 'economist' && !ECON_THEME_CONFIG[activeThemeId]) {
+      activeThemeId = Object.keys(ECON_THEME_CONFIG)[0];
+    }
+    // Refresh tab description for new lens
+    const lensDesc = getTabDesc(activeView);
+    if (lensDesc) {
+      const ti = document.getElementById('headerTabDescTitle');
+      const t  = document.getElementById('headerTabDescText');
+      const n  = document.getElementById('headerTabDescNote');
+      if (ti) ti.textContent = lensDesc.title;
+      if (t)  t.textContent  = lensDesc.text;
+      if (n)  n.textContent  = lensDesc.note;
+    }
+    render();
+  }
+
+  // ── topbar controls ──────────────────────────────────────────
+  const TAB_DESCS = {
+    cards: {
+      general:   { title: 'Research',   text: 'A curated database of peer-reviewed studies, policy reports, and investigative journalism on AI, automation, and labor markets.', note: 'Summaries and key findings are AI-generated and reviewed for accuracy. Always consult the original source before citing.' },
+      economist: { title: 'Research',   text: 'Filtered to peer-reviewed research, institutional analysis, and official reports — organized around economic outcome domains.', note: 'Summaries and key findings are AI-generated and reviewed for accuracy. Always consult the original source before citing.' },
+    },
+    themes: {
+      general:   { title: 'Themes',     text: 'Cross-cutting syntheses of the research database, each framing a key question, evidence consensus, and implications for institutions.', note: 'Synthesized from the research database. Does not constitute strategic advice or reflect the opinions of the creator.' },
+      economist: { title: 'Themes',     text: 'Empirical questions synthesized from peer-reviewed and institutional research, each framing a specific economic outcome with quantified evidence.', note: 'Synthesized from the research database. Does not constitute strategic advice or reflect the opinions of the creator.' },
+    },
+    policy: {
+      general:   { title: 'Policy Lab', text: 'Twenty-seven policy interventions mapped across four policy categories and five implementation phases. Read across a row to see how a category\'s policies evolve from Repair to Transform. Click any policy for rationale, precedents, and supporting research.', note: 'Synthesized from the research database. Does not constitute policy advice or reflect the opinions of the creator.' },
+      economist: { title: 'Policy Lab', text: 'Twenty-seven policy interventions mapped across four policy categories and five implementation phases. Read across a row to see how a category\'s policies evolve from Repair to Transform. Click any policy for rationale, precedents, and supporting research.', note: 'Synthesized from the research database. Does not constitute policy advice or reflect the opinions of the creator.' },
+    },
+    about: {
+      general:   { title: 'About', text: 'How this tracker is structured and how to use it.', note: '' },
+      economist: { title: 'About', text: 'How this tracker is structured and how to use it.', note: '' },
+    },
+  };
+  function getTabDesc(view) {
+    const lens = activeLens === 'economist' ? 'economist' : 'general';
+    return (TAB_DESCS[view] || {})[lens] || null;
+  }
+
+  function setView(view) {
+    activeView = view;
+    viewInitialized = true;
+    ['viewCards', 'viewThemes', 'viewPolicy', 'viewAbout'].forEach(id => {
+      const el = document.getElementById(id);
+      if (!el) return;
+      const active = id === 'view' + view.charAt(0).toUpperCase() + view.slice(1);
+      el.classList.toggle('active', active);
+      el.setAttribute('aria-selected', active ? 'true' : 'false');
+    });
+    // Update header tab description
+    const desc = getTabDesc(view);
+    if (desc) {
+      const ti = document.getElementById('headerTabDescTitle');
+      const t  = document.getElementById('headerTabDescText');
+      const n  = document.getElementById('headerTabDescNote');
+      if (ti) ti.textContent = desc.title;
+      if (t)  t.textContent  = desc.text;
+      if (n)  n.textContent  = desc.note;
+    }
+    const _sb = document.getElementById('sortBtn'); if (_sb) _sb.style.display = view === 'cards' ? '' : 'none';
+    document.body.classList.toggle('strategy-view', view === 'themes');
+    document.body.classList.toggle('policy-view',   view === 'policy');
+    document.body.classList.toggle('about-view',    view === 'about');
+    render();
+    const activeTabId = 'view' + view.charAt(0).toUpperCase() + view.slice(1);
+    const panel = document.getElementById('viewPanel');
+    if (panel) panel.setAttribute('aria-labelledby', activeTabId);
+    const ann = document.getElementById('viewAnnounce');
+    if (ann) {
+      const names = { cards: 'Research', themes: 'Themes', policy: 'Policy Lab', about: 'About' };
+      ann.textContent = (names[view] || view) + ' view';
+    }
+    setHash(currentRoute());
+  }
+  document.getElementById('viewCards').addEventListener('click',  () => setView('cards'));
+  document.getElementById('viewThemes').addEventListener('click', () => setView('themes'));
+  document.getElementById('viewPolicy').addEventListener('click', () => setView('policy'));
+
+  // Key findings band: open a source-excerpt modal, or jump to the theme if no source paper.
+  function goToTheme(id) {
+    if (activeLens === 'economist' && !ECON_THEME_CONFIG[id]) setLens('general');
+    else if (activeLens === 'general' && GENERAL_EXCLUDED.has(id)) setLens('economist');
+    activeThemeId = id;
+    themeShowAll  = false;
+    setView('themes');
+    requestAnimationFrame(() => {
+      document.getElementById('cardsGrid').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  }
+
+  function closeFindingModal() {
+    const backdrop = document.getElementById('findingModal');
+    backdrop.classList.remove('open');
+    document.body.style.overflow = '';
+    if (backdrop._lastFocus) { backdrop._lastFocus.focus(); backdrop._lastFocus = null; }
+  }
+
+  function openFindingModal(card) {
+    const pid = +card.dataset.paperId;
+    const themeId = card.dataset.themeId;
+    const paper = RESEARCH_DATA.find(r => r.id === pid);
+    if (!paper) { goToTheme(themeId); return; }
+    const theme = THEMES.find(t => t.id === themeId);
+    const stat = card.querySelector('.key-finding-stat')?.textContent || '';
+    const text = card.querySelector('.key-finding-text')?.textContent || '';
+    const primaryCite = `<a class="finding-modal-source" href="${paper.sourceUrl}" target="_blank" rel="noopener noreferrer">${formatAPACitation(paper)}</a>`;
+    const refLink = p => `<a class="theme-ref" href="${p.sourceUrl}" target="_blank" rel="noopener noreferrer">${formatAPACitation(p)}</a>`;
+    const related = (theme && theme.papers ? theme.papers : []).filter(id2 => id2 !== pid)
+      .map(id2 => RESEARCH_DATA.find(r => r.id === id2)).filter(Boolean)
+      .sort((a, b) => (a.source || '').localeCompare(b.source || '')).slice(0, 6);
+    const relatedHTML = related.length
+      ? `<div class="pol-modal-section"><div class="pol-modal-label">Related research</div><div class="theme-refs" style="grid-template-columns:1fr">${related.map(refLink).join('')}</div></div>`
+      : '';
+    const themeLink = theme
+      ? `<div class="pol-modal-section"><button class="finding-theme-link" type="button">Explore the ${theme.tag} theme →</button></div>`
+      : '';
+    document.getElementById('findingModalStat').textContent = stat;
+    document.getElementById('findingModalTitle').textContent = text;
+    document.getElementById('findingModalBody').innerHTML = `
+      <div class="pol-modal-section">
+        <div class="pol-modal-label">From the research</div>
+        ${primaryCite}
+        <div class="pol-modal-text">${card.dataset.excerpt || paper.keyFinding}</div>
+      </div>
+      ${relatedHTML}
+      ${themeLink}`;
+    document.getElementById('findingModalBody').querySelector('.finding-theme-link')?.addEventListener('click', () => {
+      closeFindingModal();
+      goToTheme(themeId);
+    });
+    const backdrop = document.getElementById('findingModal');
+    backdrop._lastFocus = document.activeElement;
+    backdrop.classList.add('open');
+    document.body.style.overflow = 'hidden';
+    requestAnimationFrame(() => { const cb = document.getElementById('findingModalClose'); if (cb) cb.focus(); });
+  }
+
+  (function() {
+    const backdrop = document.getElementById('findingModal');
+    document.getElementById('findingModalClose').addEventListener('click', closeFindingModal);
+    backdrop.addEventListener('click', e => { if (e.target === backdrop) closeFindingModal(); });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape' && backdrop.classList.contains('open')) closeFindingModal(); });
+  })();
+
+  // Build the band from the most recently added papers that carry a `highlight`
+  // field (capped at 8). Click handling uses event delegation so cards added
+  // after script-load still respond.
+  function buildKeyFindingsBand() {
+    const band = document.getElementById('keyFindingsBand');
+    const row  = document.getElementById('keyFindingsRow');
+    if (!band || !row) return;
+    const themeMap = Object.fromEntries(THEMES.map(t => [t.id, t]));
+    const cards = RESEARCH_DATA
+      .filter(p => p.highlight)
+      .sort((a, b) => new Date(b.added || b.date) - new Date(a.added || a.date) || new Date(b.date) - new Date(a.date))
+      .slice(0, 8)
+      .map(p => {
+        const t = themeMap[p.highlight.themeId];
+        if (!t) return '';
+        const inst = (p.source || '').split(' \u2014 ').pop().trim();
+        const year = p.date ? p.date.slice(0, 4) : '';
+        const sourceLine = p.highlight.source || `${inst}, ${year}`;
+        return `<button class="key-finding-card" data-paper-id="${p.id}" data-theme-id="${p.highlight.themeId}" style="--kf-color:${t.color}">`
+             + `<span class="key-finding-stat">${p.highlight.stat}</span>`
+             + `<span class="key-finding-text">${p.highlight.text}</span>`
+             + `<span class="key-finding-source">${sourceLine}</span>`
+             + `<span class="key-finding-link">${t.tag} \u2192</span>`
+             + `</button>`;
+      }).join('');
+    if (!cards) { band.style.display = 'none'; return; }
+    row.innerHTML = cards;
+    band.style.display = '';
+  }
+
+  document.getElementById('keyFindingsBand').addEventListener('click', e => {
+    const card = e.target.closest('.key-finding-card[data-theme-id]');
+    if (!card) return;
+    if (card.dataset.paperId) openFindingModal(card);
+    else goToTheme(card.dataset.themeId);
+  });
+
+  buildKeyFindingsBand();
+
+  function updateSortBtn() {
+    const btn = document.getElementById('sortBtn');
+    if (!btn) return;
+    const s = SORT_STATES[sortIdx];
+    const lbl = document.getElementById('sortLabel');
+    if (lbl) lbl.textContent = s.label;
+    btn.classList.toggle('sort-active', sortIdx !== 0);
+    const icons = {
+      desc:   '<path d="M3 6h18M7 12h10M11 18h2"/>',
+      asc:    '<path d="M11 6h2M7 12h10M3 18h18"/>',
+      status: '<path d="M3 6h18M3 12h18M3 18h18"/>',
+    };
+    const svg = btn.querySelector('svg');
+    if (svg) svg.innerHTML = icons[s.order] || icons.desc;
+  }
+  updateSortBtn();
+
+  let searchTimer;
+  document.getElementById('searchInput').addEventListener('input', e => {
+    clearTimeout(searchTimer);
+    searchTimer = setTimeout(() => { searchQuery = e.target.value; render(); }, 200);
+  });
+
+  // ── mobile sidebar ───────────────────────────────────────────
+  const sidebar   = document.getElementById('sidebar');
+  const backdrop  = document.getElementById('sidebarBackdrop');
+  const toggleBtn = document.getElementById('sidebarToggle');
+  function closeSidebar() { sidebar.classList.remove('open'); backdrop.classList.remove('visible'); }
+  toggleBtn.addEventListener('click', () => {
+    const open = sidebar.classList.toggle('open');
+    backdrop.classList.toggle('visible', open);
+  });
+  backdrop.addEventListener('click', closeSidebar);
+
+  // ── mobile filter drawer toggle ───────────────────────────────
+  const filterToggleBtn = document.getElementById('filterToggleBtn');
+  if (filterToggleBtn) {
+    filterToggleBtn.addEventListener('click', () => {
+      const bar = document.getElementById('inlineFilters');
+      const isOpen = bar.classList.toggle('mobile-open');
+      filterToggleBtn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    });
+  }
+
+  // ── sidebar collapsible sections ─────────────────────────────
+  function updateSectionCounts() {
+    const catActive   = filteredBase({ excludeCat: true });
+    const statusActive = filteredBase({ excludeStatus: true });
+    const geoActive   = filteredBase({ excludeGeo: true });
+    const el = id => document.getElementById(id);
+    if (activeCat !== 'all') {
+      const cat = getCat(activeCat);
+      el('secCategoryCount').textContent = cat.label;
+    } else {
+      el('secCategoryCount').textContent = '';
+    }
+    if (activeStatus !== 'all') {
+      el('secStatusCount').textContent = STATUS_META[activeStatus]?.label || '';
+    } else {
+      el('secStatusCount').textContent = '';
+    }
+    if (activeGeo !== 'all') {
+      el('secGeoCount').textContent = GEOGRAPHY_META[activeGeo]?.label || '';
+    } else {
+      el('secGeoCount').textContent = '';
+    }
+  }
+
+  document.querySelectorAll('.sidebar-heading[data-sec]').forEach(heading => {
+    heading.addEventListener('click', () => {
+      const sec = document.getElementById(heading.dataset.sec);
+      sec.classList.toggle('collapsed');
+    });
+  });
+
+  // ── footer ───────────────────────────────────────────────────
+  const latest  = new Date(Math.max(
+    ...RESEARCH_DATA.map(r => new Date(r.date + 'T00:00:00')),
+    new Date(LAST_CONTENT_UPDATE + 'T00:00:00')
+  ));
+  const latestStr = latest.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+  document.getElementById('headerLastUpdated').textContent = latestStr;
+
+  // ── sources modal ─────────────────────────────────────────────
+  (function() {
+    const modal   = document.getElementById('sourcesModal');
+    const body    = document.getElementById('sourcesModalBody');
+    const openBtn = document.getElementById('sourcesInfoBtn');
+    const closeBtn= document.getElementById('sourcesModalClose');
+
+    function openModal() {
+      modal._lastFocus = document.activeElement;
+      if (!body.hasChildNodes()) {
+        const intro = document.createElement('p');
+        intro.className = 'modal-sources-intro';
+        intro.textContent = 'These are the institutions and organizations whose work is tracked in this database.';
+        body.appendChild(intro);
+
+        Object.entries(PRIORITY_SOURCE_GROUPS).forEach(([group, names]) => {
+          const g = document.createElement('div');
+          g.className = 'modal-group';
+          const rows = names.map(name => {
+            const meta = INST_META[name] || {};
+            const nameEl = meta.url
+              ? `<a class="modal-source-link" href="${meta.url}" target="_blank" rel="noopener">${name}<span class="modal-source-ext">↗</span></a>`
+              : `<span class="modal-source-link">${name}</span>`;
+            return `<div class="modal-source-row">
+              <div class="modal-source-top">${nameEl}</div>
+            </div>`;
+          }).join('');
+          g.innerHTML = `<div class="modal-group-name">${group}</div>
+            <div class="modal-sources-list">${rows}</div>`;
+          body.appendChild(g);
+        });
+      }
+      modal.classList.add('open');
+      requestAnimationFrame(() => { closeBtn.focus(); });
+    }
+    function closeModal() {
+      modal.classList.remove('open');
+      if (modal._lastFocus) { modal._lastFocus.focus(); modal._lastFocus = null; }
+    }
+
+    openBtn.addEventListener('click', openModal);
+    closeBtn.addEventListener('click', closeModal);
+    modal.addEventListener('click', e => { if (e.target === modal) closeModal(); });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+  })();
+
+  // ── about modal ──────────────────────────────────────────────
+  (function() {
+    const modal    = document.getElementById('aboutModal');
+    const openBtn  = document.getElementById('aboutInfoBtn');
+    const closeBtn = document.getElementById('aboutModalClose');
+    function openModal()  {
+      modal._lastFocus = document.activeElement;
+      modal.classList.add('open');
+      requestAnimationFrame(() => { closeBtn.focus(); });
+    }
+    function closeModal() {
+      modal.classList.remove('open');
+      if (modal._lastFocus) { modal._lastFocus.focus(); modal._lastFocus = null; }
+    }
+    openBtn.addEventListener('click', openModal);
+    closeBtn.addEventListener('click', closeModal);
+    modal.addEventListener('click', e => { if (e.target === modal) closeModal(); });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+  })();
+
+  document.querySelectorAll('.lens-btn').forEach(btn => {
+    btn.addEventListener('click', () => setLens(btn.dataset.lens));
+  });
+
+  // ── topbar About / ⓘ (mobile mirrors) ────────────────────────
+  document.getElementById('viewAbout')?.addEventListener('click', () => setView('about'));
+  document.getElementById('aboutInfoBtnTopbar')?.addEventListener('click', () => {
+    document.getElementById('aboutInfoBtn').click();
+  });
+  document.getElementById('sourcesInfoBtnTopbar')?.addEventListener('click', () => {
+    document.getElementById('sourcesInfoBtn').click();
+  });
+
+  // ── Modal focus trap (keyboard accessibility) ───────────────
+  document.addEventListener('keydown', (e) => {
+    if (e.key !== 'Tab') return;
+    const open = document.querySelector('.modal-backdrop.open');
+    if (!open) return;
+    const f = [...open.querySelectorAll('a[href], button:not([disabled]), input, select, textarea, [tabindex]:not([tabindex="-1"])')]
+      .filter(el => el.offsetWidth || el.offsetHeight || el.getClientRects().length);
+    if (!f.length) return;
+    const first = f[0], last = f[f.length - 1];
+    if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+    else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+  });
+
+  // ── R7: data-validation guard (console-only) ────────────────
+  // Catches the silent-reference-rot class of bug (e.g. an entry carrying a
+  // theme id as its category, a cite token pointing at a deleted entry) at load.
+  (function validateData() {
+    const problems = [];
+    const catIds = new Set(CATEGORIES.map(c => c.id));
+    const ids = new Set();
+    RESEARCH_DATA.forEach(e => {
+      if (ids.has(e.id)) problems.push(`duplicate entry id ${e.id}`);
+      ids.add(e.id);
+      if (!catIds.has(e.category)) problems.push(`entry ${e.id}: unknown category "${e.category}"`);
+      if (e.geography && !GEOGRAPHY_META[e.geography]) problems.push(`entry ${e.id}: unknown geography "${e.geography}"`);
+      if (!e.date || isNaN(new Date(e.date + 'T00:00:00'))) problems.push(`entry ${e.id}: bad date "${e.date}"`);
+      if (e.added && isNaN(new Date(e.added + 'T00:00:00'))) problems.push(`entry ${e.id}: bad added "${e.added}"`);
+    });
+    THEMES.forEach(t => (t.papers || []).forEach(pid => {
+      if (!ids.has(pid)) problems.push(`theme ${t.id}: linked paper ${pid} not found`);
+    }));
+    const polIds = new Set(POLICY_DATA.map(p => p.id));
+    POLICY_DATA.forEach(p => {
+      (p.paperIds || []).forEach(pid => { if (!ids.has(pid)) problems.push(`policy ${p.id}: paperId ${pid} not found`); });
+      if (!POLICY_CATEGORIES[p.category]) problems.push(`policy ${p.id}: unknown category "${p.category}"`);
+      if (!DISRUPTION_LEVELS.some(l => l.id === p.level)) problems.push(`policy ${p.id}: unknown level "${p.level}"`);
+    });
+    const scanTokens = (obj, label) => {
+      const s = JSON.stringify(obj);
+      for (const m of s.matchAll(/\{\{citep?:(\d+)\}\}/g)) {
+        if (!ids.has(+m[1])) problems.push(`${label}: cite token ${m[1]} resolves to no entry`);
+      }
+      for (const m of s.matchAll(/\{\{pol:([a-z0-9-]+)\|/g)) {
+        if (!polIds.has(m[1])) problems.push(`${label}: policy cross-reference "${m[1]}" resolves to no policy`);
+      }
+    };
+    scanTokens(THEMES, 'themes');
+    scanTokens(POLICY_DATA, 'policies');
+    if (problems.length) {
+      console.error(`[tracker] data validation: ${problems.length} problem(s) found`);
+      problems.slice(0, 25).forEach(p => console.warn('[tracker]', p));
+    }
+  })();
+
+  // ── init ─────────────────────────────────────────────────────
+  // R2: honor a deep link if one is present; otherwise land on Themes.
+  if (!applyHashRoute()) setView('themes');
+  window.addEventListener('hashchange', applyHashRoute);
+
+  // What's new: open the log from the header button; pulse the pill once
+  // per page load when there is something unseen (skipped if a #changelog
+  // deep link already opened the log and cleared the count).
+  document.getElementById('whatsChangedBtn')?.addEventListener('click', openChangelog);
+  updateWhatsChangedPill();
+  (() => {
+    const pill = document.getElementById('whatsChangedPill');
+    if (!pill || pill.hidden) return;
+    pill.classList.add('pulse');
+    pill.addEventListener('animationend', () => pill.classList.remove('pulse'), { once: true });
+  })();
+
+})();
+</script>
+</body>
+</html>
