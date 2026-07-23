@@ -1958,7 +1958,6 @@
 <header class="site-header">
   <div class="header-inner">
     <div class="header-brand">
-      <img src="assets/esp-c3-white.png" alt="Economic Security Project">
       <div class="header-text">
         <h1><a href="https://cmpcmp-dot.github.io/ai-tech-markets-research/">AI, Tech and the Economy: Research Intelligence</a></h1>
         <div class="header-sub">A curated database of research on AI, automation, and the economy</div>
@@ -4189,13 +4188,15 @@
     return (TAB_DESCS[view] || {})[lens] || null;
   }
 
+  const VIEW_TAB_IDS = { cards: 'viewCards', 'fact-bank': 'viewFactBank', themes: 'viewThemes', policy: 'viewPolicy', jobs: 'viewJobs', about: 'viewAbout' };
+
   function setView(view) {
     activeView = view;
     viewInitialized = true;
     ['viewCards', 'viewFactBank', 'viewThemes', 'viewPolicy', 'viewJobs', 'viewAbout'].forEach(id => {
       const el = document.getElementById(id);
       if (!el) return;
-      const active = id === 'view' + view.charAt(0).toUpperCase() + view.slice(1);
+      const active = id === VIEW_TAB_IDS[view];
       el.classList.toggle('active', active);
       el.setAttribute('aria-selected', active ? 'true' : 'false');
     });
@@ -4217,7 +4218,7 @@
     document.body.classList.toggle('fact-bank-view',   view === 'fact-bank');
     if (view === 'fact-bank' && typeof initFactBank === 'function') initFactBank();
     render();
-    const activeTabId = 'view' + view.charAt(0).toUpperCase() + view.slice(1);
+    const activeTabId = VIEW_TAB_IDS[view] || ('view' + view.charAt(0).toUpperCase() + view.slice(1));
     const panel = document.getElementById('viewPanel');
     if (panel) panel.setAttribute('aria-labelledby', activeTabId);
     const ann = document.getElementById('viewAnnounce');
