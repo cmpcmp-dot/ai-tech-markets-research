@@ -1611,80 +1611,97 @@
   .pol-col-distbar { display: none; }
   .pol-col-distbar-seg { display: none; }
 
-  /* ── Policy matrix layout ─────────────────────────────────── */
-  .pol-waterfall {
+  /* ── Policy category rows ─────────────────────────────────── */
+  /* Four merged categories stacked as rows in curated order
+     (Economic Security first, Global last). Within each row the policy
+     cards flow left→right alphabetically and wrap to new lines, so
+     scrolling down reads category by category. Each row's ESP identity
+     color is set inline as --cat-color; it rides the top border, a faint
+     header wash, a colored dot, and each card's left stripe. Label text
+     stays --headline for ADA contrast. */
+  .pol-cat-rows {
     width: 100%; padding: 32px 28px 60px;
+    display: flex; flex-direction: column; gap: 28px;
   }
-  .pol-matrix-header,
-  .pol-matrix-row {
-    display: grid;
-    grid-template-columns: 180px repeat(5, 1fr);
-    gap: 0 20px;
-    padding: 0 28px;
+  .pol-cat-row {
+    border: 1px solid var(--border);
+    border-top: 3px solid var(--cat-color, var(--border));
+    border-radius: 12px; overflow: hidden;
+    background: var(--surface);
   }
-  .pol-matrix-header {
-    padding-bottom: 12px;
-    border-bottom: 2px solid var(--border);
-    margin-bottom: 0;
-  }
-  /* Phase column header (top row) */
-  .pol-matrix-phase-col { padding: 8px 0 4px; }
-  .pol-matrix-phase-label {
-    font-family: 'Publico Banner', Georgia, serif;
-    font-size: 15px; font-weight: 700; letter-spacing: -0.01em;
-    color: var(--text); line-height: 1.2;
-  }
-  .pol-matrix-phase-blurb {
-    font-size: 11px; font-weight: 400; color: var(--muted);
-    line-height: 1.5; margin-top: 4px;
-    font-family: 'Public Sans', sans-serif;
-  }
-  /* Category row label (left cell of each row) */
-  .pol-matrix-row {
-    border-top: 1px solid var(--border);
-    padding-top: 16px; padding-bottom: 16px;
-    align-items: start;
-  }
-  .pol-matrix-cat-row-label {
-    padding: 2px 12px 2px 0;
-  }
-  .pol-matrix-cat-label {
-    font-family: 'Publico Banner', Georgia, serif;
-    font-size: 14px; font-weight: 700; letter-spacing: -0.01em;
-    color: var(--text); line-height: 1.3;
-  }
-  .pol-matrix-cat-desc {
-    font-size: 11px; color: var(--muted); line-height: 1.5;
-    margin-top: 3px; font-family: 'Public Sans', sans-serif;
-  }
-  .pol-matrix-cell {
-    display: flex; flex-direction: column; gap: 0; min-height: 4px;
-  }
-  .pol-matrix-card {
-    background: var(--surface); border: none;
-    border-left: 3px solid var(--border);
+  .pol-cat-row-head {
+    padding: 14px 20px 12px;
     border-bottom: 1px solid var(--border);
-    border-radius: 0; padding: 10px 0 10px 12px; cursor: pointer;
-    transition: background 0.15s, border-color 0.15s;
-    margin-bottom: 4px;
+    background: color-mix(in srgb, var(--cat-color, transparent) 6%, transparent);
   }
-  .pol-matrix-card:last-child { margin-bottom: 0; }
-  .pol-matrix-card:hover {
-    background: #fdfaef;
-    border-left-color: var(--accent);
+  .pol-cat-row-title {
+    display: flex; align-items: baseline; gap: 9px;
+    font-family: 'Publico Banner', Georgia, serif;
+    font-size: 18px; font-weight: 700; letter-spacing: -0.01em;
+    color: var(--headline); line-height: 1.2;
   }
-  .pol-matrix-card-phase { display: none; }
-  .pol-matrix-card-title {
+  .pol-cat-row-title::before {
+    content: ''; flex-shrink: 0;
+    width: 10px; height: 10px; border-radius: 50%;
+    background: var(--cat-color, var(--muted));
+    transform: translateY(-1px);
+  }
+  .pol-cat-row-desc {
+    font-size: 12px; color: var(--muted); line-height: 1.5;
+    margin-top: 5px; font-family: 'Public Sans', sans-serif;
+  }
+  .pol-cat-row-count {
+    display: inline-block; margin-top: 7px;
+    font-family: 'Haas Grotesk', 'Helvetica Neue', Arial, sans-serif;
+    font-size: 10.5px; letter-spacing: 0.04em; text-transform: uppercase;
+    color: var(--muted); font-variant-numeric: tabular-nums;
+  }
+  /* Cards flow left→right and wrap; auto-fill columns of equal width keep
+     the alphabetical reading order clean across and down the row. */
+  .pol-cat-row-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 10px;
+    padding: 16px 20px 18px;
+  }
+  .pol-cat-card {
+    display: flex; align-items: flex-start; gap: 8px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-left: 3px solid color-mix(in srgb, var(--cat-color, var(--border)) 45%, var(--border));
+    border-radius: 8px;
+    padding: 11px 12px 11px 13px; cursor: pointer;
+    transition: background 0.15s, border-color 0.15s, box-shadow 0.15s;
+  }
+  .pol-cat-card:hover {
+    background: color-mix(in srgb, var(--cat-color, transparent) 8%, var(--surface));
+    border-left-color: var(--cat-color, var(--accent));
+    box-shadow: 0 2px 10px rgba(44,50,84,0.07);
+  }
+  .pol-cat-card-title {
+    flex: 1;
     font-family: 'Public Sans', sans-serif;
     font-size: 13px; font-weight: 500; line-height: 1.4;
     color: var(--text);
   }
-  .pol-matrix-card-open {
-    font-size: 11px; color: var(--muted); display: none;
-    margin-top: 4px; font-family: 'Public Sans', sans-serif;
-    transition: color 0.15s;
+  /* Persistent, faint affordance: darkens toward the category color and
+     slides right on hover. Always present — hovering never resizes the card.
+     Hover color is mixed toward --headline so it stays legible for the
+     lighter category hues (gold, green). */
+  .pol-cat-card-arrow {
+    flex-shrink: 0; align-self: center;
+    font-size: 15px; line-height: 1; color: var(--muted); opacity: 0.35;
+    transition: opacity 0.15s, color 0.15s, transform 0.15s;
   }
-  .pol-matrix-card:hover .pol-matrix-card-open { display: block; color: var(--text); }
+  .pol-cat-card:hover .pol-cat-card-arrow {
+    opacity: 1;
+    color: color-mix(in srgb, var(--cat-color, var(--accent)) 65%, var(--headline));
+    transform: translateX(3px);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .pol-cat-card-arrow { transition: opacity 0.15s, color 0.15s; }
+    .pol-cat-card:hover .pol-cat-card-arrow { transform: none; }
+  }
   /* View mode toggle */
 
   .pol-item-list {
@@ -1735,20 +1752,10 @@
 
     .pol-columns { padding-left: 16px; padding-right: 16px; grid-template-columns: 1fr; }
 
-    /* Policy Map waterfall: stack by category, phase as a per-card label */
-    .pol-waterfall { padding: 18px 16px 40px; }
-    .pol-matrix-header { display: none; }
-    .pol-matrix-row { display: block; grid-template-columns: none; gap: 0; padding: 16px 16px 6px; }
-    .pol-matrix-cat-row-label { padding: 0 0 10px; }
-    .pol-matrix-cell { display: block; }
-    .pol-matrix-cell:empty { display: none; }
-    .pol-matrix-card { margin-bottom: 8px; padding: 9px 12px; }
-    .pol-matrix-card-phase {
-      display: block; font-size: 10px; font-weight: 700; letter-spacing: 0.07em;
-      text-transform: uppercase; color: var(--muted); margin-bottom: 3px;
-      font-family: 'Haas Grotesk', 'Helvetica Neue', Arial, sans-serif;
-    }
-    .pol-matrix-card-open { display: block; }
+    /* Policy Map: tighten row padding; auto-fill collapses cards to 1-up */
+    .pol-cat-rows { padding: 18px 16px 40px; gap: 18px; }
+    .pol-cat-row-cards { grid-template-columns: 1fr; padding: 12px 14px 14px; }
+    .pol-cat-row-head { padding: 12px 14px 10px; }
   }
 
   /* ── FOCUS STYLES (Fix 1) ────────────────────────────────── */
@@ -1945,7 +1952,7 @@
           </div>
           <div class="about-section">
             <h2 class="about-section-label">How to read it</h2>
-            <p class="about-section-text"><strong>Three tabs.</strong> Research is the full, filterable database of individual sources. Themes synthesizes the database into cross-cutting questions, each with the evidence, what is working, the risks, and the implications. Policy Map maps policy interventions across categories and five implementation phases.</p>
+            <p class="about-section-text"><strong>Three tabs.</strong> Research is the full, filterable database of individual sources. Themes synthesizes the database into cross-cutting questions, each with the evidence, what is working, the risks, and the implications. Policy Map groups policy interventions into four policy areas, listed alphabetically within each.</p>
             <p class="about-section-text"><strong>Confidence.</strong> Each theme is tagged Strong consensus (independent research streams converge), Emerging evidence (the direction is clear but still developing), or Contested (credible researchers reach different conclusions).</p>
             <p class="about-section-text"><strong>Lens.</strong> The General lens is written for a broad audience. The Focused lens filters to peer-reviewed and institutional research, organized around economic outcome domains.</p>
           </div>
@@ -3073,7 +3080,7 @@
       hdr.className = 'policy-map-header';
       hdr.innerHTML = `
         <span class="pol-header-title">Policy Map</span>
-        <span class="theme-intro-line">Twenty-seven policy interventions mapped across ten policy domains and five implementation phases. Read across a row to see how each domain's policies escalate from Repair to Transform. Click any policy for rationale, precedents, and supporting research.</span>
+        <span class="theme-intro-line">Twenty-seven policy interventions grouped into four policy areas, listed alphabetically within each. Click any policy for rationale, precedents, and supporting research.</span>
         <span class="theme-disclaimer-line">Synthesized from the research database. Does not constitute policy advice or reflect the opinions of the creator.</span>`;
       area.appendChild(hdr);
 
@@ -3172,75 +3179,74 @@
       });
       area.appendChild(columns);
 
-      // ── Matrix container ────────────────────────────────────
-      const waterfall = document.createElement('div');
-      waterfall.className = 'pol-waterfall';
-      waterfall.id = 'polWaterfall';
-      const levelMap2 = Object.fromEntries(DISRUPTION_LEVELS.map(l => [l.id, l]));
+      // ── Category rows ────────────────────────────────────────
+      // Phase (Repair→Transform) is no longer an axis of the map: the four
+      // merged categories each get a full-width row, in curated order
+      // (Economic Security first, Global last — Object key order below).
+      // Policies within a row are listed alphabetically and flow left→right,
+      // so scrolling down reads category by category. Each category carries
+      // its own ESP-palette color (contrast-tuned across the set). Color
+      // rides the header rule and each card's left stripe; label text stays
+      // dark (--headline) for ADA contrast on the light background.
+      const CAT_COLOR_VARS = {
+        'economic-security':    'var(--green)',   // Soft Green
+        'labor-worker-rights':  'var(--navy)',    // Warm Navy
+        'social-infrastructure':'var(--gold)',    // Warm Gold
+        'skills-global':        'var(--purple)',  // Deep Purple
+      };
 
-      // Build reverse lookup: mergedCatId → array of original catIds
+      // Reverse lookup: mergedCatId → array of original catIds
       const mergedToOriginal = {};
       Object.keys(MERGED_POLICY_CATEGORIES).forEach(mc => { mergedToOriginal[mc] = []; });
       Object.entries(CATEGORY_MERGE_MAP).forEach(([orig, merged]) => {
         mergedToOriginal[merged].push(orig);
       });
 
-      // ── Header row (phase column labels) ─────────────────────
-      const header = document.createElement('div');
-      header.className = 'pol-matrix-header';
-      // Empty corner cell
-      header.appendChild(document.createElement('div'));
-      DISRUPTION_LEVELS.forEach((lvl, i) => {
-        const col = document.createElement('div');
-        col.className = 'pol-matrix-phase-col';
-        const arrow = i < DISRUPTION_LEVELS.length - 1
-          ? '<span style="font-weight:400;opacity:0.35;margin-left:5px;font-family:\'Public Sans\',sans-serif;font-size:13px;">→</span>'
-          : '';
-        col.innerHTML = `<div class="pol-matrix-phase-label">${lvl.label}${arrow}</div>
-          <div class="pol-matrix-phase-blurb">${lvl.blurb}</div>`;
-        header.appendChild(col);
-      });
-      waterfall.appendChild(header);
+      const catRows = document.createElement('div');
+      catRows.className = 'pol-cat-rows';
+      catRows.id = 'polCatRows';
 
-      // ── Merged category rows ─────────────────────────────────
       Object.entries(MERGED_POLICY_CATEGORIES).forEach(([mcId, mcLabel]) => {
         const origCats = mergedToOriginal[mcId] || [];
-        const catPolicies = POLICY_DATA.filter(p => origCats.includes(p.category));
+        // Alphabetical by title within the category.
+        const catPolicies = POLICY_DATA
+          .filter(p => origCats.includes(p.category))
+          .sort((a, b) => a.title.localeCompare(b.title));
         if (!catPolicies.length) return;
 
         const row = document.createElement('div');
-        row.className = 'pol-matrix-row';
+        row.className = 'pol-cat-row';
+        row.dataset.cat = mcId;
+        row.style.setProperty('--cat-color', CAT_COLOR_VARS[mcId] || 'var(--muted)');
 
-        // Left cell: category label + desc
-        const catCell = document.createElement('div');
-        catCell.className = 'pol-matrix-cat-row-label';
-        catCell.innerHTML = `<div class="pol-matrix-cat-label">${mcLabel}</div>
-          <div class="pol-matrix-cat-desc">${MERGED_CAT_DESCS[mcId] || ''}</div>`;
-        row.appendChild(catCell);
+        const head = document.createElement('div');
+        head.className = 'pol-cat-row-head';
+        head.innerHTML = `
+          <div class="pol-cat-row-title">${mcLabel}</div>
+          <div class="pol-cat-row-desc">${MERGED_CAT_DESCS[mcId] || ''}</div>
+          <div class="pol-cat-row-count">${catPolicies.length} polic${catPolicies.length===1?'y':'ies'}</div>`;
+        row.appendChild(head);
 
-        // 5 phase cells
-        DISRUPTION_LEVELS.forEach(lvl => {
-          const cell = document.createElement('div');
-          cell.className = 'pol-matrix-cell';
+        const cards = document.createElement('div');
+        cards.className = 'pol-cat-row-cards';
 
-          catPolicies.filter(p => p.level === lvl.id).forEach(p => {
-            const origCatLabel = POLICY_CATEGORIES[p.category] || p.category;
-            const basisHTML = buildPolicyBasis(getResearchBasis(p));
+        catPolicies.forEach(p => {
+          const lvl = levelMap[p.level] || {};
+          const origCatLabel = POLICY_CATEGORIES[p.category] || p.category;
+          const basisHTML = buildPolicyBasis(getResearchBasis(p));
 
-            const card = document.createElement('div');
-            card.className = 'pol-matrix-card';
-            card.innerHTML = `<div class="pol-matrix-card-phase">${lvl.label}</div><div class="pol-matrix-card-title">${p.title}</div><div class="pol-matrix-card-open">Open details →</div>`;
-            card.addEventListener('click', () => openPolModal(p, lvl, origCatLabel, basisHTML));
-            cell.appendChild(card);
-          });
-
-          row.appendChild(cell);
+          const card = document.createElement('div');
+          card.className = 'pol-cat-card';
+          card.innerHTML = `<div class="pol-cat-card-title">${p.title}</div><span class="pol-cat-card-arrow" aria-hidden="true">&rsaquo;</span>`;
+          card.addEventListener('click', () => openPolModal(p, lvl, origCatLabel, basisHTML));
+          cards.appendChild(card);
         });
 
-        waterfall.appendChild(row);
+        row.appendChild(cards);
+        catRows.appendChild(row);
       });
 
-      area.appendChild(waterfall);
+      area.appendChild(catRows);
 
     }
 
@@ -3659,8 +3665,8 @@
       economist: { title: 'Themes',     text: 'Empirical questions synthesized from peer-reviewed and institutional research, each framing a specific economic outcome with quantified evidence.', note: 'Synthesized from the research database. Does not constitute strategic advice or reflect the opinions of the creator.' },
     },
     policy: {
-      general:   { title: 'Policy Map', text: 'Twenty-seven policy interventions mapped across four policy categories and five implementation phases. Read across a row to see how a category\'s policies evolve from Repair to Transform. Click any policy for rationale, precedents, and supporting research.', note: 'Synthesized from the research database. Does not constitute policy advice or reflect the opinions of the creator.' },
-      economist: { title: 'Policy Map', text: 'Twenty-seven policy interventions mapped across four policy categories and five implementation phases. Read across a row to see how a category\'s policies evolve from Repair to Transform. Click any policy for rationale, precedents, and supporting research.', note: 'Synthesized from the research database. Does not constitute policy advice or reflect the opinions of the creator.' },
+      general:   { title: 'Policy Map', text: 'Twenty-seven policy interventions grouped into four policy areas, listed alphabetically within each. Click any policy for rationale, precedents, and supporting research.', note: 'Synthesized from the research database. Does not constitute policy advice or reflect the opinions of the creator.' },
+      economist: { title: 'Policy Map', text: 'Twenty-seven policy interventions grouped into four policy areas, listed alphabetically within each. Click any policy for rationale, precedents, and supporting research.', note: 'Synthesized from the research database. Does not constitute policy advice or reflect the opinions of the creator.' },
     },
     about: {
       general:   { title: 'About', text: 'How this tracker is structured and how to use it.', note: '' },
