@@ -1753,7 +1753,69 @@
   }
   .pol-item-wrap:hover .pol-item-title { color: var(--accent); }
 
+  /* ── Policy Map / Links sub-view toggle ──────────────────────
+     Deliberately its own class, not `.lens-toggle` — the site hides
+     every `.lens-toggle` inside `.policy-view` (lens doesn't apply to
+     the Policy Map), which would also hide this if it shared the class. */
+  .pol-subview-toggle {
+    display: flex; align-items: center; gap: 2px;
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 20px; padding: 3px; width: fit-content;
+    margin: 20px 28px 0;
+  }
+  .pol-subview-btn {
+    padding: 5px 16px; font-size: 12px; font-weight: 500;
+    border: none; background: transparent; border-radius: 16px;
+    cursor: pointer; color: var(--muted); font-family: inherit;
+    transition: all 0.15s; white-space: nowrap; letter-spacing: 0.015em;
+  }
+  .pol-subview-btn.active { background: var(--accent); color: #fff; font-weight: 600; }
+  .pol-subview-btn:hover:not(.active) { color: var(--text); background: rgba(58,97,134,0.07); }
+
+  /* ── Policy Links graph (test-run, hand-rolled SVG force layout) ── */
+  .pol-links-wrap { padding: 20px 28px 50px; }
+  .pol-links-graph-outer {
+    border: 1px solid var(--border); border-radius: 12px;
+    background: var(--surface); overflow: hidden; position: relative;
+  }
+  .pol-links-svg { display: block; width: 100%; height: auto; min-height: 560px; }
+  .pol-links-band-label {
+    font-family: 'Haas Grotesk', 'Helvetica Neue', Arial, sans-serif;
+    font-size: 11px; font-weight: 600; letter-spacing: 0.03em; text-transform: uppercase;
+    fill: var(--muted); opacity: 0.75;
+  }
+  .pol-links-edge { stroke: var(--muted); stroke-opacity: 0.35; fill: none; transition: stroke-opacity 0.15s, stroke 0.15s; }
+  .pol-links-edge.dimmed { stroke-opacity: 0.08; }
+  .pol-links-edge.lit { stroke: var(--accent); stroke-opacity: 0.85; }
+  .pol-links-node-dot {
+    stroke: var(--surface); stroke-width: 1.5px; cursor: pointer;
+    transition: opacity 0.15s, r 0.15s;
+  }
+  .pol-links-node.dimmed .pol-links-node-dot { opacity: 0.28; }
+  /* Labels render via <foreignObject><div> (not SVG <text>) specifically so
+     long policy titles can wrap onto multiple lines instead of running off
+     as one long unbroken string. */
+  .pol-links-node-label-fo { overflow: visible; pointer-events: none; }
+  .pol-links-node-label {
+    font-family: 'Public Sans', 'Segoe UI', system-ui, sans-serif;
+    font-size: 9.5px; line-height: 1.28; color: var(--text);
+    white-space: normal; overflow-wrap: break-word;
+    transition: opacity 0.15s, font-weight 0.15s, color 0.15s;
+  }
+  .pol-links-node.dimmed .pol-links-node-label { opacity: 0.3; }
+  .pol-links-node.lit .pol-links-node-label { font-weight: 700; color: var(--headline); }
+  .pol-links-node-hit { fill: transparent; cursor: pointer; }
+  .pol-links-legend {
+    display: flex; flex-wrap: wrap; gap: 14px;
+    padding: 12px 16px; border-top: 1px solid var(--border);
+    font-family: 'Public Sans', sans-serif; font-size: 11px; color: var(--muted);
+  }
+  .pol-links-legend-item { display: flex; align-items: center; gap: 6px; }
+  .pol-links-legend-dot { width: 9px; height: 9px; border-radius: 50%; flex-shrink: 0; }
+
   @media (max-width: 700px) {
+    .pol-subview-toggle { margin: 16px 16px 0; }
+    .pol-links-wrap { padding: 16px 16px 40px; }
     .policy-map-header { padding-left: 16px; padding-right: 16px; }
 
     .pol-columns { padding-left: 16px; padding-right: 16px; grid-template-columns: 1fr; }
@@ -3075,6 +3137,29 @@
     return md.join('\n');
   }
 
+  // Hoisted out of buildPolicyView() so renderPolicyLinksGraph() (the Links
+  // sub-view) can share the exact same category→color mapping as the Map
+  // sub-view — a policy should be the same color in both views.
+  const POL_CAT_COLORS = {
+    'safety-net':    '#5B7A9E',
+    'labor-rights':  '#7B6B9E',
+    'tax-wealth':    '#4F8E77',
+    'healthcare':    '#8E5B5B',
+    'work-structure':'#8E7B52',
+    'education':     '#4F7D8E',
+    'antitrust':     '#8E6B4F',
+    'housing':       '#5E8A52',
+    'jobs':          '#4F8E87',
+    'international': '#7B5B8E',
+  };
+  // Merged-category identity colors, also shared with the Links band legend.
+  const CAT_COLOR_VARS = {
+    'economic-security':    'var(--green)',   // Soft Green
+    'labor-worker-rights':  'var(--navy)',    // Warm Navy
+    'social-infrastructure':'var(--gold)',    // Warm Gold
+    'skills-global':        'var(--purple)',  // Deep Purple
+  };
+
   function buildPolicyView() {
     const area = document.getElementById('policyArea');
 
@@ -3090,20 +3175,17 @@
         <span class="theme-disclaimer-line">Synthesized from the research database. Does not constitute policy advice or reflect the opinions of the creator.</span>`;
       area.appendChild(hdr);
 
+      // Map / Links sub-view toggle
+      const subToggle = document.createElement('div');
+      subToggle.className = 'pol-subview-toggle';
+      subToggle.setAttribute('role', 'group');
+      subToggle.setAttribute('aria-label', 'Policy Map display');
+      subToggle.innerHTML = `
+        <button class="pol-subview-btn active" id="polSubviewMap" type="button">Map</button>
+        <button class="pol-subview-btn" id="polSubviewLinks" type="button">Links</button>`;
+      area.appendChild(subToggle);
 
       const levelMap = Object.fromEntries(DISRUPTION_LEVELS.map(l => [l.id, l]));
-      const POL_CAT_COLORS = {
-        'safety-net':    '#5B7A9E',
-        'labor-rights':  '#7B6B9E',
-        'tax-wealth':    '#4F8E77',
-        'healthcare':    '#8E5B5B',
-        'work-structure':'#8E7B52',
-        'education':     '#4F7D8E',
-        'antitrust':     '#8E6B4F',
-        'housing':       '#5E8A52',
-        'jobs':          '#4F8E87',
-        'international': '#7B5B8E',
-      };
 
       // Empty state msg
       const emptyMsg = document.createElement('div');
@@ -3194,12 +3276,7 @@
       // its own ESP-palette color (contrast-tuned across the set). Color
       // rides the header rule and each card's left stripe; label text stays
       // dark (--headline) for ADA contrast on the light background.
-      const CAT_COLOR_VARS = {
-        'economic-security':    'var(--green)',   // Soft Green
-        'labor-worker-rights':  'var(--navy)',    // Warm Navy
-        'social-infrastructure':'var(--gold)',    // Warm Gold
-        'skills-global':        'var(--purple)',  // Deep Purple
-      };
+      // (CAT_COLOR_VARS is now hoisted above buildPolicyView(), shared with Links.)
 
       // Reverse lookup: mergedCatId → array of original catIds
       const mergedToOriginal = {};
@@ -3254,9 +3331,228 @@
 
       area.appendChild(catRows);
 
+      // Links sub-view — built lazily on first activation (see below).
+      const linksArea = document.createElement('div');
+      linksArea.className = 'pol-links-wrap';
+      linksArea.id = 'polLinksArea';
+      linksArea.style.display = 'none';
+      area.appendChild(linksArea);
+
+      // Map / Links toggle wiring.
+      const mapBtn = document.getElementById('polSubviewMap');
+      const linksBtn = document.getElementById('polSubviewLinks');
+      mapBtn.addEventListener('click', () => {
+        if (mapBtn.classList.contains('active')) return;
+        mapBtn.classList.add('active'); linksBtn.classList.remove('active');
+        catRows.style.display = ''; linksArea.style.display = 'none';
+      });
+      linksBtn.addEventListener('click', () => {
+        if (linksBtn.classList.contains('active')) return;
+        linksBtn.classList.add('active'); mapBtn.classList.remove('active');
+        catRows.style.display = 'none'; linksArea.style.display = '';
+        if (!linksArea.dataset.built) {
+          linksArea.dataset.built = '1';
+          renderPolicyLinksGraph(linksArea);
+        }
+      });
+
     }
 
     applyPolFilters();
+  }
+
+  // ── Policy Links graph (test run) ───────────────────────────────────
+  // Hand-rolled SVG force simulation, no external library — see
+  // docs/adr/0002-policy-links-hand-rolled-svg.md. Edges are derived from
+  // each policy's existing `pairsWith` field at render time; no new
+  // connections data was authored for this pass — see
+  // docs/adr/0001-policy-links-reuse-pairswith.md. Nodes softly gravitate
+  // toward their merged category's vertical band (Economic Security top,
+  // Global bottom — the curated order MERGED_POLICY_CATEGORIES is already
+  // defined in), but the repel/spring physics can nudge a node off that
+  // line, which is deliberate: it lets cross-category edges read as a
+  // short, clear line rather than a rigid line punching across the canvas.
+  function renderPolicyLinksGraph(container) {
+    const W = 1040, H = 960;
+    const mergedOrder = Object.keys(MERGED_POLICY_CATEGORIES); // curated top→bottom order
+    const bandH = H / mergedOrder.length;
+
+    // ── Build nodes, seeded with a golden-angle spread so the pre-settle
+    // starting layout is already roughly non-overlapping. ──
+    const nodes = POLICY_DATA.map((p, i) => {
+      const mergedCat = CATEGORY_MERGE_MAP[p.category] || mergedOrder[mergedOrder.length - 1];
+      const bandIdx = Math.max(0, mergedOrder.indexOf(mergedCat));
+      const bandCenter = bandIdx * bandH + bandH / 2;
+      const seed = (i * 137.5) % 360;
+      const x = W / 2 + Math.cos(seed * Math.PI / 180) * (W / 2 - 100);
+      const y = bandCenter + Math.sin(seed * Math.PI / 180) * (bandH / 2 - 30);
+      return { id: p.id, title: p.title, category: p.category, mergedCat, bandCenter, x, y, vx: 0, vy: 0 };
+    });
+    const nodeById = Object.fromEntries(nodes.map(n => [n.id, n]));
+
+    // Edges = each policy's `pairsWith`, de-duplicating mutual A↔B pairs
+    // (most are authored on both sides) into a single edge.
+    const edgeMap = new Map();
+    POLICY_DATA.forEach(p => {
+      (p.pairsWith || []).forEach(l => {
+        if (!nodeById[l.id]) return; // guard against a stale id
+        const key = [p.id, l.id].sort().join('|');
+        if (!edgeMap.has(key)) edgeMap.set(key, { a: p.id, b: l.id, whys: [] });
+        if (l.why) edgeMap.get(key).whys.push(l.why);
+      });
+    });
+    const edges = [...edgeMap.values()];
+
+    // ── Physics: repel + spring + soft per-band gravity, cooled over a
+    // fixed number of ticks and settled before first paint. ──
+    const REPEL = 4200, SPRING_LEN = 105, SPRING_K = 0.02, GRAVITY_K = 0.03, CENTER_K = 0.0015, DAMP = 0.82;
+    let alpha = 1;
+    function tick() {
+      for (let i = 0; i < nodes.length; i++) {
+        for (let j = i + 1; j < nodes.length; j++) {
+          const a = nodes[i], b = nodes[j];
+          let dx = a.x - b.x, dy = a.y - b.y;
+          const distSq = dx * dx + dy * dy || 0.01;
+          const force = (REPEL * alpha) / distSq;
+          const dist = Math.sqrt(distSq);
+          dx /= dist; dy /= dist;
+          a.vx += dx * force; a.vy += dy * force;
+          b.vx -= dx * force; b.vy -= dy * force;
+        }
+      }
+      edges.forEach(e => {
+        const a = nodeById[e.a], b = nodeById[e.b];
+        let dx = b.x - a.x, dy = b.y - a.y;
+        const dist = Math.sqrt(dx * dx + dy * dy) || 0.01;
+        const force = SPRING_K * (dist - SPRING_LEN) * alpha;
+        dx /= dist; dy /= dist;
+        a.vx += dx * force; a.vy += dy * force;
+        b.vx -= dx * force; b.vy -= dy * force;
+      });
+      nodes.forEach(n => {
+        n.vy += (n.bandCenter - n.y) * GRAVITY_K * alpha;
+        n.vx += (W / 2 - n.x) * CENTER_K * alpha;
+      });
+      nodes.forEach(n => {
+        n.vx *= DAMP; n.vy *= DAMP;
+        n.x += n.vx; n.y += n.vy;
+        n.x = Math.max(24, Math.min(W - 190, n.x));
+        n.y = Math.max(16, Math.min(H - 16, n.y));
+      });
+      alpha *= 0.985;
+    }
+    for (let i = 0; i < 400 && alpha > 0.01; i++) tick();
+
+    // ── Render as SVG (real DOM nodes — see ADR 0002 for why not canvas) ──
+    const svgNS = 'http://www.w3.org/2000/svg';
+    const svg = document.createElementNS(svgNS, 'svg');
+    svg.setAttribute('viewBox', `0 0 ${W} ${H}`);
+    svg.setAttribute('class', 'pol-links-svg');
+    svg.setAttribute('role', 'img');
+    svg.setAttribute('aria-label', 'Force-directed graph of policies connected by amplification links, ordered top to bottom from Economic Security to Global');
+
+    mergedOrder.forEach((mcId, i) => {
+      const y = i * bandH;
+      if (i > 0) {
+        const line = document.createElementNS(svgNS, 'line');
+        line.setAttribute('x1', 0); line.setAttribute('x2', W);
+        line.setAttribute('y1', y); line.setAttribute('y2', y);
+        line.setAttribute('stroke', 'var(--border)');
+        line.setAttribute('stroke-dasharray', '3 5');
+        svg.appendChild(line);
+      }
+      const label = document.createElementNS(svgNS, 'text');
+      label.setAttribute('x', 14); label.setAttribute('y', y + 18);
+      label.setAttribute('class', 'pol-links-band-label');
+      label.textContent = MERGED_POLICY_CATEGORIES[mcId];
+      svg.appendChild(label);
+    });
+
+    const edgeGroup = document.createElementNS(svgNS, 'g');
+    const edgeEls = edges.map(e => {
+      const a = nodeById[e.a], b = nodeById[e.b];
+      const line = document.createElementNS(svgNS, 'line');
+      line.setAttribute('class', 'pol-links-edge');
+      line.setAttribute('x1', a.x); line.setAttribute('y1', a.y);
+      line.setAttribute('x2', b.x); line.setAttribute('y2', b.y);
+      const title = document.createElementNS(svgNS, 'title');
+      title.textContent = e.whys.join(' ');
+      line.appendChild(title);
+      edgeGroup.appendChild(line);
+      return { el: line, a: e.a, b: e.b };
+    });
+    svg.appendChild(edgeGroup);
+
+    const nodeGroup = document.createElementNS(svgNS, 'g');
+    const nodeEls = {};
+    nodes.forEach(n => {
+      const g = document.createElementNS(svgNS, 'g');
+      g.setAttribute('class', 'pol-links-node');
+      g.setAttribute('tabindex', '0');
+      g.setAttribute('role', 'button');
+      g.setAttribute('aria-label', `${n.title}. Open this policy.`);
+
+      const dot = document.createElementNS(svgNS, 'circle');
+      dot.setAttribute('class', 'pol-links-node-dot');
+      dot.setAttribute('cx', n.x); dot.setAttribute('cy', n.y); dot.setAttribute('r', 8);
+      dot.setAttribute('fill', POL_CAT_COLORS[n.category] || 'var(--muted)');
+
+      // foreignObject + div (not SVG <text>) so long titles wrap onto
+      // multiple lines instead of running off as one unbroken string.
+      const labelFo = document.createElementNS(svgNS, 'foreignObject');
+      labelFo.setAttribute('class', 'pol-links-node-label-fo');
+      labelFo.setAttribute('x', n.x + 11); labelFo.setAttribute('y', n.y - 10);
+      labelFo.setAttribute('width', 116); labelFo.setAttribute('height', 48);
+      const labelDiv = document.createElementNS('http://www.w3.org/1999/xhtml', 'div');
+      labelDiv.setAttribute('class', 'pol-links-node-label');
+      labelDiv.textContent = n.title;
+      labelFo.appendChild(labelDiv);
+
+      // Larger invisible hit target — the 8px dot alone is too small to click/tap reliably.
+      const hit = document.createElementNS(svgNS, 'circle');
+      hit.setAttribute('class', 'pol-links-node-hit');
+      hit.setAttribute('cx', n.x); hit.setAttribute('cy', n.y); hit.setAttribute('r', 14);
+
+      g.appendChild(hit); g.appendChild(dot); g.appendChild(labelFo);
+      nodeGroup.appendChild(g);
+      nodeEls[n.id] = g;
+
+      const openIt = () => openPolModalById(n.id);
+      g.addEventListener('click', openIt);
+      g.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openIt(); } });
+
+      const highlight = on => {
+        Object.values(nodeEls).forEach(el => el.classList.remove('lit', 'dimmed'));
+        edgeEls.forEach(e => e.el.classList.remove('lit', 'dimmed'));
+        if (!on) return;
+        const connected = new Set([n.id]);
+        edgeEls.forEach(e => {
+          const touches = e.a === n.id || e.b === n.id;
+          e.el.classList.add(touches ? 'lit' : 'dimmed');
+          if (touches) { connected.add(e.a); connected.add(e.b); }
+        });
+        Object.entries(nodeEls).forEach(([id, el]) => el.classList.add(connected.has(id) ? 'lit' : 'dimmed'));
+      };
+      g.addEventListener('mouseenter', () => highlight(true));
+      g.addEventListener('mouseleave', () => highlight(false));
+      g.addEventListener('focus', () => highlight(true));
+      g.addEventListener('blur', () => highlight(false));
+    });
+    svg.appendChild(nodeGroup);
+
+    const outer = document.createElement('div');
+    outer.className = 'pol-links-graph-outer';
+    outer.appendChild(svg);
+
+    const legend = document.createElement('div');
+    legend.className = 'pol-links-legend';
+    legend.innerHTML = Object.entries(POLICY_CATEGORIES).map(([catId, catLabel]) =>
+      `<span class="pol-links-legend-item"><span class="pol-links-legend-dot" style="background:${POL_CAT_COLORS[catId]}"></span>${catLabel}</span>`
+    ).join('');
+    outer.appendChild(legend);
+
+    container.innerHTML = '';
+    container.appendChild(outer);
   }
 
   function openPolModal(p, lvl, catLabel, basisHTML) {
