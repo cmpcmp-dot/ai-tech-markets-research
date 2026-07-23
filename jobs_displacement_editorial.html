@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Job displacement — editorial prototype</title>
+<style>
+  /* ═══════════════════════════════════════════════════════════
+     JOB DISPLACEMENT — VARIANT C: "The Verdict"
+     A magazine feature treatment. Each depth opens on an oversized
+     serif verdict word (No. / Not evenly. / In tech.), then the
+     argument, then the chart. Big display type, ghost numerals,
+     wide margins. Tabs sit at the top. Brand tokens/fonts/header
+     from index.html verbatim.
+     ═══════════════════════════════════════════════════════════ */
+
+  @font-face { font-family:'Publico Banner'; src:url('fonts/PublicoBannerMedium.otf') format('opentype'); font-weight:500; font-style:normal; font-display:swap; }
+  @font-face { font-family:'Publico Banner'; src:url('fonts/PublicoBannerRoman.otf') format('opentype'); font-weight:400; font-style:normal; font-display:swap; }
+  @font-face { font-family:'Haas Grotesk'; src:url('fonts/HaasGrotDisp55Roman.otf') format('opentype'); font-weight:400 600; font-style:normal; font-display:swap; }
+  @font-face { font-family:'Public Sans'; src:url('fonts/PublicSans-Regular.ttf') format('truetype'); font-weight:400; font-style:normal; font-display:swap; }
+  @font-face { font-family:'Public Sans'; src:url('fonts/PublicSans-Medium.ttf') format('truetype'); font-weight:500; font-style:normal; font-display:swap; }
+  @font-face { font-family:'Public Sans'; src:url('fonts/PublicSans-SemiBold.ttf') format('truetype'); font-weight:600; font-style:normal; font-display:swap; }
+  @font-face { font-family:'Public Sans'; src:url('fonts/PublicSans-Bold.ttf') format('truetype'); font-weight:700; font-style:normal; font-display:swap; }
+
+  :root {
+    --navy:#2c3254; --beige:#f4f2e4; --light-beige:#fffdf2;
+    --green:#70ad8f; --green-hover:#84cca8; --purple:#472b51;
+    --gold:#ebc382; --gold-deep:#c99a3f; --pink:#ffbfa7; --terra:#b06a4f;
+    --headline:#232849; --divider:#caccd4;
+    --serif:'Publico Banner',Georgia,serif;
+    --grot:'Haas Grotesk','Helvetica Neue',Arial,sans-serif;
+    --sans:'Public Sans',-apple-system,'Segoe UI',system-ui,sans-serif;
+    --bg:var(--beige); --surface:var(--light-beige); --border:var(--divider);
+    --text:#3c4164; --muted:#6d7091; --accent:var(--navy); --sidebar-w:252px;
+  }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  body { zoom:1.05; background:var(--beige); color:var(--text); font-family:var(--sans);
+    min-height:100vh; line-height:1.6; display:flex; flex-direction:column; }
+
+  /* HEADER */
+  .site-header { background:var(--navy); color:var(--beige); padding:24px 32px 22px; position:relative; flex-shrink:0; }
+  .header-inner { max-width:calc(var(--sidebar-w) + 1100px); margin:0 auto; display:flex; align-items:center; justify-content:space-between; gap:24px; position:relative; }
+  .header-brand { display:flex; align-items:center; gap:18px; min-width:0; }
+  .header-brand img { height:42px; width:auto; flex-shrink:0; }
+  .header-text { min-width:0; }
+  .site-header h1 { font-size:clamp(20px,2.5vw,28px); font-weight:700; letter-spacing:-0.015em; line-height:1.2; margin-bottom:3px; color:var(--beige); font-family:var(--serif); }
+  .site-header h1 a { color:var(--beige); text-decoration:none; }
+  .site-header h1 a:hover { color:var(--green-hover); }
+  .header-sub { font-family:var(--grot); font-size:13px; letter-spacing:0.02em; color:var(--divider); }
+  .header-nav { display:flex; align-items:center; gap:6px; flex-shrink:0; flex-wrap:wrap; }
+  .header-tabs { display:flex; align-items:center; flex-wrap:wrap; }
+  .header-nav-btn { background:none; border:none; cursor:pointer; font-family:var(--grot); font-size:14px; font-weight:500; letter-spacing:0.02em; color:var(--divider); padding:6px 13px; border-bottom:2px solid transparent; transition:color .15s,border-color .15s; white-space:nowrap; }
+  .header-nav-btn:hover { color:var(--beige); }
+  .header-nav-btn.active { color:#fff; font-weight:600; border-bottom-color:var(--green); }
+
+  /* LAYOUT */
+  .app-layout { display:grid; grid-template-columns:1fr; flex:1; max-width:calc(var(--sidebar-w) + 1100px); margin:0 auto; width:100%; }
+  .main-content { grid-column:1 / -1; width:100%; }
+  .cards-area { padding:20px 28px 56px; flex:1; }
+  .ed { max-width:840px; margin:0 auto; }
+
+  /* MASTHEAD */
+  .ed-mast { padding:26px 0 6px; }
+  .ed-eyebrow { font-family:var(--grot); font-size:11px; font-weight:700; letter-spacing:0.2em; text-transform:uppercase; color:var(--green); margin-bottom:16px; }
+  .ed-question { font-family:var(--serif); font-weight:500; font-size:clamp(34px,6.4vw,66px); line-height:1.0; letter-spacing:-0.02em; color:var(--headline); cursor:pointer; max-width:15ch; }
+  .ed-question .q { font-style:italic; color:var(--terra); }
+  .ed-question:hover { color:var(--navy); }
+
+  /* TABS */
+  .ed-tabs { display:flex; flex-wrap:wrap; gap:26px; margin:26px 0 0; border-top:2px solid var(--navy); padding-top:0; }
+  .etab { background:none; border:none; cursor:pointer; font-family:var(--grot); font-size:12px; font-weight:700;
+    letter-spacing:0.09em; text-transform:uppercase; color:var(--muted); padding:14px 0 16px; margin-top:-2px;
+    border-top:2px solid transparent; display:inline-flex; align-items:baseline; gap:8px; transition:color .15s,border-color .15s; }
+  .etab .enum { font-family:var(--serif); font-size:15px; font-weight:500; color:var(--divider); font-style:italic; }
+  .etab:hover:not(.active) { color:var(--text); }
+  .etab.active { color:var(--headline); border-top-color:var(--terra); }
+  .etab.active .enum { color:var(--terra); }
+
+  /* PANELS */
+  .ed-panel { display:none; }
+  .ed-panel.active { display:block; }
+
+  /* OVERVIEW */
+  .ed-lede { font-family:var(--serif); font-size:clamp(19px,2.5vw,24px); line-height:1.5; color:var(--headline);
+    font-weight:400; padding:34px 0 8px; max-width:40ch; }
+  .ed-lede b { color:var(--terra); font-weight:500; }
+  .answer-row { display:grid; grid-template-columns:120px 1fr; gap:8px 26px; align-items:start;
+    width:100%; text-align:left; background:none; border:none; cursor:pointer;
+    border-top:1px solid var(--border); padding:26px 0; transition:padding-left .18s; }
+  .answer-row:hover { padding-left:8px; }
+  .ar-num { font-family:var(--serif); font-size:clamp(52px,8vw,88px); line-height:0.8; font-weight:500;
+    color:transparent; -webkit-text-stroke:1.5px var(--gold-deep); text-stroke:1.5px var(--gold-deep); }
+  .answer-row:hover .ar-num { color:var(--gold); -webkit-text-stroke-color:var(--gold-deep); }
+  .ar-body { padding-top:6px; }
+  .ar-depth { font-family:var(--grot); font-size:10.5px; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:var(--muted); margin-bottom:8px; }
+  .ar-verdict { font-family:var(--serif); font-size:clamp(24px,3.4vw,34px); line-height:1.08; color:var(--headline); font-weight:500; margin-bottom:10px; }
+  .ar-verdict.warn { color:var(--terra); }
+  .ar-read { font-size:14.5px; line-height:1.65; color:var(--text); max-width:54ch; }
+  .ar-read b { color:var(--headline); font-variant-numeric:tabular-nums; }
+  .ar-go { font-family:var(--grot); font-size:11.5px; font-weight:700; letter-spacing:0.04em; text-transform:uppercase;
+    color:var(--navy); margin-top:12px; display:inline-flex; gap:6px; transition:gap .15s; }
+  .answer-row:hover .ar-go { gap:10px; }
+  .ed-tech { font-size:12.5px; color:var(--muted); border-top:1px solid var(--border); padding-top:16px; margin-top:6px; }
+  .ed-tech a { color:var(--navy); font-weight:600; }
+
+  /* DEPTH — verdict hero */
+  .ed-back { display:inline-flex; align-items:center; gap:6px; background:none; border:none; cursor:pointer;
+    font-family:var(--grot); font-size:12px; font-weight:700; letter-spacing:0.06em; text-transform:uppercase;
+    color:var(--navy); padding:22px 0 4px; transition:gap .15s,color .15s; }
+  .ed-back:hover { gap:10px; color:var(--green); }
+  .vhero { position:relative; padding:20px 0 8px; }
+  .vhero .vh-depth { font-family:var(--grot); font-size:11px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:var(--green); margin-bottom:8px; }
+  .vhero .vh-word { font-family:var(--serif); font-weight:500; font-size:clamp(56px,11vw,120px); line-height:0.9; letter-spacing:-0.03em; color:var(--headline); }
+  .vhero .vh-word.warn { color:var(--terra); }
+  .vhero .vh-sub { font-family:var(--serif); font-size:clamp(19px,2.6vw,25px); line-height:1.3; color:var(--headline); font-weight:400; margin-top:14px; max-width:26ch; }
+  .vhero .vh-ghost { position:absolute; top:-6px; right:0; font-family:var(--serif); font-size:clamp(90px,16vw,180px);
+    line-height:0.8; font-weight:500; color:transparent; -webkit-text-stroke:1.5px var(--divider); text-stroke:1.5px var(--divider);
+    pointer-events:none; z-index:0; opacity:0.7; }
+  .vhero > * { position:relative; z-index:1; }
+
+  .ed-body { font-size:15.5px; line-height:1.8; color:var(--text); max-width:60ch; margin:22px 0 6px; }
+  .ed-body em { font-style:italic; }
+  .ed-body a { color:var(--navy); }
+  .ed-body.lead::first-letter { font-family:var(--serif); font-size:3.1em; line-height:0.82; float:left; padding:6px 10px 0 0; color:var(--terra); font-weight:500; }
+
+  .ed-pull { display:flex; flex-wrap:wrap; gap:26px; border-top:1px solid var(--border); border-bottom:1px solid var(--border); padding:18px 0; margin:20px 0; }
+  .ed-pull .p { flex:1 1 150px; }
+  .ed-pull .pn { font-family:var(--serif); font-size:34px; line-height:1; color:var(--headline); font-variant-numeric:tabular-nums; }
+  .ed-pull .pn.hot { color:var(--terra); }
+  .ed-pull .pn small { font-family:var(--sans); font-size:14px; color:var(--muted); }
+  .ed-pull .pl { font-family:var(--grot); font-size:11px; color:var(--muted); margin-top:7px; line-height:1.45; }
+
+  .jd-chart-wrap { background:var(--surface); border:1px solid var(--border); border-radius:8px; padding:18px 16px 12px; margin:22px 0 10px; }
+  .jd-chart-title { font-family:var(--grot); font-size:13px; font-weight:600; color:var(--headline); margin:0 4px 2px; }
+  .jd-chart-sub { font-size:11.5px; color:var(--muted); margin:0 4px 8px; }
+  .jd-svg { width:100%; height:auto; display:block; font-family:var(--sans); }
+  .jd-chart-note { font-size:11px; color:var(--muted); margin:8px 4px 0; line-height:1.5; }
+  .jd-legend { display:flex; flex-wrap:wrap; gap:15px; margin:4px 4px 2px; font-size:12px; color:var(--text); }
+  .jd-legend span { display:inline-flex; align-items:center; gap:6px; }
+  .jd-legend i { width:13px; height:4px; border-radius:2px; display:inline-block; }
+  .jd-legend i.dot { width:10px; height:10px; border-radius:50%; }
+  .jd-src { font-size:11px; color:var(--muted); margin-top:4px; }
+  .jd-tooltip { position:fixed; pointer-events:none; background:var(--navy); color:var(--beige); font-family:var(--sans); font-size:12px; line-height:1.5; padding:7px 10px; border-radius:6px; box-shadow:0 4px 16px rgba(0,0,0,0.28); opacity:0; transition:opacity .1s; z-index:60; max-width:250px; }
+  .jd-tooltip b { color:#fff; }
+  .jd-flag { display:inline-flex; align-items:center; gap:8px; font-family:var(--grot); font-size:12px; font-weight:600; background:var(--navy); color:var(--beige); border-radius:999px; padding:7px 15px; margin:6px 0 2px; }
+  .jd-flag b { color:var(--gold); }
+
+  .ed-verdict { font-family:var(--serif); font-size:16px; line-height:1.6; color:var(--text); border-left:3px solid var(--gold-deep);
+    padding:4px 0 4px 18px; margin:20px 0 8px; max-width:60ch; }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .ed-panel.active .reveal { opacity:0; transform:translateY(12px); animation:rise .6s cubic-bezier(.2,.7,.3,1) forwards; }
+    .ed-panel.active .reveal.d1 { animation-delay:.06s; }
+    .ed-panel.active .reveal.d2 { animation-delay:.14s; }
+    .ed-panel.active .reveal.d3 { animation-delay:.24s; }
+    @keyframes rise { to { opacity:1; transform:none; } }
+    .ed-panel.active .vh-word { opacity:0; transform:translateY(14px); animation:rise .7s cubic-bezier(.2,.7,.3,1) forwards; }
+    .ed-panel.active .anim-line { stroke-dasharray:1; stroke-dashoffset:1; animation:drawline 1s ease forwards; animation-delay:.2s; }
+    @keyframes drawline { to { stroke-dashoffset:0; } }
+    .ed-panel.active .anim-bar { transform:scaleX(0); animation:growbar .6s ease forwards; }
+    @keyframes growbar { to { transform:scaleX(1); } }
+    .ed-panel.active .anim-pop { opacity:0; animation:pop .4s ease forwards; animation-delay:.55s; }
+    @keyframes pop { to { opacity:1; } }
+  }
+
+  footer { background:var(--navy); color:var(--divider); padding:20px 32px; text-align:center; font-size:12.5px; flex-shrink:0; }
+  footer a { color:var(--beige); }
+
+  @media (max-width:860px) {
+    .header-inner { flex-wrap:wrap; justify-content:center; gap:12px; }
+    .header-text { flex-basis:100%; text-align:center; }
+    .site-header { padding:20px 20px 18px; }
+    .cards-area { padding:16px 16px 88px; }
+    .answer-row { grid-template-columns:64px 1fr; gap:6px 16px; }
+    .vhero .vh-ghost { display:none; }
+    .ed-tabs { gap:18px; }
+  }
+</style>
+</head>
+<body class="jobs-view">
+
+<header class="site-header">
+  <div class="header-inner">
+    <div class="header-brand">
+      <img src="assets/esp-c3-white.png" alt="Economic Security Project">
+      <div class="header-text">
+        <h1><a href="https://cmpcmp-dot.github.io/ai-tech-markets-research/">AI, Tech and the Economy: Research Intelligence</a></h1>
+        <div class="header-sub">A curated database of research on AI, automation, and the economy</div>
+      </div>
+    </div>
+    <nav class="header-nav" aria-label="Primary">
+      <div class="header-tabs" role="tablist" aria-label="Select view">
+        <button class="header-nav-btn" role="tab" aria-selected="false">Research</button>
+        <button class="header-nav-btn" role="tab" aria-selected="false">Killer Facts</button>
+        <button class="header-nav-btn" role="tab" aria-selected="false">Themes</button>
+        <button class="header-nav-btn" role="tab" aria-selected="false">Policy Map</button>
+        <button class="header-nav-btn active" role="tab" aria-selected="true">Job displacement</button>
+        <button class="header-nav-btn" role="tab" aria-selected="false">About</button>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<main class="app-layout">
+  <div class="main-content">
+    <div class="cards-area">
+      <div class="ed">
+
+        <div class="ed-mast">
+          <div class="ed-eyebrow">Labor market · A feature in three verdicts</div>
+          <div class="ed-question" id="homeTitle" role="button" tabindex="0" title="Back to overview">Is AI displacing workers <span class="q">yet</span>?</div>
+        </div>
+
+        <nav class="ed-tabs" id="edTabs" role="tablist" aria-label="Sections"></nav>
+
+        <!-- OVERVIEW -->
+        <section class="ed-panel" id="panel-overview" role="tabpanel">
+          <p class="ed-lede reveal">The headline unemployment rate says one thing. Look closer and it says <b>something more specific</b>. Three questions, three verdicts.</p>
+          <div id="answers"></div>
+          <p class="ed-tech reveal d3">A first pass; method and full series will live in a technical companion. Section 02 draws on the <a href="https://github.com/mtkonczal/Blog-Posts-Presentations-and-Testimony/tree/main/blogs_2026/01_education_young_unrate" target="_blank" rel="noopener">education / young-unemployment analysis</a>. <span id="edVintage"></span></p>
+        </section>
+
+        <!-- 01 LEVEL -->
+        <section class="ed-panel" id="panel-level" role="tabpanel">
+          <button class="ed-back" data-back>&larr; Overview</button>
+          <div class="vhero">
+            <div class="vh-ghost">01</div>
+            <div class="vh-depth">Depth 01 · The aggregate</div>
+            <div class="vh-word">No.</div>
+            <div class="vh-sub">The headline rate looks healthy, and it isn&rsquo;t hiding withdrawal.</div>
+          </div>
+          <p class="ed-body lead reveal d1">Okun&rsquo;s law ties the change in unemployment to how fast the economy grows. If unemployment were rising faster than growth predicts, that would point to something structural, an AI-driven effect layered on the ordinary cycle. Each point below is a quarter; the line is the historical relationship, and the last four quarters are traced in sequence.</p>
+          <div class="ed-pull reveal d1" id="levelPull"></div>
+          <div class="jd-chart-wrap reveal d2">
+            <div class="jd-chart-title">Okun&rsquo;s law: GDP growth vs. change in unemployment</div>
+            <div class="jd-chart-sub" id="okunSub"></div>
+            <svg class="jd-svg" id="okunChart" viewBox="0 0 640 410" role="img" aria-label="Okun's law scatter plot"></svg>
+            <div class="jd-legend" id="okunLegend"></div>
+            <div class="jd-chart-note" id="okunNote"></div>
+          </div>
+          <p class="ed-body reveal d2">Low unemployment can mislead if people stop looking for work. The companion check is prime-age (25&ndash;54) participation, which strips out retirement. It sits above its pre-pandemic level, so the headline isn&rsquo;t flattering.</p>
+          <div class="jd-chart-wrap reveal d2">
+            <div class="jd-chart-title">Prime-age (25&ndash;54) participation &amp; employment rate</div>
+            <div class="jd-chart-sub">Monthly, seasonally adjusted, since 2000</div>
+            <svg class="jd-svg" id="lfpChart" viewBox="0 0 640 300" role="img" aria-label="Prime-age participation and employment-population ratio"></svg>
+            <div class="jd-legend" id="lfpLegend"></div>
+          </div>
+          <p class="ed-verdict reveal d2" id="okunAnswer"></p>
+        </section>
+
+        <!-- 02 DISTRIBUTION -->
+        <section class="ed-panel" id="panel-distribution" role="tabpanel">
+          <button class="ed-back" data-back>&larr; Overview</button>
+          <div class="vhero">
+            <div class="vh-ghost">02</div>
+            <div class="vh-depth">Depth 02 · Across workers</div>
+            <div class="vh-word warn">Not evenly.</div>
+            <div class="vh-sub">The softness falls on the young and the educated.</div>
+          </div>
+          <p class="ed-body lead reveal d1">A healthy average can hide a group taking the hit. Each age-and-education group has a <em>predicted</em> unemployment rate given the overall rate, from its own pre-2020 relationship. The chart plots how far above or below that prediction each group actually sits. Zero is normal; positive means more unemployment than history says it should have.</p>
+          <div class="jd-flag reveal d1" id="distFlag"></div>
+          <div class="jd-chart-wrap reveal d2">
+            <div class="jd-chart-title">Excess unemployment by age, relative to the pre-2020 norm</div>
+            <div class="jd-chart-sub">Residual: actual minus predicted unemployment rate, by education group</div>
+            <svg class="jd-svg" id="ageChart" viewBox="0 0 640 380" role="img" aria-label="Residual unemployment by age and education"></svg>
+            <div class="jd-legend" id="ageLegend"></div>
+            <div class="jd-chart-note" id="ageNote"></div>
+          </div>
+          <p class="ed-verdict reveal d2" id="ageAnswer"></p>
+        </section>
+
+        <!-- 03 MAP -->
+        <section class="ed-panel" id="panel-sectors" role="tabpanel">
+          <button class="ed-back" data-back>&larr; Overview</button>
+          <div class="vhero">
+            <div class="vh-ghost">03</div>
+            <div class="vh-depth">Depth 03 · Across the economy</div>
+            <div class="vh-word warn">In tech.</div>
+            <div class="vh-sub">Hiring has stalled where AI would bite first.</div>
+          </div>
+          <p class="ed-body lead reveal d1">Displacement should show up as hiring drying up in specific industries. For each major sector we compare employment growth over the past year to its own average pace in 2015&ndash;2019. A large negative bar means that sector is adding jobs far more slowly than it used to, or shedding them outright.</p>
+          <div class="jd-chart-wrap reveal d2">
+            <div class="jd-chart-title">Job-growth slowdown by sector</div>
+            <div class="jd-chart-sub" id="cesSub"></div>
+            <svg class="jd-svg" id="cesChart" viewBox="0 0 640 430" role="img" aria-label="Employment growth slowdown by sector"></svg>
+            <div class="jd-chart-note" id="cesNote"></div>
+          </div>
+          <p class="ed-verdict reveal d2" id="cesAnswer"></p>
+        </section>
+
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  AI, Tech and the Economy: Research Intelligence ·
+  Created by Christelle Prophete ·
+  Job displacement — editorial prototype
+</footer>
+
+<script src="data/jobs-displacement-data.js" charset="utf-8"></script>
+<script src="assets/jobs-charts.js" charset="utf-8"></script>
+<script>
+(function () {
+  const JC = window.JOBS_CHARTS;
+  if (!JC) { console.error('JOBS_CHARTS not found'); return; }
+  const { sgn, facts } = JC;
+  const byId = id => document.getElementById(id);
+
+  function renderLevelPull() {
+    const L = facts.level;
+    const pulls = [
+      { n:`${L.unrate}%`, sub:` / ${L.nrou}%`, l:`Unemployment vs CBO natural rate (${L.month})` },
+      { n:`${sgn(L.gap,1)} pp`, hot:L.gap>0, l:`Gap: rate minus natural rate` },
+      { n:`${L.lfpr}%`, l:`Prime-age participation · ${sgn(L.lfprVsFeb,1)} pp vs Feb 2020` }
+    ];
+    byId('levelPull').innerHTML = pulls.map(p =>
+      `<div class="p"><div class="pn${p.hot?' hot':''}">${p.n}${p.sub?`<small>${p.sub}</small>`:''}</div><div class="pl">${p.l}</div></div>`).join('');
+    byId('okunAnswer').textContent = L.verdict;
+  }
+
+  function renderOverview() {
+    const L = facts.level, DI = facts.distribution, S = facts.sectors;
+    const rows = [
+      { go:'level', num:'01', depth:'Depth 01 · The aggregate', warn:false, verdict:'No.',
+        read:`Unemployment is <b>${L.unrate}%</b>, at or below CBO&rsquo;s <b>${L.nrou}%</b> natural rate, and its path tracks GDP growth about as Okun&rsquo;s law predicts. Prime-age participation sits above its pre-pandemic level.` },
+      { go:'distribution', num:'02', depth:'Depth 02 · Across workers', warn:true, verdict:'Not evenly.',
+        read:`Young college graduates (age ${DI.peakAge}) carry <b>${sgn(DI.peakPP,1)} pp</b> more unemployment than their pre-2020 norm predicts, versus roughly <b>${sgn(DI.primePP,1)} pp</b> for prime-age graduates.` },
+      { go:'sectors', num:'03', depth:'Depth 03 · Across the economy', warn:true, verdict:'In tech.',
+        read:`${S.sector} has decelerated most: growing <b>${S.recent}%</b> over the past year versus a <b>${S.baseline}%</b> pre-pandemic pace, a <b>${sgn(S.slowdown,1)} pp</b> slowdown.` }
+    ];
+    byId('answers').innerHTML = rows.map((r, i) => `
+      <button class="answer-row reveal d${i + 1}" data-go="${r.go}" aria-label="${r.depth}: ${r.verdict}">
+        <div class="ar-num">${r.num}</div>
+        <div class="ar-body">
+          <div class="ar-depth">${r.depth}</div>
+          <div class="ar-verdict${r.warn ? ' warn' : ''}">${r.verdict}</div>
+          <div class="ar-read">${r.read}</div>
+          <div class="ar-go">Read the section &rarr;</div>
+        </div>
+      </button>`).join('');
+    byId('answers').querySelectorAll('[data-go]').forEach(b =>
+      b.addEventListener('click', () => activate(b.dataset.go)));
+    byId('edVintage').textContent = `Data generated ${facts.generated}.`;
+  }
+
+  const DEPTHS = [
+    { id:'level', num:'01', label:'The level' },
+    { id:'distribution', num:'02', label:'Who' },
+    { id:'sectors', num:'03', label:'Where' }
+  ];
+  const ALL = ['overview'].concat(DEPTHS.map(d => d.id));
+  const renderers = {
+    level: () => { JC.renderOkun(); JC.renderLFP(); renderLevelPull(); },
+    distribution: () => { JC.renderAges(); byId('ageAnswer').textContent = facts.distribution.verdict; },
+    sectors: () => { JC.renderCES(); byId('cesAnswer').textContent = facts.sectors.verdict; }
+  };
+  const done = {};
+  const tabsEl = byId('edTabs');
+  tabsEl.innerHTML =
+    `<button class="etab" role="tab" data-id="overview">Overview</button>` +
+    DEPTHS.map(t => `<button class="etab" role="tab" data-id="${t.id}"><span class="enum">${t.num}</span>${t.label}</button>`).join('');
+
+  function activate(id) {
+    ALL.forEach(tid => {
+      const tab = tabsEl.querySelector(`[data-id="${tid}"]`);
+      const panel = byId('panel-' + tid);
+      const on = tid === id;
+      if (tab) { tab.classList.toggle('active', on); tab.setAttribute('aria-selected', on ? 'true' : 'false'); }
+      panel.classList.remove('active');
+      if (on) {
+        if (!done[tid] && renderers[tid]) { renderers[tid](); done[tid] = true; }
+        void panel.offsetWidth;
+        panel.classList.add('active');
+      }
+    });
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  tabsEl.querySelectorAll('[data-id]').forEach(b => b.addEventListener('click', () => activate(b.dataset.id)));
+  document.querySelectorAll('[data-back]').forEach(b => b.addEventListener('click', () => activate('overview')));
+  const title = byId('homeTitle');
+  title.addEventListener('click', () => activate('overview'));
+  title.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); activate('overview'); } });
+
+  renderOverview();
+  activate('overview');
+})();
+</script>
+
+</body>
+</html>
