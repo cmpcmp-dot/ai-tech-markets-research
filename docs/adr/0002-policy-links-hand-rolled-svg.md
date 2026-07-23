@@ -2,7 +2,7 @@
 
 **Status:** accepted
 
-The site loads zero external JS libraries today — `tracker-data.js` and `killer-facts-data.js` are the only `<script src>` tags, and even fonts are self-hosted. Adding a force-directed graph could have pulled in D3's force module from a CDN, which is the conventional choice for this kind of layout. We instead hand-rolled a small physics simulation (repulsion between all nodes, spring attraction along `pairsWith` edges, plus a soft per-category gravity pull toward a target height) directly in `index.html`'s existing script block.
+The site loads zero external JS libraries today — `tracker-data.js` and `fact-bank-data.js` are the only `<script src>` tags, and even fonts are self-hosted. Adding a force-directed graph could have pulled in D3's force module from a CDN, which is the conventional choice for this kind of layout. We instead hand-rolled a small physics simulation (repulsion between all nodes, spring attraction along `pairsWith` edges, plus a soft per-category gravity pull toward a target height) directly in `index.html`'s existing script block.
 
 Two reasons drove this: (1) the site's deliberate zero-dependency, static-page posture — this is a policy research site sometimes read on locked-down institutional networks, and a broken/blocked CDN would silently kill the Links tab while leaving the rest of the page working; (2) the requirement to keep nodes ordered top-to-bottom by merged category (Economic Security → Global) is a custom force no off-the-shelf force-layout library provides out of the box — we'd have been writing this force code on top of D3 anyway.
 

@@ -1,8 +1,12 @@
 # AI, Tech and the Economy: Research Intelligence
 
-A curated research database and synthesis on AI, automation, and the economy, presented as a single static site (`index.html`) with three main views — Research, Themes, and Policy Map — plus a Killer Facts page.
+A curated research database and synthesis on AI, automation, and the economy, presented as a single static site (`index.html`) with four main views — Research, Fact Bank, Themes, and Policy Map.
 
 ## Language
+
+**Fact Bank**:
+The tab/view (`#fact-bank`) listing short, citable, number-bearing facts extracted from tracker sources, one to three per source. Stored in `FACT_BANK` (`data/fact-bank-data.js`), rendered in `#factBankArea`, each record tied to one tracker entry via `paperId`. Extraction is governed by the `fact-bank` skill (`skills/fact-bank/SKILL.md`). Formerly called "Killer Facts."
+_Avoid_: Killer Facts, Killer Facts page/tab
 
 **Policy** (or **Policy Intervention**):
 One entry in `POLICY_DATA` — a specific proposed government or institutional response to AI's economic effects (e.g. Unemployment Insurance Reform, AI Dividend). Has a `category` (one of 10 granular areas) and a `level` (disruption stage it addresses).
