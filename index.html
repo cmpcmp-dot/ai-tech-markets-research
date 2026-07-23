@@ -229,7 +229,13 @@
   .strategy-view .inline-filters { display: none; }
   .strategy-view .app-layout { max-width: calc(var(--sidebar-w) + 1100px); }
   .strategy-view .cards-area { padding: 8px 0 40px; }
-  .strategy-view .cards-grid { display: block; }
+  /* Themes render into their own #themesArea (built once, cached). The Research
+     #cardsGrid is left in the DOM but hidden here, so switching Research<->Themes
+     no longer tears either one down. */
+  #themesArea { display: none; }
+  .strategy-view #themesArea { display: block; }
+  .strategy-view .cards-grid { display: none; }
+  .strategy-view .empty-state { display: none !important; }
   .strategy-view .themes-grid { display: flex; flex-direction: column; width: 100%; gap: 0; }
   .strategy-view .theme-card { width: 100%; border-radius: 0; border-left: none; border-right: none; border-top: none; }
 
@@ -2212,6 +2218,9 @@
         </div>
       </div>
 
+      <!-- Themes view: own container, built once and cached (see render()). -->
+      <div id="themesArea"></div>
+
       <div class="cards-grid" id="cardsGrid"></div>
       <div class="empty-state" id="emptyState">
         <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
@@ -2819,7 +2828,7 @@
         document.body.classList.add('strategy-view');
         render();
         requestAnimationFrame(() => {
-          document.getElementById('cardsGrid').scrollIntoView({ behavior: 'smooth', block: 'start' });
+          document.getElementById('themesArea').scrollIntoView({ behavior: 'smooth', block: 'start' });
         });
       });
     });
@@ -2977,8 +2986,8 @@
       btn.addEventListener('click', () => {
         activeThemeId = btn.dataset.themeId;
         themeShowAll  = false;
-        buildThemesView();
-        document.getElementById('cardsGrid').scrollIntoView({ behavior: 'smooth', block: 'start' });
+        render();
+        document.getElementById('themesArea').scrollIntoView({ behavior: 'smooth', block: 'start' });
       });
     });
 
@@ -3032,11 +3041,8 @@
   }
 
   function buildThemesView() {
-    const grid = document.getElementById('cardsGrid');
-    const empty = document.getElementById('emptyState');
+    const grid = document.getElementById('themesArea');
     grid.innerHTML = '';
-    empty.classList.remove('visible');
-    document.getElementById('emptyStateClear').style.display = 'none';
 
     const paperMap = Object.fromEntries(RESEARCH_DATA.map(r => [r.id, r]));
 
@@ -3061,7 +3067,7 @@
       pill.addEventListener('click', () => {
         activeThemeId = theme.id;
         themeShowAll  = false;
-        buildThemesView();
+        render();
       });
       tabNav.appendChild(pill);
     });
@@ -4065,13 +4071,20 @@
     badge.style.display = count > 0 ? 'inline' : 'none';
   }
 
+  // View-DOM cache. Each view's DOM is built once and re-shown on tab switch;
+  // it rebuilds only when its inputs (its "signature") change. This stops
+  // Research (#cardsGrid) and Themes (#themesArea) from tearing each other down
+  // on every switch — the actual source of tab-switch jank. (Dataset cloning,
+  // ~0.5ms/render, was never the bottleneck; DOM construction is.)
+  let _cardsSig  = null;   // null = never built
+  let _themesSig = null;
+  const cardsSig  = () => [activeLens, activeCat, activeStatus, activeGeo, activeEvidence, sortOrder, searchQuery.trim()].join('');
+  const themesSig = () => [activeLens, activeThemeId, themeShowAll].join('');
+
   function render() {
     const grid  = document.getElementById('cardsGrid');
     const empty = document.getElementById('emptyState');
 
-    buildCatNav();
-    buildInlineFilters();
-    updateFilterBadge();
     updateWhatsChangedPill();
 
     document.body.classList.toggle('cards-view', activeView === 'cards');
@@ -4082,10 +4095,25 @@
         : 'A curated database of peer-reviewed studies, policy reports, and investigative journalism on AI, automation, and labor markets.';
     }
 
-    if (activeView === 'themes') { buildThemesView(); return; }
+    if (activeView === 'themes') {
+      const sig = themesSig();
+      if (_themesSig !== sig) { _themesSig = sig; buildThemesView(); }
+      return;
+    }
     if (activeView === 'policy') { buildPolicyView(); return; }
     if (activeView === 'about')  { return; }
     if (activeView === 'jobs')   { return; }
+
+    // ── Research (cards) view ──
+    const sig = cardsSig();
+    if (_cardsSig === sig) return;   // cached: DOM already reflects these inputs
+    _cardsSig = sig;
+
+    // Sidebar nav + inline filters are hidden by CSS on every other view, so
+    // build them only when the cards view is actually (re)rendering.
+    buildCatNav();
+    buildInlineFilters();
+    updateFilterBadge();
 
     grid.innerHTML = '';
     const visible = getVisible();
@@ -4213,7 +4241,7 @@
     themeShowAll  = false;
     setView('themes');
     requestAnimationFrame(() => {
-      document.getElementById('cardsGrid').scrollIntoView({ behavior: 'smooth', block: 'start' });
+      document.getElementById('themesArea').scrollIntoView({ behavior: 'smooth', block: 'start' });
     });
   }
 
