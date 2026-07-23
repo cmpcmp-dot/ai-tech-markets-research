@@ -96,7 +96,13 @@
     --border:   var(--divider);
     --text:     #3c4164;     /* Text Black */
     --muted:    #6d7091;     /* warmed grey to sit in the family */
-    --accent:   var(--green);
+    /* App emphasis/focus color. Set to Warm Navy (not the C3 Soft Green)
+       for readability: navy has far stronger contrast on the light
+       background, and it keeps green within ESP's ~15% accent budget.
+       Green survives as deliberate accents that reference --green directly:
+       the header active-tab underline, the Policy Map Economic Security
+       swatch, and the (green-by-design) Killer Facts tab. */
+    --accent:   var(--navy);
     --tooltip-bg: #2c3254;
     --tooltip-fg: #f4f2e4;
     --sidebar-w: 252px;
@@ -4402,8 +4408,8 @@
   })();
 
   // ── init ─────────────────────────────────────────────────────
-  // R2: honor a deep link if one is present; otherwise land on Themes.
-  if (!applyHashRoute()) setView('themes');
+  // R2: honor a deep link if one is present; otherwise land on Research.
+  if (!applyHashRoute()) setView('cards');
   window.addEventListener('hashchange', applyHashRoute);
 
   // What's new: open the log from the header button; pulse the pill once
