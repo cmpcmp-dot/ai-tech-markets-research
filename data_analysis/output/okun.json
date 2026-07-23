@@ -1,0 +1,4122 @@
+{
+  "vintage": "2026-07-23 12:43:29 EDT",
+  "fit": {
+    "intercept": 0.1992,
+    "slope": -0.0668,
+    "r2": 0.406,
+    "breakeven_growth": 2.98,
+    "sample_start": "1948-04-01",
+    "sample_end": "2026-01-01",
+    "excluded": ["2020Q2", "2020Q3"]
+  },
+  "scatter": [
+    {
+      "label": "1948Q2",
+      "year": 1948,
+      "gdp_growth": 6.775,
+      "d_unrate": -0.067,
+      "residual": 0.186,
+      "is_pandemic": false
+    },
+    {
+      "label": "1948Q3",
+      "year": 1948,
+      "gdp_growth": 2.318,
+      "d_unrate": 0.1,
+      "residual": 0.056,
+      "is_pandemic": false
+    },
+    {
+      "label": "1948Q4",
+      "year": 1948,
+      "gdp_growth": 0.454,
+      "d_unrate": 0.067,
+      "residual": -0.102,
+      "is_pandemic": false
+    },
+    {
+      "label": "1949Q1",
+      "year": 1949,
+      "gdp_growth": -5.394,
+      "d_unrate": 0.833,
+      "residual": 0.274,
+      "is_pandemic": false
+    },
+    {
+      "label": "1949Q2",
+      "year": 1949,
+      "gdp_growth": -1.352,
+      "d_unrate": 1.2,
+      "residual": 0.911,
+      "is_pandemic": false
+    },
+    {
+      "label": "1949Q3",
+      "year": 1949,
+      "gdp_growth": 4.2,
+      "d_unrate": 0.833,
+      "residual": 0.914,
+      "is_pandemic": false
+    },
+    {
+      "label": "1949Q4",
+      "year": 1949,
+      "gdp_growth": -3.309,
+      "d_unrate": 0.267,
+      "residual": -0.153,
+      "is_pandemic": false
+    },
+    {
+      "label": "1950Q1",
+      "year": 1950,
+      "gdp_growth": 16.679,
+      "d_unrate": -0.567,
+      "residual": 0.348,
+      "is_pandemic": false
+    },
+    {
+      "label": "1950Q2",
+      "year": 1950,
+      "gdp_growth": 12.774,
+      "d_unrate": -0.833,
+      "residual": -0.18,
+      "is_pandemic": false
+    },
+    {
+      "label": "1950Q3",
+      "year": 1950,
+      "gdp_growth": 16.38,
+      "d_unrate": -0.933,
+      "residual": -0.039,
+      "is_pandemic": false
+    },
+    {
+      "label": "1950Q4",
+      "year": 1950,
+      "gdp_growth": 7.883,
+      "d_unrate": -0.4,
+      "residual": -0.073,
+      "is_pandemic": false
+    },
+    {
+      "label": "1951Q1",
+      "year": 1951,
+      "gdp_growth": 5.543,
+      "d_unrate": -0.733,
+      "residual": -0.563,
+      "is_pandemic": false
+    },
+    {
+      "label": "1951Q2",
+      "year": 1951,
+      "gdp_growth": 7.111,
+      "d_unrate": -0.4,
+      "residual": -0.125,
+      "is_pandemic": false
+    },
+    {
+      "label": "1951Q3",
+      "year": 1951,
+      "gdp_growth": 8.498,
+      "d_unrate": 0.067,
+      "residual": 0.435,
+      "is_pandemic": false
+    },
+    {
+      "label": "1951Q4",
+      "year": 1951,
+      "gdp_growth": 0.879,
+      "d_unrate": 0.2,
+      "residual": 0.059,
+      "is_pandemic": false
+    },
+    {
+      "label": "1952Q1",
+      "year": 1952,
+      "gdp_growth": 4.336,
+      "d_unrate": -0.3,
+      "residual": -0.21,
+      "is_pandemic": false
+    },
+    {
+      "label": "1952Q2",
+      "year": 1952,
+      "gdp_growth": 0.86,
+      "d_unrate": -0.1,
+      "residual": -0.242,
+      "is_pandemic": false
+    },
+    {
+      "label": "1952Q3",
+      "year": 1952,
+      "gdp_growth": 2.916,
+      "d_unrate": 0.267,
+      "residual": 0.262,
+      "is_pandemic": false
+    },
+    {
+      "label": "1952Q4",
+      "year": 1952,
+      "gdp_growth": 13.797,
+      "d_unrate": -0.4,
+      "residual": 0.322,
+      "is_pandemic": false
+    },
+    {
+      "label": "1953Q1",
+      "year": 1953,
+      "gdp_growth": 7.646,
+      "d_unrate": -0.133,
+      "residual": 0.178,
+      "is_pandemic": false
+    },
+    {
+      "label": "1953Q2",
+      "year": 1953,
+      "gdp_growth": 3.128,
+      "d_unrate": -0.133,
+      "residual": -0.124,
+      "is_pandemic": false
+    },
+    {
+      "label": "1953Q3",
+      "year": 1953,
+      "gdp_growth": -2.231,
+      "d_unrate": 0.167,
+      "residual": -0.182,
+      "is_pandemic": false
+    },
+    {
+      "label": "1953Q4",
+      "year": 1953,
+      "gdp_growth": -5.919,
+      "d_unrate": 0.967,
+      "residual": 0.372,
+      "is_pandemic": false
+    },
+    {
+      "label": "1954Q1",
+      "year": 1954,
+      "gdp_growth": -1.897,
+      "d_unrate": 1.567,
+      "residual": 1.241,
+      "is_pandemic": false
+    },
+    {
+      "label": "1954Q2",
+      "year": 1954,
+      "gdp_growth": 0.438,
+      "d_unrate": 0.533,
+      "residual": 0.363,
+      "is_pandemic": false
+    },
+    {
+      "label": "1954Q3",
+      "year": 1954,
+      "gdp_growth": 4.596,
+      "d_unrate": 0.167,
+      "residual": 0.274,
+      "is_pandemic": false
+    },
+    {
+      "label": "1954Q4",
+      "year": 1954,
+      "gdp_growth": 8.061,
+      "d_unrate": -0.633,
+      "residual": -0.294,
+      "is_pandemic": false
+    },
+    {
+      "label": "1955Q1",
+      "year": 1955,
+      "gdp_growth": 11.925,
+      "d_unrate": -0.6,
+      "residual": -0.003,
+      "is_pandemic": false
+    },
+    {
+      "label": "1955Q2",
+      "year": 1955,
+      "gdp_growth": 6.671,
+      "d_unrate": -0.333,
+      "residual": -0.087,
+      "is_pandemic": false
+    },
+    {
+      "label": "1955Q3",
+      "year": 1955,
+      "gdp_growth": 5.514,
+      "d_unrate": -0.3,
+      "residual": -0.131,
+      "is_pandemic": false
+    },
+    {
+      "label": "1955Q4",
+      "year": 1955,
+      "gdp_growth": 2.424,
+      "d_unrate": 0.133,
+      "residual": 0.096,
+      "is_pandemic": false
+    },
+    {
+      "label": "1956Q1",
+      "year": 1956,
+      "gdp_growth": -1.543,
+      "d_unrate": -0.2,
+      "residual": -0.502,
+      "is_pandemic": false
+    },
+    {
+      "label": "1956Q2",
+      "year": 1956,
+      "gdp_growth": 3.348,
+      "d_unrate": 0.167,
+      "residual": 0.191,
+      "is_pandemic": false
+    },
+    {
+      "label": "1956Q3",
+      "year": 1956,
+      "gdp_growth": -0.358,
+      "d_unrate": -0.067,
+      "residual": -0.29,
+      "is_pandemic": false
+    },
+    {
+      "label": "1956Q4",
+      "year": 1956,
+      "gdp_growth": 6.748,
+      "d_unrate": 0,
+      "residual": 0.251,
+      "is_pandemic": false
+    },
+    {
+      "label": "1957Q1",
+      "year": 1957,
+      "gdp_growth": 2.586,
+      "d_unrate": -0.2,
+      "residual": -0.227,
+      "is_pandemic": false
+    },
+    {
+      "label": "1957Q2",
+      "year": 1957,
+      "gdp_growth": -0.874,
+      "d_unrate": 0.167,
+      "residual": -0.091,
+      "is_pandemic": false
+    },
+    {
+      "label": "1957Q3",
+      "year": 1957,
+      "gdp_growth": 3.978,
+      "d_unrate": 0.133,
+      "residual": 0.2,
+      "is_pandemic": false
+    },
+    {
+      "label": "1957Q4",
+      "year": 1957,
+      "gdp_growth": -4.074,
+      "d_unrate": 0.7,
+      "residual": 0.229,
+      "is_pandemic": false
+    },
+    {
+      "label": "1958Q1",
+      "year": 1958,
+      "gdp_growth": -9.986,
+      "d_unrate": 1.367,
+      "residual": 0.501,
+      "is_pandemic": false
+    },
+    {
+      "label": "1958Q2",
+      "year": 1958,
+      "gdp_growth": 2.654,
+      "d_unrate": 1.067,
+      "residual": 1.045,
+      "is_pandemic": false
+    },
+    {
+      "label": "1958Q3",
+      "year": 1958,
+      "gdp_growth": 9.578,
+      "d_unrate": -0.033,
+      "residual": 0.407,
+      "is_pandemic": false
+    },
+    {
+      "label": "1958Q4",
+      "year": 1958,
+      "gdp_growth": 9.686,
+      "d_unrate": -0.967,
+      "residual": -0.519,
+      "is_pandemic": false
+    },
+    {
+      "label": "1959Q1",
+      "year": 1959,
+      "gdp_growth": 7.897,
+      "d_unrate": -0.533,
+      "residual": -0.205,
+      "is_pandemic": false
+    },
+    {
+      "label": "1959Q2",
+      "year": 1959,
+      "gdp_growth": 9.323,
+      "d_unrate": -0.733,
+      "residual": -0.31,
+      "is_pandemic": false
+    },
+    {
+      "label": "1959Q3",
+      "year": 1959,
+      "gdp_growth": 0.279,
+      "d_unrate": 0.167,
+      "residual": -0.014,
+      "is_pandemic": false
+    },
+    {
+      "label": "1959Q4",
+      "year": 1959,
+      "gdp_growth": 1.145,
+      "d_unrate": 0.333,
+      "residual": 0.211,
+      "is_pandemic": false
+    },
+    {
+      "label": "1960Q1",
+      "year": 1960,
+      "gdp_growth": 9.302,
+      "d_unrate": -0.467,
+      "residual": -0.045,
+      "is_pandemic": false
+    },
+    {
+      "label": "1960Q2",
+      "year": 1960,
+      "gdp_growth": -2.136,
+      "d_unrate": 0.1,
+      "residual": -0.242,
+      "is_pandemic": false
+    },
+    {
+      "label": "1960Q3",
+      "year": 1960,
+      "gdp_growth": 1.974,
+      "d_unrate": 0.3,
+      "residual": 0.233,
+      "is_pandemic": false
+    },
+    {
+      "label": "1960Q4",
+      "year": 1960,
+      "gdp_growth": -5.035,
+      "d_unrate": 0.733,
+      "residual": 0.198,
+      "is_pandemic": false
+    },
+    {
+      "label": "1961Q1",
+      "year": 1961,
+      "gdp_growth": 2.728,
+      "d_unrate": 0.533,
+      "residual": 0.516,
+      "is_pandemic": false
+    },
+    {
+      "label": "1961Q2",
+      "year": 1961,
+      "gdp_growth": 6.966,
+      "d_unrate": 0.2,
+      "residual": 0.466,
+      "is_pandemic": false
+    },
+    {
+      "label": "1961Q3",
+      "year": 1961,
+      "gdp_growth": 7.906,
+      "d_unrate": -0.233,
+      "residual": 0.095,
+      "is_pandemic": false
+    },
+    {
+      "label": "1961Q4",
+      "year": 1961,
+      "gdp_growth": 8.081,
+      "d_unrate": -0.567,
+      "residual": -0.226,
+      "is_pandemic": false
+    },
+    {
+      "label": "1962Q1",
+      "year": 1962,
+      "gdp_growth": 7.328,
+      "d_unrate": -0.567,
+      "residual": -0.277,
+      "is_pandemic": false
+    },
+    {
+      "label": "1962Q2",
+      "year": 1962,
+      "gdp_growth": 3.668,
+      "d_unrate": -0.1,
+      "residual": -0.054,
+      "is_pandemic": false
+    },
+    {
+      "label": "1962Q3",
+      "year": 1962,
+      "gdp_growth": 5.01,
+      "d_unrate": 0.033,
+      "residual": 0.169,
+      "is_pandemic": false
+    },
+    {
+      "label": "1962Q4",
+      "year": 1962,
+      "gdp_growth": 1.324,
+      "d_unrate": -0.033,
+      "residual": -0.144,
+      "is_pandemic": false
+    },
+    {
+      "label": "1963Q1",
+      "year": 1963,
+      "gdp_growth": 4.44,
+      "d_unrate": 0.233,
+      "residual": 0.331,
+      "is_pandemic": false
+    },
+    {
+      "label": "1963Q2",
+      "year": 1963,
+      "gdp_growth": 4.566,
+      "d_unrate": -0.033,
+      "residual": 0.072,
+      "is_pandemic": false
+    },
+    {
+      "label": "1963Q3",
+      "year": 1963,
+      "gdp_growth": 9.09,
+      "d_unrate": -0.233,
+      "residual": 0.174,
+      "is_pandemic": false
+    },
+    {
+      "label": "1963Q4",
+      "year": 1963,
+      "gdp_growth": 2.65,
+      "d_unrate": 0.067,
+      "residual": 0.044,
+      "is_pandemic": false
+    },
+    {
+      "label": "1964Q1",
+      "year": 1964,
+      "gdp_growth": 8.705,
+      "d_unrate": -0.1,
+      "residual": 0.282,
+      "is_pandemic": false
+    },
+    {
+      "label": "1964Q2",
+      "year": 1964,
+      "gdp_growth": 4.428,
+      "d_unrate": -0.267,
+      "residual": -0.17,
+      "is_pandemic": false
+    },
+    {
+      "label": "1964Q3",
+      "year": 1964,
+      "gdp_growth": 6.398,
+      "d_unrate": -0.2,
+      "residual": 0.028,
+      "is_pandemic": false
+    },
+    {
+      "label": "1964Q4",
+      "year": 1964,
+      "gdp_growth": 1.243,
+      "d_unrate": -0.033,
+      "residual": -0.15,
+      "is_pandemic": false
+    },
+    {
+      "label": "1965Q1",
+      "year": 1965,
+      "gdp_growth": 10.037,
+      "d_unrate": -0.067,
+      "residual": 0.404,
+      "is_pandemic": false
+    },
+    {
+      "label": "1965Q2",
+      "year": 1965,
+      "gdp_growth": 5.15,
+      "d_unrate": -0.233,
+      "residual": -0.089,
+      "is_pandemic": false
+    },
+    {
+      "label": "1965Q3",
+      "year": 1965,
+      "gdp_growth": 9.194,
+      "d_unrate": -0.3,
+      "residual": 0.114,
+      "is_pandemic": false
+    },
+    {
+      "label": "1965Q4",
+      "year": 1965,
+      "gdp_growth": 9.539,
+      "d_unrate": -0.267,
+      "residual": 0.171,
+      "is_pandemic": false
+    },
+    {
+      "label": "1966Q1",
+      "year": 1966,
+      "gdp_growth": 10.097,
+      "d_unrate": -0.233,
+      "residual": 0.241,
+      "is_pandemic": false
+    },
+    {
+      "label": "1966Q2",
+      "year": 1966,
+      "gdp_growth": 1.373,
+      "d_unrate": -0.033,
+      "residual": -0.141,
+      "is_pandemic": false
+    },
+    {
+      "label": "1966Q3",
+      "year": 1966,
+      "gdp_growth": 3.431,
+      "d_unrate": -0.067,
+      "residual": -0.037,
+      "is_pandemic": false
+    },
+    {
+      "label": "1966Q4",
+      "year": 1966,
+      "gdp_growth": 3.322,
+      "d_unrate": -0.067,
+      "residual": -0.044,
+      "is_pandemic": false
+    },
+    {
+      "label": "1967Q1",
+      "year": 1967,
+      "gdp_growth": 3.591,
+      "d_unrate": 0.133,
+      "residual": 0.174,
+      "is_pandemic": false
+    },
+    {
+      "label": "1967Q2",
+      "year": 1967,
+      "gdp_growth": 0.246,
+      "d_unrate": 0,
+      "residual": -0.183,
+      "is_pandemic": false
+    },
+    {
+      "label": "1967Q3",
+      "year": 1967,
+      "gdp_growth": 3.838,
+      "d_unrate": -0.033,
+      "residual": 0.024,
+      "is_pandemic": false
+    },
+    {
+      "label": "1967Q4",
+      "year": 1967,
+      "gdp_growth": 3.05,
+      "d_unrate": 0.1,
+      "residual": 0.104,
+      "is_pandemic": false
+    },
+    {
+      "label": "1968Q1",
+      "year": 1968,
+      "gdp_growth": 8.41,
+      "d_unrate": -0.167,
+      "residual": 0.196,
+      "is_pandemic": false
+    },
+    {
+      "label": "1968Q2",
+      "year": 1968,
+      "gdp_growth": 6.851,
+      "d_unrate": -0.167,
+      "residual": 0.091,
+      "is_pandemic": false
+    },
+    {
+      "label": "1968Q3",
+      "year": 1968,
+      "gdp_growth": 3.134,
+      "d_unrate": -0.033,
+      "residual": -0.023,
+      "is_pandemic": false
+    },
+    {
+      "label": "1968Q4",
+      "year": 1968,
+      "gdp_growth": 1.58,
+      "d_unrate": -0.133,
+      "residual": -0.227,
+      "is_pandemic": false
+    },
+    {
+      "label": "1969Q1",
+      "year": 1969,
+      "gdp_growth": 6.406,
+      "d_unrate": 0,
+      "residual": 0.228,
+      "is_pandemic": false
+    },
+    {
+      "label": "1969Q2",
+      "year": 1969,
+      "gdp_growth": 1.219,
+      "d_unrate": 0.033,
+      "residual": -0.085,
+      "is_pandemic": false
+    },
+    {
+      "label": "1969Q3",
+      "year": 1969,
+      "gdp_growth": 2.666,
+      "d_unrate": 0.133,
+      "residual": 0.112,
+      "is_pandemic": false
+    },
+    {
+      "label": "1969Q4",
+      "year": 1969,
+      "gdp_growth": -1.939,
+      "d_unrate": 0,
+      "residual": -0.329,
+      "is_pandemic": false
+    },
+    {
+      "label": "1970Q1",
+      "year": 1970,
+      "gdp_growth": -0.594,
+      "d_unrate": 0.6,
+      "residual": 0.361,
+      "is_pandemic": false
+    },
+    {
+      "label": "1970Q2",
+      "year": 1970,
+      "gdp_growth": 0.568,
+      "d_unrate": 0.6,
+      "residual": 0.439,
+      "is_pandemic": false
+    },
+    {
+      "label": "1970Q3",
+      "year": 1970,
+      "gdp_growth": 3.737,
+      "d_unrate": 0.4,
+      "residual": 0.45,
+      "is_pandemic": false
+    },
+    {
+      "label": "1970Q4",
+      "year": 1970,
+      "gdp_growth": -4.218,
+      "d_unrate": 0.667,
+      "residual": 0.186,
+      "is_pandemic": false
+    },
+    {
+      "label": "1971Q1",
+      "year": 1971,
+      "gdp_growth": 11.315,
+      "d_unrate": 0.1,
+      "residual": 0.656,
+      "is_pandemic": false
+    },
+    {
+      "label": "1971Q2",
+      "year": 1971,
+      "gdp_growth": 2.181,
+      "d_unrate": -0.033,
+      "residual": -0.087,
+      "is_pandemic": false
+    },
+    {
+      "label": "1971Q3",
+      "year": 1971,
+      "gdp_growth": 3.331,
+      "d_unrate": 0.133,
+      "residual": 0.156,
+      "is_pandemic": false
+    },
+    {
+      "label": "1971Q4",
+      "year": 1971,
+      "gdp_growth": 0.943,
+      "d_unrate": -0.1,
+      "residual": -0.236,
+      "is_pandemic": false
+    },
+    {
+      "label": "1972Q1",
+      "year": 1972,
+      "gdp_growth": 7.554,
+      "d_unrate": -0.167,
+      "residual": 0.138,
+      "is_pandemic": false
+    },
+    {
+      "label": "1972Q2",
+      "year": 1972,
+      "gdp_growth": 9.391,
+      "d_unrate": -0.067,
+      "residual": 0.361,
+      "is_pandemic": false
+    },
+    {
+      "label": "1972Q3",
+      "year": 1972,
+      "gdp_growth": 3.83,
+      "d_unrate": -0.133,
+      "residual": -0.077,
+      "is_pandemic": false
+    },
+    {
+      "label": "1972Q4",
+      "year": 1972,
+      "gdp_growth": 6.868,
+      "d_unrate": -0.2,
+      "residual": 0.059,
+      "is_pandemic": false
+    },
+    {
+      "label": "1973Q1",
+      "year": 1973,
+      "gdp_growth": 10.273,
+      "d_unrate": -0.433,
+      "residual": 0.053,
+      "is_pandemic": false
+    },
+    {
+      "label": "1973Q2",
+      "year": 1973,
+      "gdp_growth": 4.427,
+      "d_unrate": 0,
+      "residual": 0.096,
+      "is_pandemic": false
+    },
+    {
+      "label": "1973Q3",
+      "year": 1973,
+      "gdp_growth": -2.087,
+      "d_unrate": -0.133,
+      "residual": -0.472,
+      "is_pandemic": false
+    },
+    {
+      "label": "1973Q4",
+      "year": 1973,
+      "gdp_growth": 3.851,
+      "d_unrate": -0.033,
+      "residual": 0.025,
+      "is_pandemic": false
+    },
+    {
+      "label": "1974Q1",
+      "year": 1974,
+      "gdp_growth": -3.395,
+      "d_unrate": 0.367,
+      "residual": -0.059,
+      "is_pandemic": false
+    },
+    {
+      "label": "1974Q2",
+      "year": 1974,
+      "gdp_growth": 0.954,
+      "d_unrate": 0.067,
+      "residual": -0.069,
+      "is_pandemic": false
+    },
+    {
+      "label": "1974Q3",
+      "year": 1974,
+      "gdp_growth": -3.728,
+      "d_unrate": 0.433,
+      "residual": -0.015,
+      "is_pandemic": false
+    },
+    {
+      "label": "1974Q4",
+      "year": 1974,
+      "gdp_growth": -1.545,
+      "d_unrate": 0.967,
+      "residual": 0.664,
+      "is_pandemic": false
+    },
+    {
+      "label": "1975Q1",
+      "year": 1975,
+      "gdp_growth": -4.782,
+      "d_unrate": 1.667,
+      "residual": 1.148,
+      "is_pandemic": false
+    },
+    {
+      "label": "1975Q2",
+      "year": 1975,
+      "gdp_growth": 2.89,
+      "d_unrate": 0.6,
+      "residual": 0.594,
+      "is_pandemic": false
+    },
+    {
+      "label": "1975Q3",
+      "year": 1975,
+      "gdp_growth": 7.026,
+      "d_unrate": -0.4,
+      "residual": -0.13,
+      "is_pandemic": false
+    },
+    {
+      "label": "1975Q4",
+      "year": 1975,
+      "gdp_growth": 5.498,
+      "d_unrate": -0.167,
+      "residual": 0.001,
+      "is_pandemic": false
+    },
+    {
+      "label": "1976Q1",
+      "year": 1976,
+      "gdp_growth": 9.306,
+      "d_unrate": -0.567,
+      "residual": -0.145,
+      "is_pandemic": false
+    },
+    {
+      "label": "1976Q2",
+      "year": 1976,
+      "gdp_growth": 2.966,
+      "d_unrate": -0.167,
+      "residual": -0.168,
+      "is_pandemic": false
+    },
+    {
+      "label": "1976Q3",
+      "year": 1976,
+      "gdp_growth": 2.208,
+      "d_unrate": 0.167,
+      "residual": 0.115,
+      "is_pandemic": false
+    },
+    {
+      "label": "1976Q4",
+      "year": 1976,
+      "gdp_growth": 2.922,
+      "d_unrate": 0.033,
+      "residual": 0.029,
+      "is_pandemic": false
+    },
+    {
+      "label": "1977Q1",
+      "year": 1977,
+      "gdp_growth": 4.83,
+      "d_unrate": -0.267,
+      "residual": -0.143,
+      "is_pandemic": false
+    },
+    {
+      "label": "1977Q2",
+      "year": 1977,
+      "gdp_growth": 7.997,
+      "d_unrate": -0.367,
+      "residual": -0.032,
+      "is_pandemic": false
+    },
+    {
+      "label": "1977Q3",
+      "year": 1977,
+      "gdp_growth": 7.41,
+      "d_unrate": -0.233,
+      "residual": 0.062,
+      "is_pandemic": false
+    },
+    {
+      "label": "1977Q4",
+      "year": 1977,
+      "gdp_growth": 0.008,
+      "d_unrate": -0.233,
+      "residual": -0.432,
+      "is_pandemic": false
+    },
+    {
+      "label": "1978Q1",
+      "year": 1978,
+      "gdp_growth": 1.286,
+      "d_unrate": -0.333,
+      "residual": -0.447,
+      "is_pandemic": false
+    },
+    {
+      "label": "1978Q2",
+      "year": 1978,
+      "gdp_growth": 16.379,
+      "d_unrate": -0.333,
+      "residual": 0.561,
+      "is_pandemic": false
+    },
+    {
+      "label": "1978Q3",
+      "year": 1978,
+      "gdp_growth": 4.084,
+      "d_unrate": 0.033,
+      "residual": 0.107,
+      "is_pandemic": false
+    },
+    {
+      "label": "1978Q4",
+      "year": 1978,
+      "gdp_growth": 5.486,
+      "d_unrate": -0.133,
+      "residual": 0.034,
+      "is_pandemic": false
+    },
+    {
+      "label": "1979Q1",
+      "year": 1979,
+      "gdp_growth": 0.72,
+      "d_unrate": -0.033,
+      "residual": -0.184,
+      "is_pandemic": false
+    },
+    {
+      "label": "1979Q2",
+      "year": 1979,
+      "gdp_growth": 0.428,
+      "d_unrate": -0.167,
+      "residual": -0.337,
+      "is_pandemic": false
+    },
+    {
+      "label": "1979Q3",
+      "year": 1979,
+      "gdp_growth": 3.004,
+      "d_unrate": 0.167,
+      "residual": 0.168,
+      "is_pandemic": false
+    },
+    {
+      "label": "1979Q4",
+      "year": 1979,
+      "gdp_growth": 1.004,
+      "d_unrate": 0.1,
+      "residual": -0.032,
+      "is_pandemic": false
+    },
+    {
+      "label": "1980Q1",
+      "year": 1980,
+      "gdp_growth": 1.264,
+      "d_unrate": 0.333,
+      "residual": 0.218,
+      "is_pandemic": false
+    },
+    {
+      "label": "1980Q2",
+      "year": 1980,
+      "gdp_growth": -7.99,
+      "d_unrate": 1.033,
+      "residual": 0.301,
+      "is_pandemic": false
+    },
+    {
+      "label": "1980Q3",
+      "year": 1980,
+      "gdp_growth": -0.475,
+      "d_unrate": 0.333,
+      "residual": 0.102,
+      "is_pandemic": false
+    },
+    {
+      "label": "1980Q4",
+      "year": 1980,
+      "gdp_growth": 7.671,
+      "d_unrate": -0.267,
+      "residual": 0.046,
+      "is_pandemic": false
+    },
+    {
+      "label": "1981Q1",
+      "year": 1981,
+      "gdp_growth": 8.071,
+      "d_unrate": 0.033,
+      "residual": 0.373,
+      "is_pandemic": false
+    },
+    {
+      "label": "1981Q2",
+      "year": 1981,
+      "gdp_growth": -2.932,
+      "d_unrate": -0.033,
+      "residual": -0.428,
+      "is_pandemic": false
+    },
+    {
+      "label": "1981Q3",
+      "year": 1981,
+      "gdp_growth": 4.877,
+      "d_unrate": 0,
+      "residual": 0.126,
+      "is_pandemic": false
+    },
+    {
+      "label": "1981Q4",
+      "year": 1981,
+      "gdp_growth": -4.288,
+      "d_unrate": 0.833,
+      "residual": 0.348,
+      "is_pandemic": false
+    },
+    {
+      "label": "1982Q1",
+      "year": 1982,
+      "gdp_growth": -6.071,
+      "d_unrate": 0.6,
+      "residual": -0.005,
+      "is_pandemic": false
+    },
+    {
+      "label": "1982Q2",
+      "year": 1982,
+      "gdp_growth": 1.837,
+      "d_unrate": 0.6,
+      "residual": 0.523,
+      "is_pandemic": false
+    },
+    {
+      "label": "1982Q3",
+      "year": 1982,
+      "gdp_growth": -1.52,
+      "d_unrate": 0.467,
+      "residual": 0.166,
+      "is_pandemic": false
+    },
+    {
+      "label": "1982Q4",
+      "year": 1982,
+      "gdp_growth": 0.16,
+      "d_unrate": 0.767,
+      "residual": 0.578,
+      "is_pandemic": false
+    },
+    {
+      "label": "1983Q1",
+      "year": 1983,
+      "gdp_growth": 5.376,
+      "d_unrate": -0.3,
+      "residual": -0.14,
+      "is_pandemic": false
+    },
+    {
+      "label": "1983Q2",
+      "year": 1983,
+      "gdp_growth": 9.418,
+      "d_unrate": -0.233,
+      "residual": 0.196,
+      "is_pandemic": false
+    },
+    {
+      "label": "1983Q3",
+      "year": 1983,
+      "gdp_growth": 8.239,
+      "d_unrate": -0.767,
+      "residual": -0.416,
+      "is_pandemic": false
+    },
+    {
+      "label": "1983Q4",
+      "year": 1983,
+      "gdp_growth": 8.61,
+      "d_unrate": -0.833,
+      "residual": -0.458,
+      "is_pandemic": false
+    },
+    {
+      "label": "1984Q1",
+      "year": 1984,
+      "gdp_growth": 8.051,
+      "d_unrate": -0.667,
+      "residual": -0.328,
+      "is_pandemic": false
+    },
+    {
+      "label": "1984Q2",
+      "year": 1984,
+      "gdp_growth": 7.092,
+      "d_unrate": -0.433,
+      "residual": -0.159,
+      "is_pandemic": false
+    },
+    {
+      "label": "1984Q3",
+      "year": 1984,
+      "gdp_growth": 3.912,
+      "d_unrate": 0,
+      "residual": 0.062,
+      "is_pandemic": false
+    },
+    {
+      "label": "1984Q4",
+      "year": 1984,
+      "gdp_growth": 3.324,
+      "d_unrate": -0.133,
+      "residual": -0.111,
+      "is_pandemic": false
+    },
+    {
+      "label": "1985Q1",
+      "year": 1985,
+      "gdp_growth": 3.933,
+      "d_unrate": -0.067,
+      "residual": -0.003,
+      "is_pandemic": false
+    },
+    {
+      "label": "1985Q2",
+      "year": 1985,
+      "gdp_growth": 3.569,
+      "d_unrate": 0.067,
+      "residual": 0.106,
+      "is_pandemic": false
+    },
+    {
+      "label": "1985Q3",
+      "year": 1985,
+      "gdp_growth": 6.25,
+      "d_unrate": -0.1,
+      "residual": 0.118,
+      "is_pandemic": false
+    },
+    {
+      "label": "1985Q4",
+      "year": 1985,
+      "gdp_growth": 3.007,
+      "d_unrate": -0.167,
+      "residual": -0.165,
+      "is_pandemic": false
+    },
+    {
+      "label": "1986Q1",
+      "year": 1986,
+      "gdp_growth": 3.788,
+      "d_unrate": 0,
+      "residual": 0.054,
+      "is_pandemic": false
+    },
+    {
+      "label": "1986Q2",
+      "year": 1986,
+      "gdp_growth": 1.813,
+      "d_unrate": 0.133,
+      "residual": 0.055,
+      "is_pandemic": false
+    },
+    {
+      "label": "1986Q3",
+      "year": 1986,
+      "gdp_growth": 3.882,
+      "d_unrate": -0.2,
+      "residual": -0.14,
+      "is_pandemic": false
+    },
+    {
+      "label": "1986Q4",
+      "year": 1986,
+      "gdp_growth": 2.163,
+      "d_unrate": -0.133,
+      "residual": -0.188,
+      "is_pandemic": false
+    },
+    {
+      "label": "1987Q1",
+      "year": 1987,
+      "gdp_growth": 3.001,
+      "d_unrate": -0.233,
+      "residual": -0.232,
+      "is_pandemic": false
+    },
+    {
+      "label": "1987Q2",
+      "year": 1987,
+      "gdp_growth": 4.383,
+      "d_unrate": -0.333,
+      "residual": -0.24,
+      "is_pandemic": false
+    },
+    {
+      "label": "1987Q3",
+      "year": 1987,
+      "gdp_growth": 3.514,
+      "d_unrate": -0.267,
+      "residual": -0.231,
+      "is_pandemic": false
+    },
+    {
+      "label": "1987Q4",
+      "year": 1987,
+      "gdp_growth": 7.047,
+      "d_unrate": -0.167,
+      "residual": 0.105,
+      "is_pandemic": false
+    },
+    {
+      "label": "1988Q1",
+      "year": 1988,
+      "gdp_growth": 2.084,
+      "d_unrate": -0.133,
+      "residual": -0.193,
+      "is_pandemic": false
+    },
+    {
+      "label": "1988Q2",
+      "year": 1988,
+      "gdp_growth": 5.361,
+      "d_unrate": -0.233,
+      "residual": -0.075,
+      "is_pandemic": false
+    },
+    {
+      "label": "1988Q3",
+      "year": 1988,
+      "gdp_growth": 2.365,
+      "d_unrate": 0,
+      "residual": -0.041,
+      "is_pandemic": false
+    },
+    {
+      "label": "1988Q4",
+      "year": 1988,
+      "gdp_growth": 5.437,
+      "d_unrate": -0.133,
+      "residual": 0.03,
+      "is_pandemic": false
+    },
+    {
+      "label": "1989Q1",
+      "year": 1989,
+      "gdp_growth": 4.128,
+      "d_unrate": -0.133,
+      "residual": -0.057,
+      "is_pandemic": false
+    },
+    {
+      "label": "1989Q2",
+      "year": 1989,
+      "gdp_growth": 3.088,
+      "d_unrate": 0.033,
+      "residual": 0.04,
+      "is_pandemic": false
+    },
+    {
+      "label": "1989Q3",
+      "year": 1989,
+      "gdp_growth": 2.996,
+      "d_unrate": 0,
+      "residual": 0.001,
+      "is_pandemic": false
+    },
+    {
+      "label": "1989Q4",
+      "year": 1989,
+      "gdp_growth": 0.79,
+      "d_unrate": 0.133,
+      "residual": -0.013,
+      "is_pandemic": false
+    },
+    {
+      "label": "1990Q1",
+      "year": 1990,
+      "gdp_growth": 4.444,
+      "d_unrate": -0.067,
+      "residual": 0.031,
+      "is_pandemic": false
+    },
+    {
+      "label": "1990Q2",
+      "year": 1990,
+      "gdp_growth": 1.46,
+      "d_unrate": 0.033,
+      "residual": -0.068,
+      "is_pandemic": false
+    },
+    {
+      "label": "1990Q3",
+      "year": 1990,
+      "gdp_growth": 0.267,
+      "d_unrate": 0.367,
+      "residual": 0.185,
+      "is_pandemic": false
+    },
+    {
+      "label": "1990Q4",
+      "year": 1990,
+      "gdp_growth": -3.592,
+      "d_unrate": 0.433,
+      "residual": -0.006,
+      "is_pandemic": false
+    },
+    {
+      "label": "1991Q1",
+      "year": 1991,
+      "gdp_growth": -1.859,
+      "d_unrate": 0.467,
+      "residual": 0.143,
+      "is_pandemic": false
+    },
+    {
+      "label": "1991Q2",
+      "year": 1991,
+      "gdp_growth": 3.155,
+      "d_unrate": 0.233,
+      "residual": 0.245,
+      "is_pandemic": false
+    },
+    {
+      "label": "1991Q3",
+      "year": 1991,
+      "gdp_growth": 2.037,
+      "d_unrate": 0.033,
+      "residual": -0.03,
+      "is_pandemic": false
+    },
+    {
+      "label": "1991Q4",
+      "year": 1991,
+      "gdp_growth": 1.401,
+      "d_unrate": 0.233,
+      "residual": 0.128,
+      "is_pandemic": false
+    },
+    {
+      "label": "1992Q1",
+      "year": 1992,
+      "gdp_growth": 4.876,
+      "d_unrate": 0.267,
+      "residual": 0.393,
+      "is_pandemic": false
+    },
+    {
+      "label": "1992Q2",
+      "year": 1992,
+      "gdp_growth": 4.408,
+      "d_unrate": 0.233,
+      "residual": 0.328,
+      "is_pandemic": false
+    },
+    {
+      "label": "1992Q3",
+      "year": 1992,
+      "gdp_growth": 4.011,
+      "d_unrate": 0.033,
+      "residual": 0.102,
+      "is_pandemic": false
+    },
+    {
+      "label": "1992Q4",
+      "year": 1992,
+      "gdp_growth": 4.237,
+      "d_unrate": -0.267,
+      "residual": -0.183,
+      "is_pandemic": false
+    },
+    {
+      "label": "1993Q1",
+      "year": 1993,
+      "gdp_growth": 0.669,
+      "d_unrate": -0.233,
+      "residual": -0.388,
+      "is_pandemic": false
+    },
+    {
+      "label": "1993Q2",
+      "year": 1993,
+      "gdp_growth": 2.349,
+      "d_unrate": -0.067,
+      "residual": -0.109,
+      "is_pandemic": false
+    },
+    {
+      "label": "1993Q3",
+      "year": 1993,
+      "gdp_growth": 1.922,
+      "d_unrate": -0.267,
+      "residual": -0.338,
+      "is_pandemic": false
+    },
+    {
+      "label": "1993Q4",
+      "year": 1993,
+      "gdp_growth": 5.553,
+      "d_unrate": -0.167,
+      "residual": 0.005,
+      "is_pandemic": false
+    },
+    {
+      "label": "1994Q1",
+      "year": 1994,
+      "gdp_growth": 3.938,
+      "d_unrate": -0.067,
+      "residual": -0.003,
+      "is_pandemic": false
+    },
+    {
+      "label": "1994Q2",
+      "year": 1994,
+      "gdp_growth": 5.532,
+      "d_unrate": -0.367,
+      "residual": -0.197,
+      "is_pandemic": false
+    },
+    {
+      "label": "1994Q3",
+      "year": 1994,
+      "gdp_growth": 2.359,
+      "d_unrate": -0.2,
+      "residual": -0.242,
+      "is_pandemic": false
+    },
+    {
+      "label": "1994Q4",
+      "year": 1994,
+      "gdp_growth": 4.662,
+      "d_unrate": -0.367,
+      "residual": -0.255,
+      "is_pandemic": false
+    },
+    {
+      "label": "1995Q1",
+      "year": 1995,
+      "gdp_growth": 1.427,
+      "d_unrate": -0.167,
+      "residual": -0.271,
+      "is_pandemic": false
+    },
+    {
+      "label": "1995Q2",
+      "year": 1995,
+      "gdp_growth": 1.199,
+      "d_unrate": 0.2,
+      "residual": 0.081,
+      "is_pandemic": false
+    },
+    {
+      "label": "1995Q3",
+      "year": 1995,
+      "gdp_growth": 3.447,
+      "d_unrate": 0,
+      "residual": 0.031,
+      "is_pandemic": false
+    },
+    {
+      "label": "1995Q4",
+      "year": 1995,
+      "gdp_growth": 2.744,
+      "d_unrate": -0.1,
+      "residual": -0.116,
+      "is_pandemic": false
+    },
+    {
+      "label": "1996Q1",
+      "year": 1996,
+      "gdp_growth": 3.03,
+      "d_unrate": -0.033,
+      "residual": -0.03,
+      "is_pandemic": false
+    },
+    {
+      "label": "1996Q2",
+      "year": 1996,
+      "gdp_growth": 6.841,
+      "d_unrate": -0.033,
+      "residual": 0.224,
+      "is_pandemic": false
+    },
+    {
+      "label": "1996Q3",
+      "year": 1996,
+      "gdp_growth": 3.637,
+      "d_unrate": -0.233,
+      "residual": -0.19,
+      "is_pandemic": false
+    },
+    {
+      "label": "1996Q4",
+      "year": 1996,
+      "gdp_growth": 4.219,
+      "d_unrate": 0.067,
+      "residual": 0.149,
+      "is_pandemic": false
+    },
+    {
+      "label": "1997Q1",
+      "year": 1997,
+      "gdp_growth": 2.607,
+      "d_unrate": -0.1,
+      "residual": -0.125,
+      "is_pandemic": false
+    },
+    {
+      "label": "1997Q2",
+      "year": 1997,
+      "gdp_growth": 6.829,
+      "d_unrate": -0.233,
+      "residual": 0.023,
+      "is_pandemic": false
+    },
+    {
+      "label": "1997Q3",
+      "year": 1997,
+      "gdp_growth": 5.089,
+      "d_unrate": -0.133,
+      "residual": 0.007,
+      "is_pandemic": false
+    },
+    {
+      "label": "1997Q4",
+      "year": 1997,
+      "gdp_growth": 3.459,
+      "d_unrate": -0.2,
+      "residual": -0.168,
+      "is_pandemic": false
+    },
+    {
+      "label": "1998Q1",
+      "year": 1998,
+      "gdp_growth": 4.076,
+      "d_unrate": -0.033,
+      "residual": 0.04,
+      "is_pandemic": false
+    },
+    {
+      "label": "1998Q2",
+      "year": 1998,
+      "gdp_growth": 3.754,
+      "d_unrate": -0.233,
+      "residual": -0.182,
+      "is_pandemic": false
+    },
+    {
+      "label": "1998Q3",
+      "year": 1998,
+      "gdp_growth": 5.132,
+      "d_unrate": 0.133,
+      "residual": 0.277,
+      "is_pandemic": false
+    },
+    {
+      "label": "1998Q4",
+      "year": 1998,
+      "gdp_growth": 6.594,
+      "d_unrate": -0.1,
+      "residual": 0.141,
+      "is_pandemic": false
+    },
+    {
+      "label": "1999Q1",
+      "year": 1999,
+      "gdp_growth": 3.811,
+      "d_unrate": -0.133,
+      "residual": -0.078,
+      "is_pandemic": false
+    },
+    {
+      "label": "1999Q2",
+      "year": 1999,
+      "gdp_growth": 3.381,
+      "d_unrate": -0.033,
+      "residual": -0.007,
+      "is_pandemic": false
+    },
+    {
+      "label": "1999Q3",
+      "year": 1999,
+      "gdp_growth": 5.41,
+      "d_unrate": -0.033,
+      "residual": 0.129,
+      "is_pandemic": false
+    },
+    {
+      "label": "1999Q4",
+      "year": 1999,
+      "gdp_growth": 6.726,
+      "d_unrate": -0.167,
+      "residual": 0.083,
+      "is_pandemic": false
+    },
+    {
+      "label": "2000Q1",
+      "year": 2000,
+      "gdp_growth": 1.459,
+      "d_unrate": -0.033,
+      "residual": -0.135,
+      "is_pandemic": false
+    },
+    {
+      "label": "2000Q2",
+      "year": 2000,
+      "gdp_growth": 7.487,
+      "d_unrate": -0.1,
+      "residual": 0.201,
+      "is_pandemic": false
+    },
+    {
+      "label": "2000Q3",
+      "year": 2000,
+      "gdp_growth": 0.408,
+      "d_unrate": 0.067,
+      "residual": -0.105,
+      "is_pandemic": false
+    },
+    {
+      "label": "2000Q4",
+      "year": 2000,
+      "gdp_growth": 2.41,
+      "d_unrate": -0.1,
+      "residual": -0.138,
+      "is_pandemic": false
+    },
+    {
+      "label": "2001Q1",
+      "year": 2001,
+      "gdp_growth": -1.305,
+      "d_unrate": 0.333,
+      "residual": 0.047,
+      "is_pandemic": false
+    },
+    {
+      "label": "2001Q2",
+      "year": 2001,
+      "gdp_growth": 2.522,
+      "d_unrate": 0.167,
+      "residual": 0.136,
+      "is_pandemic": false
+    },
+    {
+      "label": "2001Q3",
+      "year": 2001,
+      "gdp_growth": -1.593,
+      "d_unrate": 0.433,
+      "residual": 0.128,
+      "is_pandemic": false
+    },
+    {
+      "label": "2001Q4",
+      "year": 2001,
+      "gdp_growth": 1.104,
+      "d_unrate": 0.667,
+      "residual": 0.541,
+      "is_pandemic": false
+    },
+    {
+      "label": "2002Q1",
+      "year": 2002,
+      "gdp_growth": 3.388,
+      "d_unrate": 0.2,
+      "residual": 0.227,
+      "is_pandemic": false
+    },
+    {
+      "label": "2002Q2",
+      "year": 2002,
+      "gdp_growth": 2.473,
+      "d_unrate": 0.133,
+      "residual": 0.099,
+      "is_pandemic": false
+    },
+    {
+      "label": "2002Q3",
+      "year": 2002,
+      "gdp_growth": 1.636,
+      "d_unrate": -0.1,
+      "residual": -0.19,
+      "is_pandemic": false
+    },
+    {
+      "label": "2002Q4",
+      "year": 2002,
+      "gdp_growth": 0.495,
+      "d_unrate": 0.133,
+      "residual": -0.033,
+      "is_pandemic": false
+    },
+    {
+      "label": "2003Q1",
+      "year": 2003,
+      "gdp_growth": 2.123,
+      "d_unrate": 0,
+      "residual": -0.057,
+      "is_pandemic": false
+    },
+    {
+      "label": "2003Q2",
+      "year": 2003,
+      "gdp_growth": 3.59,
+      "d_unrate": 0.267,
+      "residual": 0.307,
+      "is_pandemic": false
+    },
+    {
+      "label": "2003Q3",
+      "year": 2003,
+      "gdp_growth": 6.821,
+      "d_unrate": 0,
+      "residual": 0.256,
+      "is_pandemic": false
+    },
+    {
+      "label": "2003Q4",
+      "year": 2003,
+      "gdp_growth": 4.724,
+      "d_unrate": -0.3,
+      "residual": -0.184,
+      "is_pandemic": false
+    },
+    {
+      "label": "2004Q1",
+      "year": 2004,
+      "gdp_growth": 2.286,
+      "d_unrate": -0.133,
+      "residual": -0.18,
+      "is_pandemic": false
+    },
+    {
+      "label": "2004Q2",
+      "year": 2004,
+      "gdp_growth": 3.136,
+      "d_unrate": -0.1,
+      "residual": -0.09,
+      "is_pandemic": false
+    },
+    {
+      "label": "2004Q3",
+      "year": 2004,
+      "gdp_growth": 3.849,
+      "d_unrate": -0.167,
+      "residual": -0.109,
+      "is_pandemic": false
+    },
+    {
+      "label": "2004Q4",
+      "year": 2004,
+      "gdp_growth": 4.144,
+      "d_unrate": 0,
+      "residual": 0.077,
+      "is_pandemic": false
+    },
+    {
+      "label": "2005Q1",
+      "year": 2005,
+      "gdp_growth": 4.512,
+      "d_unrate": -0.133,
+      "residual": -0.031,
+      "is_pandemic": false
+    },
+    {
+      "label": "2005Q2",
+      "year": 2005,
+      "gdp_growth": 1.985,
+      "d_unrate": -0.2,
+      "residual": -0.267,
+      "is_pandemic": false
+    },
+    {
+      "label": "2005Q3",
+      "year": 2005,
+      "gdp_growth": 3.172,
+      "d_unrate": -0.133,
+      "residual": -0.121,
+      "is_pandemic": false
+    },
+    {
+      "label": "2005Q4",
+      "year": 2005,
+      "gdp_growth": 2.241,
+      "d_unrate": 0,
+      "residual": -0.05,
+      "is_pandemic": false
+    },
+    {
+      "label": "2006Q1",
+      "year": 2006,
+      "gdp_growth": 5.491,
+      "d_unrate": -0.233,
+      "residual": -0.066,
+      "is_pandemic": false
+    },
+    {
+      "label": "2006Q2",
+      "year": 2006,
+      "gdp_growth": 1.039,
+      "d_unrate": -0.1,
+      "residual": -0.23,
+      "is_pandemic": false
+    },
+    {
+      "label": "2006Q3",
+      "year": 2006,
+      "gdp_growth": 0.601,
+      "d_unrate": 0,
+      "residual": -0.159,
+      "is_pandemic": false
+    },
+    {
+      "label": "2006Q4",
+      "year": 2006,
+      "gdp_growth": 3.482,
+      "d_unrate": -0.2,
+      "residual": -0.167,
+      "is_pandemic": false
+    },
+    {
+      "label": "2007Q1",
+      "year": 2007,
+      "gdp_growth": 1.209,
+      "d_unrate": 0.067,
+      "residual": -0.052,
+      "is_pandemic": false
+    },
+    {
+      "label": "2007Q2",
+      "year": 2007,
+      "gdp_growth": 2.47,
+      "d_unrate": 0,
+      "residual": -0.034,
+      "is_pandemic": false
+    },
+    {
+      "label": "2007Q3",
+      "year": 2007,
+      "gdp_growth": 2.324,
+      "d_unrate": 0.167,
+      "residual": 0.123,
+      "is_pandemic": false
+    },
+    {
+      "label": "2007Q4",
+      "year": 2007,
+      "gdp_growth": 2.537,
+      "d_unrate": 0.133,
+      "residual": 0.103,
+      "is_pandemic": false
+    },
+    {
+      "label": "2008Q1",
+      "year": 2008,
+      "gdp_growth": -1.696,
+      "d_unrate": 0.2,
+      "residual": -0.112,
+      "is_pandemic": false
+    },
+    {
+      "label": "2008Q2",
+      "year": 2008,
+      "gdp_growth": 2.403,
+      "d_unrate": 0.333,
+      "residual": 0.295,
+      "is_pandemic": false
+    },
+    {
+      "label": "2008Q3",
+      "year": 2008,
+      "gdp_growth": -2.085,
+      "d_unrate": 0.667,
+      "residual": 0.328,
+      "is_pandemic": false
+    },
+    {
+      "label": "2008Q4",
+      "year": 2008,
+      "gdp_growth": -8.473,
+      "d_unrate": 0.867,
+      "residual": 0.102,
+      "is_pandemic": false
+    },
+    {
+      "label": "2009Q1",
+      "year": 2009,
+      "gdp_growth": -4.463,
+      "d_unrate": 1.4,
+      "residual": 0.903,
+      "is_pandemic": false
+    },
+    {
+      "label": "2009Q2",
+      "year": 2009,
+      "gdp_growth": -0.713,
+      "d_unrate": 1.033,
+      "residual": 0.787,
+      "is_pandemic": false
+    },
+    {
+      "label": "2009Q3",
+      "year": 2009,
+      "gdp_growth": 1.412,
+      "d_unrate": 0.333,
+      "residual": 0.228,
+      "is_pandemic": false
+    },
+    {
+      "label": "2009Q4",
+      "year": 2009,
+      "gdp_growth": 4.394,
+      "d_unrate": 0.3,
+      "residual": 0.394,
+      "is_pandemic": false
+    },
+    {
+      "label": "2010Q1",
+      "year": 2010,
+      "gdp_growth": 1.952,
+      "d_unrate": -0.1,
+      "residual": -0.169,
+      "is_pandemic": false
+    },
+    {
+      "label": "2010Q2",
+      "year": 2010,
+      "gdp_growth": 3.927,
+      "d_unrate": -0.2,
+      "residual": -0.137,
+      "is_pandemic": false
+    },
+    {
+      "label": "2010Q3",
+      "year": 2010,
+      "gdp_growth": 3.12,
+      "d_unrate": -0.167,
+      "residual": -0.158,
+      "is_pandemic": false
+    },
+    {
+      "label": "2010Q4",
+      "year": 2010,
+      "gdp_growth": 2.117,
+      "d_unrate": 0.033,
+      "residual": -0.025,
+      "is_pandemic": false
+    },
+    {
+      "label": "2011Q1",
+      "year": 2011,
+      "gdp_growth": -0.945,
+      "d_unrate": -0.467,
+      "residual": -0.729,
+      "is_pandemic": false
+    },
+    {
+      "label": "2011Q2",
+      "year": 2011,
+      "gdp_growth": 2.734,
+      "d_unrate": 0.033,
+      "residual": 0.017,
+      "is_pandemic": false
+    },
+    {
+      "label": "2011Q3",
+      "year": 2011,
+      "gdp_growth": -0.089,
+      "d_unrate": -0.067,
+      "residual": -0.272,
+      "is_pandemic": false
+    },
+    {
+      "label": "2011Q4",
+      "year": 2011,
+      "gdp_growth": 4.568,
+      "d_unrate": -0.367,
+      "residual": -0.261,
+      "is_pandemic": false
+    },
+    {
+      "label": "2012Q1",
+      "year": 2012,
+      "gdp_growth": 3.397,
+      "d_unrate": -0.367,
+      "residual": -0.339,
+      "is_pandemic": false
+    },
+    {
+      "label": "2012Q2",
+      "year": 2012,
+      "gdp_growth": 1.797,
+      "d_unrate": -0.067,
+      "residual": -0.146,
+      "is_pandemic": false
+    },
+    {
+      "label": "2012Q3",
+      "year": 2012,
+      "gdp_growth": 0.577,
+      "d_unrate": -0.167,
+      "residual": -0.327,
+      "is_pandemic": false
+    },
+    {
+      "label": "2012Q4",
+      "year": 2012,
+      "gdp_growth": 0.463,
+      "d_unrate": -0.233,
+      "residual": -0.402,
+      "is_pandemic": false
+    },
+    {
+      "label": "2013Q1",
+      "year": 2013,
+      "gdp_growth": 4.005,
+      "d_unrate": -0.067,
+      "residual": 0.001,
+      "is_pandemic": false
+    },
+    {
+      "label": "2013Q2",
+      "year": 2013,
+      "gdp_growth": 1.075,
+      "d_unrate": -0.2,
+      "residual": -0.327,
+      "is_pandemic": false
+    },
+    {
+      "label": "2013Q3",
+      "year": 2013,
+      "gdp_growth": 3.449,
+      "d_unrate": -0.3,
+      "residual": -0.269,
+      "is_pandemic": false
+    },
+    {
+      "label": "2013Q4",
+      "year": 2013,
+      "gdp_growth": 3.533,
+      "d_unrate": -0.3,
+      "residual": -0.263,
+      "is_pandemic": false
+    },
+    {
+      "label": "2014Q1",
+      "year": 2014,
+      "gdp_growth": -1.373,
+      "d_unrate": -0.267,
+      "residual": -0.558,
+      "is_pandemic": false
+    },
+    {
+      "label": "2014Q2",
+      "year": 2014,
+      "gdp_growth": 5.268,
+      "d_unrate": -0.467,
+      "residual": -0.314,
+      "is_pandemic": false
+    },
+    {
+      "label": "2014Q3",
+      "year": 2014,
+      "gdp_growth": 4.951,
+      "d_unrate": -0.133,
+      "residual": -0.002,
+      "is_pandemic": false
+    },
+    {
+      "label": "2014Q4",
+      "year": 2014,
+      "gdp_growth": 2.038,
+      "d_unrate": -0.367,
+      "residual": -0.43,
+      "is_pandemic": false
+    },
+    {
+      "label": "2015Q1",
+      "year": 2015,
+      "gdp_growth": 3.651,
+      "d_unrate": -0.167,
+      "residual": -0.122,
+      "is_pandemic": false
+    },
+    {
+      "label": "2015Q2",
+      "year": 2015,
+      "gdp_growth": 2.501,
+      "d_unrate": -0.1,
+      "residual": -0.132,
+      "is_pandemic": false
+    },
+    {
+      "label": "2015Q3",
+      "year": 2015,
+      "gdp_growth": 1.611,
+      "d_unrate": -0.333,
+      "residual": -0.425,
+      "is_pandemic": false
+    },
+    {
+      "label": "2015Q4",
+      "year": 2015,
+      "gdp_growth": 0.74,
+      "d_unrate": -0.067,
+      "residual": -0.217,
+      "is_pandemic": false
+    },
+    {
+      "label": "2016Q1",
+      "year": 2016,
+      "gdp_growth": 2.338,
+      "d_unrate": -0.133,
+      "residual": -0.176,
+      "is_pandemic": false
+    },
+    {
+      "label": "2016Q2",
+      "year": 2016,
+      "gdp_growth": 1.291,
+      "d_unrate": 0.033,
+      "residual": -0.08,
+      "is_pandemic": false
+    },
+    {
+      "label": "2016Q3",
+      "year": 2016,
+      "gdp_growth": 2.868,
+      "d_unrate": -0.033,
+      "residual": -0.041,
+      "is_pandemic": false
+    },
+    {
+      "label": "2016Q4",
+      "year": 2016,
+      "gdp_growth": 2.236,
+      "d_unrate": -0.133,
+      "residual": -0.183,
+      "is_pandemic": false
+    },
+    {
+      "label": "2017Q1",
+      "year": 2017,
+      "gdp_growth": 1.962,
+      "d_unrate": -0.2,
+      "residual": -0.268,
+      "is_pandemic": false
+    },
+    {
+      "label": "2017Q2",
+      "year": 2017,
+      "gdp_growth": 2.258,
+      "d_unrate": -0.2,
+      "residual": -0.248,
+      "is_pandemic": false
+    },
+    {
+      "label": "2017Q3",
+      "year": 2017,
+      "gdp_growth": 3.192,
+      "d_unrate": -0.033,
+      "residual": -0.02,
+      "is_pandemic": false
+    },
+    {
+      "label": "2017Q4",
+      "year": 2017,
+      "gdp_growth": 4.585,
+      "d_unrate": -0.167,
+      "residual": -0.06,
+      "is_pandemic": false
+    },
+    {
+      "label": "2018Q1",
+      "year": 2018,
+      "gdp_growth": 3.294,
+      "d_unrate": -0.133,
+      "residual": -0.113,
+      "is_pandemic": false
+    },
+    {
+      "label": "2018Q2",
+      "year": 2018,
+      "gdp_growth": 2.14,
+      "d_unrate": -0.1,
+      "residual": -0.156,
+      "is_pandemic": false
+    },
+    {
+      "label": "2018Q3",
+      "year": 2018,
+      "gdp_growth": 2.518,
+      "d_unrate": -0.167,
+      "residual": -0.198,
+      "is_pandemic": false
+    },
+    {
+      "label": "2018Q4",
+      "year": 2018,
+      "gdp_growth": 0.568,
+      "d_unrate": 0.067,
+      "residual": -0.095,
+      "is_pandemic": false
+    },
+    {
+      "label": "2019Q1",
+      "year": 2019,
+      "gdp_growth": 2.521,
+      "d_unrate": 0.033,
+      "residual": 0.002,
+      "is_pandemic": false
+    },
+    {
+      "label": "2019Q2",
+      "year": 2019,
+      "gdp_growth": 3.383,
+      "d_unrate": -0.233,
+      "residual": -0.207,
+      "is_pandemic": false
+    },
+    {
+      "label": "2019Q3",
+      "year": 2019,
+      "gdp_growth": 4.763,
+      "d_unrate": -0.033,
+      "residual": 0.085,
+      "is_pandemic": false
+    },
+    {
+      "label": "2019Q4",
+      "year": 2019,
+      "gdp_growth": 2.756,
+      "d_unrate": 0,
+      "residual": -0.015,
+      "is_pandemic": false
+    },
+    {
+      "label": "2020Q1",
+      "year": 2020,
+      "gdp_growth": -5.162,
+      "d_unrate": 0.233,
+      "residual": -0.311,
+      "is_pandemic": false
+    },
+    {
+      "label": "2020Q2",
+      "year": 2020,
+      "gdp_growth": -27.976,
+      "d_unrate": 9.167,
+      "residual": 7.1,
+      "is_pandemic": true
+    },
+    {
+      "label": "2020Q3",
+      "year": 2020,
+      "gdp_growth": 34.855,
+      "d_unrate": -4.2,
+      "residual": -2.072,
+      "is_pandemic": true
+    },
+    {
+      "label": "2020Q4",
+      "year": 2020,
+      "gdp_growth": 4.612,
+      "d_unrate": -2.033,
+      "residual": -1.925,
+      "is_pandemic": false
+    },
+    {
+      "label": "2021Q1",
+      "year": 2021,
+      "gdp_growth": 5.701,
+      "d_unrate": -0.533,
+      "residual": -0.352,
+      "is_pandemic": false
+    },
+    {
+      "label": "2021Q2",
+      "year": 2021,
+      "gdp_growth": 6.983,
+      "d_unrate": -0.3,
+      "residual": -0.033,
+      "is_pandemic": false
+    },
+    {
+      "label": "2021Q3",
+      "year": 2021,
+      "gdp_growth": 3.341,
+      "d_unrate": -0.867,
+      "residual": -0.843,
+      "is_pandemic": false
+    },
+    {
+      "label": "2021Q4",
+      "year": 2021,
+      "gdp_growth": 7.042,
+      "d_unrate": -0.9,
+      "residual": -0.629,
+      "is_pandemic": false
+    },
+    {
+      "label": "2022Q1",
+      "year": 2022,
+      "gdp_growth": -1.015,
+      "d_unrate": -0.3,
+      "residual": -0.567,
+      "is_pandemic": false
+    },
+    {
+      "label": "2022Q2",
+      "year": 2022,
+      "gdp_growth": 0.628,
+      "d_unrate": -0.233,
+      "residual": -0.391,
+      "is_pandemic": false
+    },
+    {
+      "label": "2022Q3",
+      "year": 2022,
+      "gdp_growth": 2.919,
+      "d_unrate": -0.1,
+      "residual": -0.104,
+      "is_pandemic": false
+    },
+    {
+      "label": "2022Q4",
+      "year": 2022,
+      "gdp_growth": 2.79,
+      "d_unrate": 0.033,
+      "residual": 0.02,
+      "is_pandemic": false
+    },
+    {
+      "label": "2023Q1",
+      "year": 2023,
+      "gdp_growth": 2.927,
+      "d_unrate": -0.033,
+      "residual": -0.037,
+      "is_pandemic": false
+    },
+    {
+      "label": "2023Q2",
+      "year": 2023,
+      "gdp_growth": 2.535,
+      "d_unrate": 0,
+      "residual": -0.03,
+      "is_pandemic": false
+    },
+    {
+      "label": "2023Q3",
+      "year": 2023,
+      "gdp_growth": 4.695,
+      "d_unrate": 0.1,
+      "residual": 0.214,
+      "is_pandemic": false
+    },
+    {
+      "label": "2023Q4",
+      "year": 2023,
+      "gdp_growth": 3.419,
+      "d_unrate": 0.167,
+      "residual": 0.196,
+      "is_pandemic": false
+    },
+    {
+      "label": "2024Q1",
+      "year": 2024,
+      "gdp_growth": 0.842,
+      "d_unrate": 0.033,
+      "residual": -0.11,
+      "is_pandemic": false
+    },
+    {
+      "label": "2024Q2",
+      "year": 2024,
+      "gdp_growth": 3.589,
+      "d_unrate": 0.133,
+      "residual": 0.174,
+      "is_pandemic": false
+    },
+    {
+      "label": "2024Q3",
+      "year": 2024,
+      "gdp_growth": 3.34,
+      "d_unrate": 0.2,
+      "residual": 0.224,
+      "is_pandemic": false
+    },
+    {
+      "label": "2024Q4",
+      "year": 2024,
+      "gdp_growth": 1.852,
+      "d_unrate": -0.033,
+      "residual": -0.109,
+      "is_pandemic": false
+    },
+    {
+      "label": "2025Q1",
+      "year": 2025,
+      "gdp_growth": -0.648,
+      "d_unrate": 0,
+      "residual": -0.243,
+      "is_pandemic": false
+    },
+    {
+      "label": "2025Q2",
+      "year": 2025,
+      "gdp_growth": 3.838,
+      "d_unrate": 0.067,
+      "residual": 0.124,
+      "is_pandemic": false
+    },
+    {
+      "label": "2025Q3",
+      "year": 2025,
+      "gdp_growth": 4.375,
+      "d_unrate": 0.133,
+      "residual": 0.226,
+      "is_pandemic": false
+    },
+    {
+      "label": "2025Q4",
+      "year": 2025,
+      "gdp_growth": 0.482,
+      "d_unrate": 0.117,
+      "residual": -0.05,
+      "is_pandemic": false
+    },
+    {
+      "label": "2026Q1",
+      "year": 2026,
+      "gdp_growth": 2.089,
+      "d_unrate": -0.117,
+      "residual": -0.176,
+      "is_pandemic": false
+    }
+  ],
+  "recent": {
+    "quarters": ["2025Q2", "2025Q3", "2025Q4", "2026Q1"],
+    "residual_mean": 0.031,
+    "last_quarter": "2026Q1",
+    "last_gdp_growth": 2.09,
+    "last_d_unrate": -0.12,
+    "last_residual": -0.18
+  },
+  "level": {
+    "unrate": 4.2,
+    "unrate_month": "Jun 2026",
+    "nrou": 4.4,
+    "gap": -0.2
+  },
+  "prime_age": {
+    "series": [
+      {
+        "date": "2000-01-01",
+        "lfpr": 84.4,
+        "epop": 81.8
+      },
+      {
+        "date": "2000-02-01",
+        "lfpr": 84.4,
+        "epop": 81.8
+      },
+      {
+        "date": "2000-03-01",
+        "lfpr": 84.3,
+        "epop": 81.7
+      },
+      {
+        "date": "2000-04-01",
+        "lfpr": 84.4,
+        "epop": 81.9
+      },
+      {
+        "date": "2000-05-01",
+        "lfpr": 84.1,
+        "epop": 81.5
+      },
+      {
+        "date": "2000-06-01",
+        "lfpr": 84.1,
+        "epop": 81.5
+      },
+      {
+        "date": "2000-07-01",
+        "lfpr": 83.9,
+        "epop": 81.3
+      },
+      {
+        "date": "2000-08-01",
+        "lfpr": 83.8,
+        "epop": 81.1
+      },
+      {
+        "date": "2000-09-01",
+        "lfpr": 83.7,
+        "epop": 81.1
+      },
+      {
+        "date": "2000-10-01",
+        "lfpr": 83.6,
+        "epop": 81.1
+      },
+      {
+        "date": "2000-11-01",
+        "lfpr": 83.8,
+        "epop": 81.3
+      },
+      {
+        "date": "2000-12-01",
+        "lfpr": 83.9,
+        "epop": 81.4
+      },
+      {
+        "date": "2001-01-01",
+        "lfpr": 84.1,
+        "epop": 81.4
+      },
+      {
+        "date": "2001-02-01",
+        "lfpr": 84.1,
+        "epop": 81.3
+      },
+      {
+        "date": "2001-03-01",
+        "lfpr": 84.1,
+        "epop": 81.3
+      },
+      {
+        "date": "2001-04-01",
+        "lfpr": 83.7,
+        "epop": 80.9
+      },
+      {
+        "date": "2001-05-01",
+        "lfpr": 83.8,
+        "epop": 80.8
+      },
+      {
+        "date": "2001-06-01",
+        "lfpr": 83.6,
+        "epop": 80.6
+      },
+      {
+        "date": "2001-07-01",
+        "lfpr": 83.6,
+        "epop": 80.5
+      },
+      {
+        "date": "2001-08-01",
+        "lfpr": 83.5,
+        "epop": 80.2
+      },
+      {
+        "date": "2001-09-01",
+        "lfpr": 83.5,
+        "epop": 80.2
+      },
+      {
+        "date": "2001-10-01",
+        "lfpr": 83.6,
+        "epop": 79.9
+      },
+      {
+        "date": "2001-11-01",
+        "lfpr": 83.5,
+        "epop": 79.7
+      },
+      {
+        "date": "2001-12-01",
+        "lfpr": 83.7,
+        "epop": 79.8
+      },
+      {
+        "date": "2002-01-01",
+        "lfpr": 83.5,
+        "epop": 79.6
+      },
+      {
+        "date": "2002-02-01",
+        "lfpr": 83.7,
+        "epop": 79.8
+      },
+      {
+        "date": "2002-03-01",
+        "lfpr": 83.5,
+        "epop": 79.6
+      },
+      {
+        "date": "2002-04-01",
+        "lfpr": 83.6,
+        "epop": 79.5
+      },
+      {
+        "date": "2002-05-01",
+        "lfpr": 83.6,
+        "epop": 79.4
+      },
+      {
+        "date": "2002-06-01",
+        "lfpr": 83.2,
+        "epop": 79.2
+      },
+      {
+        "date": "2002-07-01",
+        "lfpr": 83.1,
+        "epop": 79.1
+      },
+      {
+        "date": "2002-08-01",
+        "lfpr": 83.2,
+        "epop": 79.3
+      },
+      {
+        "date": "2002-09-01",
+        "lfpr": 83.3,
+        "epop": 79.4
+      },
+      {
+        "date": "2002-10-01",
+        "lfpr": 83.2,
+        "epop": 79.2
+      },
+      {
+        "date": "2002-11-01",
+        "lfpr": 82.9,
+        "epop": 78.8
+      },
+      {
+        "date": "2002-12-01",
+        "lfpr": 83.1,
+        "epop": 79
+      },
+      {
+        "date": "2003-01-01",
+        "lfpr": 82.9,
+        "epop": 78.9
+      },
+      {
+        "date": "2003-02-01",
+        "lfpr": 83,
+        "epop": 78.9
+      },
+      {
+        "date": "2003-03-01",
+        "lfpr": 83.1,
+        "epop": 79
+      },
+      {
+        "date": "2003-04-01",
+        "lfpr": 83.2,
+        "epop": 79.1
+      },
+      {
+        "date": "2003-05-01",
+        "lfpr": 83.1,
+        "epop": 78.9
+      },
+      {
+        "date": "2003-06-01",
+        "lfpr": 83.3,
+        "epop": 78.9
+      },
+      {
+        "date": "2003-07-01",
+        "lfpr": 83,
+        "epop": 78.8
+      },
+      {
+        "date": "2003-08-01",
+        "lfpr": 83,
+        "epop": 78.7
+      },
+      {
+        "date": "2003-09-01",
+        "lfpr": 82.8,
+        "epop": 78.6
+      },
+      {
+        "date": "2003-10-01",
+        "lfpr": 82.9,
+        "epop": 78.6
+      },
+      {
+        "date": "2003-11-01",
+        "lfpr": 82.8,
+        "epop": 78.7
+      },
+      {
+        "date": "2003-12-01",
+        "lfpr": 82.8,
+        "epop": 78.8
+      },
+      {
+        "date": "2004-01-01",
+        "lfpr": 82.8,
+        "epop": 78.9
+      },
+      {
+        "date": "2004-02-01",
+        "lfpr": 82.7,
+        "epop": 78.8
+      },
+      {
+        "date": "2004-03-01",
+        "lfpr": 82.8,
+        "epop": 78.7
+      },
+      {
+        "date": "2004-04-01",
+        "lfpr": 82.7,
+        "epop": 78.9
+      },
+      {
+        "date": "2004-05-01",
+        "lfpr": 82.8,
+        "epop": 79
+      },
+      {
+        "date": "2004-06-01",
+        "lfpr": 82.9,
+        "epop": 79.1
+      },
+      {
+        "date": "2004-07-01",
+        "lfpr": 83,
+        "epop": 79.2
+      },
+      {
+        "date": "2004-08-01",
+        "lfpr": 82.7,
+        "epop": 79
+      },
+      {
+        "date": "2004-09-01",
+        "lfpr": 82.7,
+        "epop": 79
+      },
+      {
+        "date": "2004-10-01",
+        "lfpr": 82.6,
+        "epop": 79
+      },
+      {
+        "date": "2004-11-01",
+        "lfpr": 82.7,
+        "epop": 79.1
+      },
+      {
+        "date": "2004-12-01",
+        "lfpr": 82.6,
+        "epop": 78.9
+      },
+      {
+        "date": "2005-01-01",
+        "lfpr": 82.7,
+        "epop": 79.2
+      },
+      {
+        "date": "2005-02-01",
+        "lfpr": 82.8,
+        "epop": 79.2
+      },
+      {
+        "date": "2005-03-01",
+        "lfpr": 82.6,
+        "epop": 79.2
+      },
+      {
+        "date": "2005-04-01",
+        "lfpr": 82.7,
+        "epop": 79.4
+      },
+      {
+        "date": "2005-05-01",
+        "lfpr": 82.9,
+        "epop": 79.5
+      },
+      {
+        "date": "2005-06-01",
+        "lfpr": 82.6,
+        "epop": 79.2
+      },
+      {
+        "date": "2005-07-01",
+        "lfpr": 82.8,
+        "epop": 79.4
+      },
+      {
+        "date": "2005-08-01",
+        "lfpr": 82.9,
+        "epop": 79.6
+      },
+      {
+        "date": "2005-09-01",
+        "lfpr": 82.9,
+        "epop": 79.4
+      },
+      {
+        "date": "2005-10-01",
+        "lfpr": 82.7,
+        "epop": 79.3
+      },
+      {
+        "date": "2005-11-01",
+        "lfpr": 82.7,
+        "epop": 79.2
+      },
+      {
+        "date": "2005-12-01",
+        "lfpr": 82.7,
+        "epop": 79.3
+      },
+      {
+        "date": "2006-01-01",
+        "lfpr": 82.8,
+        "epop": 79.6
+      },
+      {
+        "date": "2006-02-01",
+        "lfpr": 82.9,
+        "epop": 79.7
+      },
+      {
+        "date": "2006-03-01",
+        "lfpr": 83,
+        "epop": 79.8
+      },
+      {
+        "date": "2006-04-01",
+        "lfpr": 82.8,
+        "epop": 79.6
+      },
+      {
+        "date": "2006-05-01",
+        "lfpr": 82.8,
+        "epop": 79.7
+      },
+      {
+        "date": "2006-06-01",
+        "lfpr": 82.8,
+        "epop": 79.8
+      },
+      {
+        "date": "2006-07-01",
+        "lfpr": 83,
+        "epop": 79.8
+      },
+      {
+        "date": "2006-08-01",
+        "lfpr": 82.9,
+        "epop": 79.8
+      },
+      {
+        "date": "2006-09-01",
+        "lfpr": 82.9,
+        "epop": 79.9
+      },
+      {
+        "date": "2006-10-01",
+        "lfpr": 82.9,
+        "epop": 80.1
+      },
+      {
+        "date": "2006-11-01",
+        "lfpr": 83,
+        "epop": 80
+      },
+      {
+        "date": "2006-12-01",
+        "lfpr": 83.1,
+        "epop": 80.1
+      },
+      {
+        "date": "2007-01-01",
+        "lfpr": 83.4,
+        "epop": 80.3
+      },
+      {
+        "date": "2007-02-01",
+        "lfpr": 83.2,
+        "epop": 80.1
+      },
+      {
+        "date": "2007-03-01",
+        "lfpr": 83.2,
+        "epop": 80.2
+      },
+      {
+        "date": "2007-04-01",
+        "lfpr": 83,
+        "epop": 80
+      },
+      {
+        "date": "2007-05-01",
+        "lfpr": 83,
+        "epop": 80
+      },
+      {
+        "date": "2007-06-01",
+        "lfpr": 82.9,
+        "epop": 79.9
+      },
+      {
+        "date": "2007-07-01",
+        "lfpr": 82.9,
+        "epop": 79.8
+      },
+      {
+        "date": "2007-08-01",
+        "lfpr": 82.9,
+        "epop": 79.8
+      },
+      {
+        "date": "2007-09-01",
+        "lfpr": 82.8,
+        "epop": 79.7
+      },
+      {
+        "date": "2007-10-01",
+        "lfpr": 82.7,
+        "epop": 79.6
+      },
+      {
+        "date": "2007-11-01",
+        "lfpr": 82.9,
+        "epop": 79.7
+      },
+      {
+        "date": "2007-12-01",
+        "lfpr": 83.1,
+        "epop": 79.7
+      },
+      {
+        "date": "2008-01-01",
+        "lfpr": 83.3,
+        "epop": 80
+      },
+      {
+        "date": "2008-02-01",
+        "lfpr": 83.2,
+        "epop": 79.9
+      },
+      {
+        "date": "2008-03-01",
+        "lfpr": 83.3,
+        "epop": 79.8
+      },
+      {
+        "date": "2008-04-01",
+        "lfpr": 83.1,
+        "epop": 79.6
+      },
+      {
+        "date": "2008-05-01",
+        "lfpr": 83.1,
+        "epop": 79.5
+      },
+      {
+        "date": "2008-06-01",
+        "lfpr": 83.1,
+        "epop": 79.4
+      },
+      {
+        "date": "2008-07-01",
+        "lfpr": 83.1,
+        "epop": 79.2
+      },
+      {
+        "date": "2008-08-01",
+        "lfpr": 83.2,
+        "epop": 78.8
+      },
+      {
+        "date": "2008-09-01",
+        "lfpr": 83.1,
+        "epop": 78.8
+      },
+      {
+        "date": "2008-10-01",
+        "lfpr": 83,
+        "epop": 78.4
+      },
+      {
+        "date": "2008-11-01",
+        "lfpr": 83,
+        "epop": 78.1
+      },
+      {
+        "date": "2008-12-01",
+        "lfpr": 82.8,
+        "epop": 77.6
+      },
+      {
+        "date": "2009-01-01",
+        "lfpr": 82.8,
+        "epop": 77
+      },
+      {
+        "date": "2009-02-01",
+        "lfpr": 82.8,
+        "epop": 76.7
+      },
+      {
+        "date": "2009-03-01",
+        "lfpr": 82.6,
+        "epop": 76.2
+      },
+      {
+        "date": "2009-04-01",
+        "lfpr": 82.8,
+        "epop": 76.2
+      },
+      {
+        "date": "2009-05-01",
+        "lfpr": 82.9,
+        "epop": 75.9
+      },
+      {
+        "date": "2009-06-01",
+        "lfpr": 82.9,
+        "epop": 75.9
+      },
+      {
+        "date": "2009-07-01",
+        "lfpr": 82.8,
+        "epop": 75.8
+      },
+      {
+        "date": "2009-08-01",
+        "lfpr": 82.8,
+        "epop": 75.6
+      },
+      {
+        "date": "2009-09-01",
+        "lfpr": 82.5,
+        "epop": 75.1
+      },
+      {
+        "date": "2009-10-01",
+        "lfpr": 82.5,
+        "epop": 75
+      },
+      {
+        "date": "2009-11-01",
+        "lfpr": 82.4,
+        "epop": 75.2
+      },
+      {
+        "date": "2009-12-01",
+        "lfpr": 82,
+        "epop": 74.8
+      },
+      {
+        "date": "2010-01-01",
+        "lfpr": 82.4,
+        "epop": 75.1
+      },
+      {
+        "date": "2010-02-01",
+        "lfpr": 82.3,
+        "epop": 75.1
+      },
+      {
+        "date": "2010-03-01",
+        "lfpr": 82.4,
+        "epop": 75.1
+      },
+      {
+        "date": "2010-04-01",
+        "lfpr": 82.6,
+        "epop": 75.4
+      },
+      {
+        "date": "2010-05-01",
+        "lfpr": 82.3,
+        "epop": 75.1
+      },
+      {
+        "date": "2010-06-01",
+        "lfpr": 82.2,
+        "epop": 75.2
+      },
+      {
+        "date": "2010-07-01",
+        "lfpr": 81.9,
+        "epop": 75.1
+      },
+      {
+        "date": "2010-08-01",
+        "lfpr": 82,
+        "epop": 75
+      },
+      {
+        "date": "2010-09-01",
+        "lfpr": 82,
+        "epop": 75.1
+      },
+      {
+        "date": "2010-10-01",
+        "lfpr": 81.8,
+        "epop": 75
+      },
+      {
+        "date": "2010-11-01",
+        "lfpr": 82,
+        "epop": 74.8
+      },
+      {
+        "date": "2010-12-01",
+        "lfpr": 81.9,
+        "epop": 75
+      },
+      {
+        "date": "2011-01-01",
+        "lfpr": 81.7,
+        "epop": 75.2
+      },
+      {
+        "date": "2011-02-01",
+        "lfpr": 81.6,
+        "epop": 75.1
+      },
+      {
+        "date": "2011-03-01",
+        "lfpr": 81.7,
+        "epop": 75.3
+      },
+      {
+        "date": "2011-04-01",
+        "lfpr": 81.7,
+        "epop": 75.1
+      },
+      {
+        "date": "2011-05-01",
+        "lfpr": 81.7,
+        "epop": 75.2
+      },
+      {
+        "date": "2011-06-01",
+        "lfpr": 81.7,
+        "epop": 75
+      },
+      {
+        "date": "2011-07-01",
+        "lfpr": 81.4,
+        "epop": 75
+      },
+      {
+        "date": "2011-08-01",
+        "lfpr": 81.6,
+        "epop": 75.1
+      },
+      {
+        "date": "2011-09-01",
+        "lfpr": 81.5,
+        "epop": 74.9
+      },
+      {
+        "date": "2011-10-01",
+        "lfpr": 81.3,
+        "epop": 74.9
+      },
+      {
+        "date": "2011-11-01",
+        "lfpr": 81.5,
+        "epop": 75.3
+      },
+      {
+        "date": "2011-12-01",
+        "lfpr": 81.6,
+        "epop": 75.4
+      },
+      {
+        "date": "2012-01-01",
+        "lfpr": 81.5,
+        "epop": 75.5
+      },
+      {
+        "date": "2012-02-01",
+        "lfpr": 81.5,
+        "epop": 75.5
+      },
+      {
+        "date": "2012-03-01",
+        "lfpr": 81.5,
+        "epop": 75.7
+      },
+      {
+        "date": "2012-04-01",
+        "lfpr": 81.4,
+        "epop": 75.7
+      },
+      {
+        "date": "2012-05-01",
+        "lfpr": 81.4,
+        "epop": 75.7
+      },
+      {
+        "date": "2012-06-01",
+        "lfpr": 81.5,
+        "epop": 75.6
+      },
+      {
+        "date": "2012-07-01",
+        "lfpr": 81.4,
+        "epop": 75.6
+      },
+      {
+        "date": "2012-08-01",
+        "lfpr": 81.4,
+        "epop": 75.7
+      },
+      {
+        "date": "2012-09-01",
+        "lfpr": 81.5,
+        "epop": 76
+      },
+      {
+        "date": "2012-10-01",
+        "lfpr": 81.6,
+        "epop": 76.1
+      },
+      {
+        "date": "2012-11-01",
+        "lfpr": 81.2,
+        "epop": 75.8
+      },
+      {
+        "date": "2012-12-01",
+        "lfpr": 81.4,
+        "epop": 76
+      },
+      {
+        "date": "2013-01-01",
+        "lfpr": 81.1,
+        "epop": 75.6
+      },
+      {
+        "date": "2013-02-01",
+        "lfpr": 81,
+        "epop": 75.8
+      },
+      {
+        "date": "2013-03-01",
+        "lfpr": 81,
+        "epop": 75.8
+      },
+      {
+        "date": "2013-04-01",
+        "lfpr": 81,
+        "epop": 75.8
+      },
+      {
+        "date": "2013-05-01",
+        "lfpr": 81.2,
+        "epop": 76
+      },
+      {
+        "date": "2013-06-01",
+        "lfpr": 81.2,
+        "epop": 75.9
+      },
+      {
+        "date": "2013-07-01",
+        "lfpr": 81.2,
+        "epop": 76
+      },
+      {
+        "date": "2013-08-01",
+        "lfpr": 81,
+        "epop": 76
+      },
+      {
+        "date": "2013-09-01",
+        "lfpr": 81,
+        "epop": 76
+      },
+      {
+        "date": "2013-10-01",
+        "lfpr": 80.6,
+        "epop": 75.6
+      },
+      {
+        "date": "2013-11-01",
+        "lfpr": 81,
+        "epop": 76.1
+      },
+      {
+        "date": "2013-12-01",
+        "lfpr": 80.8,
+        "epop": 76.1
+      },
+      {
+        "date": "2014-01-01",
+        "lfpr": 80.9,
+        "epop": 76.4
+      },
+      {
+        "date": "2014-02-01",
+        "lfpr": 81.1,
+        "epop": 76.4
+      },
+      {
+        "date": "2014-03-01",
+        "lfpr": 81.1,
+        "epop": 76.5
+      },
+      {
+        "date": "2014-04-01",
+        "lfpr": 80.8,
+        "epop": 76.5
+      },
+      {
+        "date": "2014-05-01",
+        "lfpr": 80.7,
+        "epop": 76.4
+      },
+      {
+        "date": "2014-06-01",
+        "lfpr": 81,
+        "epop": 76.9
+      },
+      {
+        "date": "2014-07-01",
+        "lfpr": 80.8,
+        "epop": 76.7
+      },
+      {
+        "date": "2014-08-01",
+        "lfpr": 81.1,
+        "epop": 76.9
+      },
+      {
+        "date": "2014-09-01",
+        "lfpr": 80.8,
+        "epop": 76.8
+      },
+      {
+        "date": "2014-10-01",
+        "lfpr": 80.9,
+        "epop": 76.9
+      },
+      {
+        "date": "2014-11-01",
+        "lfpr": 80.9,
+        "epop": 76.9
+      },
+      {
+        "date": "2014-12-01",
+        "lfpr": 80.9,
+        "epop": 77.1
+      },
+      {
+        "date": "2015-01-01",
+        "lfpr": 81,
+        "epop": 77.1
+      },
+      {
+        "date": "2015-02-01",
+        "lfpr": 80.9,
+        "epop": 77.2
+      },
+      {
+        "date": "2015-03-01",
+        "lfpr": 80.8,
+        "epop": 77.1
+      },
+      {
+        "date": "2015-04-01",
+        "lfpr": 81,
+        "epop": 77.2
+      },
+      {
+        "date": "2015-05-01",
+        "lfpr": 81.1,
+        "epop": 77.2
+      },
+      {
+        "date": "2015-06-01",
+        "lfpr": 80.9,
+        "epop": 77.4
+      },
+      {
+        "date": "2015-07-01",
+        "lfpr": 80.7,
+        "epop": 77.1
+      },
+      {
+        "date": "2015-08-01",
+        "lfpr": 80.7,
+        "epop": 77.3
+      },
+      {
+        "date": "2015-09-01",
+        "lfpr": 80.6,
+        "epop": 77.2
+      },
+      {
+        "date": "2015-10-01",
+        "lfpr": 80.8,
+        "epop": 77.2
+      },
+      {
+        "date": "2015-11-01",
+        "lfpr": 80.9,
+        "epop": 77.4
+      },
+      {
+        "date": "2015-12-01",
+        "lfpr": 80.9,
+        "epop": 77.4
+      },
+      {
+        "date": "2016-01-01",
+        "lfpr": 81.1,
+        "epop": 77.7
+      },
+      {
+        "date": "2016-02-01",
+        "lfpr": 81.1,
+        "epop": 77.8
+      },
+      {
+        "date": "2016-03-01",
+        "lfpr": 81.3,
+        "epop": 77.9
+      },
+      {
+        "date": "2016-04-01",
+        "lfpr": 81.2,
+        "epop": 77.8
+      },
+      {
+        "date": "2016-05-01",
+        "lfpr": 81.2,
+        "epop": 77.9
+      },
+      {
+        "date": "2016-06-01",
+        "lfpr": 81.3,
+        "epop": 77.9
+      },
+      {
+        "date": "2016-07-01",
+        "lfpr": 81.3,
+        "epop": 78
+      },
+      {
+        "date": "2016-08-01",
+        "lfpr": 81.4,
+        "epop": 77.9
+      },
+      {
+        "date": "2016-09-01",
+        "lfpr": 81.5,
+        "epop": 78
+      },
+      {
+        "date": "2016-10-01",
+        "lfpr": 81.5,
+        "epop": 78.1
+      },
+      {
+        "date": "2016-11-01",
+        "lfpr": 81.4,
+        "epop": 78.1
+      },
+      {
+        "date": "2016-12-01",
+        "lfpr": 81.3,
+        "epop": 78.1
+      },
+      {
+        "date": "2017-01-01",
+        "lfpr": 81.5,
+        "epop": 78.2
+      },
+      {
+        "date": "2017-02-01",
+        "lfpr": 81.6,
+        "epop": 78.3
+      },
+      {
+        "date": "2017-03-01",
+        "lfpr": 81.6,
+        "epop": 78.5
+      },
+      {
+        "date": "2017-04-01",
+        "lfpr": 81.7,
+        "epop": 78.6
+      },
+      {
+        "date": "2017-05-01",
+        "lfpr": 81.7,
+        "epop": 78.5
+      },
+      {
+        "date": "2017-06-01",
+        "lfpr": 81.6,
+        "epop": 78.6
+      },
+      {
+        "date": "2017-07-01",
+        "lfpr": 81.8,
+        "epop": 78.8
+      },
+      {
+        "date": "2017-08-01",
+        "lfpr": 81.6,
+        "epop": 78.4
+      },
+      {
+        "date": "2017-09-01",
+        "lfpr": 81.9,
+        "epop": 79
+      },
+      {
+        "date": "2017-10-01",
+        "lfpr": 81.6,
+        "epop": 78.7
+      },
+      {
+        "date": "2017-11-01",
+        "lfpr": 81.7,
+        "epop": 78.9
+      },
+      {
+        "date": "2017-12-01",
+        "lfpr": 81.8,
+        "epop": 79
+      },
+      {
+        "date": "2018-01-01",
+        "lfpr": 81.7,
+        "epop": 78.9
+      },
+      {
+        "date": "2018-02-01",
+        "lfpr": 82.1,
+        "epop": 79.3
+      },
+      {
+        "date": "2018-03-01",
+        "lfpr": 82,
+        "epop": 79.2
+      },
+      {
+        "date": "2018-04-01",
+        "lfpr": 82,
+        "epop": 79.2
+      },
+      {
+        "date": "2018-05-01",
+        "lfpr": 81.9,
+        "epop": 79.3
+      },
+      {
+        "date": "2018-06-01",
+        "lfpr": 82.1,
+        "epop": 79.4
+      },
+      {
+        "date": "2018-07-01",
+        "lfpr": 82.1,
+        "epop": 79.6
+      },
+      {
+        "date": "2018-08-01",
+        "lfpr": 81.9,
+        "epop": 79.3
+      },
+      {
+        "date": "2018-09-01",
+        "lfpr": 81.9,
+        "epop": 79.4
+      },
+      {
+        "date": "2018-10-01",
+        "lfpr": 82.3,
+        "epop": 79.6
+      },
+      {
+        "date": "2018-11-01",
+        "lfpr": 82.2,
+        "epop": 79.6
+      },
+      {
+        "date": "2018-12-01",
+        "lfpr": 82.3,
+        "epop": 79.5
+      },
+      {
+        "date": "2019-01-01",
+        "lfpr": 82.5,
+        "epop": 79.8
+      },
+      {
+        "date": "2019-02-01",
+        "lfpr": 82.5,
+        "epop": 79.9
+      },
+      {
+        "date": "2019-03-01",
+        "lfpr": 82.4,
+        "epop": 79.8
+      },
+      {
+        "date": "2019-04-01",
+        "lfpr": 82.2,
+        "epop": 79.7
+      },
+      {
+        "date": "2019-05-01",
+        "lfpr": 82.2,
+        "epop": 79.7
+      },
+      {
+        "date": "2019-06-01",
+        "lfpr": 82.2,
+        "epop": 79.7
+      },
+      {
+        "date": "2019-07-01",
+        "lfpr": 82.1,
+        "epop": 79.6
+      },
+      {
+        "date": "2019-08-01",
+        "lfpr": 82.5,
+        "epop": 80
+      },
+      {
+        "date": "2019-09-01",
+        "lfpr": 82.7,
+        "epop": 80.2
+      },
+      {
+        "date": "2019-10-01",
+        "lfpr": 82.8,
+        "epop": 80.3
+      },
+      {
+        "date": "2019-11-01",
+        "lfpr": 82.9,
+        "epop": 80.3
+      },
+      {
+        "date": "2019-12-01",
+        "lfpr": 83,
+        "epop": 80.4
+      },
+      {
+        "date": "2020-01-01",
+        "lfpr": 83.1,
+        "epop": 80.6
+      },
+      {
+        "date": "2020-02-01",
+        "lfpr": 82.9,
+        "epop": 80.4
+      },
+      {
+        "date": "2020-03-01",
+        "lfpr": 82.4,
+        "epop": 79.4
+      },
+      {
+        "date": "2020-04-01",
+        "lfpr": 79.8,
+        "epop": 69.6
+      },
+      {
+        "date": "2020-05-01",
+        "lfpr": 80.6,
+        "epop": 71.4
+      },
+      {
+        "date": "2020-06-01",
+        "lfpr": 81.4,
+        "epop": 73.5
+      },
+      {
+        "date": "2020-07-01",
+        "lfpr": 81.2,
+        "epop": 73.8
+      },
+      {
+        "date": "2020-08-01",
+        "lfpr": 81.3,
+        "epop": 75.2
+      },
+      {
+        "date": "2020-09-01",
+        "lfpr": 80.9,
+        "epop": 75.1
+      },
+      {
+        "date": "2020-10-01",
+        "lfpr": 81.3,
+        "epop": 76.1
+      },
+      {
+        "date": "2020-11-01",
+        "lfpr": 81,
+        "epop": 76.1
+      },
+      {
+        "date": "2020-12-01",
+        "lfpr": 81.1,
+        "epop": 76.4
+      },
+      {
+        "date": "2021-01-01",
+        "lfpr": 81.1,
+        "epop": 76.4
+      },
+      {
+        "date": "2021-02-01",
+        "lfpr": 81.1,
+        "epop": 76.6
+      },
+      {
+        "date": "2021-03-01",
+        "lfpr": 81.3,
+        "epop": 76.8
+      },
+      {
+        "date": "2021-04-01",
+        "lfpr": 81.3,
+        "epop": 76.9
+      },
+      {
+        "date": "2021-05-01",
+        "lfpr": 81.3,
+        "epop": 77.1
+      },
+      {
+        "date": "2021-06-01",
+        "lfpr": 81.7,
+        "epop": 77.1
+      },
+      {
+        "date": "2021-07-01",
+        "lfpr": 81.8,
+        "epop": 77.8
+      },
+      {
+        "date": "2021-08-01",
+        "lfpr": 81.7,
+        "epop": 77.9
+      },
+      {
+        "date": "2021-09-01",
+        "lfpr": 81.6,
+        "epop": 78
+      },
+      {
+        "date": "2021-10-01",
+        "lfpr": 81.8,
+        "epop": 78.4
+      },
+      {
+        "date": "2021-11-01",
+        "lfpr": 82,
+        "epop": 79
+      },
+      {
+        "date": "2021-12-01",
+        "lfpr": 82,
+        "epop": 79.2
+      },
+      {
+        "date": "2022-01-01",
+        "lfpr": 82,
+        "epop": 79.2
+      },
+      {
+        "date": "2022-02-01",
+        "lfpr": 82.2,
+        "epop": 79.5
+      },
+      {
+        "date": "2022-03-01",
+        "lfpr": 82.5,
+        "epop": 80
+      },
+      {
+        "date": "2022-04-01",
+        "lfpr": 82.4,
+        "epop": 79.9
+      },
+      {
+        "date": "2022-05-01",
+        "lfpr": 82.6,
+        "epop": 80
+      },
+      {
+        "date": "2022-06-01",
+        "lfpr": 82.3,
+        "epop": 79.8
+      },
+      {
+        "date": "2022-07-01",
+        "lfpr": 82.4,
+        "epop": 79.9
+      },
+      {
+        "date": "2022-08-01",
+        "lfpr": 82.8,
+        "epop": 80.2
+      },
+      {
+        "date": "2022-09-01",
+        "lfpr": 82.6,
+        "epop": 80.2
+      },
+      {
+        "date": "2022-10-01",
+        "lfpr": 82.6,
+        "epop": 79.9
+      },
+      {
+        "date": "2022-11-01",
+        "lfpr": 82.4,
+        "epop": 79.8
+      },
+      {
+        "date": "2022-12-01",
+        "lfpr": 82.6,
+        "epop": 80.2
+      },
+      {
+        "date": "2023-01-01",
+        "lfpr": 82.7,
+        "epop": 80.3
+      },
+      {
+        "date": "2023-02-01",
+        "lfpr": 83,
+        "epop": 80.5
+      },
+      {
+        "date": "2023-03-01",
+        "lfpr": 83.1,
+        "epop": 80.7
+      },
+      {
+        "date": "2023-04-01",
+        "lfpr": 83.3,
+        "epop": 80.7
+      },
+      {
+        "date": "2023-05-01",
+        "lfpr": 83.4,
+        "epop": 80.7
+      },
+      {
+        "date": "2023-06-01",
+        "lfpr": 83.5,
+        "epop": 80.8
+      },
+      {
+        "date": "2023-07-01",
+        "lfpr": 83.4,
+        "epop": 80.9
+      },
+      {
+        "date": "2023-08-01",
+        "lfpr": 83.4,
+        "epop": 80.8
+      },
+      {
+        "date": "2023-09-01",
+        "lfpr": 83.5,
+        "epop": 80.8
+      },
+      {
+        "date": "2023-10-01",
+        "lfpr": 83.4,
+        "epop": 80.7
+      },
+      {
+        "date": "2023-11-01",
+        "lfpr": 83.4,
+        "epop": 80.8
+      },
+      {
+        "date": "2023-12-01",
+        "lfpr": 83.2,
+        "epop": 80.5
+      },
+      {
+        "date": "2024-01-01",
+        "lfpr": 83.3,
+        "epop": 80.6
+      },
+      {
+        "date": "2024-02-01",
+        "lfpr": 83.5,
+        "epop": 80.7
+      },
+      {
+        "date": "2024-03-01",
+        "lfpr": 83.4,
+        "epop": 80.7
+      },
+      {
+        "date": "2024-04-01",
+        "lfpr": 83.5,
+        "epop": 80.8
+      },
+      {
+        "date": "2024-05-01",
+        "lfpr": 83.6,
+        "epop": 80.8
+      },
+      {
+        "date": "2024-06-01",
+        "lfpr": 83.7,
+        "epop": 80.7
+      },
+      {
+        "date": "2024-07-01",
+        "lfpr": 84,
+        "epop": 80.9
+      },
+      {
+        "date": "2024-08-01",
+        "lfpr": 83.9,
+        "epop": 80.9
+      },
+      {
+        "date": "2024-09-01",
+        "lfpr": 83.8,
+        "epop": 80.9
+      },
+      {
+        "date": "2024-10-01",
+        "lfpr": 83.5,
+        "epop": 80.6
+      },
+      {
+        "date": "2024-11-01",
+        "lfpr": 83.5,
+        "epop": 80.5
+      },
+      {
+        "date": "2024-12-01",
+        "lfpr": 83.4,
+        "epop": 80.5
+      },
+      {
+        "date": "2025-01-01",
+        "lfpr": 83.5,
+        "epop": 80.7
+      },
+      {
+        "date": "2025-02-01",
+        "lfpr": 83.5,
+        "epop": 80.5
+      },
+      {
+        "date": "2025-03-01",
+        "lfpr": 83.3,
+        "epop": 80.4
+      },
+      {
+        "date": "2025-04-01",
+        "lfpr": 83.6,
+        "epop": 80.7
+      },
+      {
+        "date": "2025-05-01",
+        "lfpr": 83.4,
+        "epop": 80.5
+      },
+      {
+        "date": "2025-06-01",
+        "lfpr": 83.5,
+        "epop": 80.7
+      },
+      {
+        "date": "2025-07-01",
+        "lfpr": 83.4,
+        "epop": 80.4
+      },
+      {
+        "date": "2025-08-01",
+        "lfpr": 83.7,
+        "epop": 80.7
+      },
+      {
+        "date": "2025-09-01",
+        "lfpr": 83.7,
+        "epop": 80.7
+      },
+      {
+        "date": "2025-11-01",
+        "lfpr": 83.8,
+        "epop": 80.6
+      },
+      {
+        "date": "2025-12-01",
+        "lfpr": 83.8,
+        "epop": 80.7
+      },
+      {
+        "date": "2026-01-01",
+        "lfpr": 84,
+        "epop": 80.8
+      },
+      {
+        "date": "2026-02-01",
+        "lfpr": 83.9,
+        "epop": 80.7
+      },
+      {
+        "date": "2026-03-01",
+        "lfpr": 83.8,
+        "epop": 80.7
+      },
+      {
+        "date": "2026-04-01",
+        "lfpr": 83.8,
+        "epop": 80.7
+      },
+      {
+        "date": "2026-05-01",
+        "lfpr": 83.9,
+        "epop": 80.8
+      },
+      {
+        "date": "2026-06-01",
+        "lfpr": 83.3,
+        "epop": 80.2
+      }
+    ],
+    "latest_month": "Jun 2026",
+    "lfpr_now": 83.3,
+    "epop_now": 80.2,
+    "lfpr_feb2020": 82.9,
+    "epop_feb2020": 80.4,
+    "lfpr_vs_feb2020": 0.4,
+    "epop_vs_feb2020": -0.2,
+    "lfpr_vs_2019": 0.8
+  },
+  "verdict": "No, not in the aggregate. At 4.2%, unemployment is at or below CBO's natural rate (4.4%), prime-age participation is above its pre-pandemic level, and its path tracks GDP growth about as Okun's law predicts. If AI-driven displacement is showing up, it is not yet in the headline rate. That is why the next sections look at who and where."
+}

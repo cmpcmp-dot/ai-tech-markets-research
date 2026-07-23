@@ -1,0 +1,586 @@
+{
+  "vintage": "2026-07-23 12:43:32 EDT",
+  "source": {
+    "url": "https://raw.githubusercontent.com/mtkonczal/Blog-Posts-Presentations-and-Testimony/main/blogs_2026/01_education_young_unrate/data/age_diff_sa_3lines.csv",
+    "note": "Snapshot of committed residual CSV from the blog repo. Residuals averaged over the last 6 months; log-log prediction trained through 2019. IPUMS microdata regeneration deferred.",
+    "method": "actual minus predicted 12-month-MA unemployment RATE (proportion), by education x centered 3-yr age band"
+  },
+  "units": "rate proportion (multiply by 100 for percentage points)",
+  "group_order": ["College+", "HS+ (no BA)", "< HS"],
+  "series": [
+    {
+      "group": "College+",
+      "points": [
+        {
+          "age": 21,
+          "value": 0.0457
+        },
+        {
+          "age": 22,
+          "value": 0.0348
+        },
+        {
+          "age": 23,
+          "value": 0.0323
+        },
+        {
+          "age": 24,
+          "value": 0.0287
+        },
+        {
+          "age": 25,
+          "value": 0.0242
+        },
+        {
+          "age": 26,
+          "value": 0.0189
+        },
+        {
+          "age": 27,
+          "value": 0.0166
+        },
+        {
+          "age": 28,
+          "value": 0.0157
+        },
+        {
+          "age": 29,
+          "value": 0.0151
+        },
+        {
+          "age": 30,
+          "value": 0.0121
+        },
+        {
+          "age": 31,
+          "value": 0.0115
+        },
+        {
+          "age": 32,
+          "value": 0.0109
+        },
+        {
+          "age": 33,
+          "value": 0.0082
+        },
+        {
+          "age": 34,
+          "value": 0.0071
+        },
+        {
+          "age": 35,
+          "value": 0.0091
+        },
+        {
+          "age": 36,
+          "value": 0.0102
+        },
+        {
+          "age": 37,
+          "value": 0.01
+        },
+        {
+          "age": 38,
+          "value": 0.0096
+        },
+        {
+          "age": 39,
+          "value": 0.0074
+        },
+        {
+          "age": 40,
+          "value": 0.0074
+        },
+        {
+          "age": 41,
+          "value": 0.0048
+        },
+        {
+          "age": 42,
+          "value": 0.004
+        },
+        {
+          "age": 43,
+          "value": 0.0041
+        },
+        {
+          "age": 44,
+          "value": 0.0063
+        },
+        {
+          "age": 45,
+          "value": 0.0038
+        },
+        {
+          "age": 46,
+          "value": 0.0051
+        },
+        {
+          "age": 47,
+          "value": 0.005
+        },
+        {
+          "age": 48,
+          "value": 0.0047
+        },
+        {
+          "age": 49,
+          "value": 0.0033
+        },
+        {
+          "age": 50,
+          "value": 0.0033
+        },
+        {
+          "age": 51,
+          "value": 0.0044
+        },
+        {
+          "age": 52,
+          "value": 0.0037
+        },
+        {
+          "age": 53,
+          "value": 0.0033
+        },
+        {
+          "age": 54,
+          "value": 0.003
+        },
+        {
+          "age": 55,
+          "value": 0.0051
+        },
+        {
+          "age": 56,
+          "value": 0.0036
+        },
+        {
+          "age": 57,
+          "value": 0.0055
+        },
+        {
+          "age": 58,
+          "value": 0.0092
+        },
+        {
+          "age": 59,
+          "value": 0.0101
+        },
+        {
+          "age": 60,
+          "value": 0.0101
+        },
+        {
+          "age": 61,
+          "value": 0.0109
+        },
+        {
+          "age": 62,
+          "value": 0.0102
+        },
+        {
+          "age": 63,
+          "value": 0.0094
+        },
+        {
+          "age": 64,
+          "value": 0.0129
+        }
+      ]
+    },
+    {
+      "group": "HS+ (no BA)",
+      "points": [
+        {
+          "age": 18,
+          "value": 0.0307
+        },
+        {
+          "age": 19,
+          "value": 0.0288
+        },
+        {
+          "age": 20,
+          "value": 0.0246
+        },
+        {
+          "age": 21,
+          "value": 0.0199
+        },
+        {
+          "age": 22,
+          "value": 0.0167
+        },
+        {
+          "age": 23,
+          "value": 0.013
+        },
+        {
+          "age": 24,
+          "value": 0.0103
+        },
+        {
+          "age": 25,
+          "value": 0.0079
+        },
+        {
+          "age": 26,
+          "value": 0.0035
+        },
+        {
+          "age": 27,
+          "value": 0.0012
+        },
+        {
+          "age": 28,
+          "value": 0.0005
+        },
+        {
+          "age": 29,
+          "value": 0.0007
+        },
+        {
+          "age": 30,
+          "value": 0.002
+        },
+        {
+          "age": 31,
+          "value": 0.0054
+        },
+        {
+          "age": 32,
+          "value": 0.0043
+        },
+        {
+          "age": 33,
+          "value": 0.0058
+        },
+        {
+          "age": 34,
+          "value": 0.0045
+        },
+        {
+          "age": 35,
+          "value": 0.0029
+        },
+        {
+          "age": 36,
+          "value": 0.0031
+        },
+        {
+          "age": 37,
+          "value": 0.0056
+        },
+        {
+          "age": 38,
+          "value": 0.0059
+        },
+        {
+          "age": 39,
+          "value": 0.0068
+        },
+        {
+          "age": 40,
+          "value": 0.0068
+        },
+        {
+          "age": 41,
+          "value": 0.005
+        },
+        {
+          "age": 42,
+          "value": 0.0036
+        },
+        {
+          "age": 43,
+          "value": 0.0031
+        },
+        {
+          "age": 44,
+          "value": 0.004
+        },
+        {
+          "age": 45,
+          "value": 0.0038
+        },
+        {
+          "age": 46,
+          "value": 0.0037
+        },
+        {
+          "age": 47,
+          "value": 0.0038
+        },
+        {
+          "age": 48,
+          "value": 0.0009
+        },
+        {
+          "age": 49,
+          "value": -0.0013
+        },
+        {
+          "age": 50,
+          "value": -0.0002
+        },
+        {
+          "age": 51,
+          "value": 0.0021
+        },
+        {
+          "age": 52,
+          "value": 0.0023
+        },
+        {
+          "age": 53,
+          "value": 0.0022
+        },
+        {
+          "age": 54,
+          "value": 0.0012
+        },
+        {
+          "age": 55,
+          "value": 0.0012
+        },
+        {
+          "age": 56,
+          "value": -0.0018
+        },
+        {
+          "age": 57,
+          "value": -0.0011
+        },
+        {
+          "age": 58,
+          "value": 0.0006
+        },
+        {
+          "age": 59,
+          "value": 0.0009
+        },
+        {
+          "age": 60,
+          "value": -0.0003
+        },
+        {
+          "age": 61,
+          "value": 0.0007
+        },
+        {
+          "age": 62,
+          "value": 0.0001
+        },
+        {
+          "age": 63,
+          "value": -0.0007
+        },
+        {
+          "age": 64,
+          "value": -0.0013
+        }
+      ]
+    },
+    {
+      "group": "< HS",
+      "points": [
+        {
+          "age": 18,
+          "value": -0.0174
+        },
+        {
+          "age": 19,
+          "value": -0.016
+        },
+        {
+          "age": 20,
+          "value": -0.0311
+        },
+        {
+          "age": 21,
+          "value": -0.0338
+        },
+        {
+          "age": 22,
+          "value": -0.0186
+        },
+        {
+          "age": 23,
+          "value": -0.0118
+        },
+        {
+          "age": 24,
+          "value": -0.0145
+        },
+        {
+          "age": 25,
+          "value": -0.0014
+        },
+        {
+          "age": 26,
+          "value": -0.0081
+        },
+        {
+          "age": 27,
+          "value": -0.0118
+        },
+        {
+          "age": 28,
+          "value": -0.0144
+        },
+        {
+          "age": 29,
+          "value": -0.0103
+        },
+        {
+          "age": 30,
+          "value": -0.0127
+        },
+        {
+          "age": 31,
+          "value": -0.0036
+        },
+        {
+          "age": 32,
+          "value": -0.0054
+        },
+        {
+          "age": 33,
+          "value": -0.0087
+        },
+        {
+          "age": 34,
+          "value": -0.0053
+        },
+        {
+          "age": 35,
+          "value": -0.0069
+        },
+        {
+          "age": 36,
+          "value": -0.0099
+        },
+        {
+          "age": 37,
+          "value": -0.0051
+        },
+        {
+          "age": 38,
+          "value": -0.0014
+        },
+        {
+          "age": 39,
+          "value": -0.0144
+        },
+        {
+          "age": 40,
+          "value": -0.0128
+        },
+        {
+          "age": 41,
+          "value": -0.0109
+        },
+        {
+          "age": 42,
+          "value": -0.011
+        },
+        {
+          "age": 43,
+          "value": -0.0086
+        },
+        {
+          "age": 44,
+          "value": 0.001
+        },
+        {
+          "age": 45,
+          "value": -0
+        },
+        {
+          "age": 46,
+          "value": 0.0029
+        },
+        {
+          "age": 47,
+          "value": 0.0019
+        },
+        {
+          "age": 48,
+          "value": -0.0035
+        },
+        {
+          "age": 49,
+          "value": -0.0119
+        },
+        {
+          "age": 50,
+          "value": -0.007
+        },
+        {
+          "age": 51,
+          "value": -0.0049
+        },
+        {
+          "age": 52,
+          "value": -0.0048
+        },
+        {
+          "age": 53,
+          "value": -0.0036
+        },
+        {
+          "age": 54,
+          "value": 0.0036
+        },
+        {
+          "age": 55,
+          "value": -0.0012
+        },
+        {
+          "age": 56,
+          "value": -0.01
+        },
+        {
+          "age": 57,
+          "value": -0.0126
+        },
+        {
+          "age": 58,
+          "value": -0.007
+        },
+        {
+          "age": 59,
+          "value": -0.004
+        },
+        {
+          "age": 60,
+          "value": 0.0088
+        },
+        {
+          "age": 61,
+          "value": 0.0117
+        },
+        {
+          "age": 62,
+          "value": 0.018
+        },
+        {
+          "age": 63,
+          "value": 0.0167
+        },
+        {
+          "age": 64,
+          "value": 0.0125
+        }
+      ]
+    }
+  ],
+  "headline": {
+    "peak_age": 21,
+    "peak_college_resid": 0.0457,
+    "young_college_resid": 0.0457,
+    "prime_college_resid": 0.0041
+  },
+  "verdict": "Yes, sharply. Young college graduates (age 21) carry unemployment about 4.6 pp above what their pre-2020 relationship to the overall rate predicts, versus roughly 0.4 pp for prime-age (45-55) graduates. The softness is concentrated among the young and educated, not spread evenly."
+}
