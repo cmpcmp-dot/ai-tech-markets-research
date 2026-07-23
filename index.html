@@ -1215,7 +1215,7 @@
     font-family: 'Haas Grotesk', 'Helvetica Neue', Arial, sans-serif;
   }
 
-  /* ── POLICY LAB VIEW ─────────────────────────────────────── */
+  /* ── POLICY MAP VIEW ─────────────────────────────────────── */
   .policy-view .sidebar              { display: none; }
   .policy-view .inline-filters       { display: none; }
 
@@ -1549,13 +1549,13 @@
     .header-nav-btn, .header-changed-btn { padding: 6px 6px; letter-spacing: 0; }
   }
 
-  /* ── Policy Lab intro bar (matches theme-disclaimer-bar) ─── */
-  .policy-lab-header {
+  /* ── Policy Map intro bar (matches theme-disclaimer-bar) ─── */
+  .policy-map-header {
     display: none; padding: 14px 28px 13px;
     border-bottom: 1px solid var(--border);
     font-family: 'Haas Grotesk', 'Helvetica Neue', Arial, sans-serif;
   }
-  .policy-view .policy-lab-header { display: none; }
+  .policy-view .policy-map-header { display: none; }
   .policy-view .lens-toggle { display: none !important; }
   .pol-header-title {
     display: block;
@@ -1731,11 +1731,11 @@
   .pol-item-wrap:hover .pol-item-title { color: var(--accent); }
 
   @media (max-width: 700px) {
-    .policy-lab-header { padding-left: 16px; padding-right: 16px; }
+    .policy-map-header { padding-left: 16px; padding-right: 16px; }
 
     .pol-columns { padding-left: 16px; padding-right: 16px; grid-template-columns: 1fr; }
 
-    /* Policy Lab waterfall: stack by category, phase as a per-card label */
+    /* Policy Map waterfall: stack by category, phase as a per-card label */
     .pol-waterfall { padding: 18px 16px 40px; }
     .pol-matrix-header { display: none; }
     .pol-matrix-row { display: block; grid-template-columns: none; gap: 0; padding: 16px 16px 6px; }
@@ -1793,7 +1793,7 @@
         <button class="header-nav-btn" id="viewCards" role="tab" aria-selected="false" aria-controls="viewPanel">Research</button>
         <button class="header-nav-btn" id="viewKiller" role="tab" aria-selected="false" aria-controls="viewPanel">Killer Facts</button>
         <button class="header-nav-btn active" id="viewThemes" role="tab" aria-selected="true" aria-controls="viewPanel">Themes</button>
-        <button class="header-nav-btn" id="viewPolicy" role="tab" aria-selected="false" aria-controls="viewPanel">Policy Lab</button>
+        <button class="header-nav-btn" id="viewPolicy" role="tab" aria-selected="false" aria-controls="viewPanel">Policy Map</button>
         <button class="header-nav-btn" id="viewAbout" role="tab" aria-selected="false" aria-controls="viewPanel" aria-label="About this site">About</button>
       </div>
       <button class="header-changed-btn" id="whatsChangedBtn" aria-label="What's New">What's New<span class="header-changed-pill" id="whatsChangedPill" hidden></span></button>
@@ -1945,7 +1945,7 @@
           </div>
           <div class="about-section">
             <h2 class="about-section-label">How to read it</h2>
-            <p class="about-section-text"><strong>Three tabs.</strong> Research is the full, filterable database of individual sources. Themes synthesizes the database into cross-cutting questions, each with the evidence, what is working, the risks, and the implications. Policy Lab maps policy interventions across categories and five implementation phases.</p>
+            <p class="about-section-text"><strong>Three tabs.</strong> Research is the full, filterable database of individual sources. Themes synthesizes the database into cross-cutting questions, each with the evidence, what is working, the risks, and the implications. Policy Map maps policy interventions across categories and five implementation phases.</p>
             <p class="about-section-text"><strong>Confidence.</strong> Each theme is tagged Strong consensus (independent research streams converge), Emerging evidence (the direction is clear but still developing), or Contested (credible researchers reach different conclusions).</p>
             <p class="about-section-text"><strong>Lens.</strong> The General lens is written for a broad audience. The Focused lens filters to peer-reviewed and institutional research, organized around economic outcome domains.</p>
           </div>
@@ -2011,7 +2011,7 @@
         <p class="modal-sources-intro">Cross-cutting syntheses of the research database. Each theme frames a key strategic question, presents an evidence consensus, identifies implications for institutional actors, and notes gaps in the current evidence base. Themes carry an editorial confidence rating: <em>Strong consensus</em>, <em>Emerging evidence</em>, or <em>Contested</em>.</p>
       </div>
       <div class="modal-group">
-        <div class="modal-group-name">Policy Lab tab</div>
+        <div class="modal-group-name">Policy Map tab</div>
         <p class="modal-sources-intro">Twenty-seven policy interventions organized by category and mapped to five stages of AI-driven labor disruption — from <em>Repair</em> (fixes needed regardless of AI's trajectory) through <em>Transform</em> (responses to large-scale displacement of the workforce). Each policy card includes a plain-language description, an account of the implementation challenge, and links to supporting research in the database. Does not constitute policy advice.</p>
       </div>
       <div class="modal-group">
@@ -2830,7 +2830,7 @@
   }
 
   // ── render ───────────────────────────────────────────────────
-  /* ── Policy Lab ─────────────────────────────────────────────── */
+  /* ── Policy Map ─────────────────────────────────────────────── */
   let polLevelFilter = 'all';
   let polViewMode    = 'grid';
 
@@ -3070,9 +3070,9 @@
 
       // Intro bar — matches theme-disclaimer-bar
       const hdr = document.createElement('div');
-      hdr.className = 'policy-lab-header';
+      hdr.className = 'policy-map-header';
       hdr.innerHTML = `
-        <span class="pol-header-title">Policy Lab</span>
+        <span class="pol-header-title">Policy Map</span>
         <span class="theme-intro-line">Twenty-seven policy interventions mapped across ten policy domains and five implementation phases. Read across a row to see how each domain's policies escalate from Repair to Transform. Click any policy for rationale, precedents, and supporting research.</span>
         <span class="theme-disclaimer-line">Synthesized from the research database. Does not constitute policy advice or reflect the opinions of the creator.</span>`;
       area.appendChild(hdr);
@@ -3400,7 +3400,7 @@
     const html = dates.map(d => {
       const g = groups[d];
       const parts = [`<h3 class="clog-date">${fmtD(d)}</h3>`];
-      if (g.policies) parts.push(`<div class="clog-line">Policy Lab: ${g.policies === POLICY_DATA.length ? 'all ' : ''}${g.policies} ${g.policies === 1 ? 'policy' : 'policies'} reviewed</div>`);
+      if (g.policies) parts.push(`<div class="clog-line">Policy Map: ${g.policies === POLICY_DATA.length ? 'all ' : ''}${g.policies} ${g.policies === 1 ? 'policy' : 'policies'} reviewed</div>`);
       if (g.entries.length > 20) {
         parts.push(`<div class="clog-line">${g.entries.length} research entries added${d === firstDate ? ' (initial database import)' : ''}</div>`);
       } else if (g.entries.length) {
@@ -3413,7 +3413,7 @@
       }
       return `<div class="clog-group">${parts.join('')}</div>`;
     }).join('');
-    return `<div class="clog-intro">Every dated change to the tracker: research entries added (by intake date) and Policy Lab review passes. Click an entry to jump to it.</div>${html}`;
+    return `<div class="clog-intro">Every dated change to the tracker: research entries added (by intake date) and Policy Map review passes. Click an entry to jump to it.</div>${html}`;
   }
 
   function openChangelog() {
@@ -3659,8 +3659,8 @@
       economist: { title: 'Themes',     text: 'Empirical questions synthesized from peer-reviewed and institutional research, each framing a specific economic outcome with quantified evidence.', note: 'Synthesized from the research database. Does not constitute strategic advice or reflect the opinions of the creator.' },
     },
     policy: {
-      general:   { title: 'Policy Lab', text: 'Twenty-seven policy interventions mapped across four policy categories and five implementation phases. Read across a row to see how a category\'s policies evolve from Repair to Transform. Click any policy for rationale, precedents, and supporting research.', note: 'Synthesized from the research database. Does not constitute policy advice or reflect the opinions of the creator.' },
-      economist: { title: 'Policy Lab', text: 'Twenty-seven policy interventions mapped across four policy categories and five implementation phases. Read across a row to see how a category\'s policies evolve from Repair to Transform. Click any policy for rationale, precedents, and supporting research.', note: 'Synthesized from the research database. Does not constitute policy advice or reflect the opinions of the creator.' },
+      general:   { title: 'Policy Map', text: 'Twenty-seven policy interventions mapped across four policy categories and five implementation phases. Read across a row to see how a category\'s policies evolve from Repair to Transform. Click any policy for rationale, precedents, and supporting research.', note: 'Synthesized from the research database. Does not constitute policy advice or reflect the opinions of the creator.' },
+      economist: { title: 'Policy Map', text: 'Twenty-seven policy interventions mapped across four policy categories and five implementation phases. Read across a row to see how a category\'s policies evolve from Repair to Transform. Click any policy for rationale, precedents, and supporting research.', note: 'Synthesized from the research database. Does not constitute policy advice or reflect the opinions of the creator.' },
     },
     about: {
       general:   { title: 'About', text: 'How this tracker is structured and how to use it.', note: '' },
@@ -3704,7 +3704,7 @@
     if (panel) panel.setAttribute('aria-labelledby', activeTabId);
     const ann = document.getElementById('viewAnnounce');
     if (ann) {
-      const names = { cards: 'Research', killer: 'Killer Facts', themes: 'Themes', policy: 'Policy Lab', about: 'About' };
+      const names = { cards: 'Research', killer: 'Killer Facts', themes: 'Themes', policy: 'Policy Map', about: 'About' };
       ann.textContent = (names[view] || view) + ' view';
     }
     setHash(currentRoute());
