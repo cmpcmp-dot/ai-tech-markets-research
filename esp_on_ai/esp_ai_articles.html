@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Economic Security Project — AI Articles</title>
+<style>
+  :root {
+    --esp-navy: #1B2A4A;
+    --esp-gold: #C8A951;
+    --esp-red: #B83B3B;
+    --esp-light: #F4F2E4;
+    --esp-cream: #FAFAF5;
+    --text: #222;
+    --text-muted: #555;
+    --border: #D1CFC3;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Georgia', 'Times New Roman', serif;
+    background: var(--esp-cream);
+    color: var(--text);
+    line-height: 1.6;
+  }
+  header {
+    background: var(--esp-navy);
+    color: #fff;
+    padding: 2rem 1.5rem 1.5rem;
+    text-align: center;
+  }
+  header h1 {
+    font-size: 1.6rem;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    margin-bottom: 0.3rem;
+  }
+  header p {
+    font-size: 0.95rem;
+    opacity: 0.85;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  .container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 1.5rem;
+  }
+  .summary {
+    background: var(--esp-light);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 1rem 1.3rem;
+    margin-bottom: 1.2rem;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+  }
+  .summary strong { color: var(--esp-navy); }
+  .table-wrap {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.88rem;
+  }
+  thead th {
+    background: var(--esp-navy);
+    color: #fff;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding: 0.7rem 0.8rem;
+    text-align: left;
+    cursor: pointer;
+    white-space: nowrap;
+    user-select: none;
+    position: relative;
+  }
+  thead th:hover { background: #253b5e; }
+  thead th .arrow {
+    display: inline-block;
+    width: 0;
+    height: 0;
+    margin-left: 5px;
+    vertical-align: middle;
+    opacity: 0.4;
+  }
+  thead th.sorted .arrow { opacity: 1; }
+  thead th.sorted-asc .arrow {
+    border-left: 4px solid transparent;
+    border-right: 4px solid transparent;
+    border-bottom: 5px solid #fff;
+  }
+  thead th.sorted-desc .arrow {
+    border-left: 4px solid transparent;
+    border-right: 4px solid transparent;
+    border-top: 5px solid #fff;
+  }
+  tbody tr {
+    border-bottom: 1px solid var(--border);
+    transition: background 0.15s;
+  }
+  tbody tr:hover { background: #f0efe6; }
+  td {
+    padding: 0.65rem 0.8rem;
+    vertical-align: top;
+  }
+  td.title-cell {
+    font-weight: 600;
+    min-width: 200px;
+  }
+  td.title-cell a {
+    color: var(--esp-navy);
+    text-decoration: none;
+  }
+  td.title-cell a:hover { text-decoration: underline; }
+  td.date-cell {
+    white-space: nowrap;
+    min-width: 100px;
+  }
+  td.author-cell {
+    min-width: 100px;
+  }
+  td.type-cell {
+    white-space: nowrap;
+  }
+  .type-badge {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    padding: 0.15rem 0.45rem;
+    border-radius: 2px;
+    background: var(--esp-light);
+    color: var(--esp-navy);
+    font-weight: 600;
+    white-space: nowrap;
+    display: inline-block;
+  }
+  .type-badge.brief { background: #e8e4f0; color: #4a3b6b; }
+  .type-badge.report { background: #dde8ed; color: #2a4a5c; }
+  .type-badge.blog { background: #f0e8d0; color: #6b5a2a; }
+  .type-badge.event { background: #e8d0d0; color: #6b2a2a; }
+  .type-badge.press { background: #d0e8d8; color: #2a5c3a; }
+  td.topics-cell {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    max-width: 250px;
+  }
+  td.summary-cell {
+    font-size: 0.82rem;
+    color: var(--text-muted);
+    max-width: 350px;
+  }
+  td.md-cell {
+    text-align: center;
+    white-space: nowrap;
+  }
+  td.md-cell a {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--esp-navy);
+    text-decoration: none;
+    border: 1.5px solid var(--esp-navy);
+    border-radius: 3px;
+    padding: 0.2rem 0.45rem;
+    transition: background 0.15s, color 0.15s;
+  }
+  td.md-cell a:hover {
+    background: var(--esp-navy);
+    color: #fff;
+  }
+  footer {
+    text-align: center;
+    padding: 2rem 1.5rem;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    border-top: 1px solid var(--border);
+    margin-top: 1.5rem;
+  }
+  footer a { color: var(--esp-navy); }
+  @media (max-width: 700px) {
+    header h1 { font-size: 1.2rem; }
+    .container { padding: 1rem; }
+    td.summary-cell { display: none; }
+    thead th:nth-child(6), td:nth-child(6) { display: none; }
+    td.md-cell a { font-size: 0.6rem; padding: 0.15rem 0.35rem; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Economic Security Project — AI Resources</h1>
+  <p>Articles, briefs, events, and reports on artificial intelligence and the economy from economicsecurityproject.org</p>
+</header>
+
+<div class="container">
+  <div class="summary">
+    <strong>9 articles, briefs, and events</strong> from ESP on artificial intelligence. Click any column header to sort.
+  </div>
+
+  <div class="table-wrap">
+    <table id="article-table">
+      <thead>
+        <tr>
+          <th data-col="0" data-type="string">Title <span class="arrow"></span></th>
+          <th data-col="1" data-type="date">Date <span class="arrow"></span></th>
+          <th data-col="2" data-type="string">Author <span class="arrow"></span></th>
+          <th data-col="3" data-type="string">Type <span class="arrow"></span></th>
+          <th data-col="4" data-type="string">Topics <span class="arrow"></span></th>
+          <th data-col="5" data-type="string">Summary <span class="arrow"></span></th>
+          <th style="cursor:default">MD</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="title-cell"><a href="https://economicsecurityproject.org/resource/ai-transition/" target="_blank">Ideas for Shared Economic Prosperity in the AI Transition</a></td>
+          <td class="date-cell" data-sort="2026-04-09">April 9, 2026</td>
+          <td class="author-cell">Becky Chao</td>
+          <td class="type-cell"><span class="type-badge brief">Policy Brief</span></td>
+          <td class="topics-cell">Artificial intelligence, jobs, wages, housing, small business, antitrust, taxation, public AI</td>
+          <td class="summary-cell">Eight policy ideas for an inclusive AI transition: invest in workers, build public AI capacity, crack down on monopoly, build affordable housing, redefine economic metrics, reform the tax code, strengthen the safety net, ensure transparency.</td>
+          <td class="md-cell"><a href="esp_ai_articles/01-ai-transition-brief.md" target="_blank">MD</a></td>
+        </tr>
+        <tr>
+          <td class="title-cell"><a href="https://economicsecurityproject.org/news/five-places-to-start-on-the-ai-transition" target="_blank">Five Places to Start on the AI Transition</a></td>
+          <td class="date-cell" data-sort="2026-05-04">May 4, 2026</td>
+          <td class="author-cell">Taylor Jo Isenberg</td>
+          <td class="type-cell"><span class="type-badge blog">Blog Post</span></td>
+          <td class="topics-cell">Artificial intelligence, antitrust, housing, taxation, public AI, federal government, regulation</td>
+          <td class="summary-cell">Five starting points for federal AI policy: consumer and worker power, update anti-monopoly law, invest public money in AI for the common good, reward companies that share wealth, research and adapt.</td>
+          <td class="md-cell"><a href="esp_ai_articles/02-five-places-to-start.md" target="_blank">MD</a></td>
+        </tr>
+        <tr>
+          <td class="title-cell"><a href="https://economicsecurityproject.org/resource/ai-and-affordability-in-california/" target="_blank">AI &amp; Affordability in California</a></td>
+          <td class="date-cell" data-sort="2026-04-01">April 1, 2026</td>
+          <td class="author-cell">ESP</td>
+          <td class="type-cell"><span class="type-badge event">Event</span></td>
+          <td class="topics-cell">Artificial intelligence, housing, California, affordability, data centers, energy</td>
+          <td class="summary-cell">Convening in Los Angeles on how AI is shaping housing and affordability in California, with panelists from policy, housing, and tech discussing data centers, local housing pressures, and balancing innovation with equity.</td>
+          <td class="md-cell"><a href="esp_ai_articles/03-ai-and-affordability-california.md" target="_blank">MD</a></td>
+        </tr>
+        <tr>
+          <td class="title-cell"><a href="https://economicsecurityproject.org/news/white-house-ai-roadmap-keeps-big-tech-in-the-drivers-seat-of-americas-affordability-crisis" target="_blank">White House AI Roadmap Keeps Big Tech in the Driver's Seat of America's Affordability Crisis</a></td>
+          <td class="date-cell" data-sort="2025-07-23">July 23, 2025</td>
+          <td class="author-cell">Soren Mukherjee</td>
+          <td class="type-cell"><span class="type-badge press">Blog Post</span></td>
+          <td class="topics-cell">Artificial intelligence, White House, executive order, national security, competition, jobs</td>
+          <td class="summary-cell">Criticism of the Trump administration's "Winning the Race" AI plan for framing AI only as a national security issue, offering more resources to Big Tech, and failing to address worker displacement, rising costs, or corporate concentration.</td>
+          <td class="md-cell"><a href="esp_ai_articles/04-white-house-ai-roadmap-response.md" target="_blank">MD</a></td>
+        </tr>
+        <tr>
+          <td class="title-cell"><a href="https://economicsecurityproject.org/resource/the-global-rise-of-public-ai/" target="_blank">The Global Rise of Public AI</a></td>
+          <td class="date-cell" data-sort="2025-05-06">May 6, 2025</td>
+          <td class="author-cell">ESP</td>
+          <td class="type-cell"><span class="type-badge report">Report</span></td>
+          <td class="topics-cell">Artificial intelligence, public AI, Europe, Canada, global policy, data sovereignty</td>
+          <td class="summary-cell">Report examining how governments worldwide are building public AI infrastructure through four models: Outsourced Provision, Networked Collaboration, State-Corporate Fusion, and Public Options. Co-hosted with Mozilla Foundation.</td>
+          <td class="md-cell"><a href="esp_ai_articles/05-global-rise-of-public-ai.md" target="_blank">MD</a></td>
+        </tr>
+        <tr>
+          <td class="title-cell"><a href="https://economicsecurityproject.org/resource/building-a-new-political-economy-for-ai/" target="_blank">Building a New Political Economy for AI</a></td>
+          <td class="date-cell" data-sort="2024-06-04">June 4, 2024</td>
+          <td class="author-cell">Chris Hughes</td>
+          <td class="type-cell"><span class="type-badge report">Report</span></td>
+          <td class="topics-cell">Artificial intelligence, political economy, regulation, big tech, corporate power, accountability</td>
+          <td class="summary-cell">Report from an ESP convening of 35 experts on how concentrated power in AI affects the economy and democracy. Covers enforcing antitrust laws, balanced power dynamics, transparency, public investment in AI, and engaging civil society.</td>
+          <td class="md-cell"><a href="esp_ai_articles/06-building-political-economy-for-ai.md" target="_blank">MD</a></td>
+        </tr>
+        <tr>
+          <td class="title-cell"><a href="https://economicsecurityproject.org/news/new-shadow-report/" target="_blank">New Shadow Report Addresses Gaps in the Senate Roadmap for AI</a></td>
+          <td class="date-cell" data-sort="2024-05-20">May 20, 2024</td>
+          <td class="author-cell">ESP</td>
+          <td class="type-cell"><span class="type-badge press">Press Release</span></td>
+          <td class="topics-cell">Artificial intelligence, Senate, AI Roadmap, bipartisan policy, regulation, jobs, competition</td>
+          <td class="summary-cell">Announcement of the coalition "Shadow Report" calling for comprehensive AI regulation including non-discrimination rules, privacy protections, data portability, and public AI investment in response to the Senate's hands-off AI roadmap.</td>
+          <td class="md-cell"><a href="esp_ai_articles/07-shadow-report-senate-ai-roadmap.md" target="_blank">MD</a></td>
+        </tr>
+        <tr>
+          <td class="title-cell"><a href="https://economicsecurityproject.org/resource/antimonopoly-in-the-age-of-ai-a-conversation-with-chris-hughes-and-ganesh-sitaraman/" target="_blank">Antimonopoly in the Age of AI: A Conversation with Chris Hughes and Ganesh Sitaraman</a></td>
+          <td class="date-cell" data-sort="2023-10-25">October 25, 2023</td>
+          <td class="author-cell">Chris Hughes, Ganesh Sitaraman</td>
+          <td class="type-cell"><span class="type-badge event">Event</span></td>
+          <td class="topics-cell">Artificial intelligence, antitrust, monopoly, regulation, big tech, competition</td>
+          <td class="summary-cell">Event conversation on preventing AI monopolies, covering why monopoly matters in AI, antitrust enforcement, regulation, public investment in AI, and building public trust. Attended by Senator Elizabeth Warren and Congressman Ken Buck.</td>
+          <td class="md-cell"><a href="esp_ai_articles/08-antimonopoly-age-of-ai-event.md" target="_blank">MD</a></td>
+        </tr>
+        <tr>
+          <td class="title-cell"><a href="https://www.youtube.com/watch?v=E1rnheee9Zo" target="_blank">Transcript: Antimonopoly in the Age of AI (YouTube)</a></td>
+          <td class="date-cell" data-sort="2023-10-25">October 25, 2023</td>
+          <td class="author-cell">Chris Hughes, Ganesh Sitaraman</td>
+          <td class="type-cell"><span class="type-badge event">Transcript</span></td>
+          <td class="topics-cell">Artificial intelligence, antitrust, monopoly, public investment, regulation</td>
+          <td class="summary-cell">Full transcript of the event conversation covering monopoly power in AI, antitrust enforcement, public investment in AI research, the current state of AI policy in Washington, and the need for new political economy frameworks.</td>
+          <td class="md-cell"><a href="esp_ai_articles/09-transcript-antimonopoly-ai-event.md" target="_blank">MD</a></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<footer>
+  Compiled from <a href="https://economicsecurityproject.org/resources/" target="_blank">economicsecurityproject.org</a> &middot; Last updated July 2026
+</footer>
+
+<script>
+(function() {
+  const table = document.getElementById('article-table');
+  const headers = table.querySelectorAll('thead th');
+  const tbody = table.querySelector('tbody');
+
+  headers.forEach(th => {
+    th.addEventListener('click', function() {
+      const col = parseInt(this.dataset.col);
+      const type = this.dataset.type;
+      const isAsc = this.classList.contains('sorted-asc');
+
+      headers.forEach(h => h.classList.remove('sorted', 'sorted-asc', 'sorted-desc'));
+      this.classList.add('sorted');
+      this.classList.add(isAsc ? 'sorted-desc' : 'sorted-asc');
+
+      const rows = Array.from(tbody.querySelectorAll('tr'));
+      rows.sort((a, b) => {
+        let aVal, bVal;
+        if (type === 'date') {
+          aVal = a.cells[col].dataset.sort || '';
+          bVal = b.cells[col].dataset.sort || '';
+          return isAsc ? bVal.localeCompare(aVal) : aVal.localeCompare(bVal);
+        } else {
+          aVal = a.cells[col].textContent.trim().toLowerCase();
+          bVal = b.cells[col].textContent.trim().toLowerCase();
+          return isAsc ? bVal.localeCompare(aVal) : aVal.localeCompare(bVal);
+        }
+      });
+      rows.forEach(r => tbody.appendChild(r));
+    });
+  });
+})();
+</script>
+</body>
+</html>

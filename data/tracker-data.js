@@ -35,7 +35,7 @@ const STATUS_META = {
   },
 };
 
-// Update this date whenever themes or policy lab content changes
+// Update this date whenever themes or policy map content changes
 const LAST_CONTENT_UPDATE = "2026-07-05";
 
 const THEMES = [

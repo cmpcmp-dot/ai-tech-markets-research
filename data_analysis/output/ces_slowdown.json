@@ -1,0 +1,109 @@
+{
+  "vintage": "2026-07-23 12:43:33 EDT",
+  "latest_month": "Jun 2026",
+  "baseline": "2015-2019 average annual growth",
+  "method": "recent = trailing-12-mo growth at latest month; baseline = mean trailing-12-mo growth over 2015-2019; slowdown = recent - baseline (pp).",
+  "units": "percent (growth), pp (slowdown), thousands (jobs change & level)",
+  "bars": [
+    {
+      "code": "50",
+      "sector": "Information",
+      "recent_yoy": -3.11,
+      "baseline_yoy": 0.99,
+      "slowdown": -4.1,
+      "jobs_chg_12": -89,
+      "level": 2774
+    },
+    {
+      "code": "20",
+      "sector": "Construction",
+      "recent_yoy": 0.77,
+      "baseline_yoy": 4.03,
+      "slowdown": -3.26,
+      "jobs_chg_12": 64,
+      "level": 8331
+    },
+    {
+      "code": "55",
+      "sector": "Financial activities",
+      "recent_yoy": -1.09,
+      "baseline_yoy": 1.88,
+      "slowdown": -2.96,
+      "jobs_chg_12": -100,
+      "level": 9104
+    },
+    {
+      "code": "70",
+      "sector": "Leisure and hospitality",
+      "recent_yoy": 0.68,
+      "baseline_yoy": 2.47,
+      "slowdown": -1.79,
+      "jobs_chg_12": 114,
+      "level": 16951
+    },
+    {
+      "code": "60",
+      "sector": "Professional and business services",
+      "recent_yoy": 0.39,
+      "baseline_yoy": 2.18,
+      "slowdown": -1.79,
+      "jobs_chg_12": 88,
+      "level": 22507
+    },
+    {
+      "code": "90",
+      "sector": "Government",
+      "recent_yoy": -0.91,
+      "baseline_yoy": 0.66,
+      "slowdown": -1.58,
+      "jobs_chg_12": -215,
+      "level": 23371
+    },
+    {
+      "code": "30",
+      "sector": "Manufacturing",
+      "recent_yoy": -0.3,
+      "baseline_yoy": 1,
+      "slowdown": -1.3,
+      "jobs_chg_12": -38,
+      "level": 12598
+    },
+    {
+      "code": "40",
+      "sector": "Trade, transportation, and utilities",
+      "recent_yoy": -0.05,
+      "baseline_yoy": 1.05,
+      "slowdown": -1.09,
+      "jobs_chg_12": -13,
+      "level": 28728
+    },
+    {
+      "code": "80",
+      "sector": "Other services",
+      "recent_yoy": 0.94,
+      "baseline_yoy": 1.14,
+      "slowdown": -0.2,
+      "jobs_chg_12": 56,
+      "level": 6040
+    },
+    {
+      "code": "65",
+      "sector": "Private education and health services",
+      "recent_yoy": 2.37,
+      "baseline_yoy": 2.42,
+      "slowdown": -0.05,
+      "jobs_chg_12": 648,
+      "level": 27973
+    },
+    {
+      "code": "10",
+      "sector": "Mining and logging",
+      "recent_yoy": -1.46,
+      "baseline_yoy": -3.47,
+      "slowdown": 2.01,
+      "jobs_chg_12": -9,
+      "level": 607
+    }
+  ],
+  "verdict": "Information has decelerated most: employment there is growing -3.1% over the past year versus a 1.0% pre-pandemic (2015-19) pace, a -4.1 pp slowdown. The sharpest decelerations are in Information, Construction, Financial activities."
+}

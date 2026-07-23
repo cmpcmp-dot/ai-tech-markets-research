@@ -6,7 +6,8 @@
 <title>AI, Tech and the Economy: Research Intelligence</title>
 <meta name="description" content="A curated research database and synthesis on AI, automation, and the economy: peer-reviewed studies, policy reports, and investigative journalism on labor markets, equity, worker power, and policy responses.">
 <meta name="author" content="Christelle Prophete">
-<meta name="theme-color" content="#2c3254">
+<meta name="theme-color" content="#FFFFFF" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#14161c" media="(prefers-color-scheme: dark)">
 <link rel="canonical" href="https://cmpcmp-dot.github.io/ai-tech-markets-research/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="AI, Tech and the Economy: Research Intelligence">
@@ -35,76 +36,54 @@
   @font-face {
     font-family: 'Publico Banner';
     src: url('fonts/PublicoBannerBold.otf') format('opentype');
-    font-weight: 700; font-style: normal; font-display: swap;
+    font-weight: 700; font-style: normal;
   }
   @font-face {
     font-family: 'Publico Banner';
     src: url('fonts/PublicoBannerMedium.otf') format('opentype');
-    font-weight: 500; font-style: normal; font-display: swap;
+    font-weight: 500; font-style: normal;
   }
   @font-face {
     font-family: 'Publico Banner';
     src: url('fonts/PublicoBannerRoman.otf') format('opentype');
-    font-weight: 400; font-style: normal; font-display: swap;
+    font-weight: 400; font-style: normal;
   }
   @font-face {
     font-family: 'Haas Grotesk';
     src: url('fonts/HaasGrotDisp55Roman.otf') format('opentype');
-    font-weight: 400 600; font-style: normal; font-display: swap;
+    font-weight: 400; font-style: normal;
   }
   @font-face {
     font-family: 'Public Sans';
     src: url('fonts/PublicSans-Regular.ttf') format('truetype');
-    font-weight: 400; font-style: normal; font-display: swap;
+    font-weight: 400; font-style: normal;
   }
   @font-face {
     font-family: 'Public Sans';
     src: url('fonts/PublicSans-Medium.ttf') format('truetype');
-    font-weight: 500; font-style: normal; font-display: swap;
+    font-weight: 500; font-style: normal;
   }
   @font-face {
     font-family: 'Public Sans';
     src: url('fonts/PublicSans-SemiBold.ttf') format('truetype');
-    font-weight: 600; font-style: normal; font-display: swap;
+    font-weight: 600; font-style: normal;
   }
   @font-face {
     font-family: 'Public Sans';
     src: url('fonts/PublicSans-Bold.ttf') format('truetype');
-    font-weight: 700; font-style: normal; font-display: swap;
+    font-weight: 700; font-style: normal;
   }
 
   :root {
-    /* ── ESP C3 brand tokens (from killer_facts.html / esp-style-guide) ── */
-    --navy:        #2c3254;  /* Warm Navy — anchor */
-    --beige:       #f4f2e4;  /* Beige — anchor */
-    --light-beige: #fffdf2;  /* Light Beige — card surface */
-    --green:       #70ad8f;  /* Soft Green — C3 accent */
-    --green-hover: #84cca8;
-    --purple:      #472b51;  /* Deep Purple — secondary */
-    --gold:        #ebc382;  /* Warm Gold — secondary */
-    --pink:        #ffbfa7;  /* Warm Pink — secondary */
-    --headline:    #232849;  /* Headline Black */
-    --divider:     #caccd4;  /* Divider Grey */
-    --serif:  'Publico Banner', Georgia, serif;
-    --grot:   'Haas Grotesk', 'Helvetica Neue', Arial, sans-serif;
-    --sans:   'Public Sans', -apple-system, 'Segoe UI', system-ui, sans-serif;
-
-    /* ── App tokens remapped onto the ESP palette ── */
-    --bg:       var(--beige);
-    --surface:  var(--light-beige);
-    --surface2: var(--beige);
-    --border:   var(--divider);
-    --text:     #3c4164;     /* Text Black */
-    --muted:    #6d7091;     /* warmed grey to sit in the family */
-    /* App emphasis/focus color. Set to Warm Navy (not the C3 Soft Green)
-       for readability: navy has far stronger contrast on the light
-       background, and it keeps green within ESP's ~15% accent budget.
-       Green survives as deliberate accents that reference --green directly:
-       the header active-tab underline, the Policy Map Economic Security
-       swatch, and the (green-by-design) Killer Facts tab. */
-    --accent:   var(--navy);
-    --tooltip-bg: #2c3254;
-    --tooltip-fg: #f4f2e4;
+    --bg:       #FFFFFF;
+    --surface:  #FFFFFF;
+    --surface2: #F1F3F7;
+    --border:   #E2E6EF;
+    --text:     #1E2433;
+    --muted:    #6B7280;
+    --accent:   #2563EB;
+    --tooltip-bg: #1e2235;
+    --tooltip-fg: #e8eaf0;
     --sidebar-w: 252px;
 
     --c0: #2C3254; --c1: #FF8361; --c2: #472B51; --c3: #70AD8F;
@@ -122,18 +101,22 @@
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body {
     zoom: 1.05;
-    background: var(--beige); color: var(--text);
-    font-family: var(--sans);
+    background: var(--bg); color: var(--text);
+    font-family: 'Public Sans', 'Segoe UI', system-ui, -apple-system, sans-serif;
     min-height: 100vh; line-height: 1.6;
     display: flex; flex-direction: column;
+    background-image:
+      radial-gradient(ellipse at 70% 0%, rgba(44,50,84,0.045) 0%, transparent 55%),
+      radial-gradient(ellipse at 15% 80%, rgba(255,131,97,0.03) 0%, transparent 45%);
   }
 
-  /* ── HEADER (Warm Navy band) ────────────────────────────── */
+  /* ── HEADER ─────────────────────────────────────────────── */
   .site-header {
-    background: var(--navy); color: var(--beige);
-    border-top: none; border-bottom: none;
+    background: var(--surface);
+    border-top: none;
+    border-bottom: 1px solid var(--border);
     padding: 24px 32px 22px;
-    position: relative; flex-shrink: 0;
+    position: relative; overflow: hidden; flex-shrink: 0;
   }
   .site-header::before { display: none; }
   .site-header::after  { display: none; }
@@ -142,34 +125,30 @@
     margin: 0 auto;
     display: flex; align-items: center; justify-content: space-between; gap: 24px;
     position: relative;
+    border-left: 3px solid var(--accent);
+    padding-left: 16px;
   }
 
-  .header-brand { display: flex; align-items: center; gap: 18px; min-width: 0; }
-  .header-brand img { height: 42px; width: auto; flex-shrink: 0; }
-  .header-text { min-width: 0; }
+  .header-text { flex: 1; }
 
   .site-header h1 {
-    font-size: clamp(20px, 2.5vw, 28px); font-weight: 700; letter-spacing: -0.015em;
-    line-height: 1.2; margin-bottom: 3px; color: var(--beige);
-    font-family: var(--serif);
+    font-size: clamp(22px, 2.8vw, 32px); font-weight: 700; letter-spacing: -0.015em;
+    margin-bottom: 6px; color: var(--text);
+    font-family: 'Publico Banner', Georgia, serif;
   }
   .site-header h1 a {
-    color: var(--beige);
+    color: inherit;
     text-decoration: none;
   }
   .site-header h1 a:hover {
-    color: var(--green-hover);
-  }
-  .header-sub {
-    font-family: var(--grot); font-size: 13px; letter-spacing: 0.02em;
-    color: var(--divider);
+    color: var(--accent);
   }
 
   .header-nav {
-    display: flex; align-items: center; gap: 6px;
-    flex-shrink: 0; flex-wrap: wrap;
+    display: flex; align-items: center; gap: 0;
+    flex-shrink: 0;
   }
-  .header-tabs { display: flex; align-items: center; flex-wrap: wrap; }
+  .header-tabs { display: flex; align-items: center; }
   .header-tab-desc {
     border-bottom: 1px solid var(--border);
     padding: 16px 28px 14px;
@@ -196,17 +175,17 @@
   .header-tab-desc-note { display: none; }
   .header-nav-btn {
     background: none; border: none; cursor: pointer;
-    font-family: var(--grot);
-    font-size: 14px; font-weight: 500; letter-spacing: 0.02em;
-    color: var(--divider); padding: 6px 13px;
+    font-family: 'Public Sans', sans-serif;
+    font-size: 14px; font-weight: 500; letter-spacing: 0.01em;
+    color: var(--muted); padding: 6px 14px;
     border-bottom: 2px solid transparent;
     transition: color 0.15s, border-color 0.15s;
     white-space: nowrap;
   }
-  .header-nav-btn:hover { color: var(--beige); }
+  .header-nav-btn:hover { color: var(--text); }
   .header-nav-btn.active {
-    color: #fff; font-weight: 600;
-    border-bottom-color: var(--green);
+    color: var(--text); font-weight: 600;
+    border-bottom-color: var(--accent);
   }
 
   /* ── APP LAYOUT ─────────────────────────────────────────── */
@@ -249,8 +228,8 @@
     border-color: var(--accent); color: var(--text);
   }
   .theme-jump-pill.active {
-    color: var(--headline); border-color: var(--green);
-    background: rgba(112,173,143,0.16); font-weight: 600;
+    color: var(--accent); border-color: var(--accent);
+    background: rgba(37,99,235,0.07); font-weight: 600;
   }
 
   .theme-nav-strip {
@@ -501,7 +480,7 @@
     padding-left: 16px;
   }
   .card:hover {
-    background: #fdfaef;
+    background: #F8FAFE;
     border-left-color: var(--border);
   }
   .card::before { display: none; }
@@ -691,8 +670,8 @@
   }
 
   /* R5: changelog */
-  .footer-changelog-link { color: var(--beige); text-decoration: underline; text-decoration-color: var(--green); text-underline-offset: 3px; }
-  .footer-changelog-link:hover { color: #fff; text-decoration-color: var(--green-hover); }
+  .footer-changelog-link { color: var(--accent); text-decoration: none; }
+  .footer-changelog-link:hover { text-decoration: underline; text-underline-offset: 2px; }
   .clog-group { padding: 14px 0; border-bottom: 1px solid var(--border); }
   .clog-group:first-child { padding-top: 0; }
   .clog-group:last-child { border-bottom: none; padding-bottom: 0; }
@@ -950,20 +929,18 @@
 
   /* ── FOOTER ──────────────────────────────────────────────── */
   footer {
-    background: var(--navy); color: var(--divider);
-    border-top: none; padding: 20px 32px;
-    text-align: center; font-size: 12.5px;
+    border-top: 1px solid var(--border); padding: 18px 32px;
+    text-align: center; font-size: 12px; color: var(--muted);
     flex-shrink: 0;
   }
-  footer a { color: var(--beige); }
 
   /* ── MOBILE SIDEBAR TOGGLE ───────────────────────────────── */
   .sidebar-toggle {
     display: none; position: fixed; bottom: 20px; left: 20px; z-index: 300;
-    background: var(--navy); border: none; border-radius: 50%;
+    background: var(--accent); border: none; border-radius: 50%;
     width: 44px; height: 44px; cursor: pointer;
     align-items: center; justify-content: center;
-    box-shadow: 0 4px 16px rgba(44,50,84,0.3); color: var(--beige);
+    box-shadow: 0 4px 16px rgba(44,50,84,0.3); color: #fff;
     transition: transform 0.18s;
   }
   .sidebar-toggle:hover { transform: scale(1.06); }
@@ -1184,6 +1161,9 @@
 
   /* How it interacts — pairs (green) / competes (amber), echoing the map legend */
   :root { --rel-pair: #2e8b57; --rel-compete: #b8791a; }
+  @media (prefers-color-scheme: dark) { :root { --rel-pair: #82c4a4; --rel-compete: #ecc784; } }
+  :root[data-theme="dark"] { --rel-pair: #82c4a4; --rel-compete: #ecc784; }
+  :root[data-theme="light"] { --rel-pair: #2e8b57; --rel-compete: #b8791a; }
   .pol-rel-group { margin-top: 12px; }
   .pol-rel-group:first-of-type { margin-top: 2px; }
   .pol-rel-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 4px 26px; }
@@ -1221,7 +1201,7 @@
     font-family: 'Haas Grotesk', 'Helvetica Neue', Arial, sans-serif;
   }
 
-  /* ── POLICY MAP VIEW ─────────────────────────────────────── */
+  /* ── POLICY LAB VIEW ─────────────────────────────────────── */
   .policy-view .sidebar              { display: none; }
   .policy-view .inline-filters       { display: none; }
 
@@ -1263,297 +1243,24 @@
     font-family: 'Public Sans', sans-serif;
   }
   .about-section-text em { font-style: italic; }
-
-  /* ── JOB DISPLACEMENT TAB ── (static view, modeled on About) */
-  #jobDisplacementArea                    { display: none; }
-  .jobs-view #jobDisplacementArea         { display: block; }
-  .jobs-view .sidebar                     { display: none; }
-  .jobs-view .inline-filters              { display: none; }
-  .jobs-view .cards-grid                  { display: none !important; }
-  .jobs-view .empty-state                 { display: none !important; }
-  .jobs-view .lens-toggle                 { display: none; }
-  .jobs-view .header-tab-desc             { display: none; }
-  .jobs-view .research-header-bar         { display: none !important; }
-  .jobs-view .theme-nav-strip             { display: none; }
-  .jobs-view .theme-disclaimer-bar        { display: none; }
-  .jobs-view .key-findings-band           { display: none; }
-  .jobs-view .app-layout                  { grid-template-columns: 1fr; }
-  .jobs-view .main-content                { grid-column: 1 / -1; }
-
-  /* ═══════════════════════════════════════════════════════════
-     KILLER FACTS TAB (merged from killer_facts.html)
-     All component styles are scoped under #killerFactsArea so the
-     generic class names (.controls, .chip, .empty-state, …) cannot
-     leak into the rest of the app.
-     ═══════════════════════════════════════════════════════════ */
-  #killerFactsArea { display: none; }
-  .killer-view #killerFactsArea {
-    display: block; max-width: 1140px; margin: 0 auto; width: 100%;
-  }
-  .killer-view .sidebar            { display: none; }
-  .killer-view .inline-filters     { display: none; }
-  .killer-view .cards-grid         { display: none !important; }
-  .killer-view .empty-state        { display: none !important; }
-  .killer-view .lens-toggle        { display: none; }
-  .killer-view .header-tab-desc    { display: none; }
-  .killer-view .research-header-bar{ display: none !important; }
-  .killer-view .theme-nav-strip    { display: none; }
-  .killer-view .theme-disclaimer-bar { display: none; }
-  .killer-view .key-findings-band  { display: none; }
-  .killer-view .app-layout         { grid-template-columns: 1fr; }
-  .killer-view .main-content       { grid-column: 1 / -1; }
-
-  #killerFactsArea .intro-bar { padding: 26px 0 20px; border-bottom: 2px solid var(--navy); }
-  #killerFactsArea .intro-title {
-    font-family: var(--serif); font-weight: 700; color: var(--headline);
-    font-size: 30px; letter-spacing: -0.01em; margin-bottom: 8px;
-  }
-  #killerFactsArea .intro-text { font-size: 14.5px; line-height: 1.65; }
-  #killerFactsArea .intro-note { font-size: 12.5px; font-style: italic; color: var(--purple); margin-top: 8px; }
-
-  /* ── MODE TOGGLE ── */
-  #killerFactsArea .mode-toggle { display: flex; gap: 10px; padding: 18px 0 4px; flex-wrap: wrap; }
-  #killerFactsArea .mode-btn {
-    flex: 1; min-width: 240px; text-align: left; cursor: pointer;
-    background: var(--light-beige); border: 1.5px solid var(--divider);
-    border-radius: 12px; padding: 13px 18px 12px;
-    font-family: var(--grot); color: var(--text);
-    transition: border-color 0.15s, background 0.15s, color 0.15s;
-  }
-  #killerFactsArea .mode-btn .mode-name {
-    display: block; font-size: 16px; font-weight: 600; letter-spacing: 0.01em;
-    color: var(--headline); margin-bottom: 2px;
-  }
-  #killerFactsArea .mode-btn .mode-desc { display: block; font-family: var(--sans); font-size: 12.5px; }
-  #killerFactsArea .mode-btn:hover { border-color: var(--green); }
-  #killerFactsArea .mode-btn[aria-pressed="true"] { background: var(--navy); border-color: var(--navy); }
-  #killerFactsArea .mode-btn[aria-pressed="true"] .mode-name { color: #fff; }
-  #killerFactsArea .mode-btn[aria-pressed="true"] .mode-name::before {
-    content: ""; display: inline-block; width: 9px; height: 9px; border-radius: 50%;
-    background: var(--green); margin-right: 8px; vertical-align: 1px;
-  }
-  #killerFactsArea .mode-btn[aria-pressed="true"] .mode-desc { color: var(--divider); }
-
-  /* ── CONTROLS ── */
-  #killerFactsArea .controls {
-    position: sticky; top: 0; z-index: 100;
-    background: var(--beige); border-bottom: 1px solid var(--divider);
-    padding: 12px 0 10px;
-  }
-  #killerFactsArea .controls-row { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
-  #killerFactsArea .controls-row2 { margin-top: 8px; }
-  #killerFactsArea .search-wrap { position: relative; flex: 1; min-width: 220px; }
-  #killerFactsArea .search-wrap svg {
-    position: absolute; left: 11px; top: 50%; transform: translateY(-50%);
-    color: var(--text); opacity: 0.55; pointer-events: none;
-  }
-  #killerFactsArea input[type="search"] {
-    width: 100%; background: var(--light-beige); border: 1px solid var(--divider);
-    color: var(--text); border-radius: 9px; padding: 8px 12px 8px 34px;
-    font-size: 13.5px; outline: none; transition: border-color 0.18s; font-family: var(--sans);
-  }
-  #killerFactsArea input[type="search"]:focus { border-color: var(--green); }
-  #killerFactsArea input[type="search"]::placeholder { color: var(--text); opacity: 0.5; }
-  #killerFactsArea select {
-    background: var(--light-beige); border: 1px solid var(--divider); color: var(--text);
-    border-radius: 9px; padding: 8px 8px; font-size: 13px; font-family: var(--sans);
-    outline: none; cursor: pointer;
-  }
-  #killerFactsArea select:focus { border-color: var(--green); }
-  #killerFactsArea .ctl-label {
-    font-family: var(--grot); font-size: 12px; font-weight: 500; letter-spacing: 0.03em;
-    color: var(--headline); white-space: nowrap;
-  }
-  #killerFactsArea .kw-toggle {
-    display: inline-flex; align-items: center; gap: 7px; cursor: pointer;
-    background: var(--light-beige); border: 1px solid var(--divider); border-radius: 9px;
-    padding: 8px 13px; font-family: var(--grot); font-size: 13px; font-weight: 500;
-    color: var(--headline); white-space: nowrap; transition: border-color 0.15s;
-  }
-  #killerFactsArea .kw-toggle:hover { border-color: var(--green); }
-  #killerFactsArea .kw-toggle .chev { transition: transform 0.18s; font-size: 11px; line-height: 1; }
-  #killerFactsArea .kw-toggle[aria-expanded="true"] .chev { transform: rotate(180deg); }
-  #killerFactsArea .kw-toggle .kw-active-count {
-    background: var(--green); color: var(--headline); border-radius: 10px;
-    font-size: 11px; font-weight: 600; padding: 0 7px; line-height: 17px;
-  }
-  #killerFactsArea .kw-panel { display: grid; grid-template-rows: 0fr; transition: grid-template-rows 0.25s ease; }
-  #killerFactsArea .kw-panel.open { grid-template-rows: 1fr; }
-  #killerFactsArea .kw-panel > div { overflow: hidden; min-height: 0; }
-  #killerFactsArea .pill-row { display: flex; flex-wrap: wrap; gap: 6px; padding: 12px 2px 4px; }
-  #killerFactsArea .kw-pill {
-    display: inline-flex; align-items: center; gap: 6px;
-    font-family: var(--grot); font-size: 12px; font-weight: 500; cursor: pointer; white-space: nowrap;
-    background: var(--light-beige); border: 1px solid var(--divider); border-radius: 20px;
-    padding: 4px 12px; color: var(--text);
-    transition: border-color 0.15s, background 0.15s;
-  }
-  #killerFactsArea .kw-pill:hover { border-color: var(--green); }
-  #killerFactsArea .kw-pill[aria-pressed="true"] {
-    background: var(--navy); border-color: var(--navy); color: var(--beige); font-weight: 600;
-  }
-  #killerFactsArea .kw-count { font-size: 11px; opacity: 0.7; font-variant-numeric: tabular-nums; }
-  #killerFactsArea .result-line {
-    font-family: var(--grot); font-size: 12px; letter-spacing: 0.02em;
-    color: var(--text); padding: 10px 0 0;
-  }
-
-  /* ── COLLAPSE MACHINERY ── */
-  #killerFactsArea .cwrap {
-    display: grid; grid-template-rows: 1fr;
-    transition: grid-template-rows 0.3s ease, opacity 0.22s ease; opacity: 1;
-  }
-  #killerFactsArea .cwrap.hidden { grid-template-rows: 0fr; opacity: 0; pointer-events: none; }
-  #killerFactsArea .cwrap > .cinner { overflow: hidden; min-height: 0; }
-  #killerFactsArea .details { display: grid; grid-template-rows: 0fr; transition: grid-template-rows 0.28s ease; }
-  #killerFactsArea .details > .dinner { overflow: hidden; min-height: 0; }
-  #killerFactsArea .open > .details, #killerFactsArea .open .details { grid-template-rows: 1fr; }
-
-  /* ── SHARED CARD PIECES ── */
-  #killerFactsArea .lbl-grot {
-    font-family: var(--grot); font-weight: 600; font-size: 11px;
-    letter-spacing: 0.06em; text-transform: uppercase; color: var(--headline);
-  }
-  #killerFactsArea .fact-quote {
-    font-family: var(--serif); font-weight: 400;
-    font-size: 15px; line-height: 1.55; letter-spacing: 0; color: var(--text);
-  }
-  #killerFactsArea .fact-quote::before { content: "\201C"; color: var(--green); }
-  #killerFactsArea .fact-quote::after  { content: "\201D"; color: var(--green); }
-  #killerFactsArea .fact-caveat {
-    margin-top: 12px; padding: 9px 14px;
-    background: var(--beige); border-left: 3px solid var(--green); border-radius: 0 8px 8px 0;
-    font-size: 13px; line-height: 1.55;
-  }
-  #killerFactsArea .fact-caveat .lbl-grot { display: block; margin-bottom: 2px; }
-  #killerFactsArea .fact-caveat.warn { border-left-color: var(--gold); background: rgba(235,195,130,0.16); }
-  #killerFactsArea .chips { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
-  #killerFactsArea .chip {
-    display: inline-flex; align-items: center; gap: 5px;
-    font-family: var(--grot); font-size: 11px; font-weight: 500; letter-spacing: 0.02em;
-    border-radius: 6px; padding: 2.5px 9px;
-    background: var(--beige); border: 1px solid var(--divider); color: var(--text);
-  }
-  #killerFactsArea .chip-rating { color: var(--headline); font-weight: 600; }
-  #killerFactsArea .chip .dots { letter-spacing: 1.5px; color: var(--green); font-size: 10px; }
-  #killerFactsArea .chip-caution { background: rgba(235,195,130,0.3); border-color: var(--gold); color: var(--headline); font-weight: 600; }
-  #killerFactsArea .chip-access { font-style: italic; }
-  #killerFactsArea .chip-kw { background: rgba(112,173,143,0.16); border-color: rgba(112,173,143,0.55); color: var(--headline); }
-  #killerFactsArea .chip-foundational { background: rgba(235,195,130,0.18); border-color: var(--gold); color: var(--headline); font-weight: 600; cursor: help; }
-  #killerFactsArea .ctl-check { display: inline-flex; align-items: center; gap: 5px; font-size: 12px; color: var(--headline); cursor: pointer; white-space: nowrap; }
-  #killerFactsArea .fact-meta { font-size: 12.5px; color: var(--text); line-height: 1.6; }
-  #killerFactsArea .fact-meta strong { font-weight: 600; color: var(--headline); }
-  #killerFactsArea .fact-context {
-    margin-top: 10px; padding: 10px 14px;
-    border: 1px solid var(--divider); border-radius: 8px; background: var(--beige);
-    font-size: 12.5px; line-height: 1.65; font-style: italic;
-  }
-  #killerFactsArea .fact-context .lbl-grot { display: block; font-style: normal; margin-bottom: 3px; }
-  #killerFactsArea .rating-desc { margin-top: 12px; display: flex; flex-direction: column; gap: 8px; }
-  #killerFactsArea .rating-desc .rd-row { font-size: 12.5px; line-height: 1.55; }
-  #killerFactsArea .rating-desc .rd-row .rd-head {
-    font-family: var(--grot); font-weight: 600; font-size: 12px; letter-spacing: 0.03em; color: var(--headline);
-  }
-  #killerFactsArea .rating-desc .rd-row .rd-head .dots { letter-spacing: 1.5px; color: var(--green); font-size: 10px; }
-  #killerFactsArea .cite-link {
-    font-size: 12.5px; line-height: 1.5; color: var(--text); text-decoration: underline;
-    text-decoration-color: var(--green); text-underline-offset: 3px; text-decoration-thickness: 1.5px;
-  }
-  #killerFactsArea .cite-link em { font-style: italic; }
-  #killerFactsArea .cite-link:hover { color: var(--headline); text-decoration-color: var(--navy); }
-  #killerFactsArea .cite-date {
-    font-family: var(--grot); font-size: 11.5px; letter-spacing: 0.03em; color: var(--purple); white-space: nowrap;
-  }
-  #killerFactsArea .act-btn {
-    background: transparent; border: 1px solid var(--navy); color: var(--navy);
-    border-radius: 7px; padding: 4px 12px; font-family: var(--grot);
-    font-size: 12px; font-weight: 600; letter-spacing: 0.02em;
-    cursor: pointer; white-space: nowrap; text-decoration: none;
-    transition: background 0.15s, color 0.15s;
-  }
-  #killerFactsArea .act-btn:hover { background: var(--navy); color: var(--beige); }
-  #killerFactsArea .act-btn.copied { background: var(--green); border-color: var(--green); color: var(--headline); }
-  #killerFactsArea .expand-hint {
-    display: inline-flex; align-items: center; gap: 6px;
-    font-family: var(--grot); font-size: 11.5px; font-weight: 600; letter-spacing: 0.04em;
-    color: var(--purple); background: none; border: none; cursor: pointer; padding: 0;
-  }
-  #killerFactsArea .expand-hint .chev { display: inline-block; transition: transform 0.2s; font-size: 13px; line-height: 1; }
-  #killerFactsArea .open .expand-hint .chev { transform: rotate(90deg); }
-  #killerFactsArea .kf-empty-state { padding: 48px 0; text-align: center; color: var(--text); font-size: 14px; }
-
-  /* ── MODE 1: BY PAPER ── */
-  #killerFactsArea .paper-group {
-    background: var(--light-beige); border: 1px solid var(--divider); border-radius: 12px;
-    margin-top: 18px; overflow: hidden;
-  }
-  #killerFactsArea .pg-facts { display: flex; flex-direction: column; }
-  #killerFactsArea .simple-card {
-    padding: 16px 20px 14px; cursor: pointer;
-    border-bottom: 1px solid var(--divider); border-left: 3px solid transparent;
-    transition: border-color 0.15s, background 0.15s;
-  }
-  #killerFactsArea .pg-facts .cwrap:last-of-type .simple-card { border-bottom: none; }
-  #killerFactsArea .simple-card:hover { border-left-color: var(--green); background: #fdfaef; }
-  #killerFactsArea .simple-card.open { border-left-color: var(--green); }
-  #killerFactsArea .sc-top { display: flex; gap: 12px; align-items: baseline; }
-  #killerFactsArea .sc-plain { flex: 1; font-size: 15px; font-weight: 500; line-height: 1.55; color: var(--headline); }
-  #killerFactsArea .sc-body { padding-top: 4px; }
-  #killerFactsArea .sc-actions { display: flex; gap: 8px; margin-top: 14px; flex-wrap: wrap; }
-  #killerFactsArea .pg-footer {
-    display: flex; align-items: flex-end; justify-content: space-between; gap: 16px;
-    padding: 13px 20px 14px; background: var(--beige); border-top: 1px solid var(--divider); flex-wrap: wrap;
-  }
-  #killerFactsArea .pg-cite { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
-  #killerFactsArea .pg-count { font-family: var(--grot); font-size: 11.5px; letter-spacing: 0.04em; color: var(--purple); white-space: nowrap; }
-
-  /* ── MODE 2: ALL FACTS ── */
-  #killerFactsArea .fact-card {
-    background: var(--light-beige); border: 1px solid var(--divider); border-radius: 12px;
-    border-left: 3px solid var(--green);
-    padding: 18px 22px 16px; margin-top: 14px; cursor: pointer; transition: background 0.15s;
-  }
-  #killerFactsArea .fact-card:hover { background: #fdfaef; }
-  #killerFactsArea .fc-plain { font-size: 15px; font-weight: 500; line-height: 1.55; color: var(--headline); }
-  #killerFactsArea .fc-quote-block { margin-top: 12px; }
-  #killerFactsArea .fc-quote-block .lbl-grot { display: block; margin-bottom: 4px; }
-  #killerFactsArea .fc-details-body { padding-top: 14px; }
-  #killerFactsArea .fc-details-body .fact-meta { margin-top: 12px; }
-  #killerFactsArea .fact-footer {
-    display: flex; align-items: flex-end; gap: 14px; flex-wrap: wrap;
-    margin-top: 14px; padding-top: 12px; border-top: 1px solid var(--divider);
-  }
-  #killerFactsArea .fact-footer .fc-cite { display: flex; flex-direction: column; gap: 2px; flex: 1; min-width: 220px; }
-  #killerFactsArea .fact-actions { display: flex; gap: 8px; align-items: center; flex-shrink: 0; }
-
-  @media (max-width: 760px) {
-    #killerFactsArea .mode-btn { min-width: 100%; }
-    #killerFactsArea .fact-card, #killerFactsArea .simple-card { padding-left: 15px; padding-right: 15px; }
-    #killerFactsArea .pg-footer { padding-left: 15px; padding-right: 15px; }
-  }
-  @media (prefers-reduced-motion: reduce) {
-    #killerFactsArea .cwrap, #killerFactsArea .details, #killerFactsArea .kw-panel,
-    #killerFactsArea .expand-hint .chev, #killerFactsArea .kw-toggle .chev { transition: none; }
-  }
-
   /* ── What's new (header button + count pill) ─────────────── */
   /* Styled as a nav item: identical type and spacing to .header-nav-btn,
      distinguished only by the count pill. */
   .header-changed-btn {
     display: inline-flex; align-items: center;
     background: none; border: none; cursor: pointer;
-    font-family: var(--grot);
-    font-size: 14px; font-weight: 500; letter-spacing: 0.02em;
-    color: var(--divider); padding: 6px 13px;
+    font-family: 'Public Sans', sans-serif;
+    font-size: 14px; font-weight: 500; letter-spacing: 0.01em;
+    color: var(--muted); padding: 6px 14px;
     border-bottom: 2px solid transparent;
     transition: color 0.15s;
     white-space: nowrap;
   }
-  .header-changed-btn:hover { color: var(--beige); }
+  .header-changed-btn:hover { color: var(--text); }
   .header-changed-pill {
     display: inline-flex; align-items: center; justify-content: center;
     min-width: 18px; height: 18px; padding: 0 5px; margin-left: 7px;
-    border-radius: 999px; background: var(--green); color: var(--headline);
+    border-radius: 999px; background: var(--accent); color: #fff;
     font-size: 11px; font-weight: 700; line-height: 1;
   }
   .header-changed-pill[hidden] { display: none; }
@@ -1571,13 +1278,13 @@
     .header-nav-btn, .header-changed-btn { padding: 6px 6px; letter-spacing: 0; }
   }
 
-  /* ── Policy Map intro bar (matches theme-disclaimer-bar) ─── */
-  .policy-map-header {
+  /* ── Policy Lab intro bar (matches theme-disclaimer-bar) ─── */
+  .policy-lab-header {
     display: none; padding: 14px 28px 13px;
     border-bottom: 1px solid var(--border);
     font-family: 'Haas Grotesk', 'Helvetica Neue', Arial, sans-serif;
   }
-  .policy-view .policy-map-header { display: none; }
+  .policy-view .policy-lab-header { display: none; }
   .policy-view .lens-toggle { display: none !important; }
   .pol-header-title {
     display: block;
@@ -1633,97 +1340,80 @@
   .pol-col-distbar { display: none; }
   .pol-col-distbar-seg { display: none; }
 
-  /* ── Policy category rows ─────────────────────────────────── */
-  /* Four merged categories stacked as rows in curated order
-     (Economic Security first, Global last). Within each row the policy
-     cards flow left→right alphabetically and wrap to new lines, so
-     scrolling down reads category by category. Each row's ESP identity
-     color is set inline as --cat-color; it rides the top border, a faint
-     header wash, a colored dot, and each card's left stripe. Label text
-     stays --headline for ADA contrast. */
-  .pol-cat-rows {
+  /* ── Policy matrix layout ─────────────────────────────────── */
+  .pol-waterfall {
     width: 100%; padding: 32px 28px 60px;
-    display: flex; flex-direction: column; gap: 28px;
   }
-  .pol-cat-row {
-    border: 1px solid var(--border);
-    border-top: 3px solid var(--cat-color, var(--border));
-    border-radius: 12px; overflow: hidden;
-    background: var(--surface);
-  }
-  .pol-cat-row-head {
-    padding: 14px 20px 12px;
-    border-bottom: 1px solid var(--border);
-    background: color-mix(in srgb, var(--cat-color, transparent) 6%, transparent);
-  }
-  .pol-cat-row-title {
-    display: flex; align-items: baseline; gap: 9px;
-    font-family: 'Publico Banner', Georgia, serif;
-    font-size: 18px; font-weight: 700; letter-spacing: -0.01em;
-    color: var(--headline); line-height: 1.2;
-  }
-  .pol-cat-row-title::before {
-    content: ''; flex-shrink: 0;
-    width: 10px; height: 10px; border-radius: 50%;
-    background: var(--cat-color, var(--muted));
-    transform: translateY(-1px);
-  }
-  .pol-cat-row-desc {
-    font-size: 12px; color: var(--muted); line-height: 1.5;
-    margin-top: 5px; font-family: 'Public Sans', sans-serif;
-  }
-  .pol-cat-row-count {
-    display: inline-block; margin-top: 7px;
-    font-family: 'Haas Grotesk', 'Helvetica Neue', Arial, sans-serif;
-    font-size: 10.5px; letter-spacing: 0.04em; text-transform: uppercase;
-    color: var(--muted); font-variant-numeric: tabular-nums;
-  }
-  /* Cards flow left→right and wrap; auto-fill columns of equal width keep
-     the alphabetical reading order clean across and down the row. */
-  .pol-cat-row-cards {
+  .pol-matrix-header,
+  .pol-matrix-row {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-    gap: 10px;
-    padding: 16px 20px 18px;
+    grid-template-columns: 180px repeat(5, 1fr);
+    gap: 0 20px;
+    padding: 0 28px;
   }
-  .pol-cat-card {
-    display: flex; align-items: flex-start; gap: 8px;
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-left: 3px solid color-mix(in srgb, var(--cat-color, var(--border)) 45%, var(--border));
-    border-radius: 8px;
-    padding: 11px 12px 11px 13px; cursor: pointer;
-    transition: background 0.15s, border-color 0.15s, box-shadow 0.15s;
+  .pol-matrix-header {
+    padding-bottom: 12px;
+    border-bottom: 2px solid var(--border);
+    margin-bottom: 0;
   }
-  .pol-cat-card:hover {
-    background: color-mix(in srgb, var(--cat-color, transparent) 8%, var(--surface));
-    border-left-color: var(--cat-color, var(--accent));
-    box-shadow: 0 2px 10px rgba(44,50,84,0.07);
+  /* Phase column header (top row) */
+  .pol-matrix-phase-col { padding: 8px 0 4px; }
+  .pol-matrix-phase-label {
+    font-family: 'Publico Banner', Georgia, serif;
+    font-size: 15px; font-weight: 700; letter-spacing: -0.01em;
+    color: var(--text); line-height: 1.2;
   }
-  .pol-cat-card-title {
-    flex: 1;
+  .pol-matrix-phase-blurb {
+    font-size: 11px; font-weight: 400; color: var(--muted);
+    line-height: 1.5; margin-top: 4px;
+    font-family: 'Public Sans', sans-serif;
+  }
+  /* Category row label (left cell of each row) */
+  .pol-matrix-row {
+    border-top: 1px solid var(--border);
+    padding-top: 16px; padding-bottom: 16px;
+    align-items: start;
+  }
+  .pol-matrix-cat-row-label {
+    padding: 2px 12px 2px 0;
+  }
+  .pol-matrix-cat-label {
+    font-family: 'Publico Banner', Georgia, serif;
+    font-size: 14px; font-weight: 700; letter-spacing: -0.01em;
+    color: var(--text); line-height: 1.3;
+  }
+  .pol-matrix-cat-desc {
+    font-size: 11px; color: var(--muted); line-height: 1.5;
+    margin-top: 3px; font-family: 'Public Sans', sans-serif;
+  }
+  .pol-matrix-cell {
+    display: flex; flex-direction: column; gap: 0; min-height: 4px;
+  }
+  .pol-matrix-card {
+    background: var(--surface); border: none;
+    border-left: 3px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    border-radius: 0; padding: 10px 0 10px 12px; cursor: pointer;
+    transition: background 0.15s, border-color 0.15s;
+    margin-bottom: 4px;
+  }
+  .pol-matrix-card:last-child { margin-bottom: 0; }
+  .pol-matrix-card:hover {
+    background: #F8FAFE;
+    border-left-color: var(--accent);
+  }
+  .pol-matrix-card-phase { display: none; }
+  .pol-matrix-card-title {
     font-family: 'Public Sans', sans-serif;
     font-size: 13px; font-weight: 500; line-height: 1.4;
     color: var(--text);
   }
-  /* Persistent, faint affordance: darkens toward the category color and
-     slides right on hover. Always present — hovering never resizes the card.
-     Hover color is mixed toward --headline so it stays legible for the
-     lighter category hues (gold, green). */
-  .pol-cat-card-arrow {
-    flex-shrink: 0; align-self: center;
-    font-size: 15px; line-height: 1; color: var(--muted); opacity: 0.35;
-    transition: opacity 0.15s, color 0.15s, transform 0.15s;
+  .pol-matrix-card-open {
+    font-size: 11px; color: var(--muted); display: none;
+    margin-top: 4px; font-family: 'Public Sans', sans-serif;
+    transition: color 0.15s;
   }
-  .pol-cat-card:hover .pol-cat-card-arrow {
-    opacity: 1;
-    color: color-mix(in srgb, var(--cat-color, var(--accent)) 65%, var(--headline));
-    transform: translateX(3px);
-  }
-  @media (prefers-reduced-motion: reduce) {
-    .pol-cat-card-arrow { transition: opacity 0.15s, color 0.15s; }
-    .pol-cat-card:hover .pol-cat-card-arrow { transform: none; }
-  }
+  .pol-matrix-card:hover .pol-matrix-card-open { display: block; color: var(--text); }
   /* View mode toggle */
 
   .pol-item-list {
@@ -1769,77 +1459,25 @@
   }
   .pol-item-wrap:hover .pol-item-title { color: var(--accent); }
 
-  /* ── Policy Map / Links sub-view toggle ──────────────────────
-     Deliberately its own class, not `.lens-toggle` — the site hides
-     every `.lens-toggle` inside `.policy-view` (lens doesn't apply to
-     the Policy Map), which would also hide this if it shared the class. */
-  .pol-subview-toggle {
-    display: flex; align-items: center; gap: 2px;
-    background: var(--surface); border: 1px solid var(--border);
-    border-radius: 20px; padding: 3px; width: fit-content;
-    margin: 20px 28px 0;
-  }
-  .pol-subview-btn {
-    padding: 5px 16px; font-size: 12px; font-weight: 500;
-    border: none; background: transparent; border-radius: 16px;
-    cursor: pointer; color: var(--muted); font-family: inherit;
-    transition: all 0.15s; white-space: nowrap; letter-spacing: 0.015em;
-  }
-  .pol-subview-btn.active { background: var(--accent); color: #fff; font-weight: 600; }
-  .pol-subview-btn:hover:not(.active) { color: var(--text); background: rgba(58,97,134,0.07); }
-
-  /* ── Policy Links graph (test-run, hand-rolled SVG force layout) ── */
-  .pol-links-wrap { padding: 20px 28px 50px; }
-  .pol-links-graph-outer {
-    border: 1px solid var(--border); border-radius: 12px;
-    background: var(--surface); overflow: hidden; position: relative;
-  }
-  .pol-links-svg { display: block; width: 100%; height: auto; min-height: 560px; }
-  .pol-links-band-label {
-    font-family: 'Haas Grotesk', 'Helvetica Neue', Arial, sans-serif;
-    font-size: 11px; font-weight: 600; letter-spacing: 0.03em; text-transform: uppercase;
-    fill: var(--muted); opacity: 0.75;
-  }
-  .pol-links-edge { stroke: var(--muted); stroke-opacity: 0.35; fill: none; transition: stroke-opacity 0.15s, stroke 0.15s; }
-  .pol-links-edge.dimmed { stroke-opacity: 0.08; }
-  .pol-links-edge.lit { stroke: var(--accent); stroke-opacity: 0.85; }
-  .pol-links-node-dot {
-    stroke: var(--surface); stroke-width: 1.5px; cursor: pointer;
-    transition: opacity 0.15s, r 0.15s;
-  }
-  .pol-links-node.dimmed .pol-links-node-dot { opacity: 0.28; }
-  /* Labels render via <foreignObject><div> (not SVG <text>) specifically so
-     long policy titles can wrap onto multiple lines instead of running off
-     as one long unbroken string. */
-  .pol-links-node-label-fo { overflow: visible; pointer-events: none; }
-  .pol-links-node-label {
-    font-family: 'Public Sans', 'Segoe UI', system-ui, sans-serif;
-    font-size: 9.5px; line-height: 1.28; color: var(--text);
-    white-space: normal; overflow-wrap: break-word;
-    transition: opacity 0.15s, font-weight 0.15s, color 0.15s;
-  }
-  .pol-links-node.dimmed .pol-links-node-label { opacity: 0.3; }
-  .pol-links-node.lit .pol-links-node-label { font-weight: 700; color: var(--headline); }
-  .pol-links-node-hit { fill: transparent; cursor: pointer; }
-  .pol-links-legend {
-    display: flex; flex-wrap: wrap; gap: 14px;
-    padding: 12px 16px; border-top: 1px solid var(--border);
-    font-family: 'Public Sans', sans-serif; font-size: 11px; color: var(--muted);
-  }
-  .pol-links-legend-item { display: flex; align-items: center; gap: 6px; }
-  .pol-links-legend-dot { width: 9px; height: 9px; border-radius: 50%; flex-shrink: 0; }
-
   @media (max-width: 700px) {
-    .pol-subview-toggle { margin: 16px 16px 0; }
-    .pol-links-wrap { padding: 16px 16px 40px; }
-    .policy-map-header { padding-left: 16px; padding-right: 16px; }
+    .policy-lab-header { padding-left: 16px; padding-right: 16px; }
 
     .pol-columns { padding-left: 16px; padding-right: 16px; grid-template-columns: 1fr; }
 
-    /* Policy Map: tighten row padding; auto-fill collapses cards to 1-up */
-    .pol-cat-rows { padding: 18px 16px 40px; gap: 18px; }
-    .pol-cat-row-cards { grid-template-columns: 1fr; padding: 12px 14px 14px; }
-    .pol-cat-row-head { padding: 12px 14px 10px; }
+    /* Policy Lab waterfall: stack by category, phase as a per-card label */
+    .pol-waterfall { padding: 18px 16px 40px; }
+    .pol-matrix-header { display: none; }
+    .pol-matrix-row { display: block; grid-template-columns: none; gap: 0; padding: 16px 16px 6px; }
+    .pol-matrix-cat-row-label { padding: 0 0 10px; }
+    .pol-matrix-cell { display: block; }
+    .pol-matrix-cell:empty { display: none; }
+    .pol-matrix-card { margin-bottom: 8px; padding: 9px 12px; }
+    .pol-matrix-card-phase {
+      display: block; font-size: 10px; font-weight: 700; letter-spacing: 0.07em;
+      text-transform: uppercase; color: var(--muted); margin-bottom: 3px;
+      font-family: 'Haas Grotesk', 'Helvetica Neue', Arial, sans-serif;
+    }
+    .pol-matrix-card-open { display: block; }
   }
 
   /* ── FOCUS STYLES (Fix 1) ────────────────────────────────── */
@@ -1853,83 +1491,29 @@
     outline-offset: 2px;
   }
 
-  /* ── JOB DISPLACEMENT ANALYSIS ──────────────────────────── */
-  /* Transplanted from jobs_displacement_prototype.html. Charts render
-     into #jobDisplacementArea via the IIFE near the end of <body>. */
-  .jd-wrap { max-width: 680px; margin: 0 auto; padding: 8px 28px 20px; }
-  .jd-notice {
-    display: flex; gap: 12px; align-items: flex-start;
-    background: var(--gold); color: var(--headline);
-    border-radius: 10px; padding: 14px 16px; margin: 20px 0 4px;
-    font-size: 13.5px; line-height: 1.55;
+  /* ── DARK MODE (auto, follows OS) ─────────────────────────── */
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg:       #14161c;
+      --surface:  #1c1f28;
+      --surface2: #262b36;
+      --border:   #333947;
+      --text:     #e6e8f0;
+      --muted:    #9aa3b4;
+      --accent:   #6fa1f5;
+      --tooltip-bg: #e6e8f0;
+      --tooltip-fg: #14161c;
+      --c0: #8b96c8; --c1: #ff9a7d; --c2: #b48fc4; --c3: #82c4a4;
+      --c4: #ecc784; --c5: #8b96c8; --c6: #b48fc4; --c7: #82c4a4;
+      --c8: #ff9a7d; --c9: #8a93bd; --c10: #8b96c8; --c11: #82c4a4;
+      --c12: #ecc784; --c13: #e57373;
+      --s-emergent: #82c4a4; --s-current: #8b96c8; --s-stale: #9BA5B5;
+      --g-us: #8b96c8; --g-intl: #ff9a7d;
+    }
+    /* gap arrows use theme color via inline --theme-color; keep them on the accent */
+    .theme-gap-arrow { color: var(--accent); }
+    .header-changed-pill { color: #11161f; }
   }
-  .jd-notice .tag {
-    font-family: var(--grot); font-weight: 700; letter-spacing: 0.08em;
-    text-transform: uppercase; font-size: 11px; color: var(--purple);
-    border: 1.5px solid var(--purple); border-radius: 5px;
-    padding: 3px 7px; flex-shrink: 0; margin-top: 1px;
-  }
-  .jd-notice b { font-weight: 700; }
-  .jd-lede {
-    font-family: var(--serif); font-size: clamp(22px, 3vw, 28px);
-    line-height: 1.3; color: var(--headline); font-weight: 500;
-    padding: 28px 0 6px;
-  }
-  .jd-standfirst {
-    font-size: 15px; line-height: 1.7; color: var(--muted);
-    padding-bottom: 8px; border-bottom: 1px solid var(--border);
-  }
-  .jd-section { padding: 30px 0 10px; border-top: 1px solid var(--border); }
-  .jd-section:first-of-type { border-top: none; }
-  .jd-kicker {
-    font-family: var(--grot); font-size: 11.5px; letter-spacing: 0.09em;
-    text-transform: uppercase; color: var(--green); font-weight: 600; margin-bottom: 7px;
-  }
-  .jd-h {
-    font-family: var(--serif); font-size: clamp(20px, 2.4vw, 25px);
-    line-height: 1.25; color: var(--headline); margin-bottom: 13px; font-weight: 500;
-  }
-  .jd-p { font-size: 14.5px; line-height: 1.75; color: var(--text); margin-bottom: 14px; }
-  .jd-p a { color: var(--navy); }
-  .jd-chart-wrap {
-    background: var(--surface); border: 1px solid var(--border);
-    border-radius: 10px; padding: 16px 14px 12px; margin: 18px 0 10px;
-  }
-  .jd-chart-title { font-family: var(--grot); font-size: 13px; font-weight: 600; color: var(--headline); margin: 0 4px 2px; }
-  .jd-chart-sub { font-size: 11.5px; color: var(--muted); margin: 0 4px 8px; }
-  .jd-svg { width: 100%; height: auto; display: block; font-family: var(--sans); }
-  .jd-chart-note { font-size: 11px; color: var(--muted); margin: 8px 4px 0; line-height: 1.5; }
-  .jd-legend { display: flex; flex-wrap: wrap; gap: 15px; margin: 4px 4px 2px; font-size: 12px; color: var(--text); }
-  .jd-legend span { display: inline-flex; align-items: center; gap: 6px; }
-  .jd-legend i { width: 13px; height: 4px; border-radius: 2px; display: inline-block; }
-  .jd-legend i.dot { width: 10px; height: 10px; border-radius: 50%; }
-  .jd-answer {
-    display: flex; gap: 14px; align-items: flex-start;
-    background: var(--navy); color: var(--beige);
-    border-radius: 10px; padding: 15px 18px; margin: 16px 0 6px;
-  }
-  .jd-answer .lab {
-    font-family: var(--grot); font-weight: 700; letter-spacing: 0.07em;
-    text-transform: uppercase; font-size: 11.5px; color: var(--gold);
-    flex-shrink: 0; padding-top: 2px;
-  }
-  .jd-answer .txt { font-size: 14px; line-height: 1.65; }
-  .jd-stats { display: flex; flex-wrap: wrap; gap: 10px; margin: 16px 0 4px; }
-  .jd-stat { flex: 1 1 140px; background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 12px 14px; }
-  .jd-stat .n { font-family: var(--serif); font-size: 25px; color: var(--headline); line-height: 1.05; }
-  .jd-stat .n small { font-size: 14px; color: var(--muted); font-family: var(--sans); }
-  .jd-stat .n .pos { color: #b06a4f; }
-  .jd-stat .l { font-family: var(--grot); font-size: 11px; color: var(--muted); margin-top: 7px; line-height: 1.45; }
-  .jd-tooltip {
-    position: fixed; pointer-events: none; background: var(--navy); color: var(--beige);
-    font-family: var(--sans); font-size: 12px; line-height: 1.5; padding: 7px 10px;
-    border-radius: 6px; box-shadow: 0 4px 16px rgba(0,0,0,0.28); opacity: 0;
-    transition: opacity 0.1s; z-index: 60; max-width: 250px;
-  }
-  .jd-tooltip b { color: #fff; }
-  .jd-src { font-size: 11px; color: var(--muted); margin-top: 4px; }
-  .jd-vintage { font-family: var(--grot); font-size: 10.5px; color: var(--muted); text-align: right; margin-top: 4px; }
-
 </style>
 </head>
 <body>
@@ -1940,10 +1524,6 @@
      DATA
      ═══════════════════════════════════════════════════════════ -->
 <script src="data/tracker-data.js"></script>
-<!-- Killer Facts data. Optional: if absent, the Killer Facts tab hides itself. -->
-<script src="data/killer-facts-data.js"></script>
-<!-- Job displacement data (window.JOBS_DISPLACEMENT_DATA). Regenerate via data_analysis/scripts/run_all.R --refresh -->
-<script src="data/jobs-displacement-data.js" charset="utf-8"></script>
 
 <!-- ═══════════════════════════════════════════════════════════
      HTML
@@ -1951,20 +1531,14 @@
 
 <header class="site-header">
   <div class="header-inner">
-    <div class="header-brand">
-      <img src="assets/esp-c3-white.png" alt="Economic Security Project">
-      <div class="header-text">
-        <h1><a href="https://cmpcmp-dot.github.io/ai-tech-markets-research/">AI, Tech and the Economy: Research Intelligence</a></h1>
-        <div class="header-sub">A curated database of research on AI, automation, and the economy</div>
-      </div>
+    <div class="header-text">
+      <h1><a href="https://cmpcmp-dot.github.io/ai-tech-markets-research/">AI, Tech and the Economy: Research Intelligence</a></h1>
     </div>
     <nav class="header-nav" aria-label="Primary">
       <div class="header-tabs" role="tablist" aria-label="Select view">
         <button class="header-nav-btn" id="viewCards" role="tab" aria-selected="false" aria-controls="viewPanel">Research</button>
-        <button class="header-nav-btn" id="viewKiller" role="tab" aria-selected="false" aria-controls="viewPanel">Killer Facts</button>
         <button class="header-nav-btn active" id="viewThemes" role="tab" aria-selected="true" aria-controls="viewPanel">Themes</button>
-        <button class="header-nav-btn" id="viewPolicy" role="tab" aria-selected="false" aria-controls="viewPanel">Policy Map</button>
-        <button class="header-nav-btn" id="viewJobs" role="tab" aria-selected="false" aria-controls="viewPanel">Job Displacement</button>
+        <button class="header-nav-btn" id="viewPolicy" role="tab" aria-selected="false" aria-controls="viewPanel">Policy Lab</button>
         <button class="header-nav-btn" id="viewAbout" role="tab" aria-selected="false" aria-controls="viewPanel" aria-label="About this site">About</button>
       </div>
       <button class="header-changed-btn" id="whatsChangedBtn" aria-label="What's New">What's New<span class="header-changed-pill" id="whatsChangedPill" hidden></span></button>
@@ -2038,72 +1612,6 @@
 
     <div class="cards-area">
       <div id="policyArea"></div>
-
-      <!-- ── KILLER FACTS TAB (merged from killer_facts.html) ── -->
-      <div id="killerFactsArea">
-        <div class="intro-bar">
-          <h2 class="intro-title">Killer Facts</h2>
-          <p class="intro-text">Every fact below is a short, number-bearing statement quoted <strong>verbatim</strong> from a source in the research database. Each is rated on two independent scales: how <strong>politically noteworthy</strong> it is for progressive advocacy (inequality, corporate power, environment, worker power) and how <strong>truthful</strong> its underlying evidence is. A fact can score high on one and low on the other; the point is to know which is which before you use it.</p>
-          <p class="intro-note">Pilot release. Ratings are editorial judgments made against a written rubric and reviewed by hand; the &ldquo;take note&rdquo; line under each fact is the defensible phrasing. Click through to the tracker entry or the source before publishing a number.</p>
-        </div>
-
-        <div class="mode-toggle" role="group" aria-label="Display mode">
-          <button class="mode-btn" id="modePaper" aria-pressed="true">
-            <span class="mode-name">Plain English</span>
-            <span class="mode-desc">One-line takeaways, grouped by paper. Click any fact for the full version.</span>
-          </button>
-          <button class="mode-btn" id="modeAll" aria-pressed="false">
-            <span class="mode-name">All Facts</span>
-            <span class="mode-desc">Every fact with its full quote and usage guidance. Click a card for methods and ratings.</span>
-          </button>
-        </div>
-
-        <div class="controls" role="region" aria-label="Search and filters">
-          <div class="controls-row">
-            <div class="search-wrap">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
-              <input type="search" id="kfSearch" placeholder="Search facts, sources, keywords…" aria-label="Search killer facts">
-            </div>
-            <label class="ctl-label" for="kfEvidence">Evidence</label>
-            <select id="kfEvidence" aria-label="Filter by evidence type">
-              <option value="all">All types</option>
-            </select>
-            <label class="ctl-label" for="kfMinPol">Political</label>
-            <select id="kfMinPol" aria-label="Minimum political noteworthiness">
-              <option value="1">1+</option><option value="2">2+</option><option value="3">3+</option><option value="4">4+</option><option value="5">5</option>
-            </select>
-            <label class="ctl-label" for="kfMinTruth">Truth</label>
-            <select id="kfMinTruth" aria-label="Minimum truthfulness rating">
-              <option value="1">1+</option><option value="2">2+</option><option value="3">3+</option><option value="4">4+</option><option value="5">5</option>
-            </select>
-            <label class="ctl-label" for="kfSort" id="kfSortLabel">Sort</label>
-            <select id="kfSort" aria-label="Sort facts">
-              <option value="date" selected>Most recent</option>
-              <option value="political">Most noteworthy</option>
-              <option value="truth">Most rigorous</option>
-            </select>
-            <label class="ctl-check" for="kfFoundational"><input type="checkbox" id="kfFoundational"> Foundational sources</label>
-          </div>
-          <div class="controls-row controls-row2">
-            <button class="kw-toggle" id="kwToggle" aria-expanded="false" aria-controls="kwPanel">
-              Keywords <span class="kw-active-count" id="kwActiveCount" hidden></span> <span class="chev" aria-hidden="true">&#9662;</span>
-            </button>
-          </div>
-          <div class="kw-panel" id="kwPanel">
-            <div>
-              <div class="pill-row" id="kwPills" role="group" aria-label="Filter by keyword"></div>
-            </div>
-          </div>
-          <div class="result-line" id="kfResultLine" aria-live="polite"></div>
-        </div>
-
-        <div id="factsArea">
-          <div id="byPaperView"></div>
-          <div id="allFactsView" hidden></div>
-          <div class="kf-empty-state" id="kfEmptyState" hidden>No facts match the current filters.</div>
-        </div>
-      </div>
-
       <div id="aboutArea">
         <div class="about-content">
           <div class="about-section">
@@ -2116,7 +1624,7 @@
           </div>
           <div class="about-section">
             <h2 class="about-section-label">How to read it</h2>
-            <p class="about-section-text"><strong>Three tabs.</strong> Research is the full, filterable database of individual sources. Themes synthesizes the database into cross-cutting questions, each with the evidence, what is working, the risks, and the implications. Policy Map groups policy interventions into four policy areas, listed alphabetically within each.</p>
+            <p class="about-section-text"><strong>Three tabs.</strong> Research is the full, filterable database of individual sources. Themes synthesizes the database into cross-cutting questions, each with the evidence, what is working, the risks, and the implications. Policy Lab maps policy interventions across categories and five implementation phases.</p>
             <p class="about-section-text"><strong>Confidence.</strong> Each theme is tagged Strong consensus (independent research streams converge), Emerging evidence (the direction is clear but still developing), or Contested (credible researchers reach different conclusions).</p>
             <p class="about-section-text"><strong>Lens.</strong> The General lens is written for a broad audience. The Focused lens filters to peer-reviewed and institutional research, organized around economic outcome domains.</p>
           </div>
@@ -2134,84 +1642,6 @@
           </div>
         </div>
       </div>
-
-      <div id="jobDisplacementArea">
-        <div class="jd-wrap">
-
-          <div class="jd-notice" role="note">
-            <span class="tag">Prototype</span>
-            <span><b>This analysis is a work-in-progress prototype. Please do not use, cite, or share these figures.</b> The methods and data are still being validated and the numbers may change. Stay tuned for the full analysis.</span>
-          </div>
-
-          <div class="jd-lede">Is AI displacing workers yet? Follow the labor market down three levels.</div>
-          <p class="jd-standfirst">The aggregate unemployment rate is a blunt instrument. To see displacement you have to ask three sharper questions: is unemployment higher than growth would predict, is the weakness spread evenly, and where has hiring actually decelerated. This is a first pass; each section links to a fuller technical treatment later.</p>
-
-          <!-- ══ SECTION 1 ══ -->
-          <section class="jd-section" id="sec-okun">
-            <div class="jd-kicker">01 &middot; The aggregate</div>
-            <h2 class="jd-h">Is unemployment higher than we would expect?</h2>
-            <p class="jd-p">Okun&rsquo;s law ties the change in unemployment to how fast the economy grows: strong GDP growth pulls unemployment down, weak growth pushes it up. If unemployment were rising faster than growth alone predicts, that would be a sign of something structural, an AI-driven displacement effect layered on top of the ordinary business cycle. Below, each point is a quarter: real GDP growth on the horizontal axis, the change in the unemployment rate on the vertical. The line is the historical Okun relationship.</p>
-
-            <div class="jd-chart-wrap">
-              <div class="jd-chart-title">Okun&rsquo;s law: GDP growth vs. change in unemployment</div>
-              <div class="jd-chart-sub" id="okunSub"></div>
-              <svg class="jd-svg" id="okunChart" viewBox="0 0 640 410" role="img" aria-label="Okun's law scatter plot"></svg>
-              <div class="jd-legend" id="okunLegend"></div>
-              <div class="jd-chart-note" id="okunNote"></div>
-            </div>
-
-            <p class="jd-p">Unemployment can also mislead if people stop looking for work: they leave the labor force and the rate falls even as the job market weakens. So the companion check is prime-age (25&ndash;54) participation, which strips out retirement. If it were falling, low unemployment would be hiding withdrawal.</p>
-
-            <div class="jd-stats" id="okunStats"></div>
-
-            <div class="jd-chart-wrap">
-              <div class="jd-chart-title">Prime-age (25&ndash;54) labor force participation &amp; employment rate</div>
-              <div class="jd-chart-sub">Monthly, seasonally adjusted, since 2000</div>
-              <svg class="jd-svg" id="lfpChart" viewBox="0 0 640 300" role="img" aria-label="Prime-age participation and employment-population ratio"></svg>
-              <div class="jd-legend" id="lfpLegend"></div>
-            </div>
-
-            <div class="jd-answer"><span class="lab">Answer</span><span class="txt" id="okunAnswer"></span></div>
-          </section>
-
-          <!-- ══ SECTION 2 ══ -->
-          <section class="jd-section" id="sec-age">
-            <div class="jd-kicker">02 &middot; Who</div>
-            <h2 class="jd-h">Is the weakness spread evenly, or concentrated?</h2>
-            <p class="jd-p">If the aggregate looks fine, the next question is whether that average hides a group taking the hit. This chart takes each age and education group, asks what its unemployment rate <em>should</em> be given the overall rate (using its own pre-2020 relationship), and plots how far above or below that prediction it actually sits. Zero means &ldquo;normal.&rdquo; A positive value means that group has more unemployment than history says it should.</p>
-
-            <div class="jd-chart-wrap">
-              <div class="jd-chart-title">Excess unemployment by age, relative to the pre-2020 norm</div>
-              <div class="jd-chart-sub">Residual: actual minus predicted unemployment rate, by education group</div>
-              <svg class="jd-svg" id="ageChart" viewBox="0 0 640 380" role="img" aria-label="Residual unemployment by age and education"></svg>
-              <div class="jd-legend" id="ageLegend"></div>
-              <div class="jd-chart-note" id="ageNote"></div>
-            </div>
-
-            <div class="jd-answer"><span class="lab">Answer</span><span class="txt" id="ageAnswer"></span></div>
-          </section>
-
-          <!-- ══ SECTION 3 ══ -->
-          <section class="jd-section" id="sec-ces">
-            <div class="jd-kicker">03 &middot; Where</div>
-            <h2 class="jd-h">Where has job growth slowed the most?</h2>
-            <p class="jd-p">Displacement should show up as hiring drying up in specific industries. For each major sector, we compare employment growth over the past year to its own average pace in the pre-pandemic years (2015&ndash;2019). A large negative bar means that sector is adding jobs far more slowly than it used to, or shedding them outright.</p>
-
-            <div class="jd-chart-wrap">
-              <div class="jd-chart-title">Job-growth slowdown by sector</div>
-              <div class="jd-chart-sub" id="cesSub"></div>
-              <svg class="jd-svg" id="cesChart" viewBox="0 0 640 430" role="img" aria-label="Employment growth slowdown by sector"></svg>
-              <div class="jd-chart-note" id="cesNote"></div>
-            </div>
-
-            <div class="jd-answer"><span class="lab">Answer</span><span class="txt" id="cesAnswer"></span></div>
-          </section>
-
-          <div class="jd-vintage" id="jdVintage"></div>
-
-        </div>
-      </div>
-
       <div class="cards-grid" id="cardsGrid"></div>
       <div class="empty-state" id="emptyState">
         <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
@@ -2260,7 +1690,7 @@
         <p class="modal-sources-intro">Cross-cutting syntheses of the research database. Each theme frames a key strategic question, presents an evidence consensus, identifies implications for institutional actors, and notes gaps in the current evidence base. Themes carry an editorial confidence rating: <em>Strong consensus</em>, <em>Emerging evidence</em>, or <em>Contested</em>.</p>
       </div>
       <div class="modal-group">
-        <div class="modal-group-name">Policy Map tab</div>
+        <div class="modal-group-name">Policy Lab tab</div>
         <p class="modal-sources-intro">Twenty-seven policy interventions organized by category and mapped to five stages of AI-driven labor disruption — from <em>Repair</em> (fixes needed regardless of AI's trajectory) through <em>Transform</em> (responses to large-scale displacement of the workforce). Each policy card includes a plain-language description, an account of the implementation challenge, and links to supporting research in the database. Does not constitute policy advice.</p>
       </div>
       <div class="modal-group">
@@ -2351,8 +1781,6 @@
   let searchQuery   = '';
   let sortOrder     = 'desc';   // 'desc' | 'asc' | 'status'
   let activeThemeId = THEMES[0].id;
-  let killerFactsEnabled = false;      // set true by the Killer Facts module if data is present
-  let initKillerFacts = function () {}; // replaced with the real builder when data is present
   let themeShowAll  = false;
   let activeLens    = 'general'; // 'general' | 'economist'
   const SORT_STATES = [
@@ -2516,7 +1944,7 @@
       d.setAttribute('aria-pressed', isActive ? 'true' : 'false');
       d.setAttribute('aria-label', `${label}, ${count} entries`);
       const hex = resolve(color || '');
-      if (isActive) d.style.borderLeftColor = '#70AD8F';
+      if (isActive) d.style.borderLeftColor = '#2563EB';
       d.innerHTML = `
         <span class="nav-label">${label}</span>
         <span class="nav-count">${count}</span>`;
@@ -2699,7 +2127,7 @@
       d.className = 'nav-item' + (isActive ? ' active' : '');
       d.setAttribute('aria-pressed', isActive ? 'true' : 'false');
       d.setAttribute('aria-label', `${gm.label}, ${n} entries`);
-      if (isActive) { d.style.borderLeftColor = '#70AD8F'; }
+      if (isActive) { d.style.borderLeftColor = '#2563EB'; }
       d.innerHTML = `
         <span class="nav-label">${gm.label}</span>
         <span class="nav-count">${n}</span>`;
@@ -3079,7 +2507,7 @@
   }
 
   // ── render ───────────────────────────────────────────────────
-  /* ── Policy Map ─────────────────────────────────────────────── */
+  /* ── Policy Lab ─────────────────────────────────────────────── */
   let polLevelFilter = 'all';
   let polViewMode    = 'grid';
 
@@ -3311,29 +2739,6 @@
     return md.join('\n');
   }
 
-  // Hoisted out of buildPolicyView() so renderPolicyLinksGraph() (the Links
-  // sub-view) can share the exact same category→color mapping as the Map
-  // sub-view — a policy should be the same color in both views.
-  const POL_CAT_COLORS = {
-    'safety-net':    '#5B7A9E',
-    'labor-rights':  '#7B6B9E',
-    'tax-wealth':    '#4F8E77',
-    'healthcare':    '#8E5B5B',
-    'work-structure':'#8E7B52',
-    'education':     '#4F7D8E',
-    'antitrust':     '#8E6B4F',
-    'housing':       '#5E8A52',
-    'jobs':          '#4F8E87',
-    'international': '#7B5B8E',
-  };
-  // Merged-category identity colors, also shared with the Links band legend.
-  const CAT_COLOR_VARS = {
-    'economic-security':    'var(--green)',   // Soft Green
-    'labor-worker-rights':  'var(--navy)',    // Warm Navy
-    'social-infrastructure':'var(--gold)',    // Warm Gold
-    'skills-global':        'var(--purple)',  // Deep Purple
-  };
-
   function buildPolicyView() {
     const area = document.getElementById('policyArea');
 
@@ -3342,24 +2747,27 @@
 
       // Intro bar — matches theme-disclaimer-bar
       const hdr = document.createElement('div');
-      hdr.className = 'policy-map-header';
+      hdr.className = 'policy-lab-header';
       hdr.innerHTML = `
-        <span class="pol-header-title">Policy Map</span>
-        <span class="theme-intro-line">Twenty-seven policy interventions grouped into four policy areas, listed alphabetically within each. Click any policy for rationale, precedents, and supporting research.</span>
+        <span class="pol-header-title">Policy Lab</span>
+        <span class="theme-intro-line">Twenty-seven policy interventions mapped across ten policy domains and five implementation phases. Read across a row to see how each domain's policies escalate from Repair to Transform. Click any policy for rationale, precedents, and supporting research.</span>
         <span class="theme-disclaimer-line">Synthesized from the research database. Does not constitute policy advice or reflect the opinions of the creator.</span>`;
       area.appendChild(hdr);
 
-      // Map / Links sub-view toggle
-      const subToggle = document.createElement('div');
-      subToggle.className = 'pol-subview-toggle';
-      subToggle.setAttribute('role', 'group');
-      subToggle.setAttribute('aria-label', 'Policy Map display');
-      subToggle.innerHTML = `
-        <button class="pol-subview-btn active" id="polSubviewMap" type="button">Map</button>
-        <button class="pol-subview-btn" id="polSubviewLinks" type="button">Links</button>`;
-      area.appendChild(subToggle);
 
       const levelMap = Object.fromEntries(DISRUPTION_LEVELS.map(l => [l.id, l]));
+      const POL_CAT_COLORS = {
+        'safety-net':    '#5B7A9E',
+        'labor-rights':  '#7B6B9E',
+        'tax-wealth':    '#4F8E77',
+        'healthcare':    '#8E5B5B',
+        'work-structure':'#8E7B52',
+        'education':     '#4F7D8E',
+        'antitrust':     '#8E6B4F',
+        'housing':       '#5E8A52',
+        'jobs':          '#4F8E87',
+        'international': '#7B5B8E',
+      };
 
       // Empty state msg
       const emptyMsg = document.createElement('div');
@@ -3441,292 +2849,79 @@
       });
       area.appendChild(columns);
 
-      // ── Category rows ────────────────────────────────────────
-      // Phase (Repair→Transform) is no longer an axis of the map: the four
-      // merged categories each get a full-width row, in curated order
-      // (Economic Security first, Global last — Object key order below).
-      // Policies within a row are listed alphabetically and flow left→right,
-      // so scrolling down reads category by category. Each category carries
-      // its own ESP-palette color (contrast-tuned across the set). Color
-      // rides the header rule and each card's left stripe; label text stays
-      // dark (--headline) for ADA contrast on the light background.
-      // (CAT_COLOR_VARS is now hoisted above buildPolicyView(), shared with Links.)
+      // ── Matrix container ────────────────────────────────────
+      const waterfall = document.createElement('div');
+      waterfall.className = 'pol-waterfall';
+      waterfall.id = 'polWaterfall';
+      const levelMap2 = Object.fromEntries(DISRUPTION_LEVELS.map(l => [l.id, l]));
 
-      // Reverse lookup: mergedCatId → array of original catIds
+      // Build reverse lookup: mergedCatId → array of original catIds
       const mergedToOriginal = {};
       Object.keys(MERGED_POLICY_CATEGORIES).forEach(mc => { mergedToOriginal[mc] = []; });
       Object.entries(CATEGORY_MERGE_MAP).forEach(([orig, merged]) => {
         mergedToOriginal[merged].push(orig);
       });
 
-      const catRows = document.createElement('div');
-      catRows.className = 'pol-cat-rows';
-      catRows.id = 'polCatRows';
+      // ── Header row (phase column labels) ─────────────────────
+      const header = document.createElement('div');
+      header.className = 'pol-matrix-header';
+      // Empty corner cell
+      header.appendChild(document.createElement('div'));
+      DISRUPTION_LEVELS.forEach((lvl, i) => {
+        const col = document.createElement('div');
+        col.className = 'pol-matrix-phase-col';
+        const arrow = i < DISRUPTION_LEVELS.length - 1
+          ? '<span style="font-weight:400;opacity:0.35;margin-left:5px;font-family:\'Public Sans\',sans-serif;font-size:13px;">→</span>'
+          : '';
+        col.innerHTML = `<div class="pol-matrix-phase-label">${lvl.label}${arrow}</div>
+          <div class="pol-matrix-phase-blurb">${lvl.blurb}</div>`;
+        header.appendChild(col);
+      });
+      waterfall.appendChild(header);
 
+      // ── Merged category rows ─────────────────────────────────
       Object.entries(MERGED_POLICY_CATEGORIES).forEach(([mcId, mcLabel]) => {
         const origCats = mergedToOriginal[mcId] || [];
-        // Alphabetical by title within the category.
-        const catPolicies = POLICY_DATA
-          .filter(p => origCats.includes(p.category))
-          .sort((a, b) => a.title.localeCompare(b.title));
+        const catPolicies = POLICY_DATA.filter(p => origCats.includes(p.category));
         if (!catPolicies.length) return;
 
         const row = document.createElement('div');
-        row.className = 'pol-cat-row';
-        row.dataset.cat = mcId;
-        row.style.setProperty('--cat-color', CAT_COLOR_VARS[mcId] || 'var(--muted)');
+        row.className = 'pol-matrix-row';
 
-        const head = document.createElement('div');
-        head.className = 'pol-cat-row-head';
-        head.innerHTML = `
-          <div class="pol-cat-row-title">${mcLabel}</div>
-          <div class="pol-cat-row-desc">${MERGED_CAT_DESCS[mcId] || ''}</div>
-          <div class="pol-cat-row-count">${catPolicies.length} polic${catPolicies.length===1?'y':'ies'}</div>`;
-        row.appendChild(head);
+        // Left cell: category label + desc
+        const catCell = document.createElement('div');
+        catCell.className = 'pol-matrix-cat-row-label';
+        catCell.innerHTML = `<div class="pol-matrix-cat-label">${mcLabel}</div>
+          <div class="pol-matrix-cat-desc">${MERGED_CAT_DESCS[mcId] || ''}</div>`;
+        row.appendChild(catCell);
 
-        const cards = document.createElement('div');
-        cards.className = 'pol-cat-row-cards';
+        // 5 phase cells
+        DISRUPTION_LEVELS.forEach(lvl => {
+          const cell = document.createElement('div');
+          cell.className = 'pol-matrix-cell';
 
-        catPolicies.forEach(p => {
-          const lvl = levelMap[p.level] || {};
-          const origCatLabel = POLICY_CATEGORIES[p.category] || p.category;
-          const basisHTML = buildPolicyBasis(getResearchBasis(p));
+          catPolicies.filter(p => p.level === lvl.id).forEach(p => {
+            const origCatLabel = POLICY_CATEGORIES[p.category] || p.category;
+            const basisHTML = buildPolicyBasis(getResearchBasis(p));
 
-          const card = document.createElement('div');
-          card.className = 'pol-cat-card';
-          card.innerHTML = `<div class="pol-cat-card-title">${p.title}</div><span class="pol-cat-card-arrow" aria-hidden="true">&rsaquo;</span>`;
-          card.addEventListener('click', () => openPolModal(p, lvl, origCatLabel, basisHTML));
-          cards.appendChild(card);
+            const card = document.createElement('div');
+            card.className = 'pol-matrix-card';
+            card.innerHTML = `<div class="pol-matrix-card-phase">${lvl.label}</div><div class="pol-matrix-card-title">${p.title}</div><div class="pol-matrix-card-open">Open details →</div>`;
+            card.addEventListener('click', () => openPolModal(p, lvl, origCatLabel, basisHTML));
+            cell.appendChild(card);
+          });
+
+          row.appendChild(cell);
         });
 
-        row.appendChild(cards);
-        catRows.appendChild(row);
+        waterfall.appendChild(row);
       });
 
-      area.appendChild(catRows);
-
-      // Links sub-view — built lazily on first activation (see below).
-      const linksArea = document.createElement('div');
-      linksArea.className = 'pol-links-wrap';
-      linksArea.id = 'polLinksArea';
-      linksArea.style.display = 'none';
-      area.appendChild(linksArea);
-
-      // Map / Links toggle wiring.
-      const mapBtn = document.getElementById('polSubviewMap');
-      const linksBtn = document.getElementById('polSubviewLinks');
-      mapBtn.addEventListener('click', () => {
-        if (mapBtn.classList.contains('active')) return;
-        mapBtn.classList.add('active'); linksBtn.classList.remove('active');
-        catRows.style.display = ''; linksArea.style.display = 'none';
-      });
-      linksBtn.addEventListener('click', () => {
-        if (linksBtn.classList.contains('active')) return;
-        linksBtn.classList.add('active'); mapBtn.classList.remove('active');
-        catRows.style.display = 'none'; linksArea.style.display = '';
-        if (!linksArea.dataset.built) {
-          linksArea.dataset.built = '1';
-          renderPolicyLinksGraph(linksArea);
-        }
-      });
+      area.appendChild(waterfall);
 
     }
 
     applyPolFilters();
-  }
-
-  // ── Policy Links graph (test run) ───────────────────────────────────
-  // Hand-rolled SVG force simulation, no external library — see
-  // docs/adr/0002-policy-links-hand-rolled-svg.md. Edges are derived from
-  // each policy's existing `pairsWith` field at render time; no new
-  // connections data was authored for this pass — see
-  // docs/adr/0001-policy-links-reuse-pairswith.md. Nodes softly gravitate
-  // toward their merged category's vertical band (Economic Security top,
-  // Global bottom — the curated order MERGED_POLICY_CATEGORIES is already
-  // defined in), but the repel/spring physics can nudge a node off that
-  // line, which is deliberate: it lets cross-category edges read as a
-  // short, clear line rather than a rigid line punching across the canvas.
-  function renderPolicyLinksGraph(container) {
-    const W = 1040, H = 960;
-    const mergedOrder = Object.keys(MERGED_POLICY_CATEGORIES); // curated top→bottom order
-    const bandH = H / mergedOrder.length;
-
-    // ── Build nodes, seeded with a golden-angle spread so the pre-settle
-    // starting layout is already roughly non-overlapping. ──
-    const nodes = POLICY_DATA.map((p, i) => {
-      const mergedCat = CATEGORY_MERGE_MAP[p.category] || mergedOrder[mergedOrder.length - 1];
-      const bandIdx = Math.max(0, mergedOrder.indexOf(mergedCat));
-      const bandCenter = bandIdx * bandH + bandH / 2;
-      const seed = (i * 137.5) % 360;
-      const x = W / 2 + Math.cos(seed * Math.PI / 180) * (W / 2 - 100);
-      const y = bandCenter + Math.sin(seed * Math.PI / 180) * (bandH / 2 - 30);
-      return { id: p.id, title: p.title, category: p.category, mergedCat, bandCenter, x, y, vx: 0, vy: 0 };
-    });
-    const nodeById = Object.fromEntries(nodes.map(n => [n.id, n]));
-
-    // Edges = each policy's `pairsWith`, de-duplicating mutual A↔B pairs
-    // (most are authored on both sides) into a single edge.
-    const edgeMap = new Map();
-    POLICY_DATA.forEach(p => {
-      (p.pairsWith || []).forEach(l => {
-        if (!nodeById[l.id]) return; // guard against a stale id
-        const key = [p.id, l.id].sort().join('|');
-        if (!edgeMap.has(key)) edgeMap.set(key, { a: p.id, b: l.id, whys: [] });
-        if (l.why) edgeMap.get(key).whys.push(l.why);
-      });
-    });
-    const edges = [...edgeMap.values()];
-
-    // ── Physics: repel + spring + soft per-band gravity, cooled over a
-    // fixed number of ticks and settled before first paint. ──
-    const REPEL = 4200, SPRING_LEN = 105, SPRING_K = 0.02, GRAVITY_K = 0.03, CENTER_K = 0.0015, DAMP = 0.82;
-    let alpha = 1;
-    function tick() {
-      for (let i = 0; i < nodes.length; i++) {
-        for (let j = i + 1; j < nodes.length; j++) {
-          const a = nodes[i], b = nodes[j];
-          let dx = a.x - b.x, dy = a.y - b.y;
-          const distSq = dx * dx + dy * dy || 0.01;
-          const force = (REPEL * alpha) / distSq;
-          const dist = Math.sqrt(distSq);
-          dx /= dist; dy /= dist;
-          a.vx += dx * force; a.vy += dy * force;
-          b.vx -= dx * force; b.vy -= dy * force;
-        }
-      }
-      edges.forEach(e => {
-        const a = nodeById[e.a], b = nodeById[e.b];
-        let dx = b.x - a.x, dy = b.y - a.y;
-        const dist = Math.sqrt(dx * dx + dy * dy) || 0.01;
-        const force = SPRING_K * (dist - SPRING_LEN) * alpha;
-        dx /= dist; dy /= dist;
-        a.vx += dx * force; a.vy += dy * force;
-        b.vx -= dx * force; b.vy -= dy * force;
-      });
-      nodes.forEach(n => {
-        n.vy += (n.bandCenter - n.y) * GRAVITY_K * alpha;
-        n.vx += (W / 2 - n.x) * CENTER_K * alpha;
-      });
-      nodes.forEach(n => {
-        n.vx *= DAMP; n.vy *= DAMP;
-        n.x += n.vx; n.y += n.vy;
-        n.x = Math.max(24, Math.min(W - 190, n.x));
-        n.y = Math.max(16, Math.min(H - 16, n.y));
-      });
-      alpha *= 0.985;
-    }
-    for (let i = 0; i < 400 && alpha > 0.01; i++) tick();
-
-    // ── Render as SVG (real DOM nodes — see ADR 0002 for why not canvas) ──
-    const svgNS = 'http://www.w3.org/2000/svg';
-    const svg = document.createElementNS(svgNS, 'svg');
-    svg.setAttribute('viewBox', `0 0 ${W} ${H}`);
-    svg.setAttribute('class', 'pol-links-svg');
-    svg.setAttribute('role', 'img');
-    svg.setAttribute('aria-label', 'Force-directed graph of policies connected by amplification links, ordered top to bottom from Economic Security to Global');
-
-    mergedOrder.forEach((mcId, i) => {
-      const y = i * bandH;
-      if (i > 0) {
-        const line = document.createElementNS(svgNS, 'line');
-        line.setAttribute('x1', 0); line.setAttribute('x2', W);
-        line.setAttribute('y1', y); line.setAttribute('y2', y);
-        line.setAttribute('stroke', 'var(--border)');
-        line.setAttribute('stroke-dasharray', '3 5');
-        svg.appendChild(line);
-      }
-      const label = document.createElementNS(svgNS, 'text');
-      label.setAttribute('x', 14); label.setAttribute('y', y + 18);
-      label.setAttribute('class', 'pol-links-band-label');
-      label.textContent = MERGED_POLICY_CATEGORIES[mcId];
-      svg.appendChild(label);
-    });
-
-    const edgeGroup = document.createElementNS(svgNS, 'g');
-    const edgeEls = edges.map(e => {
-      const a = nodeById[e.a], b = nodeById[e.b];
-      const line = document.createElementNS(svgNS, 'line');
-      line.setAttribute('class', 'pol-links-edge');
-      line.setAttribute('x1', a.x); line.setAttribute('y1', a.y);
-      line.setAttribute('x2', b.x); line.setAttribute('y2', b.y);
-      const title = document.createElementNS(svgNS, 'title');
-      title.textContent = e.whys.join(' ');
-      line.appendChild(title);
-      edgeGroup.appendChild(line);
-      return { el: line, a: e.a, b: e.b };
-    });
-    svg.appendChild(edgeGroup);
-
-    const nodeGroup = document.createElementNS(svgNS, 'g');
-    const nodeEls = {};
-    nodes.forEach(n => {
-      const g = document.createElementNS(svgNS, 'g');
-      g.setAttribute('class', 'pol-links-node');
-      g.setAttribute('tabindex', '0');
-      g.setAttribute('role', 'button');
-      g.setAttribute('aria-label', `${n.title}. Open this policy.`);
-
-      const dot = document.createElementNS(svgNS, 'circle');
-      dot.setAttribute('class', 'pol-links-node-dot');
-      dot.setAttribute('cx', n.x); dot.setAttribute('cy', n.y); dot.setAttribute('r', 8);
-      dot.setAttribute('fill', POL_CAT_COLORS[n.category] || 'var(--muted)');
-
-      // foreignObject + div (not SVG <text>) so long titles wrap onto
-      // multiple lines instead of running off as one unbroken string.
-      const labelFo = document.createElementNS(svgNS, 'foreignObject');
-      labelFo.setAttribute('class', 'pol-links-node-label-fo');
-      labelFo.setAttribute('x', n.x + 11); labelFo.setAttribute('y', n.y - 10);
-      labelFo.setAttribute('width', 116); labelFo.setAttribute('height', 48);
-      const labelDiv = document.createElementNS('http://www.w3.org/1999/xhtml', 'div');
-      labelDiv.setAttribute('class', 'pol-links-node-label');
-      labelDiv.textContent = n.title;
-      labelFo.appendChild(labelDiv);
-
-      // Larger invisible hit target — the 8px dot alone is too small to click/tap reliably.
-      const hit = document.createElementNS(svgNS, 'circle');
-      hit.setAttribute('class', 'pol-links-node-hit');
-      hit.setAttribute('cx', n.x); hit.setAttribute('cy', n.y); hit.setAttribute('r', 14);
-
-      g.appendChild(hit); g.appendChild(dot); g.appendChild(labelFo);
-      nodeGroup.appendChild(g);
-      nodeEls[n.id] = g;
-
-      const openIt = () => openPolModalById(n.id);
-      g.addEventListener('click', openIt);
-      g.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openIt(); } });
-
-      const highlight = on => {
-        Object.values(nodeEls).forEach(el => el.classList.remove('lit', 'dimmed'));
-        edgeEls.forEach(e => e.el.classList.remove('lit', 'dimmed'));
-        if (!on) return;
-        const connected = new Set([n.id]);
-        edgeEls.forEach(e => {
-          const touches = e.a === n.id || e.b === n.id;
-          e.el.classList.add(touches ? 'lit' : 'dimmed');
-          if (touches) { connected.add(e.a); connected.add(e.b); }
-        });
-        Object.entries(nodeEls).forEach(([id, el]) => el.classList.add(connected.has(id) ? 'lit' : 'dimmed'));
-      };
-      g.addEventListener('mouseenter', () => highlight(true));
-      g.addEventListener('mouseleave', () => highlight(false));
-      g.addEventListener('focus', () => highlight(true));
-      g.addEventListener('blur', () => highlight(false));
-    });
-    svg.appendChild(nodeGroup);
-
-    const outer = document.createElement('div');
-    outer.className = 'pol-links-graph-outer';
-    outer.appendChild(svg);
-
-    const legend = document.createElement('div');
-    legend.className = 'pol-links-legend';
-    legend.innerHTML = Object.entries(POLICY_CATEGORIES).map(([catId, catLabel]) =>
-      `<span class="pol-links-legend-item"><span class="pol-links-legend-dot" style="background:${POL_CAT_COLORS[catId]}"></span>${catLabel}</span>`
-    ).join('');
-    outer.appendChild(legend);
-
-    container.innerHTML = '';
-    container.appendChild(outer);
   }
 
   function openPolModal(p, lvl, catLabel, basisHTML) {
@@ -3882,7 +3077,7 @@
     const html = dates.map(d => {
       const g = groups[d];
       const parts = [`<h3 class="clog-date">${fmtD(d)}</h3>`];
-      if (g.policies) parts.push(`<div class="clog-line">Policy Map: ${g.policies === POLICY_DATA.length ? 'all ' : ''}${g.policies} ${g.policies === 1 ? 'policy' : 'policies'} reviewed</div>`);
+      if (g.policies) parts.push(`<div class="clog-line">Policy Lab: ${g.policies === POLICY_DATA.length ? 'all ' : ''}${g.policies} ${g.policies === 1 ? 'policy' : 'policies'} reviewed</div>`);
       if (g.entries.length > 20) {
         parts.push(`<div class="clog-line">${g.entries.length} research entries added${d === firstDate ? ' (initial database import)' : ''}</div>`);
       } else if (g.entries.length) {
@@ -3895,7 +3090,7 @@
       }
       return `<div class="clog-group">${parts.join('')}</div>`;
     }).join('');
-    return `<div class="clog-intro">Every dated change to the tracker: research entries added (by intake date) and Policy Map review passes. Click an entry to jump to it.</div>${html}`;
+    return `<div class="clog-intro">Every dated change to the tracker: research entries added (by intake date) and Policy Lab review passes. Click an entry to jump to it.</div>${html}`;
   }
 
   function openChangelog() {
@@ -3951,10 +3146,8 @@
   // The canonical route for the current view state (modal-free).
   function currentRoute() {
     if (activeView === 'cards')  return 'research';
-    if (activeView === 'killer') return 'killer-facts';
     if (activeView === 'policy') return 'policy';
     if (activeView === 'about')  return 'about';
-    if (activeView === 'jobs')   return 'job-displacement';
     return themeShowAll ? 'themes' : 'theme/' + activeThemeId;
   }
 
@@ -3966,14 +3159,8 @@
     try {
       const [head, tail] = h.split('/');
       if (head === 'research' && !tail) { setView('cards');  return true; }
-      if (head === 'killer-facts' && !tail) {
-        // Falls back to the default view if the tab is disabled (no data).
-        if (killerFactsEnabled) { setView('killer'); return true; }
-        return false;
-      }
       if (head === 'themes'   && !tail) { setView('themes'); return true; }
       if (head === 'about'    && !tail) { setView('about');  return true; }
-      if (head === 'job-displacement' && !tail) { setView('jobs'); return true; }
       if (head === 'policy'   && !tail) { setView('policy'); return true; }
       if (head === 'changelog' && !tail) {
         if (!viewInitialized) setView('themes');
@@ -4085,7 +3272,6 @@
     if (activeView === 'themes') { buildThemesView(); return; }
     if (activeView === 'policy') { buildPolicyView(); return; }
     if (activeView === 'about')  { return; }
-    if (activeView === 'jobs')   { return; }
 
     grid.innerHTML = '';
     const visible = getVisible();
@@ -4144,16 +3330,12 @@
       economist: { title: 'Themes',     text: 'Empirical questions synthesized from peer-reviewed and institutional research, each framing a specific economic outcome with quantified evidence.', note: 'Synthesized from the research database. Does not constitute strategic advice or reflect the opinions of the creator.' },
     },
     policy: {
-      general:   { title: 'Policy Map', text: 'Twenty-seven policy interventions grouped into four policy areas, listed alphabetically within each. Click any policy for rationale, precedents, and supporting research.', note: 'Synthesized from the research database. Does not constitute policy advice or reflect the opinions of the creator.' },
-      economist: { title: 'Policy Map', text: 'Twenty-seven policy interventions grouped into four policy areas, listed alphabetically within each. Click any policy for rationale, precedents, and supporting research.', note: 'Synthesized from the research database. Does not constitute policy advice or reflect the opinions of the creator.' },
+      general:   { title: 'Policy Lab', text: 'Twenty-seven policy interventions mapped across four policy categories and five implementation phases. Read across a row to see how a category\'s policies evolve from Repair to Transform. Click any policy for rationale, precedents, and supporting research.', note: 'Synthesized from the research database. Does not constitute policy advice or reflect the opinions of the creator.' },
+      economist: { title: 'Policy Lab', text: 'Twenty-seven policy interventions mapped across four policy categories and five implementation phases. Read across a row to see how a category\'s policies evolve from Repair to Transform. Click any policy for rationale, precedents, and supporting research.', note: 'Synthesized from the research database. Does not constitute policy advice or reflect the opinions of the creator.' },
     },
     about: {
       general:   { title: 'About', text: 'How this tracker is structured and how to use it.', note: '' },
       economist: { title: 'About', text: 'How this tracker is structured and how to use it.', note: '' },
-    },
-    jobs: {
-      general:   { title: 'Job Displacement', text: 'How much job displacement there is and what can be traced to AI, analyzed in an economically rigorous way.', note: '' },
-      economist: { title: 'Job Displacement', text: 'How much job displacement there is and what can be traced to AI, analyzed in an economically rigorous way.', note: '' },
     },
   };
   function getTabDesc(view) {
@@ -4164,7 +3346,7 @@
   function setView(view) {
     activeView = view;
     viewInitialized = true;
-    ['viewCards', 'viewKiller', 'viewThemes', 'viewPolicy', 'viewJobs', 'viewAbout'].forEach(id => {
+    ['viewCards', 'viewThemes', 'viewPolicy', 'viewAbout'].forEach(id => {
       const el = document.getElementById(id);
       if (!el) return;
       const active = id === 'view' + view.charAt(0).toUpperCase() + view.slice(1);
@@ -4185,25 +3367,20 @@
     document.body.classList.toggle('strategy-view', view === 'themes');
     document.body.classList.toggle('policy-view',   view === 'policy');
     document.body.classList.toggle('about-view',    view === 'about');
-    document.body.classList.toggle('jobs-view',     view === 'jobs');
-    document.body.classList.toggle('killer-view',   view === 'killer');
-    if (view === 'killer' && typeof initKillerFacts === 'function') initKillerFacts();
     render();
     const activeTabId = 'view' + view.charAt(0).toUpperCase() + view.slice(1);
     const panel = document.getElementById('viewPanel');
     if (panel) panel.setAttribute('aria-labelledby', activeTabId);
     const ann = document.getElementById('viewAnnounce');
     if (ann) {
-      const names = { cards: 'Research', killer: 'Killer Facts', themes: 'Themes', policy: 'Policy Map', jobs: 'Job Displacement', about: 'About' };
+      const names = { cards: 'Research', themes: 'Themes', policy: 'Policy Lab', about: 'About' };
       ann.textContent = (names[view] || view) + ' view';
     }
     setHash(currentRoute());
   }
   document.getElementById('viewCards').addEventListener('click',  () => setView('cards'));
-  document.getElementById('viewKiller')?.addEventListener('click', () => setView('killer'));
   document.getElementById('viewThemes').addEventListener('click', () => setView('themes'));
   document.getElementById('viewPolicy').addEventListener('click', () => setView('policy'));
-  document.getElementById('viewJobs')?.addEventListener('click', () => setView('jobs'));
 
   // Key findings band: open a source-excerpt modal, or jump to the theme if no source paper.
   function goToTheme(id) {
@@ -4526,369 +3703,9 @@
     }
   })();
 
-  /* ═══════════════════════════════════════════════════════════
-     KILLER FACTS MODULE (merged from killer_facts.html)
-     Self-contained in its own closure so its helpers (esc, dots,
-     formatAPACitation, paperMap, …) don't collide with the engine's.
-     Exposes only killerFactsEnabled + initKillerFacts to the engine.
-     The DOM for the two views is built lazily on the first tab open.
-     ═══════════════════════════════════════════════════════════ */
-  (function setupKillerFacts() {
-    if (typeof KILLER_FACTS === 'undefined' || !Array.isArray(KILLER_FACTS) || KILLER_FACTS.length === 0) {
-      console.warn('killer-facts: KILLER_FACTS not loaded — hiding the Killer Facts tab.');
-      document.getElementById('viewKiller')?.remove();
-      killerFactsEnabled = false;
-      return;
-    }
-    killerFactsEnabled = true;
-
-    const paperMap = Object.fromEntries(RESEARCH_DATA.map(p => [p.id, p]));
-
-    const EV_LABELS = {
-      'rct': 'Randomized experiment', 'natural-experiment': 'Natural experiment',
-      'administrative-data': 'Administrative data', 'audit-study': 'Audit study',
-      'survey': 'Survey', 'model-projection': 'Projection / model', 'meta-analysis': 'Meta-analysis',
-      'descriptive-statistics': 'Descriptive statistics', 'investigative': 'Investigative journalism',
-      'legal-policy-analysis': 'Legal / policy analysis'
-    };
-    const KW_LABELS = {
-      'inequality': 'Inequality', 'corporate-power': 'Corporate power', 'tech-democracy': 'Tech & democracy',
-      'environment-energy': 'Environment & energy', 'displacement': 'Displacement', 'worker-power': 'Worker power',
-      'wages': 'Wages', 'surveillance': 'Surveillance', 'discrimination': 'Discrimination', 'gender': 'Gender',
-      'race': 'Race', 'gig-work': 'Gig work', 'healthcare': 'Healthcare', 'housing': 'Housing',
-      'education': 'Education', 'safety-net': 'Safety net', 'global-south': 'Global South', 'solutions': 'Solutions'
-    };
-
-    function kfFormatAPACitation(p) {
-      const year = p.date ? p.date.slice(0, 4) : 'n.d.';
-      const src = (p.source || '').trim();
-      let author = src, org = '';
-      if (src.includes(' — ')) {
-        const parts = src.split(' — ');
-        author = parts[0].trim();
-        org = parts.slice(1).join(' — ').trim();
-      }
-      const orgPart = org && org.toLowerCase() !== author.toLowerCase() ? ` ${org}.` : '';
-      const authorDot = author.endsWith('.') ? '' : '.';
-      const titleDot = /[.?!]$/.test(p.title) ? '' : '.';
-      return `${author}${authorDot} (${year}). <em>${p.title}</em>${titleDot}${orgPart}`;
-    }
-    function apaPlain(p) { return kfFormatAPACitation(p).replace(/<\/?em>/g, ''); }
-
-    const MONTHS = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-    function pubDateOf(f) { return f.pubDate || (paperMap[f.paperId] || {}).date || ''; }
-    function formatPubDate(d) {
-      if (!d) return '';
-      const parts = d.split('-');
-      const y = parts[0];
-      const mi = parts[1] ? parseInt(parts[1], 10) - 1 : null;
-      return (mi != null && MONTHS[mi]) ? `${MONTHS[mi]} ${y}` : y;
-    }
-    function esc(s) {
-      return String(s == null ? '' : s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
-    }
-    function dots(n) { return '●'.repeat(n) + '○'.repeat(5 - n); }
-
-    /* ── State ── */
-    let q = '', evType = 'all', minPol = 1, minTruth = 1, sortBy = 'date', mode = 'paper', onlyFoundational = false;
-    const activeKw = new Set();
-
-    const byPaperView = document.getElementById('byPaperView');
-    const allFactsView = document.getElementById('allFactsView');
-    const emptyState = document.getElementById('kfEmptyState');
-    const resultLine = document.getElementById('kfResultLine');
-    const modePaperBtn = document.getElementById('modePaper');
-    const modeAllBtn = document.getElementById('modeAll');
-
-    /* ── Shared card fragments ── */
-    function ratingDescHTML(f) {
-      return `
-      <div class="rating-desc">
-        <div class="rd-row"><span class="rd-head">Political <span class="dots" aria-hidden="true">${dots(f.political)}</span><span class="sr-only">${f.political} of 5</span> ${f.political}/5</span> — ${esc(f.politicalWhy)}</div>
-        <div class="rd-row"><span class="rd-head">Truth <span class="dots" aria-hidden="true">${dots(f.truth)}</span><span class="sr-only">${f.truth} of 5</span> ${f.truth}/5</span> — ${esc(f.truthWhy)}</div>
-        <div class="rd-row"><span class="rd-head">Evidence: ${esc(EV_LABELS[f.evidenceType] || f.evidenceType)}</span> — ${esc(f.methodNote)}</div>
-      </div>`;
-    }
-    function kwChipsHTML(f) {
-      return (f.keywords || []).map(k => `<span class="chip chip-kw">${esc(KW_LABELS[k] || k)}</span>`).join('');
-    }
-    function statusChipsHTML(f) {
-      const caution = f.truth <= 2 ? `<span class="chip chip-caution">Use with caution</span>` : '';
-      const access = f.sourceAccess && f.sourceAccess !== 'full'
-        ? `<span class="chip chip-access">Quote from ${esc(f.sourceAccess)}</span>` : '';
-      const foundational = f.foundational
-        ? `<span class="chip chip-foundational" title="${esc(f.foundationalWhy || 'This source contains many more citable facts than the ones extracted.')}">Foundational source</span>` : '';
-      return caution + access + foundational;
-    }
-    function metaHTML(f, opts) {
-      const rows = [];
-      if (!opts || !opts.skipMethod) rows.push(`<strong>Method:</strong> ${esc(f.methodNote)}`);
-      rows.push(`<strong>Where it comes from:</strong> ${esc(f.provenance)}`);
-      if (f.suggestedUse) rows.push(`<strong>Suggested use:</strong> ${esc(f.suggestedUse)}`);
-      if (f.foundational && f.foundationalWhy) rows.push(`<strong>Foundational source:</strong> ${esc(f.foundationalWhy)}`);
-      rows.push(`<strong>Extracted and rated by:</strong> ${esc(f.model || 'unrecorded')}, ${esc(f.added || '')}`);
-      return `<p class="fact-meta">${rows.join('<br>')}</p>`;
-    }
-    function contextHTML(f) {
-      return `<div class="fact-context"><span class="lbl-grot">Surrounding paragraph from the source</span>${esc(f.context)}</div>`;
-    }
-    function caveatHTML(f) {
-      return `<div class="fact-caveat${f.truth <= 2 ? ' warn' : ''}"><span class="lbl-grot">Take note</span>${esc(f.caveat)}</div>`;
-    }
-    function citeHTML(p, f) {
-      const pd = formatPubDate(pubDateOf(f));
-      return `<a class="cite-link" href="${esc(p.sourceUrl)}" target="_blank" rel="noopener noreferrer">${kfFormatAPACitation(p)}</a>
-              ${pd ? `<span class="cite-date">Published ${esc(pd)}</span>` : ''}`;
-    }
-
-    /* ── MODE 1: By-paper view ── */
-    function simpleCardHTML(f) {
-      const p = paperMap[f.paperId];
-      return `
-      <div class="cwrap" data-fid="${esc(f.id)}"><div class="cinner">
-        <div class="simple-card" id="kf-card-${esc(f.id)}" tabindex="0" role="button" aria-expanded="false">
-          <div class="sc-top">
-            <p class="sc-plain">${esc(f.factPlain)}</p>
-            <span class="expand-hint"><span class="chev" aria-hidden="true">&#8250;</span></span>
-          </div>
-          <div class="details"><div class="dinner"><div class="sc-body">
-            <div class="fc-quote-block">
-              <span class="lbl-grot">Full quote</span>
-              <blockquote class="fact-quote">${esc(f.fact)}</blockquote>
-            </div>
-            ${caveatHTML(f)}
-            ${ratingDescHTML(f)}
-            <div class="chips" style="margin-top:10px">${statusChipsHTML(f)}${kwChipsHTML(f)}</div>
-            <div style="margin-top:12px">${metaHTML(f, { skipMethod: true })}</div>
-            ${contextHTML(f)}
-            <div class="sc-actions">
-              <a class="act-btn" href="#entry/${esc(p.id)}">View in tracker</a>
-              <button class="act-btn" data-copy="${esc(f.id)}">Copy fact + citation</button>
-            </div>
-          </div></div></div>
-        </div>
-      </div></div>`;
-    }
-    function paperGroupHTML(pid, facts) {
-      const p = paperMap[pid];
-      const n = facts.length;
-      return `
-      <div class="cwrap pg-wrap" data-pid="${esc(String(pid))}"><div class="cinner">
-        <section class="paper-group" aria-label="${esc(p.title)}">
-          <div class="pg-facts">${facts.map(simpleCardHTML).join('')}</div>
-          <div class="pg-footer">
-            <div class="pg-cite">${citeHTML(p, facts[0])}</div>
-            <span class="pg-count">${facts.some(f => f.foundational) ? `<span class="chip chip-foundational" title="${esc((facts.find(f => f.foundational) || {}).foundationalWhy || '')}">Foundational source</span> &middot; ` : ''}${n} fact${n === 1 ? '' : 's'} &middot; <a class="cite-link" href="#entry/${esc(p.id)}">View in tracker</a></span>
-          </div>
-        </section>
-      </div></div>`;
-    }
-
-    /* ── MODE 2: All-facts view ── */
-    function factCardHTML(f) {
-      const p = paperMap[f.paperId];
-      return `
-      <div class="cwrap" data-fid="${esc(f.id)}"><div class="cinner">
-        <article class="fact-card" id="kf-all-${esc(f.id)}" tabindex="0" role="button" aria-expanded="false">
-          <p class="fc-plain">${esc(f.factPlain)}</p>
-          <div class="fc-quote-block">
-            <span class="lbl-grot">Full quote</span>
-            <blockquote class="fact-quote">${esc(f.fact)}</blockquote>
-          </div>
-          ${caveatHTML(f)}
-          <div class="details"><div class="dinner"><div class="fc-details-body">
-            <div class="chips">
-              <span class="chip chip-rating">Political <span class="dots" aria-hidden="true">${dots(f.political)}</span><span class="sr-only">${f.political} of 5</span></span>
-              <span class="chip chip-rating">Truth <span class="dots" aria-hidden="true">${dots(f.truth)}</span><span class="sr-only">${f.truth} of 5</span></span>
-              <span class="chip">${esc(EV_LABELS[f.evidenceType] || f.evidenceType)}</span>
-              ${statusChipsHTML(f)}${kwChipsHTML(f)}
-            </div>
-            ${metaHTML(f)}
-            ${contextHTML(f)}
-          </div></div></div>
-          <div class="fact-footer">
-            <div class="fc-cite">${citeHTML(p, f)}</div>
-            <div class="fact-actions">
-              <a class="act-btn" href="#entry/${esc(p.id)}">View in tracker</a>
-              <button class="act-btn" data-copy="${esc(f.id)}">Copy fact + citation</button>
-              <span class="expand-hint"><span class="chev" aria-hidden="true">&#8250;</span> Details</span>
-            </div>
-          </div>
-        </article>
-      </div></div>`;
-    }
-
-    /* ── Sorting / grouping ── */
-    function factSorter(a, b) {
-      const da = pubDateOf(a), db = pubDateOf(b);
-      if (sortBy === 'political') return b.political - a.political || b.truth - a.truth || db.localeCompare(da);
-      if (sortBy === 'truth') return b.truth - a.truth || b.political - a.political || db.localeCompare(da);
-      return db.localeCompare(da) || b.political - a.political;
-    }
-
-    const byPaper = {};
-    KILLER_FACTS.forEach(f => { (byPaper[f.paperId] = byPaper[f.paperId] || []).push(f); });
-    let paperOrder = Object.keys(byPaper);
-    paperOrder.sort((a, b) => {
-      const da = byPaper[a].map(f => pubDateOf(f)).sort().pop() || '';
-      const db = byPaper[b].map(f => pubDateOf(f)).sort().pop() || '';
-      return db.localeCompare(da);
-    });
-
-    function resortAll() {
-      const wraps = Object.fromEntries([...allFactsView.children].map(w => [w.dataset.fid, w]));
-      [...KILLER_FACTS].sort(factSorter).forEach(f => allFactsView.appendChild(wraps[f.id]));
-    }
-    function resortPapers() {
-      const metric = pid => {
-        const fs = byPaper[pid];
-        if (sortBy === 'political') return Math.max(...fs.map(f => f.political));
-        if (sortBy === 'truth') return Math.max(...fs.map(f => f.truth));
-        return 0;
-      };
-      const latest = pid => byPaper[pid].map(f => pubDateOf(f)).sort().pop() || '';
-      const wraps = Object.fromEntries([...byPaperView.children].map(w => [w.dataset.pid, w]));
-      [...paperOrder].sort((a, b) => metric(b) - metric(a) || latest(b).localeCompare(latest(a)))
-        .forEach(pid => byPaperView.appendChild(wraps[pid]));
-    }
-
-    /* ── Filtering ── */
-    function matches(f) {
-      if (f.political < minPol || f.truth < minTruth) return false;
-      if (onlyFoundational && !f.foundational) return false;
-      if (evType !== 'all' && f.evidenceType !== evType) return false;
-      if (activeKw.size && ![...activeKw].every(k => (f.keywords || []).includes(k))) return false;
-      if (q) {
-        const p = paperMap[f.paperId] || {};
-        const hay = [f.fact, f.factPlain, f.caveat, f.provenance, f.suggestedUse, f.foundationalWhy, (f.keywords || []).join(' '), p.title, p.source].join(' ').toLowerCase();
-        if (!hay.includes(q)) return false;
-      }
-      return true;
-    }
-    function applyFilters() {
-      const shown = new Set(KILLER_FACTS.filter(matches).map(f => f.id));
-      [...allFactsView.querySelectorAll(':scope > .cwrap')].forEach(w => {
-        w.classList.toggle('hidden', !shown.has(w.dataset.fid));
-      });
-      let visiblePapers = 0;
-      [...byPaperView.querySelectorAll(':scope > .pg-wrap')].forEach(gw => {
-        let any = 0;
-        [...gw.querySelectorAll('.cwrap[data-fid]')].forEach(w => {
-          const on = shown.has(w.dataset.fid);
-          w.classList.toggle('hidden', !on);
-          if (on) any++;
-        });
-        gw.classList.toggle('hidden', any === 0);
-        if (any) visiblePapers++;
-      });
-      const nPapers = mode === 'paper' ? visiblePapers : new Set(KILLER_FACTS.filter(matches).map(f => f.paperId)).size;
-      resultLine.textContent = `${shown.size} of ${KILLER_FACTS.length} facts, drawn from ${nPapers} sources.`;
-      emptyState.hidden = shown.size !== 0;
-    }
-
-    function setMode(m) {
-      mode = m;
-      modePaperBtn.setAttribute('aria-pressed', String(m === 'paper'));
-      modeAllBtn.setAttribute('aria-pressed', String(m === 'all'));
-      byPaperView.hidden = m !== 'paper';
-      allFactsView.hidden = m !== 'all';
-      applyFilters();
-    }
-
-    function toggleCard(card) {
-      const open = card.classList.toggle('open');
-      card.setAttribute('aria-expanded', String(open));
-    }
-    function handleCardEvents(root) {
-      root.addEventListener('click', e => {
-        const cp = e.target.closest('[data-copy]');
-        if (cp) {
-          const f = KILLER_FACTS.find(x => x.id === cp.dataset.copy);
-          const p = paperMap[f.paperId];
-          const text = `"${f.fact}"\n\nSource: ${apaPlain(p)} ${p.sourceUrl}`;
-          navigator.clipboard.writeText(text).then(() => {
-            cp.textContent = 'Copied';
-            cp.classList.add('copied');
-            setTimeout(() => { cp.textContent = 'Copy fact + citation'; cp.classList.remove('copied'); }, 1600);
-          });
-          return;
-        }
-        if (e.target.closest('a, select, input')) return;
-        const card = e.target.closest('.simple-card, .fact-card');
-        if (card) toggleCard(card);
-      });
-      root.addEventListener('keydown', e => {
-        if ((e.key === 'Enter' || e.key === ' ') && e.target.matches('.simple-card, .fact-card')) {
-          e.preventDefault();
-          toggleCard(e.target);
-        }
-      });
-    }
-
-    let kfBuilt = false;
-    initKillerFacts = function () {
-      if (kfBuilt) return;
-      kfBuilt = true;
-
-      // Populate the evidence-type select.
-      const evSelect = document.getElementById('kfEvidence');
-      [...new Set(KILLER_FACTS.map(f => f.evidenceType))].sort().forEach(t => {
-        const o = document.createElement('option');
-        o.value = t; o.textContent = EV_LABELS[t] || t;
-        evSelect.appendChild(o);
-      });
-
-      // Build keyword pills.
-      const kwCounts = {};
-      KILLER_FACTS.forEach(f => (f.keywords || []).forEach(k => { kwCounts[k] = (kwCounts[k] || 0) + 1; }));
-      const pillWrap = document.getElementById('kwPills');
-      const kwActiveCount = document.getElementById('kwActiveCount');
-      Object.keys(kwCounts).sort((a, b) => kwCounts[b] - kwCounts[a]).forEach(k => {
-        const b = document.createElement('button');
-        b.className = 'kw-pill';
-        b.setAttribute('aria-pressed', 'false');
-        b.dataset.kw = k;
-        b.innerHTML = `${esc(KW_LABELS[k] || k)} <span class="kw-count">${kwCounts[k]}</span>`;
-        b.addEventListener('click', () => {
-          if (activeKw.has(k)) { activeKw.delete(k); b.setAttribute('aria-pressed', 'false'); }
-          else { activeKw.add(k); b.setAttribute('aria-pressed', 'true'); }
-          kwActiveCount.hidden = activeKw.size === 0;
-          kwActiveCount.textContent = activeKw.size;
-          applyFilters();
-        });
-        pillWrap.appendChild(b);
-      });
-
-      const kwToggle = document.getElementById('kwToggle');
-      const kwPanel = document.getElementById('kwPanel');
-      kwToggle.addEventListener('click', () => {
-        const open = kwPanel.classList.toggle('open');
-        kwToggle.setAttribute('aria-expanded', String(open));
-      });
-
-      document.getElementById('kfSearch').addEventListener('input', e => { q = e.target.value.toLowerCase(); applyFilters(); });
-      evSelect.addEventListener('change', e => { evType = e.target.value; applyFilters(); });
-      document.getElementById('kfMinPol').addEventListener('change', e => { minPol = +e.target.value; applyFilters(); });
-      document.getElementById('kfMinTruth').addEventListener('change', e => { minTruth = +e.target.value; applyFilters(); });
-      document.getElementById('kfFoundational').addEventListener('change', e => { onlyFoundational = e.target.checked; applyFilters(); });
-      document.getElementById('kfSort').addEventListener('change', e => { sortBy = e.target.value; resortAll(); resortPapers(); applyFilters(); });
-
-      byPaperView.innerHTML = paperOrder.map(pid => paperGroupHTML(pid, byPaper[pid])).join('');
-      allFactsView.innerHTML = [...KILLER_FACTS].sort(factSorter).map(factCardHTML).join('');
-
-      handleCardEvents(byPaperView);
-      handleCardEvents(allFactsView);
-
-      modePaperBtn.addEventListener('click', () => setMode('paper'));
-      modeAllBtn.addEventListener('click', () => setMode('all'));
-
-      setMode('paper');
-    };
-  })();
-
   // ── init ─────────────────────────────────────────────────────
-  // R2: honor a deep link if one is present; otherwise land on Research.
-  if (!applyHashRoute()) setView('cards');
+  // R2: honor a deep link if one is present; otherwise land on Themes.
+  if (!applyHashRoute()) setView('themes');
   window.addEventListener('hashchange', applyHashRoute);
 
   // What's new: open the log from the header button; pulse the pill once
@@ -4903,244 +3720,6 @@
     pill.addEventListener('animationend', () => pill.classList.remove('pulse'), { once: true });
   })();
 
-})();
-</script>
-
-<!-- ═══════════════════════════════════════════════════════════
-     JOB DISPLACEMENT — chart rendering
-     Self-contained IIFE transplanted verbatim from
-     jobs_displacement_prototype.html. Reads window.JOBS_DISPLACEMENT_DATA,
-     touches only .jd-* / its own SVG ids. Renders eagerly at load; the
-     fixed-viewBox SVGs draw correctly even while the tab is hidden.
-     ═══════════════════════════════════════════════════════════ -->
-<script>
-(function () {
-  const D = window.JOBS_DISPLACEMENT_DATA;
-  if (!D) { console.error('JOBS_DISPLACEMENT_DATA not found'); return; }
-
-  const C = {
-    navy: '#2c3254', green: '#70ad8f', gold: '#c99a3f', goldLine: '#ebc382',
-    pink: '#ff9d7d', purple: '#472b51', muted: '#6d7091',
-    grid: '#e6e2d1', text: '#3c4164', headline: '#232849'
-  };
-  const MON = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-
-  const byId = id => document.getElementById(id);
-  const esc = s => encodeURIComponent(s);
-  const lin = (d0, d1, r0, r1) => { const m = (r1 - r0) / (d1 - d0); return v => r0 + (v - d0) * m; };
-  const sgn = (v, dp) => (v >= 0 ? '+' : '') + v.toFixed(dp == null ? 1 : dp);
-  const fmtDate = s => { const p = s.split('-'); return MON[+p[1] - 1] + ' ' + p[0]; };
-
-  function ticks(min, max, n) {
-    const span = max - min, raw = span / n, mag = Math.pow(10, Math.floor(Math.log10(raw)));
-    const norm = raw / mag; let step = norm < 1.5 ? 1 : norm < 3 ? 2 : norm < 7 ? 5 : 10;
-    step *= mag;
-    const out = [], start = Math.ceil(min / step) * step;
-    for (let v = start; v <= max + step * 1e-6; v += step) out.push(+v.toFixed(6));
-    return out;
-  }
-
-  // Shared tooltip
-  const tip = document.createElement('div');
-  tip.className = 'jd-tooltip';
-  document.body.appendChild(tip);
-  function placeTip(e) {
-    let x = e.clientX + 14, y = e.clientY + 14;
-    if (x + 260 > window.innerWidth) x = e.clientX - 250;
-    tip.style.left = x + 'px'; tip.style.top = y + 'px';
-  }
-  function bindTips(svg) {
-    svg.addEventListener('mousemove', e => {
-      const t = e.target.closest('[data-tip]');
-      if (t) { tip.innerHTML = decodeURIComponent(t.getAttribute('data-tip')); tip.style.opacity = 1; placeTip(e); }
-      else tip.style.opacity = 0;
-    });
-    svg.addEventListener('mouseleave', () => tip.style.opacity = 0);
-  }
-
-  // ── SECTION 1a: Okun scatter ───────────────────────────────────────────────
-  function renderOkun() {
-    const o = D.okun, svg = byId('okunChart');
-    const W = 640, H = 410, mL = 56, mR = 20, mT = 16, mB = 48, pw = W - mL - mR, ph = H - mT - mB;
-    const vis = o.scatter.filter(p => !p.is_pandemic);
-    const recentSet = new Set(o.recent.quarters);
-    let xmin = Math.min(...vis.map(p => p.gdp_growth)), xmax = Math.max(...vis.map(p => p.gdp_growth));
-    let ymin = Math.min(...vis.map(p => p.d_unrate)), ymax = Math.max(...vis.map(p => p.d_unrate));
-    const xp = (xmax - xmin) * 0.05, yp = (ymax - ymin) * 0.08;
-    xmin -= xp; xmax += xp; ymin -= yp; ymax += yp;
-    const X = lin(xmin, xmax, mL, mL + pw), Y = lin(ymin, ymax, mT + ph, mT);
-
-    let s = `<defs><clipPath id="okClip"><rect x="${mL}" y="${mT}" width="${pw}" height="${ph}"/></clipPath></defs>`;
-    ticks(xmin, xmax, 7).forEach(t => { const x = X(t); s += `<line x1="${x}" y1="${mT}" x2="${x}" y2="${mT + ph}" stroke="${C.grid}"/><text x="${x}" y="${mT + ph + 16}" text-anchor="middle" font-size="11" fill="${C.muted}">${t}%</text>`; });
-    ticks(ymin, ymax, 6).forEach(t => { const y = Y(t); s += `<line x1="${mL}" y1="${y}" x2="${mL + pw}" y2="${y}" stroke="${C.grid}"/><text x="${mL - 8}" y="${y + 3.5}" text-anchor="end" font-size="11" fill="${C.muted}">${sgn(t, 1)}</text>`; });
-    if (0 > xmin && 0 < xmax) s += `<line x1="${X(0)}" y1="${mT}" x2="${X(0)}" y2="${mT + ph}" stroke="${C.muted}" stroke-width="1.2"/>`;
-    if (0 > ymin && 0 < ymax) s += `<line x1="${mL}" y1="${Y(0)}" x2="${mL + pw}" y2="${Y(0)}" stroke="${C.muted}" stroke-width="1.2"/>`;
-    s += `<text x="${mL + pw / 2}" y="${H - 8}" text-anchor="middle" font-size="11.5" fill="${C.text}">Real GDP growth (annualized, %)</text>`;
-    s += `<text transform="translate(14,${mT + ph / 2}) rotate(-90)" text-anchor="middle" font-size="11.5" fill="${C.text}">Change in unemployment (pp)</text>`;
-
-    let g = `<g clip-path="url(#okClip)">`;
-    const b0 = o.fit.intercept, b1 = o.fit.slope;
-    g += `<line x1="${X(xmin)}" y1="${Y(b0 + b1 * xmin)}" x2="${X(xmax)}" y2="${Y(b0 + b1 * xmax)}" stroke="${C.navy}" stroke-width="2.2"/>`;
-    const draw = p => {
-      const x = X(p.gdp_growth), y = Y(p.d_unrate), r = recentSet.has(p.label);
-      const t = `${p.label}<br>GDP growth <b>${p.gdp_growth}%</b> SAAR<br>Δ unemployment <b>${sgn(p.d_unrate, 2)} pp</b><br>vs Okun line <b>${sgn(p.residual, 2)} pp</b>`;
-      return r
-        ? `<circle cx="${x}" cy="${y}" r="5" fill="${C.pink}" stroke="${C.navy}" stroke-width="1.6" data-tip="${esc(t)}"/>`
-        : `<circle cx="${x}" cy="${y}" r="2.7" fill="${C.muted}" fill-opacity="0.4" data-tip="${esc(t)}"/>`;
-    };
-    vis.filter(p => !recentSet.has(p.label)).forEach(p => g += draw(p));
-    vis.filter(p => recentSet.has(p.label)).forEach(p => g += draw(p));
-    g += `</g>`;
-    svg.innerHTML = s + g;
-    bindTips(svg);
-
-    byId('okunSub').textContent = `Fit on ${o.fit.sample_start.slice(0, 4)}–${o.fit.sample_end.slice(0, 4)}, excluding 2020 Q2–Q3 · R² = ${o.fit.r2}`;
-    byId('okunLegend').innerHTML =
-      `<span><i class="dot" style="background:${C.muted};opacity:.5"></i>Quarter (1948–present)</span>` +
-      `<span><i class="dot" style="background:${C.pink};border:1.5px solid ${C.navy}"></i>Last 4 quarters</span>` +
-      `<span><i style="background:${C.navy}"></i>Okun fit</span>`;
-    byId('okunNote').textContent =
-      `Breakeven growth (unemployment holds steady): about ${o.fit.breakeven_growth}% annualized. Points above the horizontal zero line mean unemployment rose that quarter. The two pandemic quarters (2020 Q2–Q3) are off-scale and excluded from the fit.`;
-  }
-
-  // ── SECTION 1b: prime-age participation & EPOP (crosshair) ─────────────────
-  function renderLFP() {
-    const pa = D.okun.prime_age, svg = byId('lfpChart');
-    const data = pa.series.filter(d => d.lfpr != null && d.epop != null);
-    const W = 640, H = 300, mL = 42, mR = 74, mT = 14, mB = 34, pw = W - mL - mR, ph = H - mT - mB;
-    const tt = data.map(d => Date.parse(d.date));
-    const xmin = Math.min(...tt), xmax = Math.max(...tt);
-    let ymin = Math.min(...data.map(d => d.epop)), ymax = Math.max(...data.map(d => d.lfpr));
-    const yp = (ymax - ymin) * 0.12; ymin -= yp; ymax += yp;
-    const X = lin(xmin, xmax, mL, mL + pw), Y = lin(ymin, ymax, mT + ph, mT);
-
-    let s = '';
-    ticks(ymin, ymax, 5).forEach(t => { const y = Y(t); s += `<line x1="${mL}" y1="${y}" x2="${mL + pw}" y2="${y}" stroke="${C.grid}"/><text x="${mL - 7}" y="${y + 3.5}" text-anchor="end" font-size="11" fill="${C.muted}">${t}%</text>`; });
-    for (let yr = 2000; yr <= 2026; yr += 4) { const x = X(Date.parse(yr + '-01-01')); if (x < mL || x > mL + pw) continue; s += `<line x1="${x}" y1="${mT}" x2="${x}" y2="${mT + ph}" stroke="${C.grid}"/><text x="${x}" y="${mT + ph + 16}" text-anchor="middle" font-size="11" fill="${C.muted}">${yr}</text>`; }
-    // Feb-2020 reference
-    const fx = X(Date.parse('2020-02-01'));
-    s += `<line x1="${fx}" y1="${mT}" x2="${fx}" y2="${mT + ph}" stroke="${C.muted}" stroke-dasharray="3 3" opacity="0.6"/><text x="${fx}" y="${mT + 10}" text-anchor="middle" font-size="10" fill="${C.muted}">Feb 2020</text>`;
-
-    const path = key => 'M' + data.map(d => X(Date.parse(d.date)).toFixed(1) + ',' + Y(d[key]).toFixed(1)).join(' L');
-    s += `<path d="${path('lfpr')}" fill="none" stroke="${C.navy}" stroke-width="2.2"/>`;
-    s += `<path d="${path('epop')}" fill="none" stroke="${C.green}" stroke-width="2.2"/>`;
-    const last = data[data.length - 1];
-    s += `<text x="${mL + pw + 6}" y="${Y(last.lfpr) + 3}" font-size="11.5" fill="${C.navy}" font-weight="600">Participation</text>`;
-    s += `<text x="${mL + pw + 6}" y="${Y(last.epop) + 3}" font-size="11.5" fill="${C.green}" font-weight="600">Emp–pop</text>`;
-    s += `<line id="lfpGuide" y1="${mT}" y2="${mT + ph}" stroke="${C.muted}" opacity="0"/>`;
-    s += `<circle id="lfpD1" r="4" fill="${C.navy}" opacity="0"/><circle id="lfpD2" r="4" fill="${C.green}" opacity="0"/>`;
-    s += `<rect id="lfpOv" x="${mL}" y="${mT}" width="${pw}" height="${ph}" fill="transparent"/>`;
-    svg.innerHTML = s;
-
-    const arr = data.map(d => ({ px: X(Date.parse(d.date)), l: d.lfpr, e: d.epop, d: d.date }));
-    const guide = byId('lfpGuide'), d1 = byId('lfpD1'), d2 = byId('lfpD2'), ov = byId('lfpOv');
-    ov.addEventListener('mousemove', e => {
-      const rect = svg.getBoundingClientRect(), sx = (e.clientX - rect.left) / rect.width * W;
-      let best = arr[0], bd = 1e9;
-      arr.forEach(a => { const dd = Math.abs(a.px - sx); if (dd < bd) { bd = dd; best = a; } });
-      guide.setAttribute('x1', best.px); guide.setAttribute('x2', best.px); guide.setAttribute('opacity', 1);
-      d1.setAttribute('cx', best.px); d1.setAttribute('cy', Y(best.l)); d1.setAttribute('opacity', 1);
-      d2.setAttribute('cx', best.px); d2.setAttribute('cy', Y(best.e)); d2.setAttribute('opacity', 1);
-      tip.innerHTML = `${fmtDate(best.d)}<br><b>Participation ${best.l}%</b><br><b>Emp–pop ${best.e}%</b>`;
-      tip.style.opacity = 1; placeTip(e);
-    });
-    ov.addEventListener('mouseleave', () => { tip.style.opacity = 0; [guide, d1, d2].forEach(el => el.setAttribute('opacity', 0)); });
-    byId('lfpLegend').innerHTML =
-      `<span><i style="background:${C.navy}"></i>Labor force participation, 25–54</span>` +
-      `<span><i style="background:${C.green}"></i>Employment–population ratio, 25–54</span>`;
-  }
-
-  // ── SECTION 2: residual unemployment by age ────────────────────────────────
-  function renderAges() {
-    const A = D.age_bands, svg = byId('ageChart');
-    const col = { 'College+': C.navy, 'HS+ (no BA)': C.green, '< HS': C.gold };
-    const W = 640, H = 380, mL = 54, mR = 96, mT = 16, mB = 44, pw = W - mL - mR, ph = H - mT - mB;
-    let all = [];
-    A.series.forEach(g => g.points.forEach(p => all.push(p)));
-    const xmin = Math.min(...all.map(p => p.age)), xmax = Math.max(...all.map(p => p.age));
-    let ymin = Math.min(0, ...all.map(p => p.value)), ymax = Math.max(...all.map(p => p.value));
-    const yp = (ymax - ymin) * 0.08; ymin -= yp; ymax += yp;
-    const X = lin(xmin, xmax, mL, mL + pw), Y = lin(ymin, ymax, mT + ph, mT);
-
-    let s = '';
-    ticks(ymin, ymax, 6).forEach(t => { const y = Y(t); s += `<line x1="${mL}" y1="${y}" x2="${mL + pw}" y2="${y}" stroke="${C.grid}"/><text x="${mL - 8}" y="${y + 3.5}" text-anchor="end" font-size="11" fill="${C.muted}">${sgn(t * 100, 0)} pp</text>`; });
-    for (let a = 20; a <= xmax; a += 5) { const x = X(a); s += `<line x1="${x}" y1="${mT}" x2="${x}" y2="${mT + ph}" stroke="${C.grid}"/><text x="${x}" y="${mT + ph + 16}" text-anchor="middle" font-size="11" fill="${C.muted}">${a}</text>`; }
-    if (0 > ymin && 0 < ymax) s += `<line x1="${mL}" y1="${Y(0)}" x2="${mL + pw}" y2="${Y(0)}" stroke="${C.muted}" stroke-width="1.3"/>`;
-    s += `<text x="${mL + pw / 2}" y="${H - 6}" text-anchor="middle" font-size="11.5" fill="${C.text}">Age</text>`;
-    s += `<text transform="translate(13,${mT + ph / 2}) rotate(-90)" text-anchor="middle" font-size="11.5" fill="${C.text}">Excess unemployment (pp)</text>`;
-
-    A.series.forEach(g => {
-      const c = col[g.group] || C.muted, pts = g.points.slice().sort((a, b) => a.age - b.age);
-      s += `<path d="M${pts.map(p => X(p.age).toFixed(1) + ',' + Y(p.value).toFixed(1)).join(' L')}" fill="none" stroke="${c}" stroke-width="2.2"/>`;
-      pts.forEach(p => { s += `<circle cx="${X(p.age)}" cy="${Y(p.value)}" r="3" fill="${c}" data-tip="${esc(`Age ${p.age}, ${g.group}<br>Excess unemployment <b>${sgn(p.value * 100, 1)} pp</b>`)}"/>`; });
-      const lastP = pts[pts.length - 1];
-      s += `<text x="${mL + pw + 6}" y="${Y(lastP.value) + 3.5}" font-size="11.5" fill="${c}" font-weight="600">${g.group}</text>`;
-    });
-    svg.innerHTML = s;
-    bindTips(svg);
-    byId('ageLegend').innerHTML = A.group_order.map(g => `<span><i style="background:${col[g]}"></i>${g}</span>`).join('');
-    byId('ageNote').innerHTML =
-      `Positive = more unemployment than the group’s own pre-2020 relationship to the overall rate predicts. Residual averaged over the latest 6 months; log-log prediction trained through 2019. ` +
-      `<span class="jd-src">Method &amp; data: <a href="https://github.com/mtkonczal/Blog-Posts-Presentations-and-Testimony/tree/main/blogs_2026/01_education_young_unrate" target="_blank" rel="noopener">education / young unemployment analysis</a> (snapshot; IPUMS regeneration to come).</span>`;
-  }
-
-  // ── SECTION 3: sector slowdown bars ────────────────────────────────────────
-  function renderCES() {
-    const Cd = D.ces_slowdown, svg = byId('cesChart');
-    const short = {
-      'Trade, transportation, and utilities': 'Trade, transport & utilities',
-      'Professional and business services': 'Professional & business svcs',
-      'Private education and health services': 'Private education & health',
-      'Leisure and hospitality': 'Leisure & hospitality',
-      'Mining and logging': 'Mining & logging'
-    };
-    const bars = Cd.bars;
-    const W = 640, H = 430, mL = 168, mR = 30, mT = 12, mB = 40, pw = W - mL - mR, ph = H - mT - mB;
-    let xmin = Math.min(0, ...bars.map(b => b.slowdown)), xmax = Math.max(0, ...bars.map(b => b.slowdown));
-    const xp = (xmax - xmin) * 0.14; xmin -= xp; xmax += xp;
-    const X = lin(xmin, xmax, mL, mL + pw), rowH = ph / bars.length, zX = X(0);
-
-    let s = '';
-    ticks(xmin, xmax, 6).forEach(t => { const x = X(t); s += `<line x1="${x}" y1="${mT}" x2="${x}" y2="${mT + ph}" stroke="${C.grid}"/><text x="${x}" y="${mT + ph + 16}" text-anchor="middle" font-size="11" fill="${C.muted}">${sgn(t, 0)}</text>`; });
-    s += `<line x1="${zX}" y1="${mT}" x2="${zX}" y2="${mT + ph}" stroke="${C.muted}" stroke-width="1.3"/>`;
-    s += `<text x="${mL + pw / 2}" y="${H - 6}" text-anchor="middle" font-size="11.5" fill="${C.text}">Slowdown vs 2015–19 pace (percentage points)</text>`;
-
-    bars.forEach((b, i) => {
-      const cy = mT + i * rowH + rowH / 2, bh = Math.min(rowH * 0.6, 22);
-      const x2 = X(b.slowdown), bx = Math.min(zX, x2), bw = Math.abs(x2 - zX);
-      const c = b.slowdown < 0 ? C.navy : C.green;
-      const t = `${b.sector}<br>Past year: <b>${b.recent_yoy}%</b><br>2015–19 pace: <b>${b.baseline_yoy}%</b><br>Slowdown: <b>${sgn(b.slowdown, 1)} pp</b><br>Net jobs, 12mo: <b>${(b.jobs_chg_12 >= 0 ? '+' : '') + b.jobs_chg_12}k</b>`;
-      s += `<rect x="${bx}" y="${cy - bh / 2}" width="${bw}" height="${bh}" rx="2" fill="${c}" data-tip="${esc(t)}"/>`;
-      s += `<text x="${mL - 8}" y="${cy + 3.5}" text-anchor="end" font-size="11" fill="${C.text}">${short[b.sector] || b.sector}</text>`;
-      const neg = b.slowdown < 0;
-      s += `<text x="${x2 + (neg ? -5 : 5)}" y="${cy + 3.5}" text-anchor="${neg ? 'end' : 'start'}" font-size="10.5" font-weight="600" fill="${c}">${sgn(b.slowdown, 1)}</text>`;
-    });
-    svg.innerHTML = s;
-    bindTips(svg);
-    byId('cesSub').textContent = `Past-year growth vs 2015–19 average · latest data: ${Cd.latest_month}`;
-    byId('cesNote').textContent = `${Cd.method} Eleven major supersectors (they sum to total nonfarm). Blue = slower than the pre-pandemic pace; green = faster.`;
-  }
-
-  // ── Stats cards + verdicts + vintage ───────────────────────────────────────
-  function renderMeta() {
-    const L = D.okun.level, P = D.okun.prime_age, R = D.okun.recent;
-    const cards = [
-      { n: `${L.unrate}%`, sub: ` / ${L.nrou}% nat.`, l: `Unemployment rate (${L.unrate_month}) vs CBO natural rate` },
-      { n: `${sgn(L.gap, 1)} pp`, l: `Unemployment gap (rate minus natural rate)`, pos: L.gap > 0 },
-      { n: `${P.lfpr_now}%`, l: `Prime-age participation · ${sgn(P.lfpr_vs_feb2020, 1)} pp vs Feb 2020` },
-      { n: `${sgn(R.residual_mean, 2)} pp`, l: `Actual minus Okun-predicted Δu, last 4 quarters` }
-    ];
-    byId('okunStats').innerHTML = cards.map(c =>
-      `<div class="jd-stat"><div class="n${c.pos ? ' pos' : ''}">${c.n}${c.sub ? `<small>${c.sub}</small>` : ''}</div><div class="l">${c.l}</div></div>`
-    ).join('');
-    byId('okunAnswer').textContent = D.okun.verdict;
-    byId('ageAnswer').textContent = D.age_bands.verdict;
-    byId('cesAnswer').textContent = D.ces_slowdown.verdict;
-    byId('jdVintage').textContent =
-      `Data generated ${D.generated}. Sources: real GDP, unemployment, CBO natural rate & prime-age participation via FRED (§1); CPS residuals (§2); BLS CES payrolls (§3).`;
-  }
-
-  renderOkun(); renderLFP(); renderAges(); renderCES(); renderMeta();
 })();
 </script>
 </body>
