@@ -1,6 +1,6 @@
-# Killer Facts: next steps
+# Fact Bank: next steps
 
-Queue for extracting killer facts from the remaining tracker entries. The pilot
+Queue for extracting facts from the remaining tracker entries. The pilot
 plus batches 1-13 are done; what remains (109 entries, batches 14-23) is below.
 
 The queue is now sorted newest first by publication year: 2026 papers come first,
@@ -11,16 +11,16 @@ not spend time there until the recent years are cleared.
 ## How to run a batch
 
 1. Open this file and pick the first unchecked batch (top of the file = most recent year).
-2. Invoke the killer-ai-facts skill (`skills/killer-ai-facts/SKILL.md`, mirrored at
-   `.claude/skills/killer-ai-facts/SKILL.md`) on those paper ids. Follow it
+2. Invoke the fact-bank skill (`skills/fact-bank/SKILL.md`, mirrored at
+   `.claude/skills/fact-bank/SKILL.md`) on those paper ids. Follow it
    exactly: verbatim quotes from fetched text only, abstracts first but verify
    in the body, both rating rubrics, the controlled vocabularies.
 3. Record the extracting model in each fact's `model` field, and copy each
    source's publication date from its tracker `date` into the fact's `pubDate`.
 4. Sources that cannot be fully read go to `PENDING_SOURCES.md`, not the data file.
-5. Merge into `data/killer-facts-data.js` sorted by paperId, dedupe repeated
-   statistics against existing facts (keep the primary source), and load
-   `killer_facts.html` to confirm the console validation passes.
+5. Merge into `data/fact-bank-data.js` sorted by paperId, dedupe repeated
+   statistics against existing facts (keep the primary source), and open
+   `index.html`'s Fact Bank tab to confirm the console shows no warnings.
 6. Check the batch off below, commit, and STOP. One batch per run; the
    maintainer reviews before the next batch starts.
 

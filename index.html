@@ -74,7 +74,7 @@
   }
 
   :root {
-    /* ── ESP C3 brand tokens (from killer_facts.html / esp-style-guide) ── */
+    /* ── ESP C3 brand tokens (from the Fact Bank tab / esp-style-guide) ── */
     --navy:        #2c3254;  /* Warm Navy — anchor */
     --beige:       #f4f2e4;  /* Beige — anchor */
     --light-beige: #fffdf2;  /* Light Beige — card surface */
@@ -101,7 +101,7 @@
        background, and it keeps green within ESP's ~15% accent budget.
        Green survives as deliberate accents that reference --green directly:
        the header active-tab underline, the Policy Map Economic Security
-       swatch, and the (green-by-design) Killer Facts tab. */
+       swatch, and the (green-by-design) Fact Bank tab. */
     --accent:   var(--navy);
     --tooltip-bg: #2c3254;
     --tooltip-fg: #f4f2e4;
@@ -229,7 +229,13 @@
   .strategy-view .inline-filters { display: none; }
   .strategy-view .app-layout { max-width: calc(var(--sidebar-w) + 1100px); }
   .strategy-view .cards-area { padding: 8px 0 40px; }
-  .strategy-view .cards-grid { display: block; }
+  /* Themes render into their own #themesArea (built once, cached). The Research
+     #cardsGrid is left in the DOM but hidden here, so switching Research<->Themes
+     no longer tears either one down. */
+  #themesArea { display: none; }
+  .strategy-view #themesArea { display: block; }
+  .strategy-view .cards-grid { display: none; }
+  .strategy-view .empty-state { display: none !important; }
   .strategy-view .themes-grid { display: flex; flex-direction: column; width: 100%; gap: 0; }
   .strategy-view .theme-card { width: 100%; border-radius: 0; border-left: none; border-right: none; border-top: none; }
 
@@ -1281,259 +1287,259 @@
   .jobs-view .main-content                { grid-column: 1 / -1; }
 
   /* ═══════════════════════════════════════════════════════════
-     KILLER FACTS TAB (merged from killer_facts.html)
-     All component styles are scoped under #killerFactsArea so the
+     FACT BANK TAB
+     All component styles are scoped under #factBankArea so the
      generic class names (.controls, .chip, .empty-state, …) cannot
      leak into the rest of the app.
      ═══════════════════════════════════════════════════════════ */
-  #killerFactsArea { display: none; }
-  .killer-view #killerFactsArea {
+  #factBankArea { display: none; }
+  .fact-bank-view #factBankArea {
     display: block; max-width: 1140px; margin: 0 auto; width: 100%;
   }
-  .killer-view .sidebar            { display: none; }
-  .killer-view .inline-filters     { display: none; }
-  .killer-view .cards-grid         { display: none !important; }
-  .killer-view .empty-state        { display: none !important; }
-  .killer-view .lens-toggle        { display: none; }
-  .killer-view .header-tab-desc    { display: none; }
-  .killer-view .research-header-bar{ display: none !important; }
-  .killer-view .theme-nav-strip    { display: none; }
-  .killer-view .theme-disclaimer-bar { display: none; }
-  .killer-view .key-findings-band  { display: none; }
-  .killer-view .app-layout         { grid-template-columns: 1fr; }
-  .killer-view .main-content       { grid-column: 1 / -1; }
+  .fact-bank-view .sidebar            { display: none; }
+  .fact-bank-view .inline-filters     { display: none; }
+  .fact-bank-view .cards-grid         { display: none !important; }
+  .fact-bank-view .empty-state        { display: none !important; }
+  .fact-bank-view .lens-toggle        { display: none; }
+  .fact-bank-view .header-tab-desc    { display: none; }
+  .fact-bank-view .research-header-bar{ display: none !important; }
+  .fact-bank-view .theme-nav-strip    { display: none; }
+  .fact-bank-view .theme-disclaimer-bar { display: none; }
+  .fact-bank-view .key-findings-band  { display: none; }
+  .fact-bank-view .app-layout         { grid-template-columns: 1fr; }
+  .fact-bank-view .main-content       { grid-column: 1 / -1; }
 
-  #killerFactsArea .intro-bar { padding: 26px 0 20px; border-bottom: 2px solid var(--navy); }
-  #killerFactsArea .intro-title {
+  #factBankArea .intro-bar { padding: 26px 0 20px; border-bottom: 2px solid var(--navy); }
+  #factBankArea .intro-title {
     font-family: var(--serif); font-weight: 700; color: var(--headline);
     font-size: 30px; letter-spacing: -0.01em; margin-bottom: 8px;
   }
-  #killerFactsArea .intro-text { font-size: 14.5px; line-height: 1.65; }
-  #killerFactsArea .intro-note { font-size: 12.5px; font-style: italic; color: var(--purple); margin-top: 8px; }
+  #factBankArea .intro-text { font-size: 14.5px; line-height: 1.65; }
+  #factBankArea .intro-note { font-size: 12.5px; font-style: italic; color: var(--purple); margin-top: 8px; }
 
   /* ── MODE TOGGLE ── */
-  #killerFactsArea .mode-toggle { display: flex; gap: 10px; padding: 18px 0 4px; flex-wrap: wrap; }
-  #killerFactsArea .mode-btn {
+  #factBankArea .mode-toggle { display: flex; gap: 10px; padding: 18px 0 4px; flex-wrap: wrap; }
+  #factBankArea .mode-btn {
     flex: 1; min-width: 240px; text-align: left; cursor: pointer;
     background: var(--light-beige); border: 1.5px solid var(--divider);
     border-radius: 12px; padding: 13px 18px 12px;
     font-family: var(--grot); color: var(--text);
     transition: border-color 0.15s, background 0.15s, color 0.15s;
   }
-  #killerFactsArea .mode-btn .mode-name {
+  #factBankArea .mode-btn .mode-name {
     display: block; font-size: 16px; font-weight: 600; letter-spacing: 0.01em;
     color: var(--headline); margin-bottom: 2px;
   }
-  #killerFactsArea .mode-btn .mode-desc { display: block; font-family: var(--sans); font-size: 12.5px; }
-  #killerFactsArea .mode-btn:hover { border-color: var(--green); }
-  #killerFactsArea .mode-btn[aria-pressed="true"] { background: var(--navy); border-color: var(--navy); }
-  #killerFactsArea .mode-btn[aria-pressed="true"] .mode-name { color: #fff; }
-  #killerFactsArea .mode-btn[aria-pressed="true"] .mode-name::before {
+  #factBankArea .mode-btn .mode-desc { display: block; font-family: var(--sans); font-size: 12.5px; }
+  #factBankArea .mode-btn:hover { border-color: var(--green); }
+  #factBankArea .mode-btn[aria-pressed="true"] { background: var(--navy); border-color: var(--navy); }
+  #factBankArea .mode-btn[aria-pressed="true"] .mode-name { color: #fff; }
+  #factBankArea .mode-btn[aria-pressed="true"] .mode-name::before {
     content: ""; display: inline-block; width: 9px; height: 9px; border-radius: 50%;
     background: var(--green); margin-right: 8px; vertical-align: 1px;
   }
-  #killerFactsArea .mode-btn[aria-pressed="true"] .mode-desc { color: var(--divider); }
+  #factBankArea .mode-btn[aria-pressed="true"] .mode-desc { color: var(--divider); }
 
   /* ── CONTROLS ── */
-  #killerFactsArea .controls {
+  #factBankArea .controls {
     position: sticky; top: 0; z-index: 100;
     background: var(--beige); border-bottom: 1px solid var(--divider);
     padding: 12px 0 10px;
   }
-  #killerFactsArea .controls-row { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
-  #killerFactsArea .controls-row2 { margin-top: 8px; }
-  #killerFactsArea .search-wrap { position: relative; flex: 1; min-width: 220px; }
-  #killerFactsArea .search-wrap svg {
+  #factBankArea .controls-row { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+  #factBankArea .controls-row2 { margin-top: 8px; }
+  #factBankArea .search-wrap { position: relative; flex: 1; min-width: 220px; }
+  #factBankArea .search-wrap svg {
     position: absolute; left: 11px; top: 50%; transform: translateY(-50%);
     color: var(--text); opacity: 0.55; pointer-events: none;
   }
-  #killerFactsArea input[type="search"] {
+  #factBankArea input[type="search"] {
     width: 100%; background: var(--light-beige); border: 1px solid var(--divider);
     color: var(--text); border-radius: 9px; padding: 8px 12px 8px 34px;
     font-size: 13.5px; outline: none; transition: border-color 0.18s; font-family: var(--sans);
   }
-  #killerFactsArea input[type="search"]:focus { border-color: var(--green); }
-  #killerFactsArea input[type="search"]::placeholder { color: var(--text); opacity: 0.5; }
-  #killerFactsArea select {
+  #factBankArea input[type="search"]:focus { border-color: var(--green); }
+  #factBankArea input[type="search"]::placeholder { color: var(--text); opacity: 0.5; }
+  #factBankArea select {
     background: var(--light-beige); border: 1px solid var(--divider); color: var(--text);
     border-radius: 9px; padding: 8px 8px; font-size: 13px; font-family: var(--sans);
     outline: none; cursor: pointer;
   }
-  #killerFactsArea select:focus { border-color: var(--green); }
-  #killerFactsArea .ctl-label {
+  #factBankArea select:focus { border-color: var(--green); }
+  #factBankArea .ctl-label {
     font-family: var(--grot); font-size: 12px; font-weight: 500; letter-spacing: 0.03em;
     color: var(--headline); white-space: nowrap;
   }
-  #killerFactsArea .kw-toggle {
+  #factBankArea .kw-toggle {
     display: inline-flex; align-items: center; gap: 7px; cursor: pointer;
     background: var(--light-beige); border: 1px solid var(--divider); border-radius: 9px;
     padding: 8px 13px; font-family: var(--grot); font-size: 13px; font-weight: 500;
     color: var(--headline); white-space: nowrap; transition: border-color 0.15s;
   }
-  #killerFactsArea .kw-toggle:hover { border-color: var(--green); }
-  #killerFactsArea .kw-toggle .chev { transition: transform 0.18s; font-size: 11px; line-height: 1; }
-  #killerFactsArea .kw-toggle[aria-expanded="true"] .chev { transform: rotate(180deg); }
-  #killerFactsArea .kw-toggle .kw-active-count {
+  #factBankArea .kw-toggle:hover { border-color: var(--green); }
+  #factBankArea .kw-toggle .chev { transition: transform 0.18s; font-size: 11px; line-height: 1; }
+  #factBankArea .kw-toggle[aria-expanded="true"] .chev { transform: rotate(180deg); }
+  #factBankArea .kw-toggle .kw-active-count {
     background: var(--green); color: var(--headline); border-radius: 10px;
     font-size: 11px; font-weight: 600; padding: 0 7px; line-height: 17px;
   }
-  #killerFactsArea .kw-panel { display: grid; grid-template-rows: 0fr; transition: grid-template-rows 0.25s ease; }
-  #killerFactsArea .kw-panel.open { grid-template-rows: 1fr; }
-  #killerFactsArea .kw-panel > div { overflow: hidden; min-height: 0; }
-  #killerFactsArea .pill-row { display: flex; flex-wrap: wrap; gap: 6px; padding: 12px 2px 4px; }
-  #killerFactsArea .kw-pill {
+  #factBankArea .kw-panel { display: grid; grid-template-rows: 0fr; transition: grid-template-rows 0.25s ease; }
+  #factBankArea .kw-panel.open { grid-template-rows: 1fr; }
+  #factBankArea .kw-panel > div { overflow: hidden; min-height: 0; }
+  #factBankArea .pill-row { display: flex; flex-wrap: wrap; gap: 6px; padding: 12px 2px 4px; }
+  #factBankArea .kw-pill {
     display: inline-flex; align-items: center; gap: 6px;
     font-family: var(--grot); font-size: 12px; font-weight: 500; cursor: pointer; white-space: nowrap;
     background: var(--light-beige); border: 1px solid var(--divider); border-radius: 20px;
     padding: 4px 12px; color: var(--text);
     transition: border-color 0.15s, background 0.15s;
   }
-  #killerFactsArea .kw-pill:hover { border-color: var(--green); }
-  #killerFactsArea .kw-pill[aria-pressed="true"] {
+  #factBankArea .kw-pill:hover { border-color: var(--green); }
+  #factBankArea .kw-pill[aria-pressed="true"] {
     background: var(--navy); border-color: var(--navy); color: var(--beige); font-weight: 600;
   }
-  #killerFactsArea .kw-count { font-size: 11px; opacity: 0.7; font-variant-numeric: tabular-nums; }
-  #killerFactsArea .result-line {
+  #factBankArea .kw-count { font-size: 11px; opacity: 0.7; font-variant-numeric: tabular-nums; }
+  #factBankArea .result-line {
     font-family: var(--grot); font-size: 12px; letter-spacing: 0.02em;
     color: var(--text); padding: 10px 0 0;
   }
 
   /* ── COLLAPSE MACHINERY ── */
-  #killerFactsArea .cwrap {
+  #factBankArea .cwrap {
     display: grid; grid-template-rows: 1fr;
     transition: grid-template-rows 0.3s ease, opacity 0.22s ease; opacity: 1;
   }
-  #killerFactsArea .cwrap.hidden { grid-template-rows: 0fr; opacity: 0; pointer-events: none; }
-  #killerFactsArea .cwrap > .cinner { overflow: hidden; min-height: 0; }
-  #killerFactsArea .details { display: grid; grid-template-rows: 0fr; transition: grid-template-rows 0.28s ease; }
-  #killerFactsArea .details > .dinner { overflow: hidden; min-height: 0; }
-  #killerFactsArea .open > .details, #killerFactsArea .open .details { grid-template-rows: 1fr; }
+  #factBankArea .cwrap.hidden { grid-template-rows: 0fr; opacity: 0; pointer-events: none; }
+  #factBankArea .cwrap > .cinner { overflow: hidden; min-height: 0; }
+  #factBankArea .details { display: grid; grid-template-rows: 0fr; transition: grid-template-rows 0.28s ease; }
+  #factBankArea .details > .dinner { overflow: hidden; min-height: 0; }
+  #factBankArea .open > .details, #factBankArea .open .details { grid-template-rows: 1fr; }
 
   /* ── SHARED CARD PIECES ── */
-  #killerFactsArea .lbl-grot {
+  #factBankArea .lbl-grot {
     font-family: var(--grot); font-weight: 600; font-size: 11px;
     letter-spacing: 0.06em; text-transform: uppercase; color: var(--headline);
   }
-  #killerFactsArea .fact-quote {
+  #factBankArea .fact-quote {
     font-family: var(--serif); font-weight: 400;
     font-size: 15px; line-height: 1.55; letter-spacing: 0; color: var(--text);
   }
-  #killerFactsArea .fact-quote::before { content: "\201C"; color: var(--green); }
-  #killerFactsArea .fact-quote::after  { content: "\201D"; color: var(--green); }
-  #killerFactsArea .fact-caveat {
+  #factBankArea .fact-quote::before { content: "\201C"; color: var(--green); }
+  #factBankArea .fact-quote::after  { content: "\201D"; color: var(--green); }
+  #factBankArea .fact-caveat {
     margin-top: 12px; padding: 9px 14px;
     background: var(--beige); border-left: 3px solid var(--green); border-radius: 0 8px 8px 0;
     font-size: 13px; line-height: 1.55;
   }
-  #killerFactsArea .fact-caveat .lbl-grot { display: block; margin-bottom: 2px; }
-  #killerFactsArea .fact-caveat.warn { border-left-color: var(--gold); background: rgba(235,195,130,0.16); }
-  #killerFactsArea .chips { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
-  #killerFactsArea .chip {
+  #factBankArea .fact-caveat .lbl-grot { display: block; margin-bottom: 2px; }
+  #factBankArea .fact-caveat.warn { border-left-color: var(--gold); background: rgba(235,195,130,0.16); }
+  #factBankArea .chips { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+  #factBankArea .chip {
     display: inline-flex; align-items: center; gap: 5px;
     font-family: var(--grot); font-size: 11px; font-weight: 500; letter-spacing: 0.02em;
     border-radius: 6px; padding: 2.5px 9px;
     background: var(--beige); border: 1px solid var(--divider); color: var(--text);
   }
-  #killerFactsArea .chip-rating { color: var(--headline); font-weight: 600; }
-  #killerFactsArea .chip .dots { letter-spacing: 1.5px; color: var(--green); font-size: 10px; }
-  #killerFactsArea .chip-caution { background: rgba(235,195,130,0.3); border-color: var(--gold); color: var(--headline); font-weight: 600; }
-  #killerFactsArea .chip-access { font-style: italic; }
-  #killerFactsArea .chip-kw { background: rgba(112,173,143,0.16); border-color: rgba(112,173,143,0.55); color: var(--headline); }
-  #killerFactsArea .chip-foundational { background: rgba(235,195,130,0.18); border-color: var(--gold); color: var(--headline); font-weight: 600; cursor: help; }
-  #killerFactsArea .ctl-check { display: inline-flex; align-items: center; gap: 5px; font-size: 12px; color: var(--headline); cursor: pointer; white-space: nowrap; }
-  #killerFactsArea .fact-meta { font-size: 12.5px; color: var(--text); line-height: 1.6; }
-  #killerFactsArea .fact-meta strong { font-weight: 600; color: var(--headline); }
-  #killerFactsArea .fact-context {
+  #factBankArea .chip-rating { color: var(--headline); font-weight: 600; }
+  #factBankArea .chip .dots { letter-spacing: 1.5px; color: var(--green); font-size: 10px; }
+  #factBankArea .chip-caution { background: rgba(235,195,130,0.3); border-color: var(--gold); color: var(--headline); font-weight: 600; }
+  #factBankArea .chip-access { font-style: italic; }
+  #factBankArea .chip-kw { background: rgba(112,173,143,0.16); border-color: rgba(112,173,143,0.55); color: var(--headline); }
+  #factBankArea .chip-foundational { background: rgba(235,195,130,0.18); border-color: var(--gold); color: var(--headline); font-weight: 600; cursor: help; }
+  #factBankArea .ctl-check { display: inline-flex; align-items: center; gap: 5px; font-size: 12px; color: var(--headline); cursor: pointer; white-space: nowrap; }
+  #factBankArea .fact-meta { font-size: 12.5px; color: var(--text); line-height: 1.6; }
+  #factBankArea .fact-meta strong { font-weight: 600; color: var(--headline); }
+  #factBankArea .fact-context {
     margin-top: 10px; padding: 10px 14px;
     border: 1px solid var(--divider); border-radius: 8px; background: var(--beige);
     font-size: 12.5px; line-height: 1.65; font-style: italic;
   }
-  #killerFactsArea .fact-context .lbl-grot { display: block; font-style: normal; margin-bottom: 3px; }
-  #killerFactsArea .rating-desc { margin-top: 12px; display: flex; flex-direction: column; gap: 8px; }
-  #killerFactsArea .rating-desc .rd-row { font-size: 12.5px; line-height: 1.55; }
-  #killerFactsArea .rating-desc .rd-row .rd-head {
+  #factBankArea .fact-context .lbl-grot { display: block; font-style: normal; margin-bottom: 3px; }
+  #factBankArea .rating-desc { margin-top: 12px; display: flex; flex-direction: column; gap: 8px; }
+  #factBankArea .rating-desc .rd-row { font-size: 12.5px; line-height: 1.55; }
+  #factBankArea .rating-desc .rd-row .rd-head {
     font-family: var(--grot); font-weight: 600; font-size: 12px; letter-spacing: 0.03em; color: var(--headline);
   }
-  #killerFactsArea .rating-desc .rd-row .rd-head .dots { letter-spacing: 1.5px; color: var(--green); font-size: 10px; }
-  #killerFactsArea .cite-link {
+  #factBankArea .rating-desc .rd-row .rd-head .dots { letter-spacing: 1.5px; color: var(--green); font-size: 10px; }
+  #factBankArea .cite-link {
     font-size: 12.5px; line-height: 1.5; color: var(--text); text-decoration: underline;
     text-decoration-color: var(--green); text-underline-offset: 3px; text-decoration-thickness: 1.5px;
   }
-  #killerFactsArea .cite-link em { font-style: italic; }
-  #killerFactsArea .cite-link:hover { color: var(--headline); text-decoration-color: var(--navy); }
-  #killerFactsArea .cite-date {
+  #factBankArea .cite-link em { font-style: italic; }
+  #factBankArea .cite-link:hover { color: var(--headline); text-decoration-color: var(--navy); }
+  #factBankArea .cite-date {
     font-family: var(--grot); font-size: 11.5px; letter-spacing: 0.03em; color: var(--purple); white-space: nowrap;
   }
-  #killerFactsArea .act-btn {
+  #factBankArea .act-btn {
     background: transparent; border: 1px solid var(--navy); color: var(--navy);
     border-radius: 7px; padding: 4px 12px; font-family: var(--grot);
     font-size: 12px; font-weight: 600; letter-spacing: 0.02em;
     cursor: pointer; white-space: nowrap; text-decoration: none;
     transition: background 0.15s, color 0.15s;
   }
-  #killerFactsArea .act-btn:hover { background: var(--navy); color: var(--beige); }
-  #killerFactsArea .act-btn.copied { background: var(--green); border-color: var(--green); color: var(--headline); }
-  #killerFactsArea .expand-hint {
+  #factBankArea .act-btn:hover { background: var(--navy); color: var(--beige); }
+  #factBankArea .act-btn.copied { background: var(--green); border-color: var(--green); color: var(--headline); }
+  #factBankArea .expand-hint {
     display: inline-flex; align-items: center; gap: 6px;
     font-family: var(--grot); font-size: 11.5px; font-weight: 600; letter-spacing: 0.04em;
     color: var(--purple); background: none; border: none; cursor: pointer; padding: 0;
   }
-  #killerFactsArea .expand-hint .chev { display: inline-block; transition: transform 0.2s; font-size: 13px; line-height: 1; }
-  #killerFactsArea .open .expand-hint .chev { transform: rotate(90deg); }
-  #killerFactsArea .kf-empty-state { padding: 48px 0; text-align: center; color: var(--text); font-size: 14px; }
+  #factBankArea .expand-hint .chev { display: inline-block; transition: transform 0.2s; font-size: 13px; line-height: 1; }
+  #factBankArea .open .expand-hint .chev { transform: rotate(90deg); }
+  #factBankArea .kf-empty-state { padding: 48px 0; text-align: center; color: var(--text); font-size: 14px; }
 
   /* ── MODE 1: BY PAPER ── */
-  #killerFactsArea .paper-group {
+  #factBankArea .paper-group {
     background: var(--light-beige); border: 1px solid var(--divider); border-radius: 12px;
     margin-top: 18px; overflow: hidden;
   }
-  #killerFactsArea .pg-facts { display: flex; flex-direction: column; }
-  #killerFactsArea .simple-card {
+  #factBankArea .pg-facts { display: flex; flex-direction: column; }
+  #factBankArea .simple-card {
     padding: 16px 20px 14px; cursor: pointer;
     border-bottom: 1px solid var(--divider); border-left: 3px solid transparent;
     transition: border-color 0.15s, background 0.15s;
   }
-  #killerFactsArea .pg-facts .cwrap:last-of-type .simple-card { border-bottom: none; }
-  #killerFactsArea .simple-card:hover { border-left-color: var(--green); background: #fdfaef; }
-  #killerFactsArea .simple-card.open { border-left-color: var(--green); }
-  #killerFactsArea .sc-top { display: flex; gap: 12px; align-items: baseline; }
-  #killerFactsArea .sc-plain { flex: 1; font-size: 15px; font-weight: 500; line-height: 1.55; color: var(--headline); }
-  #killerFactsArea .sc-body { padding-top: 4px; }
-  #killerFactsArea .sc-actions { display: flex; gap: 8px; margin-top: 14px; flex-wrap: wrap; }
-  #killerFactsArea .pg-footer {
+  #factBankArea .pg-facts .cwrap:last-of-type .simple-card { border-bottom: none; }
+  #factBankArea .simple-card:hover { border-left-color: var(--green); background: #fdfaef; }
+  #factBankArea .simple-card.open { border-left-color: var(--green); }
+  #factBankArea .sc-top { display: flex; gap: 12px; align-items: baseline; }
+  #factBankArea .sc-plain { flex: 1; font-size: 15px; font-weight: 500; line-height: 1.55; color: var(--headline); }
+  #factBankArea .sc-body { padding-top: 4px; }
+  #factBankArea .sc-actions { display: flex; gap: 8px; margin-top: 14px; flex-wrap: wrap; }
+  #factBankArea .pg-footer {
     display: flex; align-items: flex-end; justify-content: space-between; gap: 16px;
     padding: 13px 20px 14px; background: var(--beige); border-top: 1px solid var(--divider); flex-wrap: wrap;
   }
-  #killerFactsArea .pg-cite { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
-  #killerFactsArea .pg-count { font-family: var(--grot); font-size: 11.5px; letter-spacing: 0.04em; color: var(--purple); white-space: nowrap; }
+  #factBankArea .pg-cite { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+  #factBankArea .pg-count { font-family: var(--grot); font-size: 11.5px; letter-spacing: 0.04em; color: var(--purple); white-space: nowrap; }
 
   /* ── MODE 2: ALL FACTS ── */
-  #killerFactsArea .fact-card {
+  #factBankArea .fact-card {
     background: var(--light-beige); border: 1px solid var(--divider); border-radius: 12px;
     border-left: 3px solid var(--green);
     padding: 18px 22px 16px; margin-top: 14px; cursor: pointer; transition: background 0.15s;
   }
-  #killerFactsArea .fact-card:hover { background: #fdfaef; }
-  #killerFactsArea .fc-plain { font-size: 15px; font-weight: 500; line-height: 1.55; color: var(--headline); }
-  #killerFactsArea .fc-quote-block { margin-top: 12px; }
-  #killerFactsArea .fc-quote-block .lbl-grot { display: block; margin-bottom: 4px; }
-  #killerFactsArea .fc-details-body { padding-top: 14px; }
-  #killerFactsArea .fc-details-body .fact-meta { margin-top: 12px; }
-  #killerFactsArea .fact-footer {
+  #factBankArea .fact-card:hover { background: #fdfaef; }
+  #factBankArea .fc-plain { font-size: 15px; font-weight: 500; line-height: 1.55; color: var(--headline); }
+  #factBankArea .fc-quote-block { margin-top: 12px; }
+  #factBankArea .fc-quote-block .lbl-grot { display: block; margin-bottom: 4px; }
+  #factBankArea .fc-details-body { padding-top: 14px; }
+  #factBankArea .fc-details-body .fact-meta { margin-top: 12px; }
+  #factBankArea .fact-footer {
     display: flex; align-items: flex-end; gap: 14px; flex-wrap: wrap;
     margin-top: 14px; padding-top: 12px; border-top: 1px solid var(--divider);
   }
-  #killerFactsArea .fact-footer .fc-cite { display: flex; flex-direction: column; gap: 2px; flex: 1; min-width: 220px; }
-  #killerFactsArea .fact-actions { display: flex; gap: 8px; align-items: center; flex-shrink: 0; }
+  #factBankArea .fact-footer .fc-cite { display: flex; flex-direction: column; gap: 2px; flex: 1; min-width: 220px; }
+  #factBankArea .fact-actions { display: flex; gap: 8px; align-items: center; flex-shrink: 0; }
 
   @media (max-width: 760px) {
-    #killerFactsArea .mode-btn { min-width: 100%; }
-    #killerFactsArea .fact-card, #killerFactsArea .simple-card { padding-left: 15px; padding-right: 15px; }
-    #killerFactsArea .pg-footer { padding-left: 15px; padding-right: 15px; }
+    #factBankArea .mode-btn { min-width: 100%; }
+    #factBankArea .fact-card, #factBankArea .simple-card { padding-left: 15px; padding-right: 15px; }
+    #factBankArea .pg-footer { padding-left: 15px; padding-right: 15px; }
   }
   @media (prefers-reduced-motion: reduce) {
-    #killerFactsArea .cwrap, #killerFactsArea .details, #killerFactsArea .kw-panel,
-    #killerFactsArea .expand-hint .chev, #killerFactsArea .kw-toggle .chev { transition: none; }
+    #factBankArea .cwrap, #factBankArea .details, #factBankArea .kw-panel,
+    #factBankArea .expand-hint .chev, #factBankArea .kw-toggle .chev { transition: none; }
   }
 
   /* ── What's new (header button + count pill) ─────────────── */
@@ -1940,8 +1946,8 @@
      DATA
      ═══════════════════════════════════════════════════════════ -->
 <script src="data/tracker-data.js"></script>
-<!-- Killer Facts data. Optional: if absent, the Killer Facts tab hides itself. -->
-<script src="data/killer-facts-data.js"></script>
+<!-- Fact Bank data. Optional: if absent, the Fact Bank tab hides itself. -->
+<script src="data/fact-bank-data.js"></script>
 <!-- Job displacement data (window.JOBS_DISPLACEMENT_DATA). Regenerate via data_analysis/scripts/run_all.R --refresh -->
 <script src="data/jobs-displacement-data.js" charset="utf-8"></script>
 
@@ -1952,7 +1958,6 @@
 <header class="site-header">
   <div class="header-inner">
     <div class="header-brand">
-      <img src="assets/esp-c3-white.png" alt="Economic Security Project">
       <div class="header-text">
         <h1><a href="https://cmpcmp-dot.github.io/ai-tech-markets-research/">AI, Tech and the Economy: Research Intelligence</a></h1>
         <div class="header-sub">A curated database of research on AI, automation, and the economy</div>
@@ -1961,7 +1966,7 @@
     <nav class="header-nav" aria-label="Primary">
       <div class="header-tabs" role="tablist" aria-label="Select view">
         <button class="header-nav-btn" id="viewCards" role="tab" aria-selected="false" aria-controls="viewPanel">Research</button>
-        <button class="header-nav-btn" id="viewKiller" role="tab" aria-selected="false" aria-controls="viewPanel">Killer Facts</button>
+        <button class="header-nav-btn" id="viewFactBank" role="tab" aria-selected="false" aria-controls="viewPanel">Fact Bank</button>
         <button class="header-nav-btn active" id="viewThemes" role="tab" aria-selected="true" aria-controls="viewPanel">Themes</button>
         <button class="header-nav-btn" id="viewPolicy" role="tab" aria-selected="false" aria-controls="viewPanel">Policy Map</button>
         <button class="header-nav-btn" id="viewJobs" role="tab" aria-selected="false" aria-controls="viewPanel">Job Displacement</button>
@@ -2039,10 +2044,10 @@
     <div class="cards-area">
       <div id="policyArea"></div>
 
-      <!-- ── KILLER FACTS TAB (merged from killer_facts.html) ── -->
-      <div id="killerFactsArea">
+      <!-- ── FACT BANK TAB ── -->
+      <div id="factBankArea">
         <div class="intro-bar">
-          <h2 class="intro-title">Killer Facts</h2>
+          <h2 class="intro-title">Fact Bank</h2>
           <p class="intro-text">Every fact below is a short, number-bearing statement quoted <strong>verbatim</strong> from a source in the research database. Each is rated on two independent scales: how <strong>politically noteworthy</strong> it is for progressive advocacy (inequality, corporate power, environment, worker power) and how <strong>truthful</strong> its underlying evidence is. A fact can score high on one and low on the other; the point is to know which is which before you use it.</p>
           <p class="intro-note">Pilot release. Ratings are editorial judgments made against a written rubric and reviewed by hand; the &ldquo;take note&rdquo; line under each fact is the defensible phrasing. Click through to the tracker entry or the source before publishing a number.</p>
         </div>
@@ -2062,7 +2067,7 @@
           <div class="controls-row">
             <div class="search-wrap">
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
-              <input type="search" id="kfSearch" placeholder="Search facts, sources, keywords…" aria-label="Search killer facts">
+              <input type="search" id="kfSearch" placeholder="Search facts, sources, keywords…" aria-label="Search facts">
             </div>
             <label class="ctl-label" for="kfEvidence">Evidence</label>
             <select id="kfEvidence" aria-label="Filter by evidence type">
@@ -2212,6 +2217,9 @@
         </div>
       </div>
 
+      <!-- Themes view: own container, built once and cached (see render()). -->
+      <div id="themesArea"></div>
+
       <div class="cards-grid" id="cardsGrid"></div>
       <div class="empty-state" id="emptyState">
         <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
@@ -2351,8 +2359,8 @@
   let searchQuery   = '';
   let sortOrder     = 'desc';   // 'desc' | 'asc' | 'status'
   let activeThemeId = THEMES[0].id;
-  let killerFactsEnabled = false;      // set true by the Killer Facts module if data is present
-  let initKillerFacts = function () {}; // replaced with the real builder when data is present
+  let factBankEnabled = false;      // set true by the Fact Bank module if data is present
+  let initFactBank = function () {}; // replaced with the real builder when data is present
   let themeShowAll  = false;
   let activeLens    = 'general'; // 'general' | 'economist'
   const SORT_STATES = [
@@ -2819,7 +2827,7 @@
         document.body.classList.add('strategy-view');
         render();
         requestAnimationFrame(() => {
-          document.getElementById('cardsGrid').scrollIntoView({ behavior: 'smooth', block: 'start' });
+          document.getElementById('themesArea').scrollIntoView({ behavior: 'smooth', block: 'start' });
         });
       });
     });
@@ -2977,8 +2985,8 @@
       btn.addEventListener('click', () => {
         activeThemeId = btn.dataset.themeId;
         themeShowAll  = false;
-        buildThemesView();
-        document.getElementById('cardsGrid').scrollIntoView({ behavior: 'smooth', block: 'start' });
+        render();
+        document.getElementById('themesArea').scrollIntoView({ behavior: 'smooth', block: 'start' });
       });
     });
 
@@ -3032,11 +3040,8 @@
   }
 
   function buildThemesView() {
-    const grid = document.getElementById('cardsGrid');
-    const empty = document.getElementById('emptyState');
+    const grid = document.getElementById('themesArea');
     grid.innerHTML = '';
-    empty.classList.remove('visible');
-    document.getElementById('emptyStateClear').style.display = 'none';
 
     const paperMap = Object.fromEntries(RESEARCH_DATA.map(r => [r.id, r]));
 
@@ -3061,7 +3066,7 @@
       pill.addEventListener('click', () => {
         activeThemeId = theme.id;
         themeShowAll  = false;
-        buildThemesView();
+        render();
       });
       tabNav.appendChild(pill);
     });
@@ -3951,7 +3956,7 @@
   // The canonical route for the current view state (modal-free).
   function currentRoute() {
     if (activeView === 'cards')  return 'research';
-    if (activeView === 'killer') return 'killer-facts';
+    if (activeView === 'fact-bank') return 'fact-bank';
     if (activeView === 'policy') return 'policy';
     if (activeView === 'about')  return 'about';
     if (activeView === 'jobs')   return 'job-displacement';
@@ -3966,9 +3971,9 @@
     try {
       const [head, tail] = h.split('/');
       if (head === 'research' && !tail) { setView('cards');  return true; }
-      if (head === 'killer-facts' && !tail) {
+      if (head === 'fact-bank' && !tail) {
         // Falls back to the default view if the tab is disabled (no data).
-        if (killerFactsEnabled) { setView('killer'); return true; }
+        if (factBankEnabled) { setView('fact-bank'); return true; }
         return false;
       }
       if (head === 'themes'   && !tail) { setView('themes'); return true; }
@@ -4065,13 +4070,20 @@
     badge.style.display = count > 0 ? 'inline' : 'none';
   }
 
+  // View-DOM cache. Each view's DOM is built once and re-shown on tab switch;
+  // it rebuilds only when its inputs (its "signature") change. This stops
+  // Research (#cardsGrid) and Themes (#themesArea) from tearing each other down
+  // on every switch — the actual source of tab-switch jank. (Dataset cloning,
+  // ~0.5ms/render, was never the bottleneck; DOM construction is.)
+  let _cardsSig  = null;   // null = never built
+  let _themesSig = null;
+  const cardsSig  = () => [activeLens, activeCat, activeStatus, activeGeo, activeEvidence, sortOrder, searchQuery.trim()].join('');
+  const themesSig = () => [activeLens, activeThemeId, themeShowAll].join('');
+
   function render() {
     const grid  = document.getElementById('cardsGrid');
     const empty = document.getElementById('emptyState');
 
-    buildCatNav();
-    buildInlineFilters();
-    updateFilterBadge();
     updateWhatsChangedPill();
 
     document.body.classList.toggle('cards-view', activeView === 'cards');
@@ -4082,10 +4094,25 @@
         : 'A curated database of peer-reviewed studies, policy reports, and investigative journalism on AI, automation, and labor markets.';
     }
 
-    if (activeView === 'themes') { buildThemesView(); return; }
+    if (activeView === 'themes') {
+      const sig = themesSig();
+      if (_themesSig !== sig) { _themesSig = sig; buildThemesView(); }
+      return;
+    }
     if (activeView === 'policy') { buildPolicyView(); return; }
     if (activeView === 'about')  { return; }
     if (activeView === 'jobs')   { return; }
+
+    // ── Research (cards) view ──
+    const sig = cardsSig();
+    if (_cardsSig === sig) return;   // cached: DOM already reflects these inputs
+    _cardsSig = sig;
+
+    // Sidebar nav + inline filters are hidden by CSS on every other view, so
+    // build them only when the cards view is actually (re)rendering.
+    buildCatNav();
+    buildInlineFilters();
+    updateFilterBadge();
 
     grid.innerHTML = '';
     const visible = getVisible();
@@ -4161,13 +4188,15 @@
     return (TAB_DESCS[view] || {})[lens] || null;
   }
 
+  const VIEW_TAB_IDS = { cards: 'viewCards', 'fact-bank': 'viewFactBank', themes: 'viewThemes', policy: 'viewPolicy', jobs: 'viewJobs', about: 'viewAbout' };
+
   function setView(view) {
     activeView = view;
     viewInitialized = true;
-    ['viewCards', 'viewKiller', 'viewThemes', 'viewPolicy', 'viewJobs', 'viewAbout'].forEach(id => {
+    ['viewCards', 'viewFactBank', 'viewThemes', 'viewPolicy', 'viewJobs', 'viewAbout'].forEach(id => {
       const el = document.getElementById(id);
       if (!el) return;
-      const active = id === 'view' + view.charAt(0).toUpperCase() + view.slice(1);
+      const active = id === VIEW_TAB_IDS[view];
       el.classList.toggle('active', active);
       el.setAttribute('aria-selected', active ? 'true' : 'false');
     });
@@ -4186,21 +4215,21 @@
     document.body.classList.toggle('policy-view',   view === 'policy');
     document.body.classList.toggle('about-view',    view === 'about');
     document.body.classList.toggle('jobs-view',     view === 'jobs');
-    document.body.classList.toggle('killer-view',   view === 'killer');
-    if (view === 'killer' && typeof initKillerFacts === 'function') initKillerFacts();
+    document.body.classList.toggle('fact-bank-view',   view === 'fact-bank');
+    if (view === 'fact-bank' && typeof initFactBank === 'function') initFactBank();
     render();
-    const activeTabId = 'view' + view.charAt(0).toUpperCase() + view.slice(1);
+    const activeTabId = VIEW_TAB_IDS[view] || ('view' + view.charAt(0).toUpperCase() + view.slice(1));
     const panel = document.getElementById('viewPanel');
     if (panel) panel.setAttribute('aria-labelledby', activeTabId);
     const ann = document.getElementById('viewAnnounce');
     if (ann) {
-      const names = { cards: 'Research', killer: 'Killer Facts', themes: 'Themes', policy: 'Policy Map', jobs: 'Job Displacement', about: 'About' };
+      const names = { cards: 'Research', 'fact-bank': 'Fact Bank', themes: 'Themes', policy: 'Policy Map', jobs: 'Job Displacement', about: 'About' };
       ann.textContent = (names[view] || view) + ' view';
     }
     setHash(currentRoute());
   }
   document.getElementById('viewCards').addEventListener('click',  () => setView('cards'));
-  document.getElementById('viewKiller')?.addEventListener('click', () => setView('killer'));
+  document.getElementById('viewFactBank')?.addEventListener('click', () => setView('fact-bank'));
   document.getElementById('viewThemes').addEventListener('click', () => setView('themes'));
   document.getElementById('viewPolicy').addEventListener('click', () => setView('policy'));
   document.getElementById('viewJobs')?.addEventListener('click', () => setView('jobs'));
@@ -4213,7 +4242,7 @@
     themeShowAll  = false;
     setView('themes');
     requestAnimationFrame(() => {
-      document.getElementById('cardsGrid').scrollIntoView({ behavior: 'smooth', block: 'start' });
+      document.getElementById('themesArea').scrollIntoView({ behavior: 'smooth', block: 'start' });
     });
   }
 
@@ -4527,20 +4556,20 @@
   })();
 
   /* ═══════════════════════════════════════════════════════════
-     KILLER FACTS MODULE (merged from killer_facts.html)
+     FACT BANK MODULE
      Self-contained in its own closure so its helpers (esc, dots,
      formatAPACitation, paperMap, …) don't collide with the engine's.
-     Exposes only killerFactsEnabled + initKillerFacts to the engine.
+     Exposes only factBankEnabled + initFactBank to the engine.
      The DOM for the two views is built lazily on the first tab open.
      ═══════════════════════════════════════════════════════════ */
-  (function setupKillerFacts() {
-    if (typeof KILLER_FACTS === 'undefined' || !Array.isArray(KILLER_FACTS) || KILLER_FACTS.length === 0) {
-      console.warn('killer-facts: KILLER_FACTS not loaded — hiding the Killer Facts tab.');
-      document.getElementById('viewKiller')?.remove();
-      killerFactsEnabled = false;
+  (function setupFactBank() {
+    if (typeof FACT_BANK === 'undefined' || !Array.isArray(FACT_BANK) || FACT_BANK.length === 0) {
+      console.warn('fact-bank: FACT_BANK not loaded — hiding the Fact Bank tab.');
+      document.getElementById('viewFactBank')?.remove();
+      factBankEnabled = false;
       return;
     }
-    killerFactsEnabled = true;
+    factBankEnabled = true;
 
     const paperMap = Object.fromEntries(RESEARCH_DATA.map(p => [p.id, p]));
 
@@ -4727,7 +4756,7 @@
     }
 
     const byPaper = {};
-    KILLER_FACTS.forEach(f => { (byPaper[f.paperId] = byPaper[f.paperId] || []).push(f); });
+    FACT_BANK.forEach(f => { (byPaper[f.paperId] = byPaper[f.paperId] || []).push(f); });
     let paperOrder = Object.keys(byPaper);
     paperOrder.sort((a, b) => {
       const da = byPaper[a].map(f => pubDateOf(f)).sort().pop() || '';
@@ -4737,7 +4766,7 @@
 
     function resortAll() {
       const wraps = Object.fromEntries([...allFactsView.children].map(w => [w.dataset.fid, w]));
-      [...KILLER_FACTS].sort(factSorter).forEach(f => allFactsView.appendChild(wraps[f.id]));
+      [...FACT_BANK].sort(factSorter).forEach(f => allFactsView.appendChild(wraps[f.id]));
     }
     function resortPapers() {
       const metric = pid => {
@@ -4766,7 +4795,7 @@
       return true;
     }
     function applyFilters() {
-      const shown = new Set(KILLER_FACTS.filter(matches).map(f => f.id));
+      const shown = new Set(FACT_BANK.filter(matches).map(f => f.id));
       [...allFactsView.querySelectorAll(':scope > .cwrap')].forEach(w => {
         w.classList.toggle('hidden', !shown.has(w.dataset.fid));
       });
@@ -4781,8 +4810,8 @@
         gw.classList.toggle('hidden', any === 0);
         if (any) visiblePapers++;
       });
-      const nPapers = mode === 'paper' ? visiblePapers : new Set(KILLER_FACTS.filter(matches).map(f => f.paperId)).size;
-      resultLine.textContent = `${shown.size} of ${KILLER_FACTS.length} facts, drawn from ${nPapers} sources.`;
+      const nPapers = mode === 'paper' ? visiblePapers : new Set(FACT_BANK.filter(matches).map(f => f.paperId)).size;
+      resultLine.textContent = `${shown.size} of ${FACT_BANK.length} facts, drawn from ${nPapers} sources.`;
       emptyState.hidden = shown.size !== 0;
     }
 
@@ -4803,7 +4832,7 @@
       root.addEventListener('click', e => {
         const cp = e.target.closest('[data-copy]');
         if (cp) {
-          const f = KILLER_FACTS.find(x => x.id === cp.dataset.copy);
+          const f = FACT_BANK.find(x => x.id === cp.dataset.copy);
           const p = paperMap[f.paperId];
           const text = `"${f.fact}"\n\nSource: ${apaPlain(p)} ${p.sourceUrl}`;
           navigator.clipboard.writeText(text).then(() => {
@@ -4826,13 +4855,13 @@
     }
 
     let kfBuilt = false;
-    initKillerFacts = function () {
+    initFactBank = function () {
       if (kfBuilt) return;
       kfBuilt = true;
 
       // Populate the evidence-type select.
       const evSelect = document.getElementById('kfEvidence');
-      [...new Set(KILLER_FACTS.map(f => f.evidenceType))].sort().forEach(t => {
+      [...new Set(FACT_BANK.map(f => f.evidenceType))].sort().forEach(t => {
         const o = document.createElement('option');
         o.value = t; o.textContent = EV_LABELS[t] || t;
         evSelect.appendChild(o);
@@ -4840,7 +4869,7 @@
 
       // Build keyword pills.
       const kwCounts = {};
-      KILLER_FACTS.forEach(f => (f.keywords || []).forEach(k => { kwCounts[k] = (kwCounts[k] || 0) + 1; }));
+      FACT_BANK.forEach(f => (f.keywords || []).forEach(k => { kwCounts[k] = (kwCounts[k] || 0) + 1; }));
       const pillWrap = document.getElementById('kwPills');
       const kwActiveCount = document.getElementById('kwActiveCount');
       Object.keys(kwCounts).sort((a, b) => kwCounts[b] - kwCounts[a]).forEach(k => {
@@ -4874,7 +4903,7 @@
       document.getElementById('kfSort').addEventListener('change', e => { sortBy = e.target.value; resortAll(); resortPapers(); applyFilters(); });
 
       byPaperView.innerHTML = paperOrder.map(pid => paperGroupHTML(pid, byPaper[pid])).join('');
-      allFactsView.innerHTML = [...KILLER_FACTS].sort(factSorter).map(factCardHTML).join('');
+      allFactsView.innerHTML = [...FACT_BANK].sort(factSorter).map(factCardHTML).join('');
 
       handleCardEvents(byPaperView);
       handleCardEvents(allFactsView);

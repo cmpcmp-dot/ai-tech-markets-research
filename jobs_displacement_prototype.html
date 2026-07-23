@@ -197,9 +197,22 @@
 
   /* ══ DEPTH NAV (the descent scale — primary sub-navigation) ══ */
   .depthnav {
-    display: flex; flex-wrap: wrap; gap: 2px;
+    display: flex; flex-wrap: wrap; gap: 2px; align-items: stretch;
     margin: 26px 0 0; border-bottom: 1px solid var(--border);
   }
+  /* home / overview tab, visually separated from the numbered depths */
+  .hometab {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: none; border: none; cursor: pointer;
+    font-family: var(--grot); font-size: 13.5px; font-weight: 600; letter-spacing: 0.01em;
+    color: var(--muted); padding: 10px 16px 13px; margin-bottom: -1px;
+    border-bottom: 2px solid transparent; margin-right: 6px;
+    transition: color .15s, border-color .15s;
+  }
+  .hometab .home-ico { width: 15px; height: 15px; display: inline-block; }
+  .hometab:hover:not(.active) { color: var(--text); }
+  .hometab.active { color: var(--headline); border-bottom-color: var(--green); }
+  .depthnav .nav-div { align-self: center; width: 1px; height: 20px; background: var(--border); margin: 0 8px 6px 2px; }
   .depthtab {
     position: relative; background: none; border: none; cursor: pointer;
     font-family: var(--grot); text-align: left;
@@ -223,6 +236,14 @@
 
   /* reading column inside analysis panels */
   .jd-read { max-width: 680px; margin: 0 auto; padding: 6px 0 8px; }
+  .jd-back {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: none; border: none; cursor: pointer;
+    font-family: var(--grot); font-size: 12px; font-weight: 600; letter-spacing: 0.02em;
+    color: var(--navy); padding: 6px 0; margin-top: 14px;
+    transition: gap .15s, color .15s;
+  }
+  .jd-back:hover { gap: 9px; color: var(--green); }
   .jd-kicker {
     font-family: var(--grot); font-size: 11.5px; letter-spacing: 0.09em;
     text-transform: uppercase; color: var(--green); font-weight: 600; margin: 22px 0 7px;
@@ -400,7 +421,7 @@
     <nav class="header-nav" aria-label="Primary">
       <div class="header-tabs" role="tablist" aria-label="Select view">
         <button class="header-nav-btn" role="tab" aria-selected="false">Research</button>
-        <button class="header-nav-btn" role="tab" aria-selected="false">Killer Facts</button>
+        <button class="header-nav-btn" role="tab" aria-selected="false">Fact Bank</button>
         <button class="header-nav-btn" role="tab" aria-selected="false">Themes</button>
         <button class="header-nav-btn" role="tab" aria-selected="false">Policy Map</button>
         <button class="header-nav-btn active" role="tab" aria-selected="true">Job displacement</button>
@@ -419,7 +440,7 @@
           <!-- ══ MASTHEAD ══ -->
           <div class="disp-mast">
             <div class="disp-eyebrow">Labor market · A descent in three depths</div>
-            <h1 class="disp-title">Is AI displacing workers <span class="flip">yet</span>?</h1>
+            <h1 class="disp-title" id="homeTitle" role="button" tabindex="0" title="Back to overview" style="cursor:pointer">Is AI displacing workers <span class="flip">yet</span>?</h1>
             <p class="disp-stand">The headline unemployment rate is a blunt instrument. To see displacement you have to descend: from the aggregate, to the distribution across workers, to the sectors doing the hiring. The answer changes as you go down. Each depth links to a fuller technical treatment to come.</p>
           </div>
 
@@ -440,6 +461,7 @@
           <!-- ══ PANEL: 01 THE LEVEL ══ -->
           <section class="jd-panel" id="panel-level" role="tabpanel">
             <div class="jd-read">
+              <button class="jd-back" data-back>&larr; Overview</button>
               <div class="jd-kicker reveal">Depth 01 · The aggregate</div>
               <h2 class="jd-h reveal">Is unemployment higher than growth alone would predict?</h2>
               <p class="jd-p reveal d1">Okun&rsquo;s law ties the change in unemployment to how fast the economy grows: strong GDP growth pulls unemployment down, weak growth pushes it up. If unemployment were rising faster than growth predicts, that would point to something structural, an AI-driven displacement effect layered on the ordinary business cycle. Each point is a quarter; the line is the historical Okun relationship. The last four quarters are traced in sequence.</p>
@@ -473,6 +495,7 @@
           <!-- ══ PANEL: 02 THE DISTRIBUTION ══ -->
           <section class="jd-panel" id="panel-distribution" role="tabpanel">
             <div class="jd-read">
+              <button class="jd-back" data-back>&larr; Overview</button>
               <div class="jd-kicker reveal">Depth 02 · Across workers</div>
               <h2 class="jd-h reveal">Is the weakness spread evenly, or concentrated?</h2>
               <p class="jd-p reveal d1">A healthy average can hide a group taking the hit. This takes each age-and-education group, asks what its unemployment rate <em>should</em> be given the overall rate (using its own pre-2020 relationship), and plots how far above or below that prediction it actually sits. Zero is normal. Positive means more unemployment than history says the group should have.</p>
@@ -496,6 +519,7 @@
           <!-- ══ PANEL: 03 THE MAP ══ -->
           <section class="jd-panel" id="panel-sectors" role="tabpanel">
             <div class="jd-read">
+              <button class="jd-back" data-back>&larr; Overview</button>
               <div class="jd-kicker reveal">Depth 03 · Across the economy</div>
               <h2 class="jd-h reveal">Where has hiring slowed the most?</h2>
               <p class="jd-p reveal d1">Displacement should show up as hiring drying up in specific industries. For each major sector we compare employment growth over the past year to its own average pace in the pre-pandemic years (2015&ndash;2019). A large negative bar means that sector is adding jobs far more slowly than it used to, or shedding them outright.</p>
@@ -526,266 +550,30 @@
 </footer>
 
 <script src="data/jobs-displacement-data.js" charset="utf-8"></script>
+<script src="assets/jobs-charts.js" charset="utf-8"></script>
 <script>
 (function () {
-  const D = window.JOBS_DISPLACEMENT_DATA;
-  if (!D) { console.error('JOBS_DISPLACEMENT_DATA not found'); return; }
-
-  const C = {
-    navy: '#2c3254', green: '#70ad8f', gold: '#c99a3f', goldLine: '#ebc382',
-    pink: '#ff9d7d', terra: '#b06a4f', purple: '#472b51', muted: '#6d7091',
-    grid: '#e6e2d1', text: '#3c4164', headline: '#232849'
-  };
-  const MON = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-
+  const JC = window.JOBS_CHARTS;
+  if (!JC) { console.error('JOBS_CHARTS not found'); return; }
+  const { sgn, facts } = JC;
   const byId = id => document.getElementById(id);
-  const esc = s => encodeURIComponent(s);
-  const lin = (d0, d1, r0, r1) => { const m = (r1 - r0) / (d1 - d0); return v => r0 + (v - d0) * m; };
-  const sgn = (v, dp) => (v >= 0 ? '+' : '') + v.toFixed(dp == null ? 1 : dp);
-  const fmtDate = s => { const p = s.split('-'); return MON[+p[1] - 1] + ' ' + p[0]; };
 
-  function ticks(min, max, n) {
-    const span = max - min, raw = span / n, mag = Math.pow(10, Math.floor(Math.log10(raw)));
-    const norm = raw / mag; let step = norm < 1.5 ? 1 : norm < 3 ? 2 : norm < 7 ? 5 : 10;
-    step *= mag;
-    const out = [], start = Math.ceil(min / step) * step;
-    for (let v = start; v <= max + step * 1e-6; v += step) out.push(+v.toFixed(6));
-    return out;
-  }
-
-  // Shared tooltip
-  const tip = document.createElement('div');
-  tip.className = 'jd-tooltip';
-  document.body.appendChild(tip);
-  function placeTip(e) {
-    let x = e.clientX + 14, y = e.clientY + 14;
-    if (x + 260 > window.innerWidth) x = e.clientX - 250;
-    tip.style.left = x + 'px'; tip.style.top = y + 'px';
-  }
-  function bindTips(svg) {
-    svg.addEventListener('mousemove', e => {
-      const t = e.target.closest('[data-tip]');
-      if (t) { tip.innerHTML = decodeURIComponent(t.getAttribute('data-tip')); tip.style.opacity = 1; placeTip(e); }
-      else tip.style.opacity = 0;
-    });
-    svg.addEventListener('mouseleave', () => tip.style.opacity = 0);
-  }
-
-  // ── DEPTH 01a: Okun scatter (+ recent-quarter trajectory) ──────────────────
-  function renderOkun() {
-    const o = D.okun, svg = byId('okunChart');
-    const W = 640, H = 410, mL = 56, mR = 20, mT = 16, mB = 48, pw = W - mL - mR, ph = H - mT - mB;
-    const vis = o.scatter.filter(p => !p.is_pandemic);
-    const recentSet = new Set(o.recent.quarters);
-    let xmin = Math.min(...vis.map(p => p.gdp_growth)), xmax = Math.max(...vis.map(p => p.gdp_growth));
-    let ymin = Math.min(...vis.map(p => p.d_unrate)), ymax = Math.max(...vis.map(p => p.d_unrate));
-    const xp = (xmax - xmin) * 0.05, yp = (ymax - ymin) * 0.08;
-    xmin -= xp; xmax += xp; ymin -= yp; ymax += yp;
-    const X = lin(xmin, xmax, mL, mL + pw), Y = lin(ymin, ymax, mT + ph, mT);
-
-    let s = `<defs><clipPath id="okClip"><rect x="${mL}" y="${mT}" width="${pw}" height="${ph}"/></clipPath>
-      <marker id="okArrow" markerWidth="7" markerHeight="7" refX="5" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="${C.terra}"/></marker></defs>`;
-    ticks(xmin, xmax, 7).forEach(t => { const x = X(t); s += `<line x1="${x}" y1="${mT}" x2="${x}" y2="${mT + ph}" stroke="${C.grid}"/><text x="${x}" y="${mT + ph + 16}" text-anchor="middle" font-size="11" fill="${C.muted}">${t}%</text>`; });
-    ticks(ymin, ymax, 6).forEach(t => { const y = Y(t); s += `<line x1="${mL}" y1="${y}" x2="${mL + pw}" y2="${y}" stroke="${C.grid}"/><text x="${mL - 8}" y="${y + 3.5}" text-anchor="end" font-size="11" fill="${C.muted}">${sgn(t, 1)}</text>`; });
-    if (0 > xmin && 0 < xmax) s += `<line x1="${X(0)}" y1="${mT}" x2="${X(0)}" y2="${mT + ph}" stroke="${C.muted}" stroke-width="1.2"/>`;
-    if (0 > ymin && 0 < ymax) s += `<line x1="${mL}" y1="${Y(0)}" x2="${mL + pw}" y2="${Y(0)}" stroke="${C.muted}" stroke-width="1.2"/>`;
-    s += `<text x="${mL + pw / 2}" y="${H - 8}" text-anchor="middle" font-size="11.5" fill="${C.text}">Real GDP growth (annualized, %)</text>`;
-    s += `<text transform="translate(14,${mT + ph / 2}) rotate(-90)" text-anchor="middle" font-size="11.5" fill="${C.text}">Change in unemployment (pp)</text>`;
-
-    let g = `<g clip-path="url(#okClip)">`;
-    const b0 = o.fit.intercept, b1 = o.fit.slope;
-    g += `<line class="anim-line" pathLength="1" x1="${X(xmin)}" y1="${Y(b0 + b1 * xmin)}" x2="${X(xmax)}" y2="${Y(b0 + b1 * xmax)}" stroke="${C.navy}" stroke-width="2.2"/>`;
-    const draw = p => {
-      const x = X(p.gdp_growth), y = Y(p.d_unrate), r = recentSet.has(p.label);
-      const t = `${p.label}<br>GDP growth <b>${p.gdp_growth}%</b> SAAR<br>&Delta; unemployment <b>${sgn(p.d_unrate, 2)} pp</b><br>vs Okun line <b>${sgn(p.residual, 2)} pp</b>`;
-      return r
-        ? `<circle class="anim-pop" cx="${x}" cy="${y}" r="5" fill="${C.pink}" stroke="${C.navy}" stroke-width="1.6" data-tip="${esc(t)}"/>`
-        : `<circle cx="${x}" cy="${y}" r="2.7" fill="${C.muted}" fill-opacity="0.4" data-tip="${esc(t)}"/>`;
-    };
-    vis.filter(p => !recentSet.has(p.label)).forEach(p => g += draw(p));
-    // trajectory through the last four quarters, in chronological order
-    const recentPts = o.recent.quarters
-      .map(q => vis.find(p => p.label === q)).filter(Boolean);
-    if (recentPts.length > 1) {
-      const dPath = recentPts.map(p => X(p.gdp_growth).toFixed(1) + ',' + Y(p.d_unrate).toFixed(1)).join(' L');
-      g += `<path class="anim-pop" d="M${dPath}" fill="none" stroke="${C.terra}" stroke-width="1.6" stroke-dasharray="1 3" stroke-linecap="round" marker-end="url(#okArrow)" opacity="0.85"/>`;
-    }
-    vis.filter(p => recentSet.has(p.label)).forEach(p => g += draw(p));
-    g += `</g>`;
-    svg.innerHTML = s + g;
-    bindTips(svg);
-
-    byId('okunSub').textContent = `Fit on ${o.fit.sample_start.slice(0, 4)}–${o.fit.sample_end.slice(0, 4)}, excluding 2020 Q2–Q3 · R² = ${o.fit.r2}`;
-    byId('okunLegend').innerHTML =
-      `<span><i class="dot" style="background:${C.muted};opacity:.5"></i>Quarter (1948–present)</span>` +
-      `<span><i class="dot" style="background:${C.pink};border:1.5px solid ${C.navy}"></i>Last 4 quarters</span>` +
-      `<span><i style="background:${C.terra}"></i>Recent trajectory</span>` +
-      `<span><i style="background:${C.navy}"></i>Okun fit</span>`;
-    byId('okunNote').textContent =
-      `Breakeven growth (unemployment holds steady): about ${o.fit.breakeven_growth}% annualized. Points above the horizontal zero line mean unemployment rose that quarter. The two pandemic quarters (2020 Q2–Q3) are off-scale and excluded from the fit.`;
-  }
-
-  // ── DEPTH 01b: prime-age participation & EPOP (crosshair) ──────────────────
-  function renderLFP() {
-    const pa = D.okun.prime_age, svg = byId('lfpChart');
-    const data = pa.series.filter(d => d.lfpr != null && d.epop != null);
-    const W = 640, H = 300, mL = 42, mR = 74, mT = 14, mB = 34, pw = W - mL - mR, ph = H - mT - mB;
-    const tt = data.map(d => Date.parse(d.date));
-    const xmin = Math.min(...tt), xmax = Math.max(...tt);
-    let ymin = Math.min(...data.map(d => d.epop)), ymax = Math.max(...data.map(d => d.lfpr));
-    const yp = (ymax - ymin) * 0.12; ymin -= yp; ymax += yp;
-    const X = lin(xmin, xmax, mL, mL + pw), Y = lin(ymin, ymax, mT + ph, mT);
-
-    let s = '';
-    ticks(ymin, ymax, 5).forEach(t => { const y = Y(t); s += `<line x1="${mL}" y1="${y}" x2="${mL + pw}" y2="${y}" stroke="${C.grid}"/><text x="${mL - 7}" y="${y + 3.5}" text-anchor="end" font-size="11" fill="${C.muted}">${t}%</text>`; });
-    for (let yr = 2000; yr <= 2026; yr += 4) { const x = X(Date.parse(yr + '-01-01')); if (x < mL || x > mL + pw) continue; s += `<line x1="${x}" y1="${mT}" x2="${x}" y2="${mT + ph}" stroke="${C.grid}"/><text x="${x}" y="${mT + ph + 16}" text-anchor="middle" font-size="11" fill="${C.muted}">${yr}</text>`; }
-    const fx = X(Date.parse('2020-02-01'));
-    s += `<line x1="${fx}" y1="${mT}" x2="${fx}" y2="${mT + ph}" stroke="${C.muted}" stroke-dasharray="3 3" opacity="0.6"/><text x="${fx}" y="${mT + 10}" text-anchor="middle" font-size="10" fill="${C.muted}">Feb 2020</text>`;
-
-    const path = key => 'M' + data.map(d => X(Date.parse(d.date)).toFixed(1) + ',' + Y(d[key]).toFixed(1)).join(' L');
-    s += `<path class="anim-line" pathLength="1" d="${path('lfpr')}" fill="none" stroke="${C.navy}" stroke-width="2.2"/>`;
-    s += `<path class="anim-line" pathLength="1" d="${path('epop')}" fill="none" stroke="${C.green}" stroke-width="2.2"/>`;
-    const last = data[data.length - 1];
-    s += `<text x="${mL + pw + 6}" y="${Y(last.lfpr) + 3}" font-size="11.5" fill="${C.navy}" font-weight="600">Participation</text>`;
-    s += `<text x="${mL + pw + 6}" y="${Y(last.epop) + 3}" font-size="11.5" fill="${C.green}" font-weight="600">Emp–pop</text>`;
-    s += `<line id="lfpGuide" y1="${mT}" y2="${mT + ph}" stroke="${C.muted}" opacity="0"/>`;
-    s += `<circle id="lfpD1" r="4" fill="${C.navy}" opacity="0"/><circle id="lfpD2" r="4" fill="${C.green}" opacity="0"/>`;
-    s += `<rect id="lfpOv" x="${mL}" y="${mT}" width="${pw}" height="${ph}" fill="transparent"/>`;
-    svg.innerHTML = s;
-
-    const arr = data.map(d => ({ px: X(Date.parse(d.date)), l: d.lfpr, e: d.epop, d: d.date }));
-    const guide = byId('lfpGuide'), d1 = byId('lfpD1'), d2 = byId('lfpD2'), ov = byId('lfpOv');
-    ov.addEventListener('mousemove', e => {
-      const rect = svg.getBoundingClientRect(), sx = (e.clientX - rect.left) / rect.width * W;
-      let best = arr[0], bd = 1e9;
-      arr.forEach(a => { const dd = Math.abs(a.px - sx); if (dd < bd) { bd = dd; best = a; } });
-      guide.setAttribute('x1', best.px); guide.setAttribute('x2', best.px); guide.setAttribute('opacity', 1);
-      d1.setAttribute('cx', best.px); d1.setAttribute('cy', Y(best.l)); d1.setAttribute('opacity', 1);
-      d2.setAttribute('cx', best.px); d2.setAttribute('cy', Y(best.e)); d2.setAttribute('opacity', 1);
-      tip.innerHTML = `${fmtDate(best.d)}<br><b>Participation ${best.l}%</b><br><b>Emp–pop ${best.e}%</b>`;
-      tip.style.opacity = 1; placeTip(e);
-    });
-    ov.addEventListener('mouseleave', () => { tip.style.opacity = 0; [guide, d1, d2].forEach(el => el.setAttribute('opacity', 0)); });
-    byId('lfpLegend').innerHTML =
-      `<span><i style="background:${C.navy}"></i>Labor force participation, 25–54</span>` +
-      `<span><i style="background:${C.green}"></i>Employment–population ratio, 25–54</span>`;
-  }
-
-  // ── DEPTH 02: residual unemployment by age (with spike callout) ─────────────
-  function renderAges() {
-    const A = D.age_bands, svg = byId('ageChart');
-    const col = { 'College+': C.navy, 'HS+ (no BA)': C.green, '< HS': C.gold };
-    const W = 640, H = 380, mL = 54, mR = 96, mT = 22, mB = 44, pw = W - mL - mR, ph = H - mT - mB;
-    let all = [];
-    A.series.forEach(g => g.points.forEach(p => all.push(p)));
-    const xmin = Math.min(...all.map(p => p.age)), xmax = Math.max(...all.map(p => p.age));
-    let ymin = Math.min(0, ...all.map(p => p.value)), ymax = Math.max(...all.map(p => p.value));
-    const yp = (ymax - ymin) * 0.08; ymin -= yp; ymax += yp;
-    const X = lin(xmin, xmax, mL, mL + pw), Y = lin(ymin, ymax, mT + ph, mT);
-
-    let s = '';
-    ticks(ymin, ymax, 6).forEach(t => { const y = Y(t); s += `<line x1="${mL}" y1="${y}" x2="${mL + pw}" y2="${y}" stroke="${C.grid}"/><text x="${mL - 8}" y="${y + 3.5}" text-anchor="end" font-size="11" fill="${C.muted}">${sgn(t * 100, 0)} pp</text>`; });
-    for (let a = 20; a <= xmax; a += 5) { const x = X(a); s += `<line x1="${x}" y1="${mT}" x2="${x}" y2="${mT + ph}" stroke="${C.grid}"/><text x="${x}" y="${mT + ph + 16}" text-anchor="middle" font-size="11" fill="${C.muted}">${a}</text>`; }
-    if (0 > ymin && 0 < ymax) s += `<line x1="${mL}" y1="${Y(0)}" x2="${mL + pw}" y2="${Y(0)}" stroke="${C.muted}" stroke-width="1.3"/>`;
-    s += `<text x="${mL + pw / 2}" y="${H - 6}" text-anchor="middle" font-size="11.5" fill="${C.text}">Age</text>`;
-    s += `<text transform="translate(13,${mT + ph / 2}) rotate(-90)" text-anchor="middle" font-size="11.5" fill="${C.text}">Excess unemployment (pp)</text>`;
-
-    // find the single hottest point (for the callout)
-    let hot = null;
-    A.series.forEach(g => g.points.forEach(p => { if (!hot || p.value > hot.value) hot = { ...p, group: g.group }; }));
-
-    A.series.forEach(g => {
-      const c = col[g.group] || C.muted, pts = g.points.slice().sort((a, b) => a.age - b.age);
-      s += `<path class="anim-line" pathLength="1" d="M${pts.map(p => X(p.age).toFixed(1) + ',' + Y(p.value).toFixed(1)).join(' L')}" fill="none" stroke="${c}" stroke-width="2.2"/>`;
-      pts.forEach(p => { s += `<circle cx="${X(p.age)}" cy="${Y(p.value)}" r="3" fill="${c}" data-tip="${esc(`Age ${p.age}, ${g.group}<br>Excess unemployment <b>${sgn(p.value * 100, 1)} pp</b>`)}"/>`; });
-      const lastP = pts[pts.length - 1];
-      s += `<text x="${mL + pw + 6}" y="${Y(lastP.value) + 3.5}" font-size="11.5" fill="${c}" font-weight="600">${g.group}</text>`;
-    });
-
-    // callout on the hottest point
-    if (hot) {
-      const hx = X(hot.age), hy = Y(hot.value);
-      const lx = Math.min(hx + 16, mL + pw - 150), ly = Math.max(hy - 34, mT + 6);
-      s += `<g class="anim-pop">`;
-      s += `<circle cx="${hx}" cy="${hy}" r="6.5" fill="none" stroke="${C.terra}" stroke-width="2"/>`;
-      s += `<line x1="${hx}" y1="${hy}" x2="${lx}" y2="${ly + 22}" stroke="${C.terra}" stroke-width="1"/>`;
-      s += `<text x="${lx}" y="${ly + 10}" font-size="12" font-weight="700" fill="${C.terra}">Age ${hot.age}, ${hot.group}</text>`;
-      s += `<text x="${lx}" y="${ly + 25}" font-size="11.5" fill="${C.text}">${sgn(hot.value * 100, 1)} pp above normal</text>`;
-      s += `</g>`;
-    }
-
-    svg.innerHTML = s;
-    bindTips(svg);
-    byId('ageLegend').innerHTML = A.group_order.map(g => `<span><i style="background:${col[g]}"></i>${g}</span>`).join('');
-    byId('ageNote').innerHTML =
-      `Positive = more unemployment than the group’s own pre-2020 relationship to the overall rate predicts. Residual averaged over the latest 6 months; log-log prediction trained through 2019. ` +
-      `<span class="jd-src">Method &amp; data: <a href="https://github.com/mtkonczal/Blog-Posts-Presentations-and-Testimony/tree/main/blogs_2026/01_education_young_unrate" target="_blank" rel="noopener">education / young unemployment analysis</a> (snapshot; IPUMS regeneration to come).</span>`;
-
-    // flag badge above the chart
-    const h = D.age_bands.headline;
-    byId('distFlag').innerHTML = `Young college graduates (age ${h.peak_age}) carry <b>${sgn(h.peak_college_resid * 100, 1)} pp</b> more unemployment than normal`;
-  }
-
-  // ── DEPTH 03: sector slowdown bars (Information highlighted) ────────────────
-  function renderCES() {
-    const Cd = D.ces_slowdown, svg = byId('cesChart');
-    const short = {
-      'Trade, transportation, and utilities': 'Trade, transport & utilities',
-      'Professional and business services': 'Professional & business svcs',
-      'Private education and health services': 'Private education & health',
-      'Leisure and hospitality': 'Leisure & hospitality',
-      'Mining and logging': 'Mining & logging'
-    };
-    const bars = Cd.bars;
-    const W = 640, H = 430, mL = 168, mR = 30, mT = 12, mB = 40, pw = W - mL - mR, ph = H - mT - mB;
-    let xmin = Math.min(0, ...bars.map(b => b.slowdown)), xmax = Math.max(0, ...bars.map(b => b.slowdown));
-    const xp = (xmax - xmin) * 0.14; xmin -= xp; xmax += xp;
-    const X = lin(xmin, xmax, mL, mL + pw), rowH = ph / bars.length, zX = X(0);
-    const worst = bars.reduce((a, b) => b.slowdown < a.slowdown ? b : a, bars[0]);
-
-    let s = '';
-    ticks(xmin, xmax, 6).forEach(t => { const x = X(t); s += `<line x1="${x}" y1="${mT}" x2="${x}" y2="${mT + ph}" stroke="${C.grid}"/><text x="${x}" y="${mT + ph + 16}" text-anchor="middle" font-size="11" fill="${C.muted}">${sgn(t, 0)}</text>`; });
-    s += `<line x1="${zX}" y1="${mT}" x2="${zX}" y2="${mT + ph}" stroke="${C.muted}" stroke-width="1.3"/>`;
-    s += `<text x="${mL + pw / 2}" y="${H - 6}" text-anchor="middle" font-size="11.5" fill="${C.text}">Slowdown vs 2015–19 pace (percentage points)</text>`;
-
-    bars.forEach((b, i) => {
-      const cy = mT + i * rowH + rowH / 2, bh = Math.min(rowH * 0.6, 22);
-      const x2 = X(b.slowdown), bx = Math.min(zX, x2), bw = Math.abs(x2 - zX);
-      const isWorst = b === worst;
-      const c = b.slowdown < 0 ? (isWorst ? C.terra : C.navy) : C.green;
-      const t = `${b.sector}<br>Past year: <b>${b.recent_yoy}%</b><br>2015–19 pace: <b>${b.baseline_yoy}%</b><br>Slowdown: <b>${sgn(b.slowdown, 1)} pp</b><br>Net jobs, 12mo: <b>${(b.jobs_chg_12 >= 0 ? '+' : '') + b.jobs_chg_12}k</b>`;
-      s += `<rect class="anim-bar" style="transform-box:view-box;transform-origin:${zX}px ${cy}px" x="${bx}" y="${cy - bh / 2}" width="${bw}" height="${bh}" rx="2" fill="${c}" data-tip="${esc(t)}"/>`;
-      s += `<text x="${mL - 8}" y="${cy + 3.5}" text-anchor="end" font-size="11" fill="${isWorst ? C.terra : C.text}" font-weight="${isWorst ? 700 : 400}">${short[b.sector] || b.sector}</text>`;
-      const neg = b.slowdown < 0;
-      s += `<text x="${x2 + (neg ? -5 : 5)}" y="${cy + 3.5}" text-anchor="${neg ? 'end' : 'start'}" font-size="10.5" font-weight="600" fill="${c}">${sgn(b.slowdown, 1)}</text>`;
-    });
-    svg.innerHTML = s;
-    bindTips(svg);
-    byId('cesSub').textContent = `Past-year growth vs 2015–19 average · latest data: ${Cd.latest_month}`;
-    byId('cesNote').textContent = `${Cd.method} Eleven major supersectors (they sum to total nonfarm). Blue = slower than the pre-pandemic pace; green = faster; the sharpest decelerator is highlighted.`;
-  }
-
-  // ── Level stat cards ───────────────────────────────────────────────────────
   function renderLevelStats() {
-    const L = D.okun.level, P = D.okun.prime_age, R = D.okun.recent;
+    const L = facts.level;
     const cards = [
-      { n: `${L.unrate}%`, sub: ` / ${L.nrou}% nat.`, l: `Unemployment rate (${L.unrate_month}) vs CBO natural rate` },
+      { n: `${L.unrate}%`, sub: ` / ${L.nrou}% nat.`, l: `Unemployment rate (${L.month}) vs CBO natural rate` },
       { n: `${sgn(L.gap, 1)} pp`, l: `Unemployment gap (rate minus natural rate)`, pos: L.gap > 0 },
-      { n: `${P.lfpr_now}%`, l: `Prime-age participation · ${sgn(P.lfpr_vs_feb2020, 1)} pp vs Feb 2020` },
-      { n: `${sgn(R.residual_mean, 2)} pp`, l: `Actual minus Okun-predicted Δu, last 4 quarters`, pos: R.residual_mean > 0 }
+      { n: `${L.lfpr}%`, l: `Prime-age participation · ${sgn(L.lfprVsFeb, 1)} pp vs Feb 2020` },
+      { n: `${sgn(L.residMean, 2)} pp`, l: `Actual minus Okun-predicted Δu, last 4 quarters`, pos: L.residMean > 0 }
     ];
     byId('okunStats').innerHTML = cards.map(c =>
       `<div class="jd-stat"><div class="n${c.pos ? ' pos' : ''}">${c.n}${c.sub ? `<small>${c.sub}</small>` : ''}</div><div class="l">${c.l}</div></div>`
     ).join('');
-    byId('okunAnswer').textContent = D.okun.verdict;
+    byId('okunAnswer').textContent = L.verdict;
   }
 
-  // ── OVERVIEW: descent gauge + synthesis ────────────────────────────────────
   function renderOverview() {
-    const L = D.okun.level, h = D.age_bands.headline;
-    const worst = D.ces_slowdown.bars.reduce((a, b) => b.slowdown < a.slowdown ? b : a, D.ces_slowdown.bars[0]);
-    const youngPP = sgn(h.peak_college_resid * 100, 1);
-
+    const L = facts.level, DI = facts.distribution, S = facts.sectors;
     const stations = [
       {
         go: 'level', warn: false, num: '01', depth: 'Depth 01 · The aggregate',
@@ -797,13 +585,13 @@
         go: 'distribution', warn: true, num: '02', depth: 'Depth 02 · Across workers',
         q: 'Is the weakness spread evenly?',
         pill: 'No — concentrated', pillClass: 'yes',
-        read: `Young college graduates (age ${h.peak_age}) carry <b>${youngPP} pp</b> more unemployment than their pre-2020 norm predicts, versus roughly <b>${sgn(h.prime_college_resid * 100, 1)} pp</b> for prime-age graduates. The softness is concentrated among the young and educated.`
+        read: `Young college graduates (age ${DI.peakAge}) carry <b>${sgn(DI.peakPP, 1)} pp</b> more unemployment than their pre-2020 norm predicts, versus roughly <b>${sgn(DI.primePP, 1)} pp</b> for prime-age graduates. The softness is concentrated among the young and educated.`
       },
       {
         go: 'sectors', warn: true, num: '03', depth: 'Depth 03 · Across the economy',
         q: 'Where has hiring slowed?',
         pill: 'Tech-exposed', pillClass: 'yes',
-        read: `${worst.sector} has decelerated most: employment there is growing <b>${worst.recent_yoy}%</b> over the past year versus a <b>${worst.baseline_yoy}%</b> pre-pandemic pace, a <b>${sgn(worst.slowdown, 1)} pp</b> slowdown.`
+        read: `${S.sector} has decelerated most: employment there is growing <b>${S.recent}%</b> over the past year versus a <b>${S.baseline}%</b> pre-pandemic pace, a <b>${sgn(S.slowdown, 1)} pp</b> slowdown.`
       }
     ];
 
@@ -827,42 +615,45 @@
       b.addEventListener('click', () => activate(b.dataset.go)));
 
     byId('synthText').innerHTML =
-      `The headline says <b>no</b>. The detail says <b>not yet economy-wide, but concentrated</b> — among <b>young graduates</b> and in <b>tech-exposed sectors</b> like ${worst.sector.toLowerCase()}. If AI displacement is arriving, this is where it would show up first, and where to keep watching.`;
+      `The headline says <b>no</b>. The detail says <b>not yet economy-wide, but concentrated</b> — among <b>young graduates</b> and in <b>tech-exposed sectors</b> like ${S.sector.toLowerCase()}. If AI displacement is arriving, this is where it would show up first, and where to keep watching.`;
 
     byId('jdVintage').textContent =
-      `Data generated ${D.generated}. Sources: real GDP, unemployment, CBO natural rate & prime-age participation via FRED (01); CPS residuals (02); BLS CES payrolls (03).`;
+      `Data generated ${facts.generated}. Sources: real GDP, unemployment, CBO natural rate & prime-age participation via FRED (01); CPS residuals (02); BLS CES payrolls (03).`;
   }
 
-  // ── TAB CONTROLLER ─────────────────────────────────────────────────────────
-  const TABS = [
-    { id: 'overview',     num: '00', label: 'The question' },
+  const DEPTHS = [
     { id: 'level',        num: '01', label: 'The level' },
     { id: 'distribution', num: '02', label: 'The distribution' },
     { id: 'sectors',      num: '03', label: 'The map' }
   ];
+  const ALL = ['overview'].concat(DEPTHS.map(d => d.id));
   const renderers = {
-    level: () => { renderOkun(); renderLFP(); renderLevelStats(); },
-    distribution: () => { renderAges(); byId('ageAnswer').textContent = D.age_bands.verdict; },
-    sectors: () => { renderCES(); byId('cesAnswer').textContent = D.ces_slowdown.verdict; }
+    level: () => { JC.renderOkun(); JC.renderLFP(); renderLevelStats(); },
+    distribution: () => { JC.renderAges(); byId('ageAnswer').textContent = facts.distribution.verdict; },
+    sectors: () => { JC.renderCES(); byId('cesAnswer').textContent = facts.sectors.verdict; }
   };
   const done = {};
   const navEl = byId('depthNav');
-  navEl.innerHTML = TABS.map(t =>
-    `<button class="depthtab" role="tab" data-id="${t.id}"><span class="dt-num">${t.num}</span><span class="dt-label">${t.label}</span></button>`
-  ).join('');
+
+  navEl.innerHTML =
+    `<button class="hometab" role="tab" data-id="overview" aria-label="Overview — start here">
+       <svg class="home-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/></svg>
+       Overview
+     </button>
+     <span class="nav-div" aria-hidden="true"></span>` +
+    DEPTHS.map(t =>
+      `<button class="depthtab" role="tab" data-id="${t.id}"><span class="dt-num">${t.num}</span><span class="dt-label">${t.label}</span></button>`
+    ).join('');
 
   function activate(id) {
-    TABS.forEach(t => {
-      const tab = navEl.querySelector(`[data-id="${t.id}"]`);
-      const panel = byId('panel-' + t.id);
-      const on = t.id === id;
-      tab.classList.toggle('active', on);
-      tab.setAttribute('aria-selected', on ? 'true' : 'false');
-      // re-trigger reveal by toggling the active class off then on
+    ALL.forEach(tid => {
+      const tab = navEl.querySelector(`[data-id="${tid}"]`);
+      const panel = byId('panel-' + tid);
+      const on = tid === id;
+      if (tab) { tab.classList.toggle('active', on); tab.setAttribute('aria-selected', on ? 'true' : 'false'); }
       panel.classList.remove('active');
       if (on) {
-        if (!done[t.id] && renderers[t.id]) { renderers[t.id](); done[t.id] = true; }
-        // force reflow so the animation restarts each visit
+        if (!done[tid] && renderers[tid]) { renderers[tid](); done[tid] = true; }
         void panel.offsetWidth;
         panel.classList.add('active');
       }
@@ -872,6 +663,13 @@
 
   navEl.querySelectorAll('[data-id]').forEach(b =>
     b.addEventListener('click', () => activate(b.dataset.id)));
+  document.querySelectorAll('[data-back]').forEach(b =>
+    b.addEventListener('click', () => activate('overview')));
+  const title = byId('homeTitle');
+  if (title) {
+    title.addEventListener('click', () => activate('overview'));
+    title.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); activate('overview'); } });
+  }
 
   renderOverview();
   activate('overview');
