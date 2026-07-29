@@ -1,0 +1,25 @@
+{
+  "generated_at": "2026-07-28T01:13:08-0400",
+  "files": [
+    {
+      "source_id": "yale_ai_effects",
+      "file": "yale_ai_exposure_occ2010.csv",
+      "url": "https://raw.githubusercontent.com/Budget-Lab-Yale/AI-Effects/4898eb3dc6bf01c322f0d1ebbabb9de5b389ac90/data/ai_exposure_occ2010.csv",
+      "pin": "4898eb3dc6bf01c322f0d1ebbabb9de5b389ac90",
+      "sha256": "cac6594e8249e6eab78b37eb11f6f32d78fdf9a4ba8868e3cfd2b54a62feb7c8",
+      "bytes": 55972,
+      "licence": "see repo",
+      "note": "Budget Lab at Yale AI-Effects replication repo; six exposure metrics plus their PCA composite, crosswalked to IPUMS OCC2010"
+    },
+    {
+      "source_id": "yale_ai_effects",
+      "file": "yale_cyclicality_betas.csv",
+      "url": "https://raw.githubusercontent.com/Budget-Lab-Yale/AI-Effects/4898eb3dc6bf01c322f0d1ebbabb9de5b389ac90/data/cyclicality_betas.csv",
+      "pin": "4898eb3dc6bf01c322f0d1ebbabb9de5b389ac90",
+      "sha256": "f0fe8d4ee683a91bfbc454b92394667223c8aaf2b7a25e7bbcbc182c86f13cb5",
+      "bytes": 20545,
+      "licence": "see repo",
+      "note": "Occupation-level cyclicality: log employment on the CBO output gap, 1994-2019"
+    }
+  ]
+}

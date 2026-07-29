@@ -1286,6 +1286,22 @@
   .jobs-view .app-layout                  { grid-template-columns: 1fr; }
   .jobs-view .main-content                { grid-column: 1 / -1; }
 
+  /* ── ADOPTION TAB ── (static view; reuses the .jd-* editorial components) */
+  #adoptionArea                           { display: none; }
+  .adoption-view #adoptionArea            { display: block; }
+  .adoption-view .sidebar                 { display: none; }
+  .adoption-view .inline-filters          { display: none; }
+  .adoption-view .cards-grid              { display: none !important; }
+  .adoption-view .empty-state             { display: none !important; }
+  .adoption-view .lens-toggle             { display: none; }
+  .adoption-view .header-tab-desc         { display: none; }
+  .adoption-view .research-header-bar     { display: none !important; }
+  .adoption-view .theme-nav-strip         { display: none; }
+  .adoption-view .theme-disclaimer-bar    { display: none; }
+  .adoption-view .key-findings-band       { display: none; }
+  .adoption-view .app-layout              { grid-template-columns: 1fr; }
+  .adoption-view .main-content            { grid-column: 1 / -1; }
+
   /* ═══════════════════════════════════════════════════════════
      FACT BANK TAB
      All component styles are scoped under #factBankArea so the
@@ -1936,6 +1952,61 @@
   .jd-src { font-size: 11px; color: var(--muted); margin-top: 4px; }
   .jd-vintage { font-family: var(--grot); font-size: 10.5px; color: var(--muted); text-align: right; margin-top: 4px; }
 
+  /* ── ADOPTION TAB extras ────────────────────────────────────
+     The Adoption tab reuses every .jd-* component above. These are the few
+     pieces it needs that the Job Displacement tab never did: a regression
+     table, a two-up chart row, a pull-quote handoff, and a subhead. */
+  .ad-sub {
+    font-family: var(--grot); font-size: 11.5px; letter-spacing: 0.06em;
+    text-transform: uppercase; color: var(--muted); font-weight: 600;
+    margin: 26px 0 2px;
+  }
+  .ad-head {
+    font-size: 13.5px; line-height: 1.6; color: var(--headline);
+    background: var(--surface2); border-left: 3px solid var(--green);
+    border-radius: 0 8px 8px 0; padding: 11px 14px; margin: 14px 0 4px;
+  }
+  .ad-head .ad-bench { color: var(--muted); font-size: 12.5px; }
+  .ad-table-wrap { overflow-x: auto; margin: 14px 0 4px; }
+  table.ad-table {
+    width: 100%; border-collapse: collapse;
+    font-family: var(--sans); font-size: 12px; color: var(--text);
+  }
+  table.ad-table th {
+    font-family: var(--grot); font-size: 10.5px; letter-spacing: 0.05em;
+    text-transform: uppercase; color: var(--muted); font-weight: 600;
+    text-align: left; padding: 6px 9px; border-bottom: 1.5px solid var(--border);
+    white-space: nowrap;
+  }
+  table.ad-table td { padding: 6px 9px; border-bottom: 1px solid var(--border); }
+  table.ad-table tbody tr:first-child td { font-weight: 600; color: var(--headline); }
+  .ad-two-up { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; align-items: start; }
+  .ad-two-up > div { min-width: 0; }
+  .ad-handoff {
+    display: flex; gap: 14px; align-items: flex-start;
+    background: var(--surface2); border: 1px solid var(--border);
+    border-left: 3px solid var(--gold);
+    border-radius: 0 10px 10px 0; padding: 15px 18px; margin: 18px 0 6px;
+    font-size: 14px; line-height: 1.65; color: var(--text);
+  }
+  .ad-handoff a { color: var(--navy); font-weight: 600; }
+
+  /* ── JOB DISPLACEMENT: adoption monitor section ──────────── */
+  .jdm-board { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 10px; margin: 16px 0 6px; }
+  .jdm-card { background: var(--surface); border: 1px solid var(--border); border-radius: 9px; padding: 11px 13px 10px; }
+  .jdm-card-name { font-family: var(--grot); font-size: 10.5px; letter-spacing: 0.05em; text-transform: uppercase; color: var(--muted); }
+  .jdm-card-val { font-family: var(--serif); font-size: 24px; line-height: 1.15; color: var(--headline); margin-top: 3px; }
+  .jdm-card-val small { font-size: 12px; color: var(--muted); font-family: var(--sans); }
+  .jdm-card-val.neg { color: #b06a4f; }
+  .jdm-spark { width: 100%; height: 34px; display: block; margin: 5px 0 3px; }
+  .jdm-card-foot { font-family: var(--grot); font-size: 10px; color: var(--muted); }
+  .jdm-card-note { font-size: 10.5px; line-height: 1.45; color: var(--muted); margin-top: 5px; }
+
+  @media (max-width: 760px) {
+    .ad-two-up { grid-template-columns: 1fr; }
+    .jdm-board { grid-template-columns: 1fr; }
+  }
+
 </style>
 </head>
 <body>
@@ -1950,6 +2021,15 @@
 <script src="data/fact-bank-data.js"></script>
 <!-- Job displacement data (window.JOBS_DISPLACEMENT_DATA). Regenerate via data_analysis/scripts/run_all.R --refresh -->
 <script src="data/jobs-displacement-data.js" charset="utf-8"></script>
+<!-- Adoption tab. Census BTOS, biweekly + AI supplement (window.BTOS_DATA).
+     Regenerate: Rscript data_analysis/btos/{01_fetch_btos,02_build_btos,run_btos}.R -->
+<script src="data/btos-data.js" charset="utf-8"></script>
+<!-- Adoption tab. BTOS adoption x employment-weighted occupational exposure (window.BTOS_EXPOSURE).
+     Regenerate: Rscript data_analysis/{exposure/02_build_exposure,micro/03_tests_industry,micro/run_micro}.R -->
+<script src="data/btos-exposure-data.js" charset="utf-8"></script>
+<!-- Job Displacement tab, monitor section. BTOS x CES x JOLTS (window.BTOS_JOBS_MONITOR).
+     Regenerate: Rscript data_analysis/btos/{03_jobs_join,run_jobs}.R -->
+<script src="data/btos-jobs-monitor-data.js" charset="utf-8"></script>
 
 <!-- ═══════════════════════════════════════════════════════════
      HTML
@@ -1969,6 +2049,7 @@
         <button class="header-nav-btn" id="viewFactBank" role="tab" aria-selected="false" aria-controls="viewPanel">Fact Bank</button>
         <button class="header-nav-btn active" id="viewThemes" role="tab" aria-selected="true" aria-controls="viewPanel">Themes</button>
         <button class="header-nav-btn" id="viewPolicy" role="tab" aria-selected="false" aria-controls="viewPanel">Policy Map</button>
+        <button class="header-nav-btn" id="viewAdoption" role="tab" aria-selected="false" aria-controls="viewPanel">Adoption</button>
         <button class="header-nav-btn" id="viewJobs" role="tab" aria-selected="false" aria-controls="viewPanel">Job Displacement</button>
         <button class="header-nav-btn" id="viewAbout" role="tab" aria-selected="false" aria-controls="viewPanel" aria-label="About this site">About</button>
       </div>
@@ -2140,6 +2221,241 @@
         </div>
       </div>
 
+      <!-- ══════════════════════════════════════════════════════════════════
+           ADOPTION VIEW — own container, shown by the .adoption-view body
+           class, static (early return in render()). Charts are drawn by
+           assets/adoption-charts.js from window.BTOS_DATA + BTOS_EXPOSURE.
+           ══════════════════════════════════════════════════════════════════ -->
+      <div id="adoptionArea">
+        <div class="jd-wrap">
+
+          <div class="jd-notice" role="note">
+            <span class="tag">Prototype</span>
+            <span><b>This analysis is a work-in-progress prototype. Please do not use, cite, or share these figures.</b> The methods and data are still being validated and the numbers may change.</span>
+          </div>
+
+          <div class="jd-lede">Who is actually adopting AI, what are they using it for, and is anyone losing a job over it?</div>
+          <p class="jd-standfirst">Most of the AI-and-work debate runs on forecasts. The Census Business Trends and Outlook Survey asks roughly a million businesses, every two weeks, what they are actually doing. This page follows the chain from theoretical exposure through realized adoption to what firms say the adoption did to their headcount &mdash; and the last link is the weakest one in the displacement story.</p>
+
+          <div class="jd-stats" id="adTopStats"></div>
+
+          <!-- ══ SECTION 1 ══ -->
+          <section class="jd-section" id="ad-sec-exposure">
+            <div class="jd-kicker">01 &middot; Exposure</div>
+            <h2 class="jd-h">Does the theory predict the practice?</h2>
+            <p class="jd-p">A decade of research has scored occupations by how exposed their tasks are to AI &mdash; <a href="#research">Felten, Raj and Seamans</a> on capability overlap, Eloundou and coauthors on what GPT-4 can do, Eisfeldt and coauthors on generative-AI task content, and most recently Microsoft's scoring of real Copilot conversations. Those scores are predictions about a world that had not happened yet. BTOS gives us the first serious chance to check them against behavior.</p>
+            <p class="jd-p">To make the comparison, each occupation's exposure score is collapsed to a 3-digit industry using CPS occupation-by-industry <em>employment</em> weights, so an industry is exposed to the extent that the people working in it hold exposed jobs. That industry exposure is then matched to the industry's average BTOS adoption rate over the consistent pre-rewording span. If the exposure literature were measuring nothing real, this scatter would be a cloud.</p>
+
+            <div class="ad-head" id="adExposureHead"></div>
+
+            <div class="jd-chart-wrap">
+              <div class="jd-chart-title">BTOS adoption against employment-weighted occupational exposure</div>
+              <div class="jd-chart-sub">48 three-digit NAICS industries &middot; adoption is the pre-break mean, Sep 2023 &ndash; Nov 2025 &middot; exposure is the PCA composite, z-scored</div>
+              <svg class="jd-svg" id="adExposureScatter" viewBox="0 0 700 380" role="img" aria-label="Scatter plot of BTOS AI adoption against employment-weighted occupational exposure by industry"></svg>
+              <div class="jd-chart-note">Each point is an industry. The fitted line is ordinary least squares on the points shown. Hover for the industry code, its exposure in standard deviations, and its adoption rate. Points labeled where the industry is recognizable: 518 data processing and hosting, 541 professional and technical services, 511 publishing, 722 food service, 484 trucking.</div>
+            </div>
+
+            <p class="jd-p">The gradient is real and it is large. It is also independently replicated: a separate construction by Tucker using different data reports 6.7 points per standard deviation, which is inside the confidence interval here. Two teams, different exposure inputs, different adoption measures, roughly the same slope.</p>
+
+            <div class="ad-sub">Robustness across exposure measures</div>
+            <p class="jd-p">The composite is a weighted average of seven underlying scores, and it is worth knowing whether the result depends on which one you pick. It does not. Every metric in the literature, including Microsoft's realized-usage measure built from a completely different kind of data, produces a positive and statistically significant slope.</p>
+
+            <div class="ad-table-wrap" id="adExposureTable"></div>
+            <div class="jd-chart-note">Slope in percentage points of adoption per standard deviation of exposure, HC3 robust standard errors, n = 48 industries throughout. Stars: *** p&lt;0.01, ** p&lt;0.05, * p&lt;0.1. The composite is the PCA-variance-weighted average of the other six after z-scoring; Webb's patent-based measure is excluded because its PCA weight is an order of magnitude smaller.</div>
+
+            <div class="ad-sub">And the gap is widening</div>
+            <p class="jd-p">Re-estimating the same regression separately on each collection period turns a cross-section into a trend. If AI were diffusing evenly &mdash; laggard industries catching up &mdash; the slope would flatten over time. It does the opposite.</p>
+
+            <div class="jd-chart-wrap">
+              <div class="jd-chart-title">The exposure&ndash;adoption gradient over time</div>
+              <div class="jd-chart-sub">Slope re-estimated on each BTOS collection period, pre-rewording only</div>
+              <svg class="jd-svg" id="adExposureTime" viewBox="0 0 700 300" role="img" aria-label="Exposure-adoption regression slope by collection period"></svg>
+              <div class="jd-chart-note" id="adExposureTimeNote"></div>
+            </div>
+
+            <div class="jd-answer"><span class="lab">Answer</span><span class="txt">Yes. Industries whose workers hold more exposed occupations adopt AI substantially more, the relationship holds across every exposure measure in the literature, and it has been getting steeper, not flatter, for two years. The exposure research is measuring something firms act on.</span></div>
+          </section>
+
+          <!-- ══ SECTION 2 ══ -->
+          <section class="jd-section" id="ad-sec-aggregate">
+            <div class="jd-kicker">02 &middot; The aggregate</div>
+            <h2 class="jd-h">How many firms are we talking about?</h2>
+            <p class="jd-p">The headline number needs a warning label before it needs interpretation. In November 2025 the Census changed the question &mdash; from AI use &ldquo;in producing goods or services&rdquo; to AI use &ldquo;in any business function&rdquo; &mdash; and the level jumped. The same rewording coincided with a six-week collection gap during the funding lapse. Both are drawn explicitly below and neither is smoothed over. The two solid segments are different questions and must not be spliced into one series.</p>
+
+            <div class="jd-chart-wrap">
+              <div class="jd-chart-title">Share of U.S. businesses using AI, and expecting to</div>
+              <div class="jd-chart-sub">Census Business Trends and Outlook Survey, biweekly, firm-weighted</div>
+              <svg class="jd-svg" id="adHeadline" viewBox="0 0 700 360" role="img" aria-label="AI adoption rate over time with the November 2025 wording break marked"></svg>
+              <div class="jd-legend" id="adHeadlineLegend"></div>
+              <div class="jd-chart-note" id="adHeadlineNote"></div>
+            </div>
+
+            <p class="jd-p">Two things are true at once here. Adoption is rising fast in proportional terms &mdash; from under four percent to over twenty in under three years, on a base of roughly a million surveyed businesses. And the level is still low: four in five firms report no AI use at all. Anyone who tells you the number is dramatic and anyone who tells you it is trivial is reading the same chart.</p>
+
+            <div class="ad-sub">Firms over-predict themselves</div>
+            <p class="jd-p">BTOS also asks each firm whether it expects to be using AI six months out. Because the survey has run long enough, those expectations can now be checked against what actually happened. This is a rare thing in survey data and a useful discount rate on every forward-looking AI number you will read.</p>
+
+            <div class="jd-chart-wrap">
+              <div class="jd-chart-title">Expected adoption versus realized adoption, six months later</div>
+              <div class="jd-chart-sub">Each point pairs one collection period's expectation with the outcome about six months on</div>
+              <svg class="jd-svg" id="adExpect" viewBox="0 0 700 360" role="img" aria-label="Expected versus realized AI adoption"></svg>
+              <div class="jd-chart-note" id="adExpectNote"></div>
+            </div>
+
+            <div class="jd-answer"><span class="lab">Answer</span><span class="txt">About one firm in five, rising steadily, on a question whose wording changed in November 2025. Firms consistently expect to adopt faster than they do &mdash; a reason to treat stated intentions, including intentions about headcount, as an upper bound.</span></div>
+          </section>
+
+          <!-- ══ SECTION 3 ══ -->
+          <section class="jd-section" id="ad-sec-who">
+            <div class="jd-kicker">03 &middot; Who</div>
+            <h2 class="jd-h">Which firms, and where?</h2>
+            <p class="jd-p">The national average hides almost everything interesting. Adoption is concentrated by firm size, by industry, and to a lesser degree by geography &mdash; and the size dimension has a consequence that runs through every other number on this page.</p>
+
+            <div class="ad-sub">Size is the most consistent gradient</div>
+            <p class="jd-p">Big employers adopt more than small ones in every period, on both sides of the wording change, and in the separate AI supplement. The industry spread is wider in absolute terms, but the size gradient is the one that never breaks &mdash; and it is the one with consequences for how you read every other number here. BTOS weights by <em>firm</em>, and most firms are small. Because adopters are disproportionately large employers, the share of <em>workers</em> at an AI-using employer runs well above the share of firms using AI. Census publishes no employment-weighted headline, so we show the gradient rather than assert a number.</p>
+
+            <div class="jd-chart-wrap">
+              <div class="jd-chart-title">Adoption by employment size class, over time</div>
+              <div class="jd-chart-sub">Firm-weighted within each size class, segmented at the rewording</div>
+              <svg class="jd-svg" id="adSize" viewBox="0 0 700 360" role="img" aria-label="AI adoption over time by firm employment size class"></svg>
+              <div class="jd-legend" id="adSizeLegend"></div>
+              <div class="jd-chart-note" id="adSizeNote"></div>
+            </div>
+
+            <div class="jd-chart-wrap">
+              <div class="jd-chart-title">The size gradient in the AI supplement</div>
+              <div class="jd-chart-sub">Current AI use by employment size class, ordered smallest to largest</div>
+              <svg class="jd-svg" id="adSupSize" viewBox="0 0 700 220" role="img" aria-label="AI adoption by employment size class, AI supplement"></svg>
+              <div class="jd-chart-note" id="adSupSizeNote"></div>
+            </div>
+
+            <div class="ad-sub">Industry: the spread is the story</div>
+            <p class="jd-p">Sector-level adoption ranges over a factor of several from top to bottom. These are the same industry cells that carry the exposure regression in section 01 &mdash; the ranking below is that scatter sorted, without the exposure axis.</p>
+
+            <div class="jd-chart-wrap">
+              <div class="jd-chart-title">Current AI use by sector</div>
+              <div class="jd-chart-sub">Two-digit NAICS, AI supplement, firm-weighted</div>
+              <svg class="jd-svg" id="adSupSector" viewBox="0 0 700 460" role="img" aria-label="AI adoption by two-digit NAICS sector"></svg>
+              <div class="jd-chart-note" id="adSupSectorNote"></div>
+            </div>
+
+            <div class="jd-chart-wrap">
+              <div class="jd-chart-title">Most-adopting subsectors, current use and six-month expectation</div>
+              <div class="jd-chart-sub">Three-digit NAICS, latest collection period</div>
+              <svg class="jd-svg" id="adSubsector" viewBox="0 0 700 520" role="img" aria-label="Top subsectors by AI adoption with six-month expectations"></svg>
+              <div class="jd-chart-note" id="adSubsectorNote"></div>
+            </div>
+
+            <div class="jd-chart-wrap">
+              <div class="jd-chart-title">Diffusion speed: change in adoption over the past six months</div>
+              <div class="jd-chart-sub">Percentage-point change by sector, new-wording period</div>
+              <svg class="jd-svg" id="adDiffusion" viewBox="0 0 700 440" role="img" aria-label="Six-month change in AI adoption by sector"></svg>
+              <div class="jd-chart-note" id="adDiffusionNote"></div>
+            </div>
+
+            <div class="ad-sub">Geography adds less than you would expect</div>
+            <p class="jd-p">State and metro variation is real but modest next to the size and industry gradients, and much of it is composition &mdash; places with more information and professional-services firms adopt more. Ranked rather than mapped, so small differences are not read as regional blocs.</p>
+
+            <div class="jd-chart-wrap">
+              <div class="jd-chart-title">Adoption by state</div>
+              <div class="jd-chart-sub">Latest collection period, firm-weighted, ranked</div>
+              <svg class="jd-svg" id="adStates" viewBox="0 0 700 722" role="img" aria-label="AI adoption by state"></svg>
+            </div>
+
+            <div class="jd-chart-wrap">
+              <div class="jd-chart-title">Adoption in the 25 largest metro areas</div>
+              <div class="jd-chart-sub">Latest collection period, firm-weighted, ranked</div>
+              <svg class="jd-svg" id="adMSA" viewBox="0 0 700 446" role="img" aria-label="AI adoption by metropolitan area"></svg>
+              <div class="jd-chart-note" id="adGeoNote"></div>
+            </div>
+
+            <div class="jd-answer"><span class="lab">Answer</span><span class="txt">Large firms in information, professional services and education, everywhere. Industry has the wider spread; firm size is the more consistent gradient, and the one with the biggest interpretive consequence &mdash; because adopters are large employers, worker exposure runs well ahead of the firm-weighted headline.</span></div>
+          </section>
+
+          <!-- ══ SECTION 4 ══ -->
+          <section class="jd-section" id="ad-sec-what">
+            <div class="jd-kicker">04 &middot; What for</div>
+            <h2 class="jd-h">What is AI actually doing inside these firms?</h2>
+            <p class="jd-p">This is the question the aggregate adoption rate cannot answer and the one that determines whether adoption should displace anyone. The Census AI supplement asks adopters which business functions use AI, and asks generative-AI users which specific tasks they use it for. The answers are strikingly mundane.</p>
+
+            <div class="jd-chart-wrap">
+              <div class="jd-chart-title">Which business functions use AI</div>
+              <div class="jd-chart-sub">Share of all businesses, multiple responses allowed, AI supplement</div>
+              <svg class="jd-svg" id="adSupFunctions" viewBox="0 0 700 380" role="img" aria-label="AI use by business function"></svg>
+              <div class="jd-chart-note" id="adSupFunctionsNote"></div>
+            </div>
+
+            <p class="jd-p">AI is entering through the commercial front of the business &mdash; marketing, strategy, IT &mdash; not through production or logistics. That is close to the opposite of the pattern industrial robots followed, and it points the labor-market effect at white-collar task content rather than at manufacturing headcount.</p>
+
+            <div class="jd-chart-wrap">
+              <div class="jd-chart-title">What generative AI is used for</div>
+              <div class="jd-chart-sub">Among firms whose employees use generative AI, multiple responses allowed</div>
+              <svg class="jd-svg" id="adSupGenai" viewBox="0 0 700 300" role="img" aria-label="Generative AI tasks among using firms"></svg>
+              <div class="jd-chart-note" id="adSupGenaiNote"></div>
+            </div>
+
+            <p class="jd-p">Writing and editing dominates, then search and summarization. These are <em>tasks</em>, and mostly tasks that sit inside jobs rather than constituting them. A displacement story has to explain how a firm gets from &ldquo;our staff draft emails faster&rdquo; to &ldquo;we need fewer staff,&rdquo; and the survey does not show that step happening yet.</p>
+
+            <div class="ad-sub">Why the other four in five say no</div>
+            <p class="jd-p">The barriers question is the most underrated series in the supplement, because it tells you what would have to change for diffusion to continue.</p>
+
+            <div class="jd-chart-wrap">
+              <div class="jd-chart-title">Reasons firms give for not planning to use AI</div>
+              <div class="jd-chart-sub">Among firms not planning to adopt within six months, multiple responses allowed</div>
+              <svg class="jd-svg" id="adSupBarriers" viewBox="0 0 700 300" role="img" aria-label="Reported barriers to AI adoption"></svg>
+              <div class="jd-chart-note" id="adSupBarriersNote"></div>
+            </div>
+
+            <p class="jd-p">Not cost. Not regulation. Not workers refusing. Overwhelmingly <em>relevance</em> &mdash; firms say AI does not apply to what they do &mdash; followed by not knowing how to use it. Both are ceilings that fall as capabilities broaden and knowledge spreads, which is one reason to expect diffusion to keep going, and to expect the exposure gradient in section 01 to keep steepening.</p>
+
+            <div class="jd-answer"><span class="lab">Answer</span><span class="txt">Language work at the commercial edge of the firm: drafting, summarizing, searching, marketing. Task-level augmentation, not process automation. And the main thing holding back the non-adopters is perceived relevance, not cost or law.</span></div>
+          </section>
+
+          <!-- ══ SECTION 5 ══ -->
+          <section class="jd-section" id="ad-sec-jobs">
+            <div class="jd-kicker">05 &middot; And the jobs</div>
+            <h2 class="jd-h">Do adopters say it cost anyone a job?</h2>
+            <p class="jd-p">The supplement asks firms using AI what it did to their total employment. This is the closest thing to a direct measurement of AI-attributed job loss in official U.S. statistics, and the answer is that almost nothing happened.</p>
+
+            <div class="jd-stats" id="adEmpStats"></div>
+
+            <div class="jd-chart-wrap">
+              <div class="jd-chart-title">Self-reported effect of AI on total employment</div>
+              <div class="jd-chart-sub">Among businesses using AI, firm-weighted</div>
+              <svg class="jd-svg" id="adSupEmpEffect" viewBox="0 0 700 140" role="img" aria-label="Reported effect of AI on employment among adopting firms"></svg>
+              <div class="jd-chart-note" id="adSupEmpEffectNote"></div>
+            </div>
+
+            <p class="jd-p">Take the caveats seriously, because they are load-bearing. Firms have every reason not to attribute a layoff to AI, and often no clean way to know. More importantly, the question asks about <em>employment</em>, and the mechanism most of the microdata literature actually finds is not firing &mdash; it is <b>not hiring</b>. A firm that quietly stops backfilling entry-level roles reports no decrease here, and its payroll count drifts down through ordinary attrition without a single layoff.</p>
+
+            <p class="jd-p">It is also worth sitting with the sign. Slightly more adopters say AI <em>raised</em> their headcount than say it cut it. That is not evidence AI creates jobs &mdash; the numbers are small and self-reported either way &mdash; but it is inconsistent with the version of the story in which adoption and layoffs move together, and it is what you would expect if AI is currently making existing workers more productive at tasks they already do.</p>
+
+            <p class="jd-p">That is the shape of the evidence as it stands: a genuine, accelerating, exposure-predicted diffusion of AI into firms, doing language tasks at the commercial edge of the business, with no visible layoff signature attached to it. If displacement is happening, it is happening through the hiring door.</p>
+
+            <div class="ad-handoff">
+              <span>Which is a claim about flows, not stocks, and it needs BLS data rather than survey self-reports to test. The <a href="#job-displacement">Job Displacement</a> tab takes it up: whether higher-adoption industries are hiring less, whether they are laying off more, and how large an effect this design could actually detect if it were there.</span>
+            </div>
+
+            <div class="jd-answer"><span class="lab">Answer</span><span class="txt">Essentially no. The overwhelming majority of AI-using firms report no employment change at all, and slightly more report an increase than a decrease. But the question cannot see forgone hiring, which is exactly where the displacement literature says to look &mdash; so this is a bound on attributed layoffs, not a verdict on displacement.</span></div>
+          </section>
+
+          <!-- ══ SECTION 6 ══ -->
+          <section class="jd-section" id="ad-sec-notes">
+            <div class="jd-kicker">06 &middot; Notes</div>
+            <h2 class="jd-h">What this data can and cannot tell you</h2>
+            <p class="jd-p"><b>Everything here is firm-weighted.</b> BTOS weights to the population of businesses, not workers. Since adoption rises steeply with firm size, every level on this page understates worker exposure. Census publishes no employment-weighted figure and we do not construct one; the size gradient in section 03 is the honest substitute.</p>
+            <p class="jd-p"><b>The November 2025 rewording is a real break.</b> The question moved from AI use in producing goods or services to AI use in any business function, and the level moved with it. The two segments are never spliced, and the six-week shutdown gap is left open rather than interpolated. A handful of later periods re-ask the retired wording; those rows are kept in the tidy data and excluded from every chart, because they belong to neither series.</p>
+            <p class="jd-p"><b>Suppressed cells are shown, not dropped.</b> Census suppresses small cells; those bars appear at reduced opacity and marked with a dagger so that a thin industry is visibly thin rather than silently missing.</p>
+            <p class="jd-p"><b>The exposure join is the least standard thing on this page.</b> Occupation scores come from the Budget Lab at Yale's replication of the exposure literature, aggregated to industry with CPS 2021&ndash;22 occupation-by-industry employment weights. About ten percent of employment cannot be mapped, mostly construction, which CPS codes as a single industry, and public administration. Using 2023&ndash;24 weights instead correlates at 0.99, so the choice of weight window does not drive the result.</p>
+            <p class="jd-p"><b>Adoption is not causation.</b> Nothing on this page identifies an effect of AI on anything. Industries that adopt AI differ from industries that do not in many ways, and the exposure gradient is a correlation between two industry characteristics.</p>
+            <p class="jd-p">Full pipeline, sources and sanity checks: <code>data_analysis/btos/README.md</code> and <code>data_analysis/exposure/README.md</code> in this repository.</p>
+          </section>
+
+          <div class="jd-vintage" id="adVintage"></div>
+
+        </div>
+      </div>
+
       <div id="jobDisplacementArea">
         <div class="jd-wrap">
 
@@ -2148,8 +2464,8 @@
             <span><b>This analysis is a work-in-progress prototype. Please do not use, cite, or share these figures.</b> The methods and data are still being validated and the numbers may change. Stay tuned for the full analysis.</span>
           </div>
 
-          <div class="jd-lede">Is AI displacing workers yet? Follow the labor market down three levels.</div>
-          <p class="jd-standfirst">The aggregate unemployment rate is a blunt instrument. To see displacement you have to ask three sharper questions: is unemployment higher than growth would predict, is the weakness spread evenly, and where has hiring actually decelerated. This is a first pass; each section links to a fuller technical treatment later.</p>
+          <div class="jd-lede">Is AI displacing workers yet? Follow the labor market down four levels.</div>
+          <p class="jd-standfirst">The aggregate unemployment rate is a blunt instrument. To see displacement you have to ask sharper questions: is unemployment higher than growth would predict, is the weakness spread evenly, where has hiring actually decelerated, and do the industries adopting AI look any different from the ones that are not. This is a first pass; each section links to a fuller technical treatment later. The <a href="#adoption">Adoption</a> tab covers who is using AI and what for.</p>
 
           <!-- ══ SECTION 1 ══ -->
           <section class="jd-section" id="sec-okun">
@@ -2212,6 +2528,54 @@
             <div class="jd-answer"><span class="lab">Answer</span><span class="txt" id="cesAnswer"></span></div>
           </section>
 
+          <!-- ══ SECTION 4 ══ ─ descriptive CES/JOLTS, split by BTOS adoption.
+               The second ending point for the Adoption tab: that page shows
+               adopters reporting no layoffs; this one asks whether the flows
+               data agrees, and what it could detect if they were wrong. -->
+          <section class="jd-section" id="sec-monitor">
+            <div class="jd-kicker">04 &middot; Freeze or shed</div>
+            <h2 class="jd-h">Are the AI-adopting industries hiring less, or firing more?</h2>
+            <p class="jd-p">The <a href="#adoption">Adoption</a> tab ends on a survey answer: almost no firm using AI reports that it cut employment. That question cannot see forgone hiring, which is where the displacement literature says to look. So here the same industries are split by their BTOS adoption rate and followed through BLS payroll and turnover data instead &mdash; not what firms say about AI, but what their hiring and firing actually did.</p>
+            <p class="jd-p">These are descriptive gaps, not estimated effects. Higher-adoption minus lower-adoption, with no controls and no identification strategy. Read them as a monitor that refreshes on the BLS calendar, not as a finding.</p>
+
+            <div class="jdm-board" id="jdmBoard"></div>
+            <div class="jd-chart-note">Each card is the higher-adoption minus lower-adoption difference in one labor-market rate, with a sparkline from 2022 forward. The 2020 values are two orders of magnitude larger than anything since and are omitted from the sparklines so that later movement is visible. Adoption groups are fixed from the pre-rewording BTOS mean, so the split does not move as the data updates.</div>
+
+            <div class="ad-sub">The change is all on the hiring side</div>
+            <p class="jd-p">The clearest way to see it is to decompose the change in net hiring since the pre-pandemic norm into the part coming from hires and the part coming from separations. If AI were producing layoffs, the separations bar would be doing the work.</p>
+
+            <div class="jd-chart-wrap">
+              <div class="jd-chart-title">Change in net hiring since 2015&ndash;19, split into hires and separations</div>
+              <div class="jd-chart-sub">JOLTS supersectors, percentage points of the employment base</div>
+              <svg class="jd-svg" id="jdmDecomp" viewBox="0 0 700 460" role="img" aria-label="Decomposition of the change in net hiring into hires and separations by supersector"></svg>
+              <div class="jd-legend" id="jdmDecompLegend"></div>
+              <div class="jd-chart-note" id="jdmDecompNote"></div>
+            </div>
+
+            <p class="jd-p">It is not. Hires are down almost everywhere; separations are roughly where they were. This is the pattern the labor-market commentary has taken to calling a low-hire, low-fire equilibrium, and it is the same shape the AI-displacement hypothesis predicts. Which is precisely the problem.</p>
+
+            <div class="ad-sub">The complication: the freeze is everywhere</div>
+            <p class="jd-p">Plotting the change in hiring against the change in layoffs puts the difficulty in one picture. If AI were the driver, the AI-heavy industries should sit somewhere distinctive. They do not.</p>
+
+            <div class="jd-chart-wrap">
+              <div class="jd-chart-title">Freeze or shed: change in hiring against change in layoffs</div>
+              <div class="jd-chart-sub">JOLTS supersectors, bubble sized by employment, change since the 2015&ndash;19 average</div>
+              <svg class="jd-svg" id="jdmQuad" viewBox="0 0 700 400" role="img" aria-label="Change in hires rate against change in layoffs rate by supersector"></svg>
+              <div class="jd-chart-note" id="jdmQuadNote"></div>
+            </div>
+
+            <div class="ad-sub">And what could this even detect?</div>
+            <p class="jd-p">Before reading anything into a null result, it is worth asking how big an effect would have to be before this design could see it. Converting the industry-level coefficient into jobs gives an uncomfortable answer.</p>
+
+            <div class="jd-stats" id="jdmMde"></div>
+            <div class="jd-chart-note" id="jdmMdeNote"></div>
+
+            <p class="jd-p">The honest summary is that industry-level aggregates are the wrong instrument for this question. There are too few industries, the variation in adoption is too compressed, and the effect the microdata literature estimates is comfortably smaller than what this data could distinguish from zero. The finding that literature turns on is also an <em>age</em> finding &mdash; early-career hiring specifically &mdash; and nothing in this section has an age dimension at all.</p>
+
+            <div class="jd-answer"><span class="lab">Answer</span><span class="txt">Hiring, not firing &mdash; the entire change in net hiring runs through the hires side, exactly as the displacement hypothesis predicts. But the freeze is economy-wide rather than concentrated in AI-adopting industries, and this design could not detect an effect of the size the microdata literature reports even if it were there. Consistent with displacement; nowhere near evidence of it.</span></div>
+          </section>
+
+          <div class="jd-vintage" id="jdmVintage"></div>
           <div class="jd-vintage" id="jdVintage"></div>
 
         </div>
@@ -3959,6 +4323,7 @@
     if (activeView === 'fact-bank') return 'fact-bank';
     if (activeView === 'policy') return 'policy';
     if (activeView === 'about')  return 'about';
+    if (activeView === 'adoption') return 'adoption';
     if (activeView === 'jobs')   return 'job-displacement';
     return themeShowAll ? 'themes' : 'theme/' + activeThemeId;
   }
@@ -3978,6 +4343,7 @@
       }
       if (head === 'themes'   && !tail) { setView('themes'); return true; }
       if (head === 'about'    && !tail) { setView('about');  return true; }
+      if (head === 'adoption' && !tail) { setView('adoption'); return true; }
       if (head === 'job-displacement' && !tail) { setView('jobs'); return true; }
       if (head === 'policy'   && !tail) { setView('policy'); return true; }
       if (head === 'changelog' && !tail) {
@@ -4101,6 +4467,7 @@
     }
     if (activeView === 'policy') { buildPolicyView(); return; }
     if (activeView === 'about')  { return; }
+    if (activeView === 'adoption') { return; }   // static: charts drawn once by assets/adoption-charts.js
     if (activeView === 'jobs')   { return; }
 
     // ── Research (cards) view ──
@@ -4182,18 +4549,22 @@
       general:   { title: 'Job Displacement', text: 'How much job displacement there is and what can be traced to AI, analyzed in an economically rigorous way.', note: '' },
       economist: { title: 'Job Displacement', text: 'How much job displacement there is and what can be traced to AI, analyzed in an economically rigorous way.', note: '' },
     },
+    adoption: {
+      general:   { title: 'Adoption', text: 'Who is actually adopting AI and what they are using it for, from the Census Business Trends and Outlook Survey.', note: '' },
+      economist: { title: 'Adoption', text: 'Census BTOS AI adoption against employment-weighted occupational exposure, plus the AI supplement on business functions, barriers and self-reported employment effects.', note: '' },
+    },
   };
   function getTabDesc(view) {
     const lens = activeLens === 'economist' ? 'economist' : 'general';
     return (TAB_DESCS[view] || {})[lens] || null;
   }
 
-  const VIEW_TAB_IDS = { cards: 'viewCards', 'fact-bank': 'viewFactBank', themes: 'viewThemes', policy: 'viewPolicy', jobs: 'viewJobs', about: 'viewAbout' };
+  const VIEW_TAB_IDS = { cards: 'viewCards', 'fact-bank': 'viewFactBank', themes: 'viewThemes', policy: 'viewPolicy', adoption: 'viewAdoption', jobs: 'viewJobs', about: 'viewAbout' };
 
   function setView(view) {
     activeView = view;
     viewInitialized = true;
-    ['viewCards', 'viewFactBank', 'viewThemes', 'viewPolicy', 'viewJobs', 'viewAbout'].forEach(id => {
+    ['viewCards', 'viewFactBank', 'viewThemes', 'viewPolicy', 'viewAdoption', 'viewJobs', 'viewAbout'].forEach(id => {
       const el = document.getElementById(id);
       if (!el) return;
       const active = id === VIEW_TAB_IDS[view];
@@ -4214,6 +4585,7 @@
     document.body.classList.toggle('strategy-view', view === 'themes');
     document.body.classList.toggle('policy-view',   view === 'policy');
     document.body.classList.toggle('about-view',    view === 'about');
+    document.body.classList.toggle('adoption-view', view === 'adoption');
     document.body.classList.toggle('jobs-view',     view === 'jobs');
     document.body.classList.toggle('fact-bank-view',   view === 'fact-bank');
     if (view === 'fact-bank' && typeof initFactBank === 'function') initFactBank();
@@ -4223,7 +4595,7 @@
     if (panel) panel.setAttribute('aria-labelledby', activeTabId);
     const ann = document.getElementById('viewAnnounce');
     if (ann) {
-      const names = { cards: 'Research', 'fact-bank': 'Fact Bank', themes: 'Themes', policy: 'Policy Map', jobs: 'Job Displacement', about: 'About' };
+      const names = { cards: 'Research', 'fact-bank': 'Fact Bank', themes: 'Themes', policy: 'Policy Map', adoption: 'Adoption', jobs: 'Job Displacement', about: 'About' };
       ann.textContent = (names[view] || view) + ' view';
     }
     setHash(currentRoute());
@@ -4232,6 +4604,7 @@
   document.getElementById('viewFactBank')?.addEventListener('click', () => setView('fact-bank'));
   document.getElementById('viewThemes').addEventListener('click', () => setView('themes'));
   document.getElementById('viewPolicy').addEventListener('click', () => setView('policy'));
+  document.getElementById('viewAdoption')?.addEventListener('click', () => setView('adoption'));
   document.getElementById('viewJobs')?.addEventListener('click', () => setView('jobs'));
 
   // Key findings band: open a source-excerpt modal, or jump to the theme if no source paper.
@@ -5172,5 +5545,14 @@
   renderOkun(); renderLFP(); renderAges(); renderCES(); renderMeta();
 })();
 </script>
+
+<!-- ═══════════════════════════════════════════════════════════
+     ADOPTION TAB CHARTS + the Job Displacement monitor section.
+     Separate files, each an isolated IIFE with its own try/catch per
+     renderer, so a break in one cannot take down the other tabs.
+     Classic scripts, no modules, no CDN: works over file://.
+     ═══════════════════════════════════════════════════════════ -->
+<script src="assets/adoption-charts.js" charset="utf-8"></script>
+<script src="assets/jobs-monitor-charts.js" charset="utf-8"></script>
 </body>
 </html>

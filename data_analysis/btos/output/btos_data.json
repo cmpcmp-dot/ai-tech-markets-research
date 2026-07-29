@@ -1,0 +1,6208 @@
+{
+  "vintage": "2026-07-26 18:55:19 EDT",
+  "source": {
+    "api": "https://www.census.gov/hfp/btos/api",
+    "note": "Census Business Trends and Outlook Survey (BTOS), core biweekly AI question. Firm-weighted 'Yes' share. Experimental data product.",
+    "method": "Share answering Yes to the AI-use question, by stratum, per collection period."
+  },
+  "n_periods": 71,
+  "break_date": "2025-11-17",
+  "latest_date": "2026-06-29",
+  "shutdown_gap": {
+    "start": "2025-10-06",
+    "end": "2025-11-16",
+    "note": "No collection (funding lapse); coincides with the wording break."
+  },
+  "weighting": "firm-weighted (core series has no employment weight)",
+  "empsize_labels": {
+    "A": "1-4",
+    "B": "5-9",
+    "C": "10-19",
+    "D": "20-49",
+    "E": "50-99",
+    "F": "100-249",
+    "G": "250+"
+  },
+  "headline_now": {
+    "current": 21.7,
+    "future": 24.5
+  },
+  "headline": {
+    "current_old": [
+      {
+        "date": "2023-09-11",
+        "est": 3.7,
+        "se": 0.11
+      },
+      {
+        "date": "2023-09-25",
+        "est": 3.7,
+        "se": 0.13
+      },
+      {
+        "date": "2023-10-09",
+        "est": 3.8,
+        "se": 0.13
+      },
+      {
+        "date": "2023-10-23",
+        "est": 3.9,
+        "se": 0.15
+      },
+      {
+        "date": "2023-11-06",
+        "est": 4.4,
+        "se": 0.11
+      },
+      {
+        "date": "2023-11-20",
+        "est": 4.6,
+        "se": 0.11
+      },
+      {
+        "date": "2023-12-04",
+        "est": 4.9,
+        "se": 0.17
+      },
+      {
+        "date": "2023-12-18",
+        "est": 4.9,
+        "se": 0.09
+      },
+      {
+        "date": "2024-01-01",
+        "est": 4.6,
+        "se": 0.08
+      },
+      {
+        "date": "2024-01-15",
+        "est": 5.3,
+        "se": 0.15
+      },
+      {
+        "date": "2024-01-29",
+        "est": 5,
+        "se": 0.13
+      },
+      {
+        "date": "2024-02-12",
+        "est": 5.4,
+        "se": 0.12
+      },
+      {
+        "date": "2024-02-26",
+        "est": 4.3,
+        "se": 0.13
+      },
+      {
+        "date": "2024-03-11",
+        "est": 4.4,
+        "se": 0.12
+      },
+      {
+        "date": "2024-03-25",
+        "est": 4.2,
+        "se": 0.09
+      },
+      {
+        "date": "2024-04-08",
+        "est": 4.8,
+        "se": 0.14
+      },
+      {
+        "date": "2024-04-22",
+        "est": 4.7,
+        "se": 0.15
+      },
+      {
+        "date": "2024-05-06",
+        "est": 4.8,
+        "se": 0.09
+      },
+      {
+        "date": "2024-05-20",
+        "est": 4.6,
+        "se": 0.15
+      },
+      {
+        "date": "2024-06-03",
+        "est": 5,
+        "se": 0.14
+      },
+      {
+        "date": "2024-06-17",
+        "est": 4.7,
+        "se": 0.13
+      },
+      {
+        "date": "2024-07-01",
+        "est": 5,
+        "se": 0.16
+      },
+      {
+        "date": "2024-07-15",
+        "est": 5.1,
+        "se": 0.18
+      },
+      {
+        "date": "2024-07-29",
+        "est": 5.1,
+        "se": 0.12
+      },
+      {
+        "date": "2024-08-12",
+        "est": 5.5,
+        "se": 0.15
+      },
+      {
+        "date": "2024-08-26",
+        "est": 5.7,
+        "se": 0.15
+      },
+      {
+        "date": "2024-09-09",
+        "est": 5.9,
+        "se": 0.16
+      },
+      {
+        "date": "2024-09-23",
+        "est": 6,
+        "se": 0.15
+      },
+      {
+        "date": "2024-10-07",
+        "est": 6,
+        "se": 0.15
+      },
+      {
+        "date": "2024-10-21",
+        "est": 6,
+        "se": 0.13
+      },
+      {
+        "date": "2024-11-04",
+        "est": 6.1,
+        "se": 0.18
+      },
+      {
+        "date": "2024-11-18",
+        "est": 6.1,
+        "se": 0.16
+      },
+      {
+        "date": "2024-12-02",
+        "est": 6.1,
+        "se": 0.17
+      },
+      {
+        "date": "2024-12-16",
+        "est": 6.3,
+        "se": 0.15
+      },
+      {
+        "date": "2024-12-30",
+        "est": 6,
+        "se": 0.19
+      },
+      {
+        "date": "2025-01-13",
+        "est": 6.7,
+        "se": 0.18
+      },
+      {
+        "date": "2025-01-27",
+        "est": 6.8,
+        "se": 0.19
+      },
+      {
+        "date": "2025-02-10",
+        "est": 7.3,
+        "se": 0.14
+      },
+      {
+        "date": "2025-02-24",
+        "est": 7.4,
+        "se": 0.18
+      },
+      {
+        "date": "2025-03-10",
+        "est": 7.8,
+        "se": 0.22
+      },
+      {
+        "date": "2025-03-24",
+        "est": 8,
+        "se": 0.12
+      },
+      {
+        "date": "2025-04-07",
+        "est": 8.3,
+        "se": 0.19
+      },
+      {
+        "date": "2025-04-21",
+        "est": 8.7,
+        "se": 0.16
+      },
+      {
+        "date": "2025-05-05",
+        "est": 8.7,
+        "se": 0.14
+      },
+      {
+        "date": "2025-05-19",
+        "est": 9.2,
+        "se": 0.19
+      },
+      {
+        "date": "2025-06-02",
+        "est": 9.2,
+        "se": 0.22
+      },
+      {
+        "date": "2025-06-16",
+        "est": 9.3,
+        "se": 0.15
+      },
+      {
+        "date": "2025-06-30",
+        "est": 9.3,
+        "se": 0.21
+      },
+      {
+        "date": "2025-07-14",
+        "est": 9.4,
+        "se": 0.15
+      },
+      {
+        "date": "2025-07-28",
+        "est": 8.8,
+        "se": 0.23
+      },
+      {
+        "date": "2025-08-11",
+        "est": 9.7,
+        "se": 0.16
+      },
+      {
+        "date": "2025-08-25",
+        "est": 9.1,
+        "se": 0.15
+      },
+      {
+        "date": "2025-09-08",
+        "est": 9.9,
+        "se": 0.15
+      },
+      {
+        "date": "2025-09-22",
+        "est": 10,
+        "se": 0.22
+      }
+    ],
+    "current_new": [
+      {
+        "date": "2025-11-17",
+        "est": 17.3,
+        "se": 0.18
+      },
+      {
+        "date": "2025-12-01",
+        "est": 17.2,
+        "se": 0.23
+      },
+      {
+        "date": "2025-12-15",
+        "est": 17.8,
+        "se": 0.47
+      },
+      {
+        "date": "2025-12-29",
+        "est": 17.7,
+        "se": 0.3
+      },
+      {
+        "date": "2026-01-12",
+        "est": 18.2,
+        "se": 0.24
+      },
+      {
+        "date": "2026-01-26",
+        "est": 18.9,
+        "se": 0.39
+      },
+      {
+        "date": "2026-02-09",
+        "est": 17.5,
+        "se": 0.4
+      },
+      {
+        "date": "2026-02-23",
+        "est": 18.2,
+        "se": 0.32
+      },
+      {
+        "date": "2026-03-23",
+        "est": 19.1,
+        "se": 0.42
+      },
+      {
+        "date": "2026-04-06",
+        "est": 19.8,
+        "se": 0.29
+      },
+      {
+        "date": "2026-04-20",
+        "est": 19.8,
+        "se": 0.24
+      },
+      {
+        "date": "2026-05-04",
+        "est": 19.5,
+        "se": 0.24
+      },
+      {
+        "date": "2026-05-18",
+        "est": 20.6,
+        "se": 0.29
+      },
+      {
+        "date": "2026-06-01",
+        "est": 20.6,
+        "se": 0.27
+      },
+      {
+        "date": "2026-06-15",
+        "est": 20.6,
+        "se": 0.39
+      },
+      {
+        "date": "2026-06-29",
+        "est": 21.7,
+        "se": 0.31
+      }
+    ],
+    "future_old": [
+      {
+        "date": "2023-09-11",
+        "est": 6.3,
+        "se": 0.14
+      },
+      {
+        "date": "2023-09-25",
+        "est": 6.3,
+        "se": 0.18
+      },
+      {
+        "date": "2023-10-09",
+        "est": 6.5,
+        "se": 0.21
+      },
+      {
+        "date": "2023-10-23",
+        "est": 6.5,
+        "se": 0.18
+      },
+      {
+        "date": "2023-11-06",
+        "est": 6.9,
+        "se": 0.15
+      },
+      {
+        "date": "2023-11-20",
+        "est": 7.3,
+        "se": 0.15
+      },
+      {
+        "date": "2023-12-04",
+        "est": 6.5,
+        "se": 0.17
+      },
+      {
+        "date": "2023-12-18",
+        "est": 6.7,
+        "se": 0.11
+      },
+      {
+        "date": "2024-01-01",
+        "est": 6.4,
+        "se": 0.16
+      },
+      {
+        "date": "2024-01-15",
+        "est": 6.5,
+        "se": 0.12
+      },
+      {
+        "date": "2024-01-29",
+        "est": 6.6,
+        "se": 0.2
+      },
+      {
+        "date": "2024-02-12",
+        "est": 6.6,
+        "se": 0.15
+      },
+      {
+        "date": "2024-02-26",
+        "est": 6.4,
+        "se": 0.12
+      },
+      {
+        "date": "2024-03-11",
+        "est": 6.7,
+        "se": 0.14
+      },
+      {
+        "date": "2024-03-25",
+        "est": 6.6,
+        "se": 0.14
+      },
+      {
+        "date": "2024-04-08",
+        "est": 6.8,
+        "se": 0.18
+      },
+      {
+        "date": "2024-04-22",
+        "est": 7,
+        "se": 0.22
+      },
+      {
+        "date": "2024-05-06",
+        "est": 6.9,
+        "se": 0.14
+      },
+      {
+        "date": "2024-05-20",
+        "est": 6.6,
+        "se": 0.17
+      },
+      {
+        "date": "2024-06-03",
+        "est": 6.8,
+        "se": 0.17
+      },
+      {
+        "date": "2024-06-17",
+        "est": 6.9,
+        "se": 0.08
+      },
+      {
+        "date": "2024-07-01",
+        "est": 6.9,
+        "se": 0.18
+      },
+      {
+        "date": "2024-07-15",
+        "est": 7.2,
+        "se": 0.23
+      },
+      {
+        "date": "2024-07-29",
+        "est": 7,
+        "se": 0.17
+      },
+      {
+        "date": "2024-08-12",
+        "est": 8.1,
+        "se": 0.15
+      },
+      {
+        "date": "2024-08-26",
+        "est": 8.5,
+        "se": 0.17
+      },
+      {
+        "date": "2024-09-09",
+        "est": 8.7,
+        "se": 0.15
+      },
+      {
+        "date": "2024-09-23",
+        "est": 9.1,
+        "se": 0.18
+      },
+      {
+        "date": "2024-10-07",
+        "est": 9,
+        "se": 0.18
+      },
+      {
+        "date": "2024-10-21",
+        "est": 9.3,
+        "se": 0.19
+      },
+      {
+        "date": "2024-11-04",
+        "est": 8.7,
+        "se": 0.21
+      },
+      {
+        "date": "2024-11-18",
+        "est": 8.9,
+        "se": 0.17
+      },
+      {
+        "date": "2024-12-02",
+        "est": 8.8,
+        "se": 0.13
+      },
+      {
+        "date": "2024-12-16",
+        "est": 9.2,
+        "se": 0.12
+      },
+      {
+        "date": "2024-12-30",
+        "est": 9.5,
+        "se": 0.21
+      },
+      {
+        "date": "2025-01-13",
+        "est": 9.4,
+        "se": 0.25
+      },
+      {
+        "date": "2025-01-27",
+        "est": 9.3,
+        "se": 0.21
+      },
+      {
+        "date": "2025-02-10",
+        "est": 9.8,
+        "se": 0.17
+      },
+      {
+        "date": "2025-02-24",
+        "est": 9.9,
+        "se": 0.19
+      },
+      {
+        "date": "2025-03-10",
+        "est": 10.5,
+        "se": 0.13
+      },
+      {
+        "date": "2025-03-24",
+        "est": 10.5,
+        "se": 0.18
+      },
+      {
+        "date": "2025-04-07",
+        "est": 10.9,
+        "se": 0.3
+      },
+      {
+        "date": "2025-04-21",
+        "est": 11,
+        "se": 0.24
+      },
+      {
+        "date": "2025-05-05",
+        "est": 11,
+        "se": 0.23
+      },
+      {
+        "date": "2025-05-19",
+        "est": 11.6,
+        "se": 0.16
+      },
+      {
+        "date": "2025-06-02",
+        "est": 11.6,
+        "se": 0.27
+      },
+      {
+        "date": "2025-06-16",
+        "est": 11.7,
+        "se": 0.11
+      },
+      {
+        "date": "2025-06-30",
+        "est": 12.3,
+        "se": 0.2
+      },
+      {
+        "date": "2025-07-14",
+        "est": 13.5,
+        "se": 0.27
+      },
+      {
+        "date": "2025-07-28",
+        "est": 13,
+        "se": 0.22
+      },
+      {
+        "date": "2025-08-11",
+        "est": 13.7,
+        "se": 0.16
+      },
+      {
+        "date": "2025-08-25",
+        "est": 13.8,
+        "se": 0.21
+      },
+      {
+        "date": "2025-09-08",
+        "est": 14,
+        "se": 0.21
+      },
+      {
+        "date": "2025-09-22",
+        "est": 14,
+        "se": 0.28
+      }
+    ],
+    "future_new": [
+      {
+        "date": "2025-11-17",
+        "est": 21.1,
+        "se": 0.26
+      },
+      {
+        "date": "2025-12-01",
+        "est": 20.9,
+        "se": 0.36
+      },
+      {
+        "date": "2025-12-15",
+        "est": 21.3,
+        "se": 0.32
+      },
+      {
+        "date": "2025-12-29",
+        "est": 22.4,
+        "se": 0.34
+      },
+      {
+        "date": "2026-01-12",
+        "est": 22.1,
+        "se": 0.22
+      },
+      {
+        "date": "2026-01-26",
+        "est": 22.1,
+        "se": 0.36
+      },
+      {
+        "date": "2026-02-09",
+        "est": 21,
+        "se": 0.33
+      },
+      {
+        "date": "2026-02-23",
+        "est": 21.8,
+        "se": 0.22
+      },
+      {
+        "date": "2026-03-09",
+        "est": 22.3,
+        "se": 0.31
+      },
+      {
+        "date": "2026-03-23",
+        "est": 22.5,
+        "se": 0.32
+      },
+      {
+        "date": "2026-04-06",
+        "est": 23,
+        "se": 0.26
+      },
+      {
+        "date": "2026-04-20",
+        "est": 22.8,
+        "se": 0.28
+      },
+      {
+        "date": "2026-05-04",
+        "est": 22.7,
+        "se": 0.34
+      },
+      {
+        "date": "2026-05-18",
+        "est": 23.7,
+        "se": 0.35
+      },
+      {
+        "date": "2026-06-01",
+        "est": 23.9,
+        "se": 0.46
+      },
+      {
+        "date": "2026-06-15",
+        "est": 23.7,
+        "se": 0.34
+      },
+      {
+        "date": "2026-06-29",
+        "est": 24.5,
+        "se": 0.33
+      }
+    ]
+  },
+  "expectations_vs_realized": [
+    {
+      "expect_date": "2023-09-11",
+      "expected": 6.3,
+      "realized": 4.4,
+      "crosses_break": false
+    },
+    {
+      "expect_date": "2023-09-25",
+      "expected": 6.3,
+      "realized": 4.2,
+      "crosses_break": false
+    },
+    {
+      "expect_date": "2023-10-09",
+      "expected": 6.5,
+      "realized": 4.8,
+      "crosses_break": false
+    },
+    {
+      "expect_date": "2023-10-23",
+      "expected": 6.5,
+      "realized": 4.7,
+      "crosses_break": false
+    },
+    {
+      "expect_date": "2023-11-06",
+      "expected": 6.9,
+      "realized": 4.8,
+      "crosses_break": false
+    },
+    {
+      "expect_date": "2023-11-20",
+      "expected": 7.3,
+      "realized": 4.6,
+      "crosses_break": false
+    },
+    {
+      "expect_date": "2023-12-04",
+      "expected": 6.5,
+      "realized": 5,
+      "crosses_break": false
+    },
+    {
+      "expect_date": "2023-12-18",
+      "expected": 6.7,
+      "realized": 4.7,
+      "crosses_break": false
+    },
+    {
+      "expect_date": "2024-01-01",
+      "expected": 6.4,
+      "realized": 5,
+      "crosses_break": false
+    },
+    {
+      "expect_date": "2024-01-15",
+      "expected": 6.5,
+      "realized": 5.1,
+      "crosses_break": false
+    },
+    {
+      "expect_date": "2024-01-29",
+      "expected": 6.6,
+      "realized": 5.1,
+      "crosses_break": false
+    },
+    {
+      "expect_date": "2024-02-12",
+      "expected": 6.6,
+      "realized": 5.5,
+      "crosses_break": false
+    },
+    {
+      "expect_date": "2024-02-26",
+      "expected": 6.4,
+      "realized": 5.7,
+      "crosses_break": false
+    },
+    {
+      "expect_date": "2024-03-11",
+      "expected": 6.7,
+      "realized": 5.9,
+      "crosses_break": false
+    },
+    {
+      "expect_date": "2024-03-25",
+      "expected": 6.6,
+      "realized": 6,
+      "crosses_break": false
+    },
+    {
+      "expect_date": "2024-04-08",
+      "expected": 6.8,
+      "realized": 6,
+      "crosses_break": false
+    },
+    {
+      "expect_date": "2024-04-22",
+      "expected": 7,
+      "realized": 6,
+      "crosses_break": false
+    },
+    {
+      "expect_date": "2024-05-06",
+      "expected": 6.9,
+      "realized": 6.1,
+      "crosses_break": false
+    },
+    {
+      "expect_date": "2024-05-20",
+      "expected": 6.6,
+      "realized": 6.1,
+      "crosses_break": false
+    },
+    {
+      "expect_date": "2024-06-03",
+      "expected": 6.8,
+      "realized": 6.1,
+      "crosses_break": false
+    },
+    {
+      "expect_date": "2024-06-17",
+      "expected": 6.9,
+      "realized": 6.3,
+      "crosses_break": false
+    },
+    {
+      "expect_date": "2024-07-01",
+      "expected": 6.9,
+      "realized": 6,
+      "crosses_break": false
+    },
+    {
+      "expect_date": "2024-07-15",
+      "expected": 7.2,
+      "realized": 6.7,
+      "crosses_break": false
+    },
+    {
+      "expect_date": "2024-07-29",
+      "expected": 7,
+      "realized": 6.8,
+      "crosses_break": false
+    },
+    {
+      "expect_date": "2024-08-12",
+      "expected": 8.1,
+      "realized": 7.3,
+      "crosses_break": false
+    },
+    {
+      "expect_date": "2024-08-26",
+      "expected": 8.5,
+      "realized": 7.4,
+      "crosses_break": false
+    },
+    {
+      "expect_date": "2024-09-09",
+      "expected": 8.7,
+      "realized": 7.8,
+      "crosses_break": false
+    },
+    {
+      "expect_date": "2024-09-23",
+      "expected": 9.1,
+      "realized": 8,
+      "crosses_break": false
+    },
+    {
+      "expect_date": "2024-10-07",
+      "expected": 9,
+      "realized": 8.3,
+      "crosses_break": false
+    },
+    {
+      "expect_date": "2024-10-21",
+      "expected": 9.3,
+      "realized": 8.7,
+      "crosses_break": false
+    },
+    {
+      "expect_date": "2024-11-04",
+      "expected": 8.7,
+      "realized": 8.7,
+      "crosses_break": false
+    },
+    {
+      "expect_date": "2024-11-18",
+      "expected": 8.9,
+      "realized": 9.2,
+      "crosses_break": false
+    },
+    {
+      "expect_date": "2024-12-02",
+      "expected": 8.8,
+      "realized": 9.2,
+      "crosses_break": false
+    },
+    {
+      "expect_date": "2024-12-16",
+      "expected": 9.2,
+      "realized": 9.3,
+      "crosses_break": false
+    },
+    {
+      "expect_date": "2024-12-30",
+      "expected": 9.5,
+      "realized": 9.3,
+      "crosses_break": false
+    },
+    {
+      "expect_date": "2025-01-13",
+      "expected": 9.4,
+      "realized": 9.4,
+      "crosses_break": false
+    },
+    {
+      "expect_date": "2025-01-27",
+      "expected": 9.3,
+      "realized": 8.8,
+      "crosses_break": false
+    },
+    {
+      "expect_date": "2025-02-10",
+      "expected": 9.8,
+      "realized": 9.7,
+      "crosses_break": false
+    },
+    {
+      "expect_date": "2025-02-24",
+      "expected": 9.9,
+      "realized": 9.1,
+      "crosses_break": false
+    },
+    {
+      "expect_date": "2025-03-10",
+      "expected": 10.5,
+      "realized": 9.9,
+      "crosses_break": false
+    },
+    {
+      "expect_date": "2025-03-24",
+      "expected": 10.5,
+      "realized": 10,
+      "crosses_break": false
+    },
+    {
+      "expect_date": "2025-04-07",
+      "expected": 10.9,
+      "realized": 10,
+      "crosses_break": false
+    },
+    {
+      "expect_date": "2025-05-19",
+      "expected": 11.6,
+      "realized": 17.3,
+      "crosses_break": true
+    },
+    {
+      "expect_date": "2025-06-02",
+      "expected": 11.6,
+      "realized": 17.2,
+      "crosses_break": true
+    },
+    {
+      "expect_date": "2025-06-16",
+      "expected": 11.7,
+      "realized": 17.8,
+      "crosses_break": true
+    },
+    {
+      "expect_date": "2025-06-30",
+      "expected": 12.3,
+      "realized": 17.7,
+      "crosses_break": true
+    },
+    {
+      "expect_date": "2025-07-14",
+      "expected": 13.5,
+      "realized": 18.2,
+      "crosses_break": true
+    },
+    {
+      "expect_date": "2025-07-28",
+      "expected": 13,
+      "realized": 18.9,
+      "crosses_break": true
+    },
+    {
+      "expect_date": "2025-08-11",
+      "expected": 13.7,
+      "realized": 17.5,
+      "crosses_break": true
+    },
+    {
+      "expect_date": "2025-08-25",
+      "expected": 13.8,
+      "realized": 18.2,
+      "crosses_break": true
+    },
+    {
+      "expect_date": "2025-09-08",
+      "expected": 14,
+      "realized": 18.2,
+      "crosses_break": true
+    },
+    {
+      "expect_date": "2025-09-22",
+      "expected": 14,
+      "realized": 19.1,
+      "crosses_break": true
+    },
+    {
+      "expect_date": "2025-11-17",
+      "expected": 21.1,
+      "realized": 20.6,
+      "crosses_break": false
+    },
+    {
+      "expect_date": "2025-12-01",
+      "expected": 20.9,
+      "realized": 20.6,
+      "crosses_break": false
+    },
+    {
+      "expect_date": "2025-12-15",
+      "expected": 21.3,
+      "realized": 20.6,
+      "crosses_break": false
+    },
+    {
+      "expect_date": "2025-12-29",
+      "expected": 22.4,
+      "realized": 21.7,
+      "crosses_break": false
+    },
+    {
+      "expect_date": "2026-01-12",
+      "expected": 22.1,
+      "realized": 21.7,
+      "crosses_break": false
+    }
+  ],
+  "diffusion": [
+    {
+      "sector": "51",
+      "name": "Information",
+      "latest": 43.7,
+      "chg6": 6,
+      "chg12": null
+    },
+    {
+      "sector": "54",
+      "name": "Professional, Scientific, and Technical Services",
+      "latest": 37.6,
+      "chg6": 3.5,
+      "chg12": null
+    },
+    {
+      "sector": "52",
+      "name": "Finance and Insurance",
+      "latest": 36,
+      "chg6": 5.3,
+      "chg12": null
+    },
+    {
+      "sector": "61",
+      "name": "Educational Services",
+      "latest": 30.9,
+      "chg6": 2,
+      "chg12": null
+    },
+    {
+      "sector": "53",
+      "name": "Real Estate and Rental and Leasing",
+      "latest": 29,
+      "chg6": 5.6,
+      "chg12": null
+    },
+    {
+      "sector": "55",
+      "name": "Management of Companies and Enterprises",
+      "latest": 27.3,
+      "chg6": null,
+      "chg12": null
+    },
+    {
+      "sector": "62",
+      "name": "Health Care and Social Assistance",
+      "latest": 24.7,
+      "chg6": 3.7,
+      "chg12": null
+    },
+    {
+      "sector": "56",
+      "name": "Administrative and Support and Waste Management and Remediation Services",
+      "latest": 20.2,
+      "chg6": 4.2,
+      "chg12": null
+    },
+    {
+      "sector": "31",
+      "name": "Manufacturing",
+      "latest": 19.7,
+      "chg6": 8,
+      "chg12": null
+    },
+    {
+      "sector": "42",
+      "name": "Wholesale Trade",
+      "latest": 18.6,
+      "chg6": 4.7,
+      "chg12": null
+    },
+    {
+      "sector": "71",
+      "name": "Arts, Entertainment, and Recreation",
+      "latest": 18.3,
+      "chg6": -0.7,
+      "chg12": null
+    },
+    {
+      "sector": "44",
+      "name": "Retail Trade",
+      "latest": 17.4,
+      "chg6": 4.8,
+      "chg12": null
+    },
+    {
+      "sector": "23",
+      "name": "Construction",
+      "latest": 13.9,
+      "chg6": 5.6,
+      "chg12": null
+    },
+    {
+      "sector": "22",
+      "name": "Utilities",
+      "latest": 13.4,
+      "chg6": -1.6,
+      "chg12": null
+    },
+    {
+      "sector": "81",
+      "name": "Other Services (except Public Administration)",
+      "latest": 11.5,
+      "chg6": 2.1,
+      "chg12": null
+    },
+    {
+      "sector": "21",
+      "name": "Mining, Quarrying, and Oil and Gas Extraction",
+      "latest": 9.8,
+      "chg6": -0.2,
+      "chg12": null
+    },
+    {
+      "sector": "72",
+      "name": "Accommodation and Food Services",
+      "latest": 9.7,
+      "chg6": 2.2,
+      "chg12": null
+    },
+    {
+      "sector": "48",
+      "name": "Transportation and Warehousing",
+      "latest": 9.3,
+      "chg6": 0.7,
+      "chg12": null
+    },
+    {
+      "sector": "11",
+      "name": "Agriculture, Forestry, Fishing and Hunting",
+      "latest": 5.6,
+      "chg6": -2.3,
+      "chg12": null
+    }
+  ],
+  "size_class": [
+    {
+      "class": "A",
+      "label": "1-4",
+      "series": [
+        {
+          "date": "2023-09-11",
+          "est": 4.3,
+          "se": 0.17,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2023-09-25",
+          "est": 4.4,
+          "se": 0.18,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2023-10-09",
+          "est": 4.2,
+          "se": 0.19,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2023-10-23",
+          "est": 4.4,
+          "se": 0.22,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2023-11-06",
+          "est": 4.8,
+          "se": 0.16,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2023-11-20",
+          "est": 5.1,
+          "se": 0.16,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2023-12-04",
+          "est": 5.5,
+          "se": 0.28,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2023-12-18",
+          "est": 5.3,
+          "se": 0.15,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2024-01-01",
+          "est": 5.1,
+          "se": 0.13,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2024-01-15",
+          "est": 5.7,
+          "se": 0.23,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2024-01-29",
+          "est": 5.3,
+          "se": 0.19,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2024-02-12",
+          "est": 5.9,
+          "se": 0.21,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2024-02-26",
+          "est": 4.8,
+          "se": 0.18,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2024-03-11",
+          "est": 5,
+          "se": 0.21,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2024-03-25",
+          "est": 4.6,
+          "se": 0.11,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2024-04-08",
+          "est": 5.3,
+          "se": 0.19,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2024-04-22",
+          "est": 5.1,
+          "se": 0.23,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2024-05-06",
+          "est": 5.3,
+          "se": 0.1,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2024-05-20",
+          "est": 5.1,
+          "se": 0.19,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2024-06-03",
+          "est": 5.5,
+          "se": 0.18,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2024-06-17",
+          "est": 5.2,
+          "se": 0.17,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2024-07-01",
+          "est": 5.3,
+          "se": 0.23,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2024-07-15",
+          "est": 5.6,
+          "se": 0.23,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2024-07-29",
+          "est": 5.5,
+          "se": 0.14,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2024-08-12",
+          "est": 6.1,
+          "se": 0.24,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2024-08-26",
+          "est": 6.5,
+          "se": 0.24,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2024-09-09",
+          "est": 6.6,
+          "se": 0.25,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2024-09-23",
+          "est": 6.5,
+          "se": 0.18,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2024-10-07",
+          "est": 6.6,
+          "se": 0.15,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2024-10-21",
+          "est": 6.6,
+          "se": 0.2,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2024-11-04",
+          "est": 6.6,
+          "se": 0.3,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2024-11-18",
+          "est": 6.7,
+          "se": 0.18,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2024-12-02",
+          "est": 6.7,
+          "se": 0.23,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2024-12-16",
+          "est": 6.7,
+          "se": 0.26,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2024-12-30",
+          "est": 6.5,
+          "se": 0.27,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2025-01-13",
+          "est": 7.2,
+          "se": 0.26,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2025-01-27",
+          "est": 7.3,
+          "se": 0.29,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2025-02-10",
+          "est": 7.9,
+          "se": 0.22,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2025-02-24",
+          "est": 8.1,
+          "se": 0.28,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2025-03-10",
+          "est": 8.4,
+          "se": 0.35,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2025-03-24",
+          "est": 8.6,
+          "se": 0.25,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2025-04-07",
+          "est": 9,
+          "se": 0.25,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2025-04-21",
+          "est": 9.5,
+          "se": 0.28,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2025-05-05",
+          "est": 9.2,
+          "se": 0.2,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2025-05-19",
+          "est": 9.7,
+          "se": 0.28,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2025-06-02",
+          "est": 9.7,
+          "se": 0.28,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2025-06-16",
+          "est": 9.9,
+          "se": 0.2,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2025-06-30",
+          "est": 9.9,
+          "se": 0.31,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2025-07-14",
+          "est": 10.4,
+          "se": 0.28,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2025-07-28",
+          "est": 9.7,
+          "se": 0.38,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2025-08-11",
+          "est": 10.8,
+          "se": 0.28,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2025-08-25",
+          "est": 9.9,
+          "se": 0.23,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2025-09-08",
+          "est": 10.9,
+          "se": 0.21,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2025-09-22",
+          "est": 11,
+          "se": 0.25,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2025-11-17",
+          "est": 17,
+          "se": 0.38,
+          "wording": "new",
+          "suppressed": false
+        },
+        {
+          "date": "2025-12-01",
+          "est": 16.9,
+          "se": 0.35,
+          "wording": "new",
+          "suppressed": false
+        },
+        {
+          "date": "2025-12-15",
+          "est": 17.7,
+          "se": 0.62,
+          "wording": "new",
+          "suppressed": false
+        },
+        {
+          "date": "2025-12-29",
+          "est": 17.6,
+          "se": 0.5,
+          "wording": "new",
+          "suppressed": false
+        },
+        {
+          "date": "2026-01-12",
+          "est": 18.2,
+          "se": 0.34,
+          "wording": "new",
+          "suppressed": false
+        },
+        {
+          "date": "2026-01-26",
+          "est": 18.5,
+          "se": 0.56,
+          "wording": "new",
+          "suppressed": false
+        },
+        {
+          "date": "2026-02-09",
+          "est": 17.5,
+          "se": 0.52,
+          "wording": "new",
+          "suppressed": false
+        },
+        {
+          "date": "2026-02-23",
+          "est": 18.2,
+          "se": 0.46,
+          "wording": "new",
+          "suppressed": false
+        },
+        {
+          "date": "2026-03-23",
+          "est": 19,
+          "se": 0.58,
+          "wording": "new",
+          "suppressed": false
+        },
+        {
+          "date": "2026-04-06",
+          "est": 19.2,
+          "se": 0.36,
+          "wording": "new",
+          "suppressed": false
+        },
+        {
+          "date": "2026-04-20",
+          "est": 19,
+          "se": 0.43,
+          "wording": "new",
+          "suppressed": false
+        },
+        {
+          "date": "2026-05-04",
+          "est": 19.1,
+          "se": 0.37,
+          "wording": "new",
+          "suppressed": false
+        },
+        {
+          "date": "2026-05-18",
+          "est": 20,
+          "se": 0.52,
+          "wording": "new",
+          "suppressed": false
+        },
+        {
+          "date": "2026-06-01",
+          "est": 20.1,
+          "se": 0.44,
+          "wording": "new",
+          "suppressed": false
+        },
+        {
+          "date": "2026-06-15",
+          "est": 20,
+          "se": 0.57,
+          "wording": "new",
+          "suppressed": false
+        },
+        {
+          "date": "2026-06-29",
+          "est": 20.8,
+          "se": 0.48,
+          "wording": "new",
+          "suppressed": false
+        }
+      ]
+    },
+    {
+      "class": "B",
+      "label": "5-9",
+      "series": [
+        {
+          "date": "2023-09-11",
+          "est": 3,
+          "se": 0.16,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2023-09-25",
+          "est": 2.5,
+          "se": 0.18,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2023-10-09",
+          "est": 3.3,
+          "se": 0.22,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2023-10-23",
+          "est": 3.4,
+          "se": 0.21,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2023-11-06",
+          "est": 3.6,
+          "se": 0.23,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2023-11-20",
+          "est": 3.6,
+          "se": 0.25,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2023-12-04",
+          "est": 4.1,
+          "se": 0.26,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2023-12-18",
+          "est": 4.3,
+          "se": 0.3,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2024-01-01",
+          "est": 3.6,
+          "se": 0.22,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2024-01-15",
+          "est": 4.8,
+          "se": 0.16,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2024-01-29",
+          "est": 4.9,
+          "se": 0.3,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2024-02-12",
+          "est": 4.4,
+          "se": 0.3,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2024-02-26",
+          "est": 3.3,
+          "se": 0.23,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2024-03-11",
+          "est": 3.6,
+          "se": 0.31,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2024-03-25",
+          "est": 3.8,
+          "se": 0.18,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2024-04-08",
+          "est": 4.2,
+          "se": 0.22,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2024-04-22",
+          "est": 4.1,
+          "se": 0.28,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2024-05-06",
+          "est": 3.8,
+          "se": 0.32,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2024-05-20",
+          "est": 3.9,
+          "se": 0.41,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2024-06-03",
+          "est": 4.3,
+          "se": 0.3,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2024-06-17",
+          "est": 4.2,
+          "se": 0.2,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2024-07-01",
+          "est": 4.8,
+          "se": 0.18,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2024-07-15",
+          "est": 4,
+          "se": 0.28,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2024-07-29",
+          "est": 4.2,
+          "se": 0.23,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2024-08-12",
+          "est": 4.2,
+          "se": 0.37,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2024-08-26",
+          "est": 4.5,
+          "se": 0.24,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2024-09-09",
+          "est": 4.8,
+          "se": 0.29,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2024-09-23",
+          "est": 5.2,
+          "se": 0.28,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2024-10-07",
+          "est": 4.6,
+          "se": 0.32,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2024-10-21",
+          "est": 5.2,
+          "se": 0.43,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2024-11-04",
+          "est": 5.2,
+          "se": 0.3,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2024-11-18",
+          "est": 5.4,
+          "se": 0.13,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2024-12-02",
+          "est": 5.3,
+          "se": 0.32,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2024-12-16",
+          "est": 5.7,
+          "se": 0.36,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2024-12-30",
+          "est": 4.6,
+          "se": 0.44,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2025-01-13",
+          "est": 6.2,
+          "se": 0.29,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2025-01-27",
+          "est": 6.1,
+          "se": 0.2,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2025-02-10",
+          "est": 6.6,
+          "se": 0.36,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2025-02-24",
+          "est": 6.6,
+          "se": 0.27,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2025-03-10",
+          "est": 7.1,
+          "se": 0.29,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2025-03-24",
+          "est": 6.6,
+          "se": 0.34,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2025-04-07",
+          "est": 7.1,
+          "se": 0.39,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2025-04-21",
+          "est": 7.4,
+          "se": 0.2,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2025-05-05",
+          "est": 7.9,
+          "se": 0.37,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2025-05-19",
+          "est": 8.7,
+          "se": 0.46,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2025-06-02",
+          "est": 8.6,
+          "se": 0.55,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2025-06-16",
+          "est": 7.7,
+          "se": 0.39,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2025-06-30",
+          "est": 8.6,
+          "se": 0.45,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2025-07-14",
+          "est": 7.6,
+          "se": 0.28,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2025-07-28",
+          "est": 7.3,
+          "se": 0.39,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2025-08-11",
+          "est": 8.5,
+          "se": 0.41,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2025-08-25",
+          "est": 7.7,
+          "se": 0.42,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2025-09-08",
+          "est": 8.5,
+          "se": 0.21,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2025-09-22",
+          "est": 8.6,
+          "se": 0.62,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2025-11-17",
+          "est": 15.5,
+          "se": 0.49,
+          "wording": "new",
+          "suppressed": false
+        },
+        {
+          "date": "2025-12-01",
+          "est": 16.3,
+          "se": 0.5,
+          "wording": "new",
+          "suppressed": false
+        },
+        {
+          "date": "2025-12-15",
+          "est": 18.3,
+          "se": 0.69,
+          "wording": "new",
+          "suppressed": false
+        },
+        {
+          "date": "2025-12-29",
+          "est": 16.8,
+          "se": 0.6,
+          "wording": "new",
+          "suppressed": false
+        },
+        {
+          "date": "2026-01-12",
+          "est": 17.5,
+          "se": 0.64,
+          "wording": "new",
+          "suppressed": false
+        },
+        {
+          "date": "2026-01-26",
+          "est": 17.9,
+          "se": 0.54,
+          "wording": "new",
+          "suppressed": false
+        },
+        {
+          "date": "2026-02-09",
+          "est": 15.7,
+          "se": 0.36,
+          "wording": "new",
+          "suppressed": false
+        },
+        {
+          "date": "2026-02-23",
+          "est": 17.1,
+          "se": 0.72,
+          "wording": "new",
+          "suppressed": false
+        },
+        {
+          "date": "2026-03-23",
+          "est": 17.5,
+          "se": 0.43,
+          "wording": "new",
+          "suppressed": false
+        },
+        {
+          "date": "2026-04-06",
+          "est": 18.5,
+          "se": 0.87,
+          "wording": "new",
+          "suppressed": false
+        },
+        {
+          "date": "2026-04-20",
+          "est": 19.5,
+          "se": 0.44,
+          "wording": "new",
+          "suppressed": false
+        },
+        {
+          "date": "2026-05-04",
+          "est": 18.5,
+          "se": 0.34,
+          "wording": "new",
+          "suppressed": false
+        },
+        {
+          "date": "2026-05-18",
+          "est": 19,
+          "se": 1.01,
+          "wording": "new",
+          "suppressed": false
+        },
+        {
+          "date": "2026-06-01",
+          "est": 20.7,
+          "se": 0.48,
+          "wording": "new",
+          "suppressed": false
+        },
+        {
+          "date": "2026-06-15",
+          "est": 19.7,
+          "se": 0.52,
+          "wording": "new",
+          "suppressed": false
+        },
+        {
+          "date": "2026-06-29",
+          "est": 20.5,
+          "se": 0.72,
+          "wording": "new",
+          "suppressed": false
+        }
+      ]
+    },
+    {
+      "class": "C",
+      "label": "10-19",
+      "series": [
+        {
+          "date": "2023-09-11",
+          "est": 2.6,
+          "se": 0.22,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2023-09-25",
+          "est": 2.7,
+          "se": 0.16,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2023-10-09",
+          "est": 3.3,
+          "se": 0.2,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2023-10-23",
+          "est": 3.1,
+          "se": 0.22,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2023-11-06",
+          "est": 3.9,
+          "se": 0.22,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2023-11-20",
+          "est": 4.2,
+          "se": 0.22,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2023-12-04",
+          "est": 4,
+          "se": 0.26,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2023-12-18",
+          "est": 3.9,
+          "se": 0.33,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2024-01-01",
+          "est": 4,
+          "se": 0.26,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2024-01-15",
+          "est": 4.4,
+          "se": 0.32,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2024-01-29",
+          "est": 4.1,
+          "se": 0.38,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2024-02-12",
+          "est": 5,
+          "se": 0.38,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2024-02-26",
+          "est": 3.6,
+          "se": 0.3,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2024-03-11",
+          "est": 3.2,
+          "se": 0.24,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2024-03-25",
+          "est": 3.4,
+          "se": 0.22,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2024-04-08",
+          "est": 3.9,
+          "se": 0.31,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2024-04-22",
+          "est": 4.2,
+          "se": 0.39,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2024-05-06",
+          "est": 4,
+          "se": 0.38,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2024-05-20",
+          "est": 3.6,
+          "se": 0.21,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2024-06-03",
+          "est": 3.6,
+          "se": 0.29,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2024-06-17",
+          "est": 4,
+          "se": 0.31,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2024-07-01",
+          "est": 4.3,
+          "se": 0.27,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2024-07-15",
+          "est": 4.6,
+          "se": 0.32,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2024-07-29",
+          "est": 4.4,
+          "se": 0.31,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2024-08-12",
+          "est": 4.1,
+          "se": 0.24,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2024-08-26",
+          "est": 4.3,
+          "se": 0.34,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2024-09-09",
+          "est": 4,
+          "se": 0.19,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2024-09-23",
+          "est": 4.8,
+          "se": 0.27,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2024-10-07",
+          "est": 5.2,
+          "se": 0.42,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2024-10-21",
+          "est": 4.6,
+          "se": 0.28,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2024-11-04",
+          "est": 5,
+          "se": 0.37,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2024-11-18",
+          "est": 4.5,
+          "se": 0.36,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2024-12-02",
+          "est": 4.6,
+          "se": 0.37,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2024-12-16",
+          "est": 5.1,
+          "se": 0.2,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2024-12-30",
+          "est": 4.8,
+          "se": 0.41,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2025-01-13",
+          "est": 5.1,
+          "se": 0.47,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2025-01-27",
+          "est": 5.4,
+          "se": 0.31,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2025-02-10",
+          "est": 5.8,
+          "se": 0.34,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2025-02-24",
+          "est": 5.7,
+          "se": 0.43,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2025-03-10",
+          "est": 6.4,
+          "se": 0.39,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2025-03-24",
+          "est": 7,
+          "se": 0.63,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2025-04-07",
+          "est": 6.4,
+          "se": 0.33,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2025-04-21",
+          "est": 6.5,
+          "se": 0.37,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2025-05-05",
+          "est": 6.7,
+          "se": 0.45,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2025-05-19",
+          "est": 7.6,
+          "se": 0.42,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2025-06-02",
+          "est": 7.8,
+          "se": 0.44,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2025-06-16",
+          "est": 8.3,
+          "se": 0.72,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2025-06-30",
+          "est": 7.8,
+          "se": 0.51,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2025-07-14",
+          "est": 7.5,
+          "se": 0.53,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2025-07-28",
+          "est": 7.8,
+          "se": 0.31,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2025-08-11",
+          "est": 7,
+          "se": 0.25,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2025-08-25",
+          "est": 7.6,
+          "se": 0.26,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2025-09-08",
+          "est": 7.7,
+          "se": 0.28,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2025-09-22",
+          "est": 8.1,
+          "se": 0.41,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2025-11-17",
+          "est": 17.8,
+          "se": 0.82,
+          "wording": "new",
+          "suppressed": false
+        },
+        {
+          "date": "2025-12-01",
+          "est": 17.9,
+          "se": 0.6,
+          "wording": "new",
+          "suppressed": false
+        },
+        {
+          "date": "2025-12-15",
+          "est": 16,
+          "se": 0.94,
+          "wording": "new",
+          "suppressed": false
+        },
+        {
+          "date": "2025-12-29",
+          "est": 16.2,
+          "se": 0.66,
+          "wording": "new",
+          "suppressed": false
+        },
+        {
+          "date": "2026-01-12",
+          "est": 16.6,
+          "se": 0.55,
+          "wording": "new",
+          "suppressed": false
+        },
+        {
+          "date": "2026-01-26",
+          "est": 18.9,
+          "se": 0.63,
+          "wording": "new",
+          "suppressed": false
+        },
+        {
+          "date": "2026-02-09",
+          "est": 17.2,
+          "se": 0.6,
+          "wording": "new",
+          "suppressed": false
+        },
+        {
+          "date": "2026-02-23",
+          "est": 17.4,
+          "se": 1.06,
+          "wording": "new",
+          "suppressed": false
+        },
+        {
+          "date": "2026-03-23",
+          "est": 18.2,
+          "se": 0.84,
+          "wording": "new",
+          "suppressed": false
+        },
+        {
+          "date": "2026-04-06",
+          "est": 19.9,
+          "se": 0.93,
+          "wording": "new",
+          "suppressed": false
+        },
+        {
+          "date": "2026-04-20",
+          "est": 19.4,
+          "se": 0.84,
+          "wording": "new",
+          "suppressed": false
+        },
+        {
+          "date": "2026-05-04",
+          "est": 19.1,
+          "se": 0.95,
+          "wording": "new",
+          "suppressed": false
+        },
+        {
+          "date": "2026-05-18",
+          "est": 21.6,
+          "se": 0.72,
+          "wording": "new",
+          "suppressed": false
+        },
+        {
+          "date": "2026-06-01",
+          "est": 19.2,
+          "se": 0.6,
+          "wording": "new",
+          "suppressed": false
+        },
+        {
+          "date": "2026-06-15",
+          "est": 20,
+          "se": 0.79,
+          "wording": "new",
+          "suppressed": false
+        },
+        {
+          "date": "2026-06-29",
+          "est": 22.5,
+          "se": 0.7,
+          "wording": "new",
+          "suppressed": false
+        }
+      ]
+    },
+    {
+      "class": "D",
+      "label": "20-49",
+      "series": [
+        {
+          "date": "2023-09-11",
+          "est": 2.6,
+          "se": 0.2,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2023-09-25",
+          "est": 2.6,
+          "se": 0.29,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2023-10-09",
+          "est": 2.7,
+          "se": 0.27,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2023-10-23",
+          "est": 2.9,
+          "se": 0.29,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2023-11-06",
+          "est": 3.4,
+          "se": 0.37,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2023-11-20",
+          "est": 3.3,
+          "se": 0.4,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2023-12-04",
+          "est": 3.3,
+          "se": 0.22,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2023-12-18",
+          "est": 4.1,
+          "se": 0.26,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2024-01-01",
+          "est": 4.1,
+          "se": 0.34,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2024-01-15",
+          "est": 4.1,
+          "se": 0.39,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2024-01-29",
+          "est": 3.7,
+          "se": 0.4,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2024-02-12",
+          "est": 3.9,
+          "se": 0.4,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2024-02-26",
+          "est": 3.5,
+          "se": 0.33,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2024-03-11",
+          "est": 3.6,
+          "se": 0.24,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2024-03-25",
+          "est": 3.4,
+          "se": 0.32,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2024-04-08",
+          "est": 3.5,
+          "se": 0.36,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2024-04-22",
+          "est": 3.5,
+          "se": 0.26,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2024-05-06",
+          "est": 3.9,
+          "se": 0.35,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2024-05-20",
+          "est": 3.3,
+          "se": 0.21,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2024-06-03",
+          "est": 4.1,
+          "se": 0.32,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2024-06-17",
+          "est": 3.7,
+          "se": 0.24,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2024-07-01",
+          "est": 4,
+          "se": 0.38,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2024-07-15",
+          "est": 4.1,
+          "se": 0.32,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2024-07-29",
+          "est": 4.3,
+          "se": 0.28,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2024-08-12",
+          "est": 4.3,
+          "se": 0.32,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2024-08-26",
+          "est": 3.9,
+          "se": 0.39,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2024-09-09",
+          "est": 4.4,
+          "se": 0.36,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2024-09-23",
+          "est": 4.3,
+          "se": 0.37,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2024-10-07",
+          "est": 4.9,
+          "se": 0.25,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2024-10-21",
+          "est": 4.8,
+          "se": 0.4,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2024-11-04",
+          "est": 5,
+          "se": 0.31,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2024-11-18",
+          "est": 4.9,
+          "se": 0.54,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2024-12-02",
+          "est": 4.5,
+          "se": 0.43,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2024-12-16",
+          "est": 5.6,
+          "se": 0.44,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2024-12-30",
+          "est": 5.2,
+          "se": 0.41,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2025-01-13",
+          "est": 5.4,
+          "se": 0.28,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2025-01-27",
+          "est": 5.4,
+          "se": 0.44,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2025-02-10",
+          "est": 5.8,
+          "se": 0.52,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2025-02-24",
+          "est": 5.2,
+          "se": 0.21,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2025-03-10",
+          "est": 5.9,
+          "se": 0.29,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2025-03-24",
+          "est": 7,
+          "se": 0.48,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2025-04-07",
+          "est": 7.2,
+          "se": 0.6,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2025-04-21",
+          "est": 7.3,
+          "se": 0.52,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2025-05-05",
+          "est": 7.2,
+          "se": 0.44,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2025-05-19",
+          "est": 7.4,
+          "se": 0.69,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2025-06-02",
+          "est": 7.9,
+          "se": 0.41,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2025-06-16",
+          "est": 8.1,
+          "se": 0.48,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2025-06-30",
+          "est": 8,
+          "se": 0.47,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2025-07-14",
+          "est": 7,
+          "se": 0.54,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2025-07-28",
+          "est": 7.2,
+          "se": 0.26,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2025-08-11",
+          "est": 7.8,
+          "se": 0.4,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2025-08-25",
+          "est": 7,
+          "se": 0.49,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2025-09-08",
+          "est": 7.8,
+          "se": 0.19,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2025-09-22",
+          "est": 7,
+          "se": 0.36,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2025-11-17",
+          "est": 18.7,
+          "se": 0.77,
+          "wording": "new",
+          "suppressed": false
+        },
+        {
+          "date": "2025-12-01",
+          "est": 18.1,
+          "se": 0.55,
+          "wording": "new",
+          "suppressed": false
+        },
+        {
+          "date": "2025-12-15",
+          "est": 18.5,
+          "se": 1.07,
+          "wording": "new",
+          "suppressed": false
+        },
+        {
+          "date": "2025-12-29",
+          "est": 18.1,
+          "se": 0.61,
+          "wording": "new",
+          "suppressed": false
+        },
+        {
+          "date": "2026-01-12",
+          "est": 18.3,
+          "se": 0.61,
+          "wording": "new",
+          "suppressed": false
+        },
+        {
+          "date": "2026-01-26",
+          "est": 19.4,
+          "se": 0.84,
+          "wording": "new",
+          "suppressed": false
+        },
+        {
+          "date": "2026-02-09",
+          "est": 17.4,
+          "se": 0.64,
+          "wording": "new",
+          "suppressed": false
+        },
+        {
+          "date": "2026-02-23",
+          "est": 18.6,
+          "se": 0.43,
+          "wording": "new",
+          "suppressed": false
+        },
+        {
+          "date": "2026-03-23",
+          "est": 19.4,
+          "se": 1,
+          "wording": "new",
+          "suppressed": false
+        },
+        {
+          "date": "2026-04-06",
+          "est": 22.4,
+          "se": 0.55,
+          "wording": "new",
+          "suppressed": false
+        },
+        {
+          "date": "2026-04-20",
+          "est": 21.3,
+          "se": 0.57,
+          "wording": "new",
+          "suppressed": false
+        },
+        {
+          "date": "2026-05-04",
+          "est": 19.5,
+          "se": 0.73,
+          "wording": "new",
+          "suppressed": false
+        },
+        {
+          "date": "2026-05-18",
+          "est": 21.5,
+          "se": 0.76,
+          "wording": "new",
+          "suppressed": false
+        },
+        {
+          "date": "2026-06-01",
+          "est": 22.7,
+          "se": 0.73,
+          "wording": "new",
+          "suppressed": false
+        },
+        {
+          "date": "2026-06-15",
+          "est": 22.6,
+          "se": 0.74,
+          "wording": "new",
+          "suppressed": false
+        },
+        {
+          "date": "2026-06-29",
+          "est": 25.1,
+          "se": 0.61,
+          "wording": "new",
+          "suppressed": false
+        }
+      ]
+    },
+    {
+      "class": "E",
+      "label": "50-99",
+      "series": [
+        {
+          "date": "2023-09-11",
+          "est": 2.4,
+          "se": 0.59,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2023-09-25",
+          "est": 2.5,
+          "se": 0.37,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2023-10-09",
+          "est": 3,
+          "se": 0.34,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2023-10-23",
+          "est": 2.6,
+          "se": 0.37,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2023-11-06",
+          "est": 4.3,
+          "se": 0.3,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2023-11-20",
+          "est": 2.9,
+          "se": 0.57,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2023-12-04",
+          "est": 4.3,
+          "se": 0.58,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2023-12-18",
+          "est": 5.1,
+          "se": 0.49,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2024-01-01",
+          "est": 3.9,
+          "se": 0.42,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2024-01-15",
+          "est": 3.8,
+          "se": 0.44,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2024-01-29",
+          "est": 4.5,
+          "se": 0.72,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2024-02-12",
+          "est": 4.1,
+          "se": 0.61,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2024-02-26",
+          "est": 2.4,
+          "se": 0.44,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2024-03-11",
+          "est": 3.7,
+          "se": 0.33,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2024-03-25",
+          "est": 3.2,
+          "se": 0.44,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2024-04-08",
+          "est": 3.6,
+          "se": 0.54,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2024-04-22",
+          "est": 3.8,
+          "se": 0.47,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2024-05-06",
+          "est": 4,
+          "se": 0.68,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2024-05-20",
+          "est": 3.6,
+          "se": 0.45,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2024-06-03",
+          "est": 4.3,
+          "se": 0.4,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2024-06-17",
+          "est": 3.6,
+          "se": 0.24,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2024-07-01",
+          "est": 3.2,
+          "se": 0.39,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2024-07-15",
+          "est": 4.3,
+          "se": 0.66,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2024-07-29",
+          "est": 4.8,
+          "se": 0.43,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2024-08-12",
+          "est": 4.4,
+          "se": 0.57,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2024-08-26",
+          "est": 4.9,
+          "se": 0.89,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2024-09-09",
+          "est": 6.1,
+          "se": 0.56,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2024-09-23",
+          "est": 5.6,
+          "se": 0.64,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2024-10-07",
+          "est": 4.9,
+          "se": 0.45,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2024-10-21",
+          "est": 5.4,
+          "se": 0.53,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2024-11-04",
+          "est": 5.5,
+          "se": 0.55,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2024-11-18",
+          "est": 4.2,
+          "se": 0.45,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2024-12-02",
+          "est": 6.1,
+          "se": 0.68,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2024-12-16",
+          "est": 6.5,
+          "se": 0.82,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2024-12-30",
+          "est": 6.2,
+          "se": 0.55,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2025-01-13",
+          "est": 5.8,
+          "se": 0.61,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2025-01-27",
+          "est": 6.3,
+          "se": 0.99,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2025-02-10",
+          "est": 5.9,
+          "se": 0.72,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2025-02-24",
+          "est": 8.5,
+          "se": 1.3,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2025-03-10",
+          "est": 6.7,
+          "se": 0.53,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2025-03-24",
+          "est": 6.4,
+          "se": 0.48,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2025-04-07",
+          "est": 7.6,
+          "se": 0.69,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2025-04-21",
+          "est": 7.6,
+          "se": 0.86,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2025-05-05",
+          "est": 8.4,
+          "se": 0.7,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2025-05-19",
+          "est": 9.4,
+          "se": 0.96,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2025-06-02",
+          "est": 8.3,
+          "se": 1.09,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2025-06-16",
+          "est": 8.9,
+          "se": 0.96,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2025-06-30",
+          "est": 7.1,
+          "se": 0.63,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2025-07-14",
+          "est": 7,
+          "se": 0.68,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2025-07-28",
+          "est": 7.1,
+          "se": 0.88,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2025-08-11",
+          "est": 7.3,
+          "se": 0.86,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2025-08-25",
+          "est": 7.6,
+          "se": 0.71,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2025-09-08",
+          "est": 7.7,
+          "se": 0.86,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2025-09-22",
+          "est": 9.7,
+          "se": 0.72,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2025-11-17",
+          "est": 20.7,
+          "se": 0.87,
+          "wording": "new",
+          "suppressed": false
+        },
+        {
+          "date": "2025-12-01",
+          "est": 20.1,
+          "se": 1.59,
+          "wording": "new",
+          "suppressed": false
+        },
+        {
+          "date": "2025-12-15",
+          "est": 17.5,
+          "se": 0.96,
+          "wording": "new",
+          "suppressed": false
+        },
+        {
+          "date": "2025-12-29",
+          "est": 20.9,
+          "se": 1.26,
+          "wording": "new",
+          "suppressed": false
+        },
+        {
+          "date": "2026-01-12",
+          "est": 23.8,
+          "se": 1.45,
+          "wording": "new",
+          "suppressed": false
+        },
+        {
+          "date": "2026-01-26",
+          "est": 25.1,
+          "se": 1.15,
+          "wording": "new",
+          "suppressed": false
+        },
+        {
+          "date": "2026-02-09",
+          "est": 20.6,
+          "se": 1.19,
+          "wording": "new",
+          "suppressed": false
+        },
+        {
+          "date": "2026-02-23",
+          "est": 20.3,
+          "se": 1.39,
+          "wording": "new",
+          "suppressed": false
+        },
+        {
+          "date": "2026-03-23",
+          "est": 21.8,
+          "se": 1.06,
+          "wording": "new",
+          "suppressed": false
+        },
+        {
+          "date": "2026-04-06",
+          "est": 25.6,
+          "se": 1.72,
+          "wording": "new",
+          "suppressed": false
+        },
+        {
+          "date": "2026-04-20",
+          "est": 25.8,
+          "se": 1.6,
+          "wording": "new",
+          "suppressed": false
+        },
+        {
+          "date": "2026-05-04",
+          "est": 25.5,
+          "se": 1.44,
+          "wording": "new",
+          "suppressed": false
+        },
+        {
+          "date": "2026-05-18",
+          "est": 24.4,
+          "se": 0.96,
+          "wording": "new",
+          "suppressed": false
+        },
+        {
+          "date": "2026-06-01",
+          "est": 24.7,
+          "se": 0.89,
+          "wording": "new",
+          "suppressed": false
+        },
+        {
+          "date": "2026-06-15",
+          "est": 25.5,
+          "se": 1.67,
+          "wording": "new",
+          "suppressed": false
+        },
+        {
+          "date": "2026-06-29",
+          "est": 27.6,
+          "se": 2.1,
+          "wording": "new",
+          "suppressed": false
+        }
+      ]
+    },
+    {
+      "class": "F",
+      "label": "100-249",
+      "series": [
+        {
+          "date": "2023-09-11",
+          "est": 2.5,
+          "se": 0.58,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2023-09-25",
+          "est": 2.3,
+          "se": 0.45,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2023-10-09",
+          "est": 3.8,
+          "se": 0.74,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2023-10-23",
+          "est": 2.9,
+          "se": 0.58,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2023-11-06",
+          "est": 4.7,
+          "se": 0.96,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2023-11-20",
+          "est": 4.4,
+          "se": 0.79,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2023-12-04",
+          "est": 4.4,
+          "se": 1.13,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2023-12-18",
+          "est": 3.6,
+          "se": 0.52,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2024-01-01",
+          "est": 3.5,
+          "se": 1,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2024-01-15",
+          "est": 6.6,
+          "se": 1.47,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2024-01-29",
+          "est": 5.9,
+          "se": 0.95,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2024-02-12",
+          "est": 4.9,
+          "se": 0.75,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2024-02-26",
+          "est": 4.5,
+          "se": 1.08,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2024-03-11",
+          "est": 2.8,
+          "se": 0.56,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2024-03-25",
+          "est": 3.8,
+          "se": 0.86,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2024-04-08",
+          "est": 5.1,
+          "se": 0.68,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2024-04-22",
+          "est": 5.4,
+          "se": 0.69,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2024-05-06",
+          "est": 5.6,
+          "se": 0.81,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2024-05-20",
+          "est": 4.6,
+          "se": 0.81,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2024-06-03",
+          "est": 3.8,
+          "se": 0.64,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2024-06-17",
+          "est": 4.1,
+          "se": 1.04,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2024-07-01",
+          "est": 5.7,
+          "se": 1.09,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2024-07-15",
+          "est": 4.5,
+          "se": 0.51,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2024-07-29",
+          "est": 4.5,
+          "se": 0.7,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2024-08-12",
+          "est": 6.3,
+          "se": 1.15,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2024-08-26",
+          "est": 6.6,
+          "se": 1.12,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2024-09-09",
+          "est": 5.6,
+          "se": 0.91,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2024-09-23",
+          "est": 5.7,
+          "se": 0.76,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2024-10-07",
+          "est": 5.6,
+          "se": 0.9,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2024-10-21",
+          "est": 7.1,
+          "se": 0.75,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2024-11-04",
+          "est": 5.6,
+          "se": 1.09,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2024-11-18",
+          "est": 7.9,
+          "se": 1.1,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2024-12-02",
+          "est": 8.2,
+          "se": 0.93,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2024-12-16",
+          "est": 6.2,
+          "se": 1.1,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2024-12-30",
+          "est": 5.7,
+          "se": 0.59,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2025-01-13",
+          "est": 5.4,
+          "se": 1.22,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2025-01-27",
+          "est": 5.8,
+          "se": 1.27,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2025-02-10",
+          "est": 8.2,
+          "se": 0.63,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2025-02-24",
+          "est": 8.6,
+          "se": 1.11,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2025-03-10",
+          "est": 8.5,
+          "se": 1.02,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2025-03-24",
+          "est": 7.7,
+          "se": 0.73,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2025-04-07",
+          "est": 6.9,
+          "se": 0.65,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2025-04-21",
+          "est": 9,
+          "se": 0.31,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2025-05-05",
+          "est": 10.9,
+          "se": 1.06,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2025-05-19",
+          "est": 9.9,
+          "se": 1.25,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2025-06-02",
+          "est": 9.4,
+          "se": 1.2,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2025-06-16",
+          "est": 9.8,
+          "se": 0.84,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2025-06-30",
+          "est": 11.1,
+          "se": 1.18,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2025-07-14",
+          "est": 9.5,
+          "se": 1.18,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2025-07-28",
+          "est": 7,
+          "se": 0.65,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2025-08-11",
+          "est": 8.7,
+          "se": 1.17,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2025-08-25",
+          "est": 9.6,
+          "se": 1.07,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2025-09-08",
+          "est": 8.9,
+          "se": 1.17,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2025-09-22",
+          "est": 8.8,
+          "se": 0.95,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2025-11-17",
+          "est": 23.7,
+          "se": 1.46,
+          "wording": "new",
+          "suppressed": false
+        },
+        {
+          "date": "2025-12-01",
+          "est": 24.7,
+          "se": 1.74,
+          "wording": "new",
+          "suppressed": false
+        },
+        {
+          "date": "2025-12-15",
+          "est": 25.4,
+          "se": 2.18,
+          "wording": "new",
+          "suppressed": false
+        },
+        {
+          "date": "2025-12-29",
+          "est": 28.2,
+          "se": 1.64,
+          "wording": "new",
+          "suppressed": false
+        },
+        {
+          "date": "2026-01-12",
+          "est": 25.6,
+          "se": 2.19,
+          "wording": "new",
+          "suppressed": false
+        },
+        {
+          "date": "2026-01-26",
+          "est": 24.6,
+          "se": 1.32,
+          "wording": "new",
+          "suppressed": false
+        },
+        {
+          "date": "2026-02-09",
+          "est": 24.3,
+          "se": 1.33,
+          "wording": "new",
+          "suppressed": false
+        },
+        {
+          "date": "2026-02-23",
+          "est": 25,
+          "se": 1.86,
+          "wording": "new",
+          "suppressed": false
+        },
+        {
+          "date": "2026-03-23",
+          "est": 28.8,
+          "se": 2.1,
+          "wording": "new",
+          "suppressed": false
+        },
+        {
+          "date": "2026-04-06",
+          "est": 30.6,
+          "se": 2.16,
+          "wording": "new",
+          "suppressed": false
+        },
+        {
+          "date": "2026-04-20",
+          "est": 32,
+          "se": 2.01,
+          "wording": "new",
+          "suppressed": false
+        },
+        {
+          "date": "2026-05-04",
+          "est": 30.6,
+          "se": 1.48,
+          "wording": "new",
+          "suppressed": false
+        },
+        {
+          "date": "2026-05-18",
+          "est": 31.1,
+          "se": 1.68,
+          "wording": "new",
+          "suppressed": false
+        },
+        {
+          "date": "2026-06-01",
+          "est": 29.7,
+          "se": 2.51,
+          "wording": "new",
+          "suppressed": false
+        },
+        {
+          "date": "2026-06-15",
+          "est": 34.2,
+          "se": 1.75,
+          "wording": "new",
+          "suppressed": false
+        },
+        {
+          "date": "2026-06-29",
+          "est": 30.5,
+          "se": 2.23,
+          "wording": "new",
+          "suppressed": false
+        }
+      ]
+    },
+    {
+      "class": "G",
+      "label": "250+",
+      "series": [
+        {
+          "date": "2023-09-11",
+          "est": 3.1,
+          "se": 0.63,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2023-09-25",
+          "est": 6,
+          "se": 0.74,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2023-10-09",
+          "est": 3.8,
+          "se": 0.58,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2023-10-23",
+          "est": 4.6,
+          "se": 1.34,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2023-11-06",
+          "est": 7.3,
+          "se": 1.2,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2023-11-20",
+          "est": 4.9,
+          "se": 0.76,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2023-12-04",
+          "est": 6.7,
+          "se": 0.84,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2023-12-18",
+          "est": 7.4,
+          "se": 1.01,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2024-01-01",
+          "est": 6.5,
+          "se": 1.28,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2024-01-15",
+          "est": 8,
+          "se": 1.33,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2024-01-29",
+          "est": 8,
+          "se": 1.46,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2024-02-12",
+          "est": 6.5,
+          "se": 0.8,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2024-02-26",
+          "est": 6.2,
+          "se": 1.03,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2024-03-11",
+          "est": 7,
+          "se": 0.71,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2024-03-25",
+          "est": 5.3,
+          "se": 1.07,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2024-04-08",
+          "est": 7.5,
+          "se": 1.16,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2024-04-22",
+          "est": 6.1,
+          "se": 1.1,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2024-05-06",
+          "est": 7.2,
+          "se": 0.81,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2024-05-20",
+          "est": 5.3,
+          "se": 0.76,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2024-06-03",
+          "est": 8.7,
+          "se": 0.98,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2024-06-17",
+          "est": 6.1,
+          "se": 1.81,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2024-07-01",
+          "est": 6.5,
+          "se": 1.01,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2024-07-15",
+          "est": 9.7,
+          "se": 1.59,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2024-07-29",
+          "est": 7.8,
+          "se": 1.02,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2024-08-12",
+          "est": 8.3,
+          "se": 0.99,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2024-08-26",
+          "est": 6.7,
+          "se": 1,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2024-09-09",
+          "est": 9.2,
+          "se": 1.14,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2024-09-23",
+          "est": 11.1,
+          "se": 1.69,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2024-10-07",
+          "est": 9.7,
+          "se": 1.26,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2024-10-21",
+          "est": 10,
+          "se": 1.48,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2024-11-04",
+          "est": 9.4,
+          "se": 1.29,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2024-11-18",
+          "est": 9.4,
+          "se": 1.87,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2024-12-02",
+          "est": 10.5,
+          "se": 1.24,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2024-12-16",
+          "est": 10.9,
+          "se": 2.6,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2024-12-30",
+          "est": 9.8,
+          "se": 1.38,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2025-01-13",
+          "est": 10.7,
+          "se": 1.4,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2025-01-27",
+          "est": 12.4,
+          "se": 1.63,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2025-02-10",
+          "est": 11.4,
+          "se": 1.4,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2025-02-24",
+          "est": 12.2,
+          "se": 2.09,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2025-03-10",
+          "est": 14.3,
+          "se": 1.92,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2025-03-24",
+          "est": 11.9,
+          "se": 1.95,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2025-04-07",
+          "est": 11.6,
+          "se": 1.12,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2025-04-21",
+          "est": 14.2,
+          "se": 1.71,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2025-05-05",
+          "est": 12.8,
+          "se": 1.17,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2025-05-19",
+          "est": 14.9,
+          "se": 2.27,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2025-06-02",
+          "est": 14.2,
+          "se": 1.23,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2025-06-16",
+          "est": 12.5,
+          "se": 1.8,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2025-06-30",
+          "est": 12.1,
+          "se": 1.38,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2025-07-14",
+          "est": 12,
+          "se": 1.21,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2025-07-28",
+          "est": 8.7,
+          "se": 0.78,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2025-08-11",
+          "est": 11.9,
+          "se": 1.18,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2025-08-25",
+          "est": 13,
+          "se": 0.91,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2025-09-08",
+          "est": 12.5,
+          "se": 1.21,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2025-09-22",
+          "est": 13,
+          "se": 1.5,
+          "wording": "old",
+          "suppressed": false
+        },
+        {
+          "date": "2025-11-17",
+          "est": 30.5,
+          "se": 2.46,
+          "wording": "new",
+          "suppressed": false
+        },
+        {
+          "date": "2025-12-01",
+          "est": 25.6,
+          "se": 1.56,
+          "wording": "new",
+          "suppressed": false
+        },
+        {
+          "date": "2025-12-15",
+          "est": 32.7,
+          "se": 2.67,
+          "wording": "new",
+          "suppressed": false
+        },
+        {
+          "date": "2025-12-29",
+          "est": 32.5,
+          "se": 1.54,
+          "wording": "new",
+          "suppressed": false
+        },
+        {
+          "date": "2026-01-12",
+          "est": 27.1,
+          "se": 2.24,
+          "wording": "new",
+          "suppressed": false
+        },
+        {
+          "date": "2026-01-26",
+          "est": 34.8,
+          "se": 2.62,
+          "wording": "new",
+          "suppressed": false
+        },
+        {
+          "date": "2026-02-09",
+          "est": 31.9,
+          "se": 3.63,
+          "wording": "new",
+          "suppressed": false
+        },
+        {
+          "date": "2026-02-23",
+          "est": 33.5,
+          "se": 2.86,
+          "wording": "new",
+          "suppressed": false
+        },
+        {
+          "date": "2026-03-23",
+          "est": 37,
+          "se": 2.52,
+          "wording": "new",
+          "suppressed": false
+        },
+        {
+          "date": "2026-04-06",
+          "est": 31.2,
+          "se": 1.86,
+          "wording": "new",
+          "suppressed": false
+        },
+        {
+          "date": "2026-04-20",
+          "est": 37.3,
+          "se": 2.15,
+          "wording": "new",
+          "suppressed": false
+        },
+        {
+          "date": "2026-05-04",
+          "est": 36.1,
+          "se": 3.44,
+          "wording": "new",
+          "suppressed": false
+        },
+        {
+          "date": "2026-05-18",
+          "est": 36.8,
+          "se": 2.23,
+          "wording": "new",
+          "suppressed": false
+        },
+        {
+          "date": "2026-06-01",
+          "est": 40.7,
+          "se": 2.55,
+          "wording": "new",
+          "suppressed": false
+        },
+        {
+          "date": "2026-06-15",
+          "est": 40.3,
+          "se": 2.47,
+          "wording": "new",
+          "suppressed": false
+        },
+        {
+          "date": "2026-06-29",
+          "est": 38.8,
+          "se": 1.63,
+          "wording": "new",
+          "suppressed": false
+        }
+      ]
+    }
+  ],
+  "subsector": [
+    {
+      "naics3": "518",
+      "name": "Data Processing, Hosting, and Related Services",
+      "current": 58.1,
+      "current_se": 10.65,
+      "future": 60.7,
+      "suppressed": false
+    },
+    {
+      "naics3": "515",
+      "name": "Broadcasting (except Internet)",
+      "current": 52.6,
+      "current_se": 13.12,
+      "future": 51,
+      "suppressed": false
+    },
+    {
+      "naics3": "519",
+      "name": "Other Information Services",
+      "current": 49.7,
+      "current_se": 7.56,
+      "future": 51.4,
+      "suppressed": false
+    },
+    {
+      "naics3": "511",
+      "name": "Publishing Industries (except Internet)",
+      "current": 46.9,
+      "current_se": 3.09,
+      "future": 49.8,
+      "suppressed": false
+    },
+    {
+      "naics3": "334",
+      "name": "Computer and Electronic Product Manufacturing",
+      "current": 46.8,
+      "current_se": 7.35,
+      "future": 50.4,
+      "suppressed": false
+    },
+    {
+      "naics3": "523",
+      "name": "Securities, Commodity Contracts, and Other Financial Investments and Related Activities",
+      "current": 42,
+      "current_se": 3.51,
+      "future": 49.4,
+      "suppressed": false
+    },
+    {
+      "naics3": "313",
+      "name": "Textile Mills",
+      "current": 39,
+      "current_se": 17.19,
+      "future": 39,
+      "suppressed": false
+    },
+    {
+      "naics3": "541",
+      "name": "Professional, Scientific, and Technical Services",
+      "current": 37.6,
+      "current_se": 1.19,
+      "future": 41.8,
+      "suppressed": false
+    },
+    {
+      "naics3": "512",
+      "name": "Motion Picture and Sound Recording Industries",
+      "current": 36.8,
+      "current_se": 3.27,
+      "future": 40.1,
+      "suppressed": false
+    },
+    {
+      "naics3": "454",
+      "name": "Nonstore Retailers",
+      "current": 35.4,
+      "current_se": 2.39,
+      "future": 36.8,
+      "suppressed": false
+    },
+    {
+      "naics3": "524",
+      "name": "Insurance Carriers and Related Activities",
+      "current": 35.3,
+      "current_se": 3.49,
+      "future": 41.1,
+      "suppressed": false
+    },
+    {
+      "naics3": "611",
+      "name": "Educational Services",
+      "current": 30.9,
+      "current_se": 2.27,
+      "future": 33.1,
+      "suppressed": false
+    },
+    {
+      "naics3": "531",
+      "name": "Real Estate",
+      "current": 30.5,
+      "current_se": 2.14,
+      "future": 33.6,
+      "suppressed": false
+    },
+    {
+      "naics3": "322",
+      "name": "Paper Manufacturing",
+      "current": 29.2,
+      "current_se": 14.32,
+      "future": 46.5,
+      "suppressed": false
+    },
+    {
+      "naics3": "339",
+      "name": "Miscellaneous Manufacturing",
+      "current": 29.1,
+      "current_se": 5.26,
+      "future": 29.8,
+      "suppressed": false
+    },
+    {
+      "naics3": "323",
+      "name": "Printing and Related Support Activities",
+      "current": 28.1,
+      "current_se": 4.47,
+      "future": 29.3,
+      "suppressed": false
+    },
+    {
+      "naics3": "551",
+      "name": "Management of Companies and Enterprises",
+      "current": 27.3,
+      "current_se": 13.44,
+      "future": 38.4,
+      "suppressed": false
+    },
+    {
+      "naics3": "335",
+      "name": "Electrical Equipment, Appliance, and Component Manufacturing",
+      "current": 27.2,
+      "current_se": 6.57,
+      "future": 33.9,
+      "suppressed": false
+    },
+    {
+      "naics3": "522",
+      "name": "Credit Intermediation and Related Activities",
+      "current": 26,
+      "current_se": 3.35,
+      "future": 28.6,
+      "suppressed": false
+    },
+    {
+      "naics3": "621",
+      "name": "Ambulatory Health Care Services",
+      "current": 25.7,
+      "current_se": 1.09,
+      "future": 30.1,
+      "suppressed": false
+    },
+    {
+      "naics3": "325",
+      "name": "Chemical Manufacturing",
+      "current": 23.6,
+      "current_se": 8.83,
+      "future": 30.2,
+      "suppressed": false
+    },
+    {
+      "naics3": "425",
+      "name": "Wholesale Electronic Markets and Agents and Brokers",
+      "current": 22.6,
+      "current_se": 4,
+      "future": 31,
+      "suppressed": false
+    },
+    {
+      "naics3": "624",
+      "name": "Social Assistance",
+      "current": 22.4,
+      "current_se": 3.19,
+      "future": 23.7,
+      "suppressed": false
+    },
+    {
+      "naics3": "441",
+      "name": "Motor Vehicle and Parts Dealers",
+      "current": 21.8,
+      "current_se": 3.15,
+      "future": 22.6,
+      "suppressed": false
+    },
+    {
+      "naics3": "312",
+      "name": "Beverage and Tobacco Product Manufacturing",
+      "current": 21.7,
+      "current_se": 6.88,
+      "future": 20.4,
+      "suppressed": false
+    },
+    {
+      "naics3": "712",
+      "name": "Museums, Historical Sites, and Similar Institutions",
+      "current": 21.7,
+      "current_se": 5.76,
+      "future": 27.1,
+      "suppressed": false
+    },
+    {
+      "naics3": "336",
+      "name": "Transportation Equipment Manufacturing",
+      "current": 21.3,
+      "current_se": 6.28,
+      "future": 24,
+      "suppressed": false
+    },
+    {
+      "naics3": "237",
+      "name": "Heavy and Civil Engineering Construction",
+      "current": 21,
+      "current_se": 4.85,
+      "future": 19.9,
+      "suppressed": false
+    },
+    {
+      "naics3": "311",
+      "name": "Food Manufacturing",
+      "current": 20.8,
+      "current_se": 6.45,
+      "future": 22.4,
+      "suppressed": false
+    },
+    {
+      "naics3": "561",
+      "name": "Administrative and Support Services",
+      "current": 20.7,
+      "current_se": 1.82,
+      "future": 22,
+      "suppressed": false
+    },
+    {
+      "naics3": "711",
+      "name": "Performing Arts, Spectator Sports, and Related Industries",
+      "current": 19.9,
+      "current_se": 3.58,
+      "future": 23.9,
+      "suppressed": false
+    },
+    {
+      "naics3": "443",
+      "name": "Electronics and Appliance Stores",
+      "current": 19.7,
+      "current_se": 3.87,
+      "future": 27.2,
+      "suppressed": false
+    },
+    {
+      "naics3": "453",
+      "name": "Miscellaneous Store Retailers",
+      "current": 19.3,
+      "current_se": 3.32,
+      "future": 18,
+      "suppressed": false
+    },
+    {
+      "naics3": "517",
+      "name": "Telecommunications",
+      "current": 19.2,
+      "current_se": 5.18,
+      "future": 27.5,
+      "suppressed": false
+    },
+    {
+      "naics3": "423",
+      "name": "Merchant Wholesalers, Durable Goods",
+      "current": 19.1,
+      "current_se": 1.47,
+      "future": 21.9,
+      "suppressed": false
+    },
+    {
+      "naics3": "446",
+      "name": "Health and Personal Care Stores",
+      "current": 18.8,
+      "current_se": 4.33,
+      "future": 21.2,
+      "suppressed": false
+    },
+    {
+      "naics3": "236",
+      "name": "Construction of Buildings",
+      "current": 18.3,
+      "current_se": 2.3,
+      "future": 19.2,
+      "suppressed": false
+    },
+    {
+      "naics3": "451",
+      "name": "Sporting Goods, Hobby, Musical Instrument, and Book Stores",
+      "current": 17.6,
+      "current_se": 3.43,
+      "future": 19.9,
+      "suppressed": false
+    },
+    {
+      "naics3": "326",
+      "name": "Plastics and Rubber Products Manufacturing",
+      "current": 17.5,
+      "current_se": 5.23,
+      "future": 21.3,
+      "suppressed": false
+    },
+    {
+      "naics3": "713",
+      "name": "Amusement, Gambling, and Recreation Industries",
+      "current": 15.9,
+      "current_se": 2.17,
+      "future": 18.4,
+      "suppressed": false
+    },
+    {
+      "naics3": "424",
+      "name": "Merchant Wholesalers, Nondurable Goods",
+      "current": 15.8,
+      "current_se": 1.62,
+      "future": 18.7,
+      "suppressed": false
+    },
+    {
+      "naics3": "562",
+      "name": "Waste Management and Remediation Services",
+      "current": 15.6,
+      "current_se": 4.55,
+      "future": 19.9,
+      "suppressed": false
+    },
+    {
+      "naics3": "448",
+      "name": "Clothing and Clothing Accessories Stores",
+      "current": 15.5,
+      "current_se": 1.11,
+      "future": 14.2,
+      "suppressed": false
+    },
+    {
+      "naics3": "321",
+      "name": "Wood Product Manufacturing",
+      "current": 14.5,
+      "current_se": 5.43,
+      "future": 13.4,
+      "suppressed": false
+    },
+    {
+      "naics3": "333",
+      "name": "Machinery Manufacturing",
+      "current": 14,
+      "current_se": 2.21,
+      "future": 14.2,
+      "suppressed": false
+    },
+    {
+      "naics3": "442",
+      "name": "Furniture and Home Furnishings Stores",
+      "current": 13.9,
+      "current_se": 4.23,
+      "future": 17.5,
+      "suppressed": false
+    },
+    {
+      "naics3": "532",
+      "name": "Rental and Leasing Services",
+      "current": 13.5,
+      "current_se": 3.23,
+      "future": 20.4,
+      "suppressed": false
+    },
+    {
+      "naics3": "221",
+      "name": "Utilities",
+      "current": 13.4,
+      "current_se": 6.55,
+      "future": 12.5,
+      "suppressed": false
+    },
+    {
+      "naics3": "623",
+      "name": "Nursing and Residential Care Facilities",
+      "current": 12.8,
+      "current_se": 2.29,
+      "future": 13.7,
+      "suppressed": false
+    },
+    {
+      "naics3": "812",
+      "name": "Personal and Laundry Services",
+      "current": 12.5,
+      "current_se": 1.7,
+      "future": 14.3,
+      "suppressed": false
+    },
+    {
+      "naics3": "332",
+      "name": "Fabricated Metal Product Manufacturing",
+      "current": 11.8,
+      "current_se": 1.99,
+      "future": 13.2,
+      "suppressed": false
+    },
+    {
+      "naics3": "238",
+      "name": "Specialty Trade Contractors",
+      "current": 10.9,
+      "current_se": 1.59,
+      "future": 13.4,
+      "suppressed": false
+    },
+    {
+      "naics3": "314",
+      "name": "Textile Product Mills",
+      "current": 10.9,
+      "current_se": 5.36,
+      "future": null,
+      "suppressed": false
+    },
+    {
+      "naics3": "444",
+      "name": "Building Material and Garden Equipment and Supplies Dealers",
+      "current": 10.9,
+      "current_se": 2.43,
+      "future": 12.1,
+      "suppressed": false
+    },
+    {
+      "naics3": "337",
+      "name": "Furniture and Related Product Manufacturing",
+      "current": 10.7,
+      "current_se": 4.98,
+      "future": null,
+      "suppressed": false
+    },
+    {
+      "naics3": "811",
+      "name": "Repair and Maintenance",
+      "current": 10.7,
+      "current_se": 1.42,
+      "future": 12.6,
+      "suppressed": false
+    },
+    {
+      "naics3": "213",
+      "name": "Support Activities for Mining",
+      "current": 10,
+      "current_se": 4.4,
+      "future": null,
+      "suppressed": false
+    },
+    {
+      "naics3": "722",
+      "name": "Food Services and Drinking Places",
+      "current": 9.8,
+      "current_se": 1.03,
+      "future": 11.9,
+      "suppressed": false
+    },
+    {
+      "naics3": "488",
+      "name": "Support Activities for Transportation",
+      "current": 9.5,
+      "current_se": 2.93,
+      "future": 12.8,
+      "suppressed": false
+    },
+    {
+      "naics3": "721",
+      "name": "Accommodation",
+      "current": 9.2,
+      "current_se": 1.88,
+      "future": 11.3,
+      "suppressed": false
+    },
+    {
+      "naics3": "484",
+      "name": "Truck Transportation",
+      "current": 6.5,
+      "current_se": 1.39,
+      "future": 9.8,
+      "suppressed": false
+    },
+    {
+      "naics3": "445",
+      "name": "Food and Beverage Stores",
+      "current": 4.9,
+      "current_se": 0.96,
+      "future": 6.7,
+      "suppressed": false
+    },
+    {
+      "naics3": "447",
+      "name": "Gasoline Stations",
+      "current": 4.5,
+      "current_se": 2.23,
+      "future": 4,
+      "suppressed": false
+    },
+    {
+      "naics3": "113",
+      "name": "Forestry and Logging",
+      "current": null,
+      "current_se": null,
+      "future": null,
+      "suppressed": true
+    },
+    {
+      "naics3": "114",
+      "name": "Fishing, Hunting and Trapping",
+      "current": null,
+      "current_se": null,
+      "future": null,
+      "suppressed": true
+    },
+    {
+      "naics3": "115",
+      "name": "Support Activities for Agriculture and Forestry",
+      "current": null,
+      "current_se": null,
+      "future": null,
+      "suppressed": true
+    },
+    {
+      "naics3": "211",
+      "name": "Oil and Gas Extraction",
+      "current": null,
+      "current_se": null,
+      "future": null,
+      "suppressed": true
+    },
+    {
+      "naics3": "212",
+      "name": "Mining (except Oil and Gas)",
+      "current": null,
+      "current_se": null,
+      "future": null,
+      "suppressed": true
+    },
+    {
+      "naics3": "315",
+      "name": "Apparel Manufacturing",
+      "current": null,
+      "current_se": null,
+      "future": null,
+      "suppressed": true
+    },
+    {
+      "naics3": "327",
+      "name": "Nonmetallic Mineral Product Manufacturing",
+      "current": null,
+      "current_se": null,
+      "future": 11.2,
+      "suppressed": true
+    },
+    {
+      "naics3": "331",
+      "name": "Primary Metal Manufacturing",
+      "current": null,
+      "current_se": null,
+      "future": 26.3,
+      "suppressed": true
+    },
+    {
+      "naics3": "452",
+      "name": "General Merchandise Stores",
+      "current": null,
+      "current_se": null,
+      "future": null,
+      "suppressed": true
+    },
+    {
+      "naics3": "481",
+      "name": "Air Transportation",
+      "current": null,
+      "current_se": null,
+      "future": null,
+      "suppressed": true
+    },
+    {
+      "naics3": "483",
+      "name": "Water Transportation",
+      "current": null,
+      "current_se": null,
+      "future": null,
+      "suppressed": true
+    },
+    {
+      "naics3": "485",
+      "name": "Transit and Ground Passenger Transportation",
+      "current": null,
+      "current_se": null,
+      "future": 31.4,
+      "suppressed": true
+    },
+    {
+      "naics3": "487",
+      "name": "Scenic and Sightseeing Transportation",
+      "current": null,
+      "current_se": null,
+      "future": null,
+      "suppressed": true
+    },
+    {
+      "naics3": "492",
+      "name": "Couriers and Messengers",
+      "current": null,
+      "current_se": null,
+      "future": 17.3,
+      "suppressed": true
+    },
+    {
+      "naics3": "493",
+      "name": "Warehousing and Storage",
+      "current": null,
+      "current_se": null,
+      "future": 43.7,
+      "suppressed": true
+    },
+    {
+      "naics3": "533",
+      "name": "Lessors of Nonfinancial Intangible Assets (except Copyrighted Works)",
+      "current": null,
+      "current_se": null,
+      "future": null,
+      "suppressed": true
+    },
+    {
+      "naics3": "622",
+      "name": "Hospitals",
+      "current": null,
+      "current_se": null,
+      "future": null,
+      "suppressed": true
+    }
+  ],
+  "geography": {
+    "states": [
+      {
+        "code": "MA",
+        "est": 28.8,
+        "se": 2.92,
+        "suppressed": false
+      },
+      {
+        "code": "ID",
+        "est": 28.1,
+        "se": 4.49,
+        "suppressed": false
+      },
+      {
+        "code": "VA",
+        "est": 27.6,
+        "se": 2.68,
+        "suppressed": false
+      },
+      {
+        "code": "DC",
+        "est": 27.4,
+        "se": 3.08,
+        "suppressed": false
+      },
+      {
+        "code": "NV",
+        "est": 27.3,
+        "se": 4.35,
+        "suppressed": false
+      },
+      {
+        "code": "WA",
+        "est": 26.2,
+        "se": 2.1,
+        "suppressed": false
+      },
+      {
+        "code": "FL",
+        "est": 25.4,
+        "se": 2.02,
+        "suppressed": false
+      },
+      {
+        "code": "CO",
+        "est": 24.6,
+        "se": 1.64,
+        "suppressed": false
+      },
+      {
+        "code": "UT",
+        "est": 24.2,
+        "se": 4.08,
+        "suppressed": false
+      },
+      {
+        "code": "GA",
+        "est": 23.5,
+        "se": 2.45,
+        "suppressed": false
+      },
+      {
+        "code": "SC",
+        "est": 23.1,
+        "se": 3.01,
+        "suppressed": false
+      },
+      {
+        "code": "WY",
+        "est": 23.1,
+        "se": 8.27,
+        "suppressed": false
+      },
+      {
+        "code": "CA",
+        "est": 22.7,
+        "se": 0.85,
+        "suppressed": false
+      },
+      {
+        "code": "NC",
+        "est": 22.7,
+        "se": 2.66,
+        "suppressed": false
+      },
+      {
+        "code": "MI",
+        "est": 22.4,
+        "se": 1.78,
+        "suppressed": false
+      },
+      {
+        "code": "OH",
+        "est": 22.4,
+        "se": 1.39,
+        "suppressed": false
+      },
+      {
+        "code": "IL",
+        "est": 22.2,
+        "se": 1.46,
+        "suppressed": false
+      },
+      {
+        "code": "TX",
+        "est": 22.1,
+        "se": 1.42,
+        "suppressed": false
+      },
+      {
+        "code": "MO",
+        "est": 21.9,
+        "se": 2.8,
+        "suppressed": false
+      },
+      {
+        "code": "MT",
+        "est": 21.5,
+        "se": 3.8,
+        "suppressed": false
+      },
+      {
+        "code": "NH",
+        "est": 21.5,
+        "se": 3.6,
+        "suppressed": false
+      },
+      {
+        "code": "DE",
+        "est": 21.4,
+        "se": 4.96,
+        "suppressed": false
+      },
+      {
+        "code": "WI",
+        "est": 21,
+        "se": 3.21,
+        "suppressed": false
+      },
+      {
+        "code": "IN",
+        "est": 20.9,
+        "se": 2.09,
+        "suppressed": false
+      },
+      {
+        "code": "MD",
+        "est": 20.6,
+        "se": 2.81,
+        "suppressed": false
+      },
+      {
+        "code": "MN",
+        "est": 20.6,
+        "se": 3.12,
+        "suppressed": false
+      },
+      {
+        "code": "NJ",
+        "est": 20.5,
+        "se": 2.08,
+        "suppressed": false
+      },
+      {
+        "code": "TN",
+        "est": 20.4,
+        "se": 2.49,
+        "suppressed": false
+      },
+      {
+        "code": "KY",
+        "est": 20.2,
+        "se": 2.45,
+        "suppressed": false
+      },
+      {
+        "code": "LA",
+        "est": 20,
+        "se": 1.69,
+        "suppressed": false
+      },
+      {
+        "code": "ME",
+        "est": 19.1,
+        "se": 4.77,
+        "suppressed": false
+      },
+      {
+        "code": "OR",
+        "est": 18.9,
+        "se": 2.96,
+        "suppressed": false
+      },
+      {
+        "code": "AZ",
+        "est": 18.8,
+        "se": 2.49,
+        "suppressed": false
+      },
+      {
+        "code": "IA",
+        "est": 18.6,
+        "se": 4.06,
+        "suppressed": false
+      },
+      {
+        "code": "KS",
+        "est": 18.4,
+        "se": 3.41,
+        "suppressed": false
+      },
+      {
+        "code": "CT",
+        "est": 18.3,
+        "se": 3.05,
+        "suppressed": false
+      },
+      {
+        "code": "VT",
+        "est": 18.2,
+        "se": 2.66,
+        "suppressed": false
+      },
+      {
+        "code": "PA",
+        "est": 17.9,
+        "se": 2.24,
+        "suppressed": false
+      },
+      {
+        "code": "SD",
+        "est": 17.9,
+        "se": 4.68,
+        "suppressed": false
+      },
+      {
+        "code": "OK",
+        "est": 17.3,
+        "se": 1.87,
+        "suppressed": false
+      },
+      {
+        "code": "NY",
+        "est": 16.3,
+        "se": 1.21,
+        "suppressed": false
+      },
+      {
+        "code": "WV",
+        "est": 16.1,
+        "se": 4.26,
+        "suppressed": false
+      },
+      {
+        "code": "HI",
+        "est": 14.5,
+        "se": 3.22,
+        "suppressed": false
+      },
+      {
+        "code": "AL",
+        "est": 14.3,
+        "se": 1.78,
+        "suppressed": false
+      },
+      {
+        "code": "ND",
+        "est": 14.2,
+        "se": 3.44,
+        "suppressed": false
+      },
+      {
+        "code": "NM",
+        "est": 13.6,
+        "se": 2.5,
+        "suppressed": false
+      },
+      {
+        "code": "PR",
+        "est": 13.6,
+        "se": 2.31,
+        "suppressed": false
+      },
+      {
+        "code": "NE",
+        "est": 12.3,
+        "se": 3.48,
+        "suppressed": false
+      },
+      {
+        "code": "MS",
+        "est": 11.8,
+        "se": 3.18,
+        "suppressed": false
+      },
+      {
+        "code": "AR",
+        "est": 11.1,
+        "se": 3.03,
+        "suppressed": false
+      },
+      {
+        "code": "AK",
+        "est": null,
+        "se": null,
+        "suppressed": true
+      },
+      {
+        "code": "RI",
+        "est": null,
+        "se": null,
+        "suppressed": true
+      }
+    ],
+    "msas": [
+      {
+        "code": "45300",
+        "name": "Tampa-St. Petersburg-Clearwater, FL MSA",
+        "est": 32,
+        "se": 4.66,
+        "suppressed": false
+      },
+      {
+        "code": "41860",
+        "name": "San Francisco-Oakland-Berkeley, CA MSA",
+        "est": 28.6,
+        "se": 3.88,
+        "suppressed": false
+      },
+      {
+        "code": "14460",
+        "name": "Boston-Cambridge-Newton, MA-NH MSA",
+        "est": 28.2,
+        "se": 3.78,
+        "suppressed": false
+      },
+      {
+        "code": "41700",
+        "name": "San Antonio-New Braunfels, TX MSA",
+        "est": 27.9,
+        "se": 4.41,
+        "suppressed": false
+      },
+      {
+        "code": "47900",
+        "name": "Washington-Arlington-Alexandria, DC-VA-MD-WV MSA",
+        "est": 27.8,
+        "se": 1.87,
+        "suppressed": false
+      },
+      {
+        "code": "42660",
+        "name": "Seattle-Tacoma-Bellevue, WA MSA",
+        "est": 27.7,
+        "se": 3.26,
+        "suppressed": false
+      },
+      {
+        "code": "36740",
+        "name": "Orlando-Kissimmee-Sanford, FL MSA",
+        "est": 27.1,
+        "se": 5.47,
+        "suppressed": false
+      },
+      {
+        "code": "19740",
+        "name": "Denver-Aurora-Lakewood, CO MSA",
+        "est": 26.8,
+        "se": 2.74,
+        "suppressed": false
+      },
+      {
+        "code": "12060",
+        "name": "Atlanta-Sandy Springs-Alpharetta, GA MSA",
+        "est": 26.6,
+        "se": 2.7,
+        "suppressed": false
+      },
+      {
+        "code": "33100",
+        "name": "Miami-Fort Lauderdale-Pompano Beach, FL MSA",
+        "est": 26.4,
+        "se": 2.91,
+        "suppressed": false
+      },
+      {
+        "code": "33460",
+        "name": "Minneapolis-St. Paul-Bloomington, MN-WI MSA",
+        "est": 26.4,
+        "se": 3.84,
+        "suppressed": false
+      },
+      {
+        "code": "19100",
+        "name": "Dallas-Fort Worth-Arlington, TX MSA",
+        "est": 26.1,
+        "se": 3.34,
+        "suppressed": false
+      },
+      {
+        "code": "41740",
+        "name": "San Diego-Chula Vista-Carlsbad, CA MSA",
+        "est": 25.9,
+        "se": 3.63,
+        "suppressed": false
+      },
+      {
+        "code": "19820",
+        "name": "Detroit-Warren-Dearborn, MI MSA",
+        "est": 24.5,
+        "se": 2.9,
+        "suppressed": false
+      },
+      {
+        "code": "16980",
+        "name": "Chicago-Naperville-Elgin, IL-IN-WI MSA",
+        "est": 22.1,
+        "se": 1.82,
+        "suppressed": false
+      },
+      {
+        "code": "38060",
+        "name": "Phoenix-Mesa-Chandler, AZ MSA",
+        "est": 21.5,
+        "se": 3.28,
+        "suppressed": false
+      },
+      {
+        "code": "16740",
+        "name": "Charlotte-Concord-Gastonia, NC-SC MSA",
+        "est": 21.4,
+        "se": 4.66,
+        "suppressed": false
+      },
+      {
+        "code": "40140",
+        "name": "Riverside-San Bernardino-Ontario, CA MSA",
+        "est": 20.6,
+        "se": 3.71,
+        "suppressed": false
+      },
+      {
+        "code": "38900",
+        "name": "Portland-Vancouver-Hillsboro, OR-WA MSA",
+        "est": 20.2,
+        "se": 3.03,
+        "suppressed": false
+      },
+      {
+        "code": "31080",
+        "name": "Los Angeles-Long Beach-Anaheim, CA MSA",
+        "est": 19.7,
+        "se": 1.85,
+        "suppressed": false
+      },
+      {
+        "code": "12580",
+        "name": "Baltimore-Columbia-Towson, MD MSA",
+        "est": 18.9,
+        "se": 2.94,
+        "suppressed": false
+      },
+      {
+        "code": "37980",
+        "name": "Philadelphia-Camden-Wilmington, PA-NJ-DE-MD MSA",
+        "est": 18.9,
+        "se": 2.08,
+        "suppressed": false
+      },
+      {
+        "code": "41180",
+        "name": "St. Louis, MO-IL MSA",
+        "est": 18.7,
+        "se": 3.07,
+        "suppressed": false
+      },
+      {
+        "code": "35620",
+        "name": "New York-Newark-Jersey City, NY-NJ-PA MSA",
+        "est": 17.9,
+        "se": 0.99,
+        "suppressed": false
+      },
+      {
+        "code": "26420",
+        "name": "Houston-The Woodlands-Sugar Land, TX MSA",
+        "est": 15.5,
+        "se": 3.68,
+        "suppressed": false
+      }
+    ]
+  },
+  "supplement": {
+    "meta": {
+      "file": "AI_Supplement_Table_2026.xlsx",
+      "date_range": "2025-11-17 to 2026-02-08",
+      "source": "US Census Bureau, BTOS AI Supplement (one-time module). Firm-weighted. Downloadable XLSX; NOT in the biweekly JSON API. Every figure here is computed from the public workbook.",
+      "note": "Estimates are firm-weighted 'Yes' shares; 'S' cells are suppressed.",
+      "tidy_csv": "btos/output/btos_ai_supplement_long.csv"
+    },
+    "headline": {
+      "current": 17.9
+    },
+    "size_gradient": [
+      {
+        "class": "A",
+        "label": "1-4",
+        "share": 17.6,
+        "se": 0.17
+      },
+      {
+        "class": "B",
+        "label": "5-9",
+        "share": 17,
+        "se": 0.33
+      },
+      {
+        "class": "C",
+        "label": "10-19",
+        "share": 17.2,
+        "se": 0.36
+      },
+      {
+        "class": "D",
+        "label": "20-49",
+        "share": 18.5,
+        "se": 0.32
+      },
+      {
+        "class": "E",
+        "label": "50-99",
+        "share": 21.3,
+        "se": 0.37
+      },
+      {
+        "class": "F",
+        "label": "100-249",
+        "share": 25.3,
+        "se": 0.72
+      },
+      {
+        "class": "G",
+        "label": "250+",
+        "share": 30.6,
+        "se": 0.87
+      }
+    ],
+    "sector_adoption": [
+      {
+        "code": "51",
+        "name": "Information",
+        "share": 37.6,
+        "se": 0.95
+      },
+      {
+        "code": "54",
+        "name": "Professional, Scientific, and Technical Services",
+        "share": 34.2,
+        "se": 0.23
+      },
+      {
+        "code": "61",
+        "name": "Educational Services",
+        "share": 30.7,
+        "se": 1.07
+      },
+      {
+        "code": "52",
+        "name": "Finance and Insurance",
+        "share": 30.4,
+        "se": 0.78
+      },
+      {
+        "code": "53",
+        "name": "Real Estate and Rental and Leasing",
+        "share": 23.5,
+        "se": 0.95
+      },
+      {
+        "code": "55",
+        "name": "Management of Companies and Enterprises",
+        "share": 20.9,
+        "se": 8.09
+      },
+      {
+        "code": "62",
+        "name": "Health Care and Social Assistance",
+        "share": 20.7,
+        "se": 0.47
+      },
+      {
+        "code": "71",
+        "name": "Arts, Entertainment, and Recreation",
+        "share": 17.5,
+        "se": 0.57
+      },
+      {
+        "code": "56",
+        "name": "Administrative and Support and Waste Management and Remediation Services",
+        "share": 16.6,
+        "se": 0.48
+      },
+      {
+        "code": "22",
+        "name": "Utilities",
+        "share": 13.7,
+        "se": 1.14
+      },
+      {
+        "code": "42",
+        "name": "Wholesale Trade",
+        "share": 13.6,
+        "se": 0.28
+      },
+      {
+        "code": "44",
+        "name": "Retail Trade",
+        "share": 12.6,
+        "se": 0.18
+      },
+      {
+        "code": "31",
+        "name": "Manufacturing",
+        "share": 12.4,
+        "se": 0.32
+      },
+      {
+        "code": "81",
+        "name": "Other Services (except Public Administration)",
+        "share": 9.8,
+        "se": 0.38
+      },
+      {
+        "code": "23",
+        "name": "Construction",
+        "share": 9.2,
+        "se": 0.29
+      },
+      {
+        "code": "72",
+        "name": "Accommodation and Food Services",
+        "share": 8,
+        "se": 0.3
+      },
+      {
+        "code": "21",
+        "name": "Mining, Quarrying, and Oil and Gas Extraction",
+        "share": 7.7,
+        "se": 1.72
+      },
+      {
+        "code": "48",
+        "name": "Transportation and Warehousing",
+        "share": 7.6,
+        "se": 0.44
+      },
+      {
+        "code": "11",
+        "name": "Agriculture, Forestry, Fishing and Hunting",
+        "share": 5.1,
+        "se": 0.82
+      }
+    ],
+    "business_functions": [
+      {
+        "label": "Sales and marketing",
+        "share": 14.3,
+        "se": 0.11
+      },
+      {
+        "label": "Strategy and business development",
+        "share": 12.4,
+        "se": 0.11
+      },
+      {
+        "label": "Information technology",
+        "share": 11.4,
+        "se": 0.09
+      },
+      {
+        "label": "Research and development",
+        "share": 11.2,
+        "se": 0.1
+      },
+      {
+        "label": "Public relations and communication",
+        "share": 9.3,
+        "se": 0.08
+      },
+      {
+        "label": "Management and administration",
+        "share": 8.1,
+        "se": 0.09
+      },
+      {
+        "label": "Customer service",
+        "share": 7.6,
+        "se": 0.09
+      },
+      {
+        "label": "Legal and compliance",
+        "share": 7.1,
+        "se": 0.09
+      },
+      {
+        "label": "Finance and accounting",
+        "share": 6.6,
+        "se": 0.08
+      },
+      {
+        "label": "Provision of services, products, or merchandise (e.g., providing services, products, or merchandise to customers)",
+        "share": 6.4,
+        "se": 0.08
+      },
+      {
+        "label": "Human resources",
+        "share": 4.2,
+        "se": 0.07
+      },
+      {
+        "label": "Quality management and control",
+        "share": 2.8,
+        "se": 0.03
+      },
+      {
+        "label": "Sourcing, supply chains, and purchasing",
+        "share": 2.6,
+        "se": 0.06
+      },
+      {
+        "label": "Production of goods (e.g., making or assembling products, construction)",
+        "share": 1.7,
+        "se": 0.03
+      },
+      {
+        "label": "Distribution",
+        "share": 0.9,
+        "se": 0.03
+      }
+    ],
+    "genai_tasks": [
+      {
+        "label": "Writing or editing documents, emails, or communications",
+        "share": 85.4,
+        "se": 0.25
+      },
+      {
+        "label": "Searching for information or technical help",
+        "share": 49.9,
+        "se": 0.22
+      },
+      {
+        "label": "Interpreting, analyzing, translating, or summarizing documents",
+        "share": 44.6,
+        "se": 0.28
+      },
+      {
+        "label": "Information processing, paperwork, or filing",
+        "share": 34.7,
+        "se": 0.3
+      },
+      {
+        "label": "Developing or researching new projects, processes, or products",
+        "share": 30,
+        "se": 0.22
+      },
+      {
+        "label": "Data analysis or visualization",
+        "share": 19.1,
+        "se": 0.28
+      },
+      {
+        "label": "Tutoring, training, or learning",
+        "share": 16.1,
+        "se": 0.26
+      },
+      {
+        "label": "Customer support",
+        "share": 15.5,
+        "se": 0.22
+      },
+      {
+        "label": "Software coding or debugging",
+        "share": 12.7,
+        "se": 0.23
+      },
+      {
+        "label": "Other tasks",
+        "share": 6.1,
+        "se": 0.2
+      }
+    ],
+    "employment_effect": [
+      {
+        "label": "Increased",
+        "share": 2.3,
+        "se": 0.08
+      },
+      {
+        "label": "Decreased",
+        "share": 2,
+        "se": 0.09
+      },
+      {
+        "label": "No change",
+        "share": 95.7,
+        "se": 0.14
+      }
+    ],
+    "barriers": [
+      {
+        "label": "AI is not applicable to this business",
+        "share": 61.6,
+        "se": 0.24
+      },
+      {
+        "label": "Lack of knowledge on the capabilities of AI",
+        "share": 22,
+        "se": 0.17
+      },
+      {
+        "label": "Concerns about privacy/security",
+        "share": 20.7,
+        "se": 0.17
+      },
+      {
+        "label": "AI is not a mature enough technology yet",
+        "share": 13,
+        "se": 0.09
+      },
+      {
+        "label": "Concerns about bias",
+        "share": 8.6,
+        "se": 0.12
+      },
+      {
+        "label": "Other",
+        "share": 7.9,
+        "se": 0.14
+      },
+      {
+        "label": "Lack of skilled workforce",
+        "share": 7.1,
+        "se": 0.07
+      },
+      {
+        "label": "Too expensive",
+        "share": 6.9,
+        "se": 0.11
+      },
+      {
+        "label": "Lack of required data",
+        "share": 5.1,
+        "se": 0.07
+      },
+      {
+        "label": "Previous or current use of AI did not meet expectations",
+        "share": 3.2,
+        "se": 0.05
+      },
+      {
+        "label": "Laws and regulations prevent or restrict use of AI",
+        "share": 2.8,
+        "se": 0.08
+      }
+    ]
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "built_at": "2026-07-28T01:58:34-0400",
+  "metrics": ["AIOE", "dv_rating_beta", "human_rating_beta", "genaiexp_estz_total", "genaiexp_estz_core", "ai_applicability_score", "pca_score"],
+  "weight_source": "cps_occ_ind_2021_2022",
+  "weight_note": "CPS OCC2010 x IND employment, pooled 2021-2022, WTFINL",
+  "crosswalk": "exposure/crosswalks/cps_ind_to_naics3.csv (Census 2017 industry list)",
+  "n_occupations": 446,
+  "n_naics3": 88,
+  "n_naics2": 23,
+  "weight_years": [2021, 2022],
+  "weight_years_alt": [2023, 2024],
+  "weight_window_sensitivity_cor": 0.9935,
+  "employment_unmatched_share": 0.1035,
+  "ind_vintage_note": "CPS IND uses the 2012 Census industry scheme through 2019, the 2017 scheme 2020-2024, and the 2022 scheme from 2025. The weight window must sit inside 2021-2024 to match the committed 2017 crosswalk.",
+  "caveats": ["Construction is a single Census industry, so NAICS 236/237/238 cannot be separated from CPS.", "Government (NAICS 92) is unmapped and out of scope for the BTOS and QWI private-sector frames.", "Exposure is a judgment about tasks. It is not adoption, and it does not separate replacement from augmentation."]
+}
