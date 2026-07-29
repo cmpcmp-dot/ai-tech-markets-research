@@ -24,8 +24,8 @@
 
   const C = {
     navy: '#2c3254', navyMute: '#9498b4', green: '#70ad8f', gold: '#c99a3f',
-    goldLine: '#ebc382', terra: '#b06a4f', purple: '#472b51',
-    muted: '#6d7091', grid: '#e6e2d1', text: '#3c4164', headline: '#232849'
+    goldLine: '#ebc382', terra: '#b0503a', purple: '#472b51',
+    muted: '#6d7091', grid: '#caccd4', text: '#3c4164', headline: '#232849'
   };
   const MON = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
   const byId = id => document.getElementById(id);

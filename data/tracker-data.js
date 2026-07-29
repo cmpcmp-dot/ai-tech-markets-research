@@ -22,15 +22,15 @@ const CATEGORIES = [
 
 const STATUS_META = {
   emergent: {
-    label: "Recent", dot: "#26de81",
+    label: "Recent", dot: "#70AD8F",
     desc: "Added to the tracker in the last 30 days."
   },
   current: {
-    label: "Current", dot: "#45aaf2",
+    label: "Current", dot: "#2C3254",
     desc: "Published in the last 18 months; active in the research conversation."
   },
   stale: {
-    label: "Older", dot: "#778ca3",
+    label: "Older", dot: "#6d7091",
     desc: "Published 18+ months ago; useful as a baseline."
   },
 };
@@ -4100,7 +4100,7 @@ const DISRUPTION_LEVELS = [
   { id:"emerging",         label:"Expand",       sublabel:"Expand existing systems as the workforce begins to shift", color:"#EBC382", textColor:"#2a1e00",
     blurb:"As displacement becomes measurable, these policies extend and adapt existing protections to cover workers and situations the current system was not designed to handle.",
     desc:"As AI measurably displaces entry-level and routine cognitive work, these policies extend existing protections and build adaptive capacity before the displacement curve steepens." },
-  { id:"elevated",         label:"Build",         sublabel:"Create new institutions as gaps emerge that markets can't fill", color:"#FF8361", textColor:"#fff",
+  { id:"elevated",         label:"Build",         sublabel:"Create new institutions as gaps emerge that markets can't fill", color:"#B0503A", textColor:"#fff",
     blurb:"When market mechanisms begin to fail at absorbing disruption, these policies create new redistributive institutions and transitional infrastructure that do not yet exist.",
     desc:"When AI-driven income divergence becomes statistically significant and job creation begins to lag, these policies build new redistributive and transitional infrastructure." },
   { id:"high",             label:"Restructure",   sublabel:"Change the fundamental terms of how employment works",  color:"#C0392B", textColor:"#fff",

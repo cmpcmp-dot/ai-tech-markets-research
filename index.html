@@ -50,6 +50,10 @@
   @font-face {
     font-family: 'Haas Grotesk';
     src: url('fonts/HaasGrotDisp55Roman.otf') format('opentype');
+    /* Only the Roman weight is licensed/bundled. Keep the declared range
+       BELOW 700 so requests for 700 fall outside it and the browser
+       synthesises bold — widening to 700 would match Roman exactly and
+       silently flatten every bold heading. */
     font-weight: 400 600; font-style: normal; font-display: swap;
   }
   @font-face {
@@ -107,17 +111,60 @@
     --tooltip-fg: #f4f2e4;
     --sidebar-w: 252px;
 
-    --c0: #2C3254; --c1: #FF8361; --c2: #472B51; --c3: #70AD8F;
-    --c4: #EBC382; --c5: #2C3254; --c6: #472B51; --c7: #70AD8F;
-    --c8: #FF8361; --c9: #3C4164; --c10: #2C3254; --c11: #70AD8F;
-    --c12: #EBC382; --c13: #B03030;
+    /* One radius scale. Anything the user clicks is --r-ctl, so tabs,
+       toggles, filter pills, date/sort controls and action buttons are
+       all the same lightly-rounded rectangle. No pills. */
+    --r-ctl:   6px;   /* buttons, toggles, filter pills, inputs, selects */
+    --r-ctl-outer: 9px; /* segmented-toggle shell: --r-ctl + its 3px padding */
+    --r-tag:   4px;   /* non-interactive micro tags */
+    --r-card: 10px;   /* cards, panels, chart containers */
+    --r-modal:12px;   /* modals */
+
+    /* Deepened ESP hues for small marks and text-sized accents. Warm Gold,
+       Soft Green and Warm Red all fail contrast at small sizes on Beige
+       (see colors.md accessibility notes), so each has a darkened sibling
+       used ONLY for dots, rules, small labels and chart lines. Large fills
+       and display type still use the pure tokens. */
+    --gold-deep:   #c99a3f;  /* Warm Gold, darkened */
+    --green-deep:  #4a8a70;  /* Soft Green, darkened */
+    --red-deep:    #b0503a;  /* Warm Red, darkened — caution semantics only */
+
+    /* Category ramp. ESP series order, navy-led: Warm Navy, Soft Green,
+       Deep Purple, Warm Gold, Warm Pink, Text Black — then repeating.
+       Warm Red (#ff8361) is deliberately absent: this dashboard is the C3
+       (Soft Green) arm, and the brand guide forbids placing Warm Red and
+       Soft Green alongside one another. */
+    --c0: #2C3254; --c1: #70AD8F; --c2: #472B51; --c3: #C99A3F;
+    --c4: #FFBFA7; --c5: #3C4164; --c6: #2C3254; --c7: #70AD8F;
+    --c8: #472B51; --c9: #C99A3F; --c10: #FFBFA7; --c11: #3C4164;
+    --c12: #2C3254; --c13: #70AD8F;
 
     --s-emergent: #70AD8F;
     --s-current:  #2C3254;
-    --s-stale:    #9BA5B5;
+    --s-stale:    #6d7091;
     --g-us:       #2C3254;
-    --g-intl:     #FF8361;
+    --g-intl:     #C99A3F;
   }
+
+  /* ── CHEVRON ──────────────────────────────────────────────
+     One shape for every expand/collapse and dropdown affordance.
+     Drawn as an SVG mask filled with currentColor so it inherits
+     text color. Default points DOWN (closed); .is-open — or an
+     ancestor with aria-expanded="true" / not .is-collapsed —
+     rotates it 180deg so it points UP. */
+  .ui-chevron {
+    display: inline-block; flex-shrink: 0;
+    width: 12px; height: 12px;
+    background: currentColor;
+    -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E") center / 12px 12px no-repeat;
+            mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E") center / 12px 12px no-repeat;
+    transition: transform 0.18s ease;
+  }
+  .ui-chevron.sm {
+    width: 10px; height: 10px;
+    -webkit-mask-size: 10px 10px; mask-size: 10px 10px;
+  }
+  .ui-chevron.right { transform: rotate(-90deg); }
 
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body {
@@ -183,7 +230,7 @@
   .header-tab-desc-title {
     font-size: 18px; font-weight: 700; letter-spacing: -0.01em;
     color: var(--text);
-    font-family: 'Publico Banner', Georgia, serif;
+    font-family: var(--grot);
   }
   .header-tab-desc-text {
     font-size: 14px; color: var(--text); line-height: 1.5;
@@ -247,16 +294,16 @@
   .theme-jump-pill {
     display: inline-flex; align-items: center; gap: 6px;
     font-size: 12px; font-weight: 500; cursor: pointer; white-space: nowrap;
-    background: none; border: 1px solid var(--border); border-radius: 20px;
-    padding: 4px 11px; color: var(--muted); font-family: inherit;
+    background: var(--light-beige); border: 1px solid var(--navy); border-radius: var(--r-ctl);
+    padding: 4px 11px; color: var(--navy); font-family: inherit;
     transition: border-color 0.15s, color 0.15s, background 0.15s;
   }
-  .theme-jump-pill:hover {
-    border-color: var(--accent); color: var(--text);
+  .theme-jump-pill:hover { /* base border is already navy — shift the fill instead */
+    background: color-mix(in srgb, var(--navy) 7%, var(--light-beige));
   }
   .theme-jump-pill.active {
-    color: var(--headline); border-color: var(--green);
-    background: rgba(112,173,143,0.16); font-weight: 600;
+    color: #fff; border-color: var(--navy);
+    background: var(--navy); font-weight: 600;
   }
 
   .theme-nav-strip {
@@ -289,7 +336,7 @@
   }
   .cards-view .key-findings-band { display: block; }
   .key-findings-label {
-    font-family: 'Publico Banner', Georgia, serif;
+    font-family: var(--grot);
     font-size: 16px; font-weight: 700; letter-spacing: -0.01em;
     color: var(--text); margin-bottom: 11px;
   }
@@ -299,7 +346,7 @@
   }
   .key-finding-card {
     display: flex; flex-direction: column; gap: 5px;
-    background: var(--surface); border: 1px solid var(--border); border-radius: 10px;
+    background: var(--surface); border: 1px solid var(--border); border-radius: var(--r-card);
     padding: 13px 15px 11px; cursor: pointer; text-align: left;
     font-family: inherit; transition: border-color 0.15s, box-shadow 0.15s, transform 0.15s;
   }
@@ -309,7 +356,7 @@
     transform: translateY(-1px);
   }
   .key-finding-stat {
-    font-family: 'Publico Banner', Georgia, serif;
+    font-family: var(--serif);
     font-size: 25px; font-weight: 700; line-height: 1.1; letter-spacing: -0.01em;
     color: var(--accent);
   }
@@ -335,7 +382,7 @@
   .stat-item {
     flex: 1; font-size: 11px; color: var(--muted); text-align: center;
     padding: 9px 4px 8px;
-    background: var(--surface2); border-radius: 8px;
+    background: var(--surface2); border-radius: var(--r-ctl);
     border: 1px solid var(--border);
   }
   .stat-item strong {
@@ -365,7 +412,7 @@
   }
   .sidebar-search input[type="search"] {
     width: 100%; background: var(--surface2); border: 1px solid var(--border);
-    color: var(--text); border-radius: 6px; padding: 7px 10px 7px 30px;
+    color: var(--text); border-radius: var(--r-ctl); padding: 7px 10px 7px 30px;
     font-size: 13px; outline: none; transition: border-color 0.18s;
     font-family: inherit;
   }
@@ -421,21 +468,21 @@
   /* ── Lens toggle ──────────────────────────────────────────────── */
   .lens-toggle {
     display: flex; align-items: center;
-    background: var(--surface); border: 1px solid var(--border);
-    border-radius: 20px; padding: 3px; gap: 2px; flex-shrink: 0;
+    background: var(--light-beige); border: 1px solid var(--navy);
+    border-radius: var(--r-ctl-outer); padding: 3px; gap: 2px; flex-shrink: 0;
   }
   .lens-btn {
     padding: 5px 14px; font-size: 12px; font-weight: 500;
-    border: none; background: transparent; border-radius: 16px;
-    cursor: pointer; color: var(--muted); font-family: inherit;
+    border: none; background: transparent; border-radius: var(--r-ctl);
+    cursor: pointer; color: var(--navy); font-family: inherit;
     transition: all 0.15s; white-space: nowrap; letter-spacing: 0.015em;
   }
-  .lens-btn.active { background: var(--accent); color: #fff; font-weight: 600; }
-  .lens-btn:hover:not(.active) { color: var(--text); background: rgba(58,97,134,0.07); }
+  .lens-btn.active { background: var(--navy); color: #fff; font-weight: 600; }
+  .lens-btn:hover:not(.active) { color: var(--text); background: color-mix(in srgb, var(--navy) 7%, transparent); }
 
   input[type="search"] {
     width: 100%; background: var(--surface); border: 1px solid var(--border);
-    color: var(--text); border-radius: 8px; padding: 7px 10px 7px 33px;
+    color: var(--text); border-radius: var(--r-ctl); padding: 7px 10px 7px 33px;
     font-size: 13px; outline: none; transition: border-color 0.18s;
   }
   input[type="search"]:focus { border-color: var(--accent); }
@@ -475,7 +522,7 @@
     position: absolute; top: calc(100% + 8px); left: 50%; transform: translateX(-50%);
     background: var(--tooltip-bg); color: var(--tooltip-fg);
     font-size: 12px; font-weight: 400; line-height: 1.45;
-    white-space: nowrap; border-radius: 8px; padding: 8px 12px;
+    white-space: nowrap; border-radius: var(--r-ctl); padding: 8px 12px;
     box-shadow: 0 4px 18px rgba(0,0,0,0.22);
     pointer-events: none; z-index: 200;
     opacity: 0; transition: opacity 0.15s;
@@ -541,7 +588,7 @@
     color: var(--muted); font-family: 'Public Sans', 'Helvetica Neue', Arial, sans-serif;
   }
 
-  .card-title { font-size: 18px; font-weight: 700; line-height: 1.28; margin-bottom: 0; color: var(--text); text-decoration: none; display: block; font-family: 'Publico Banner', Georgia, serif; }
+  .card-title { font-size: 18px; font-weight: 700; line-height: 1.28; margin-bottom: 0; color: var(--text); text-decoration: none; display: block; font-family: var(--grot); }
   a.card-title:hover { text-decoration: underline; text-underline-offset: 3px; text-decoration-color: var(--card-accent, var(--muted)); }
   .card-finding { font-size: 14px; line-height: 1.7; color: var(--text); margin-bottom: 0; }
 
@@ -563,7 +610,7 @@
 
   .pol-basis { margin-top: 10px; }
   .pol-basis-label {
-    font-family: 'Publico Banner', Georgia, serif;
+    font-family: var(--grot);
     font-size: 16px; font-weight: 700; letter-spacing: -0.01em;
     color: var(--text); margin-bottom: 8px;
   }
@@ -584,11 +631,8 @@
     color: var(--accent); font-size: 12px; font-weight: 600;
     font-family: 'Haas Grotesk', 'Helvetica Neue', Arial, sans-serif;
   }
-  .pol-basis-chevron {
-    display: inline-block; font-size: 15px; line-height: 1;
-    transition: transform 0.15s;
-  }
-  .pol-basis-toggle[aria-expanded="true"] .pol-basis-chevron { transform: rotate(90deg); }
+  .pol-basis-chevron { /* see .ui-chevron */ }
+  .pol-basis-toggle[aria-expanded="true"] .pol-basis-chevron { transform: rotate(180deg); }
 
   .takeaways {
     max-height: 0; overflow: hidden;
@@ -603,9 +647,7 @@
     margin-bottom: 7px; line-height: 1.55;
   }
   .takeaway-item:last-child { margin-bottom: 0; }
-  .takeaway-num {
-    font-size: 12px; flex-shrink: 0; color: var(--accent);
-  }
+  .takeaway-num { color: var(--accent); align-self: flex-start; margin-top: 4px; }
 
   /* ── VIEW TOGGLE ────────────────────────────────────────── */
 
@@ -636,7 +678,7 @@
   .skip-link {
     position: absolute; left: 8px; top: -60px; z-index: 2000;
     background: var(--accent); color: #fff; padding: 8px 14px;
-    border-radius: 0 0 8px 8px; text-decoration: none; font-size: 14px;
+    border-radius: 0 0 var(--r-ctl) var(--r-ctl); text-decoration: none; font-size: 14px;
     font-family: 'Public Sans', 'Segoe UI', system-ui, sans-serif;
     transition: top 0.15s ease;
   }
@@ -663,15 +705,14 @@
     .pol-modal-actions { order: 3; flex-basis: 100%; justify-content: flex-start; margin: 12px 0 0; }
   }
   .cite-act, .pol-action-btn, .theme-copy-link {
-    background: var(--surface2); border: 1px solid var(--border); color: var(--accent);
-    border-radius: 7px; padding: 4px 11px; font-size: 12px; font-weight: 600;
+    background: var(--light-beige); border: 1px solid var(--navy); color: var(--navy);
+    border-radius: var(--r-ctl); padding: 4px 11px; font-size: 12px; font-weight: 600;
     cursor: pointer; font-family: 'Public Sans', 'Segoe UI', system-ui, sans-serif;
-    transition: background 0.15s, border-color 0.15s; white-space: nowrap;
+    transition: background 0.15s, color 0.15s; white-space: nowrap;
   }
   .pol-action-btn { padding: 5px 12px; }
   .cite-act:hover, .pol-action-btn:hover, .theme-copy-link:hover {
-    background: color-mix(in srgb, var(--accent) 10%, transparent);
-    border-color: color-mix(in srgb, var(--accent) 40%, transparent);
+    background: var(--navy); color: #fff;
   }
   .cite-act.copied, .pol-action-btn.copied, .theme-copy-link.copied {
     color: var(--text); border-color: var(--accent);
@@ -703,7 +744,7 @@
   .clog-group:first-child { padding-top: 0; }
   .clog-group:last-child { border-bottom: none; padding-bottom: 0; }
   .clog-date {
-    font-family: 'Publico Banner', Georgia, serif;
+    font-family: var(--grot);
     font-size: 15px; font-weight: 700; letter-spacing: -0.01em;
     color: var(--text); margin: 0 0 8px;
   }
@@ -740,7 +781,7 @@
   .theme-question {
     font-size: 25px; font-weight: 700; line-height: 1.25; color: var(--text);
     margin-bottom: 8px; letter-spacing: -0.02em;
-    font-family: 'Publico Banner', Georgia, serif;
+    font-family: var(--serif);
   }
   .theme-framing {
     font-size: 14px; line-height: 1.7; color: var(--text);
@@ -757,7 +798,7 @@
     color: var(--text); font-weight: 700;
   }
   .theme-section-label {
-    font-family: 'Publico Banner', Georgia, serif;
+    font-family: var(--grot);
     font-size: 17px; font-weight: 700; letter-spacing: -0.01em;
     color: var(--text); margin-bottom: 8px; margin-top: 24px;
     padding-top: 20px; border-top: 1px solid var(--border);
@@ -796,7 +837,7 @@
     margin-top: 14px; padding: 12px 16px;
     background: color-mix(in srgb, var(--accent) 8%, transparent);
     border-left: 3px solid var(--accent);
-    border-radius: 0 8px 8px 0;
+    border-radius: 0 var(--r-card) var(--r-card) 0;
   }
   .theme-leverage-label {
     font-size: 12px; font-weight: 700;
@@ -813,7 +854,7 @@
     border-top: 1px solid var(--border);
   }
   .theme-gaps-label {
-    font-family: 'Publico Banner', Georgia, serif;
+    font-family: var(--grot);
     font-size: 17px; font-weight: 700; letter-spacing: -0.01em;
     color: var(--text); margin-bottom: 8px;
     display: flex; align-items: center; justify-content: space-between;
@@ -833,7 +874,7 @@
     border-top: 1px solid var(--border);
   }
   .theme-refs-heading {
-    font-family: 'Publico Banner', Georgia, serif;
+    font-family: var(--grot);
     font-size: 17px; font-weight: 700; letter-spacing: -0.01em;
     color: var(--text); margin-bottom: 12px;
   }
@@ -848,11 +889,8 @@
     color: var(--accent); font-size: 12px; font-weight: 600;
     font-family: 'Haas Grotesk', 'Helvetica Neue', Arial, sans-serif;
   }
-  .theme-refs-chevron {
-    display: inline-block; font-size: 15px; line-height: 1;
-    transition: transform 0.15s;
-  }
-  .theme-refs-toggle[aria-expanded="true"] .theme-refs-chevron { transform: rotate(90deg); }
+  .theme-refs-chevron { /* see .ui-chevron */ }
+  .theme-refs-toggle[aria-expanded="true"] .theme-refs-chevron { transform: rotate(180deg); }
   .theme-refs-related { margin-top: 12px; }
   .syn-cite {
     color: var(--accent); text-decoration: none;
@@ -864,7 +902,7 @@
     border-bottom: 1px dotted color-mix(in srgb, var(--accent) 45%, transparent);
   }
   .pol-xref:hover { border-bottom-style: solid; }
-  .pol-xref:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 2px; }
+  .pol-xref:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: var(--r-tag); }
   .if-status-chip {
     display: inline-flex; align-items: center; gap: 7px;
     background: color-mix(in srgb, var(--accent) 8%, transparent);
@@ -881,7 +919,7 @@
     background: none; border-left: none; border-right: none; border-bottom: none;
   }
   .theme-implication-label {
-    font-family: 'Publico Banner', Georgia, serif;
+    font-family: var(--grot);
     font-size: 17px; font-weight: 700; letter-spacing: -0.01em;
     color: var(--text); margin-bottom: 8px;
   }
@@ -923,13 +961,8 @@
     cursor: pointer; user-select: none;
   }
   .theme-section-toggle:hover .theme-section-chevron { opacity: 0.9; }
-  .theme-section-chevron {
-    font-size: 18px; color: var(--text); opacity: 1;
-    transition: none; display: inline-block; line-height: 1; font-style: normal;
-    font-weight: 300;
-  }
-  .theme-section-chevron::before { content: '−'; }
-  .theme-section-toggle.is-collapsed .theme-section-chevron::before { content: '+'; }
+  .theme-section-chevron { color: var(--text); transform: rotate(180deg); }
+  .theme-section-toggle.is-collapsed .theme-section-chevron { transform: rotate(0deg); }
   .theme-collapsible {
     overflow: hidden; max-height: 3000px; opacity: 1;
     transition: max-height 0.28s ease, opacity 0.2s;
@@ -939,7 +972,7 @@
   /* ── PAPER THEME BADGES (Papers view) ───────────────────────── */
   .paper-theme-badge {
     font-size: 9px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase;
-    border-radius: 20px; padding: 1px 5px; cursor: pointer; white-space: nowrap;
+    border-radius: var(--r-tag); padding: 1px 5px; cursor: pointer; white-space: nowrap;
     border: 1px solid; background: none; font-family: inherit; line-height: 1.4;
     opacity: 0.55; transition: opacity 0.15s;
   }
@@ -1041,7 +1074,7 @@
   .modal-backdrop.open { display: flex; }
   .modal {
     background: var(--surface); border: 1px solid var(--border);
-    border-radius: 14px; padding: 28px 28px 24px;
+    border-radius: var(--r-modal); padding: 28px 28px 24px;
     max-width: 640px; width: calc(100% - 40px);
     max-height: 80vh; display: flex; flex-direction: column;
     box-shadow: 0 8px 40px rgba(44,50,84,0.18);
@@ -1050,12 +1083,12 @@
     display: flex; align-items: center; justify-content: space-between;
     margin-bottom: 18px; flex-shrink: 0;
   }
-  .modal-title { font-size: 18px; font-weight: 700; letter-spacing: -0.01em; font-family: 'Publico Banner', Georgia, serif; }
+  .modal-title { font-size: 18px; font-weight: 700; letter-spacing: -0.01em; font-family: var(--grot); }
 
   .modal-close {
     background: none; border: none; cursor: pointer;
     color: var(--muted); font-size: 19px; line-height: 1; padding: 4px;
-    border-radius: 6px; transition: color 0.15s;
+    border-radius: var(--r-ctl); transition: color 0.15s;
   }
   .modal-close:hover { color: var(--text); }
   .modal-body { overflow-y: auto; scrollbar-width: thin; }
@@ -1088,7 +1121,7 @@
   /* ── Policy pop-out modal ───────────────────────────────── */
   .pol-modal {
     background: var(--surface); border: 1px solid var(--border);
-    border-radius: 14px; padding: 0;
+    border-radius: var(--r-modal); padding: 0;
     max-width: 940px; width: calc(100% - 40px);
     max-height: 88vh; display: flex; flex-direction: column;
     box-shadow: 0 8px 40px rgba(44,50,84,0.2);
@@ -1138,7 +1171,7 @@
     border-bottom: 1px solid var(--border);
   }
   .pol-modal-title {
-    font-family: 'Publico Banner', Georgia, serif;
+    font-family: var(--grot);
     font-size: 20px; font-weight: 700; letter-spacing: -0.01em;
     color: var(--text); line-height: 1.25; flex: 1; margin-right: 12px;
   }
@@ -1168,7 +1201,7 @@
   .pol-modal-close {
     background: none; border: none; cursor: pointer;
     color: var(--muted); font-size: 18px; line-height: 1; padding: 4px;
-    border-radius: 6px; transition: color 0.15s; flex-shrink: 0;
+    border-radius: var(--r-ctl); transition: color 0.15s; flex-shrink: 0;
   }
   .pol-modal-close:hover { color: var(--text); }
   .pol-modal-body {
@@ -1181,7 +1214,7 @@
   }
   .pol-modal-section:last-child { padding-bottom: 0; border-bottom: none; }
   .pol-modal-label {
-    font-family: 'Publico Banner', Georgia, serif;
+    font-family: var(--grot);
     font-size: 16px; font-weight: 700; letter-spacing: -0.01em;
     color: var(--text);
   }
@@ -1189,7 +1222,7 @@
   .pol-modal-text.muted { color: var(--muted); }
 
   /* How it interacts — pairs (green) / competes (amber), echoing the map legend */
-  :root { --rel-pair: #2e8b57; --rel-compete: #b8791a; }
+  :root { --rel-pair: var(--green-deep); --rel-compete: var(--gold-deep); }
   .pol-rel-group { margin-top: 12px; }
   .pol-rel-group:first-of-type { margin-top: 2px; }
   .pol-rel-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 4px 26px; }
@@ -1210,7 +1243,7 @@
   .pol-rel-item .pol-xref { font-size: 13.5px; font-weight: 600; }
   .pol-rel-why { display: block; font-size: 12.5px; color: var(--muted); line-height: 1.5; margin-top: 2px; }
   .finding-modal-stat {
-    font-family: 'Publico Banner', Georgia, serif;
+    font-family: var(--serif);
     font-size: 30px; font-weight: 700; line-height: 1; color: var(--accent);
     margin-bottom: 8px;
   }
@@ -1260,7 +1293,7 @@
   }
   .about-section:last-child { border-bottom: none; }
   .about-section-label {
-    font-family: 'Publico Banner', Georgia, serif;
+    font-family: var(--grot);
     font-size: 17px; font-weight: 700; letter-spacing: -0.01em;
     color: var(--text); margin-bottom: 10px;
   }
@@ -1337,8 +1370,8 @@
   #factBankArea .mode-toggle { display: flex; gap: 10px; padding: 18px 0 4px; flex-wrap: wrap; }
   #factBankArea .mode-btn {
     flex: 1; min-width: 240px; text-align: left; cursor: pointer;
-    background: var(--light-beige); border: 1.5px solid var(--divider);
-    border-radius: 12px; padding: 13px 18px 12px;
+    background: var(--light-beige); border: 1.5px solid var(--navy);
+    border-radius: var(--r-card); padding: 13px 18px 12px;
     font-family: var(--grot); color: var(--text);
     transition: border-color 0.15s, background 0.15s, color 0.15s;
   }
@@ -1371,14 +1404,21 @@
   }
   #factBankArea input[type="search"] {
     width: 100%; background: var(--light-beige); border: 1px solid var(--divider);
-    color: var(--text); border-radius: 9px; padding: 8px 12px 8px 34px;
+    color: var(--text); border-radius: var(--r-ctl); padding: 8px 12px 8px 34px;
     font-size: 13.5px; outline: none; transition: border-color 0.18s; font-family: var(--sans);
   }
   #factBankArea input[type="search"]:focus { border-color: var(--green); }
   #factBankArea input[type="search"]::placeholder { color: var(--text); opacity: 0.5; }
   #factBankArea select {
-    background: var(--light-beige); border: 1px solid var(--divider); color: var(--text);
-    border-radius: 9px; padding: 8px 8px; font-size: 13px; font-family: var(--sans);
+    /* native OS triangle suppressed; same chevron as every other control */
+    appearance: none; -webkit-appearance: none;
+    background-color: var(--light-beige);
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%232c3254' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 9px center;
+    background-size: 12px 12px;
+    border: 1px solid var(--divider); color: var(--text);
+    border-radius: var(--r-ctl); padding: 8px 28px 8px 10px; font-size: 13px; font-family: var(--sans);
     outline: none; cursor: pointer;
   }
   #factBankArea select:focus { border-color: var(--green); }
@@ -1388,15 +1428,15 @@
   }
   #factBankArea .kw-toggle {
     display: inline-flex; align-items: center; gap: 7px; cursor: pointer;
-    background: var(--light-beige); border: 1px solid var(--divider); border-radius: 9px;
+    background: var(--light-beige); border: 1px solid var(--navy); border-radius: var(--r-ctl);
     padding: 8px 13px; font-family: var(--grot); font-size: 13px; font-weight: 500;
-    color: var(--headline); white-space: nowrap; transition: border-color 0.15s;
+    color: var(--headline); white-space: nowrap; transition: background 0.15s;
   }
-  #factBankArea .kw-toggle:hover { border-color: var(--green); }
-  #factBankArea .kw-toggle .chev { transition: transform 0.18s; font-size: 11px; line-height: 1; }
+  #factBankArea .kw-toggle:hover { background: color-mix(in srgb, var(--navy) 7%, var(--light-beige)); }
+  #factBankArea .kw-toggle .chev { /* see .ui-chevron */ }
   #factBankArea .kw-toggle[aria-expanded="true"] .chev { transform: rotate(180deg); }
   #factBankArea .kw-toggle .kw-active-count {
-    background: var(--green); color: var(--headline); border-radius: 10px;
+    background: var(--green); color: var(--headline); border-radius: var(--r-tag);
     font-size: 11px; font-weight: 600; padding: 0 7px; line-height: 17px;
   }
   #factBankArea .kw-panel { display: grid; grid-template-rows: 0fr; transition: grid-template-rows 0.25s ease; }
@@ -1406,13 +1446,13 @@
   #factBankArea .kw-pill {
     display: inline-flex; align-items: center; gap: 6px;
     font-family: var(--grot); font-size: 12px; font-weight: 500; cursor: pointer; white-space: nowrap;
-    background: var(--light-beige); border: 1px solid var(--divider); border-radius: 20px;
-    padding: 4px 12px; color: var(--text);
-    transition: border-color 0.15s, background 0.15s;
+    background: var(--light-beige); border: 1px solid var(--navy); border-radius: var(--r-ctl);
+    padding: 4px 12px; color: var(--navy);
+    transition: background 0.15s;
   }
-  #factBankArea .kw-pill:hover { border-color: var(--green); }
+  #factBankArea .kw-pill:hover { background: color-mix(in srgb, var(--navy) 7%, var(--light-beige)); }
   #factBankArea .kw-pill[aria-pressed="true"] {
-    background: var(--navy); border-color: var(--navy); color: var(--beige); font-weight: 600;
+    background: var(--navy); border-color: var(--navy); color: #fff; font-weight: 600;
   }
   #factBankArea .kw-count { font-size: 11px; opacity: 0.7; font-variant-numeric: tabular-nums; }
   #factBankArea .result-line {
@@ -1437,14 +1477,14 @@
     letter-spacing: 0.06em; text-transform: uppercase; color: var(--headline);
   }
   #factBankArea .fact-quote {
-    font-family: var(--serif); font-weight: 400;
+    font-family: var(--sans); font-weight: 400;
     font-size: 15px; line-height: 1.55; letter-spacing: 0; color: var(--text);
   }
   #factBankArea .fact-quote::before { content: "\201C"; color: var(--green); }
   #factBankArea .fact-quote::after  { content: "\201D"; color: var(--green); }
   #factBankArea .fact-caveat {
     margin-top: 12px; padding: 9px 14px;
-    background: var(--beige); border-left: 3px solid var(--green); border-radius: 0 8px 8px 0;
+    background: var(--beige); border-left: 3px solid var(--green); border-radius: 0 var(--r-card) var(--r-card) 0;
     font-size: 13px; line-height: 1.55;
   }
   #factBankArea .fact-caveat .lbl-grot { display: block; margin-bottom: 2px; }
@@ -1453,7 +1493,7 @@
   #factBankArea .chip {
     display: inline-flex; align-items: center; gap: 5px;
     font-family: var(--grot); font-size: 11px; font-weight: 500; letter-spacing: 0.02em;
-    border-radius: 6px; padding: 2.5px 9px;
+    border-radius: var(--r-tag); padding: 2.5px 9px;
     background: var(--beige); border: 1px solid var(--divider); color: var(--text);
   }
   #factBankArea .chip-rating { color: var(--headline); font-weight: 600; }
@@ -1467,7 +1507,7 @@
   #factBankArea .fact-meta strong { font-weight: 600; color: var(--headline); }
   #factBankArea .fact-context {
     margin-top: 10px; padding: 10px 14px;
-    border: 1px solid var(--divider); border-radius: 8px; background: var(--beige);
+    border: 1px solid var(--divider); border-radius: var(--r-card); background: var(--beige);
     font-size: 12.5px; line-height: 1.65; font-style: italic;
   }
   #factBankArea .fact-context .lbl-grot { display: block; font-style: normal; margin-bottom: 3px; }
@@ -1487,8 +1527,8 @@
     font-family: var(--grot); font-size: 11.5px; letter-spacing: 0.03em; color: var(--purple); white-space: nowrap;
   }
   #factBankArea .act-btn {
-    background: transparent; border: 1px solid var(--navy); color: var(--navy);
-    border-radius: 7px; padding: 4px 12px; font-family: var(--grot);
+    background: var(--light-beige); border: 1px solid var(--navy); color: var(--navy);
+    border-radius: var(--r-ctl); padding: 4px 12px; font-family: var(--grot);
     font-size: 12px; font-weight: 600; letter-spacing: 0.02em;
     cursor: pointer; white-space: nowrap; text-decoration: none;
     transition: background 0.15s, color 0.15s;
@@ -1500,13 +1540,13 @@
     font-family: var(--grot); font-size: 11.5px; font-weight: 600; letter-spacing: 0.04em;
     color: var(--purple); background: none; border: none; cursor: pointer; padding: 0;
   }
-  #factBankArea .expand-hint .chev { display: inline-block; transition: transform 0.2s; font-size: 13px; line-height: 1; }
-  #factBankArea .open .expand-hint .chev { transform: rotate(90deg); }
+  #factBankArea .expand-hint .chev { /* see .ui-chevron */ }
+  #factBankArea .open .expand-hint .chev { transform: rotate(180deg); }
   #factBankArea .kf-empty-state { padding: 48px 0; text-align: center; color: var(--text); font-size: 14px; }
 
   /* ── MODE 1: BY PAPER ── */
   #factBankArea .paper-group {
-    background: var(--light-beige); border: 1px solid var(--divider); border-radius: 12px;
+    background: var(--light-beige); border: 1px solid var(--divider); border-radius: var(--r-card);
     margin-top: 18px; overflow: hidden;
   }
   #factBankArea .pg-facts { display: flex; flex-direction: column; }
@@ -1531,7 +1571,7 @@
 
   /* ── MODE 2: ALL FACTS ── */
   #factBankArea .fact-card {
-    background: var(--light-beige); border: 1px solid var(--divider); border-radius: 12px;
+    background: var(--light-beige); border: 1px solid var(--divider); border-radius: var(--r-card);
     border-left: 3px solid var(--green);
     padding: 18px 22px 16px; margin-top: 14px; cursor: pointer; transition: background 0.15s;
   }
@@ -1556,6 +1596,7 @@
   @media (prefers-reduced-motion: reduce) {
     #factBankArea .cwrap, #factBankArea .details, #factBankArea .kw-panel,
     #factBankArea .expand-hint .chev, #factBankArea .kw-toggle .chev { transition: none; }
+    .ui-chevron { transition: none; }
   }
 
   /* ── What's new (header button + count pill) ─────────────── */
@@ -1575,7 +1616,7 @@
   .header-changed-pill {
     display: inline-flex; align-items: center; justify-content: center;
     min-width: 18px; height: 18px; padding: 0 5px; margin-left: 7px;
-    border-radius: 999px; background: var(--green); color: var(--headline);
+    border-radius: var(--r-tag); background: var(--green); color: var(--headline);
     font-size: 11px; font-weight: 700; line-height: 1;
   }
   .header-changed-pill[hidden] { display: none; }
@@ -1605,7 +1646,7 @@
     display: block;
     font-size: 18px; font-weight: 700; color: var(--text);
     letter-spacing: -0.01em; margin-bottom: 5px;
-    font-family: 'Haas Grotesk', Georgia, serif;
+    font-family: var(--grot);
   }
 
   /* ── Policy filter bar (matches theme-nav-strip) ─────────── */
@@ -1629,7 +1670,7 @@
   .pol-columns { display: none; }
   .pol-col {
     border: 1px solid var(--border);
-    border-radius: 12px; overflow: hidden;
+    border-radius: var(--r-card); overflow: hidden;
     border-top: 2px solid color-mix(in srgb, var(--pol-cat-color, var(--border)) 45%, var(--border));
     background: var(--surface);
   }
@@ -1641,7 +1682,7 @@
   .pol-col-title {
     font-size: 15px; font-weight: 700; letter-spacing: -0.01em;
     color: color-mix(in srgb, var(--pol-cat-color, var(--text)) 45%, var(--text));
-    font-family: 'Publico Banner', Georgia, serif;
+    font-family: var(--grot);
     line-height: 1.3; margin-bottom: 4px;
   }
   .pol-col-desc {
@@ -1670,7 +1711,7 @@
   .pol-cat-row {
     border: 1px solid var(--border);
     border-top: 3px solid var(--cat-color, var(--border));
-    border-radius: 12px; overflow: hidden;
+    border-radius: var(--r-card); overflow: hidden;
     background: var(--surface);
   }
   .pol-cat-row-head {
@@ -1680,7 +1721,7 @@
   }
   .pol-cat-row-title {
     display: flex; align-items: baseline; gap: 9px;
-    font-family: 'Publico Banner', Georgia, serif;
+    font-family: var(--grot);
     font-size: 18px; font-weight: 700; letter-spacing: -0.01em;
     color: var(--headline); line-height: 1.2;
   }
@@ -1713,7 +1754,7 @@
     background: var(--surface);
     border: 1px solid var(--border);
     border-left: 3px solid color-mix(in srgb, var(--cat-color, var(--border)) 45%, var(--border));
-    border-radius: 8px;
+    border-radius: var(--r-card);
     padding: 11px 12px 11px 13px; cursor: pointer;
     transition: background 0.15s, border-color 0.15s, box-shadow 0.15s;
   }
@@ -1733,18 +1774,17 @@
      Hover color is mixed toward --headline so it stays legible for the
      lighter category hues (gold, green). */
   .pol-cat-card-arrow {
-    flex-shrink: 0; align-self: center;
-    font-size: 15px; line-height: 1; color: var(--muted); opacity: 0.35;
+    align-self: center; color: var(--muted); opacity: 0.35;
     transition: opacity 0.15s, color 0.15s, transform 0.15s;
   }
   .pol-cat-card:hover .pol-cat-card-arrow {
     opacity: 1;
     color: color-mix(in srgb, var(--cat-color, var(--accent)) 65%, var(--headline));
-    transform: translateX(3px);
+    transform: rotate(-90deg) translateY(3px);
   }
   @media (prefers-reduced-motion: reduce) {
     .pol-cat-card-arrow { transition: opacity 0.15s, color 0.15s; }
-    .pol-cat-card:hover .pol-cat-card-arrow { transform: none; }
+    .pol-cat-card:hover .pol-cat-card-arrow { transform: rotate(-90deg); }
   }
   /* View mode toggle */
 
@@ -1753,7 +1793,7 @@
   }
   .pol-item-wrap {
     border: 1px solid color-mix(in srgb, var(--level-color, var(--border)) 18%, var(--border));
-    border-radius: 10px; overflow: hidden; position: relative;
+    border-radius: var(--r-card); overflow: hidden; position: relative;
     background: color-mix(in srgb, var(--level-color, #ffffff) 6%, #ffffff);
     transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
   }
@@ -1765,7 +1805,7 @@
   .pol-item-wrap::after {
     content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
     background: linear-gradient(to right, color-mix(in srgb, var(--level-color, transparent) 60%, transparent) 0%, transparent 65%);
-    border-radius: 10px 10px 0 0;
+    border-radius: var(--r-card) var(--r-card) 0 0;
   }
   .pol-item-wrap:hover {
     transform: translateY(-2px);
@@ -1783,7 +1823,7 @@
     color: color-mix(in srgb, var(--level-color, var(--muted)) 65%, var(--muted));
     background: color-mix(in srgb, var(--level-color, var(--muted)) 7%, transparent);
     border: 1px solid color-mix(in srgb, var(--level-color, var(--muted)) 18%, var(--border));
-    border-radius: 4px; padding: 2px 7px;
+    border-radius: var(--r-tag); padding: 2px 7px;
     white-space: nowrap;
   }
   .pol-item-title {
@@ -1797,23 +1837,23 @@
      the Policy Map), which would also hide this if it shared the class. */
   .pol-subview-toggle {
     display: flex; align-items: center; gap: 2px;
-    background: var(--surface); border: 1px solid var(--border);
-    border-radius: 20px; padding: 3px; width: fit-content;
+    background: var(--light-beige); border: 1px solid var(--navy);
+    border-radius: var(--r-ctl-outer); padding: 3px; width: fit-content;
     margin: 20px 28px 0;
   }
   .pol-subview-btn {
     padding: 5px 16px; font-size: 12px; font-weight: 500;
-    border: none; background: transparent; border-radius: 16px;
-    cursor: pointer; color: var(--muted); font-family: inherit;
+    border: none; background: transparent; border-radius: var(--r-ctl);
+    cursor: pointer; color: var(--navy); font-family: inherit;
     transition: all 0.15s; white-space: nowrap; letter-spacing: 0.015em;
   }
-  .pol-subview-btn.active { background: var(--accent); color: #fff; font-weight: 600; }
-  .pol-subview-btn:hover:not(.active) { color: var(--text); background: rgba(58,97,134,0.07); }
+  .pol-subview-btn.active { background: var(--navy); color: #fff; font-weight: 600; }
+  .pol-subview-btn:hover:not(.active) { color: var(--text); background: color-mix(in srgb, var(--navy) 7%, transparent); }
 
   /* ── Policy Links graph (test-run, hand-rolled SVG force layout) ── */
   .pol-links-wrap { padding: 20px 28px 50px; }
   .pol-links-graph-outer {
-    border: 1px solid var(--border); border-radius: 12px;
+    border: 1px solid var(--border); border-radius: var(--r-card);
     background: var(--surface); overflow: hidden; position: relative;
   }
   .pol-links-svg { display: block; width: 100%; height: auto; min-height: 560px; }
@@ -1868,7 +1908,7 @@
   :focus-visible {
     outline: 2px solid var(--accent);
     outline-offset: 2px;
-    border-radius: 3px;
+    border-radius: var(--r-tag);
   }
   button:focus-visible, [role="button"]:focus-visible {
     outline: 2px solid var(--accent);
@@ -1882,13 +1922,13 @@
   .jd-notice {
     display: flex; gap: 12px; align-items: flex-start;
     background: var(--gold); color: var(--headline);
-    border-radius: 10px; padding: 14px 16px; margin: 20px 0 4px;
+    border-radius: var(--r-card); padding: 14px 16px; margin: 20px 0 4px;
     font-size: 13.5px; line-height: 1.55;
   }
   .jd-notice .tag {
     font-family: var(--grot); font-weight: 700; letter-spacing: 0.08em;
     text-transform: uppercase; font-size: 11px; color: var(--purple);
-    border: 1.5px solid var(--purple); border-radius: 5px;
+    border: 1.5px solid var(--purple); border-radius: var(--r-tag);
     padding: 3px 7px; flex-shrink: 0; margin-top: 1px;
   }
   .jd-notice b { font-weight: 700; }
@@ -1908,14 +1948,14 @@
     text-transform: uppercase; color: var(--green); font-weight: 600; margin-bottom: 7px;
   }
   .jd-h {
-    font-family: var(--serif); font-size: clamp(20px, 2.4vw, 25px);
+    font-family: var(--grot); font-size: clamp(20px, 2.4vw, 25px);
     line-height: 1.25; color: var(--headline); margin-bottom: 13px; font-weight: 500;
   }
   .jd-p { font-size: 14.5px; line-height: 1.75; color: var(--text); margin-bottom: 14px; }
   .jd-p a { color: var(--navy); }
   .jd-chart-wrap {
     background: var(--surface); border: 1px solid var(--border);
-    border-radius: 10px; padding: 16px 14px 12px; margin: 18px 0 10px;
+    border-radius: var(--r-card); padding: 16px 14px 12px; margin: 18px 0 10px;
   }
   .jd-chart-title { font-family: var(--grot); font-size: 13px; font-weight: 600; color: var(--headline); margin: 0 4px 2px; }
   .jd-chart-sub { font-size: 11.5px; color: var(--muted); margin: 0 4px 8px; }
@@ -1928,7 +1968,7 @@
   .jd-answer {
     display: flex; gap: 14px; align-items: flex-start;
     background: var(--navy); color: var(--beige);
-    border-radius: 10px; padding: 15px 18px; margin: 16px 0 6px;
+    border-radius: var(--r-card); padding: 15px 18px; margin: 16px 0 6px;
   }
   .jd-answer .lab {
     font-family: var(--grot); font-weight: 700; letter-spacing: 0.07em;
@@ -1937,15 +1977,15 @@
   }
   .jd-answer .txt { font-size: 14px; line-height: 1.65; }
   .jd-stats { display: flex; flex-wrap: wrap; gap: 10px; margin: 16px 0 4px; }
-  .jd-stat { flex: 1 1 140px; background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 12px 14px; }
+  .jd-stat { flex: 1 1 140px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--r-card); padding: 12px 14px; }
   .jd-stat .n { font-family: var(--serif); font-size: 25px; color: var(--headline); line-height: 1.05; }
   .jd-stat .n small { font-size: 14px; color: var(--muted); font-family: var(--sans); }
-  .jd-stat .n .pos { color: #b06a4f; }
+  .jd-stat .n .pos { color: var(--red-deep); }
   .jd-stat .l { font-family: var(--grot); font-size: 11px; color: var(--muted); margin-top: 7px; line-height: 1.45; }
   .jd-tooltip {
     position: fixed; pointer-events: none; background: var(--navy); color: var(--beige);
     font-family: var(--sans); font-size: 12px; line-height: 1.5; padding: 7px 10px;
-    border-radius: 6px; box-shadow: 0 4px 16px rgba(0,0,0,0.28); opacity: 0;
+    border-radius: var(--r-ctl); box-shadow: 0 4px 16px rgba(0,0,0,0.28); opacity: 0;
     transition: opacity 0.1s; z-index: 60; max-width: 250px;
   }
   .jd-tooltip b { color: #fff; }
@@ -1964,7 +2004,7 @@
   .ad-head {
     font-size: 13.5px; line-height: 1.6; color: var(--headline);
     background: var(--surface2); border-left: 3px solid var(--green);
-    border-radius: 0 8px 8px 0; padding: 11px 14px; margin: 14px 0 4px;
+    border-radius: 0 var(--r-card) var(--r-card) 0; padding: 11px 14px; margin: 14px 0 4px;
   }
   .ad-head .ad-bench { color: var(--muted); font-size: 12.5px; }
   .ad-table-wrap { overflow-x: auto; margin: 14px 0 4px; }
@@ -1986,18 +2026,18 @@
     display: flex; gap: 14px; align-items: flex-start;
     background: var(--surface2); border: 1px solid var(--border);
     border-left: 3px solid var(--gold);
-    border-radius: 0 10px 10px 0; padding: 15px 18px; margin: 18px 0 6px;
+    border-radius: 0 var(--r-card) var(--r-card) 0; padding: 15px 18px; margin: 18px 0 6px;
     font-size: 14px; line-height: 1.65; color: var(--text);
   }
   .ad-handoff a { color: var(--navy); font-weight: 600; }
 
   /* ── JOB DISPLACEMENT: adoption monitor section ──────────── */
   .jdm-board { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 10px; margin: 16px 0 6px; }
-  .jdm-card { background: var(--surface); border: 1px solid var(--border); border-radius: 9px; padding: 11px 13px 10px; }
+  .jdm-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--r-card); padding: 11px 13px 10px; }
   .jdm-card-name { font-family: var(--grot); font-size: 10.5px; letter-spacing: 0.05em; text-transform: uppercase; color: var(--muted); }
   .jdm-card-val { font-family: var(--serif); font-size: 24px; line-height: 1.15; color: var(--headline); margin-top: 3px; }
   .jdm-card-val small { font-size: 12px; color: var(--muted); font-family: var(--sans); }
-  .jdm-card-val.neg { color: #b06a4f; }
+  .jdm-card-val.neg { color: var(--red-deep); }
   .jdm-spark { width: 100%; height: 34px; display: block; margin: 5px 0 3px; }
   .jdm-card-foot { font-family: var(--grot); font-size: 10px; color: var(--muted); }
   .jdm-card-note { font-size: 10.5px; line-height: 1.45; color: var(--muted); margin-top: 5px; }
@@ -2172,7 +2212,7 @@
           </div>
           <div class="controls-row controls-row2">
             <button class="kw-toggle" id="kwToggle" aria-expanded="false" aria-controls="kwPanel">
-              Keywords <span class="kw-active-count" id="kwActiveCount" hidden></span> <span class="chev" aria-hidden="true">&#9662;</span>
+              Keywords <span class="kw-active-count" id="kwActiveCount" hidden></span> <span class="ui-chevron chev" aria-hidden="true"></span>
             </button>
           </div>
           <div class="kw-panel" id="kwPanel">
@@ -2591,7 +2631,7 @@
         </svg>
         <h3>No results</h3>
         <p>Try adjusting your search or clearing filters.</p>
-        <button id="emptyStateClear" style="display:none;margin-top:12px;background:var(--surface2);border:1px solid var(--border);color:var(--accent);border-radius:8px;padding:7px 16px;font-size: 13px;cursor:pointer;font-family:inherit">Clear all filters</button>
+        <button id="emptyStateClear" style="display:none;margin-top:12px;background:var(--surface2);border:1px solid var(--border);color:var(--accent);border-radius: var(--r-ctl);padding:7px 16px;font-size: 13px;cursor:pointer;font-family:inherit">Clear all filters</button>
       </div>
     </div>
 
@@ -2787,8 +2827,8 @@
   };
   const ECON_CATS = [
     { id: 'econ-labor',  label: 'Labor Markets',             color: '#2C3254' },
-    { id: 'econ-macro',  label: 'Productivity & Macro',      color: '#3A6186' },
-    { id: 'econ-dist',   label: 'Distribution & Inequality', color: '#FF8361' },
+    { id: 'econ-macro',  label: 'Productivity & Macro',      color: '#472B51' },
+    { id: 'econ-dist',   label: 'Distribution & Inequality', color: '#C99A3F' },
     { id: 'econ-policy', label: 'Policy & Adjustment',       color: '#70AD8F' },
   ];
   const ECON_THEME_CONFIG = {
@@ -2807,11 +2847,11 @@
 
   // resolve CSS var to hex for use in inline styles that need a real color
   const COLOR_MAP = {
-    'var(--c0)':'#2C3254','var(--c1)':'#FF8361','var(--c2)':'#472B51','var(--c3)':'#70AD8F',
-    'var(--c4)':'#EBC382','var(--c5)':'#2C3254','var(--c6)':'#472B51','var(--c7)':'#70AD8F',
-    'var(--c8)':'#FF8361','var(--c9)':'#3C4164','var(--c10)':'#2C3254','var(--c11)':'#70AD8F',
-    'var(--c12)':'#EBC382','var(--c13)':'#B03030','var(--g-us)':'#2C3254','var(--g-intl)':'#FF8361',
-    'var(--s-emergent)':'#70AD8F','var(--s-current)':'#2C3254','var(--s-stale)':'#9BA5B5',
+    'var(--c0)':'#2C3254','var(--c1)':'#70AD8F','var(--c2)':'#472B51','var(--c3)':'#C99A3F',
+    'var(--c4)':'#FFBFA7','var(--c5)':'#3C4164','var(--c6)':'#2C3254','var(--c7)':'#70AD8F',
+    'var(--c8)':'#472B51','var(--c9)':'#C99A3F','var(--c10)':'#FFBFA7','var(--c11)':'#3C4164',
+    'var(--c12)':'#2C3254','var(--c13)':'#70AD8F','var(--g-us)':'#2C3254','var(--g-intl)':'#C99A3F',
+    'var(--s-emergent)':'#70AD8F','var(--s-current)':'#2C3254','var(--s-stale)':'#6d7091',
   };
   const resolve = v => COLOR_MAP[v] || v;
 
@@ -3008,12 +3048,12 @@
       const sep2 = document.createElement('div');
       sep2.className = 'if-sep';
       bar.appendChild(sep2);
-      const clearBtn = mkPill('Clear all', '#FF8361', false, () => {
+      const clearBtn = mkPill('Clear all', 'var(--red-deep)', false, () => {
         activeStatus = 'all'; activeGeo = 'all'; activeCat = 'all'; activeEvidence = 'all'; searchQuery = '';
         const s = document.getElementById('searchInput'); if (s) s.value = '';
         render();
       });
-      clearBtn.style.setProperty('--pill-color', '#FF8361');
+      clearBtn.style.setProperty('--pill-color', 'var(--red-deep)');
       bar.appendChild(clearBtn);
     }
   }
@@ -3096,7 +3136,7 @@
 
     const takeawaysHTML = (entry.takeaways || []).map((t, i) => `
       <div class="takeaway-item">
-        <span class="takeaway-num" aria-hidden="true">▸</span>
+        <span class="ui-chevron sm right takeaway-num" aria-hidden="true"></span>
         <span>${t}</span>
       </div>`).join('');
 
@@ -3201,9 +3241,9 @@
 
   // ── themes view ──────────────────────────────────────────────
   const CONFIDENCE_META = {
-    consensus: { label: 'Strong consensus', color: '#2E8B57', icon: '✓', desc: 'Multiple independent research streams reach the same conclusion. The research base is stable and convergent across independent methodologies.' },
+    consensus: { label: 'Strong consensus', color: '#4A8A70', icon: '✓', desc: 'Multiple independent research streams reach the same conclusion. The research base is stable and convergent across independent methodologies.' },
     emerging:  { label: 'Emerging evidence', color: '#2C3254', icon: '~', desc: 'The direction is clear but the evidence base is still developing. Worth tracking closely, as conclusions may sharpen as more research accumulates.' },
-    contested: { label: 'Contested',         color: '#C0392B', icon: '!', desc: 'Credible researchers reach meaningfully different conclusions. Institutional positions on this topic should be held with explicit acknowledgment of the disagreement.' },
+    contested: { label: 'Contested',         color: '#B0503A', icon: '!', desc: 'Credible researchers reach meaningfully different conclusions. Institutional positions on this topic should be held with explicit acknowledgment of the disagreement.' },
   };
 
   function buildThemeCard(theme, paperMap, overridePaperIds) {
@@ -3252,7 +3292,7 @@
           <div class="theme-refs-wrap">
             <h3 class="theme-refs-heading">References</h3>
             ${citedPapers.length ? `<div class="theme-refs">${citedPapers.map(renderRef).join('')}</div>` : ''}
-            ${relN ? `<button class="theme-refs-toggle" type="button" aria-expanded="false"><span class="theme-refs-chevron" aria-hidden="true">&rsaquo;</span><span class="theme-refs-toggle-text">Show ${relN} related ${relN === 1 ? 'study' : 'studies'}</span></button>
+            ${relN ? `<button class="theme-refs-toggle" type="button" aria-expanded="false"><span class="ui-chevron theme-refs-chevron" aria-hidden="true"></span><span class="theme-refs-toggle-text">Show ${relN} related ${relN === 1 ? 'study' : 'studies'}</span></button>
             <div class="theme-refs theme-refs-related" style="display:none">${relatedPapers.map(renderRef).join('')}</div>` : ''}
           </div>` : '';
 
@@ -3282,7 +3322,7 @@
           ${theme.framing ? `<div class="theme-framing"><span class="framing-label">Thesis:</span> ${theme.framing}</div>` : ''}
 
           <h3 class="theme-section-heading"><span class="theme-section-label theme-section-toggle" role="button" tabindex="0" data-section="synthesis" style="justify-content:flex-start; gap:10px">
-            What the research shows <span class="theme-section-chevron" aria-hidden="true"></span>
+            What the research shows <span class="ui-chevron theme-section-chevron" aria-hidden="true"></span>
           </span></h3>
           <div class="theme-collapsible" data-collapsible="synthesis">
             <div class="theme-synthesis">${injectCitations((activeLens === 'economist' && theme.econSynthesis) ? theme.econSynthesis : theme.synthesis, paperMap)}</div>
@@ -3290,7 +3330,7 @@
 
           ${workingItems ? `<div class="theme-working-wrap">
             <h3 class="theme-section-heading"><span class="theme-section-label theme-section-toggle" role="button" tabindex="0" data-section="working">
-              What's working <span class="theme-section-chevron" aria-hidden="true"></span>
+              What's working <span class="ui-chevron theme-section-chevron" aria-hidden="true"></span>
             </span></h3>
             <div class="theme-collapsible" data-collapsible="working">
               <div class="theme-working">${workingItems}</div>
@@ -3299,7 +3339,7 @@
 
           <div class="theme-risk-wrap">
             <h3 class="theme-section-heading"><span class="theme-section-label theme-section-toggle" role="button" tabindex="0" data-section="risk">
-              Risks observed &amp; points of leverage <span class="theme-section-chevron" aria-hidden="true"></span>
+              Risks observed &amp; points of leverage <span class="ui-chevron theme-section-chevron" aria-hidden="true"></span>
             </span></h3>
             <div class="theme-collapsible" data-collapsible="risk">
               <div class="theme-risk-body" style="margin-top:4px">${injectCitations(theme.risk.summary, paperMap)}</div>
@@ -3312,7 +3352,7 @@
 
           <div class="theme-implication-wrap">
             <h3 class="theme-section-heading"><span class="theme-implication-label theme-section-toggle" role="button" tabindex="0" data-section="implication">
-              What this means for institutions <span class="theme-section-chevron" aria-hidden="true"></span>
+              What this means for institutions <span class="ui-chevron theme-section-chevron" aria-hidden="true"></span>
             </span></h3>
             <div class="theme-collapsible" data-collapsible="implication">
               <div class="theme-implication">${injectCitations(theme.implication, paperMap)}</div>
@@ -3321,7 +3361,7 @@
 
           <div class="theme-gaps-wrap">
             <h3 class="theme-section-heading"><span class="theme-gaps-label theme-section-toggle" role="button" tabindex="0" data-section="gaps">
-              Research gaps <span class="theme-gaps-count">${activeGaps.length}</span><span class="theme-section-chevron" aria-hidden="true"></span>
+              Research gaps <span class="theme-gaps-count">${activeGaps.length}</span><span class="ui-chevron theme-section-chevron" aria-hidden="true"></span>
             </span></h3>
             <div class="theme-collapsible" data-collapsible="gaps">
               <div class="theme-gaps">${gapItems}</div>
@@ -3485,7 +3525,7 @@
     const restLabel = curated.length ? 'related' : 'more related';
     return `<div class="pol-basis"><div class="pol-basis-label">Research basis</div>`
       + `<div class="pol-basis-refs">${shown.map(renderRef).join('')}</div>`
-      + (rest.length ? `<button class="pol-basis-toggle" type="button" aria-expanded="false"><span class="pol-basis-chevron" aria-hidden="true">&rsaquo;</span><span class="pol-basis-toggle-text">Show ${rest.length} ${restLabel} ${rest.length === 1 ? 'study' : 'studies'}</span></button>`
+      + (rest.length ? `<button class="pol-basis-toggle" type="button" aria-expanded="false"><span class="ui-chevron pol-basis-chevron" aria-hidden="true"></span><span class="pol-basis-toggle-text">Show ${rest.length} ${restLabel} ${rest.length === 1 ? 'study' : 'studies'}</span></button>`
         + `<div class="pol-basis-refs pol-basis-related" style="display:none">${rest.map(renderRef).join('')}</div>` : '')
       + `</div>`;
   }
@@ -3683,17 +3723,19 @@
   // Hoisted out of buildPolicyView() so renderPolicyLinksGraph() (the Links
   // sub-view) can share the exact same category→color mapping as the Map
   // sub-view — a policy should be the same color in both views.
+  // Policy category identity colors. Every value is an ESP token or a
+  // documented light/dark sibling of one (see :root) — no invented hues.
   const POL_CAT_COLORS = {
-    'safety-net':    '#5B7A9E',
-    'labor-rights':  '#7B6B9E',
-    'tax-wealth':    '#4F8E77',
-    'healthcare':    '#8E5B5B',
-    'work-structure':'#8E7B52',
-    'education':     '#4F7D8E',
-    'antitrust':     '#8E6B4F',
-    'housing':       '#5E8A52',
-    'jobs':          '#4F8E87',
-    'international': '#7B5B8E',
+    'safety-net':    '#2C3254',  // Warm Navy
+    'labor-rights':  '#70AD8F',  // Soft Green
+    'tax-wealth':    '#472B51',  // Deep Purple
+    'healthcare':    '#C99A3F',  // Warm Gold, darkened
+    'work-structure':'#5A6285',  // Warm Navy, lightened
+    'education':     '#4A8A70',  // Soft Green, darkened
+    'antitrust':     '#7A5C85',  // Deep Purple, lightened
+    'housing':       '#B8863B',  // Warm Gold, darkened further (8-9px marks)
+    'jobs':          '#3C4164',  // Text Black
+    'international': '#C4806A',  // Warm Pink, darkened (8-9px marks)
   };
   // Merged-category identity colors, also shared with the Links band legend.
   const CAT_COLOR_VARS = {
@@ -3762,7 +3804,7 @@
         const col = document.createElement('div');
         col.className = 'pol-col';
         col.dataset.cat = catId;
-        const catColor = POL_CAT_COLORS[catId] || '#6B7280';
+        const catColor = POL_CAT_COLORS[catId] || '#6d7091';
         col.style.setProperty('--pol-cat-color', catColor);
 
         // Header — with level distribution bar
@@ -3863,7 +3905,7 @@
 
           const card = document.createElement('div');
           card.className = 'pol-cat-card';
-          card.innerHTML = `<div class="pol-cat-card-title">${p.title}</div><span class="pol-cat-card-arrow" aria-hidden="true">&rsaquo;</span>`;
+          card.innerHTML = `<div class="pol-cat-card-title">${p.title}</div><span class="ui-chevron sm right pol-cat-card-arrow" aria-hidden="true"></span>`;
           card.addEventListener('click', () => openPolModal(p, lvl, origCatLabel, basisHTML));
           cards.appendChild(card);
         });
@@ -5051,7 +5093,7 @@
         <div class="simple-card" id="kf-card-${esc(f.id)}" tabindex="0" role="button" aria-expanded="false">
           <div class="sc-top">
             <p class="sc-plain">${esc(f.factPlain)}</p>
-            <span class="expand-hint"><span class="chev" aria-hidden="true">&#8250;</span></span>
+            <span class="expand-hint"><span class="ui-chevron chev" aria-hidden="true"></span></span>
           </div>
           <div class="details"><div class="dinner"><div class="sc-body">
             <div class="fc-quote-block">
@@ -5113,7 +5155,7 @@
             <div class="fact-actions">
               <a class="act-btn" href="#entry/${esc(p.id)}">View in tracker</a>
               <button class="act-btn" data-copy="${esc(f.id)}">Copy fact + citation</button>
-              <span class="expand-hint"><span class="chev" aria-hidden="true">&#8250;</span> Details</span>
+              <span class="expand-hint"><span class="ui-chevron chev" aria-hidden="true"></span> Details</span>
             </div>
           </div>
         </article>
@@ -5322,8 +5364,8 @@
 
   const C = {
     navy: '#2c3254', green: '#70ad8f', gold: '#c99a3f', goldLine: '#ebc382',
-    pink: '#ff9d7d', purple: '#472b51', muted: '#6d7091',
-    grid: '#e6e2d1', text: '#3c4164', headline: '#232849'
+    pink: '#ffbfa7', purple: '#472b51', muted: '#6d7091',
+    grid: '#caccd4', text: '#3c4164', headline: '#232849'
   };
   const MON = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
 
