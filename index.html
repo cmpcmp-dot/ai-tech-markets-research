@@ -1697,8 +1697,9 @@
   .pol-col-distbar-seg { display: none; }
 
   /* ── Policy category rows ─────────────────────────────────── */
-  /* Four merged categories stacked as rows in curated order
-     (Economic Security first, Global last). Within each row the policy
+  /* Four merged categories stacked as rows in curated order — the four
+     pathways of Becky Chao's April 2026 brief, in her order (Economic
+     Security first, Mitigating Harms last). Within each row the policy
      cards flow left→right alphabetically and wrap to new lines, so
      scrolling down reads category by category. Each row's ESP identity
      color is set inline as --cat-color; it rides the top border, a faint
@@ -3736,13 +3737,18 @@
     'housing':       '#B8863B',  // Warm Gold, darkened further (8-9px marks)
     'jobs':          '#3C4164',  // Text Black
     'international': '#C4806A',  // Warm Pink, darkened (8-9px marks)
+    'civil-rights':  '#A8623F',  // Warm Pink, darkened further — reads as caution
   };
   // Merged-category identity colors, also shared with the Links band legend.
+  // Keys track MERGED_POLICY_CATEGORIES in tracker-data.js; a key that falls
+  // out of sync degrades to var(--muted) grey rather than throwing, so it is
+  // easy to miss. Gold is reserved for Mitigating Harms because that row
+  // needs to read as a caution color next to the three structural ones.
   const CAT_COLOR_VARS = {
-    'economic-security':    'var(--green)',   // Soft Green
-    'labor-worker-rights':  'var(--navy)',    // Warm Navy
-    'social-infrastructure':'var(--gold)',    // Warm Gold
-    'skills-global':        'var(--purple)',  // Deep Purple
+    'economic-security':   'var(--green)',   // Soft Green
+    'labor-worker-rights': 'var(--navy)',    // Warm Navy
+    'ai-governance':       'var(--purple)',  // Deep Purple
+    'mitigating-harms':    'var(--gold)',    // Warm Gold
   };
 
   function buildPolicyView() {
@@ -3791,6 +3797,7 @@
         'housing':       'Affordable housing and place-based support',
         'jobs':          'Direct job creation and sectoral investment',
         'international': 'Cross-border coordination and trade policy',
+        'civil-rights':  'Discrimination testing and algorithmic accountability',
       };
 
 
@@ -3854,8 +3861,12 @@
 
       // ── Category rows ────────────────────────────────────────
       // Phase (Repair→Transform) is no longer an axis of the map: the four
-      // merged categories each get a full-width row, in curated order
-      // (Economic Security first, Global last — Object key order below).
+      // merged categories each get a full-width row, in curated order —
+      // Becky's brief order, Economic Security first and Mitigating Harms
+      // last (MERGED_POLICY_CATEGORIES key order, not sorted here).
+      // A merged category with no policies is skipped rather than drawn
+      // empty, which is what currently keeps the thin Mitigating Harms row
+      // honest as cards get written for it.
       // Policies within a row are listed alphabetically and flow left→right,
       // so scrolling down reads category by category. Each category carries
       // its own ESP-palette color (contrast-tuned across the set). Color
@@ -3953,8 +3964,8 @@
   // connections data was authored for this pass — see
   // docs/adr/0001-policy-links-reuse-pairswith.md. Nodes softly gravitate
   // toward their merged category's vertical band (Economic Security top,
-  // Global bottom — the curated order MERGED_POLICY_CATEGORIES is already
-  // defined in), but the repel/spring physics can nudge a node off that
+  // Mitigating Harms bottom — the curated order MERGED_POLICY_CATEGORIES is
+  // already defined in), but the repel/spring physics can nudge a node off that
   // line, which is deliberate: it lets cross-category edges read as a
   // short, clear line rather than a rigid line punching across the canvas.
   function renderPolicyLinksGraph(container) {
@@ -4131,7 +4142,13 @@
 
     const legend = document.createElement('div');
     legend.className = 'pol-links-legend';
-    legend.innerHTML = Object.entries(POLICY_CATEGORIES).map(([catId, catLabel]) =>
+    // Only legend categories that actually have a node on the graph. Base
+    // categories are allowed to sit empty while cards are being written for
+    // them (antitrust does today), and an unfilterable legend dot pointing at
+    // nothing reads as a rendering bug.
+    legend.innerHTML = Object.entries(POLICY_CATEGORIES)
+      .filter(([catId]) => POLICY_DATA.some(p => p.category === catId))
+      .map(([catId, catLabel]) =>
       `<span class="pol-links-legend-item"><span class="pol-links-legend-dot" style="background:${POL_CAT_COLORS[catId]}"></span>${catLabel}</span>`
     ).join('');
     outer.appendChild(legend);
@@ -4952,6 +4969,18 @@
       (p.paperIds || []).forEach(pid => { if (!ids.has(pid)) problems.push(`policy ${p.id}: paperId ${pid} not found`); });
       if (!POLICY_CATEGORIES[p.category]) problems.push(`policy ${p.id}: unknown category "${p.category}"`);
       if (!DISRUPTION_LEVELS.some(l => l.id === p.level)) problems.push(`policy ${p.id}: unknown level "${p.level}"`);
+      // A base category with no CATEGORY_MERGE_MAP entry drops its policies
+      // out of the Policy Map rows entirely — the rows filter by merged
+      // category, so the card renders nowhere and nothing errors.
+      if (!CATEGORY_MERGE_MAP[p.category]) problems.push(`policy ${p.id}: category "${p.category}" has no CATEGORY_MERGE_MAP entry, so it renders in no Policy Map row`);
+      else if (!MERGED_POLICY_CATEGORIES[CATEGORY_MERGE_MAP[p.category]]) problems.push(`policy ${p.id}: category "${p.category}" merges to unknown row "${CATEGORY_MERGE_MAP[p.category]}"`);
+    });
+    Object.entries(CATEGORY_MERGE_MAP).forEach(([orig, merged]) => {
+      if (!POLICY_CATEGORIES[orig]) problems.push(`merge map: unknown base category "${orig}"`);
+      if (!MERGED_POLICY_CATEGORIES[merged]) problems.push(`merge map: "${orig}" points at unknown merged category "${merged}"`);
+    });
+    Object.keys(MERGED_POLICY_CATEGORIES).forEach(mc => {
+      if (!MERGED_CAT_DESCS[mc]) problems.push(`merged category "${mc}": no MERGED_CAT_DESCS entry`);
     });
     const scanTokens = (obj, label) => {
       const s = JSON.stringify(obj);

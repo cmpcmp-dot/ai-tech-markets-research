@@ -4122,32 +4122,65 @@ const POLICY_CATEGORIES = {
   "housing":       "Housing & Community",
   "jobs":          "Jobs & Employment Programs",
   "international": "International Coordination",
+  "civil-rights":  "Civil Rights & Algorithmic Accountability",
 };
 
-// Merged categories for the flipped matrix (4 columns)
+// ── Merged policy categories (the four rows of the Policy Map) ──────────
+// These are the four pathways in Becky Chao's April 2026 brief, "Ideas for
+// Shared Economic Prosperity in the AI Transition" (becky_brief.md), kept in
+// her order. Key order below IS the render order, top→bottom on the map and
+// in the Links graph's vertical bands, so don't reorder casually.
+//
+//   Becky's section heading                          → row label
+//   1. Modernize the Social Contract                 → Economic Security
+//   2. Protect & Empower Workers                     → Labor & Worker Rights
+//   3. Shape Fair and Competitive AI Markets         → AI Governance
+//   4. Mitigate AI's Role in the Affordability Crisis→ Mitigating Harms
+//
+// Two deliberate departures from the brief, both editorial decisions:
+//   - Tax and ownership policy (automation levy, wealth tax, AI dividend,
+//     sovereign wealth fund, worker ownership, global minimum tax) sits in
+//     AI Governance, not Economic Security where Becky files it. The framing
+//     is who owns and captures AI's returns, not how the safety net is paid
+//     for. AI Governance is therefore broader than Becky's competition-only
+//     section — hence "AI Governance" rather than "AI Markets".
+//   - Surveillance splits by setting: workplace surveillance and algorithmic
+//     management stay in Labor & Worker Rights (Becky's §2), while consumer
+//     and public surveillance plus civil rights go to Mitigating Harms.
+//     Without that rule the two rows bleed into each other.
+//
+// Mitigating Harms is intentionally thin for now — the current 27 policy
+// cards predate this taxonomy and none was written for surveillance pricing,
+// algorithmic price-fixing, data center cost allocation, or biometric/civil
+// rights limits. More cards are coming; a row with no policies is skipped at
+// render time rather than drawn empty.
 const MERGED_POLICY_CATEGORIES = {
-  "economic-security":    "Economic Security",
-  "labor-worker-rights":  "Labor & Worker Rights",
-  "social-infrastructure":"Social Infrastructure",
-  "skills-global":        "Global",
+  "economic-security":   "Economic Security",
+  "labor-worker-rights": "Labor & Worker Rights",
+  "ai-governance":       "AI Governance",
+  "mitigating-harms":    "Mitigating Harms",
 };
 const MERGED_CAT_DESCS = {
-  "economic-security":    "Income floors, safety nets, tax redistribution, and job programs",
-  "labor-worker-rights":  "Worker protections, transparency mandates, and market rules",
-  "social-infrastructure":"Healthcare, housing, portable benefits, and reskilling with wraparound support",
-  "skills-global":        "Cross-border coordination and international policy frameworks",
+  "economic-security":   "Social insurance, income floors, health coverage, job creation, and reskilling to carry households through the transition",
+  "labor-worker-rights": "Worker protections, algorithmic management and wage-setting rules, workplace surveillance limits, and bargaining power",
+  "ai-governance":       "Competition rules and public options for AI, and the tax and ownership questions of who captures AI's returns",
+  "mitigating-harms":    "Algorithmic pricing, surveillance, and civil rights harms that raise what households pay",
 };
+// Base category → merged row. Many-to-one: every policy in a base category
+// lands in the same row, so a policy that needs to move needs its `category`
+// changed, not an entry here.
 const CATEGORY_MERGE_MAP = {
   "safety-net":    "economic-security",
-  "tax-wealth":    "economic-security",
+  "healthcare":    "economic-security",
+  "education":     "economic-security",
+  "work-structure":"economic-security",   // shorter workweek — Becky files this under the social contract
   "jobs":          "economic-security",
   "labor-rights":  "labor-worker-rights",
-  "work-structure":"labor-worker-rights",
-  "antitrust":     "labor-worker-rights",
-  "healthcare":    "social-infrastructure",
-  "housing":       "social-infrastructure",
-  "education":     "social-infrastructure",
-  "international": "skills-global",
+  "tax-wealth":    "ai-governance",       // per the ownership-and-returns framing above
+  "antitrust":     "ai-governance",
+  "international": "ai-governance",       // global minimum tax
+  "housing":       "mitigating-harms",    // algorithmic tenant screening + housing affordability
+  "civil-rights":  "mitigating-harms",
 };
 
 const POLICY_DATA = [{ id:"ui-reform", level:"baseline", category:"safety-net",
@@ -4239,7 +4272,7 @@ const POLICY_DATA = [{ id:"ui-reform", level:"baseline", category:"safety-net",
     landscape:"Bipartisan support for the underlying concept. The political fight is over wraparound funding scale. New Jersey's WD-PY25-14 directive {{cite:147}} and S.1840 {{cite:148}} are the most concrete state-level frameworks. The evidence on retraining is mixed. Jacobs and Leibenluft argue that program design and program reach are separable problems, and that historic United States retraining programs have struggled with coverage rather than design.",
     press:[],
     paperIds: [147, 25, 74, 203, 201, 148], pairsWith:[{id:"automation-levy",why:"The levy funds the retraining that automation makes necessary, a tax paired with the transfer it enables."},{id:"ai-displacement-reporting",why:"Displacement reporting is the early-warning signal that should trigger the retraining accounts."},{id:"wage-insurance",why:"The classic transition bundle: retrain the worker and top up wages as they re-enter at lower pay."}], competesWith:[{id:"job-guarantee",why:"Retrain workers versus guarantee them a job, two answers to displacement drawing on the same budget line and attention."}], lastReviewed:"2026-06-23"   },
-  { id:"ai-audit-mandate", level:"emerging", category:"antitrust",
+  { id:"ai-audit-mandate", level:"emerging", category:"civil-rights",
     title:"Mandatory AI Bias Audits",
     summary:"Require third-party disparate impact audits for AI systems used in employment, credit, housing, and healthcare decisions; mandate public reporting by demographic subgroup; assign liability to deployers.<br><br>Audits would assess outcome disparities across race, gender, age, disability status, and national origin, and require remediation when disparities exceed established thresholds. Audit methodology would be standardized by a federal technical body, with certified third-party auditors responsible for independent assessment. Deployers — not just vendors — would bear legal liability, creating a strong incentive for due diligence before deployment.",
     rationale:"Research from Buolamwini and Gebru {{cite:126}}, National Institute of Standards and Technology {{cite:127}}, and The Markup {{cite:129}} shows that deployed AI systems exhibit systematic racial and gender disparities that are measurable and preventable, yet vendors are not required to test for them. Mandatory audits close the gap between what is technically feasible and what is legally required.<br><br>AI vendors are not responsible for discriminatory effects of systems they sell, and deployers have no obligation to test for them. This creates a market for systems with unexamined disparate impact. Mandatory audits with public reporting create accountability through transparency and enforcement through liability.",

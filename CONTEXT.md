@@ -17,7 +17,7 @@ One of 10 granular policy groupings on a policy (`safety-net`, `labor-rights`, `
 _Avoid_: Policy area, merged category
 
 **Merged Category** (or **Policy Area**):
-One of 4 top-level groupings (Economic Security, Labor & Worker Rights, Social Infrastructure, Global) that the 10 raw categories roll up into via `CATEGORY_MERGE_MAP`, defined in `MERGED_POLICY_CATEGORIES`. This is the grouping the Policy Map's four columns are built from, and the vertical band ordering (Economic Security top → Global bottom) used by the Links graph.
+One of 4 top-level groupings — Economic Security, Labor & Worker Rights, AI Governance, Mitigating Harms — that the 10 raw categories roll up into via `CATEGORY_MERGE_MAP`, defined in `MERGED_POLICY_CATEGORIES`. These are the four pathways of `becky_brief.md`, in Becky's order, and that key order is the render order: the Policy Map's four rows top→bottom, and the Links graph's vertical bands (Economic Security top → Mitigating Harms bottom). Two departures from the brief are deliberate and documented at the definition: tax and ownership policy sits in AI Governance rather than Economic Security, and surveillance splits by setting (workplace → Labor & Worker Rights, consumer/public + civil rights → Mitigating Harms). Mitigating Harms is thin pending new policy cards; an empty merged category is skipped at render, not drawn blank.
 _Avoid_: Category, policy group
 
 **Policy Link**:
