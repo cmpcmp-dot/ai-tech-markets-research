@@ -270,54 +270,57 @@
   }
   .sidebar     { grid-column: 1; grid-row: 2; }
   .main-content { grid-column: 2; grid-row: 2; }
+  .strategy-view .sidebar { display: none; }
+  .strategy-view .app-layout { grid-template-columns: 1fr; }
+  .strategy-view .main-content { grid-column: 1 / -1; }
+  .strategy-view .inline-filters { display: none; }
+  .strategy-view .app-layout { max-width: calc(var(--sidebar-w) + 1100px); }
+  .strategy-view .cards-area { padding: 8px 0 40px; }
+  /* Themes render into their own #themesArea (built once, cached). The Research
+     #cardsGrid is left in the DOM but hidden here, so switching Research<->Themes
+     no longer tears either one down. */
+  #themesArea { display: none; }
+  .strategy-view #themesArea { display: block; }
+  .strategy-view .cards-grid { display: none; }
+  .strategy-view .empty-state { display: none !important; }
+  .strategy-view .themes-grid { display: flex; flex-direction: column; width: 100%; gap: 0; }
+  .strategy-view .theme-card { width: 100%; border-radius: 0; border-left: none; border-right: none; border-top: none; }
+
+  #themeTabNav {
+    display: flex; align-items: center; justify-content: flex-start; gap: 6px;
+    flex-wrap: wrap; min-width: 0; flex: 1;
+  }
+
+  .theme-jump-pill {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-size: 12px; font-weight: 500; cursor: pointer; white-space: nowrap;
+    background: var(--light-beige); border: 1px solid var(--navy); border-radius: var(--r-ctl);
+    padding: 4px 11px; color: var(--navy); font-family: inherit;
+    transition: border-color 0.15s, color 0.15s, background 0.15s;
+  }
+  .theme-jump-pill:hover { /* base border is already navy — shift the fill instead */
+    background: color-mix(in srgb, var(--navy) 7%, var(--light-beige));
+  }
+  .theme-jump-pill.active {
+    color: #fff; border-color: var(--navy);
+    background: var(--navy); font-weight: 600;
+  }
+
+  .theme-nav-strip {
+    display: none; align-items: center; gap: 10px;
+    padding: 10px 28px; border-bottom: 1px solid var(--border);
+    background: var(--bg);
+  }
+  .strategy-view .theme-nav-strip { display: flex; }
   .research-header-bar { display: none !important; }
   .cards-view .research-header-bar { display: block; }
 
-  /* ── Research sub-tabs: Database / What's New ─────────────────
-     Same control as the Policy Map's Map/Links toggle, so the two tabs
-     read as the same kind of switch. */
-  .research-subview-toggle {
-    display: none; align-items: center; gap: 2px;
-    background: var(--light-beige); border: 1px solid var(--navy);
-    border-radius: var(--r-ctl-outer); padding: 3px; width: fit-content;
-    margin: 16px 28px 0;
+  .theme-disclaimer-bar {
+    display: none; padding: 14px 28px 13px;
+    border-bottom: 1px solid var(--border);
+    font-family: 'Haas Grotesk', 'Helvetica Neue', Arial, sans-serif;
   }
-  .cards-view .research-subview-toggle { display: flex; }
-  .research-subview-toggle .pol-subview-btn { display: inline-flex; align-items: center; }
-  .res-subview-pill {
-    display: inline-flex; align-items: center; justify-content: center;
-    min-width: 17px; height: 17px; padding: 0 5px; margin-left: 7px;
-    border-radius: var(--r-tag); background: var(--green); color: var(--headline);
-    font-size: 10px; font-weight: 700; line-height: 1;
-  }
-  .res-subview-pill[hidden] { display: none; }
-  .pol-subview-btn.active .res-subview-pill { background: var(--green); color: var(--headline); }
-  @keyframes wc-pulse {
-    0%   { box-shadow: 0 0 0 0 color-mix(in srgb, var(--accent) 45%, transparent); }
-    70%  { box-shadow: 0 0 0 9px transparent; }
-    100% { box-shadow: 0 0 0 0 transparent; }
-  }
-  .res-subview-pill.pulse { animation: wc-pulse 1.3s ease-out 2; }
-  @media (prefers-reduced-motion: reduce) {
-    .res-subview-pill.pulse { animation: none; }
-  }
-  @media (max-width: 860px) {
-    .research-subview-toggle { margin: 14px 16px 0; }
-  }
-
-  /* What's New renders inline into #changelogArea, shown only when the
-     Research tab's What's New sub-tab is selected. */
-  #changelogArea { display: none; }
-  .changelog-subview #changelogArea { display: block; max-width: 760px; padding: 22px 28px 60px; }
-  .changelog-subview .cards-grid    { display: none !important; }
-  .changelog-subview .empty-state   { display: none !important; }
-  .changelog-subview .sidebar       { display: none; }
-  .changelog-subview .inline-filters { display: none; }
-  .changelog-subview .key-findings-band { display: none !important; }
-  .changelog-subview .lens-toggle   { display: none !important; }
-  .changelog-subview .app-layout    { grid-template-columns: 1fr; }
-  .changelog-subview .main-content  { grid-column: 1 / -1; }
-
+  .strategy-view .theme-disclaimer-bar { display: none; }
   .theme-intro-line {
     display: block; font-size: 13px; font-weight: 500; font-style: normal;
     color: var(--text); margin-bottom: 3px;
@@ -1596,9 +1599,39 @@
     .ui-chevron { transition: none; }
   }
 
+  /* ── What's new (header button + count pill) ─────────────── */
+  /* Styled as a nav item: identical type and spacing to .header-nav-btn,
+     distinguished only by the count pill. */
+  .header-changed-btn {
+    display: inline-flex; align-items: center;
+    background: none; border: none; cursor: pointer;
+    font-family: var(--grot);
+    font-size: 14px; font-weight: 500; letter-spacing: 0.02em;
+    color: var(--divider); padding: 6px 13px;
+    border-bottom: 2px solid transparent;
+    transition: color 0.15s;
+    white-space: nowrap;
+  }
+  .header-changed-btn:hover { color: var(--beige); }
+  .header-changed-pill {
+    display: inline-flex; align-items: center; justify-content: center;
+    min-width: 18px; height: 18px; padding: 0 5px; margin-left: 7px;
+    border-radius: var(--r-tag); background: var(--green); color: var(--headline);
+    font-size: 11px; font-weight: 700; line-height: 1;
+  }
+  .header-changed-pill[hidden] { display: none; }
+  @keyframes wc-pulse {
+    0%   { box-shadow: 0 0 0 0 color-mix(in srgb, var(--accent) 45%, transparent); }
+    70%  { box-shadow: 0 0 0 9px transparent; }
+    100% { box-shadow: 0 0 0 0 transparent; }
+  }
+  .header-changed-pill.pulse { animation: wc-pulse 1.3s ease-out 2; }
+  @media (prefers-reduced-motion: reduce) {
+    .header-changed-pill.pulse { animation: none; }
+  }
   /* Narrow phones: tighten the row so all five nav items share one line */
   @media (max-width: 560px) {
-    .header-nav-btn { padding: 6px 6px; letter-spacing: 0; }
+    .header-nav-btn, .header-changed-btn { padding: 6px 6px; letter-spacing: 0; }
   }
 
   /* ── Policy Map intro bar (matches theme-disclaimer-bar) ─── */
@@ -2047,7 +2080,7 @@
   <div class="header-inner">
     <div class="header-brand">
       <div class="header-text">
-        <h1><a href="#about" id="homeTitleLink" aria-label="Home: about this site">AI, Tech and the Economy: Research Intelligence</a></h1>
+        <h1><a href="https://cmpcmp-dot.github.io/ai-tech-markets-research/">AI, Tech and the Economy: Research Intelligence</a></h1>
         <div class="header-sub">A curated database of research on AI, automation, and the economy</div>
       </div>
     </div>
@@ -2055,10 +2088,13 @@
       <div class="header-tabs" role="tablist" aria-label="Select view">
         <button class="header-nav-btn" id="viewCards" role="tab" aria-selected="false" aria-controls="viewPanel">Research</button>
         <button class="header-nav-btn" id="viewFactBank" role="tab" aria-selected="false" aria-controls="viewPanel">Fact Bank</button>
+        <button class="header-nav-btn active" id="viewThemes" role="tab" aria-selected="true" aria-controls="viewPanel">Themes</button>
+        <button class="header-nav-btn" id="viewPolicy" role="tab" aria-selected="false" aria-controls="viewPanel">Policy Map</button>
         <button class="header-nav-btn" id="viewAdoption" role="tab" aria-selected="false" aria-controls="viewPanel">Adoption</button>
         <button class="header-nav-btn" id="viewJobs" role="tab" aria-selected="false" aria-controls="viewPanel">Job Displacement</button>
-        <button class="header-nav-btn" id="viewPolicy" role="tab" aria-selected="false" aria-controls="viewPanel">Policy Map</button>
+        <button class="header-nav-btn" id="viewAbout" role="tab" aria-selected="false" aria-controls="viewPanel" aria-label="About this site">About</button>
       </div>
+      <button class="header-changed-btn" id="whatsChangedBtn" aria-label="What's New">What's New<span class="header-changed-pill" id="whatsChangedPill" hidden></span></button>
     </nav>
     <div style="display:none;">
       <button id="aboutInfoBtn" aria-label="About this site"></button>
@@ -2104,22 +2140,28 @@
   </div>
 
   <!-- ── MAIN ── -->
-  <div class="main-content" id="viewPanel" role="tabpanel" aria-labelledby="homeTitleLink">
+  <div class="main-content" id="viewPanel" role="tabpanel" aria-labelledby="viewThemes">
 
     <div class="research-header-bar">
-      <span class="pol-header-title" id="researchHeaderTitle">Research</span>
+      <span class="pol-header-title">Research</span>
       <span class="theme-intro-line" id="researchIntroLine">A curated database of peer-reviewed studies, policy reports, and investigative journalism on AI, automation, and labor markets.</span>
-      <span class="theme-disclaimer-line" id="researchDisclaimerLine">Summaries and key findings are AI-generated and reviewed for accuracy on an ongoing basis. Always consult the original source before citing.</span>
+      <span class="theme-disclaimer-line">Summaries and key findings are AI-generated and reviewed for accuracy on an ongoing basis. Always consult the original source before citing.</span>
     </div>
 
-    <div class="research-subview-toggle" id="researchSubviewToggle" role="group" aria-label="Research section">
-      <button class="pol-subview-btn active" id="resSubviewDatabase" type="button" aria-pressed="true">Database</button>
-      <button class="pol-subview-btn" id="resSubviewChangelog" type="button" aria-pressed="false">What&rsquo;s New<span class="res-subview-pill" id="whatsChangedPill" hidden></span></button>
-    </div>
+
 
     <span id="resultCount" style="display:none" aria-live="polite" aria-atomic="true"></span>
 
     <div class="inline-filters" id="inlineFilters"></div>
+
+    <div class="theme-disclaimer-bar">
+      <span class="pol-header-title">Themes</span>
+      <span class="theme-intro-line">Cross-cutting syntheses of the research database — each framing a key question, evidence consensus, and implications for institutions.</span>
+      <span class="theme-disclaimer-line">Synthesized from the research database. Does not constitute strategic advice or reflect the opinions of the creator.</span>
+    </div>
+    <div class="theme-nav-strip">
+      <div id="themeTabNav"></div>
+    </div>
 
     <div class="cards-area">
       <div id="policyArea"></div>
@@ -2193,8 +2235,7 @@
         <div class="about-content">
           <div class="about-section">
             <h2 class="about-section-label">Purpose</h2>
-            <p class="about-section-text">This tracker curates and synthesizes research at the intersection of artificial intelligence, automation, and the economy. It aggregates peer-reviewed studies, policy reports, and investigative journalism into a structured database, then builds on that database with original data analysis and a policy framework, to support institutional positioning, workforce strategy, and policy analysis.</p>
-            <p class="about-section-text">This page is the front door. Use the tabs above to move through the site; clicking the site title returns you here.</p>
+            <p class="about-section-text">This tracker curates and synthesizes research at the intersection of artificial intelligence, automation, and the economy. It aggregates peer-reviewed studies, policy reports, and investigative journalism into a structured database, then synthesizes that research into cross-cutting themes and a policy framework, to support institutional positioning, workforce strategy, and policy analysis.</p>
           </div>
           <div class="about-section">
             <h2 class="about-section-label">What&rsquo;s included</h2>
@@ -2202,17 +2243,13 @@
           </div>
           <div class="about-section">
             <h2 class="about-section-label">How to read it</h2>
-            <p class="about-section-text"><strong>Research</strong> is the full, filterable database of individual sources, and holds two sub-tabs: <em>Database</em>, the searchable card view, and <em>What&rsquo;s New</em>, a dated feed of every addition and Policy Map review pass.</p>
-            <p class="about-section-text"><strong>Fact Bank</strong> collects short, number-bearing statements quoted verbatim from sources in the database, each rated for political noteworthiness and evidentiary strength. <strong>Adoption</strong> and <strong>Job Displacement</strong> are original analyses of Census and BLS data. <strong>Policy Map</strong> groups policy interventions into four policy areas, listed alphabetically within each.</p>
+            <p class="about-section-text"><strong>Three tabs.</strong> Research is the full, filterable database of individual sources. Themes synthesizes the database into cross-cutting questions, each with the evidence, what is working, the risks, and the implications. Policy Map groups policy interventions into four policy areas, listed alphabetically within each.</p>
+            <p class="about-section-text"><strong>Confidence.</strong> Each theme is tagged Strong consensus (independent research streams converge), Emerging evidence (the direction is clear but still developing), or Contested (credible researchers reach different conclusions).</p>
             <p class="about-section-text"><strong>Lens.</strong> The General lens is written for a broad audience. The Focused lens filters to peer-reviewed and institutional research, organized around economic outcome domains.</p>
           </div>
           <div class="about-section">
             <h2 class="about-section-label">Updates</h2>
-            <p class="about-section-text">The database is updated as new research emerges. The current build date appears in the footer, and a dated feed of additions and policy reviews lives under <a href="#changelog">Research &rarr; What&rsquo;s New</a>, where a count marks entries added since your last look.</p>
-          </div>
-          <div class="about-section">
-            <h2 class="about-section-label">Archive</h2>
-            <p class="about-section-text">An earlier build carried a <strong>Themes</strong> tab: cross-cutting syntheses of the database, each framing a key question with its evidence consensus, risks, and implications. That view has been retired from the main site but is preserved in full at <a href="themes.html">themes.html</a>, and theme links elsewhere on the site still resolve there.</p>
+            <p class="about-section-text">The database is updated as new research emerges. The current build date appears in the footer, and a dated feed of additions and policy reviews is available in the <a href="#changelog">What&rsquo;s New log</a>, reachable from the header (where a count marks entries added since your last look) and the footer.</p>
           </div>
           <div class="about-section">
             <h2 class="about-section-label">Sourcing &amp; AI</h2>
@@ -2585,9 +2622,8 @@
         </div>
       </div>
 
-      <!-- What's New: a dated feed of database additions and Policy Map
-           reviews. Rendered inline as a sub-section of the Research tab. -->
-      <div id="changelogArea"></div>
+      <!-- Themes view: own container, built once and cached (see render()). -->
+      <div id="themesArea"></div>
 
       <div class="cards-grid" id="cardsGrid"></div>
       <div class="empty-state" id="emptyState">
@@ -2608,7 +2644,6 @@
   AI, Tech and the Economy: Research Intelligence ·
   Created by Christelle Prophete ·
   Last updated <span id="headerLastUpdated"></span> ·
-  <a class="footer-changelog-link" href="#about">About</a> ·
   <a class="footer-changelog-link" href="#changelog">What's New</a>
 </footer>
 
@@ -2634,8 +2669,8 @@
         <p class="modal-sources-intro">A filterable card database of individual research entries, tagged by category and geographic scope. Cards can be filtered by category and geography, or searched by title, source, or finding.</p>
       </div>
       <div class="modal-group">
-        <div class="modal-group-name">Themes (archived)</div>
-        <p class="modal-sources-intro">Cross-cutting syntheses of the research database. Each theme frames a key strategic question, presents an evidence consensus, identifies implications for institutional actors, and notes gaps in the current evidence base. This view has been retired from the main site and is preserved at <a href="themes.html">themes.html</a>.</p>
+        <div class="modal-group-name">Themes tab</div>
+        <p class="modal-sources-intro">Cross-cutting syntheses of the research database. Each theme frames a key strategic question, presents an evidence consensus, identifies implications for institutional actors, and notes gaps in the current evidence base. Themes carry an editorial confidence rating: <em>Strong consensus</em>, <em>Emerging evidence</em>, or <em>Contested</em>.</p>
       </div>
       <div class="modal-group">
         <div class="modal-group-name">Policy Map tab</div>
@@ -2694,6 +2729,17 @@
   </div>
 </div>
 
+<!-- Changelog Modal (R5) -->
+<div class="modal-backdrop" id="changelogModal">
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="changelogModalTitle">
+    <div class="modal-header">
+      <h2 class="modal-title" id="changelogModalTitle">What's New</h2>
+      <button class="modal-close" id="changelogModalClose" aria-label="Close">✕</button>
+    </div>
+    <div class="modal-body" id="changelogModalBody"></div>
+  </div>
+</div>
+
 <!-- Mobile sidebar toggle -->
 <button class="sidebar-toggle" id="sidebarToggle" aria-label="Toggle filters">
   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
@@ -2710,17 +2756,17 @@
 (function () {
 
   // ── state ────────────────────────────────────────────────────
-  let activeView    = 'about';
-  // Research sub-tab: 'database' | 'changelog'
-  let researchSubview = 'database';
+  let activeView    = 'cards';
   let activeCat      = 'all';
   let activeStatus   = 'all';
   let activeGeo      = 'all';
   let activeEvidence = 'all';
   let searchQuery   = '';
   let sortOrder     = 'desc';   // 'desc' | 'asc' | 'status'
+  let activeThemeId = THEMES[0].id;
   let factBankEnabled = false;      // set true by the Fact Bank module if data is present
   let initFactBank = function () {}; // replaced with the real builder when data is present
+  let themeShowAll  = false;
   let activeLens    = 'general'; // 'general' | 'economist'
   const SORT_STATES = [
     { order: 'desc',   label: 'Newest first' },
@@ -2786,6 +2832,15 @@
     { id: 'econ-dist',   label: 'Distribution & Inequality', color: '#C99A3F' },
     { id: 'econ-policy', label: 'Policy & Adjustment',       color: '#70AD8F' },
   ];
+  const ECON_THEME_CONFIG = {
+    'displacement': 'Do productivity gains reach workers?',
+    'macro-risk':   'Is AI creating systemic financial risk?',
+    'worker-power': 'What leverage do workers have?',
+    'reskilling':   'What adjustment policy actually works?',
+    'equity':       'Who bears the distributional costs?',
+    'policy':       'What governance gaps remain?',
+  };
+  const GENERAL_EXCLUDED = new Set(['macro-risk']);
 
   // ── lookups ──────────────────────────────────────────────────
   const catMap = Object.fromEntries(CATEGORIES.map(c => [c.id, c]));
@@ -3165,17 +3220,273 @@
                  : appURL('entry/' + entry.id);
       copyText(text, b);
     }));
-    // Theme badges, if any, hand off to the retired Themes page.
     card.querySelectorAll('.paper-theme-badge').forEach(badge => {
       badge.addEventListener('click', e => {
         e.stopPropagation();
-        goToTheme(badge.dataset.themeId);
+        activeView    = 'themes';
+        activeThemeId = badge.dataset.themeId;
+        themeShowAll  = false;
+        document.getElementById('viewThemes').classList.add('active');
+        document.getElementById('viewCards').classList.remove('active');
+        document.getElementById('sortBtn')?.style && (document.getElementById('sortBtn').style.display = 'none');
+        document.body.classList.add('strategy-view');
+        render();
+        requestAnimationFrame(() => {
+          document.getElementById('themesArea').scrollIntoView({ behavior: 'smooth', block: 'start' });
+        });
       });
     });
     return card;
   }
 
 
+  // ── themes view ──────────────────────────────────────────────
+  const CONFIDENCE_META = {
+    consensus: { label: 'Strong consensus', color: '#4A8A70', icon: '✓', desc: 'Multiple independent research streams reach the same conclusion. The research base is stable and convergent across independent methodologies.' },
+    emerging:  { label: 'Emerging evidence', color: '#2C3254', icon: '~', desc: 'The direction is clear but the evidence base is still developing. Worth tracking closely, as conclusions may sharpen as more research accumulates.' },
+    contested: { label: 'Contested',         color: '#B0503A', icon: '!', desc: 'Credible researchers reach meaningfully different conclusions. Institutional positions on this topic should be held with explicit acknowledgment of the disagreement.' },
+  };
+
+  function buildThemeCard(theme, paperMap, overridePaperIds) {
+    const i = THEMES.indexOf(theme);
+    const card = document.createElement('div');
+    card.className = 'theme-card';
+    card.id = 'theme-' + theme.id;
+    card.style.setProperty('--theme-color', theme.color);
+
+    // R6: freshness accounting — entries added since this theme's last review,
+    // in the categories its linked papers span, that aren't linked yet.
+    let reviewedHTML = '';
+    if (theme.lastReviewed) {
+      const themeCats = new Set((theme.papers || []).map(id => paperMap[id]?.category).filter(Boolean));
+      const linkedSet = new Set(theme.papers || []);
+      const newer = RESEARCH_DATA.filter(e =>
+        (e.added || e.date) > theme.lastReviewed && themeCats.has(e.category) && !linkedSet.has(e.id)).length;
+      const revDate = new Date(theme.lastReviewed + 'T00:00:00')
+        .toLocaleDateString(undefined, { year: 'numeric', month: 'long', day: 'numeric' });
+      reviewedHTML = `<div class="theme-lastreviewed">Synthesis last reviewed ${revDate}.${
+        newer ? ` ${newer} newer ${newer === 1 ? 'entry' : 'entries'} in this theme's categories since review.` : ''}</div>`;
+    }
+
+    const paperIds = overridePaperIds !== undefined ? overridePaperIds : (theme.papers || []);
+    const linkedPapers = paperIds.map(id => paperMap[id]).filter(Boolean);
+    const renderRef = p => `<a class="theme-ref" href="${p.sourceUrl}" target="_blank" rel="noopener noreferrer" title="${p.title.replace(/"/g, '&quot;')}">${formatAPACitation(p)}</a>`;
+    const bySource = (a, b) => (a.source || '').localeCompare(b.source || '');
+    const activeSyn = (activeLens === 'economist' && theme.econSynthesis) ? theme.econSynthesis : theme.synthesis;
+    const activeGapsForCites = (activeLens === 'economist' && theme.econGaps) ? theme.econGaps : theme.gaps;
+    // Cited = any paper referenced inline anywhere in the card's active-lens prose,
+    // not just the synthesis, so the References list reflects every inline citation.
+    const citedSourceText = [
+      activeSyn || '',
+      ...(theme.working || []),
+      theme.implication || '',
+      (theme.risk && theme.risk.summary) || '',
+      (theme.risk && theme.risk.leverage) || '',
+      ...(activeGapsForCites || [])
+    ].join(' ');
+    const citedIds = new Set([...citedSourceText.matchAll(/\{\{citep?:(\d+)\}\}/g)].map(m => +m[1]));
+    const citedPapers = [...citedIds].map(id => paperMap[id]).filter(Boolean).sort(bySource);
+    const citedKey = new Set(citedPapers.map(p => p.id));
+    const relatedPapers = linkedPapers.filter(p => !citedKey.has(p.id)).sort(bySource);
+    const relN = relatedPapers.length;
+    const refsSectionHTML = (citedPapers.length || relN) ? `
+          <div class="theme-refs-wrap">
+            <h3 class="theme-refs-heading">References</h3>
+            ${citedPapers.length ? `<div class="theme-refs">${citedPapers.map(renderRef).join('')}</div>` : ''}
+            ${relN ? `<button class="theme-refs-toggle" type="button" aria-expanded="false"><span class="ui-chevron theme-refs-chevron" aria-hidden="true"></span><span class="theme-refs-toggle-text">Show ${relN} related ${relN === 1 ? 'study' : 'studies'}</span></button>
+            <div class="theme-refs theme-refs-related" style="display:none">${relatedPapers.map(renderRef).join('')}</div>` : ''}
+          </div>` : '';
+
+    const activeGaps = (activeLens === 'economist' && theme.econGaps) ? theme.econGaps : theme.gaps;
+    const gapItems = activeGaps.map(g =>
+      `<div class="theme-gap-item"><span class="theme-gap-arrow" aria-hidden="true">→</span><span>${injectCitations(g, paperMap)}</span></div>`
+    ).join('');
+
+    const workingItems = (theme.working || []).map(w =>
+      `<div class="theme-working-item"><span class="theme-working-check" aria-hidden="true">✓</span><span>${injectCitations(w, paperMap)}</span></div>`
+    ).join('');
+
+    const conf = CONFIDENCE_META[theme.confidence] || CONFIDENCE_META.emerging;
+
+    const visibleSet = activeLens === 'economist'
+      ? THEMES.filter(t => ECON_THEME_CONFIG[t.id])
+      : THEMES.filter(t => !GENERAL_EXCLUDED.has(t.id));
+    const vi = visibleSet.indexOf(theme);
+    const prev = visibleSet[vi - 1];
+    const next = visibleSet[vi + 1];
+
+    card.innerHTML = `
+      <div class="theme-card-body">
+        <div class="theme-card-main">
+          <h2 class="theme-question">${theme.question}</h2>
+          ${conf.label ? `<div class="theme-confidence-note"><span class="conf-label">${conf.label}:</span> ${conf.desc}</div>` : ''}
+          ${theme.framing ? `<div class="theme-framing"><span class="framing-label">Thesis:</span> ${theme.framing}</div>` : ''}
+
+          <h3 class="theme-section-heading"><span class="theme-section-label theme-section-toggle" role="button" tabindex="0" data-section="synthesis" style="justify-content:flex-start; gap:10px">
+            What the research shows <span class="ui-chevron theme-section-chevron" aria-hidden="true"></span>
+          </span></h3>
+          <div class="theme-collapsible" data-collapsible="synthesis">
+            <div class="theme-synthesis">${injectCitations((activeLens === 'economist' && theme.econSynthesis) ? theme.econSynthesis : theme.synthesis, paperMap)}</div>
+          </div>
+
+          ${workingItems ? `<div class="theme-working-wrap">
+            <h3 class="theme-section-heading"><span class="theme-section-label theme-section-toggle" role="button" tabindex="0" data-section="working">
+              What's working <span class="ui-chevron theme-section-chevron" aria-hidden="true"></span>
+            </span></h3>
+            <div class="theme-collapsible" data-collapsible="working">
+              <div class="theme-working">${workingItems}</div>
+            </div>
+          </div>` : ''}
+
+          <div class="theme-risk-wrap">
+            <h3 class="theme-section-heading"><span class="theme-section-label theme-section-toggle" role="button" tabindex="0" data-section="risk">
+              Risks observed &amp; points of leverage <span class="ui-chevron theme-section-chevron" aria-hidden="true"></span>
+            </span></h3>
+            <div class="theme-collapsible" data-collapsible="risk">
+              <div class="theme-risk-body" style="margin-top:4px">${injectCitations(theme.risk.summary, paperMap)}</div>
+              ${theme.risk.leverage ? `<div class="theme-leverage">
+                <div class="theme-leverage-label">Points of leverage</div>
+                <div class="theme-leverage-body">${injectCitations(theme.risk.leverage, paperMap)}</div>
+              </div>` : ''}
+            </div>
+          </div>
+
+          <div class="theme-implication-wrap">
+            <h3 class="theme-section-heading"><span class="theme-implication-label theme-section-toggle" role="button" tabindex="0" data-section="implication">
+              What this means for institutions <span class="ui-chevron theme-section-chevron" aria-hidden="true"></span>
+            </span></h3>
+            <div class="theme-collapsible" data-collapsible="implication">
+              <div class="theme-implication">${injectCitations(theme.implication, paperMap)}</div>
+            </div>
+          </div>
+
+          <div class="theme-gaps-wrap">
+            <h3 class="theme-section-heading"><span class="theme-gaps-label theme-section-toggle" role="button" tabindex="0" data-section="gaps">
+              Research gaps <span class="theme-gaps-count">${activeGaps.length}</span><span class="ui-chevron theme-section-chevron" aria-hidden="true"></span>
+            </span></h3>
+            <div class="theme-collapsible" data-collapsible="gaps">
+              <div class="theme-gaps">${gapItems}</div>
+            </div>
+          </div>
+
+          ${refsSectionHTML}
+          ${reviewedHTML}
+
+          <div class="theme-prev-next">
+            <button class="theme-nav-btn theme-nav-prev" ${prev ? `data-theme-id="${prev.id}"` : 'disabled'} aria-label="${prev ? `Previous theme: ${prev.tag}` : 'First theme'}">
+              <span class="nav-arrow" aria-hidden="true">←</span>
+              <span class="nav-label">${prev ? prev.tag : 'First theme'}</span>
+            </button>
+            <button class="theme-copy-link" type="button" aria-label="Copy a shareable link to this theme">Copy link</button>
+            <button class="theme-nav-btn theme-nav-next" ${next ? `data-theme-id="${next.id}"` : 'disabled'} aria-label="${next ? `Next theme: ${next.tag}` : 'Last theme'}">
+              <span class="nav-label">${next ? next.tag : 'Last theme'}</span>
+              <span class="nav-arrow" aria-hidden="true">→</span>
+            </button>
+          </div>
+        </div>
+      </div>`;
+
+    card.querySelectorAll('.theme-nav-btn[data-theme-id]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        activeThemeId = btn.dataset.themeId;
+        themeShowAll  = false;
+        render();
+        document.getElementById('themesArea').scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+    });
+
+    // R2: shareable deep link to this theme
+    const themeCopyLink = card.querySelector('.theme-copy-link');
+    if (themeCopyLink) themeCopyLink.addEventListener('click', e => copyText(appURL('theme/' + theme.id), e.currentTarget));
+
+    // ── Related-studies toggle in References ──
+    const refsToggle = card.querySelector('.theme-refs-toggle');
+    if (refsToggle) {
+      const related = card.querySelector('.theme-refs-related');
+      const tEl = refsToggle.querySelector('.theme-refs-toggle-text');
+      const relCount = related ? related.querySelectorAll('.theme-ref').length : 0;
+      refsToggle.addEventListener('click', () => {
+        const open = refsToggle.getAttribute('aria-expanded') === 'true';
+        refsToggle.setAttribute('aria-expanded', open ? 'false' : 'true');
+        if (related) related.style.display = open ? 'none' : 'grid';
+        if (tEl) tEl.textContent = open ? `Show ${relCount} related ${relCount === 1 ? 'study' : 'studies'}` : 'Hide related studies';
+      });
+    }
+
+    // ── Default: collapse risk, gaps; leave synthesis + implication open ──
+    ['risk', 'gaps'].forEach(section => {
+      card.querySelector(`.theme-collapsible[data-collapsible="${section}"]`)?.classList.add('is-collapsed');
+      card.querySelector(`[data-section="${section}"]`)?.classList.add('is-collapsed');
+    });
+
+    // ── Set initial aria-expanded on all section toggles ──
+    card.querySelectorAll('.theme-section-toggle').forEach(toggle => {
+      const collapsed = toggle.classList.contains('is-collapsed');
+      toggle.setAttribute('aria-expanded', collapsed ? 'false' : 'true');
+    });
+
+    // ── Internal section collapse toggles ──
+    card.querySelectorAll('.theme-section-toggle').forEach(toggle => {
+      const handler = () => {
+        const section = toggle.dataset.section;
+        const content = card.querySelector(`.theme-collapsible[data-collapsible="${section}"]`);
+        if (!content) return;
+        const collapsed = content.classList.toggle('is-collapsed');
+        toggle.classList.toggle('is-collapsed', collapsed);
+        toggle.setAttribute('aria-expanded', collapsed ? 'false' : 'true');
+      };
+      toggle.addEventListener('click', handler);
+      toggle.addEventListener('keydown', e => {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); handler(); }
+      });
+    });
+
+    return card;
+  }
+
+  function buildThemesView() {
+    const grid = document.getElementById('themesArea');
+    grid.innerHTML = '';
+
+    const paperMap = Object.fromEntries(RESEARCH_DATA.map(r => [r.id, r]));
+
+    const visibleThemeSet = activeLens === 'economist'
+      ? THEMES.filter(t => ECON_THEME_CONFIG[t.id])
+      : THEMES.filter(t => !GENERAL_EXCLUDED.has(t.id));
+    const visibleThemes = themeShowAll
+      ? visibleThemeSet
+      : visibleThemeSet.filter(t => t.id === activeThemeId);
+
+    // Tab nav strip
+    const tabNav = document.getElementById('themeTabNav');
+    tabNav.innerHTML = '';
+    visibleThemeSet.forEach((theme, idx) => {
+      const isActive = !themeShowAll && activeThemeId === theme.id;
+      const pill = document.createElement('button');
+      pill.className = 'theme-jump-pill' + (isActive ? ' active' : '');
+      const displayTag = theme.tag;
+      pill.setAttribute('aria-label', displayTag);
+      const label = document.createTextNode(displayTag);
+      pill.appendChild(label);
+      pill.addEventListener('click', () => {
+        activeThemeId = theme.id;
+        themeShowAll  = false;
+        render();
+      });
+      tabNav.appendChild(pill);
+    });
+
+    const themesGrid = document.createElement('div');
+    themesGrid.className = 'themes-grid';
+    visibleThemes.forEach(theme => {
+      const overridePaperIds = activeLens === 'economist'
+        ? (theme.papers || []).filter(id => paperMap[id] && isEconRelevant(paperMap[id]))
+        : undefined;
+      themesGrid.appendChild(buildThemeCard(theme, paperMap, overridePaperIds));
+    });
+    grid.appendChild(themesGrid);
+    if (activeView === 'themes') setHash(currentRoute());
+  }
 
   // ── render ───────────────────────────────────────────────────
   /* ── Policy Map ─────────────────────────────────────────────── */
@@ -4015,61 +4326,47 @@
     return `<div class="clog-intro">Every dated change to the tracker: research entries added (by intake date) and Policy Map review passes. Click an entry to jump to it.</div>${html}`;
   }
 
-  /* What's New is a sub-tab of Research rather than a modal: it renders
-     inline into #changelogArea, so it can be linked, scrolled and printed
-     like any other section. Built lazily and cached. */
-  let _changelogBuilt = false;
-
-  function setResearchSubview(sub) {
-    researchSubview = sub === 'changelog' ? 'changelog' : 'database';
-    const dbBtn  = document.getElementById('resSubviewDatabase');
-    const clBtn  = document.getElementById('resSubviewChangelog');
-    const isClog = researchSubview === 'changelog';
-    if (dbBtn) {
-      dbBtn.classList.toggle('active', !isClog);
-      dbBtn.setAttribute('aria-pressed', isClog ? 'false' : 'true');
-    }
-    if (clBtn) {
-      clBtn.classList.toggle('active', isClog);
-      clBtn.setAttribute('aria-pressed', isClog ? 'true' : 'false');
-    }
-    document.body.classList.toggle('changelog-subview', isClog && activeView === 'cards');
-    if (isClog) {
-      const area = document.getElementById('changelogArea');
-      if (area && !_changelogBuilt) { area.innerHTML = buildChangelogHTML(); _changelogBuilt = true; }
-      markChangesSeen();
-    }
-    // Research header copy follows the sub-tab.
-    const title = document.getElementById('researchHeaderTitle');
-    const intro = document.getElementById('researchIntroLine');
-    const disc  = document.getElementById('researchDisclaimerLine');
-    if (title) title.textContent = isClog ? "What's New" : 'Research';
-    if (isClog) {
-      if (intro) intro.textContent = 'Every dated change to the tracker: research entries added, by intake date, and Policy Map review passes.';
-      if (disc)  disc.textContent  = 'Click any entry to jump to its card in the database.';
-    } else if (disc) {
-      disc.textContent = 'Summaries and key findings are AI-generated and reviewed for accuracy on an ongoing basis. Always consult the original source before citing.';
-    }
+  function openChangelog() {
+    const backdrop = document.getElementById('changelogModal');
+    const body = document.getElementById('changelogModalBody');
+    if (!backdrop || !body) return;
+    if (!backdrop.classList.contains('open')) backdrop._lastFocus = document.activeElement;
+    body.innerHTML = buildChangelogHTML();
+    backdrop.classList.add('open');
+    document.body.style.overflow = 'hidden';
+    markChangesSeen();
+    setHash('changelog');
+    requestAnimationFrame(() => { const cb = document.getElementById('changelogModalClose'); if (cb) cb.focus(); });
   }
+
+  // Close changelog modal
+  (function () {
+    const backdrop = document.getElementById('changelogModal');
+    if (!backdrop) return;
+    function closeChangelog() {
+      backdrop.classList.remove('open');
+      document.body.style.overflow = '';
+      setHash(currentRoute());
+      if (backdrop._lastFocus) { backdrop._lastFocus.focus(); backdrop._lastFocus = null; }
+    }
+    document.getElementById('changelogModalClose').addEventListener('click', closeChangelog);
+    backdrop.addEventListener('click', e => {
+      if (e.target === backdrop) { closeChangelog(); return; }
+      // Entry links: close the modal, then the hashchange router takes over.
+      if (e.target.closest('a[href^="#entry/"]')) closeChangelog();
+    });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape' && backdrop.classList.contains('open')) closeChangelog(); });
+  })();
 
   function applyPolFilters() {}
 
   /* ── R2: deep-link routing ────────────────────────────────────
-     Routes: #about (home) · #research · #changelog · #fact-bank ·
-             #adoption · #job-displacement · #policy (tabs)
-             #policy/<policy-id> · #entry/<entry-id>
-     Retired: #themes and #theme/<theme-id> now hand off to themes.html,
-     which is a frozen snapshot of the build that carried the Themes tab.
+     Routes: #research · #themes · #policy · #about (tabs)
+             #theme/<theme-id> · #policy/<policy-id> · #entry/<entry-id>
      The address bar tracks navigation via replaceState (no history spam);
      hashchange handles pasted links and back/forward. */
   let routeApplying = false;
-  let viewInitialized = false;   // set on the first setView
-
-  // Retired Themes tab: the whole synthesis view lives on in themes.html.
-  const THEMES_PAGE = 'themes.html';
-  function goToThemesPage(hash) {
-    window.location.href = THEMES_PAGE + (hash ? '#' + hash : '');
-  }
+  let viewInitialized = false;   // set on the first setView; changelog-on-cold-start needs a base view
 
   // Write the address-bar hash without triggering hashchange.
   function setHash(route) {
@@ -4081,12 +4378,13 @@
 
   // The canonical route for the current view state (modal-free).
   function currentRoute() {
-    if (activeView === 'cards')  return researchSubview === 'changelog' ? 'changelog' : 'research';
+    if (activeView === 'cards')  return 'research';
     if (activeView === 'fact-bank') return 'fact-bank';
     if (activeView === 'policy') return 'policy';
+    if (activeView === 'about')  return 'about';
     if (activeView === 'adoption') return 'adoption';
     if (activeView === 'jobs')   return 'job-displacement';
-    return 'about';
+    return themeShowAll ? 'themes' : 'theme/' + activeThemeId;
   }
 
   // Apply location.hash to the app. Returns true if it matched a route.
@@ -4096,25 +4394,30 @@
     routeApplying = true;
     try {
       const [head, tail] = h.split('/');
-      if (head === 'research' && !tail) { setResearchSubview('database'); setView('cards'); return true; }
+      if (head === 'research' && !tail) { setView('cards');  return true; }
       if (head === 'fact-bank' && !tail) {
         // Falls back to the default view if the tab is disabled (no data).
         if (factBankEnabled) { setView('fact-bank'); return true; }
         return false;
       }
+      if (head === 'themes'   && !tail) { setView('themes'); return true; }
       if (head === 'about'    && !tail) { setView('about');  return true; }
       if (head === 'adoption' && !tail) { setView('adoption'); return true; }
       if (head === 'job-displacement' && !tail) { setView('jobs'); return true; }
       if (head === 'policy'   && !tail) { setView('policy'); return true; }
-      // What's New is now a sub-tab of Research; #changelog still deep-links to it.
       if (head === 'changelog' && !tail) {
-        setResearchSubview('changelog');
-        setView('cards');
+        if (!viewInitialized) setView('themes');
+        openChangelog();
         return true;
       }
-      // Retired routes: hand off to the frozen Themes page.
-      if (head === 'themes' && !tail) { goToThemesPage('themes'); return true; }
-      if (head === 'theme' && tail)   { goToThemesPage('theme/' + tail); return true; }
+      if (head === 'theme' && tail && THEMES.some(t => t.id === tail)) {
+        if (activeLens === 'economist' && !ECON_THEME_CONFIG[tail]) setLens('general');
+        else if (activeLens === 'general' && GENERAL_EXCLUDED.has(tail)) setLens('economist');
+        activeThemeId = tail;
+        themeShowAll  = false;
+        setView('themes');
+        return true;
+      }
       if (head === 'policy' && tail && POLICY_DATA.some(pl => pl.id === tail)) {
         setView('policy');
         openPolModalById(tail);
@@ -4126,7 +4429,6 @@
         activeCat = 'all'; activeStatus = 'all'; activeGeo = 'all'; activeEvidence = 'all';
         searchQuery = '';
         const si = document.getElementById('searchInput'); if (si) si.value = '';
-        setResearchSubview('database');
         setView('cards');
         // setTimeout rather than requestAnimationFrame: rAF never fires in a
         // background tab, and shared links routinely open in one.
@@ -4146,7 +4448,7 @@
     }
   }
 
-  /* ── What's new (count pill on the Research sub-tab) ─────────── */
+  /* ── What's new (header count pill) ──────────────────────────── */
   // The pill counts entries added since the log was last opened (day
   // granularity), falling back to the 30-day window for first-time visitors.
   // Reads the old banner's wnbSeen marker so existing visitors migrate cleanly.
@@ -4165,7 +4467,7 @@
   }
 
   function updateWhatsChangedPill() {
-    const btn  = document.getElementById('resSubviewChangelog');
+    const btn  = document.getElementById('whatsChangedBtn');
     const pill = document.getElementById('whatsChangedPill');
     if (!btn || !pill) return;
     const { count } = whatsChangedState();
@@ -4195,11 +4497,13 @@
 
   // View-DOM cache. Each view's DOM is built once and re-shown on tab switch;
   // it rebuilds only when its inputs (its "signature") change. This stops
-  // #cardsGrid from being torn down on every switch — the actual source of
-  // tab-switch jank. (Dataset cloning,
+  // Research (#cardsGrid) and Themes (#themesArea) from tearing each other down
+  // on every switch — the actual source of tab-switch jank. (Dataset cloning,
   // ~0.5ms/render, was never the bottleneck; DOM construction is.)
   let _cardsSig  = null;   // null = never built
+  let _themesSig = null;
   const cardsSig  = () => [activeLens, activeCat, activeStatus, activeGeo, activeEvidence, sortOrder, searchQuery.trim()].join('');
+  const themesSig = () => [activeLens, activeThemeId, themeShowAll].join('');
 
   function render() {
     const grid  = document.getElementById('cardsGrid');
@@ -4208,14 +4512,18 @@
     updateWhatsChangedPill();
 
     document.body.classList.toggle('cards-view', activeView === 'cards');
-    document.body.classList.toggle('changelog-subview', activeView === 'cards' && researchSubview === 'changelog');
     const introLine = document.getElementById('researchIntroLine');
-    if (introLine && researchSubview !== 'changelog') {
+    if (introLine) {
       introLine.textContent = activeLens === 'economist'
         ? 'Filtered to peer-reviewed research, institutional analysis, and official reports — organized around economic outcome domains.'
         : 'A curated database of peer-reviewed studies, policy reports, and investigative journalism on AI, automation, and labor markets.';
     }
 
+    if (activeView === 'themes') {
+      const sig = themesSig();
+      if (_themesSig !== sig) { _themesSig = sig; buildThemesView(); }
+      return;
+    }
     if (activeView === 'policy') { buildPolicyView(); return; }
     if (activeView === 'about')  { return; }
     if (activeView === 'adoption') { return; }   // static: charts drawn once by assets/adoption-charts.js
@@ -4262,6 +4570,9 @@
     searchQuery = '';
     const si = document.getElementById('searchInput');
     if (si) si.value = '';
+    if (mode === 'economist' && !ECON_THEME_CONFIG[activeThemeId]) {
+      activeThemeId = Object.keys(ECON_THEME_CONFIG)[0];
+    }
     // Refresh tab description for new lens
     const lensDesc = getTabDesc(activeView);
     if (lensDesc) {
@@ -4280,6 +4591,10 @@
     cards: {
       general:   { title: 'Research',   text: 'A curated database of peer-reviewed studies, policy reports, and investigative journalism on AI, automation, and labor markets.', note: 'Summaries and key findings are AI-generated and reviewed for accuracy. Always consult the original source before citing.' },
       economist: { title: 'Research',   text: 'Filtered to peer-reviewed research, institutional analysis, and official reports — organized around economic outcome domains.', note: 'Summaries and key findings are AI-generated and reviewed for accuracy. Always consult the original source before citing.' },
+    },
+    themes: {
+      general:   { title: 'Themes',     text: 'Cross-cutting syntheses of the research database, each framing a key question, evidence consensus, and implications for institutions.', note: 'Synthesized from the research database. Does not constitute strategic advice or reflect the opinions of the creator.' },
+      economist: { title: 'Themes',     text: 'Empirical questions synthesized from peer-reviewed and institutional research, each framing a specific economic outcome with quantified evidence.', note: 'Synthesized from the research database. Does not constitute strategic advice or reflect the opinions of the creator.' },
     },
     policy: {
       general:   { title: 'Policy Map', text: 'Twenty-seven policy interventions grouped into four policy areas, listed alphabetically within each. Click any policy for rationale, precedents, and supporting research.', note: 'Synthesized from the research database. Does not constitute policy advice or reflect the opinions of the creator.' },
@@ -4303,12 +4618,12 @@
     return (TAB_DESCS[view] || {})[lens] || null;
   }
 
-  const VIEW_TAB_IDS = { cards: 'viewCards', 'fact-bank': 'viewFactBank', policy: 'viewPolicy', adoption: 'viewAdoption', jobs: 'viewJobs', about: 'homeTitleLink' };
+  const VIEW_TAB_IDS = { cards: 'viewCards', 'fact-bank': 'viewFactBank', themes: 'viewThemes', policy: 'viewPolicy', adoption: 'viewAdoption', jobs: 'viewJobs', about: 'viewAbout' };
 
   function setView(view) {
     activeView = view;
     viewInitialized = true;
-    ['viewCards', 'viewFactBank', 'viewPolicy', 'viewAdoption', 'viewJobs'].forEach(id => {
+    ['viewCards', 'viewFactBank', 'viewThemes', 'viewPolicy', 'viewAdoption', 'viewJobs', 'viewAbout'].forEach(id => {
       const el = document.getElementById(id);
       if (!el) return;
       const active = id === VIEW_TAB_IDS[view];
@@ -4326,6 +4641,7 @@
       if (n)  n.textContent  = desc.note;
     }
     const _sb = document.getElementById('sortBtn'); if (_sb) _sb.style.display = view === 'cards' ? '' : 'none';
+    document.body.classList.toggle('strategy-view', view === 'themes');
     document.body.classList.toggle('policy-view',   view === 'policy');
     document.body.classList.toggle('about-view',    view === 'about');
     document.body.classList.toggle('adoption-view', view === 'adoption');
@@ -4338,21 +4654,28 @@
     if (panel) panel.setAttribute('aria-labelledby', activeTabId);
     const ann = document.getElementById('viewAnnounce');
     if (ann) {
-      const names = { cards: 'Research', 'fact-bank': 'Fact Bank', policy: 'Policy Map', adoption: 'Adoption', jobs: 'Job Displacement', about: 'About' };
+      const names = { cards: 'Research', 'fact-bank': 'Fact Bank', themes: 'Themes', policy: 'Policy Map', adoption: 'Adoption', jobs: 'Job Displacement', about: 'About' };
       ann.textContent = (names[view] || view) + ' view';
     }
     setHash(currentRoute());
   }
-  document.getElementById('viewCards').addEventListener('click',  () => { setResearchSubview('database'); setView('cards'); });
+  document.getElementById('viewCards').addEventListener('click',  () => setView('cards'));
   document.getElementById('viewFactBank')?.addEventListener('click', () => setView('fact-bank'));
+  document.getElementById('viewThemes').addEventListener('click', () => setView('themes'));
   document.getElementById('viewPolicy').addEventListener('click', () => setView('policy'));
   document.getElementById('viewAdoption')?.addEventListener('click', () => setView('adoption'));
   document.getElementById('viewJobs')?.addEventListener('click', () => setView('jobs'));
 
-  // Key findings band: open a source-excerpt modal, or hand off to the frozen
-  // Themes page if there is no source paper to show.
+  // Key findings band: open a source-excerpt modal, or jump to the theme if no source paper.
   function goToTheme(id) {
-    goToThemesPage('theme/' + id);
+    if (activeLens === 'economist' && !ECON_THEME_CONFIG[id]) setLens('general');
+    else if (activeLens === 'general' && GENERAL_EXCLUDED.has(id)) setLens('economist');
+    activeThemeId = id;
+    themeShowAll  = false;
+    setView('themes');
+    requestAnimationFrame(() => {
+      document.getElementById('themesArea').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
   }
 
   function closeFindingModal() {
@@ -4601,12 +4924,8 @@
     btn.addEventListener('click', () => setLens(btn.dataset.lens));
   });
 
-  // ── Home: the site title is the About page ───────────────────
-  document.getElementById('homeTitleLink')?.addEventListener('click', e => {
-    e.preventDefault();
-    setView('about');
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  });
+  // ── topbar About / ⓘ (mobile mirrors) ────────────────────────
+  document.getElementById('viewAbout')?.addEventListener('click', () => setView('about'));
   document.getElementById('aboutInfoBtnTopbar')?.addEventListener('click', () => {
     document.getElementById('aboutInfoBtn').click();
   });
@@ -5040,32 +5359,15 @@
     };
   })();
 
-  // ── Research sub-tabs: Database / What's New ─────────────────
-  document.getElementById('resSubviewDatabase')?.addEventListener('click', () => {
-    setResearchSubview('database');
-    setView('cards');
-  });
-  document.getElementById('resSubviewChangelog')?.addEventListener('click', () => {
-    setResearchSubview('changelog');
-    setView('cards');
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  });
-  // Entry links inside the log route through the hash router, which drops
-  // back to the database sub-tab and flashes the card.
-  document.getElementById('changelogArea')?.addEventListener('click', e => {
-    const a = e.target.closest('a[href^="#entry/"]');
-    if (!a) return;
-    e.preventDefault();
-    location.hash = a.getAttribute('href').slice(1);
-  });
-
   // ── init ─────────────────────────────────────────────────────
-  // R2: honor a deep link if one is present; otherwise land on About (home).
-  if (!applyHashRoute()) setView('about');
+  // R2: honor a deep link if one is present; otherwise land on Research.
+  if (!applyHashRoute()) setView('cards');
   window.addEventListener('hashchange', applyHashRoute);
 
-  // What's new: pulse the count pill once per page load when there is
-  // something unseen (skipped if a #changelog deep link already cleared it).
+  // What's new: open the log from the header button; pulse the pill once
+  // per page load when there is something unseen (skipped if a #changelog
+  // deep link already opened the log and cleared the count).
+  document.getElementById('whatsChangedBtn')?.addEventListener('click', openChangelog);
   updateWhatsChangedPill();
   (() => {
     const pill = document.getElementById('whatsChangedPill');
