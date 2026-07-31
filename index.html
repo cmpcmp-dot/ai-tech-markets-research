@@ -1357,6 +1357,41 @@
     font-family: 'Public Sans', sans-serif;
   }
   .about-section-text em { font-style: italic; }
+  .about-section-text + .about-section-text { margin-top: 12px; }
+  .about-lede {
+    font-family: var(--grot);
+    font-size: 24px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.25;
+    color: var(--text); margin-bottom: 14px;
+  }
+  .about-questions {
+    list-style: none; counter-reset: aq; margin: 16px 0 0; padding: 0;
+  }
+  .about-questions li {
+    counter-increment: aq; position: relative;
+    padding-left: 34px; margin-bottom: 16px;
+    font-size: 14px; line-height: 1.75; color: var(--text);
+    font-family: 'Public Sans', sans-serif;
+  }
+  .about-questions li:last-child { margin-bottom: 0; }
+  .about-questions li::before {
+    content: counter(aq); position: absolute; left: 0; top: 2px;
+    font-family: var(--grot); font-size: 12px; font-weight: 700;
+    width: 22px; height: 22px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    background: var(--navy); color: #fff;
+  }
+  .about-note {
+    border-left: 3px solid var(--purple);
+    background: rgba(0,0,0,0.02);
+    padding: 14px 16px; margin-top: 16px;
+    font-size: 13px; line-height: 1.7; color: var(--muted);
+    font-family: 'Public Sans', sans-serif;
+  }
+  .about-note strong { color: var(--text); }
+  .about-credit {
+    font-size: 13px; line-height: 1.7; color: var(--muted);
+    font-family: 'Public Sans', sans-serif;
+  }
 
   /* ── JOB DISPLACEMENT TAB ── (static view, modeled on About) */
   #jobDisplacementArea                    { display: none; }
@@ -2307,35 +2342,33 @@
       <div id="aboutArea">
         <div class="about-content">
           <div class="about-section">
-            <h2 class="about-section-label">Purpose</h2>
-            <p class="about-section-text">This tracker curates and synthesizes research at the intersection of artificial intelligence, automation, and the economy. It aggregates peer-reviewed studies, policy reports, and investigative journalism into a structured database, then builds on that database with original data analysis and a policy framework, to support institutional positioning, workforce strategy, and policy analysis.</p>
-            <p class="about-section-text">This page is the front door. Use the tabs above to move through the site; clicking the site title returns you here.</p>
+            <p class="about-lede">Welcome to our AI dashboard.</p>
+            <p class="about-section-text">We don&rsquo;t know what this technology will become, how the economy will absorb it, or what policy should do in response. The hard part is that we have to answer the third before anyone answers the first two.</p>
+            <ol class="about-questions">
+              <li><strong>Research.</strong> It&rsquo;s unclear how the technology itself will take shape. Will it be a normal technology, as Arvind Narayanan and Sayash Kapoor <a href="https://knightcolumbia.org/content/ai-as-normal-technology" target="_blank" rel="noopener">argue</a>, or is it more like electricity, where the whole economy eventually reorganizes around it?</li>
+              <li><strong>Adoption.</strong> Even as the technology evolves, how it enters the economy is a separate question. Will AI&rsquo;s effect on the labor market be sudden and large, or slower and more jagged as it works its way into existing firms and institutions?</li>
+              <li><strong>Policy.</strong> And even then, it&rsquo;s hard to know how to react. What policies safeguard against the downsides, amplify what&rsquo;s good, and make sure this broadly helps people? Should we work through the policies we already have, or does a genuinely new era demand bigger and different ideas? How much can we steer the technology, and how much should we just plan on absorbing its effects?</li>
+            </ol>
+            <p class="about-section-text" style="margin-top:16px;">Each question calls for a different kind of answer, which is how this dashboard is organized. We&rsquo;re learning here alongside everyone else, but we think what we&rsquo;ve built can contribute to a better AI transition.</p>
           </div>
           <div class="about-section">
-            <h2 class="about-section-label">What&rsquo;s included</h2>
-            <p class="about-section-text">The database covers AI&rsquo;s economic and labor impacts across 14 research categories, from labor markets and worker power to equity, criminal justice, and macroeconomic risk. Entries are selected for relevance to those impacts, the credibility of the source, and coverage across categories and viewpoints. Source types include peer-reviewed research, institutional and government reports, and investigative journalism, and every entry links to its original, publicly available publication.</p>
+            <h2 class="about-section-label">Research</h2>
+            <p class="about-section-text">Our research tracker is a searchable, tagged list of work on AI and its impact, broadly defined. Alongside it is our fact bank, meant as a resource for the community as a whole: specific sentences you can consider using, each with a caveat section laying out what the finding actually supports and where it has been stretched.</p>
+            <p class="about-note"><strong>How this section is built.</strong> To cover this much ground, the tracker and fact bank are summarized with the help of AI and then human review. We&rsquo;ve built skills to check the output for accuracy, but as with any secondhand source, verify anything you plan to cite or build on. Terminal-based AI tools are becoming more important for ideas-based work, and we&rsquo;d rather experiment with putting them into our own workflow than only write about them.</p>
           </div>
           <div class="about-section">
-            <h2 class="about-section-label">How to read it</h2>
-            <p class="about-section-text"><strong>Papers</strong> is the full, filterable database of individual sources, and holds two sub-tabs: <em>Database</em>, the searchable card view, and <em>What&rsquo;s New</em>, a dated feed of every addition and Policy Map review pass.</p>
-            <p class="about-section-text"><strong>Fact Bank</strong> collects short, number-bearing statements quoted verbatim from sources in the database, each rated for political noteworthiness and evidentiary strength. <strong>Adoption</strong> and <strong>Job Displacement</strong> are original analyses of Census and BLS data. <strong>Policy Map</strong> groups policy interventions into four policy areas, listed alphabetically within each.</p>
-            <p class="about-section-text"><strong>Lens.</strong> The General lens is written for a broad audience. The Focused lens filters to peer-reviewed and institutional research, organized around economic outcome domains.</p>
+            <h2 class="about-section-label">Adoption</h2>
+            <p class="about-section-text">The first section summarizes how firms are actually using the technology, drawn from the Census Bureau&rsquo;s Business Trends and Outlook Survey (BTOS) and put in a more accessible form. Adoption looks jagged, not like the complete takeover some predicted. It is also moving considerably faster than anyone who called this a flash in the pan expected.</p>
+            <p class="about-section-text">The second section tracks how AI is showing up in the labor market. Rather than running complicated statistical tests, we tell a story about the different ways you might look at this, to give a broader sense of what is and isn&rsquo;t moving. We update it with each new data release, and we show the range of tools economists are bringing to the question.</p>
+            <p class="about-section-text">There will be no jobs day where AI&rsquo;s effect on the labor market becomes undeniable and forces a policy response. In that way it&rsquo;s less like 9/11 or the COVID lockdowns and more like climate change: the impact accumulates without ever announcing itself. We hope this makes it easier to follow while we&rsquo;re still early.</p>
           </div>
           <div class="about-section">
-            <h2 class="about-section-label">Updates</h2>
-            <p class="about-section-text">The database is updated as new research emerges. The current build date appears in the footer, and a dated feed of additions and policy reviews lives under <a href="#changelog">Papers &rarr; What&rsquo;s New</a>, where a count marks entries added since your last look.</p>
+            <h2 class="about-section-label">Policy</h2>
+            <p class="about-section-text">Our policy map includes nearly every idea people have raised for making AI safe and broadly beneficial. Click through any of them and you&rsquo;ll find the major bills and initiatives from that policy&rsquo;s advocates. If you&rsquo;re trying to compile what has actually been introduced, start here.</p>
+            <p class="about-section-text">This is also where we build on our theory of provoking and legitimizing policy solutions. In a world where AI is fundamentally disruptive, the work is provocation: ideas that go well beyond shoring up what we already have. In a world where AI mostly accelerates the prosperity and the inequality of the last several decades, the work is legitimation, and that&rsquo;s the harder job. We already know what those solutions look like. They have been contested for thirty years.</p>
           </div>
           <div class="about-section">
-            <h2 class="about-section-label">Archive</h2>
-            <p class="about-section-text">An earlier build carried a <strong>Themes</strong> tab: cross-cutting syntheses of the database, each framing a key question with its evidence consensus, risks, and implications. That view has been retired from the main site but is preserved in full at <a href="themes.html">themes.html</a>, and theme links elsewhere on the site still resolve there.</p>
-          </div>
-          <div class="about-section">
-            <h2 class="about-section-label">Sourcing &amp; AI</h2>
-            <p class="about-section-text">Every entry links to a named, publicly available source, and its summary is checked against that original. Summaries, key findings, and takeaways are drafted with AI assistance and reviewed for accuracy. They are orientation aids, not substitutes for the source: always consult the primary publication before citing or acting on a finding.</p>
-          </div>
-          <div class="about-section">
-            <h2 class="about-section-label">Created by</h2>
-            <p class="about-section-text">Christelle Prophete. This site is independently maintained. The content does not reflect the opinions or perspectives of the creator.</p>
+            <p class="about-credit">Created and maintained by the Ideas Team: Becky Chao, Mike Konczal, and Christelle Prophete.</p>
           </div>
         </div>
       </div>
