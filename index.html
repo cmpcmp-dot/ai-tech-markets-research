@@ -230,7 +230,22 @@
     display: flex; align-items: center; gap: 6px;
     flex-shrink: 0; flex-wrap: wrap;
   }
-  .header-tabs { display: flex; align-items: center; flex-wrap: wrap; }
+  .header-tabs { display: flex; align-items: flex-start; flex-wrap: wrap; gap: 0 22px; }
+
+  /* Grouped nav tabs: a continuous rule under a pair of tabs, with a
+     shared group label below it (e.g. Research / Adoption). */
+  .tab-group { display: flex; flex-direction: column; }
+  .tab-group-btns { display: flex; align-items: flex-end; }
+  .tab-group-label {
+    margin-top: 3px; padding-top: 4px;
+    border-top: 1px solid color-mix(in srgb, var(--beige) 40%, transparent);
+    text-align: center;
+    font-family: var(--grot);
+    font-size: 10px; font-weight: 500;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--divider);
+  }
+  .tab-group-label--empty { border-top-color: transparent; color: transparent; user-select: none; }
   .header-tab-desc {
     border-bottom: 1px solid var(--border);
     padding: 16px 28px 14px;
@@ -1613,6 +1628,8 @@
   /* Narrow phones: tighten the row so all five nav items share one line */
   @media (max-width: 560px) {
     .header-nav-btn { padding: 6px 6px; letter-spacing: 0; }
+    .header-tabs { gap: 0 10px; }
+    .tab-group-label { font-size: 9px; letter-spacing: 0.06em; }
   }
 
   /* ── Policy Map intro bar (matches theme-disclaimer-bar) ─── */
@@ -2054,11 +2071,26 @@
     </div>
     <nav class="header-nav" aria-label="Primary">
       <div class="header-tabs" role="tablist" aria-label="Select view">
-        <button class="header-nav-btn" id="viewCards" role="tab" aria-selected="false" aria-controls="viewPanel">Research</button>
-        <button class="header-nav-btn" id="viewFactBank" role="tab" aria-selected="false" aria-controls="viewPanel">Fact Bank</button>
-        <button class="header-nav-btn" id="viewAdoption" role="tab" aria-selected="false" aria-controls="viewPanel">Adoption</button>
-        <button class="header-nav-btn" id="viewJobs" role="tab" aria-selected="false" aria-controls="viewPanel">Job Displacement</button>
-        <button class="header-nav-btn" id="viewPolicy" role="tab" aria-selected="false" aria-controls="viewPanel">Policy Map</button>
+        <div class="tab-group" role="presentation">
+          <div class="tab-group-btns" role="presentation">
+            <button class="header-nav-btn" id="viewCards" role="tab" aria-selected="false" aria-controls="viewPanel">Papers</button>
+            <button class="header-nav-btn" id="viewFactBank" role="tab" aria-selected="false" aria-controls="viewPanel">Fact Bank</button>
+          </div>
+          <div class="tab-group-label" aria-hidden="true">Research</div>
+        </div>
+        <div class="tab-group" role="presentation">
+          <div class="tab-group-btns" role="presentation">
+            <button class="header-nav-btn" id="viewAdoption" role="tab" aria-selected="false" aria-controls="viewPanel">Adoption</button>
+            <button class="header-nav-btn" id="viewJobs" role="tab" aria-selected="false" aria-controls="viewPanel">Job Displacement</button>
+          </div>
+          <div class="tab-group-label" aria-hidden="true">Adoption</div>
+        </div>
+        <div class="tab-group" role="presentation">
+          <div class="tab-group-btns" role="presentation">
+            <button class="header-nav-btn" id="viewPolicy" role="tab" aria-selected="false" aria-controls="viewPanel">Policy Map</button>
+          </div>
+          <div class="tab-group-label tab-group-label--empty" aria-hidden="true">&nbsp;</div>
+        </div>
       </div>
     </nav>
     <div style="display:none;">
@@ -2090,7 +2122,7 @@
 
   <div class="header-tab-desc" id="headerTabDesc">
     <div class="header-tab-desc-row">
-      <span class="header-tab-desc-title" id="headerTabDescTitle">Research</span>
+      <span class="header-tab-desc-title" id="headerTabDescTitle">Papers</span>
       <div class="lens-toggle" role="group" aria-label="Research lens">
         <button class="lens-btn active" id="lensGeneral" data-lens="general" title="Written for a broad audience" aria-label="General lens: written for a broad audience">General</button>
         <button class="lens-btn" id="lensEconomist" data-lens="economist" title="Peer-reviewed and institutional research, organized around economic outcomes" aria-label="Focused lens: peer-reviewed and institutional research, organized around economic outcomes">Focused</button>
@@ -2108,7 +2140,7 @@
   <div class="main-content" id="viewPanel" role="tabpanel" aria-labelledby="homeTitleLink">
 
     <div class="research-header-bar">
-      <span class="pol-header-title" id="researchHeaderTitle">Research</span>
+      <span class="pol-header-title" id="researchHeaderTitle">Papers</span>
       <span class="theme-intro-line" id="researchIntroLine">A curated database of peer-reviewed studies, policy reports, and investigative journalism on AI, automation, and labor markets.</span>
       <span class="theme-disclaimer-line" id="researchDisclaimerLine">Summaries and key findings are AI-generated and reviewed for accuracy on an ongoing basis. Always consult the original source before citing.</span>
     </div>
@@ -2203,13 +2235,13 @@
           </div>
           <div class="about-section">
             <h2 class="about-section-label">How to read it</h2>
-            <p class="about-section-text"><strong>Research</strong> is the full, filterable database of individual sources, and holds two sub-tabs: <em>Database</em>, the searchable card view, and <em>What&rsquo;s New</em>, a dated feed of every addition and Policy Map review pass.</p>
+            <p class="about-section-text"><strong>Papers</strong> is the full, filterable database of individual sources, and holds two sub-tabs: <em>Database</em>, the searchable card view, and <em>What&rsquo;s New</em>, a dated feed of every addition and Policy Map review pass.</p>
             <p class="about-section-text"><strong>Fact Bank</strong> collects short, number-bearing statements quoted verbatim from sources in the database, each rated for political noteworthiness and evidentiary strength. <strong>Adoption</strong> and <strong>Job Displacement</strong> are original analyses of Census and BLS data. <strong>Policy Map</strong> groups policy interventions into four policy areas, listed alphabetically within each.</p>
             <p class="about-section-text"><strong>Lens.</strong> The General lens is written for a broad audience. The Focused lens filters to peer-reviewed and institutional research, organized around economic outcome domains.</p>
           </div>
           <div class="about-section">
             <h2 class="about-section-label">Updates</h2>
-            <p class="about-section-text">The database is updated as new research emerges. The current build date appears in the footer, and a dated feed of additions and policy reviews lives under <a href="#changelog">Research &rarr; What&rsquo;s New</a>, where a count marks entries added since your last look.</p>
+            <p class="about-section-text">The database is updated as new research emerges. The current build date appears in the footer, and a dated feed of additions and policy reviews lives under <a href="#changelog">Papers &rarr; What&rsquo;s New</a>, where a count marks entries added since your last look.</p>
           </div>
           <div class="about-section">
             <h2 class="about-section-label">Archive</h2>
@@ -2621,7 +2653,7 @@
         <p class="modal-sources-intro">Christelle Prophete. This site is independently maintained and updated as new research emerges. The content does not reflect the opinions or perspectives of the creator.</p>
       </div>
       <div class="modal-group">
-        <div class="modal-group-name">Research tab</div>
+        <div class="modal-group-name">Papers tab</div>
         <p class="modal-sources-intro">A filterable card database of individual research entries, tagged by category and geographic scope. Cards can be filtered by category and geography, or searched by title, source, or finding.</p>
       </div>
       <div class="modal-group">
@@ -4034,7 +4066,7 @@
     const title = document.getElementById('researchHeaderTitle');
     const intro = document.getElementById('researchIntroLine');
     const disc  = document.getElementById('researchDisclaimerLine');
-    if (title) title.textContent = isClog ? "What's New" : 'Research';
+    if (title) title.textContent = isClog ? "What's New" : 'Papers';
     if (isClog) {
       if (intro) intro.textContent = 'Every dated change to the tracker: research entries added, by intake date, and Policy Map review passes.';
       if (disc)  disc.textContent  = 'Click any entry to jump to its card in the database.';
@@ -4269,8 +4301,8 @@
   // ── topbar controls ──────────────────────────────────────────
   const TAB_DESCS = {
     cards: {
-      general:   { title: 'Research',   text: 'A curated database of peer-reviewed studies, policy reports, and investigative journalism on AI, automation, and labor markets.', note: 'Summaries and key findings are AI-generated and reviewed for accuracy. Always consult the original source before citing.' },
-      economist: { title: 'Research',   text: 'Filtered to peer-reviewed research, institutional analysis, and official reports — organized around economic outcome domains.', note: 'Summaries and key findings are AI-generated and reviewed for accuracy. Always consult the original source before citing.' },
+      general:   { title: 'Papers',   text: 'A curated database of peer-reviewed studies, policy reports, and investigative journalism on AI, automation, and labor markets.', note: 'Summaries and key findings are AI-generated and reviewed for accuracy. Always consult the original source before citing.' },
+      economist: { title: 'Papers',   text: 'Filtered to peer-reviewed research, institutional analysis, and official reports — organized around economic outcome domains.', note: 'Summaries and key findings are AI-generated and reviewed for accuracy. Always consult the original source before citing.' },
     },
     policy: {
       general:   { title: 'Policy Map', text: 'Twenty-seven policy interventions grouped into four policy areas, listed alphabetically within each. Click any policy for rationale, precedents, and supporting research.', note: 'Synthesized from the research database. Does not constitute policy advice or reflect the opinions of the creator.' },
@@ -4329,7 +4361,7 @@
     if (panel) panel.setAttribute('aria-labelledby', activeTabId);
     const ann = document.getElementById('viewAnnounce');
     if (ann) {
-      const names = { cards: 'Research', 'fact-bank': 'Fact Bank', policy: 'Policy Map', adoption: 'Adoption', jobs: 'Job Displacement', about: 'About' };
+      const names = { cards: 'Papers', 'fact-bank': 'Fact Bank', policy: 'Policy Map', adoption: 'Adoption', jobs: 'Job Displacement', about: 'About' };
       ann.textContent = (names[view] || view) + ' view';
     }
     setHash(currentRoute());
