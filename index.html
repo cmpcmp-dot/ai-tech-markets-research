@@ -3,24 +3,24 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AI, Tech and the Economy: Research Intelligence</title>
+<title>AI Tracker: Research, Impact, and Policy</title>
 <meta name="description" content="A curated research database and synthesis on AI, automation, and the economy: peer-reviewed studies, policy reports, and investigative journalism on labor markets, equity, worker power, and policy responses.">
 <meta name="author" content="Christelle Prophete">
 <meta name="theme-color" content="#2c3254">
 <link rel="canonical" href="https://cmpcmp-dot.github.io/ai-tech-markets-research/">
 <meta property="og:type" content="website">
-<meta property="og:site_name" content="AI, Tech and the Economy: Research Intelligence">
-<meta property="og:title" content="AI, Tech and the Economy: Research Intelligence">
+<meta property="og:site_name" content="AI Tracker: Research, Impact, and Policy">
+<meta property="og:title" content="AI Tracker: Research, Impact, and Policy">
 <meta property="og:description" content="A curated research database and synthesis on AI, automation, and the economy: peer-reviewed studies, policy reports, and investigative journalism on labor markets, equity, worker power, and policy responses.">
 <meta property="og:url" content="https://cmpcmp-dot.github.io/ai-tech-markets-research/">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="AI, Tech and the Economy: Research Intelligence">
+<meta name="twitter:title" content="AI Tracker: Research, Impact, and Policy">
 <meta name="twitter:description" content="A curated research database and synthesis on AI, automation, and the economy: peer-reviewed studies, policy reports, and investigative journalism on labor markets, equity, worker power, and policy responses.">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "WebSite",
-  "name": "AI, Tech and the Economy: Research Intelligence",
+  "name": "AI Tracker: Research, Impact, and Policy",
   "url": "https://cmpcmp-dot.github.io/ai-tech-markets-research/",
   "description": "A curated research database and synthesis on AI, automation, and the economy: peer-reviewed studies, policy reports, and investigative journalism on labor markets, equity, worker power, and policy responses.",
   "author": { "@type": "Person", "name": "Christelle Prophete" }
@@ -207,11 +207,25 @@
   .site-header h1 a:hover {
     color: var(--green-hover);
   }
-  .header-sub {
-    font-family: var(--grot); font-size: 13px; letter-spacing: 0.02em;
-    color: var(--divider);
+  /* Site-wide prototype warning. The whole tracker is in development, so the
+     badge rides with the title rather than repeating on each dashboard. */
+  .header-proto-tag {
+    display: inline-block; vertical-align: middle;
+    margin-left: 12px; transform: translateY(-2px);
+    font-family: var(--grot); font-weight: 700; letter-spacing: 0.08em;
+    text-transform: uppercase; font-size: 10.5px; line-height: 1;
+    color: var(--gold); border: 1.5px solid var(--gold);
+    border-radius: var(--r-tag); padding: 4px 8px;
+    white-space: nowrap;
   }
-
+  .header-proto-note {
+    font-family: var(--grot); font-size: 12px; letter-spacing: 0.02em;
+    color: var(--gold); margin-top: 2px;
+  }
+  @media (max-width: 560px) {
+    .header-proto-tag { margin-left: 8px; font-size: 9.5px; padding: 3px 6px; }
+    .header-proto-note { font-size: 11px; }
+  }
   .header-nav {
     display: flex; align-items: center; gap: 6px;
     flex-shrink: 0; flex-wrap: wrap;
@@ -1887,19 +1901,6 @@
   /* Transplanted from jobs_displacement_prototype.html. Charts render
      into #jobDisplacementArea via the IIFE near the end of <body>. */
   .jd-wrap { max-width: 680px; margin: 0 auto; padding: 8px 28px 20px; }
-  .jd-notice {
-    display: flex; gap: 12px; align-items: flex-start;
-    background: var(--gold); color: var(--headline);
-    border-radius: var(--r-card); padding: 14px 16px; margin: 20px 0 4px;
-    font-size: 13.5px; line-height: 1.55;
-  }
-  .jd-notice .tag {
-    font-family: var(--grot); font-weight: 700; letter-spacing: 0.08em;
-    text-transform: uppercase; font-size: 11px; color: var(--purple);
-    border: 1.5px solid var(--purple); border-radius: var(--r-tag);
-    padding: 3px 7px; flex-shrink: 0; margin-top: 1px;
-  }
-  .jd-notice b { font-weight: 700; }
   .jd-lede {
     font-family: var(--serif); font-size: clamp(22px, 3vw, 28px);
     line-height: 1.3; color: var(--headline); font-weight: 500;
@@ -2047,8 +2048,8 @@
   <div class="header-inner">
     <div class="header-brand">
       <div class="header-text">
-        <h1><a href="#about" id="homeTitleLink" aria-label="Home: about this site">AI, Tech and the Economy: Research Intelligence</a></h1>
-        <div class="header-sub">A curated database of research on AI, automation, and the economy</div>
+        <h1><a href="#about" id="homeTitleLink" aria-label="Home: about this site">AI Tracker: Research, Impact, and Policy</a><span class="header-proto-tag" title="Work in progress — please do not cite or share these figures">Prototype</span></h1>
+        <div class="header-proto-note">Work in progress &mdash; please do not cite or share these figures.</div>
       </div>
     </div>
     <nav class="header-nav" aria-label="Primary">
@@ -2232,11 +2233,6 @@
            ══════════════════════════════════════════════════════════════════ -->
       <div id="adoptionArea">
         <div class="jd-wrap">
-
-          <div class="jd-notice" role="note">
-            <span class="tag">Prototype</span>
-            <span><b>This analysis is a work-in-progress prototype. Please do not use, cite, or share these figures.</b> The methods and data are still being validated and the numbers may change.</span>
-          </div>
 
           <div class="jd-lede">Who is actually adopting AI, what are they using it for, and is anyone losing a job over it?</div>
           <p class="jd-standfirst">Most of the AI-and-work debate runs on forecasts. The Census Business Trends and Outlook Survey asks roughly a million businesses, every two weeks, what they are actually doing. This page follows the chain from theoretical exposure through realized adoption to what firms say the adoption did to their headcount &mdash; and the last link is the weakest one in the displacement story.</p>
@@ -2463,11 +2459,6 @@
       <div id="jobDisplacementArea">
         <div class="jd-wrap">
 
-          <div class="jd-notice" role="note">
-            <span class="tag">Prototype</span>
-            <span><b>This analysis is a work-in-progress prototype. Please do not use, cite, or share these figures.</b> The methods and data are still being validated and the numbers may change. Stay tuned for the full analysis.</span>
-          </div>
-
           <div class="jd-lede">Is AI displacing workers yet? Follow the labor market down four levels.</div>
           <p class="jd-standfirst">The aggregate unemployment rate is a blunt instrument. To see displacement you have to ask sharper questions: is unemployment higher than growth would predict, is the weakness spread evenly, where has hiring actually decelerated, and do the industries adopting AI look any different from the ones that are not. This is a first pass; each section links to a fuller technical treatment later. The <a href="#adoption">Adoption</a> tab covers who is using AI and what for.</p>
 
@@ -2605,7 +2596,7 @@
 </main><!-- /app-layout -->
 
 <footer>
-  AI, Tech and the Economy: Research Intelligence ·
+  AI Tracker: Research, Impact, and Policy ·
   Created by Christelle Prophete ·
   Last updated <span id="headerLastUpdated"></span> ·
   <a class="footer-changelog-link" href="#about">About</a> ·
@@ -3351,7 +3342,7 @@
     ];
     if (org) lines.push(`  publisher = {${org}},`);
     if (p.sourceUrl) lines.push(`  howpublished = {\\url{${p.sourceUrl}}},`);
-    lines.push(`  note = {Via AI, Tech and the Economy: Research Intelligence, entry ${p.id}}`);
+    lines.push(`  note = {Via AI Tracker: Research, Impact, and Policy, entry ${p.id}}`);
     lines.push('}');
     return lines.join('\n');
   }
@@ -3367,7 +3358,7 @@
     md.push('');
     md.push(`**Phase:** ${lvl.label || p.level}${catLabel ? ` · **Domain:** ${catLabel}` : ''}`);
     md.push('');
-    md.push(`*Draft prepared from AI, Tech and the Economy: Research Intelligence (${appURL('policy/' + p.id)})${p.lastReviewed ? `. Last reviewed ${fmtD(p.lastReviewed)}` : ''}.*`);
+    md.push(`*Draft prepared from AI Tracker: Research, Impact, and Policy (${appURL('policy/' + p.id)})${p.lastReviewed ? `. Last reviewed ${fmtD(p.lastReviewed)}` : ''}.*`);
     const section = (label, body) => { if (body) { md.push('', `## ${label}`, '', plain(body)); } };
     const listSection = (label, arr) => {
       if (Array.isArray(arr) && arr.length) {
