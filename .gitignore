@@ -1,2 +1,28 @@
 .DS_Store
 .claude
+
+# ── data_analysis: generated output is never committed ─────────────────
+# Anything under an output/ directory is disposable and regenerable.
+# See MERGE_PLAN.md and data_analysis/DATA_LOCAL.md.
+data_analysis/**/output/*
+
+# Exceptions: small artifacts that CANNOT be regenerated without an input
+# we do not keep (the 818 MB IPUMS CPS extract / the 988 MB LEHD QWI panel).
+!data_analysis/micro/output/cps_occ_ind_weights.rds
+!data_analysis/micro/output/t1_adoption_exposure.csv
+!data_analysis/micro/output/t1_coefs.csv
+!data_analysis/micro/output/t1_slope_over_time.csv
+!data_analysis/micro/output/tests_industry_meta.json
+
+# ── large local-only inputs ───────────────────────────────────────────
+data_analysis/job_data/
+data_analysis/qwi/
+data_analysis/data/
+data_analysis/data-local/
+
+# ── belt and braces: never commit these formats anywhere ──────────────
+*.RDS
+*.rds
+*.dat.gz
+*.parquet
+!data_analysis/micro/output/cps_occ_ind_weights.rds
