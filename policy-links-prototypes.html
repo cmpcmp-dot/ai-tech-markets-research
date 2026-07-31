@@ -87,18 +87,99 @@
   .lwhy { font-size:11.5px; color:var(--muted); margin-top:2px; }
   .lwhy.illus { font-style:italic; color:#a3612a; }
   .phint { font-size:11px; color:var(--muted); margin-top:14px; padding-top:12px; border-top:1px dashed var(--border); }
+
+  /* ── wide (panel-less) tabs ── */
+  .layout.solo { grid-template-columns:1fr; }
+  .layout.solo .panel { display:none; }
+
+  /* ── Tab 7: linkage catalog ── */
+  .cat-wrap { padding:18px 20px 24px; }
+  .cat-intro { font-size:13px; color:var(--text); max-width:900px; margin:0 0 4px; }
+  .cat-intro b { color:var(--headline); }
+  .cat-note { font-size:11.5px; color:var(--muted); max-width:900px; margin:8px 0 0; font-style:italic; }
+
+  .demo { border:1px solid var(--border); border-radius:10px; background:var(--bg); margin:18px 0 26px; overflow:hidden; }
+  .demo-head { display:flex; gap:8px; align-items:center; flex-wrap:wrap; padding:10px 14px; border-bottom:1px solid var(--border);
+    font-size:11.5px; color:var(--muted); }
+  .demo-head .seg { display:inline-flex; background:var(--surface); border:1px solid var(--border); border-radius:16px; padding:2px; }
+  .demo-head .seg button { border:none; background:transparent; font-family:var(--sans); font-size:11.5px; color:var(--muted);
+    padding:4px 12px; border-radius:14px; cursor:pointer; }
+  .demo-head .seg button.on { background:var(--navy); color:#fff; font-weight:600; }
+  .demo-body { padding:6px 10px 10px; }
+  .demo-read { border-top:1px solid var(--border); padding:11px 14px; font-size:11.5px; color:var(--muted); min-height:38px; }
+  .demo-read b { color:var(--headline); font-size:12.5px; }
+  .demo-read .sc { display:inline-block; margin-right:12px; }
+  .demo-read .sc i { font-style:normal; color:var(--navy); font-weight:600; }
+  .axis-t { font-family:var(--grot); font-size:9.5px; font-weight:700; letter-spacing:0.06em; text-transform:uppercase; fill:var(--muted); }
+  .axis-s { font-family:var(--sans); font-size:8.5px; fill:var(--muted); }
+  .dim-t { font-family:var(--grot); font-size:10.5px; font-weight:700; fill:var(--headline); }
+  .dim-s { font-family:var(--sans); font-size:9px; fill:var(--muted); }
+  .qlab { font-family:var(--sans); font-size:9px; fill:var(--muted); font-style:italic; }
+  .slab { font-family:var(--sans); font-size:7.5px; fill:var(--text); }
+
+  .cat-filters { display:flex; gap:6px; align-items:center; flex-wrap:wrap; margin:0 0 16px;
+    font-size:11.5px; color:var(--muted); }
+  .chip { border:1px solid var(--border); background:var(--bg); color:var(--muted); font-family:var(--sans);
+    font-size:11.5px; padding:4px 12px; border-radius:14px; cursor:pointer; }
+  .chip.on { background:var(--navy); border-color:var(--navy); color:#fff; font-weight:600; }
+  .cat-count { margin-left:auto; font-style:italic; }
+
+  .fam { font-family:var(--grot); font-size:12px; font-weight:700; letter-spacing:0.05em; text-transform:uppercase;
+    color:var(--headline); margin:22px 0 4px; padding-top:14px; border-top:2px solid var(--navy); }
+  .fam:first-of-type { margin-top:4px; }
+  .fam-sub { font-size:11.5px; color:var(--muted); margin:0 0 12px; max-width:840px; }
+
+  .cat-grid { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+  @media (max-width:1000px){ .cat-grid { grid-template-columns:1fr; } }
+
+  .idea { border:1px solid var(--border); border-left:3px solid var(--divider); border-radius:8px;
+    background:var(--bg); padding:13px 15px 14px; }
+  .idea.v-deep   { border-left-color:var(--green); }
+  .idea.v-useful { border-left-color:var(--gold); }
+  .idea.v-soft   { border-left-color:var(--pink); }
+  .idea.v-skip   { border-left-color:var(--divider); background:rgba(44,50,84,0.025); }
+  .idea-head { display:flex; align-items:baseline; gap:8px; margin-bottom:7px; flex-wrap:wrap; }
+  .idea-num { font-family:var(--grot); font-size:10px; font-weight:700; color:var(--muted);
+    font-variant-numeric:tabular-nums; letter-spacing:0.04em; }
+  .idea-name { font-family:var(--grot); font-size:14px; font-weight:700; color:var(--headline); line-height:1.2; }
+  .vbadge { margin-left:auto; font-family:var(--grot); font-size:9px; font-weight:700; letter-spacing:0.06em;
+    text-transform:uppercase; padding:3px 8px; border-radius:10px; white-space:nowrap; }
+  .v-deep   .vbadge { background:rgba(112,173,143,0.22); color:#3d6e57; }
+  .v-useful .vbadge { background:rgba(235,195,130,0.30); color:#8a6420; }
+  .v-soft   .vbadge { background:rgba(255,191,167,0.34); color:#a3532c; }
+  .v-skip   .vbadge { background:rgba(44,50,84,0.08); color:var(--muted); }
+  .idea p { margin:0 0 6px; font-size:12px; line-height:1.45; }
+  .idea .lbl { font-family:var(--grot); font-size:9px; font-weight:700; letter-spacing:0.07em;
+    text-transform:uppercase; color:var(--muted); margin-right:5px; }
+  .idea .ex { color:var(--text); }
+  .idea .ex em { font-style:normal; color:var(--navy); font-weight:600; }
+  .idea .honest { margin-top:8px; padding-top:8px; border-top:1px dashed var(--border); color:var(--text); }
+  .idea .meta { font-size:10.5px; color:var(--muted); margin-top:7px; }
+  .idea .meta span { display:inline-block; margin-right:12px; }
+  .idea .meta b { color:var(--text); font-weight:600; }
+
+  .closer { border:1px solid var(--navy); border-radius:10px; background:rgba(112,173,143,0.07);
+    padding:16px 18px; margin-top:26px; }
+  .closer h3 { font-family:var(--grot); font-size:13.5px; color:var(--headline); margin:0 0 8px;
+    letter-spacing:0.04em; text-transform:uppercase; }
+  .closer p, .closer li { font-size:12.5px; line-height:1.5; }
+  .closer p { margin:0 0 8px; }
+  .closer ol { margin:0 0 8px; padding-left:20px; }
+  .closer li { margin-bottom:5px; }
+  .closer b { color:var(--headline); }
 </style>
 </head>
 <body>
 <div class="wrap">
   <header class="masthead">
     <p class="eyebrow">Policy Map · Links · Prototype set</p>
-    <h1>Six ways to draw how policies reinforce each other</h1>
+    <h1>Six ways to draw how policies reinforce each other — and 32 ways they might connect</h1>
     <p class="sub">
-      Each tab renders the same policies and the same link set a different way, so we can judge which reading
-      helps most before the edge data gets overhauled. All views use the <b>dense preview</b> edge set:
+      Tabs 1–6 render the same policies and the same link set six different ways, so we can judge which reading
+      helps most before the edge data gets overhauled. All six use the <b>dense preview</b> edge set:
       real <code>pairsWith</code> links plus dashed illustrative edges that stand in for the fuller set to come.
-      Dashed = illustrative, not a real relationship yet.
+      Dashed = illustrative, not a real relationship yet. Tab 7 steps back from drawing altogether and catalogs
+      what the links could <i>mean</i> — with an honest verdict on each, and a live demo of scoring policies by hand.
     </p>
   </header>
 
@@ -539,6 +620,420 @@
     panel.innerHTML=h;
   }
 
+  /* =====================================================================
+     TAB 7 — LINKAGE CATALOG  (brainstorm: every way these policies connect)
+     Hand-scored tag numbers live here and here only. Nothing in this tab
+     is wired back into tracker-data.js — it is a thinking surface.
+     ===================================================================== */
+
+  // ── Hand-assigned tag numbers, 1–5, for the five most promising dials.
+  //    [novelty, cost, speed, evidence, aiSpecificity]
+  //    These are one person's first-pass judgments, deliberately coarse.
+  const SCORES={
+    'ui-reform':[1,3,2,5,1], 'eitc-expansion':[1,3,5,5,1], 'min-wage-indexing':[1,1,4,5,1],
+    'algorithmic-transparency':[2,1,4,2,5], 'worker-data-rights':[2,1,3,3,4],
+    'ai-displacement-reporting':[3,1,3,1,5], 'portable-benefits':[4,3,2,2,2],
+    'reskilling-accounts':[3,3,3,2,3], 'ai-audit-mandate':[3,1,3,2,5],
+    'wage-insurance':[3,3,3,3,2], 'sectoral-bargaining':[4,1,2,4,1],
+    'automation-levy':[5,1,2,1,5], 'profit-sharing-mandate':[4,1,3,2,4],
+    'universal-child-benefit':[2,4,5,5,1], 'care-economy-investment':[2,4,3,4,1],
+    'housing-stability':[2,4,2,4,2], 'delink-healthcare':[5,5,1,3,1],
+    'shorter-workweek':[4,1,3,3,2], 'job-guarantee':[5,5,1,2,2],
+    'universal-basic-services':[5,5,1,2,1], 'worker-ownership':[3,2,3,3,2],
+    'guaranteed-income':[4,4,4,4,1], 'ubi':[5,5,4,3,2],
+    'ai-dividend':[5,2,2,2,5], 'sovereign-wealth-fund':[5,2,1,4,4],
+    'global-min-tax':[3,1,2,3,4], 'wealth-tax':[5,1,2,2,3]
+  };
+  const DIMS=[
+    {k:0,t:'Novelty vs. current law',s:'Does this amend a statute, or found an institution?',
+     ends:['Tweak a program that exists','Build something with no U.S. analogue'],
+     ticks:['Tweak existing','Big expansion','New program, some precedent','New program, no U.S. precedent','New institution']},
+    {k:1,t:'Net fiscal cost',s:'Cost to the federal budget, revenue-raisers scored lowest.',
+     ends:['Raises money, or costs nothing','Several percent of GDP'],
+     ticks:['Raises revenue / free','Tax expenditure','Tens of billions','~1% of GDP','Several % of GDP']},
+    {k:2,t:'Time to felt effect',s:'How long until a laid-off worker notices anything.',
+     ends:['A decade or more','Next filing season'],
+     ticks:['A decade+','Several years','About two years','Within a year','Next filing season']},
+    {k:3,t:'Evidence strength',s:'How much do we actually know this works at scale?',
+     ends:['Untested anywhere','Strong U.S. evidence'],
+     ticks:['Untested','Small pilots','Partial or foreign only','Strong foreign/historical','Strong U.S. evidence']},
+    {k:4,t:'AI-specificity',s:'Does the policy need AI to be the reason, or not?',
+     ends:['Would be proposed anyway','Only makes sense because of AI'],
+     ticks:['AI-agnostic','Mostly agnostic','Mixed','Mostly AI-framed','AI-dependent']}
+  ];
+
+  const IDEAS=[
+  /* ── Family E: relational — real edges between two policies ── */
+  {n:'E01',f:'edges',v:'useful',t:'Shared theme',
+   s:'Two policies sit in the same substantive area. This is what the Links view draws today.',
+   ex:'<em>UI Reform</em> and <em>Wage Insurance</em> are both Economic Security, so they connect.',
+   sh:'Bands, hulls, colored arcs',au:'Free — already in the data',
+   h:'Necessary scaffolding, but close to zero insight on its own: it only tells the reader what you already decided when you filed the card. It should be the background of every view, never the point of one. Its real job is to make the <b>cross</b>-theme edges legible by contrast.'},
+
+  {n:'E02',f:'edges',v:'deep',t:'Prerequisite chain',
+   s:'A has to exist, or work, before B can function at all. Directed, and falsifiable.',
+   ex:'<em>UI Reform</em> → <em>Portable Benefits</em> (the card literally says portable benefits lean on the same administrative plumbing). <em>AI Job Impact Reporting</em> → <em>Wage Insurance</em>, because reporting is the trigger. <em>Automation Levy</em> → <em>AI Dividend</em>.',
+   sh:'Layered DAG, left-to-right; or a sequencing timeline',au:'Medium — needs a curated pass, ~40 judgments',
+   h:'The single highest-value relation on this list. It turns a menu into an <b>order of operations</b>, which is the question every advocate actually has: what has to happen first. It is also the only relation here that can be wrong in a useful way — someone can argue the arrow points the other direction, and that argument is the product. Directionality is what makes it earn its keep, so do not render it undirected.'},
+
+  {n:'E03',f:'edges',v:'deep',t:'Funds / paid-for-by',
+   s:'A raises the money that B spends. A subset of prerequisite, but worth its own layer.',
+   ex:'<em>Automation Levy</em>, <em>Wealth Tax</em>, and <em>Global Minimum Tax</em> flow into <em>UBI</em>, <em>Job Guarantee</em>, <em>Universal Basic Services</em>. <em>Sovereign Wealth Fund</em> → <em>AI Dividend</em> is a closed loop.',
+   sh:'Sankey, revenue on the left, outlays on the right',au:'Medium — and forces you to commit to magnitudes',
+   h:'Very high insight, and uncomfortable in a productive way. Most policy maps quietly separate the expensive ideas from the ideas that pay for them; drawing the pipes together makes the fiscal arithmetic visible and pre-empts the first question a skeptic asks. Risk: a Sankey implies precision about revenue estimates you may not have. Use ribbon <i>presence</i> rather than ribbon <i>width</i> until the numbers are sourced.'},
+
+  {n:'E04',f:'edges',v:'deep',t:'Competes / substitutes',
+   s:'The two policies chase the same constituency or the same budget line with different theories.',
+   ex:'<em>EITC Expansion</em> vs. <em>Guaranteed Income</em> — work-conditioned versus unconditional cash. This edge is already sitting unused in <code>competesWith</code>.',
+   sh:'Second edge layer in a contrasting color, or a red-dashed overlay',au:'Free to start — the field exists and is unrendered',
+   h:'High insight precisely because almost nobody draws it. A map of only reinforcement is a map that cannot be wrong, and readers sense that. Showing where the agenda argues with itself is what makes the reinforcement claims credible. Cheapest big win available: the data is already in the file.'},
+
+  {n:'E05',f:'edges',v:'deep',t:'Same policy instrument',
+   s:'Different goals, identical machinery: a refundable credit, a payroll mandate, an employer disclosure duty, a public provision, an ownership stake.',
+   ex:'<em>EITC Expansion</em>, <em>Universal Child Benefit</em>, and <em>AI Dividend</em> are all refundable credits pushed through the IRS — so they share plumbing, and share failure modes.',
+   sh:'Small multiples grouped by instrument; or node shape by instrument',au:'Low — one tag per policy, mechanical to assign',
+   h:'Underrated and non-obvious. Instrument type predicts implementation risk better than theme does: the three credits above all live or die on IRS capacity and improper-payment politics, which no thematic grouping reveals. It also generates real strategic advice — if you have already won the delivery fight once, the second policy through the same pipe is cheaper.'},
+
+  {n:'E06',f:'edges',v:'useful',t:'Same administrative host',
+   s:'Which agency or level of government has to actually run it: IRS, DOL, HHS, SSA, FTC, or 50 state systems.',
+   ex:'<em>UI Reform</em> and <em>Portable Benefits</em> both route through state unemployment systems, most of them on 1970s mainframes. That shared dependency is a shared risk.',
+   sh:'Grouped columns by agency; or a bipartite policy↔agency graph',au:'Low',
+   h:'Not glamorous, genuinely useful. It surfaces bottlenecks: if six policies all queue behind the same under-resourced agency, that is a finding, and it is invisible in every other view. Weaker as a standalone tab than as a filter you can flip on.'},
+
+  {n:'E07',f:'edges',v:'useful',t:'Same target population',
+   s:'Who actually receives the benefit: gig and 1099 workers, mid-career displaced, low-wage service, caregivers, everyone.',
+   ex:'<em>Portable Benefits</em>, <em>UI Reform</em>, and <em>Worker Data Rights</em> all converge on the 1099 worker; almost nothing here is aimed at the long-term unemployed who never re-enter.',
+   sh:'Coverage matrix: populations as rows, policies as columns',au:'Medium — definitions get slippery fast',
+   h:'The payoff is the <b>empty cells</b>, not the full ones. A coverage matrix is the fastest way to find who the agenda is quietly not serving, which is a more original contribution than another view of what it does serve. Risk of tautology: if you define populations by the policies you have, every cell fills and you learn nothing. Define them from the labor market first.'},
+
+  {n:'E08',f:'edges',v:'deep',t:'Shared chokepoint',
+   s:'Two policies die on the same obstacle. One fight blocks six ideas.',
+   ex:'Employment classification decides <em>UI Reform</em>, <em>Portable Benefits</em>, and <em>Sectoral Wage Boards</em> alike. "Was this layoff AI-caused?" decides <em>AI Job Impact Reporting</em>, <em>Wage Insurance</em>, and <em>Automation Levy</em>.',
+   sh:'Bipartisan-style hub graph: chokepoints as hubs, policies as spokes',au:'Medium — read the <code>risks</code> arrays and cluster them',
+   h:'One of the most original readings available, and the risk data to build it is already written on every card. It reframes the map from "what should we do" to "what is the load-bearing fight," which is exactly what a strategy audience needs. It also justifies the sequencing story in E02 without needing to claim causality.'},
+
+  {n:'E09',f:'edges',v:'soft',t:'Shared opposition',
+   s:'Which coalition shows up to kill it: Chamber of Commerce, tech industry, small business, states-rights.',
+   ex:'The <code>landscape</code> fields already name Chamber opposition on <em>AI Job Impact Reporting</em> and employer opposition on <em>UI Reform</em> financing.',
+   sh:'Bipartite opponents↔policies, or opposition-intensity heat',au:'Medium, and it goes stale',
+   h:'Strategically valuable, epistemically soft. Opposition is real but coalitions shift, and a published map asserting who your enemies are ages badly and reads as advocacy rather than analysis. Keep it as an internal layer, or state it as "opposition on the record as of <i>date</i>" rather than as a structural property.'},
+
+  {n:'E10',f:'edges',v:'deep',t:'Precedent lineage',
+   s:'Each policy descends from a real program somewhere. Draw the family tree.',
+   ex:'Denmark flexicurity → <em>Portable Benefits</em>. Alaska Permanent Fund → <em>AI Dividend</em> and <em>Sovereign Wealth Fund</em>. The 2021 advance CTC → <em>Universal Child Benefit</em>. NYC Local Law 144 → <em>Algorithmic Transparency</em>.',
+   sh:'Genealogy: ancestors as roots, policies as leaves',au:'Free-ish — every card already has a <code>precedent</code> field',
+   h:'High insight and almost fully authored already. It separates "this has run somewhere for thirty years" from "this is a whiteboard idea," which is the credibility question underneath every feasibility argument. It also shows clustering you would never guess: several transformational policies share one Alaskan ancestor.'},
+
+  {n:'E11',f:'edges',v:'deep',t:'Interaction sign',
+   s:'Not just "related" but signed: complementary, redundant, or actively conflicting.',
+   ex:'<em>Minimum Wage Indexing</em> + <em>Sectoral Wage Boards</em> are complementary. <em>UBI</em> + <em>Universal Basic Services</em> partly redundant. <em>32-Hour Workweek</em> + <em>Job Guarantee</em> pull against each other on labor supply.',
+   sh:'Three-color edges on any existing view',au:'Medium — a re-read of the existing pairs',
+   h:'This is E01 with actual content in it, and it upgrades every other view for free because it is an edge <i>attribute</i>, not a new layout. Redundancy is the most useful of the three values and the one people skip: knowing two policies overlap by 60% is real budget information.'},
+
+  {n:'E12',f:'edges',v:'deep',t:'Escalation ladder',
+   s:'Same lever, higher dose. A rung ordering rather than a link.',
+   ex:'<em>EITC Expansion</em> → <em>Universal Child Benefit</em> → <em>Guaranteed Income</em> → <em>UBI</em> is one cash ladder. <em>Automation Levy</em> → <em>Wealth Tax</em> is another. The <code>level</code> field is already a crude version of this.',
+   sh:'Parallel ladders, rungs aligned horizontally',au:'Low — mostly re-reading the existing <code>level</code>',
+   h:'Probably the most legible reading for a non-expert audience, because it answers "what is the small version of this" without the map having to argue. It also makes the transformational tier feel reachable instead of ornamental. Caution: a ladder implies each rung is a step toward the next, which is sometimes false — <em>EITC</em> builds a work-conditioned constituency that makes <em>UBI</em> harder, not easier.'},
+
+  {n:'E13',f:'edges',v:'soft',t:'Bill and sponsor overlap',
+   s:'Two policies appear in the same introduced bill, or in the same legislator’s portfolio.',
+   ex:'S.3108 (Hawley/Warner) carries reporting language that touches <em>AI Job Impact Reporting</em> and <em>Algorithmic Transparency</em>. NJ S.1840 spans three of these cards at once.',
+   sh:'Bipartite bills↔policies; or a co-sponsorship network',au:'High — and needs maintenance every session',
+   h:'The most credible relation on the list, because it is observed rather than asserted, and the most expensive to keep true. A stale legislative graph is worse than none. If you build it, build it as a dated snapshot with a visible "as of" and accept that it is a research artifact, not a live view.'},
+
+  {n:'E14',f:'edges',v:'useful',t:'Shared evidence base',
+   s:'Two policies cite the same papers. Computable today from <code>paperIds</code>.',
+   ex:'Overlapping citations already link <em>Algorithmic Transparency</em> and <em>Worker Data Rights</em> through the same NJ S.1840 and civil-rights sources.',
+   sh:'Weighted co-citation graph',au:'Free — pure computation, no judgment',
+   h:'Honest, zero-cost, and mildly misleading if oversold. It measures your <b>research coverage</b>, not the policies’ relationships: a thick edge can just mean one paper happened to discuss both. Excellent as a meta view for spotting thin evidence and unlinked-but-should-be pairs. Weak as the reader-facing story.'},
+
+  {n:'E15',f:'edges',v:'deep',t:'Diagnosis → treatment',
+   s:'Link each policy to the harm it answers: displacement, wage suppression, market concentration, surveillance, price extraction.',
+   ex:'Surveillance is answered by <em>Worker Data Rights</em> and <em>AI Bias Audits</em>; price extraction has almost no card yet, which the brief already admits.',
+   sh:'Bipartite harms↔policies, harms sized by severity',au:'Medium — but it is the argument you already have',
+   h:'More insight-bearing than theme, because it makes the map <b>accountable to a diagnosis</b> instead of to a filing system. It immediately shows over- and under-served harms — the thin Mitigating Harms row stops looking like a taxonomy gap and starts looking like an agenda gap, which is the more interesting claim.'},
+
+  /* ── Family D: dials — a number per policy ── */
+  {n:'D16',f:'dials',v:'deep',t:'Novelty vs. current law',
+   s:'1 = amend a program that exists. 5 = found an institution that does not.',
+   ex:'<em>UI Reform</em> = 1. <em>Wage Insurance</em> = 3. <em>Sovereign Wealth Fund</em> = 5. Scored live in the demo above.',
+   sh:'Sort key, X-axis, or a five-column strip',au:'Low — 27 judgments, mostly uncontroversial',
+   h:'The best single dial here, and the one that most changes what the map means. Theme tells you what a policy is about; novelty tells you <b>how hard the ask is</b>, which is the difference between "amend a statute" and "stand up an agency." It cuts across theme cleanly, so it produces genuinely new adjacencies rather than restating the categories.'},
+
+  {n:'D17',f:'dials',v:'deep',t:'Net fiscal cost',
+   s:'1 = raises revenue or costs nothing. 5 = several percent of GDP.',
+   ex:'<em>32-Hour Workweek</em> and <em>Algorithmic Transparency</em> = 1. <em>UBI</em> and <em>Universal Basic Services</em> = 5.',
+   sh:'Y-axis against novelty; the 2×2 in the demo above',au:'Low to score, high to defend',
+   h:'High insight paired with novelty — the quadrants are immediately meaningful, and "cheap but structurally new" is a real and underexploited category. One serious encoding flaw, visible in the demo: scoring revenue-raisers and free regulations both as 1 collapses two very different things. Either split the scale to signed values or add a second mark for revenue direction. This is exactly the kind of quiet lie a tag number tells.'},
+
+  {n:'D18',f:'dials',v:'deep',t:'Who bears the cost',
+   s:'Employers, general taxpayers, capital owners, or nobody because it is a rule change.',
+   ex:'<em>Profit Sharing Mandate</em> lands on employers; <em>Wealth Tax</em> on capital; <em>Minimum Wage Indexing</em> on nobody, fiscally.',
+   sh:'Color or fill pattern on any view; stacked bar by incidence',au:'Low',
+   h:'The whole political economy of a policy in one field. It predicts who fights you far better than cost magnitude does — a cheap policy paid entirely by employers is harder than an expensive one paid from general revenue. Categorical rather than scalar, so it reads better as color than as an axis.'},
+
+  {n:'D19',f:'dials',v:'deep',t:'Time to felt effect',
+   s:'1 = a decade. 5 = next filing season.',
+   ex:'<em>EITC Expansion</em> = 5, the IRS can move. <em>UI Reform</em> = 2, because of the COBOL problem. <em>Job Guarantee</em> = 1.',
+   sh:'Horizontal timeline, or a third axis',au:'Low',
+   h:'Underrated and quietly the most practical filter on the list: it answers "what helps someone laid off next quarter," which no other dimension does. It also produces the map’s sharpest surprise — some structurally modest reforms are slow (legacy systems) and some radical ones are fast (sending money is easy). That inversion is worth a view by itself.'},
+
+  {n:'D20',f:'dials',v:'deep',t:'Evidence strength',
+   s:'1 = untested anywhere. 5 = strong U.S. evidence at scale.',
+   ex:'<em>Minimum Wage Indexing</em> and <em>EITC</em> = 5. <em>Automation Levy</em> = 1, it exists nowhere.',
+   sh:'Against cost; or as node opacity',au:'Medium — defensible scoring needs the citations',
+   h:'The honesty axis, and the one that buys the most credibility. Crossed with cost it isolates the "expensive and untested" quadrant, which is precisely the critique a hostile reader will make — publishing it first is stronger than being caught by it. Watch for a bias baked into the scale: evidence strength correlates with age, so it systematically flatters incumbent policy.'},
+
+  {n:'D21',f:'dials',v:'deep',t:'Burden on the recipient',
+   s:'Does the person have to apply, document, prove, and requalify — or does it just arrive?',
+   ex:'<em>UI Reform</em> is application-heavy even after reform; <em>Universal Child Benefit</em> is nearly automatic; <em>Reskilling Accounts</em> demand sustained navigation.',
+   sh:'A single ranked strip, most to least burdensome',au:'Low, and rarely done',
+   h:'Rarely visualized and cuts straight across left-right framing, which makes it unusually persuasive. It also reveals a real tension inside the agenda: several worker-protection policies grant rights that only exist if the worker knows to exercise them — the cards say this in the <code>risks</code> field and nothing surfaces it. Strong candidate for a distinctive view.'},
+
+  {n:'D22',f:'dials',v:'soft',t:'Coverage breadth',
+   s:'What share of workers or households the policy touches.',
+   ex:'<em>UBI</em> and <em>Universal Basic Services</em> at the top; <em>Sectoral Wage Boards</em> narrow by design.',
+   sh:'Node size',au:'Low',
+   h:'Reasonable, but largely a restatement of cost — breadth and price move together, so an axis of each mostly draws a diagonal. Keep it as node size where it is free, not as a dimension you build a view around. Two axes that correlate at 0.8 look like insight and are decoration.'},
+
+  {n:'D23',f:'dials',v:'soft',t:'Reversibility and lock-in',
+   s:'Once enacted, does it create a constituency that defends it, or can the next administration undo it?',
+   ex:'The Alaska dividend became untouchable; the 2021 CTC expansion lapsed on schedule; <em>Executive Order 14179</em> shows how fast guidance-based wins evaporate.',
+   sh:'A durability ranking, or node border weight',au:'Medium — every score is a prediction',
+   h:'Conceptually the richest idea in this family and the least defensible in numbers. Every score is a forecast about politics, and the two examples above show the variance is enormous. Worth writing about in prose; risky as a tag number, because encoding a guess as an integer launders it into a fact.'},
+
+  {n:'D24',f:'dials',v:'skip',t:'Political feasibility score',
+   s:'A 1–5 rating of whether it could pass right now.',
+   ex:'Would rate <em>EITC Expansion</em> high and <em>Job Guarantee</em> low.',
+   sh:'Any axis',au:'Low to fake, impossible to do well',
+   h:'Skip as a number. It compresses several genuinely informative things — chokepoints, sponsors, opposition, precedent — into one figure that hides all of them, goes stale within a session of Congress, and invites arguments about the score instead of the substance. Everything it gestures at is better served by E08, E13, and D16 separately.'},
+
+  {n:'D25',f:'dials',v:'deep',t:'AI-specificity',
+   s:'Does the policy require AI to be the reason, or would it be on the agenda regardless?',
+   ex:'<em>Algorithmic Transparency</em> and <em>Automation Levy</em> = 5. <em>Minimum Wage Indexing</em> and <em>Care Economy Investment</em> = 1.',
+   sh:'Split view, or a diverging color scale',au:'Low',
+   h:'The most distinctive dimension available, because it puts the project’s own live question on screen: is this an AI agenda, or an economic security agenda wearing an AI hat? Both answers are defensible and the map should let a reader reach either. It also has an operational use — the AI-agnostic policies are the ones that survive a change in the technological story.'},
+
+  /* ── Family C: bins — grouping, not ordering ── */
+  {n:'C26',f:'bins',v:'useful',t:'Level of government',
+   s:'Federal, state, municipal, or international.',
+   ex:'<em>Global Minimum Tax</em> is international by definition; <em>Algorithmic Transparency</em> is currently a state-and-city story; <em>UI Reform</em> is both at once.',
+   sh:'Facets or swimlanes',au:'Low',
+   h:'Low glamour, high practical value, especially for an organizer deciding where to spend a year. It also carries a real finding the cards keep repeating: federal action has stalled, so the live venue for most of this agenda is states. Worth a filter rather than a tab.'},
+
+  {n:'C27',f:'bins',v:'useful',t:'Ambition tier (the existing <code>level</code> field)',
+   s:'Baseline, emerging, elevated, high, transformational — already tagged on all 27 policies.',
+   ex:'<em>UI Reform</em> is baseline; <em>UBI</em> is transformational.',
+   sh:'Vertical bands, or a second sort order',au:'Free — already in the data',
+   h:'Already there and underused as a spatial dimension rather than a badge. It is a rough composite of novelty, cost, and ambition, which makes it convenient and a little mushy: when a reader asks what "elevated" means, the answer is three different things. Better used as a default sort with D16/D17 available underneath it as the decomposition.'},
+
+  /* ── Family X: computed — cheap, and mostly traps ── */
+  {n:'X28',f:'computed',v:'skip',t:'Text similarity between cards',
+   s:'TF-IDF or embedding cosine on the summary and rationale prose.',
+   ex:'Would confidently link any two cards that both discuss payroll taxes.',
+   sh:'Similarity heat map or a threshold graph',au:'Free',
+   h:'The archetypal gimmick: sophisticated-looking, and it measures house writing style. Two cards drafted in the same week by the same person will score as related, and a genuinely deep connection expressed in different vocabulary will not. One legitimate use, internal only — run it to find pairs the similarity flags that <code>pairsWith</code> misses, then have a human check whether the cross-link is real.'},
+
+  {n:'X29',f:'computed',v:'skip',t:'Degree centrality as importance',
+   s:'Count each policy’s edges, size the node, call the biggest ones central.',
+   ex:'<em>UI Reform</em> and <em>Algorithmic Transparency</em> would look most important — because they were written first and got the most cross-links.',
+   sh:'Node sizing, ranked bar chart',au:'Free',
+   h:'Actively misleading, and worth stating out loud because it is the default in every graph library. In a hand-authored edge set, centrality measures <b>how much you wrote about something</b>, not how much it matters. The current graph would rank the earliest, most-edited cards as the load-bearing ones. If node size must mean something, use coverage or cost, not degree.'},
+
+  {n:'X30',f:'computed',v:'skip',t:'Polling support',
+   s:'Rank by public approval in survey data.',
+   ex:'Would put <em>32-Hour Workweek</em> near the top and <em>Wealth Tax</em> higher than its politics suggest.',
+   sh:'Sorted bar chart',au:'Medium, and never comparable across polls',
+   h:'Very shareable, weakly informative. Polling on hypothetical programs swings enormously with question wording, so the map’s shape would be set by survey design rather than by policy. It also invites the wrong inference — popular is not the same as passable, and the gap between those two is where the actual interesting story lives.'},
+
+  {n:'X31',f:'computed',v:'soft',t:'Chronology of introduction',
+   s:'When each idea entered the debate, or when the first bill appeared.',
+   ex:'The 40-hour week dates to 1938; <em>Automation Levy</em> is essentially post-2023.',
+   sh:'Timeline',au:'Medium',
+   h:'Pleasant context, thin insight. It mostly reproduces novelty (D16) with worse data, though it has one genuine use: showing that most of this agenda predates AI by decades, which is a real argument about whether AI is the cause or the occasion. If that is the point you want, make it with D25 instead — same claim, cleaner encoding.'},
+
+  {n:'X32',f:'computed',v:'skip',t:'Cosmetic adjacency',
+   s:'Alphabetical order, title length, word clouds, a left-right ideology axis.',
+   ex:'Would place <em>AI Dividend</em> next to <em>AI Bias Audits</em> because both start with "AI."',
+   sh:'Any',au:'Free',
+   h:'Listed for completeness, since prototypes drift here when the real dimensions are hard. Alphabetical is honest but meaningless. A single left-right axis is worse than meaningless: it collapses disagreements that run in several directions at once — work-conditioned versus universal cash is not a left-right fight, and flattening it onto one line erases the most interesting tension in the set.'}
+  ];
+
+  const FAMS=[
+    {id:'edges',t:'Edges — one policy to another',
+     s:'A relation between two specific policies. These are the only ideas here that produce actual lines on a graph, and the only ones that can be argued with.'},
+    {id:'dials',t:'Dials — a number per policy',
+     s:'A score on every policy, so it can be sorted, placed on an axis, or binned. Mary’s "tag numbers." Cheap to author, and quietly opinionated — the scale definition does most of the work.'},
+    {id:'bins',t:'Bins — grouping without ordering',
+     s:'Categorical attributes. Good filters, weak stories.'},
+    {id:'computed',t:'Computed — free, and mostly traps',
+     s:'Derivable with no human judgment, which is exactly why they are tempting. Included with the reasons they mislead, because these are the ones a prototype drifts toward.'}
+  ];
+  const VERDICT={deep:'Real insight',useful:'Useful',soft:'Soft',skip:'Skip'};
+
+  let catFilter='all', catDemo='scatter';
+  function vizCatalog(stage){
+    const wrap=document.createElement('div');wrap.className='cat-wrap';
+    wrap.innerHTML=
+      `<p class="cat-intro">Thirty-two ways these 27 policies could be connected, sorted into four families, each with an
+       honest read on whether it would actually help someone think — or just look like it does. <b>Nothing here is wired
+       into the tracker data.</b> This tab is a thinking surface for deciding what the Links view should eventually encode.</p>
+       <p class="cat-note">Colored left borders: green = worth building, gold = worth having as a filter,
+       pink = interesting but soft, grey = a trap worth naming.</p>`;
+
+    // ── live demo of the tag-number idea ──
+    const demo=document.createElement('div');demo.className='demo';
+    demo.innerHTML=`<div class="demo-head">Tag numbers, made real —
+      <span class="seg">
+        <button data-d="scatter">Novelty × cost</button>
+        <button data-d="strips">All five dials</button>
+      </span>
+      <span style="font-style:italic">27 policies, hand-scored 1–5. Click any dot.</span></div>
+      <div class="demo-body"></div>
+      <div class="demo-read">Click a policy to see all five of its scores.</div>`;
+    wrap.appendChild(demo);
+    const dbody=demo.querySelector('.demo-body'), dread=demo.querySelector('.demo-read');
+    function readout(id){
+      const p=policyById[id],sc=SCORES[id];if(!p||!sc)return;
+      dread.innerHTML=`<b>${p.title}</b> &nbsp; `+DIMS.map(d=>
+        `<span class="sc">${d.t}: <i>${sc[d.k]}</i> <span style="opacity:.8">${d.ticks[sc[d.k]-1]}</span></span>`).join('');
+    }
+    function drawScatter(){
+      const W=900,H=520,L=112,R=40,T=34,B=64;
+      const px=v=>L+(v-1)/4*(W-L-R), py=v=>H-B-(v-1)/4*(H-T-B);
+      const s=newSvg(W,H,'Policies plotted by novelty against fiscal cost');
+      s.appendChild(svel('line',{x1:px(3),x2:px(3),y1:T-6,y2:H-B,stroke:'var(--border)','stroke-dasharray':'3 5'}));
+      s.appendChild(svel('line',{x1:L,x2:W-R,y1:py(3),y2:py(3),stroke:'var(--border)','stroke-dasharray':'3 5'}));
+      for(let v=1;v<=5;v++){
+        const t=svel('text',{x:px(v),y:H-B+16,'font-size':8.5,'text-anchor':'middle'},'axis-s');
+        t.textContent=DIMS[0].ticks[v-1];s.appendChild(t);
+        const t2=svel('text',{x:L-10,y:py(v)+3,'font-size':8.5,'text-anchor':'end'},'axis-s');
+        t2.textContent=DIMS[1].ticks[v-1];s.appendChild(t2);}
+      const ax=svel('text',{x:(L+W-R)/2,y:H-14,'text-anchor':'middle'},'axis-t');
+      ax.textContent='Novelty vs. current law →';s.appendChild(ax);
+      const ay=svel('text',{x:16,y:(T+H-B)/2,'text-anchor':'middle',transform:`rotate(-90 16 ${(T+H-B)/2})`},'axis-t');
+      ay.textContent='Net fiscal cost →';s.appendChild(ay);
+      [['Amend what exists, cheap',px(1.15),py(1.5),'start'],['New institution, cheap',px(4.85),py(1.5),'end'],
+       ['Expand what exists, costly',px(1.15),py(4.9),'start'],['New and costly',px(4.85),py(4.9),'end']]
+        .forEach(([txt,x,y,an])=>{const t=svel('text',{x,y,'text-anchor':an},'qlab');t.textContent=txt;s.appendChild(t);});
+      // jitter within each cell
+      const cells={};ordered.forEach(p=>{const sc=SCORES[p.id];if(!sc)return;
+        const k=sc[0]+'|'+sc[1];(cells[k]=cells[k]||[]).push(p);});
+      const nEls={};
+      Object.entries(cells).forEach(([k,list])=>{const [nv,cv]=k.split('|').map(Number);
+        list.forEach((p,i)=>{const off=(i-(list.length-1)/2);
+          const x=px(nv)+off*3, y=py(cv)+off*15;
+          const g=svel('g',{tabindex:'0',role:'button','aria-label':p.title},'node');
+          g.appendChild(svel('circle',{cx:x,cy:y,r:13},'hit'));
+          g.appendChild(svel('circle',{cx:x,cy:y,r:5.5,fill:MERGED_COLORS[mergedOf(p)]},'ndot'));
+          const t=svel('text',{x:x+9,y:y+3},'nlabel slab');
+          t.textContent=p.title.length>26?p.title.slice(0,25)+'…':p.title;
+          g.appendChild(t);s.appendChild(g);nEls[p.id]=g;});});
+      const clear=()=>Object.values(nEls).forEach(g=>g.classList.remove('lit','dimmed','selected'));
+      Object.entries(nEls).forEach(([id,g])=>{
+        g.addEventListener('mouseenter',()=>{clear();Object.entries(nEls).forEach(([o,x])=>x.classList.add(o===id?'lit':'dimmed'));});
+        g.addEventListener('mouseleave',clear);
+        g.addEventListener('click',()=>{clear();g.classList.add('selected','lit');readout(id);});
+        g.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();readout(id);}});});
+      dbody.appendChild(s);
+    }
+    function drawStrips(){
+      const W=900,L=210,R=30,ROWH=112,T=18;
+      const H=T+DIMS.length*ROWH+10;
+      const px=v=>L+(v-1)/4*(W-L-R);
+      const s=newSvg(W,H,'Policies scored on five dimensions');
+      const nEls={};
+      DIMS.forEach((d,di)=>{
+        const y0=T+di*ROWH;
+        const t=svel('text',{x:0,y:y0+16},'dim-t');t.textContent=d.t;s.appendChild(t);
+        const st=svel('text',{x:0,y:y0+30},'dim-s');st.textContent=d.s.length>34?d.s.slice(0,33)+'…':d.s;s.appendChild(st);
+        const e1=svel('text',{x:0,y:y0+48},'dim-s');e1.textContent='1 = '+d.ends[0];s.appendChild(e1);
+        const e2=svel('text',{x:0,y:y0+60},'dim-s');e2.textContent='5 = '+d.ends[1];s.appendChild(e2);
+        s.appendChild(svel('line',{x1:L-14,x2:W-R,y1:y0+ROWH-14,y2:y0+ROWH-14,stroke:'var(--border)'}));
+        const bins={};ordered.forEach(p=>{const sc=SCORES[p.id];if(!sc)return;
+          (bins[sc[d.k]]=bins[sc[d.k]]||[]).push(p);});
+        for(let v=1;v<=5;v++){
+          const lab=svel('text',{x:px(v),y:y0+ROWH-4,'font-size':8,'text-anchor':'middle'},'axis-s');
+          lab.textContent=`${v} · ${d.ticks[v-1]}`;s.appendChild(lab);
+          const list=bins[v]||[];
+          list.forEach((p,i)=>{const cx=px(v)+((i%3)-1)*11, cy=y0+18+Math.floor(i/3)*13;
+            const key=d.k+'|'+p.id;
+            const g=svel('g',{tabindex:'0',role:'button','aria-label':p.title+' scores '+v},'node');
+            g.appendChild(svel('circle',{cx,cy,r:9},'hit'));
+            g.appendChild(svel('circle',{cx,cy,r:4.5,fill:MERGED_COLORS[mergedOf(p)]},'ndot'));
+            s.appendChild(g);(nEls[p.id]=nEls[p.id]||[]).push(g);});
+        }
+      });
+      const all=()=>Object.values(nEls).flat();
+      const clear=()=>all().forEach(g=>g.classList.remove('lit','dimmed','selected'));
+      Object.entries(nEls).forEach(([id,gs])=>gs.forEach(g=>{
+        g.addEventListener('mouseenter',()=>{clear();all().forEach(x=>x.classList.add('dimmed'));
+          nEls[id].forEach(x=>{x.classList.remove('dimmed');x.classList.add('lit');});readout(id);});
+        g.addEventListener('mouseleave',clear);
+        g.addEventListener('click',()=>{clear();nEls[id].forEach(x=>x.classList.add('selected','lit'));readout(id);});
+      }));
+      dbody.appendChild(s);
+    }
+    function drawDemo(){dbody.innerHTML='';catDemo==='scatter'?drawScatter():drawStrips();
+      demo.querySelectorAll('[data-d]').forEach(b=>b.classList.toggle('on',b.dataset.d===catDemo));}
+    demo.querySelectorAll('[data-d]').forEach(b=>b.addEventListener('click',()=>{catDemo=b.dataset.d;drawDemo();}));
+
+    // ── filters + catalog ──
+    const filters=document.createElement('div');filters.className='cat-filters';
+    filters.innerHTML=`Show: `+
+      [['all','Everything'],['deep','Real insight'],['useful','Useful'],['soft','Soft'],['skip','Traps']]
+        .map(([k,l])=>`<button class="chip" data-f="${k}">${l}</button>`).join('')+
+      `<span class="cat-count"></span>`;
+    wrap.appendChild(filters);
+    const body=document.createElement('div');wrap.appendChild(body);
+
+    function drawList(){
+      filters.querySelectorAll('[data-f]').forEach(b=>b.classList.toggle('on',b.dataset.f===catFilter));
+      const shown=IDEAS.filter(i=>catFilter==='all'||i.v===catFilter);
+      filters.querySelector('.cat-count').textContent=`${shown.length} of ${IDEAS.length} ideas`;
+      let h='';
+      FAMS.forEach(fam=>{
+        const list=shown.filter(i=>i.f===fam.id);if(!list.length)return;
+        h+=`<div class="fam">${fam.t}</div><p class="fam-sub">${fam.s}</p><div class="cat-grid">`;
+        list.forEach(i=>{h+=`<div class="idea v-${i.v}">
+          <div class="idea-head"><span class="idea-num">${i.n}</span><span class="idea-name">${i.t}</span>
+            <span class="vbadge">${VERDICT[i.v]}</span></div>
+          <p>${i.s}</p>
+          <p class="ex"><span class="lbl">e.g.</span>${i.ex}</p>
+          <p class="honest"><span class="lbl">Honest read</span>${i.h}</p>
+          <div class="meta"><span>Shape it implies: <b>${i.sh}</b></span><span>Authoring cost: <b>${i.au}</b></span></div>
+        </div>`;});
+        h+=`</div>`;
+      });
+      h+=`<div class="closer"><h3>If I were prototyping this</h3>
+        <p>The trap in this list is treating all thirty-two as candidates for the same view. Most of them are not
+        layouts — they are <b>attributes</b>, and attributes are cheap to add to a layout you already have. Two of the
+        six existing tabs plus four good attributes will read better than eight tabs.</p>
+        <ol>
+          <li><b>Render <code>competesWith</code> next week.</b> The data exists, nothing draws it, and a map that
+            only shows reinforcement is a map nobody has to believe. (E04)</li>
+          <li><b>Score novelty and time-to-effect on all 27.</b> Two afternoons of judgment, and they unlock sorting,
+            axes, and the 2×2 above. Novelty is the dimension that most changes what the map means. (D16, D19)</li>
+          <li><b>Sign the existing edges</b> complementary / redundant / conflicting. It is an edge attribute, so it
+            improves every current tab at once without a new view. (E11)</li>
+          <li><b>Build one chokepoint view.</b> Read the <code>risks</code> arrays, cluster them, and draw which single
+            fights are blocking multiple policies. This is the most original thing available and the source material
+            is already written. (E08)</li>
+          <li><b>Write down the scale definitions before scoring anything.</b> The revenue-raiser problem in D17 is
+            already visible in the demo above, and it appeared within an hour of inventing the scale.</li>
+        </ol>
+        <p>What to resist: degree centrality as importance (X29), a feasibility score (D24), and text similarity
+        as a relation (X28). All three are free, all three look rigorous, and all three would encode an artifact
+        of how the cards were written as if it were a finding about policy.</p></div>`;
+      body.innerHTML=h;
+    }
+    filters.querySelectorAll('[data-f]').forEach(b=>b.addEventListener('click',()=>{catFilter=b.dataset.f;drawList();}));
+
+    stage.appendChild(wrap);drawDemo();drawList();
+    curHi=null;curClear=null;
+  }
+
   /* ── Tab registry ── */
   const TABS=[
     {id:'arc',   label:'Arc bands',      render:vizArc,
@@ -553,16 +1048,23 @@
      cap:'<b>Force clusters.</b> A physics layout pulls each area into its own blob. Organic and inviting, but position is emergent, not exact. <span class="best">Best for:</span> a friendly landing view that shows tight vs loose clusters.'},
     {id:'flow',  label:'Category flow',  render:vizFlow,
      cap:'<b>Category flow.</b> Zoomed out to the four areas: node size is how many policies, ring thickness is links within an area, band thickness is links between areas. <span class="best">Best for:</span> the one-glance story of which areas reinforce which.'},
+    {id:'ways',  label:'Ways they connect', render:vizCatalog, wide:true, noLegend:true,
+     cap:'<b>Ways they connect — brainstorm.</b> Not a seventh drawing: a catalog of 32 possible relations and dimensions, each with a read on whether it would produce real insight or just look like it. Includes a working demo of the "tag number" idea. <span class="best">Best for:</span> deciding what the Links view should encode before more of it gets built.'},
   ];
   const cache={};
   const tabsEl=document.getElementById('tabs');
   const stage=document.getElementById('stage');
   const capEl=document.getElementById('caption');
+  const layoutEl=document.querySelector('.layout');
+  const legendEl=document.getElementById('legend');
   function activate(idx){
     selectedId=null;
     [...tabsEl.children].forEach((b,i)=>b.classList.toggle('active',i===idx));
     capEl.innerHTML=TABS[idx].cap;
     stage.innerHTML='';
+    layoutEl.classList.toggle('solo',!!TABS[idx].wide);
+    legendEl.style.display=TABS[idx].noLegend?'none':'';
+    legendEl.innerHTML='';
     document.getElementById('panel').innerHTML='<div class="empty">Click any policy to see its links.</div>';
     TABS[idx].render(stage);
   }
