@@ -42,7 +42,7 @@ It answers three questions, each with a chart and a one-line verdict:
 data_analysis/
   scripts/
     01_okun.R          -> output/okun.json          (FRED: GDPC1, UNRATE, NROU, LNS11300060, LNS12300060)
-    02_age_bands.R     -> output/age_bands.json      (snapshot of committed CPS residual CSV; IPUMS regen TBD)
+    02_age_bands.R     -> output/age_bands.json      (snapshot of committed CPS residual CSV; IPUMS regen TBD -- see micro/07_age_bands_cps.R)
     03_ces_slowdown.R  -> output/ces_slowdown.json   (BLS CES flat files via getBLSFiles)
     run_all.R          -> ../data/jobs-displacement-data.js
   output/              (intermediate JSON + CSV snapshots, safe to regenerate)
@@ -73,10 +73,16 @@ all three sections, and rewrites the JS (~30s). Then commit
   verdict/label strings ASCII, or run under a UTF-8 locale.
 - **Okun fit** excludes 2020 Q2-Q3 (pandemic outliers); they are off the plotted
   scale and dropped from the regression, not the data.
-- **Section 2 is a snapshot.** The IPUMS CPS microdata is not committed upstream,
-  so `02_age_bands.R` pulls the blog repo's plot-ready residual CSV. When the
-  IPUMS pipeline is wired up, only `SRC_URL` / the read step changes; the JSON
-  contract stays the same.
+- **Section 2 is a snapshot.** `02_age_bands.R` still pulls the blog repo's
+  plot-ready residual CSV over the network. The real computation now lives at
+  `micro/07_age_bands_cps.R` (a cleaned-up port of that repo's
+  `01_big_graphic_YoY.R`, using the same `cps.dat.gz`/`cps.xml` extract as the
+  rest of `micro/`) but it is **not wired in yet** -- see the header comment in
+  that file, which also flags that it reproduces the source repo's *current*
+  script parameters (band_width=3, 3-month window), not the band_width=5/
+  6-month parameterization behind the CSV the site currently displays. That
+  needs a decision before the swap happens. When it does, only `02_age_bands.R`'s
+  read step changes; the JSON contract stays the same.
 - **Monthly automation seam:** `run_all.R --refresh` is the single entry point a
   cron/scheduled task should call, followed by a commit of the JS. Not yet wired.
 

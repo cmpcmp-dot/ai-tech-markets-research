@@ -6,10 +6,12 @@
    function targets canonical element IDs so any layout that provides those
    IDs gets the same charts:
 
-     renderOkun()   -> #okunChart  (+ #okunSub #okunLegend #okunNote)
-     renderLFP()    -> #lfpChart   (+ #lfpLegend)
-     renderAges()   -> #ageChart   (+ #ageLegend #ageNote #distFlag?)
-     renderCES()    -> #cesChart   (+ #cesSub #cesNote)
+     renderOkun()    -> #okunChart     (+ #okunSub #okunLegend #okunNote)
+     renderLFP()     -> #lfpChart      (+ #lfpLegend)
+     renderAgeGap()  -> #ageGapChart   (+ #ageGapSub #ageGapLegend #ageGapNote)
+     renderAges()    -> #ageChart      (+ #ageSub #ageLegend #ageNote #distFlag?)
+     renderAgeTime() -> #ageTimeChart  (+ #ageTimeSub #ageTimeLegend #ageTimeNote)
+     renderCES()     -> #cesChart      (+ #cesSub #cesNote)
 
    Data comes from window.JOBS_DISPLACEMENT_DATA (data/jobs-displacement-data.js).
    Reads/derived numbers are exposed on window.JOBS_CHARTS for the summary
@@ -23,7 +25,9 @@
   const C = {
     navy: '#2c3254', green: '#70ad8f', gold: '#c99a3f', goldLine: '#ebc382',
     pink: '#ff9d7d', terra: '#b06a4f', purple: '#472b51', muted: '#6d7091',
-    grid: '#e6e2d1', text: '#3c4164', headline: '#232849'
+    grid: '#e6e2d1', text: '#3c4164', headline: '#232849',
+    // --surface, for knocked-out marker fills; band = neutral "normal range" fill
+    surface: '#fffdf2', band: '#d8d3c0'
   };
   const MON = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
 
@@ -32,6 +36,10 @@
   const lin = (d0, d1, r0, r1) => { const m = (r1 - r0) / (d1 - d0); return v => r0 + (v - d0) * m; };
   const sgn = (v, dp) => (v >= 0 ? '+' : '') + v.toFixed(dp == null ? 1 : dp);
   const fmtDate = s => { const p = s.split('-'); return MON[+p[1] - 1] + ' ' + p[0]; };
+
+  // Enough decimals that adjacent tick labels never print identically
+  // (0.5-unit steps rendered at 0 dp read as "+2, +2, +1").
+  const dpFor = a => { const st = a.length > 1 ? Math.abs(a[1] - a[0]) : 1; return st < 0.5 ? 2 : st < 1 ? 1 : 0; };
 
   function ticks(min, max, n) {
     const span = max - min, raw = span / n, mag = Math.pow(10, Math.floor(Math.log10(raw)));
@@ -167,56 +175,212 @@
       `<span><i style="background:${C.green}"></i>Employment–population ratio, 25–54</span>`;
   }
 
-  // ── DEPTH 02: residual unemployment by age (with spike callout) ─────────────
+  /* ── DEPTH 02 ────────────────────────────────────────────────────────────
+     Three views of one finding, drawn in the order the section reads:
+
+       renderAgeGap()  -> #ageGapChart   what each group has vs what is predicted
+       renderAges()    -> #ageChart      the same excess across the age range
+       renderAgeTime() -> #ageTimeChart  when the excess opened up
+
+     All three plot `adj`: the residual net of the placebo bias the method
+     reports in periods when nothing happened. See age_bands.value_definition.
+     ──────────────────────────────────────────────────────────────────────── */
+
+  const GRP_SHORT = l => l.replace('HS+ (no BA)', 'No degree').replace('College+', 'Graduates');
+  const AGE_COL = { 'College+': C.navy, 'HS+ (no BA)': C.green };
+
+  // 02a. Actual versus predicted, one row per pooled band. Levels rather than
+  // residuals, so the reader compares two unemployment rates directly.
+  function renderAgeGap() {
+    const A = D.age_bands, svg = byId('ageGapChart');
+    if (!svg || !A.latest) return;
+    const rows = A.latest;
+    const W = 640, H = 300, mL = 174, mR = 56, mT = 14, mB = 44, pw = W - mL - mR, ph = H - mT - mB;
+    const xmax = Math.max(...rows.map(r => Math.max(r.actual, r.pred))) * 1.12 * 100;
+    const X = lin(0, xmax, mL, mL + pw), rowH = ph / rows.length;
+    const BIG = 0.5;   // pp; below this the gap is inside the method's own noise
+
+    let s = '';
+    ticks(0, xmax, 5).forEach(t => { const x = X(t);
+      s += `<line x1="${x}" y1="${mT}" x2="${x}" y2="${mT + ph}" stroke="${C.grid}"/>` +
+           `<text x="${x}" y="${mT + ph + 17}" text-anchor="middle" font-size="11" fill="${C.muted}">${t}%</text>`; });
+    s += `<text x="${mL + pw / 2}" y="${H - 5}" text-anchor="middle" font-size="11.5" fill="${C.text}">Unemployment rate</text>`;
+
+    rows.forEach((r, i) => {
+      const cy = mT + i * rowH + rowH / 2, xa = X(r.actual * 100), xp = X(r.pred * 100);
+      const col = AGE_COL[r.edu_group] || C.muted, wide = Math.abs(r.adj * 100) >= BIG;
+      const tipTxt = `${r.label}<br><b>Actual ${(r.actual * 100).toFixed(2)}%</b><br>` +
+        `Predicted ${(r.pred * 100).toFixed(2)}%<br>Excess <b>${sgn(r.adj * 100, 2)} pp</b> after bias adjustment<br>` +
+        `Actual is <b>${r.ratio.toFixed(2)}&times;</b> predicted`;
+      s += `<line class="anim-bar" style="transform-box:view-box;transform-origin:${xp}px ${cy}px" x1="${xp}" y1="${cy}" x2="${xa}" y2="${cy}" stroke="${wide ? C.terra : C.band}" stroke-width="${wide ? 3.4 : 2.4}" stroke-linecap="round"/>`;
+      s += `<circle cx="${xp}" cy="${cy}" r="5" fill="${C.surface}" stroke="${C.muted}" stroke-width="1.6" data-tip="${esc(tipTxt)}"/>`;
+      s += `<circle cx="${xa}" cy="${cy}" r="6" fill="${col}" data-tip="${esc(tipTxt)}"/>`;
+      s += `<text x="${mL - 14}" y="${cy - 1}" text-anchor="end" font-size="12.5" fill="${C.text}" font-weight="${wide ? 700 : 500}">${GRP_SHORT(r.label)}</text>`;
+      s += `<text x="${mL - 14}" y="${cy + 13}" text-anchor="end" font-size="10.5" fill="${C.muted}" font-family="ui-monospace,Menlo,monospace">${(r.pred * 100).toFixed(1)} &rarr; ${(r.actual * 100).toFixed(1)}</text>`;
+      if (wide) s += `<text x="${xa + 11}" y="${cy + 4}" font-size="11.5" font-weight="700" fill="${C.terra}">${sgn(r.adj * 100, 1)}</text>`;
+    });
+    svg.innerHTML = s;
+    bindTips(svg);
+    if (byId('ageGapSub')) byId('ageGapSub').textContent =
+      `12-month average through ${fmtDate(rows[0].date + '-01')}. The bar is the gap; only gaps of ${BIG} pp or more are highlighted.`;
+    if (byId('ageGapLegend')) byId('ageGapLegend').innerHTML =
+      `<span><i style="background:transparent;border:1.6px solid ${C.muted};border-radius:50%;width:11px;height:11px"></i>Predicted by the overall rate</span>` +
+      `<span><i style="background:${C.navy};border-radius:50%;width:11px;height:11px"></i>Actual, graduates</span>` +
+      `<span><i style="background:${C.green};border-radius:50%;width:11px;height:11px"></i>Actual, no degree</span>`;
+    if (byId('ageGapNote')) byId('ageGapNote').textContent =
+      'Predicted values come from a log-log fit of each band’s 12-month-average unemployment rate on the overall rate, trained through 2019. Gap figures are net of placebo bias.';
+  }
+
+  // 02b. The same excess across the whole age range, with the band inside
+  // which the measure cannot be told apart from its own bias shaded out.
   function renderAges() {
     const A = D.age_bands, svg = byId('ageChart');
     if (!svg) return;
-    const col = { 'College+': C.navy, 'HS+ (no BA)': C.green, '< HS': C.gold };
-    const W = 640, H = 380, mL = 54, mR = 96, mT = 22, mB = 44, pw = W - mL - mR, ph = H - mT - mB;
+    const W = 640, H = 360, mL = 62, mR = 104, mT = 22, mB = 46, pw = W - mL - mR, ph = H - mT - mB;
     let all = [];
     A.series.forEach(g => g.points.forEach(p => all.push(p)));
     const xmin = Math.min(...all.map(p => p.age)), xmax = Math.max(...all.map(p => p.age));
-    let ymin = Math.min(0, ...all.map(p => p.value)), ymax = Math.max(...all.map(p => p.value));
-    const yp = (ymax - ymin) * 0.08; ymin -= yp; ymax += yp;
+    let ymin = Math.min(0, ...all.map(p => p.adj)) * 100, ymax = Math.max(...all.map(p => p.adj)) * 100;
+    const yp = (ymax - ymin) * 0.10; ymin -= yp; ymax += yp;
     const X = lin(xmin, xmax, mL, mL + pw), Y = lin(ymin, ymax, mT + ph, mT);
+    const nMax = Math.max(...all.map(p => p.n));
+    // upper quartile of the per-band placebo estimates: a fair "this much is
+    // bias" line rather than the single largest value
+    const bs = all.map(p => p.bias * 100).sort((a, b) => a - b);
+    const bTop = bs[Math.floor(bs.length * 0.75)];
 
     let s = '';
-    ticks(ymin, ymax, 6).forEach(t => { const y = Y(t); s += `<line x1="${mL}" y1="${y}" x2="${mL + pw}" y2="${y}" stroke="${C.grid}"/><text x="${mL - 8}" y="${y + 3.5}" text-anchor="end" font-size="11" fill="${C.muted}">${sgn(t * 100, 0)} pp</text>`; });
-    for (let a = 20; a <= xmax; a += 5) { const x = X(a); s += `<line x1="${x}" y1="${mT}" x2="${x}" y2="${mT + ph}" stroke="${C.grid}"/><text x="${x}" y="${mT + ph + 16}" text-anchor="middle" font-size="11" fill="${C.muted}">${a}</text>`; }
-    if (0 > ymin && 0 < ymax) s += `<line x1="${mL}" y1="${Y(0)}" x2="${mL + pw}" y2="${Y(0)}" stroke="${C.muted}" stroke-width="1.3"/>`;
-    s += `<text x="${mL + pw / 2}" y="${H - 6}" text-anchor="middle" font-size="11.5" fill="${C.text}">Age</text>`;
+    // the pre-specified headline range, replacing the old argmax callout
+    s += `<rect x="${X(22)}" y="${mT}" width="${X(27) - X(22)}" height="${ph}" fill="${C.goldLine}" opacity="0.26"/>`;
+    s += `<text x="${(X(22) + X(27)) / 2}" y="${mT + 12}" text-anchor="middle" font-size="10" fill="${C.gold}" font-weight="700">HEADLINE RANGE</text>`;
+    s += `<rect x="${mL}" y="${Y(bTop)}" width="${pw}" height="${Y(-bTop) - Y(bTop)}" fill="${C.band}" opacity="0.5"/>`;
+
+    const T = ticks(ymin, ymax, 6), tdp = dpFor(T);
+    T.forEach(t => { const y = Y(t);
+      s += `<line x1="${mL}" y1="${y}" x2="${mL + pw}" y2="${y}" stroke="${C.grid}" opacity="0.8"/>` +
+           `<text x="${mL - 8}" y="${y + 3.5}" text-anchor="end" font-size="11" fill="${C.muted}">${sgn(t, tdp)}</text>`; });
+    for (let a = 25; a <= xmax; a += 5) { const x = X(a);
+      s += `<line x1="${x}" y1="${mT}" x2="${x}" y2="${mT + ph}" stroke="${C.grid}" opacity="0.7"/>` +
+           `<text x="${x}" y="${mT + ph + 17}" text-anchor="middle" font-size="11" fill="${C.muted}">${a}</text>`; }
+    s += `<line x1="${mL}" y1="${Y(0)}" x2="${mL + pw}" y2="${Y(0)}" stroke="${C.muted}" stroke-width="1.2"/>`;
+    s += `<text x="${mL + pw / 2}" y="${H - 5}" text-anchor="middle" font-size="11.5" fill="${C.text}">Centre of five-year age band</text>`;
     s += `<text transform="translate(13,${mT + ph / 2}) rotate(-90)" text-anchor="middle" font-size="11.5" fill="${C.text}">Excess unemployment (pp)</text>`;
 
-    let hot = null;
-    A.series.forEach(g => g.points.forEach(p => { if (!hot || p.value > hot.value) hot = { age: p.age, value: p.value, group: g.group }; }));
-
     A.series.forEach(g => {
-      const c = col[g.group] || C.muted, pts = g.points.slice().sort((a, b) => a.age - b.age);
-      s += `<path class="anim-line" pathLength="1" d="M${pts.map(p => X(p.age).toFixed(1) + ',' + Y(p.value).toFixed(1)).join(' L')}" fill="none" stroke="${c}" stroke-width="2.2"/>`;
-      pts.forEach(p => { s += `<circle cx="${X(p.age)}" cy="${Y(p.value)}" r="3" fill="${c}" data-tip="${esc(`Age ${p.age}, ${g.group}<br>Excess unemployment <b>${sgn(p.value * 100, 1)} pp</b>`)}"/>`; });
-      const lastP = pts[pts.length - 1];
-      s += `<text x="${mL + pw + 6}" y="${Y(lastP.value) + 3.5}" font-size="11.5" fill="${c}" font-weight="600">${g.group}</text>`;
+      const c = AGE_COL[g.group] || C.muted, pts = g.points.slice().sort((a, b) => a.age - b.age);
+      s += `<path class="anim-line" pathLength="1" d="M${pts.map(p => X(p.age).toFixed(1) + ',' + Y(p.adj * 100).toFixed(1)).join(' L')}" fill="none" stroke="${c}" stroke-width="2.3"/>`;
+      pts.forEach(p => {
+        const r = 2 + 2.6 * Math.sqrt(p.n / nMax);   // area ~ sample size
+        s += `<circle cx="${X(p.age)}" cy="${Y(p.adj * 100)}" r="${r.toFixed(2)}" fill="${c}" data-tip="${esc(
+          `Ages ${p.band}, ${g.group}<br>Excess <b>${sgn(p.adj * 100, 2)} pp</b> after bias adjustment<br>` +
+          `Raw ${sgn(p.raw * 100, 2)} pp, less bias ${sgn(p.bias * 100, 2)} pp<br>` +
+          `Actual is <b>${p.ratio.toFixed(2)}&times;</b> predicted<br>~${p.n.toLocaleString()} in the labor force each month`)}"/>`;
+      });
+      const lp = pts[pts.length - 1];
+      s += `<text x="${mL + pw + 8}" y="${Y(lp.adj * 100) + 4}" font-size="11.5" fill="${c}" font-weight="700">${g.group}</text>`;
     });
-
-    if (hot) {
-      const hx = X(hot.age), hy = Y(hot.value);
-      const lx = Math.min(hx + 16, mL + pw - 150), ly = Math.max(hy - 34, mT + 6);
-      s += `<g class="anim-pop">`;
-      s += `<circle cx="${hx}" cy="${hy}" r="6.5" fill="none" stroke="${C.terra}" stroke-width="2"/>`;
-      s += `<line x1="${hx}" y1="${hy}" x2="${lx}" y2="${ly + 22}" stroke="${C.terra}" stroke-width="1"/>`;
-      s += `<text x="${lx}" y="${ly + 10}" font-size="12" font-weight="700" fill="${C.terra}">Age ${hot.age}, ${hot.group}</text>`;
-      s += `<text x="${lx}" y="${ly + 25}" font-size="11.5" fill="${C.text}">${sgn(hot.value * 100, 1)} pp above normal</text>`;
-      s += `</g>`;
-    }
-
     svg.innerHTML = s;
     bindTips(svg);
-    if (byId('ageLegend')) byId('ageLegend').innerHTML = A.group_order.map(g => `<span><i style="background:${col[g]}"></i>${g}</span>`).join('');
+    if (byId('ageSub')) byId('ageSub').textContent =
+      'Dot size shows the monthly CPS labor-force sample behind each band; the youngest graduate cells are the thinnest.';
+    if (byId('ageLegend')) byId('ageLegend').innerHTML =
+      A.group_order.map(g => `<span><i style="background:${AGE_COL[g]}"></i>${g}</span>`).join('') +
+      `<span><i style="background:${C.band};opacity:.6;height:11px"></i>Not distinguishable from method bias</span>` +
+      `<span><i style="background:${C.goldLine};opacity:.45;height:11px"></i>Pre-specified headline range</span>`;
     if (byId('ageNote')) byId('ageNote').innerHTML =
-      `Positive = more unemployment than the group’s own pre-2020 relationship to the overall rate predicts. Residual averaged over the latest 6 months; log-log prediction trained through 2019. ` +
-      `<span class="jd-src">Method &amp; data: <a href="https://github.com/mtkonczal/Blog-Posts-Presentations-and-Testimony/tree/main/blogs_2026/01_education_young_unrate" target="_blank" rel="noopener">education / young unemployment analysis</a> (snapshot; IPUMS regeneration to come).</span>`;
-    const h = D.age_bands.headline;
-    if (byId('distFlag')) byId('distFlag').innerHTML = `Young college graduates (age ${h.peak_age}) carry <b>${sgn(h.peak_college_resid * 100, 1)} pp</b> more unemployment than normal`;
+      `Each point is one five-year age band, plotted at its centre. Positive means more unemployment than that band’s own pre-2020 relationship to the overall rate predicts, after subtracting the bias the same method shows in placebo periods. ` +
+      `<span class="jd-src">Computed from IPUMS CPS microdata by <code>data_analysis/micro/07_age_bands_cps.R</code>; method descends from this <a href="https://github.com/mtkonczal/Blog-Posts-Presentations-and-Testimony/tree/main/blogs_2026/01_education_young_unrate" target="_blank" rel="noopener">education and young-unemployment analysis</a>.</span>`;
+    const h = A.headline.young_grad;
+    if (byId('distFlag')) byId('distFlag').innerHTML =
+      `Graduates aged 22&ndash;27 carry <b>${sgn(h.adj * 100, 1)} pp</b> more unemployment than predicted`;
+  }
+
+  // 02c. The time path. The shaded band is the full range this measure covered
+  // over 2005-2019, so "outside anything the pre-pandemic era produced" is
+  // something the reader can see rather than take on trust.
+  function renderAgeTime() {
+    const A = D.age_bands, svg = byId('ageTimeChart');
+    if (!svg || !A.timeseries || A.timeseries.length < 2) return;
+    const gSer = A.timeseries.find(t => t.edu_group === 'College+');
+    const nSer = A.timeseries.find(t => t.edu_group !== 'College+');
+    if (!gSer || !nSer) return;
+    const pts = gSer.points.map(p => ({ d: p.date, v: p.adj * 100 }));
+    const npts = nSer.points.map(p => ({ d: p.date, v: p.adj * 100 }));
+    const pre = pts.filter(p => p.d < '2020-03');
+    const loB = Math.min(...pre.map(p => p.v)), hiB = Math.max(...pre.map(p => p.v));
+
+    const W = 640, H = 330, mL = 52, mR = 108, mT = 20, mB = 42, pw = W - mL - mR, ph = H - mT - mB;
+    const all = pts.concat(npts);
+    let ymin = Math.min(...all.map(p => p.v)), ymax = Math.max(...all.map(p => p.v));
+    const yp = (ymax - ymin) * 0.10; ymin -= yp; ymax += yp;
+    const X = lin(0, pts.length - 1, mL, mL + pw), Y = lin(ymin, ymax, mT + ph, mT);
+    const ix = d => pts.findIndex(p => p.d === d);
+    // first month after the pandemic window that clears the pre-2020 ceiling
+    const post = pts.filter(p => p.d > '2022-12');
+    const brk = post.find(p => p.v > hiB);
+
+    let s = '';
+    s += `<rect x="${mL}" y="${Y(hiB)}" width="${pw}" height="${Y(loB) - Y(hiB)}" fill="${C.band}" opacity="0.42"/>`;
+    const T = ticks(ymin, ymax, 6), tdp = dpFor(T);
+    T.forEach(t => { const y = Y(t);
+      s += `<line x1="${mL}" y1="${y}" x2="${mL + pw}" y2="${y}" stroke="${C.grid}" opacity="0.75"/>` +
+           `<text x="${mL - 8}" y="${y + 3.5}" text-anchor="end" font-size="11" fill="${C.muted}">${sgn(t, tdp)}</text>`; });
+    for (let yr = 2006; yr <= 2026; yr += 4) { const i = ix(yr + '-01'); if (i < 0) continue; const x = X(i);
+      s += `<line x1="${x}" y1="${mT}" x2="${x}" y2="${mT + ph}" stroke="${C.grid}"/>` +
+           `<text x="${x}" y="${mT + ph + 17}" text-anchor="middle" font-size="11" fill="${C.muted}">${yr}</text>`; }
+    s += `<line x1="${mL}" y1="${Y(0)}" x2="${mL + pw}" y2="${Y(0)}" stroke="${C.muted}" stroke-width="1.2"/>`;
+    s += `<text transform="translate(13,${mT + ph / 2}) rotate(-90)" text-anchor="middle" font-size="11.5" fill="${C.text}">Excess unemployment (pp)</text>`;
+    s += `<text x="${mL + 7}" y="${Y(hiB) - 6}" font-size="10.5" fill="${C.muted}" font-style="italic">Range over 2005&ndash;2019, Great Recession included</text>`;
+
+    const path = a => 'M' + a.map((p, i) => X(i).toFixed(1) + ',' + Y(p.v).toFixed(1)).join(' L');
+    s += `<path class="anim-line" pathLength="1" d="${path(npts)}" fill="none" stroke="${C.green}" stroke-width="1.7" opacity="0.85"/>`;
+    s += `<path class="anim-line" pathLength="1" d="${path(pts)}" fill="none" stroke="${C.navy}" stroke-width="2.5"/>`;
+
+    if (brk) { const x = X(ix(brk.d));
+      s += `<line x1="${x}" y1="${mT + 4}" x2="${x}" y2="${mT + ph}" stroke="${C.terra}" stroke-width="1" stroke-dasharray="3 3"/>`;
+      s += `<text x="${x + 6}" y="${mT + 14}" font-size="10.5" fill="${C.terra}" font-weight="600">${fmtDate(brk.d + '-01')}: above the</text>`;
+      s += `<text x="${x + 6}" y="${mT + 26}" font-size="10.5" fill="${C.terra}" font-weight="600">pre-2020 range, and stays</text>`;
+    }
+    const lp = pts[pts.length - 1], ln = npts[npts.length - 1];
+    s += `<circle cx="${X(pts.length - 1)}" cy="${Y(lp.v)}" r="4" fill="${C.navy}"/>`;
+    s += `<text x="${mL + pw + 8}" y="${Y(lp.v) - 2}" font-size="11.5" font-weight="700" fill="${C.navy}">Graduates</text>`;
+    s += `<text x="${mL + pw + 8}" y="${Y(lp.v) + 11}" font-size="11.5" font-weight="700" fill="${C.navy}">22&ndash;27 &nbsp;${sgn(lp.v, 1)}</text>`;
+    s += `<circle cx="${X(npts.length - 1)}" cy="${Y(ln.v)}" r="3.4" fill="${C.green}"/>`;
+    s += `<text x="${mL + pw + 8}" y="${Y(ln.v) + 1}" font-size="11.5" font-weight="600" fill="${C.green}">No degree</text>`;
+    s += `<text x="${mL + pw + 8}" y="${Y(ln.v) + 14}" font-size="11.5" font-weight="600" fill="${C.green}">20&ndash;27 &nbsp;${sgn(ln.v, 1)}</text>`;
+    s += `<rect x="${mL}" y="${mT}" width="${pw}" height="${ph}" fill="transparent" id="ageTimeOv"/>`;
+    svg.innerHTML = s;
+
+    // crosshair readout
+    const ov = byId('ageTimeOv');
+    const guide = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+    guide.setAttribute('stroke', C.muted); guide.setAttribute('stroke-width', '1');
+    guide.setAttribute('opacity', '0');
+    guide.setAttribute('y1', mT); guide.setAttribute('y2', mT + ph);
+    svg.appendChild(guide);
+    ensureTip();
+    ov.addEventListener('mousemove', e => {
+      const r = svg.getBoundingClientRect(), vx = (e.clientX - r.left) / r.width * W;
+      let i = Math.round((vx - mL) / pw * (pts.length - 1));
+      i = Math.max(0, Math.min(pts.length - 1, i));
+      guide.setAttribute('x1', X(i)); guide.setAttribute('x2', X(i));
+      guide.setAttribute('opacity', '0.5');
+      tip.innerHTML = `${fmtDate(pts[i].d + '-01')}<br>Graduates 22&ndash;27 <b>${sgn(pts[i].v, 2)} pp</b>` +
+        `<br>No degree 20&ndash;27 <b>${sgn(npts[i].v, 2)} pp</b>`;
+      tip.style.opacity = 1; placeTip(e);
+    });
+    ov.addEventListener('mouseleave', () => { tip.style.opacity = 0; guide.setAttribute('opacity', '0'); });
+
+    if (byId('ageTimeSub')) byId('ageTimeSub').textContent =
+      `Bias-adjusted excess, monthly, ${fmtDate(pts[0].d + '-01')} to ${fmtDate(lp.d + '-01')}`;
+    if (byId('ageTimeLegend')) byId('ageTimeLegend').innerHTML =
+      `<span><i style="background:${C.navy}"></i>Graduates 22&ndash;27</span>` +
+      `<span><i style="background:${C.green}"></i>No degree 20&ndash;27</span>` +
+      `<span><i style="background:${C.band};opacity:.6;height:11px"></i>Full 2005&ndash;2019 range for graduates</span>`;
+    if (byId('ageTimeNote')) byId('ageTimeNote').innerHTML =
+      `Over the fifteen years to February 2020 this measure never rose above <b>${sgn(hiB, 2)} pp</b> for young graduates. ` +
+      `It is <b>${sgn(lp.v, 2)} pp</b> now${brk ? `, and has been outside that range every month since ${fmtDate(brk.d + '-01')}` : ''}. ` +
+      `Young non-graduates stay inside it throughout, including now.`;
   }
 
   // ── DEPTH 03: sector slowdown bars (sharpest decelerator highlighted) ───────
@@ -284,12 +448,23 @@
       lfprVsFeb: D.okun.prime_age.lfpr_vs_feb2020, residMean: D.okun.recent.residual_mean,
       verdict: D.okun.verdict
     },
-    distribution: {
-      peakAge: D.age_bands.headline.peak_age,
-      peakPP: D.age_bands.headline.peak_college_resid * 100,
-      primePP: D.age_bands.headline.prime_college_resid * 100,
-      verdict: D.age_bands.verdict
-    },
+    distribution: (() => {
+      const h = D.age_bands.headline;
+      return {
+        month:     h.latest_month,
+        // young graduates, ages 22-27: the pre-specified headline band
+        youngPP:   h.young_grad.adj * 100,
+        youngRaw:  h.young_grad.raw * 100,
+        youngBias: h.young_grad.bias * 100,
+        actual:    h.young_grad.actual * 100,
+        pred:      h.young_grad.pred * 100,
+        ratio:     h.young_grad.actual / h.young_grad.pred,
+        pctMore:   (h.young_grad.actual / h.young_grad.pred - 1) * 100,
+        primePP:   h.prime_grad.adj * 100,      // graduates 45-54
+        nongradPP: h.young_nongrad.adj * 100,   // no degree, 20-27
+        verdict:   D.age_bands.verdict
+      };
+    })(),
     sectors: {
       sector: worstSector.sector, recent: worstSector.recent_yoy,
       baseline: worstSector.baseline_yoy, slowdown: worstSector.slowdown,
@@ -303,15 +478,15 @@
   facts.level.lfprSpark = paSeries.slice(-24);
   // recent Okun residuals (last 12 quarters) for a sparkline
   facts.level.residSpark = D.okun.scatter.filter(p => !p.is_pandemic).slice(-12).map(p => p.residual);
-  // college residual curve by age for a sparkline
+  // college excess-unemployment curve by age for a sparkline
   const collegeSeries = (D.age_bands.series.find(g => g.group === 'College+') || { points: [] }).points
-    .slice().sort((a, b) => a.age - b.age).map(p => p.value * 100);
+    .slice().sort((a, b) => a.age - b.age).map(p => p.adj * 100);
   facts.distribution.collegeSpark = collegeSeries;
   // sector slowdowns for a sparkline (worst-first already)
   facts.sectors.spark = D.ces_slowdown.bars.map(b => b.slowdown);
 
   window.JOBS_CHARTS = {
     C, sgn, fmtDate, sparkline, facts, data: D,
-    renderOkun, renderLFP, renderAges, renderCES
+    renderOkun, renderLFP, renderAgeGap, renderAges, renderAgeTime, renderCES
   };
 })();

@@ -93,6 +93,59 @@
     --grot:   'Haas Grotesk', 'Helvetica Neue', Arial, sans-serif;
     --sans:   'Public Sans', -apple-system, 'Segoe UI', system-ui, sans-serif;
 
+    /* ── TAB LEDE SCALE ──────────────────────────────────────────
+       Every tab opens on the same two-part pattern: the question or
+       statement (the lede) and a standfirst paragraph beneath it.
+       These tokens are the single source of
+       truth for the lede's size and measure — change them here and
+       all six tabs move together.
+
+       Consumed by: .tab-lede (the class to reach for on anything
+       new), plus the four legacy per-tab classes kept as aliases
+       for it — .jd-lede (Adoption), #factBankArea .intro-title,
+       .about-lede, .header-tab-desc-lede (Papers/Policy Map), and
+       #jobDisplacementArea .mast h2.
+
+       The Jobs tab's copy of the rule lives in
+       jobs_displacement.html and arrives via
+       sync_jobs_displacement.py, so it reads these with a literal
+       fallback (var(--lede-size, clamp(...))) — the token wins here
+       in index.html, the fallback keeps the standalone preview
+       honest. Do not add --lede-* to that file's :root; the sync
+       scopes :root onto #jobDisplacementArea, which would outrank
+       this block and quietly re-fork the scale. */
+    --lede-size:    clamp(24px, 3.2vw, 32px);
+    --lede-lh:      1.3;
+    --lede-weight:  500;
+    --lede-track:   -0.01em;
+    --lede-measure: 760px;
+
+    /* ── MASTHEAD FRAME ──────────────────────────────────────────
+       The --lede-* tokens above unify the masthead's *type*; these
+       unify its *box*, so all six tabs open at the same left edge,
+       the same distance below the navy band, and close on the same
+       hairline. Before this existed the six had five different left
+       edges (168/246/312/756) and five different top gaps (17–172),
+       because each tab's wrapper was centred in a column of its own
+       width — an inset that drifts with the viewport.
+
+       Left-flush, not centred: it is the only inset that is
+       invariant to window width, and the only one that survives the
+       Papers sidebar (a centred masthead there would align to
+       neither the sidebar nor the card grid).
+
+       The closing rule is --lede-measure wide, not the content
+       width, so it hugs the text it closes. Content below the rule
+       keeps whatever measure it needs: Adoption's charts 1060,
+       Fact Bank 1140, Jobs' prose 840.
+
+       Same caveat as --lede-*: do not add --masthead-top to
+       jobs_displacement.html's :root. The sync scopes :root onto
+       #jobDisplacementArea, which would outrank this block. That
+       file reads it with a literal fallback instead. */
+    --masthead-top:   40px;
+    --masthead-inset: 28px;
+
     /* ── App tokens remapped onto the ESP palette ── */
     --bg:       var(--beige);
     --surface:  var(--light-beige);
@@ -256,30 +309,68 @@
     color: var(--group-accent);
   }
   .tab-group-label--empty { border-top-color: transparent; color: transparent; user-select: none; }
+
+  /* ── SHARED TAB OPENER ───────────────────────────────────────────
+     The one type spec for the question or statement at the top of a
+     tab. Reach for .tab-lede / .tab-standfirst on anything new; the
+     per-tab classes below this are aliases that exist only because
+     their markup predates this block. */
+  .tab-lede {
+    font-family: var(--serif);
+    font-size: var(--lede-size);
+    line-height: var(--lede-lh);
+    font-weight: var(--lede-weight);
+    letter-spacing: var(--lede-track);
+    color: var(--headline);
+    max-width: var(--lede-measure);
+  }
+  .tab-standfirst {
+    font-family: var(--sans);
+    font-size: 15px; line-height: 1.7; color: var(--muted);
+    max-width: var(--lede-measure);
+    margin-top: 10px;
+  }
+
+  /* Papers, Policy Map and Solutions. No background and no bottom
+     border: this is an invisible container, and the masthead is closed
+     by the hairline on .header-tab-desc-text like every other tab. The
+     old --surface panel made these two read as a distinct site section,
+     and on Papers it was cream-on-cream with the .key-finding-cards,
+     which are --surface too. */
   .header-tab-desc {
-    border-bottom: 1px solid var(--border);
-    padding: 16px 28px 14px;
-    background: var(--surface);
+    position: relative;
+    padding: var(--masthead-top) var(--masthead-inset) 14px;
     display: flex; flex-direction: column; gap: 3px;
   }
-  .header-tab-desc-row {
-    display: flex; align-items: center; justify-content: space-between;
-    margin-bottom: 6px;
+  /* Empty now that the eyebrow is gone — the row survives only as the
+     lens toggle's anchor, so it must not add height above the lede. */
+  .header-tab-desc-row { margin-bottom: 0; }
+  /* Out of flow, so a taller control cannot push the lede under it down.
+     Papers is the only tab with a lens toggle, and while it sat in the
+     flow of this row it forked Papers' masthead from the other five. */
+  .header-tab-desc-row .lens-toggle {
+    position: absolute;
+    top: var(--masthead-top);
+    right: var(--masthead-inset);
   }
-  .header-tab-desc-title {
-    font-size: 18px; font-weight: 700; letter-spacing: -0.01em;
-    color: var(--text);
-    font-family: var(--grot);
+  .header-tab-desc-lede {
+    font-family: var(--serif);
+    font-size: var(--lede-size);
+    line-height: var(--lede-lh);
+    font-weight: var(--lede-weight);
+    letter-spacing: var(--lede-track);
+    color: var(--headline);
+    max-width: var(--lede-measure);
+    margin-bottom: 10px;
   }
+  .header-tab-desc-lede:empty { display: none; }
+  /* Carries the shared closing hairline — see --masthead-top. */
   .header-tab-desc-text {
-    font-size: 14px; color: var(--text); line-height: 1.5;
-    font-family: 'Public Sans', sans-serif;
+    font-size: 15px; color: var(--muted); line-height: 1.7;
+    max-width: var(--lede-measure);
+    font-family: var(--sans);
+    padding-bottom: 8px; border-bottom: 1px solid var(--border);
   }
-  .header-tab-desc-note {
-    font-size: 12px; color: var(--muted); font-style: italic; line-height: 1.4;
-    font-family: 'Public Sans', sans-serif;
-  }
-  .header-tab-desc-note { display: none; }
   .header-nav-btn {
     background: none; border: none; cursor: pointer;
     font-family: var(--grot);
@@ -328,8 +419,6 @@
   }
   .sidebar     { grid-column: 1; grid-row: 2; }
   .main-content { grid-column: 2; grid-row: 2; }
-  .research-header-bar { display: none !important; }
-  .cards-view .research-header-bar { display: block; }
 
   /* ── Research sub-tabs: Database / What's New ─────────────────
      Same control as the Policy Map's Map/Links toggle, so the two tabs
@@ -376,18 +465,13 @@
   .changelog-subview .app-layout    { grid-template-columns: 1fr; }
   .changelog-subview .main-content  { grid-column: 1 / -1; }
 
-  .theme-intro-line {
-    display: block; font-size: 13px; font-weight: 500; font-style: normal;
-    color: var(--text); margin-bottom: 3px;
-  }
-  .theme-disclaimer-line {
-    display: block; font-size: 11px; font-style: italic; color: var(--muted);
-  }
-
-  /* ── KEY FINDINGS BAND ───────────────────────────────────── */
+  /* ── KEY FINDINGS BAND ─────────────────────────────────────
+     No border-top: the masthead is already closed by the hairline on
+     .header-tab-desc-text, and a second rule 24px below it — at the
+     full 1296px, against the first one's 760px — read as striping
+     rather than as structure. */
   .key-findings-band {
-    display: none; padding: 16px 0 2px;
-    margin-top: 8px; border-top: 1px solid var(--border);
+    display: none; padding: 18px 0 2px;
   }
   .cards-view .key-findings-band { display: block; }
   .key-findings-label {
@@ -1069,6 +1153,9 @@
   /* ── FILTER TOGGLE (mobile only) ────────────────────────────── */
 
   @media (max-width: 900px) {
+    /* Matches .cards-area's 28px → 16px step below, so the masthead and
+       the content it introduces stay on one left edge at every width. */
+    :root { --masthead-inset: 16px; }
     .sidebar {
       position: fixed; left: calc(0px - var(--sidebar-w)); top: 0;
       height: 100vh; z-index: 200; background: var(--bg);
@@ -1092,15 +1179,6 @@
 
     .inline-filters { display: none; padding: 10px 16px; }
     .inline-filters.mobile-open { display: flex; }
-
-    /* Theme nav — horizontal scroll instead of wrapping */
-    .theme-nav-strip {
-      overflow-x: auto; flex-wrap: nowrap;
-      -webkit-overflow-scrolling: touch;
-      scrollbar-width: none; padding: 10px 16px;
-    }
-    .theme-nav-strip::-webkit-scrollbar { display: none; }
-    #themeTabNav { flex-wrap: nowrap; }
 
     /* Policy filterbar — horizontal scroll instead of wrapping */
 
@@ -1319,8 +1397,6 @@
   .policy-view .sidebar              { display: none; }
   .policy-view .inline-filters       { display: none; }
 
-  .policy-view .theme-nav-strip      { display: none; }
-  .policy-view .theme-disclaimer-bar { display: none; }
 
   .policy-view .cards-grid           { display: none !important; }
   .policy-view .empty-state          { display: none !important; }
@@ -1358,10 +1434,16 @@
   }
   .about-section-text em { font-style: italic; }
   .about-section-text + .about-section-text { margin-top: 12px; }
+  /* Alias of .tab-lede — was 24px grotesk 700. */
   .about-lede {
-    font-family: var(--grot);
-    font-size: 24px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.25;
-    color: var(--text); margin-bottom: 14px;
+    font-family: var(--serif);
+    font-size: var(--lede-size);
+    line-height: var(--lede-lh);
+    font-weight: var(--lede-weight);
+    letter-spacing: var(--lede-track);
+    color: var(--headline);
+    max-width: var(--lede-measure);
+    margin-bottom: 14px;
   }
   .about-questions {
     list-style: none; counter-reset: aq; margin: 16px 0 0; padding: 0;
@@ -1402,12 +1484,13 @@
   .jobs-view .empty-state                 { display: none !important; }
   .jobs-view .lens-toggle                 { display: none; }
   .jobs-view .header-tab-desc             { display: none; }
-  .jobs-view .research-header-bar         { display: none !important; }
-  .jobs-view .theme-nav-strip             { display: none; }
-  .jobs-view .theme-disclaimer-bar        { display: none; }
   .jobs-view .key-findings-band           { display: none; }
   .jobs-view .app-layout                  { grid-template-columns: 1fr; }
   .jobs-view .main-content                { grid-column: 1 / -1; }
+  /* The masthead owns its own top gap via --masthead-top, so .cards-area
+     must not add to it — otherwise .mast's padding means one thing here
+     and another in the standalone jobs_displacement.html. */
+  .jobs-view .cards-area                  { padding-top: 0; }
 
   /* ── ADOPTION TAB ── (static view; reuses the .jd-* editorial components) */
   #adoptionArea                           { display: none; }
@@ -1418,12 +1501,10 @@
   .adoption-view .empty-state             { display: none !important; }
   .adoption-view .lens-toggle             { display: none; }
   .adoption-view .header-tab-desc         { display: none; }
-  .adoption-view .research-header-bar     { display: none !important; }
-  .adoption-view .theme-nav-strip         { display: none; }
-  .adoption-view .theme-disclaimer-bar    { display: none; }
   .adoption-view .key-findings-band       { display: none; }
   .adoption-view .app-layout              { grid-template-columns: 1fr; }
   .adoption-view .main-content            { grid-column: 1 / -1; }
+  .adoption-view .cards-area              { padding-top: 0; }
 
   /* ── SOLUTIONS TAB ── (placeholder view, modeled on About) */
   #solutionsArea                          { display: none; }
@@ -1433,16 +1514,17 @@
   .solutions-view .cards-grid             { display: none !important; }
   .solutions-view .empty-state            { display: none !important; }
   .solutions-view .lens-toggle            { display: none; }
-  .solutions-view .header-tab-desc        { display: none; }
-  .solutions-view .research-header-bar    { display: none !important; }
-  .solutions-view .theme-nav-strip        { display: none; }
-  .solutions-view .theme-disclaimer-bar   { display: none; }
+  /* Solutions keeps .header-tab-desc — it opens on the fourth of the four
+     questions ("What should we actually do?", from TAB_DESCS.solutions),
+     and a tab with no masthead would be the one exception in the set. */
   .solutions-view .key-findings-band      { display: none; }
   .solutions-view .app-layout             { grid-template-columns: 1fr; }
   .solutions-view .main-content           { grid-column: 1 / -1; }
+  /* The masthead now carries the top structure, so the card no longer
+     needs to float in 80px of space to look deliberate. */
   .sol-placeholder {
     display: flex; align-items: center; justify-content: center;
-    padding: 80px 28px;
+    padding: 24px 28px 80px;
   }
   .sol-card {
     background: var(--surface); border: 1px solid var(--border);
@@ -1472,8 +1554,11 @@
      leak into the rest of the app.
      ═══════════════════════════════════════════════════════════ */
   #factBankArea { display: none; }
+  /* margin: 0, not 0 auto. Centring a 1140px column inside the 1352px
+     layout pushed this tab's masthead 78px right of Papers'/Lab's/Jobs',
+     and the drift grew with the viewport. */
   .fact-bank-view #factBankArea {
-    display: block; max-width: 1140px; margin: 0 auto; width: 100%;
+    display: block; max-width: 1140px; margin: 0; width: 100%;
   }
   .fact-bank-view .sidebar            { display: none; }
   .fact-bank-view .inline-filters     { display: none; }
@@ -1481,20 +1566,31 @@
   .fact-bank-view .empty-state        { display: none !important; }
   .fact-bank-view .lens-toggle        { display: none; }
   .fact-bank-view .header-tab-desc    { display: none; }
-  .fact-bank-view .research-header-bar{ display: none !important; }
-  .fact-bank-view .theme-nav-strip    { display: none; }
-  .fact-bank-view .theme-disclaimer-bar { display: none; }
   .fact-bank-view .key-findings-band  { display: none; }
   .fact-bank-view .app-layout         { grid-template-columns: 1fr; }
   .fact-bank-view .main-content       { grid-column: 1 / -1; }
+  .fact-bank-view .cards-area         { padding-top: 0; }
 
-  #factBankArea .intro-bar { padding: 26px 0 20px; border-bottom: 2px solid var(--navy); }
+  #factBankArea .intro-bar { padding: var(--masthead-top) 0 0; }
+  /* Alias of .tab-lede — was 30px serif 700. */
   #factBankArea .intro-title {
-    font-family: var(--serif); font-weight: 700; color: var(--headline);
-    font-size: 30px; letter-spacing: -0.01em; margin-bottom: 8px;
+    font-family: var(--serif); color: var(--headline);
+    font-size: var(--lede-size);
+    line-height: var(--lede-lh);
+    font-weight: var(--lede-weight);
+    letter-spacing: var(--lede-track);
+    max-width: var(--lede-measure);
+    margin-bottom: 10px;
   }
-  #factBankArea .intro-text { font-size: 14.5px; line-height: 1.65; }
-  #factBankArea .intro-note { font-size: 12.5px; font-style: italic; color: var(--purple); margin-top: 8px; }
+  #factBankArea .intro-text { font-size: 15px; line-height: 1.7; max-width: var(--lede-measure); }
+  /* Last element in the masthead, so it carries the closing hairline. It
+     also gains the shared measure — it was the one line on this tab
+     running the full 1140px while everything above it stopped at 760. */
+  #factBankArea .intro-note {
+    font-size: 12.5px; font-style: italic; color: var(--purple); margin-top: 8px;
+    max-width: var(--lede-measure);
+    padding-bottom: 8px; border-bottom: 1px solid var(--border);
+  }
 
   /* ── MODE TOGGLE ── */
   #factBankArea .mode-toggle { display: flex; gap: 10px; padding: 18px 0 4px; flex-wrap: wrap; }
@@ -1736,22 +1832,9 @@
     .tab-group-label { font-size: 9px; letter-spacing: 0.06em; }
   }
 
-  /* ── Policy Map intro bar (matches theme-disclaimer-bar) ─── */
-  .policy-map-header {
-    display: none; padding: 14px 28px 13px;
-    border-bottom: 1px solid var(--border);
-    font-family: 'Haas Grotesk', 'Helvetica Neue', Arial, sans-serif;
-  }
-  .policy-view .policy-map-header { display: none; }
   .policy-view .lens-toggle { display: none !important; }
-  .pol-header-title {
-    display: block;
-    font-size: 18px; font-weight: 700; color: var(--text);
-    letter-spacing: -0.01em; margin-bottom: 5px;
-    font-family: var(--grot);
-  }
 
-  /* ── Policy filter bar (matches theme-nav-strip) ─────────── */
+  /* ── Policy filter bar ───────────────────────────────────── */
 
   .pol-filter-label {
     font-size: 13px; font-weight: 400; letter-spacing: 0;
@@ -1997,7 +2080,6 @@
   @media (max-width: 700px) {
     .pol-subview-toggle { margin: 16px 16px 0; }
     .pol-links-wrap { padding: 16px 16px 40px; }
-    .policy-map-header { padding-left: 16px; padding-right: 16px; }
 
     .pol-columns { padding-left: 16px; padding-right: 16px; grid-template-columns: 1fr; }
 
@@ -2018,17 +2100,40 @@
     outline-offset: 2px;
   }
 
-  /* ── JOB DISPLACEMENT ANALYSIS ──────────────────────────── */
-  /* Transplanted from jobs_displacement_prototype.html. Charts render
-     into #jobDisplacementArea via the IIFE near the end of <body>. */
-  .jd-wrap { max-width: 680px; margin: 0 auto; padding: 8px 28px 20px; }
+  /* ── SHARED CHART CHROME (.jd-*) ─────────────────────────────
+     OWNED BY index.html. NOT synced. Both the Job Displacement tab and
+     the Adoption tab render into this vocabulary, and assets/jobs-charts.js
+     and assets/adoption-charts.js both attach a .jd-tooltip directly to
+     <body> — outside #jobDisplacementArea — so none of this can be scoped
+     to a single tab.
+
+     jobs_displacement.html carries its own copy of these rules purely so
+     the standalone preview looks right. That copy is deliberately dropped
+     during sync; this block is the one that ships. The two can therefore
+     drift on shared chrome — that is the accepted trade for not letting a
+     jobs-tab edit silently restyle Adoption. sync_jobs_displacement.py
+     fails loudly if jobs_displacement.html introduces a .jd-* selector
+     that is missing here, so new shared components can't slip through
+     unnoticed; add them below by hand when that happens. */
+  /* Alias of .tab-lede. This was the reference treatment the shared
+     --lede-* tokens were derived from; only the ceiling moved (28px → 32px)
+     so it holds up as a page opener rather than reading as a subhead. */
   .jd-lede {
-    font-family: var(--serif); font-size: clamp(22px, 3vw, 28px);
-    line-height: 1.3; color: var(--headline); font-weight: 500;
-    padding: 28px 0 6px;
+    font-family: var(--serif);
+    font-size: var(--lede-size);
+    line-height: var(--lede-lh);
+    font-weight: var(--lede-weight);
+    letter-spacing: var(--lede-track);
+    color: var(--headline);
+    max-width: var(--lede-measure);
+    /* No padding-top: the top gap belongs to the wrapper, which reads
+       --masthead-top, so it can't fork from the other five tabs. */
+    padding: 0 0 6px;
   }
   .jd-standfirst {
+    font-family: var(--sans);
     font-size: 15px; line-height: 1.7; color: var(--muted);
+    max-width: var(--lede-measure);
     padding-bottom: 8px; border-bottom: 1px solid var(--border);
   }
   .jd-section { padding: 30px 0 10px; border-top: 1px solid var(--border); }
@@ -2051,7 +2156,7 @@
   .jd-chart-sub { font-size: 11.5px; color: var(--muted); margin: 0 4px 8px; }
   .jd-svg { width: 100%; height: auto; display: block; font-family: var(--sans); }
   .jd-chart-note { font-size: 11px; color: var(--muted); margin: 8px 4px 0; line-height: 1.5; }
-  .jd-legend { display: flex; flex-wrap: wrap; gap: 15px; margin: 4px 4px 2px; font-size: 12px; color: var(--text); }
+  .jd-legend { display: flex; flex-wrap: wrap; gap: 15px; margin: 6px 4px 2px; font-size: 12px; color: var(--text); }
   .jd-legend span { display: inline-flex; align-items: center; gap: 6px; }
   .jd-legend i { width: 13px; height: 4px; border-radius: 2px; display: inline-block; }
   .jd-legend i.dot { width: 10px; height: 10px; border-radius: 50%; }
@@ -2072,6 +2177,15 @@
   .jd-stat .n small { font-size: 14px; color: var(--muted); font-family: var(--sans); }
   .jd-stat .n .pos { color: var(--red-deep); }
   .jd-stat .l { font-family: var(--grot); font-size: 11px; color: var(--muted); margin-top: 7px; line-height: 1.45; }
+  /* Introduced by the Job Displacement rewrite; kept here with the rest of
+     the family so the Adoption tab can pick it up too. */
+  .jd-flag {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-family: var(--grot); font-size: 12px; font-weight: 600;
+    background: var(--navy); color: var(--beige);
+    border-radius: 999px; padding: 6px 13px; margin: 16px 0 0;
+  }
+  .jd-flag b { color: var(--gold); }
   .jd-tooltip {
     position: fixed; pointer-events: none; background: var(--navy); color: var(--beige);
     font-family: var(--sans); font-size: 12px; line-height: 1.5; padding: 7px 10px;
@@ -2081,6 +2195,198 @@
   .jd-tooltip b { color: #fff; }
   .jd-src { font-size: 11px; color: var(--muted); margin-top: 4px; }
   .jd-vintage { font-family: var(--grot); font-size: 10.5px; color: var(--muted); text-align: right; margin-top: 4px; }
+
+  /* ── JOB DISPLACEMENT ANALYSIS ──────────────────────────── */
+  /* AUTO-SYNCED from jobs_displacement.html — do not hand-edit the CSS
+     between the markers below. Edit jobs_displacement.html instead, then
+     run `python3 sync_jobs_displacement.py` to regenerate this block
+     (and the matching markup block in #jobDisplacementArea, and the
+     matching <script> block near the end of <body>).
+
+     Every selector below is scoped to #jobDisplacementArea by the sync
+     script, including the source file's :root — which becomes a scoped
+     custom-property block, so tokens defined for this tab (--col,
+     --measure, --rail-w, --terra, --null-*, --sig-*) cannot leak into the
+     rest of the site. Chrome selectors (.site-header, .header-nav-btn,
+     body, a, etc.) and the shared .jd-* family are stripped during sync,
+     since index.html owns both. */
+  /* ══ SYNC:CSS:BEGIN ══ */
+#jobDisplacementArea {
+    --navy:#2c3254; --beige:#f4f2e4; --light-beige:#fffdf2;
+    --green:#70ad8f; --green-hover:#84cca8; --purple:#472b51;
+    --gold:#ebc382; --gold-deep:#c99a3f; --pink:#ffbfa7; --terra:#b06a4f;
+    --headline:#232849; --divider:#caccd4;
+    --serif:'Publico Banner',Georgia,serif;
+    --grot:'Haas Grotesk','Helvetica Neue',Arial,sans-serif;
+    --sans:'Public Sans',-apple-system,'Segoe UI',system-ui,sans-serif;
+
+    --surface:var(--light-beige); --border:var(--divider);
+    --text:#3c4164; --muted:#6d7091;
+
+    /* verdict semantics — a "no" is grey, never green */
+    --null-ink:#75788f; --null-bg:rgba(109,112,145,.10);
+    --sig-ink:#a35f45;  --sig-bg:rgba(176,106,79,.13);
+
+    --rail-w:190px;
+    /* main is 1140 wide with 30px padding, so the content column beside a
+       190px rail plus 48px gap is ~842px. --col matches it; --measure sits
+       just inside it so prose reaches most of the way across rather than
+       stopping short of the figures above it. */
+    --col:840px;      /* content column; figures span this */
+    --measure:800px;  /* prose measure */
+  }
+
+  /* ══ MASTHEAD ═════════════════════════════════════════════════════
+     Editorial treatment: serif question, an italic terra pivot word, and
+     a standfirst at reading size.
+
+     The h2 and .stand sizes are the site-wide tab-opener scale, not a
+     masthead of their own: index.html defines --lede-* in :root and all
+     six tabs read them, so this page opens at the same size as Adoption,
+     Papers, Fact Bank and the rest. The literal values are var()
+     fallbacks so this standalone preview still renders correctly on its
+     own — index.html's tokens win once synced.
+
+     Do NOT move --lede-* into this file's :root. sync_jobs_displacement.py
+     rewrites :root as a scoped block on #jobDisplacementArea, which would
+     outrank index.html's :root and silently fork the scale for this tab
+     only. To change the size, edit --lede-size in index.html. */
+  /* Same token-with-fallback contract as --lede-* above: --masthead-top
+     wins when embedded in index.html, the 40px fallback keeps the
+     standalone preview honest. Do not add --masthead-top to :root here.
+     Embedded, .jobs-view .cards-area zeroes its own top padding so this
+     is the only thing setting the gap in either context. */
+  #jobDisplacementArea .mast { padding:var(--masthead-top, 40px) 0 0; max-width:var(--col); }#jobDisplacementArea .mast h2 {
+    font-family:var(--serif);
+    font-size:var(--lede-size, clamp(24px,3.2vw,32px));
+    line-height:var(--lede-lh, 1.3);
+    font-weight:var(--lede-weight, 500);
+    letter-spacing:var(--lede-track, -0.01em);
+    color:var(--headline);
+    max-width:var(--lede-measure, 760px);
+  }
+  /* standfirst: sans at reading size, matching .tab-standfirst */
+  #jobDisplacementArea .stand { font-family:var(--sans); font-size:15px; line-height:1.7; color:var(--muted); font-weight:400; max-width:var(--lede-measure, 760px); margin-top:14px; }#jobDisplacementArea .stand b { color:var(--terra); font-weight:600; }
+
+  /* Last element in the masthead, so it carries the shared closing
+     hairline — at --lede-measure, not --col, so it hugs the text above
+     it. The vintage stamp stays inside the masthead rather than being
+     orphaned into the content: on a real-time data page it belongs with
+     the headline it qualifies. */
+  #jobDisplacementArea .meta { display:flex; flex-wrap:wrap; align-items:center; gap:9px 16px; margin-top:22px; max-width:var(--lede-measure, 760px); padding-bottom:12px; border-bottom:1px solid var(--border); }#jobDisplacementArea .vintage { font-family:var(--grot); font-size:11.5px; letter-spacing:.03em; color:var(--muted); }#jobDisplacementArea .vintage b { color:var(--headline); font-weight:600; }
+
+  /* ══ THE SHORT VERSION ════════════════════════════════════════════
+     Editorial answer rows in place of the table: an outlined ghost
+     numeral, the section's question set in serif, then a one-line
+     answer. Each row is a jump link into its section, not a tab switch.
+
+     The question carries the display type; the verdict is the first
+     word of the answer, which is where the colour rule applies — a
+     "no" is grey (--null-ink), never green. The gold numeral is a
+     decorative device and carries no verdict meaning, so it stays
+     uniform across all three rows. ═══════════════════════════════════ */
+  #jobDisplacementArea .sv { margin:36px 0 0; max-width:var(--col); }#jobDisplacementArea .sv-t { font-family:var(--grot); font-size:11px; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:var(--muted); margin-bottom:4px; border-bottom:2px solid var(--navy); padding-bottom:12px; }
+
+  /* two across, flowing down — more sections just extend the grid */
+  #jobDisplacementArea .sv-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); }#jobDisplacementArea .answer-row {
+    display:grid; grid-template-columns:54px 1fr; gap:4px 16px; align-items:start;
+    text-align:left; background:none; border:none; cursor:pointer;
+    border-top:1px solid var(--border); padding:20px 26px 22px 0;
+    font-family:inherit; transition:padding-left .18s;
+  }
+  /* the two cells of a row share a divider; the top row sits under the
+     navy rule of the section label, so it needs no border of its own */
+  #jobDisplacementArea .answer-row:nth-child(2n) { padding-left:26px; padding-right:0; border-left:1px solid var(--border); }#jobDisplacementArea .answer-row:nth-child(-n+2) { border-top:none; padding-top:18px; }#jobDisplacementArea .answer-row:hover { padding-left:8px; }#jobDisplacementArea .answer-row:nth-child(2n):hover { padding-left:34px; }
+  /* rows are <button>s, so the inner elements are spans and need block */
+  #jobDisplacementArea .ar-body, #jobDisplacementArea .ar-q, #jobDisplacementArea .ar-a, #jobDisplacementArea .ar-num { display:block; }#jobDisplacementArea .ar-num {
+    font-family:var(--serif); font-size:clamp(34px,3.6vw,46px); line-height:.9; font-weight:500;
+    color:transparent; -webkit-text-stroke:1.3px var(--gold-deep); text-stroke:1.3px var(--gold-deep);
+    font-variant-numeric:tabular-nums;
+  }#jobDisplacementArea .answer-row:hover .ar-num { color:var(--gold); }#jobDisplacementArea .ar-body { padding-top:1px; min-width:0; }
+  /* the question, scaled for the half-width cell */
+  #jobDisplacementArea .ar-q { font-family:var(--serif); font-size:clamp(18px,1.7vw,22px); line-height:1.22; font-weight:500;
+    color:var(--headline); letter-spacing:-.008em; margin-bottom:8px; }
+  /* the answer: one line, verdict first — fills the cell */
+  #jobDisplacementArea .ar-a { font-size:14px; line-height:1.6; color:var(--text); font-variant-numeric:tabular-nums; }#jobDisplacementArea .ar-a .v { font-family:var(--serif); font-size:16.5px; font-weight:500; }#jobDisplacementArea .ar-a .v.null { color:var(--null-ink); }#jobDisplacementArea .ar-a .v.signal { color:var(--sig-ink); }#jobDisplacementArea .ar-a b { color:var(--headline); font-weight:600; }#jobDisplacementArea .ar-go {
+    font-family:var(--grot); font-size:11px; font-weight:700; letter-spacing:.04em; text-transform:uppercase;
+    color:var(--navy); margin-top:10px; display:inline-flex; gap:6px; transition:gap .15s;
+  }#jobDisplacementArea .answer-row:hover .ar-go { gap:10px; }#jobDisplacementArea .sv-note { font-size:13px; line-height:1.65; color:var(--muted); margin:0; border-top:1px solid var(--border); padding-top:16px; }
+
+  /* ══ SCROLL: rail + sections ══════════════════════════════════════ */
+  #jobDisplacementArea .wrap { display:grid; grid-template-columns:var(--rail-w) minmax(0,1fr); gap:48px; margin-top:8px; align-items:start; }#jobDisplacementArea .rail { position:sticky; top:22px; padding-top:52px; }#jobDisplacementArea .rail-t { font-family:var(--grot); font-size:9.5px; font-weight:700; letter-spacing:.13em; text-transform:uppercase; color:var(--muted); padding:0 0 9px 12px; }#jobDisplacementArea .rail a {
+    display:grid; grid-template-columns:16px 9px 1fr; align-items:center; gap:9px;
+    text-decoration:none; padding:8px 12px; border-left:2px solid var(--border);
+    font-family:var(--grot); font-size:11.5px; line-height:1.3; color:var(--muted);
+    transition:color .15s,border-color .15s;
+  }#jobDisplacementArea .rail a:hover { color:var(--headline); }#jobDisplacementArea .rail a.here { color:var(--headline); font-weight:600; border-left-color:var(--green); }#jobDisplacementArea .rail a .rn { font-size:10px; font-weight:700; font-variant-numeric:tabular-nums; color:var(--divider); }#jobDisplacementArea .rail a.here .rn { color:var(--green); }#jobDisplacementArea .rail a .rdot { width:9px; height:9px; border-radius:50%; }#jobDisplacementArea .rail a .rdot.null { background:var(--null-ink); }#jobDisplacementArea .rail a .rdot.signal { background:var(--sig-ink); }#jobDisplacementArea .rail-back { display:block; margin:16px 0 0 12px; font-family:var(--grot); font-size:11px; color:var(--muted); text-decoration:none; }#jobDisplacementArea .rail-back:hover { color:var(--headline); }
+
+  /* ── SECTION ──────────────────────────────────────────────────── */
+  #jobDisplacementArea .sec { max-width:var(--col); padding:52px 0 46px; border-bottom:1px solid var(--border); scroll-margin-top:20px; }#jobDisplacementArea .sec:last-of-type { border-bottom:none; }#jobDisplacementArea .sec-kick { font-family:var(--grot); font-size:11.5px; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:var(--green); margin-bottom:16px; display:flex; align-items:center; gap:11px; }#jobDisplacementArea .sec-kick .kn { color:var(--divider); font-variant-numeric:tabular-nums; }
+
+  /* the verdict sentence, set large — the section's whole argument */
+  #jobDisplacementArea .verdict { font-family:var(--serif); font-weight:400; font-size:clamp(22px,2.9vw,31px); line-height:1.32; color:var(--headline); max-width:42ch; letter-spacing:-.008em; }#jobDisplacementArea .verdict b { font-weight:500; font-variant-numeric:tabular-nums; }#jobDisplacementArea .verdict .no { color:var(--null-ink); font-style:italic; }#jobDisplacementArea .verdict .yes { color:var(--terra); font-style:italic; }#jobDisplacementArea .sec-q { font-family:var(--grot); font-size:13px; color:var(--muted); margin-top:12px; max-width:var(--measure); line-height:1.6; }
+
+  /* figures break out of the prose measure */
+  #jobDisplacementArea .figure { margin:26px 0 0; width:100%; }
+
+  /* prose sits at the narrower measure */
+  #jobDisplacementArea .prose { max-width:var(--measure); margin-top:26px; }#jobDisplacementArea .prose p { font-size:15px; line-height:1.78; margin-bottom:15px; }#jobDisplacementArea .prose p:last-child { margin-bottom:0; }#jobDisplacementArea .prose em { color:var(--headline); font-style:italic; }
+
+  /* the caveat is body text, not a warning box — it belongs to the argument */
+  #jobDisplacementArea .caveat { max-width:var(--measure); margin-top:18px; padding-left:16px; border-left:2px solid var(--gold); }#jobDisplacementArea .caveat p { font-size:14px; line-height:1.7; color:var(--muted); }#jobDisplacementArea .caveat b { font-family:var(--grot); font-size:9.5px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--gold-deep); display:block; margin-bottom:5px; }
+
+  /* plain-language method note: the general reader's entry point, so it reads
+     as body copy with a rule, not as a boxed aside to be skipped */
+  #jobDisplacementArea .howto { max-width:var(--measure); margin-top:24px; padding:2px 0 0 17px; border-left:2px solid var(--navy); }#jobDisplacementArea .howto b.h { font-family:var(--grot); font-size:9.5px; font-weight:700; letter-spacing:.1em;
+               text-transform:uppercase; color:var(--navy); display:block; margin-bottom:7px; }#jobDisplacementArea .howto p { font-size:14.5px; line-height:1.75; margin-bottom:12px; color:var(--text); }#jobDisplacementArea .howto p:last-child { margin-bottom:0; }#jobDisplacementArea .howto em { color:var(--headline); font-style:italic; }
+
+  /* one line per figure, telling the reader what to look at before they look */
+  #jobDisplacementArea .fig-what { max-width:var(--measure); margin:14px 0 0; font-size:13.5px; line-height:1.7; color:var(--muted); }#jobDisplacementArea .fig-what b { font-family:var(--grot); font-size:11px; font-weight:700; letter-spacing:.04em;
+                text-transform:uppercase; color:var(--headline); }
+
+  /* the advanced reader's block: same disclosure pattern as .method, but it
+     carries a specification rather than a summary, so it gets more room */
+  #jobDisplacementArea .method-body .spec { font-family:var(--grot); font-size:12.5px; line-height:1.7; color:var(--headline);
+                       background:var(--beige); border:1px solid var(--border); border-radius:6px;
+                       padding:11px 13px; margin:2px 0 4px; overflow-x:auto; white-space:nowrap; }#jobDisplacementArea .method-body dd code { font-family:var(--grot); font-size:12px; background:var(--beige); padding:1px 4px; border-radius:3px; }#jobDisplacementArea .method-body dd ul { margin:4px 0 0 15px; padding:0; }#jobDisplacementArea .method-body dd li { margin-bottom:5px; }#jobDisplacementArea .method-body dd:last-of-type { margin-bottom:0; }
+
+  /* ▸ How this is measured */
+  #jobDisplacementArea details.method { max-width:var(--measure); margin-top:22px; border-top:1px solid var(--border); }#jobDisplacementArea details.method summary {
+    cursor:pointer; list-style:none; padding:13px 0 12px;
+    font-family:var(--grot); font-size:12px; font-weight:600; letter-spacing:.02em; color:var(--navy);
+    display:flex; align-items:center; gap:9px;
+  }#jobDisplacementArea details.method summary::-webkit-details-marker { display:none; }#jobDisplacementArea details.method summary::before { content:"▸"; font-size:10px; color:var(--green); transition:transform .18s; display:inline-block; }#jobDisplacementArea details.method[open] summary::before { transform:rotate(90deg); }#jobDisplacementArea details.method summary:hover { color:var(--headline); }#jobDisplacementArea .method-body { padding:0 0 16px 19px; }#jobDisplacementArea .method-body dl { display:grid; grid-template-columns:auto 1fr; gap:7px 16px; }#jobDisplacementArea .method-body dt { font-family:var(--grot); font-size:9.5px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--muted); padding-top:3px; white-space:nowrap; }#jobDisplacementArea .method-body dd { font-size:13.5px; line-height:1.6; color:var(--text); }#jobDisplacementArea .method-more { margin-top:13px; font-family:var(--grot); font-size:11.5px; font-weight:600; color:var(--navy); text-decoration:none; display:inline-block; }#jobDisplacementArea .method-more:hover { text-decoration:underline; }
+
+  /* what would change this verdict */
+  #jobDisplacementArea .change {
+    max-width:var(--measure); margin-top:6px; padding:14px 18px;
+    background:var(--surface); border:1px solid var(--border); border-radius:10px;
+    display:flex; gap:13px; align-items:baseline;
+  }#jobDisplacementArea .change b { font-family:var(--grot); font-size:9.5px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--green); flex-shrink:0; }#jobDisplacementArea .change span { font-size:13.5px; line-height:1.6; color:var(--text); }
+
+  /* ── CLOSING ──────────────────────────────────────────────────── */
+  #jobDisplacementArea .closing { max-width:var(--col); margin-top:44px; padding:26px 30px; background:var(--navy); color:var(--beige); border-radius:14px; }#jobDisplacementArea .closing .ct { font-family:var(--grot); font-size:11px; font-weight:700; letter-spacing:.13em; text-transform:uppercase; color:var(--gold); margin-bottom:12px; }#jobDisplacementArea .closing p { font-size:15px; line-height:1.72; color:#d6d8e2; max-width:80ch; }#jobDisplacementArea .closing p + p { margin-top:11px; }#jobDisplacementArea .closing b { color:#fff; font-weight:600; }#jobDisplacementArea .closing a { color:var(--gold); }
+
+  /* ── MOTION ───────────────────────────────────────────────────── */
+  @media (prefers-reduced-motion:no-preference) {#jobDisplacementArea .sec { opacity:0; transform:translateY(12px); transition:opacity .5s ease, transform .5s cubic-bezier(.2,.7,.3,1); }#jobDisplacementArea .sec.in { opacity:1; transform:none; }#jobDisplacementArea .sec.in .anim-line { stroke-dasharray:1; stroke-dashoffset:1; animation:drawline 1s ease forwards .15s; }
+    @keyframes drawline { to { stroke-dashoffset:0; } }#jobDisplacementArea .sec.in .anim-bar { transform:scaleX(0); animation:growbar .6s cubic-bezier(.2,.7,.3,1) forwards; }
+    @keyframes growbar { to { transform:scaleX(1); } }#jobDisplacementArea .sec.in .anim-pop { opacity:0; animation:pop .4s ease forwards .5s; }
+    @keyframes pop { to { opacity:1; } }
+  }
+
+  /* ── RESPONSIVE ───────────────────────────────────────────────── */
+  @media (max-width:980px) {#jobDisplacementArea .wrap { grid-template-columns:1fr; gap:0; }#jobDisplacementArea .rail {
+      position:sticky; top:0; z-index:40; padding:9px 0; margin-bottom:6px;
+      display:flex; gap:4px; overflow-x:auto; background:var(--beige);
+      border-bottom:1px solid var(--border);
+    }#jobDisplacementArea .rail-t, #jobDisplacementArea .rail-back { display:none; }#jobDisplacementArea .rail a { border-left:none; border-bottom:2px solid transparent; padding:6px 11px; white-space:nowrap; flex-shrink:0; }#jobDisplacementArea .rail a.here { border-bottom-color:var(--green); }
+  }
+  @media (max-width:720px) {
+    /* single column: every row gets its own rule again, no vertical divider */
+    #jobDisplacementArea .sv-grid { grid-template-columns:minmax(0,1fr); }#jobDisplacementArea .answer-row, #jobDisplacementArea .answer-row:nth-child(2n) { grid-template-columns:44px 1fr; gap:4px 14px;
+      padding:17px 0; border-left:none; border-top:1px solid var(--border); }#jobDisplacementArea .answer-row:first-child { border-top:none; }#jobDisplacementArea .answer-row:nth-child(2) { border-top:1px solid var(--border); }#jobDisplacementArea .answer-row:hover, #jobDisplacementArea .answer-row:nth-child(2n):hover { padding-left:8px; }#jobDisplacementArea .closing { padding:22px 20px; }#jobDisplacementArea .method-body dl { grid-template-columns:1fr; gap:3px; }#jobDisplacementArea .method-body dd { margin-bottom:9px; }
+  }
+  /* ══ SYNC:CSS:END ══ */
 
   /* ── ADOPTION TAB extras ────────────────────────────────────
      The Adoption tab reuses every .jd-* component above. These are the few
@@ -2132,9 +2438,17 @@
 
      Everything inside a panel reuses the .jd-* components, so the charts,
      notes and tooltips are the same ones the Job Displacement tab uses. */
-  .ad-chain-wrap { max-width: 1060px; margin: 0 auto; padding: 8px 26px 24px; }
+  /* margin: 0 and no side padding. The 1060px cap stays — it is the
+     column the charts are drawn for — but centring it inside the 1352px
+     layout put this tab's masthead 144px right of Papers'/Lab's/Jobs',
+     making Adoption the outlier on left edge. The 28px inset now comes
+     once, from .cards-area, instead of 28 + 26 here. */
+  .ad-chain-wrap { max-width: 1060px; margin: 0; padding: var(--masthead-top) 0 24px; }
+  /* The measure now comes from --lede-measure on the .jd-* rules
+     themselves; this pair is kept only so the wide .ad-chain-wrap
+     column can't widen the opener past it. */
   .ad-chain-wrap .jd-lede,
-  .ad-chain-wrap .jd-standfirst { max-width: 760px; }
+  .ad-chain-wrap .jd-standfirst { max-width: var(--lede-measure); }
 
   .ad-spine {
     display: grid; grid-template-columns: repeat(6, 1fr);
@@ -2232,23 +2546,15 @@
   @media (max-width: 620px) {
     .ad-spine { grid-template-columns: repeat(2, 1fr); }
     .ad-link:nth-child(odd) { border-left: none; }
-    .ad-chain-wrap { padding-left: 16px; padding-right: 16px; }
   }
 
-  /* ── JOB DISPLACEMENT: adoption monitor section ──────────── */
-  .jdm-board { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 10px; margin: 16px 0 6px; }
-  .jdm-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--r-card); padding: 11px 13px 10px; }
-  .jdm-card-name { font-family: var(--grot); font-size: 10.5px; letter-spacing: 0.05em; text-transform: uppercase; color: var(--muted); }
-  .jdm-card-val { font-family: var(--serif); font-size: 24px; line-height: 1.15; color: var(--headline); margin-top: 3px; }
-  .jdm-card-val small { font-size: 12px; color: var(--muted); font-family: var(--sans); }
-  .jdm-card-val.neg { color: var(--red-deep); }
-  .jdm-spark { width: 100%; height: 34px; display: block; margin: 5px 0 3px; }
-  .jdm-card-foot { font-family: var(--grot); font-size: 10px; color: var(--muted); }
-  .jdm-card-note { font-size: 10.5px; line-height: 1.45; color: var(--muted); margin-top: 5px; }
-
+  /* JOB DISPLACEMENT: adoption-monitor section (jdm-board / jdm-card /
+     jdmQuad etc.) removed 2026-07-31 — superseded by the scroll/editorial
+     redesign synced from jobs_displacement.html, which has no equivalent
+     section. assets/jobs-monitor-charts.js is no longer loaded either;
+     the file is left in place in case that section is revived later. */
   @media (max-width: 760px) {
     .ad-two-up { grid-template-columns: 1fr; }
-    .jdm-board { grid-template-columns: 1fr; }
   }
 
 </style>
@@ -2344,28 +2650,21 @@
 
   <div class="header-tab-desc" id="headerTabDesc">
     <div class="header-tab-desc-row">
-      <span class="header-tab-desc-title" id="headerTabDescTitle">Papers</span>
       <div class="lens-toggle" role="group" aria-label="Research lens">
         <button class="lens-btn active" id="lensGeneral" data-lens="general" title="Written for a broad audience" aria-label="General lens: written for a broad audience">General</button>
         <button class="lens-btn" id="lensEconomist" data-lens="economist" title="Peer-reviewed and institutional research, organized around economic outcomes" aria-label="Focused lens: peer-reviewed and institutional research, organized around economic outcomes">Focused</button>
       </div>
     </div>
+    <h2 class="header-tab-desc-lede" id="headerTabDescLede">What does the research actually show?</h2>
     <span class="header-tab-desc-text" id="headerTabDescText">A curated database of peer-reviewed studies, policy reports, and investigative journalism on AI, automation, and labor markets.</span>
     <div class="key-findings-band" id="keyFindingsBand">
       <h2 class="key-findings-label">From recent research</h2>
       <div class="key-findings-row" id="keyFindingsRow"></div>
     </div>
-    <span class="header-tab-desc-note" id="headerTabDescNote">Summaries and key findings are AI-generated and reviewed for accuracy. Always consult the original source before citing.</span>
   </div>
 
   <!-- ── MAIN ── -->
   <div class="main-content" id="viewPanel" role="tabpanel" aria-labelledby="homeTitleLink">
-
-    <div class="research-header-bar">
-      <span class="pol-header-title" id="researchHeaderTitle">Papers</span>
-      <span class="theme-intro-line" id="researchIntroLine">A curated database of peer-reviewed studies, policy reports, and investigative journalism on AI, automation, and labor markets.</span>
-      <span class="theme-disclaimer-line" id="researchDisclaimerLine">Summaries and key findings are AI-generated and reviewed for accuracy on an ongoing basis. Always consult the original source before citing.</span>
-    </div>
 
     <div class="research-subview-toggle" id="researchSubviewToggle" role="group" aria-label="Research section">
       <button class="pol-subview-btn active" id="resSubviewDatabase" type="button" aria-pressed="true">Database</button>
@@ -2382,7 +2681,7 @@
       <!-- ── FACT BANK TAB ── -->
       <div id="factBankArea">
         <div class="intro-bar">
-          <h2 class="intro-title">Fact Bank</h2>
+          <h2 class="intro-title">Which numbers can you actually cite?</h2>
           <p class="intro-text">Every fact below is a short, number-bearing statement quoted <strong>verbatim</strong> from a source in the research database. Each is rated on two independent scales: how <strong>politically noteworthy</strong> it is for progressive advocacy (inequality, corporate power, environment, worker power) and how <strong>truthful</strong> its underlying evidence is. A fact can score high on one and low on the other; the point is to know which is which before you use it.</p>
           <p class="intro-note">Pilot release. Ratings are editorial judgments made against a written rubric and reviewed by hand; the &ldquo;take note&rdquo; line under each fact is the defensible phrasing. Click through to the tracker entry or the source before publishing a number.</p>
         </div>
@@ -2498,7 +2797,7 @@
       <div id="adoptionArea">
         <div class="ad-chain-wrap">
 
-          <div class="jd-lede">Who is actually adopting AI, what are they using it for, and is anyone losing a job over it?</div>
+          <h2 class="jd-lede">Who is actually adopting AI, what are they using it for, and is anyone losing a job over it?</h2>
           <p class="jd-standfirst">Most of the AI-and-work debate runs on forecasts. The Census Business Trends and Outlook Survey asks roughly a million businesses, every two weeks, what they are actually doing. The answer is a chain: firms are adopting, exposure predicts which ones, the work is language work &mdash; and the last link, from adoption to job loss, is the one that does not hold.</p>
 
           <!-- ══ THE SPINE ══════════════════════════════════════════════════
@@ -2762,123 +3061,251 @@
       </div>
 
       <div id="jobDisplacementArea">
-        <div class="jd-wrap">
+        <!-- AUTO-SYNCED from jobs_displacement.html's <main> content — do not
+             hand-edit between the markers below. Edit jobs_displacement.html
+             instead, then run `python3 sync_jobs_displacement.py`. -->
+        <!-- SYNC:HTML:BEGIN -->
+  <!-- ══ MASTHEAD ══ -->
+  <div class="mast">
+    <h2>Is AI displacing workers yet?</h2>
+    <p class="stand">
+      The headline unemployment rate says one thing. Look closer and it says
+      <b>something more specific</b>. Three questions, three verdicts.
+    </p>
+    <div class="meta">
+      <span class="vintage" id="vintage"></span>
+    </div>
+  </div>
 
-          <div class="jd-lede">Is AI displacing workers yet? Follow the labor market down four levels.</div>
-          <p class="jd-standfirst">The aggregate unemployment rate is a blunt instrument. To see displacement you have to ask sharper questions: is unemployment higher than growth would predict, is the weakness spread evenly, where has hiring actually decelerated, and do the industries adopting AI look any different from the ones that are not. This is a first pass; each section links to a fuller technical treatment later. The <a href="#adoption">Adoption</a> tab covers who is using AI and what for.</p>
+  <!-- ══ THE SHORT VERSION ══ -->
+  <div class="sv">
+    <div class="sv-t">The short version</div>
+    <div class="sv-grid" id="answers"></div>
+    <p class="sv-note" id="svNote"></p>
+  </div>
 
-          <!-- ══ SECTION 1 ══ -->
-          <section class="jd-section" id="sec-okun">
-            <div class="jd-kicker">01 &middot; The aggregate</div>
-            <h2 class="jd-h">Is unemployment higher than we would expect?</h2>
-            <p class="jd-p">Okun&rsquo;s law ties the change in unemployment to how fast the economy grows: strong GDP growth pulls unemployment down, weak growth pushes it up. If unemployment were rising faster than growth alone predicts, that would be a sign of something structural, an AI-driven displacement effect layered on top of the ordinary business cycle. Below, each point is a quarter: real GDP growth on the horizontal axis, the change in the unemployment rate on the vertical. The line is the historical Okun relationship.</p>
+  <!-- ══ SCROLL ══ -->
+  <div class="wrap">
+    <nav class="rail" id="rail" aria-label="Sections"></nav>
 
-            <div class="jd-chart-wrap">
-              <div class="jd-chart-title">Okun&rsquo;s law: GDP growth vs. change in unemployment</div>
-              <div class="jd-chart-sub" id="okunSub"></div>
-              <svg class="jd-svg" id="okunChart" viewBox="0 0 640 410" role="img" aria-label="Okun's law scatter plot"></svg>
-              <div class="jd-legend" id="okunLegend"></div>
-              <div class="jd-chart-note" id="okunNote"></div>
-            </div>
+    <div>
 
-            <p class="jd-p">Unemployment can also mislead if people stop looking for work: they leave the labor force and the rate falls even as the job market weakens. So the companion check is prime-age (25&ndash;54) participation, which strips out retirement. If it were falling, low unemployment would be hiding withdrawal.</p>
+      <!-- ── 01 ─────────────────────────────────────────────────── -->
+      <section class="sec" id="level" data-v="null" aria-labelledby="h-level">
+        <div class="sec-kick"><span class="kn">01</span> The level</div>
+        <h3 class="verdict" id="h-level">
+          <span class="no">No</span> &mdash; unemployment is <b id="vLevel"></b>, at or below CBO&rsquo;s natural
+          rate, and its path tracks growth about as Okun&rsquo;s law predicts.
+        </h3>
+        <p class="sec-q">Is unemployment higher than growth alone would predict, and is a low rate hiding people who have stopped looking?</p>
 
-            <div class="jd-stats" id="okunStats"></div>
-
-            <div class="jd-chart-wrap">
-              <div class="jd-chart-title">Prime-age (25&ndash;54) labor force participation &amp; employment rate</div>
-              <div class="jd-chart-sub">Monthly, seasonally adjusted, since 2000</div>
-              <svg class="jd-svg" id="lfpChart" viewBox="0 0 640 300" role="img" aria-label="Prime-age participation and employment-population ratio"></svg>
-              <div class="jd-legend" id="lfpLegend"></div>
-            </div>
-
-            <div class="jd-answer"><span class="lab">Answer</span><span class="txt" id="okunAnswer"></span></div>
-          </section>
-
-          <!-- ══ SECTION 2 ══ -->
-          <section class="jd-section" id="sec-age">
-            <div class="jd-kicker">02 &middot; Who</div>
-            <h2 class="jd-h">Is the weakness spread evenly, or concentrated?</h2>
-            <p class="jd-p">If the aggregate looks fine, the next question is whether that average hides a group taking the hit. This chart takes each age and education group, asks what its unemployment rate <em>should</em> be given the overall rate (using its own pre-2020 relationship), and plots how far above or below that prediction it actually sits. Zero means &ldquo;normal.&rdquo; A positive value means that group has more unemployment than history says it should.</p>
-
-            <div class="jd-chart-wrap">
-              <div class="jd-chart-title">Excess unemployment by age, relative to the pre-2020 norm</div>
-              <div class="jd-chart-sub">Residual: actual minus predicted unemployment rate, by education group</div>
-              <svg class="jd-svg" id="ageChart" viewBox="0 0 640 380" role="img" aria-label="Residual unemployment by age and education"></svg>
-              <div class="jd-legend" id="ageLegend"></div>
-              <div class="jd-chart-note" id="ageNote"></div>
-            </div>
-
-            <div class="jd-answer"><span class="lab">Answer</span><span class="txt" id="ageAnswer"></span></div>
-          </section>
-
-          <!-- ══ SECTION 3 ══ -->
-          <section class="jd-section" id="sec-ces">
-            <div class="jd-kicker">03 &middot; Where</div>
-            <h2 class="jd-h">Where has job growth slowed the most?</h2>
-            <p class="jd-p">Displacement should show up as hiring drying up in specific industries. For each major sector, we compare employment growth over the past year to its own average pace in the pre-pandemic years (2015&ndash;2019). A large negative bar means that sector is adding jobs far more slowly than it used to, or shedding them outright.</p>
-
-            <div class="jd-chart-wrap">
-              <div class="jd-chart-title">Job-growth slowdown by sector</div>
-              <div class="jd-chart-sub" id="cesSub"></div>
-              <svg class="jd-svg" id="cesChart" viewBox="0 0 640 430" role="img" aria-label="Employment growth slowdown by sector"></svg>
-              <div class="jd-chart-note" id="cesNote"></div>
-            </div>
-
-            <div class="jd-answer"><span class="lab">Answer</span><span class="txt" id="cesAnswer"></span></div>
-          </section>
-
-          <!-- ══ SECTION 4 ══ ─ descriptive CES/JOLTS, split by BTOS adoption.
-               The second ending point for the Adoption tab: that page shows
-               adopters reporting no layoffs; this one asks whether the flows
-               data agrees, and what it could detect if they were wrong. -->
-          <section class="jd-section" id="sec-monitor">
-            <div class="jd-kicker">04 &middot; Freeze or shed</div>
-            <h2 class="jd-h">Are the AI-adopting industries hiring less, or firing more?</h2>
-            <p class="jd-p">The <a href="#adoption">Adoption</a> tab ends on a survey answer: almost no firm using AI reports that it cut employment. That question cannot see forgone hiring, which is where the displacement literature says to look. So here the same industries are split by their BTOS adoption rate and followed through BLS payroll and turnover data instead &mdash; not what firms say about AI, but what their hiring and firing actually did.</p>
-            <p class="jd-p">These are descriptive gaps, not estimated effects. Higher-adoption minus lower-adoption, with no controls and no identification strategy. Read them as a monitor that refreshes on the BLS calendar, not as a finding.</p>
-
-            <div class="jdm-board" id="jdmBoard"></div>
-            <div class="jd-chart-note">Each card is the higher-adoption minus lower-adoption difference in one labor-market rate, with a sparkline from 2022 forward. The 2020 values are two orders of magnitude larger than anything since and are omitted from the sparklines so that later movement is visible. Adoption groups are fixed from the pre-rewording BTOS mean, so the split does not move as the data updates.</div>
-
-            <div class="ad-sub">The change is all on the hiring side</div>
-            <p class="jd-p">The clearest way to see it is to decompose the change in net hiring since the pre-pandemic norm into the part coming from hires and the part coming from separations. If AI were producing layoffs, the separations bar would be doing the work.</p>
-
-            <div class="jd-chart-wrap">
-              <div class="jd-chart-title">Change in net hiring since 2015&ndash;19, split into hires and separations</div>
-              <div class="jd-chart-sub">JOLTS supersectors, percentage points of the employment base</div>
-              <svg class="jd-svg" id="jdmDecomp" viewBox="0 0 700 460" role="img" aria-label="Decomposition of the change in net hiring into hires and separations by supersector"></svg>
-              <div class="jd-legend" id="jdmDecompLegend"></div>
-              <div class="jd-chart-note" id="jdmDecompNote"></div>
-            </div>
-
-            <p class="jd-p">It is not. Hires are down almost everywhere; separations are roughly where they were. This is the pattern the labor-market commentary has taken to calling a low-hire, low-fire equilibrium, and it is the same shape the AI-displacement hypothesis predicts. Which is precisely the problem.</p>
-
-            <div class="ad-sub">The complication: the freeze is everywhere</div>
-            <p class="jd-p">Plotting the change in hiring against the change in layoffs puts the difficulty in one picture. If AI were the driver, the AI-heavy industries should sit somewhere distinctive. They do not.</p>
-
-            <div class="jd-chart-wrap">
-              <div class="jd-chart-title">Freeze or shed: change in hiring against change in layoffs</div>
-              <div class="jd-chart-sub">JOLTS supersectors, bubble sized by employment, change since the 2015&ndash;19 average</div>
-              <svg class="jd-svg" id="jdmQuad" viewBox="0 0 700 400" role="img" aria-label="Change in hires rate against change in layoffs rate by supersector"></svg>
-              <div class="jd-chart-note" id="jdmQuadNote"></div>
-            </div>
-
-            <div class="ad-sub">And what could this even detect?</div>
-            <p class="jd-p">Before reading anything into a null result, it is worth asking how big an effect would have to be before this design could see it. Converting the industry-level coefficient into jobs gives an uncomfortable answer.</p>
-
-            <div class="jd-stats" id="jdmMde"></div>
-            <div class="jd-chart-note" id="jdmMdeNote"></div>
-
-            <p class="jd-p">The honest summary is that industry-level aggregates are the wrong instrument for this question. There are too few industries, the variation in adoption is too compressed, and the effect the microdata literature estimates is comfortably smaller than what this data could distinguish from zero. The finding that literature turns on is also an <em>age</em> finding &mdash; early-career hiring specifically &mdash; and nothing in this section has an age dimension at all.</p>
-
-            <div class="jd-answer"><span class="lab">Answer</span><span class="txt">Hiring, not firing &mdash; the entire change in net hiring runs through the hires side, exactly as the displacement hypothesis predicts. But the freeze is economy-wide rather than concentrated in AI-adopting industries, and this design could not detect an effect of the size the microdata literature reports even if it were there. Consistent with displacement; nowhere near evidence of it.</span></div>
-          </section>
-
-          <div class="jd-vintage" id="jdmVintage"></div>
-          <div class="jd-vintage" id="jdVintage"></div>
-
+        <div class="figure">
+          <div class="jd-chart-wrap">
+            <div class="jd-chart-title">Okun&rsquo;s law: GDP growth vs. change in unemployment</div>
+            <div class="jd-chart-sub" id="okunSub"></div>
+            <svg class="jd-svg" id="okunChart" viewBox="0 0 640 410" role="img" aria-label="Okun's law scatter plot"></svg>
+            <div class="jd-legend" id="okunLegend"></div>
+            <div class="jd-chart-note" id="okunNote"></div>
+          </div>
         </div>
+
+        <div class="prose">
+          <p>Okun&rsquo;s law ties the change in unemployment to how fast the economy grows: strong GDP growth pulls unemployment down, weak growth pushes it up. If unemployment were rising faster than growth predicts, that would point to something structural &mdash; a displacement effect layered on the ordinary business cycle. Each point is a quarter; the line is the historical relationship, and the last four quarters are traced in sequence.</p>
+          <p>They sit close to it. Unemployment can also mislead if people stop looking for work, since they leave the labor force and the rate falls even as the market weakens. The companion check is prime-age participation, which strips out retirement.</p>
+        </div>
+
+        <div class="figure">
+          <div class="jd-chart-wrap">
+            <div class="jd-chart-title">Prime-age (25&ndash;54) labor force participation &amp; employment rate</div>
+            <div class="jd-chart-sub">Monthly, seasonally adjusted, since 2000</div>
+            <svg class="jd-svg" id="lfpChart" viewBox="0 0 640 300" role="img" aria-label="Prime-age participation and employment-population ratio"></svg>
+            <div class="jd-legend" id="lfpLegend"></div>
+          </div>
+        </div>
+
+        <div class="prose">
+          <p id="lfpRead"></p>
+        </div>
+
+        <div class="caveat">
+          <b>What this cannot establish</b>
+          <p>This is the coarsest measure on the page and the last place displacement would appear. The Okun relationship leaves most quarter-to-quarter variation unexplained, so only a very large shock would clear the noise, and it is fitted on eighty years in which nothing resembling AI displacement occurs. An effect concentrated in one cohort or one sector &mdash; which is what the next two sections report &mdash; would leave no trace here at all. Read this as ruling out a macroeconomic event, not as evidence of calm.</p>
+        </div>
+
+        <details class="method">
+          <summary>How this is measured</summary>
+          <div class="method-body">
+            <dl>
+              <dt>Data</dt><dd>Real GDP and the unemployment rate from FRED, quarterly; CBO&rsquo;s natural rate of unemployment; prime-age participation and employment&ndash;population ratio, monthly and seasonally adjusted.</dd>
+              <dt>Sample</dt><dd id="mOkunSample"></dd>
+              <dt>Plotted</dt><dd>Each point is one quarter of annualised real GDP growth against the change in the unemployment rate. The line is the fitted historical relationship; the last four quarters are connected in time order.</dd>
+              <dt>Main caveat</dt><dd id="mOkunCaveat"></dd>
+            </dl>
+            <a class="method-more" href="methods.html#okun">Full specification and diagnostics &nearr;</a>
+          </div>
+        </details>
+
+        <div class="change">
+          <b>Would change this</b>
+          <span>A four-quarter mean residual above +0.3 pp, or prime-age participation falling more than 0.5 pp below its February 2020 level.</span>
+        </div>
+      </section>
+
+      <!-- ── 02 ─────────────────────────────────────────────────── -->
+      <section class="sec" id="workers" data-v="signal" aria-labelledby="h-workers">
+        <div class="sec-kick"><span class="kn">02</span> Across workers</div>
+        <h3 class="verdict" id="h-workers">
+          <span class="yes">Concentrated</span> &mdash; young graduates carry <b id="vWorkers"></b> more
+          unemployment than their own pre-2020 norm predicts.
+        </h3>
+        <p class="sec-q">Is the weakness spread evenly across workers, or is one group absorbing it?</p>
+
+        <!-- broad method first: the general reader needs the idea before the charts -->
+        <div class="howto">
+          <b class="h">How to read this section</b>
+          <p>Every group of workers has its own settled relationship to the national unemployment rate. When the economy weakens, unemployment rises faster for the young than for the old, and faster for workers without degrees than for those with them. Those ratios are stable enough to be useful: tell us the national rate and we can say what a given group&rsquo;s rate ought to be.</p>
+          <p>So that is what we do. For each combination of age and education we learn that relationship from the fifteen years before the pandemic, then ask what the group&rsquo;s unemployment rate should be today, given where the national rate actually is. All three charts below plot the same thing: <em>the gap between that prediction and reality.</em> Zero means a group is exactly where its own history says it should be. Positive means it is doing worse than its own track record predicts.</p>
+          <p>One extra step matters, because it changes the numbers. We tested whether the method returns zero when it should, by hiding the recent past and asking it to predict years we already know were unremarkable. It came back positive, by roughly half a point, so the procedure runs hot. That amount is subtracted from every figure on this page. What is left is the part the method cannot explain away as its own habit.</p>
+        </div>
+
+        <!-- A: levels, so the reader starts with two rates and a distance -->
+        <div class="figure">
+          <div class="jd-chart-wrap">
+            <div class="jd-chart-title">What each group has, against what the national rate predicts</div>
+            <div class="jd-chart-sub" id="ageGapSub"></div>
+            <svg class="jd-svg" id="ageGapChart" viewBox="0 0 640 300" role="img" aria-label="Actual versus predicted unemployment rate for six age and education groups"></svg>
+            <div class="jd-legend" id="ageGapLegend"></div>
+            <div class="jd-chart-note" id="ageGapNote"></div>
+          </div>
+          <p class="fig-what"><b>What this chart does.</b> It puts the two unemployment rates side by side for six groups. The hollow dot is the rate predicted from the national figure; the filled dot is the rate the group actually has. The bar between them is the gap. Read the <em>lengths</em> of the bars rather than their positions: one is conspicuously longer than the rest.</p>
+          <span class="jd-flag" id="distFlag"></span>
+        </div>
+
+        <!-- C: the same quantity across the full age range -->
+        <div class="figure">
+          <div class="jd-chart-wrap">
+            <div class="jd-chart-title">The same gap, across the whole age range</div>
+            <div class="jd-chart-sub" id="ageSub"></div>
+            <svg class="jd-svg" id="ageChart" viewBox="0 0 640 360" role="img" aria-label="Excess unemployment by five-year age band and education group"></svg>
+            <div class="jd-legend" id="ageLegend"></div>
+            <div class="jd-chart-note" id="ageNote"></div>
+          </div>
+          <p class="fig-what"><b>What this chart does.</b> It takes the gap from the first chart and traces it across every five-year age band from the early twenties to the mid-sixties, so you can see <em>where in the age range</em> it sits rather than just that it exists. The grey band is the room the method&rsquo;s own bias creates: a line inside it is not evidence of anything. Dot size is sample size, which is why the youngest graduate points are drawn smallest.</p>
+        </div>
+
+        <!-- B: the time path, which the two cross-sections cannot supply -->
+        <div class="figure">
+          <div class="jd-chart-wrap">
+            <div class="jd-chart-title">When the gap opened up</div>
+            <div class="jd-chart-sub" id="ageTimeSub"></div>
+            <svg class="jd-svg" id="ageTimeChart" viewBox="0 0 640 330" role="img" aria-label="Excess unemployment over time for young graduates and young non-graduates"></svg>
+            <div class="jd-legend" id="ageTimeLegend"></div>
+            <div class="jd-chart-note" id="ageTimeNote"></div>
+          </div>
+          <p class="fig-what"><b>What this chart does.</b> It answers the question the first two cannot: whether this is new. It follows the gap for young graduates month by month back to 2005. The grey band is the entire range this measure occupied from 2005 through 2019, the Great Recession included, so anything above the band is territory the pre-pandemic era never reached, in good years or bad.</p>
+        </div>
+
+        <div class="prose">
+          <p id="ageRead"></p>
+          <p>The shape is the finding, and it is narrower than a story about young workers. Non-graduates in their twenties sit at essentially zero, and so do graduates past forty-five. What separates the affected group from the unaffected ones is not age alone and not education alone, but the combination: people at the start of a career that a degree was supposed to open.</p>
+          <p>The timing matters as much as the shape. This gap did not appear with the pandemic and then linger. It closed to almost nothing by early 2023 and has widened in most months since, which is the opposite of what a fading shock looks like.</p>
+        </div>
+
+        <div class="caveat">
+          <b>What this cannot establish</b>
+          <p>Concentration, not cause. The same pattern would appear if firms had cut graduate training programs for ordinary cost reasons, or if degree supply had outrun demand in particular fields. The most serious alternative is compositional: as the share of young people finishing degrees rises, the average graduate is drawn from further down the distribution, which lifts the group&rsquo;s unemployment rate relative to the national rate with no change in employer behaviour at all. Nothing here separates that from a demand story. The entry-level market was also weakening before generative AI was deployed at scale. Postings data by occupational exposure is what would distinguish these, and it is not in this tracker yet.</p>
+        </div>
+
+        <details class="method">
+          <summary>The technical specification</summary>
+          <div class="method-body">
+            <dl>
+              <dt>Data</dt><dd>IPUMS CPS basic monthly, <span id="mAgeRange"></span>, persons 16+, weighted by <code>WTFINL</code>. Unemployed is <code>EMPSTAT &isin; {20,21,22}</code>; the labor force is <code>LABFORCE == 2</code>. College+ is <code>EDUC &ge; 111</code>; HS+ (no BA) is <code>73 &le; EDUC &lt; 111</code>. <span id="mAgeRecords"></span></dd>
+
+              <dt>Estimator</dt><dd>For each band <i>g</i>, ordinary least squares on months through <span id="mAgeTrain"></span>:
+                <div class="spec">log( r<sub>g,t</sub> ) = &alpha;<sub>g</sub> + &beta;<sub>g</sub> &middot; log( R<sub>t</sub> ) + &epsilon;<sub>g,t</sub></div>
+                where <i>r</i><sub>g,t</sub> is the band&rsquo;s trailing 12-month mean unemployment rate and <i>R<sub>t</sub></i> the same for all workers 16+. The fitted value is back-transformed as <code>exp(&middot;)</code>, so it targets the conditional median rather than the mean. &beta; is a cyclical elasticity: below one means the band is less cycle-sensitive than the aggregate.</dd>
+
+              <dt>Statistic</dt><dd>The mean of (actual &minus; predicted) over the latest <span id="mAgeWindow"></span> months, in rate units, then less the placebo bias below. Because the fit is multiplicative, a gap in percentage points scales with the band&rsquo;s base rate, so the actual-to-predicted <em>ratio</em> is the like-for-like comparison across groups; both are in the tooltips.</dd>
+
+              <dt>Bands</dt><dd>Five single years of age wide, plotted at the centre. The lower edge of the youngest band is pinned at 21 for College+ and 18 for HS+ (no BA), so no band spans an age at which the credential is effectively unattainable. <code>&lt; HS</code> is excluded: below 21 that category is defined by an outcome that is mechanically age-dependent, and its share of the young population more than halved over the sample, so its residuals track who remains in the category rather than labor demand.</dd>
+
+              <dt>Placebo correction</dt><dd>The same procedure re-run with the training cut moved back, then evaluated over the two following years, which were ordinary:
+                <ul id="mAgePlacebo"></ul>
+                Mean error is almost identical to mean absolute error in the original diagnostics, so the miss is one-directional across nearly every band: bias, not noise. The mechanism is that the aggregate rate is not a sufficient statistic for a group&rsquo;s rate, because band-level &beta; drifts as educational composition shifts, so a falling aggregate makes the fit over-predict improvement. The correction is estimated per band and subtracted. It matters most for comparisons <em>between</em> groups, since HS+ carries the larger bias.</dd>
+
+              <dt>Moving average</dt><dd>Taken over 12 calendar months, requiring at least 11 observed. October 2025 CPS was never collected, so a positional 12-row average would have silently spanned 13 calendar months for every window in the current reporting period.</dd>
+
+              <dt>Diagnostics</dt><dd id="mAgeDiag"></dd>
+
+              <dt>Known limits</dt><dd>No standard errors are placed on the gap itself; the placebo band is what stands in for them, and it is estimated from two scenarios only, so the headline is better read as a range than a point. The youngest graduate cells are thin. Each point is a 12-month average and the window closes in <span id="mAgeLatest"></span>, so this is a slow-moving object describing roughly the year to then, not a current-month reading.</dd>
+            </dl>
+            <a class="method-more" href="methods.html#workers">Full specification and diagnostics &nearr;</a>
+          </div>
+        </details>
+
+        <div class="change">
+          <b>Would change this</b>
+          <span>The bias-adjusted young-graduate gap falling back inside its pre-2020 range, a matched postings series showing the same pattern in occupations with no plausible AI exposure, or degree-attainment shares accounting for the drift.</span>
+        </div>
+      </section>
+
+      <!-- ── 03 ─────────────────────────────────────────────────── -->
+      <section class="sec" id="sectors" data-v="signal" aria-labelledby="h-sectors">
+        <div class="sec-kick"><span class="kn">03</span> Across sectors</div>
+        <h3 class="verdict" id="h-sectors">
+          <span class="yes">Tech-exposed</span> &mdash; <span id="vSectorName"></span> has decelerated by
+          <b id="vSectors"></b> against its own pre-pandemic pace.
+        </h3>
+        <p class="sec-q">Where has hiring slowed the most, and is it where AI substitution is most plausible?</p>
+
+        <div class="figure">
+          <div class="jd-chart-wrap">
+            <div class="jd-chart-title">Job-growth slowdown by sector</div>
+            <div class="jd-chart-sub" id="cesSub"></div>
+            <svg class="jd-svg" id="cesChart" viewBox="0 0 640 430" role="img" aria-label="Employment growth slowdown by sector"></svg>
+            <div class="jd-chart-note" id="cesNote"></div>
+          </div>
+        </div>
+
+        <div class="prose">
+          <p>Displacement should show up as hiring drying up in specific industries. For each major sector, employment growth over the past year is compared to that sector&rsquo;s own average pace in 2015&ndash;2019. A large negative bar means the sector is adding jobs far more slowly than it used to, or shedding them outright. Using each sector as its own baseline avoids penalising industries that were always slow-growing.</p>
+          <p id="cesRead"></p>
+        </div>
+
+        <div class="caveat">
+          <b>What this cannot establish</b>
+          <p>The sector that moved is also the sector that over-hired hardest in 2021&ndash;22 and has been correcting since. That is a complete alternative explanation, and the timing does not separate it from an AI effect. Eleven supersectors is a coarse grid besides: displacement inside legal services, or inside customer support within retail, would be averaged away entirely. Occupational mix within industries is the test that would catch that.</p>
+        </div>
+
+        <details class="method">
+          <summary>How this is measured</summary>
+          <div class="method-body">
+            <dl>
+              <dt>Data</dt><dd>BLS Current Employment Statistics, all-employee payrolls for the eleven major supersectors, which sum to total nonfarm.</dd>
+              <dt>Sample</dt><dd id="mCesSample"></dd>
+              <dt>Plotted</dt><dd>Past-year employment growth minus that sector&rsquo;s 2015&ndash;19 average growth, in percentage points. Negative means slower than its own pre-pandemic pace.</dd>
+              <dt>Main caveat</dt><dd>Supersector aggregates mask occupational composition, and payroll counts do not distinguish a role eliminated from a role never opened.</dd>
+            </dl>
+            <a class="method-more" href="methods.html#sectors">Full specification and diagnostics &nearr;</a>
+          </div>
+        </details>
+
+        <div class="change">
+          <b>Would change this</b>
+          <span>Information-sector growth returning to within 1 pp of its baseline, or the slowdown spreading to sectors with no plausible AI exposure.</span>
+        </div>
+      </section>
+
+      <div class="closing">
+        <div class="ct">Taken together</div>
+        <p id="closingA"></p>
+        <p>This is a tracker, not a verdict. Readings are regenerated when the underlying data refreshes, each section states the threshold that would move it, and further tests are added as they are built. The <a href="methods.html">methods page</a> carries the estimating equations, samples and known failure modes.</p>
+      </div>
+
+    </div>
+  </div>
+        <!-- SYNC:HTML:END -->
       </div>
 
       <!-- What's New: a dated feed of database additions and Policy Map
@@ -3739,17 +4166,9 @@
   function buildPolicyView() {
     const area = document.getElementById('policyArea');
 
-    // First visit: build the DOM
+    // First visit: build the DOM. No intro bar: the masthead is
+    // .header-tab-desc, fed from TAB_DESCS.policy.
     if (!area.hasChildNodes()) {
-
-      // Intro bar — matches theme-disclaimer-bar
-      const hdr = document.createElement('div');
-      hdr.className = 'policy-map-header';
-      hdr.innerHTML = `
-        <span class="pol-header-title">Policy Map</span>
-        <span class="theme-intro-line">Twenty-seven policy interventions grouped into four policy areas, listed alphabetically within each. Click any policy for rationale, precedents, and supporting research.</span>
-        <span class="theme-disclaimer-line">Synthesized from the research database. Does not constitute policy advice or reflect the opinions of the creator.</span>`;
-      area.appendChild(hdr);
 
       // Map / Links sub-view toggle
       const subToggle = document.createElement('div');
@@ -4335,17 +4754,7 @@
       if (area && !_changelogBuilt) { area.innerHTML = buildChangelogHTML(); _changelogBuilt = true; }
       markChangesSeen();
     }
-    // Research header copy follows the sub-tab.
-    const title = document.getElementById('researchHeaderTitle');
-    const intro = document.getElementById('researchIntroLine');
-    const disc  = document.getElementById('researchDisclaimerLine');
-    if (title) title.textContent = isClog ? "What's New" : 'Papers';
-    if (isClog) {
-      if (intro) intro.textContent = 'Every dated change to the tracker: research entries added, by intake date, and Policy Map review passes.';
-      if (disc)  disc.textContent  = 'Click any entry to jump to its card in the database.';
-    } else if (disc) {
-      disc.textContent = 'Summaries and key findings are AI-generated and reviewed for accuracy on an ongoing basis. Always consult the original source before citing.';
-    }
+    applyMastheadCopy();
   }
 
   function applyPolFilters() {}
@@ -4577,12 +4986,6 @@
 
     document.body.classList.toggle('cards-view', activeView === 'cards');
     document.body.classList.toggle('changelog-subview', activeView === 'cards' && researchSubview === 'changelog');
-    const introLine = document.getElementById('researchIntroLine');
-    if (introLine && researchSubview !== 'changelog') {
-      introLine.textContent = activeLens === 'economist'
-        ? 'Filtered to peer-reviewed research, institutional analysis, and official reports — organized around economic outcome domains.'
-        : 'A curated database of peer-reviewed studies, policy reports, and investigative journalism on AI, automation, and labor markets.';
-    }
 
     if (activeView === 'policy') { buildPolicyView(); return; }
     if (activeView === 'about')  { return; }
@@ -4632,48 +5035,72 @@
     const si = document.getElementById('searchInput');
     if (si) si.value = '';
     // Refresh tab description for new lens
-    const lensDesc = getTabDesc(activeView);
-    if (lensDesc) {
-      const ti = document.getElementById('headerTabDescTitle');
-      const t  = document.getElementById('headerTabDescText');
-      const n  = document.getElementById('headerTabDescNote');
-      if (ti) ti.textContent = lensDesc.title;
-      if (t)  t.textContent  = lensDesc.text;
-      if (n)  n.textContent  = lensDesc.note;
-    }
+    applyMastheadCopy();
     render();
   }
 
   // ── topbar controls ──────────────────────────────────────────
+  // `lede` is the question or statement the tab opens on, set at the
+  // shared --lede-size; `text` is the standfirst underneath, which
+  // carries the masthead's closing hairline. Cards, Policy Map and
+  // Solutions read this table for display — the other three hide
+  // .header-tab-desc and carry their own markup — but every entry keeps
+  // a lede so the pattern survives a tab being switched over later.
   const TAB_DESCS = {
     cards: {
-      general:   { title: 'Papers',   text: 'A curated database of peer-reviewed studies, policy reports, and investigative journalism on AI, automation, and labor markets.', note: 'Summaries and key findings are AI-generated and reviewed for accuracy. Always consult the original source before citing.' },
-      economist: { title: 'Papers',   text: 'Filtered to peer-reviewed research, institutional analysis, and official reports — organized around economic outcome domains.', note: 'Summaries and key findings are AI-generated and reviewed for accuracy. Always consult the original source before citing.' },
+      general:   { lede: 'What does the research actually show?', text: 'A curated database of peer-reviewed studies, policy reports, and investigative journalism on AI, automation, and labor markets.' },
+      economist: { lede: 'What does the research actually show?', text: 'Filtered to peer-reviewed research, institutional analysis, and official reports — organized around economic outcome domains.' },
+    },
+    'fact-bank': {
+      general:   { lede: 'Which numbers can you actually cite?', text: 'Short, number-bearing statements quoted verbatim from sources in the research database, each rated for political noteworthiness and for the rigour of its evidence.' },
+      economist: { lede: 'Which numbers can you actually cite?', text: 'Short, number-bearing statements quoted verbatim from sources in the research database, each rated for political noteworthiness and for the rigour of its evidence.' },
     },
     policy: {
-      general:   { title: 'Policy Map', text: 'Twenty-seven policy interventions grouped into four policy areas, listed alphabetically within each. Click any policy for rationale, precedents, and supporting research.', note: 'Synthesized from the research database. Does not constitute policy advice or reflect the opinions of the creator.' },
-      economist: { title: 'Policy Map', text: 'Twenty-seven policy interventions grouped into four policy areas, listed alphabetically within each. Click any policy for rationale, precedents, and supporting research.', note: 'Synthesized from the research database. Does not constitute policy advice or reflect the opinions of the creator.' },
+      general:   { lede: 'What could policy actually do about it?', text: 'Twenty-seven policy interventions grouped into four policy areas, listed alphabetically within each. Click any policy for rationale, precedents, and supporting research.' },
+      economist: { lede: 'What could policy actually do about it?', text: 'Twenty-seven policy interventions grouped into four policy areas, listed alphabetically within each. Click any policy for rationale, precedents, and supporting research.' },
     },
     about: {
-      general:   { title: 'About', text: 'How this tracker is structured and how to use it.', note: '' },
-      economist: { title: 'About', text: 'How this tracker is structured and how to use it.', note: '' },
+      general:   { lede: 'Welcome to our AI dashboard.', text: 'How this tracker is structured and how to use it.' },
+      economist: { lede: 'Welcome to our AI dashboard.', text: 'How this tracker is structured and how to use it.' },
     },
     jobs: {
-      general:   { title: 'Job Displacement', text: 'How much job displacement there is and what can be traced to AI, analyzed in an economically rigorous way.', note: '' },
-      economist: { title: 'Job Displacement', text: 'How much job displacement there is and what can be traced to AI, analyzed in an economically rigorous way.', note: '' },
+      general:   { lede: 'Is AI displacing workers yet?', text: 'How much job displacement there is and what can be traced to AI, analyzed in an economically rigorous way.' },
+      economist: { lede: 'Is AI displacing workers yet?', text: 'How much job displacement there is and what can be traced to AI, analyzed in an economically rigorous way.' },
     },
     adoption: {
-      general:   { title: 'Adoption', text: 'Who is actually adopting AI and what they are using it for, from the Census Business Trends and Outlook Survey.', note: '' },
-      economist: { title: 'Adoption', text: 'Census BTOS AI adoption against employment-weighted occupational exposure, plus the AI supplement on business functions, barriers and self-reported employment effects.', note: '' },
+      general:   { lede: 'Who is actually adopting AI, what are they using it for, and is anyone losing a job over it?', text: 'Who is actually adopting AI and what they are using it for, from the Census Business Trends and Outlook Survey.' },
+      economist: { lede: 'Who is actually adopting AI, what are they using it for, and is anyone losing a job over it?', text: 'Census BTOS AI adoption against employment-weighted occupational exposure, plus the AI supplement on business functions, barriers and self-reported employment effects.' },
     },
     solutions: {
-      general:   { title: 'Solutions', text: 'In development.', note: '' },
-      economist: { title: 'Solutions', text: 'In development.', note: '' },
+      general:   { lede: 'What should we actually do?', text: 'In development.' },
+      economist: { lede: 'What should we actually do?', text: 'In development.' },
     },
   };
   function getTabDesc(view) {
     const lens = activeLens === 'economist' ? 'economist' : 'general';
     return (TAB_DESCS[view] || {})[lens] || null;
+  }
+
+  /* The only writer of the masthead's copy. A view switch, a lens switch and
+     a sub-tab switch all change it, and the Research sub-tab handler runs
+     setResearchSubview() before setView(), so with three independent writers
+     the last one to run won — which silently dropped the What's New copy.
+     Read the state, don't push to it.
+
+     What's New is inlined rather than added to TAB_DESCS because it is a
+     sub-view of cards, not a view of its own, and TAB_DESCS is keyed by
+     view. */
+  function applyMastheadCopy() {
+    const clog = activeView === 'cards' && researchSubview === 'changelog';
+    const desc = clog
+      ? { lede: 'What has changed lately?',
+          text: 'Every dated change to the tracker: research entries added, by intake date, and Policy Map review passes. Click any entry to jump to its card in the database.' }
+      : getTabDesc(activeView);
+    if (!desc) return;
+    const ld = document.getElementById('headerTabDescLede');
+    const t  = document.getElementById('headerTabDescText');
+    if (ld) ld.textContent = desc.lede || '';
+    if (t)  t.textContent  = desc.text;
   }
 
   const VIEW_TAB_IDS = { cards: 'viewCards', 'fact-bank': 'viewFactBank', policy: 'viewPolicy', adoption: 'viewAdoption', jobs: 'viewJobs', solutions: 'viewSolutions', about: 'homeTitleLink' };
@@ -4689,15 +5116,7 @@
       el.setAttribute('aria-selected', active ? 'true' : 'false');
     });
     // Update header tab description
-    const desc = getTabDesc(view);
-    if (desc) {
-      const ti = document.getElementById('headerTabDescTitle');
-      const t  = document.getElementById('headerTabDescText');
-      const n  = document.getElementById('headerTabDescNote');
-      if (ti) ti.textContent = desc.title;
-      if (t)  t.textContent  = desc.text;
-      if (n)  n.textContent  = desc.note;
-    }
+    applyMastheadCopy();
     const _sb = document.getElementById('sortBtn'); if (_sb) _sb.style.display = view === 'cards' ? '' : 'none';
     document.body.classList.toggle('policy-view',   view === 'policy');
     document.body.classList.toggle('about-view',    view === 'about');
@@ -5457,13 +5876,221 @@
 </script>
 
 <!-- ═══════════════════════════════════════════════════════════
-     JOB DISPLACEMENT — chart rendering
-     Self-contained IIFE transplanted verbatim from
-     jobs_displacement_prototype.html. Reads window.JOBS_DISPLACEMENT_DATA,
-     touches only .jd-* / its own SVG ids. Renders eagerly at load; the
-     fixed-viewBox SVGs draw correctly even while the tab is hidden.
+     JOB DISPLACEMENT — chart rendering + interactive script
+     Charts now come from the shared assets/jobs-charts.js (same file
+     jobs_displacement.html uses standalone), reading window.
+     JOBS_DISPLACEMENT_DATA (data/jobs-displacement-data.js, already
+     loaded above). The <script> block below is AUTO-SYNCED from
+     jobs_displacement.html's own inline <script> — do not hand-edit
+     between the markers; edit jobs_displacement.html instead, then run
+     `python3 sync_jobs_displacement.py`. One deliberate change is made
+     during sync: the section-scroll-spy's `history.replaceState(...,
+     '#'+cur)` call is neutralized, because index.html already owns
+     location.hash for its own tab router (applyHashRoute) and the two
+     would otherwise fight over the address bar.
      ═══════════════════════════════════════════════════════════ -->
+<script src="assets/jobs-charts.js" charset="utf-8"></script>
 <script>
+/* SYNC:JS:BEGIN */
+(function () {
+  const JC = window.JOBS_CHARTS;
+  if (!JC) { console.error('JOBS_CHARTS not found'); return; }
+  const { sgn, fmtDate, facts, data } = JC;
+  const L = facts.level, DI = facts.distribution, S = facts.sectors;
+  const byId = id => document.getElementById(id);
+  const set = (id, html) => { const el = byId(id); if (el) el.innerHTML = html; };
+
+  /* ── SECTIONS ────────────────────────────────────────────────────
+     Verdict values are a fixed set so the summary stays scannable:
+     'null' renders grey, 'signal' renders terra. Never green.
+
+     Each row asks its section's question and answers it in one line:
+     `q` is the question, `big` the verdict word that opens the answer,
+     `read` the rest of it. `verdict` stays the terse label so the sticky
+     rail remains scannable.                                             */
+  const SECS = [
+    { id:'level', n:'01', lab:'The level', v:'null', verdict:'No',
+      q:'Is unemployment higher than growth predicts?', big:'No.',
+      read:`It is <b>${L.unrate}%</b>, at or below CBO&rsquo;s <b>${L.nrou}%</b> natural rate.` },
+    { id:'workers', n:'02', lab:'Across workers', v:'signal', verdict:'Concentrated',
+      q:'Is the weakness spread evenly across workers?', big:'No.',
+      read:`Graduates aged 22&ndash;27 carry <b>${sgn(DI.youngPP,1)} pp</b> more unemployment than their own pre-2020 norm. Non-graduates the same age: <b>${sgn(DI.nongradPP,1)} pp</b>.` },
+    { id:'sectors', n:'03', lab:'Across sectors', v:'signal', verdict:'Tech-exposed',
+      q:'Where has hiring slowed the most?', big:'In tech.',
+      read:`<b>${S.sector}</b> has decelerated <b>${Math.abs(S.slowdown).toFixed(1)} pp</b> against its pre-pandemic pace.` }
+  ];
+
+  /* ── masthead meta ───────────────────────────────────────────── */
+  set('vintage', `Data generated <b>${facts.generated}</b> &middot; latest labor market data ${L.month}`);
+
+  /* ── the short version, as editorial answer rows ──────────────── */
+  byId('answers').innerHTML = SECS.map(s => `
+    <button class="answer-row" data-go="${s.id}" aria-label="${s.q} ${s.big} Jump to section.">
+      <span class="ar-num">${s.n}</span>
+      <span class="ar-body">
+        <span class="ar-q">${s.q}</span>
+        <span class="ar-a"><span class="v ${s.v}">${s.big}</span> ${s.read}</span>
+        <span class="ar-go">Read the section &rarr;</span>
+      </span>
+    </button>`).join('');
+  byId('answers').querySelectorAll('[data-go]').forEach(b =>
+    b.addEventListener('click', () => byId(b.dataset.go).scrollIntoView({ block:'start' })));
+
+  /* No score. Said once, plainly, so the absence reads as a choice. */
+  set('svNote',
+    `Three views of the same labor market, not a score &mdash; they draw on overlapping data and are not independent tests. ` +
+    `The first is the coarsest measure here and the last place displacement would surface, so its quiet reading carries little weight. ` +
+    `The concentration in 02 and 03 is real, but neither section can separate an AI effect from the alternatives, and each says so.`);
+
+  /* ── interpolated figures ────────────────────────────────────── */
+  set('vLevel',      `${L.unrate}%`);
+  set('vWorkers',    `${sgn(DI.youngPP,1)} pp`);
+  set('vSectorName', String(S.sector));
+  /* "decelerated by −4.1 pp" is a double negative; the verb carries the sign */
+  set('vSectors',    `${Math.abs(S.slowdown).toFixed(1)} pp`);
+
+  set('lfpRead',
+    `Prime-age participation is <b>${L.lfpr}%</b>, ${sgn(L.lfprVsFeb,1)} pp against February 2020, so the headline rate is not ` +
+    `being flattered by people quietly leaving the labor force. Over the last four quarters, unemployment has run ` +
+    `${sgn(L.residMean,2)} pp from what Okun&rsquo;s law predicts &mdash; well inside the ordinary range.`);
+
+  set('ageRead',
+    `Graduates aged 22&ndash;27 face <b>${DI.actual.toFixed(1)}%</b> unemployment against the <b>${DI.pred.toFixed(1)}%</b> their own ` +
+    `pre-2020 relationship to the national rate predicts. That is <b>${sgn(DI.youngPP,1)} pp</b> more, or about ` +
+    `<b>${DI.pctMore.toFixed(0)}%</b> more unemployment than predicted, once the ${sgn(DI.youngBias,1)} pp the method reports in ` +
+    `placebo periods is netted out. Graduates aged 45&ndash;54 come in at <b>${sgn(DI.primePP,1)} pp</b> and non-graduates aged ` +
+    `20&ndash;27 at <b>${sgn(DI.nongradPP,1)} pp</b>: both indistinguishable from nothing.`);
+
+  /* ── technical spec, filled from the same payload the charts read ─── */
+  const AB = data.age_bands, ABd = AB.diagnostics, X = ABd.extrapolation;
+  set('mAgeRange', AB.source.cps_range.replace(' to ', '&ndash;'));
+  set('mAgeRecords', AB.source.cps_missing_months
+    ? `October 2025 is absent from the extract: the survey was not collected.` : '');
+  set('mAgeTrain', String(2019));
+  set('mAgeWindow', String(AB.months_window));
+  set('mAgeLatest', fmtDate(AB.headline.latest_month + '-01'));
+  set('mAgePlacebo', AB.placebo.mean_bias_pp.map(r => {
+    const cells = AB.placebo.scenarios.map(s => {
+      const lab = s.replace('train_','trained through ').replace('_test_',', measured over ')
+                   .replace(/_(\d{4})$/,'&ndash;$1');
+      return `${lab}: <b>${sgn(r[s],2)} pp</b>`;
+    }).join('; ');
+    return `<li>${r.edu_group} &mdash; ${cells}. Mean applied: <b>${sgn(r.placebo_bias,2)} pp</b>.</li>`;
+  }).join(''));
+  set('mAgeDiag',
+    `The prediction is out of sample in time but inside the support of the regressor, which is the ` +
+    `condition for reading it at all: the current 12-month-average national rate is ` +
+    `<b>${(X.overall_ma12_now*100).toFixed(2)}%</b>, inside the ` +
+    `<b>${(X.train_min*100).toFixed(2)}&ndash;${(X.train_max*100).toFixed(2)}%</b> range the fit was trained on. ` +
+    `Re-running at three-year bands and a three-month window instead of five and ${AB.months_window} gives ` +
+    ABd.sensitivity.map(r => `${r.edu_group} r = <b>${r.cor.toFixed(2)}</b>`).join(' and ') +
+    `. College+ is robust to that choice; HS+ (no BA) is not, but it is noise around zero rather than a ` +
+    `disagreement about shape, so no structure should be read into that line.`);
+
+  set('cesRead',
+    `<b>${S.sector}</b> has decelerated most: employment is growing <b>${S.recent}%</b> over the past year against a ` +
+    `<b>${S.baseline}%</b> pre-pandemic pace, a <b>${sgn(S.slowdown,1)} pp</b> slowdown. It is also the sector where AI ` +
+    `substitution is most plausible on priors. That coincidence is suggestive and nothing more.`);
+
+  const fit = data.okun.fit;
+  set('mOkunSample',
+    `${fit.sample_start.slice(0,4)}&ndash;${fit.sample_end.slice(0,4)}, quarterly, excluding ${fit.excluded.join(' and ')} ` +
+    `as pandemic outliers. Breakeven growth ${fit.breakeven_growth}%.`);
+  set('mOkunCaveat',
+    `The fit explains r&sup2; = ${fit.r2} of the variation, so residuals of a few tenths of a point are ordinary noise. ` +
+    `Only a shock large enough to be a macroeconomic event would clear it.`);
+  set('mCesSample',
+    `Past-year growth to ${data.ces_slowdown.latest_month}, compared with each sector&rsquo;s own 2015&ndash;19 average.`);
+
+  set('closingA',
+    `The headline says <b>no</b>. The detail says <b>not economy-wide, but concentrated</b> &mdash; among young graduates, and in ` +
+    `${String(S.sector).toLowerCase()}. Neither of those findings establishes a cause, and the coarse aggregate that reads quiet ` +
+    `is the instrument least able to detect a concentrated effect in the first place. If AI displacement is arriving, this is ` +
+    `where it would show up first, and where to keep watching.`);
+
+  /* ── rail ────────────────────────────────────────────────────── */
+  byId('rail').innerHTML =
+    `<div class="rail-t">Sections</div>` +
+    SECS.map(s => `<a href="#${s.id}" data-s="${s.id}"><span class="rn">${s.n}</span><span class="rdot ${s.v}"></span><span>${s.verdict}</span></a>`).join('') +
+    `<a class="rail-back" href="#top">&uarr; The short version</a>`;
+  byId('rail').querySelector('.rail-back').addEventListener('click', e => {
+    e.preventDefault(); window.scrollTo({ top:0, behavior:'smooth' });
+  });
+
+  /* ── lazy chart render ───────────────────────────────────────── */
+  const CHARTS = {
+    level:   ['renderOkun','renderLFP'],
+    workers: ['renderAgeGap','renderAges','renderAgeTime'],
+    sectors: ['renderCES']
+  };
+  const drawn = {};
+  const drawFor = id => (CHARTS[id] || []).forEach(fn => {
+    if (!drawn[fn] && typeof JC[fn] === 'function') { JC[fn](); drawn[fn] = true; }
+  });
+
+  const drawObs = new IntersectionObserver(es => es.forEach(en => {
+    if (!en.isIntersecting) return;
+    drawFor(en.target.id);
+    en.target.classList.add('in');
+    drawObs.unobserve(en.target);
+  }), { rootMargin:'250px 0px' });
+  document.querySelectorAll('.sec').forEach(el => drawObs.observe(el));
+
+  /* ── rail active state + citable anchors ─────────────────────── */
+  const links = {};
+  document.querySelectorAll('.rail a[data-s]').forEach(a => links[a.dataset.s] = a);
+  let cur = null;
+  const spy = new IntersectionObserver(es => es.forEach(en => {
+    if (!en.isIntersecting || en.target.id === cur) return;
+    cur = en.target.id;
+    Object.values(links).forEach(a => a.classList.remove('here'));
+    if (links[cur]) links[cur].classList.add('here');
+    /* guarded: replaceState throws a SecurityError under file:// */
+    /* disabled by sync_jobs_displacement.py: index.html owns location.hash via its own tab router (applyHashRoute in the main engine script); writing '#' + cur here would fight it on every scroll. */
+    if (links[cur] && window.innerWidth <= 980) links[cur].scrollIntoView({ block:'nearest', inline:'center' });
+  }), { rootMargin:'-15% 0px -70% 0px' });
+  document.querySelectorAll('.sec').forEach(el => spy.observe(el));
+
+  /* arriving on a deep link: draw that section immediately */
+  if (location.hash) {
+    const el = document.querySelector(location.hash);
+    if (el && el.classList.contains('sec')) {
+      drawFor(el.id); el.classList.add('in');
+      requestAnimationFrame(() => el.scrollIntoView());
+    }
+  }
+})();
+
+
+  /* ─ index.html integration patch, added by sync_jobs_displacement.py ─
+     #jobDisplacementArea sits under `display:none` until the Jobs tab is
+     selected (.jobs-view on <body>). A plain IntersectionObserver can miss
+     that display:none -> block transition, so the first section's charts
+     might never draw if the user never nudges the scroll position. Force
+     one draw pass for whichever section is first in the DOM the moment the
+     tab becomes visible; the existing IntersectionObserver above takes over
+     for every section reached after that by ordinary scrolling. */
+  (function () {
+    var body = document.body;
+    var firstSec = document.querySelector('#jobDisplacementArea .sec');
+    if (!firstSec) return;
+    function reveal() {
+      if (!body.classList.contains('jobs-view')) return;
+      drawFor(firstSec.id);
+      firstSec.classList.add('in');
+    }
+    reveal();
+    new MutationObserver(reveal).observe(body, { attributes: true, attributeFilter: ['class'] });
+  })();
+/* SYNC:JS:END */
+</script>
+
+<!-- ═══════════════════════════════════════════════════════════
+     JOB DISPLACEMENT — legacy chart IIFE, retired 2026-07-31.
+     Kept dormant (unreachable, never executed) only as a reference
+     while the new content beds in; safe to delete outright later.
+     ═══════════════════════════════════════════════════════════ -->
+<script type="text/plain" id="jdLegacyChartScriptRetired">
 (function () {
   const D = window.JOBS_DISPLACEMENT_DATA;
   if (!D) { console.error('JOBS_DISPLACEMENT_DATA not found'); return; }
@@ -5695,12 +6322,15 @@
 </script>
 
 <!-- ═══════════════════════════════════════════════════════════
-     ADOPTION TAB CHARTS + the Job Displacement monitor section.
-     Separate files, each an isolated IIFE with its own try/catch per
-     renderer, so a break in one cannot take down the other tabs.
-     Classic scripts, no modules, no CDN: works over file://.
+     ADOPTION TAB CHARTS.
+     Separate file, an isolated IIFE with its own try/catch per
+     renderer, so a break in it cannot take down the other tabs.
+     Classic script, no modules, no CDN: works over file://.
+     (assets/jobs-monitor-charts.js was loaded here too, for the old Job
+     Displacement adoption-monitor section; retired 2026-07-31 along
+     with that section's markup and CSS. The file itself is untouched
+     on disk in case that section is revived.)
      ═══════════════════════════════════════════════════════════ -->
 <script src="assets/adoption-charts.js" charset="utf-8"></script>
-<script src="assets/jobs-monitor-charts.js" charset="utf-8"></script>
 </body>
 </html>

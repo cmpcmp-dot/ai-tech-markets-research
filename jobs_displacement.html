@@ -1,0 +1,791 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Is AI displacing workers yet?</title>
+<style>
+  /* ═══════════════════════════════════════════════════════════════════
+     JOB DISPLACEMENT — SCROLL LAYOUT
+
+     One scrolling document. Masthead, a short-version table that is the
+     whole piece in 20 seconds, then three sections you can jump to or
+     read straight through. Sticky rail carries the verdicts with you.
+
+     Two rules held from the editorial discussion, kept structural but
+     kept quiet:
+       · A "no" renders in neutral grey, never green. Green reads as
+         all-clear, and a null is not good news, it is no news.
+       · No score is published, and each section states its own main
+         alternative explanation in the body rather than in a footnote.
+
+     Palette and fonts are brand-locked to ESP C3, copied from index.html.
+     Charts come from assets/jobs-charts.js against the canonical IDs.
+     ═══════════════════════════════════════════════════════════════════ */
+
+  @font-face { font-family:'Publico Banner'; src:url('fonts/PublicoBannerMedium.otf') format('opentype'); font-weight:500; font-style:normal; font-display:swap; }
+  @font-face { font-family:'Publico Banner'; src:url('fonts/PublicoBannerRoman.otf') format('opentype'); font-weight:400; font-style:normal; font-display:swap; }
+  @font-face { font-family:'Haas Grotesk'; src:url('fonts/HaasGrotDisp55Roman.otf') format('opentype'); font-weight:400 600; font-style:normal; font-display:swap; }
+  @font-face { font-family:'Public Sans'; src:url('fonts/PublicSans-Regular.ttf') format('truetype'); font-weight:400; font-style:normal; font-display:swap; }
+  @font-face { font-family:'Public Sans'; src:url('fonts/PublicSans-Medium.ttf') format('truetype'); font-weight:500; font-style:normal; font-display:swap; }
+  @font-face { font-family:'Public Sans'; src:url('fonts/PublicSans-SemiBold.ttf') format('truetype'); font-weight:600; font-style:normal; font-display:swap; }
+  @font-face { font-family:'Public Sans'; src:url('fonts/PublicSans-Bold.ttf') format('truetype'); font-weight:700; font-style:normal; font-display:swap; }
+
+  :root {
+    --navy:#2c3254; --beige:#f4f2e4; --light-beige:#fffdf2;
+    --green:#70ad8f; --green-hover:#84cca8; --purple:#472b51;
+    --gold:#ebc382; --gold-deep:#c99a3f; --pink:#ffbfa7; --terra:#b06a4f;
+    --headline:#232849; --divider:#caccd4;
+    --serif:'Publico Banner',Georgia,serif;
+    --grot:'Haas Grotesk','Helvetica Neue',Arial,sans-serif;
+    --sans:'Public Sans',-apple-system,'Segoe UI',system-ui,sans-serif;
+
+    --surface:var(--light-beige); --border:var(--divider);
+    --text:#3c4164; --muted:#6d7091;
+
+    /* verdict semantics — a "no" is grey, never green */
+    --null-ink:#75788f; --null-bg:rgba(109,112,145,.10);
+    --sig-ink:#a35f45;  --sig-bg:rgba(176,106,79,.13);
+
+    --rail-w:190px;
+    /* main is 1140 wide with 30px padding, so the content column beside a
+       190px rail plus 48px gap is ~842px. --col matches it; --measure sits
+       just inside it so prose reaches most of the way across rather than
+       stopping short of the figures above it. */
+    --col:840px;      /* content column; figures span this */
+    --measure:800px;  /* prose measure */
+  }
+
+  * { box-sizing:border-box; margin:0; padding:0; }
+  html { scroll-behavior:smooth; scroll-padding-top:20px; }
+  @media (prefers-reduced-motion:reduce) { html { scroll-behavior:auto; } }
+  body { background:var(--beige); color:var(--text); font-family:var(--sans); line-height:1.6; min-height:100vh; display:flex; flex-direction:column; -webkit-font-smoothing:antialiased; }
+  a { color:var(--navy); }
+  :focus-visible { outline:2px solid var(--green); outline-offset:3px; border-radius:3px; }
+
+  /* ── HEADER ─────────────────────────────────────────────────────── */
+  .site-header { background:var(--navy); color:var(--beige); padding:24px 32px 22px; flex-shrink:0; }
+  .header-inner { max-width:1140px; margin:0 auto; display:flex; align-items:center; justify-content:space-between; gap:24px; }
+  .header-brand { display:flex; align-items:center; gap:18px; min-width:0; }
+  .header-brand img { height:42px; width:auto; flex-shrink:0; }
+  .site-header h1 { font-size:clamp(20px,2.5vw,28px); font-weight:700; letter-spacing:-.015em; line-height:1.2; margin-bottom:3px; color:var(--beige); font-family:var(--serif); }
+  .site-header h1 a { color:var(--beige); text-decoration:none; }
+  .site-header h1 a:hover { color:var(--green-hover); }
+  .header-sub { font-family:var(--grot); font-size:13px; letter-spacing:.02em; color:var(--divider); }
+  .header-nav { display:flex; align-items:center; gap:6px; flex-shrink:0; flex-wrap:wrap; }
+  .header-nav-btn { background:none; border:none; cursor:pointer; font-family:var(--grot); font-size:14px; font-weight:500; letter-spacing:.02em; color:var(--divider); padding:6px 13px; border-bottom:2px solid transparent; transition:color .15s,border-color .15s; white-space:nowrap; }
+  .header-nav-btn:hover { color:var(--beige); }
+  .header-nav-btn.active { color:#fff; font-weight:600; border-bottom-color:var(--green); }
+
+  main { flex:1; width:100%; max-width:1140px; margin:0 auto; padding:0 30px 64px; }
+
+  /* ══ MASTHEAD ═════════════════════════════════════════════════════
+     Editorial treatment: serif question, an italic terra pivot word, and
+     a standfirst at reading size.
+
+     The h2 and .stand sizes are the site-wide tab-opener scale, not a
+     masthead of their own: index.html defines --lede-* in :root and all
+     six tabs read them, so this page opens at the same size as Adoption,
+     Papers, Fact Bank and the rest. The literal values are var()
+     fallbacks so this standalone preview still renders correctly on its
+     own — index.html's tokens win once synced.
+
+     Do NOT move --lede-* into this file's :root. sync_jobs_displacement.py
+     rewrites :root as a scoped block on #jobDisplacementArea, which would
+     outrank index.html's :root and silently fork the scale for this tab
+     only. To change the size, edit --lede-size in index.html. */
+  /* Same token-with-fallback contract as --lede-* above: --masthead-top
+     wins when embedded in index.html, the 40px fallback keeps the
+     standalone preview honest. Do not add --masthead-top to :root here.
+     Embedded, .jobs-view .cards-area zeroes its own top padding so this
+     is the only thing setting the gap in either context. */
+  .mast { padding:var(--masthead-top, 40px) 0 0; max-width:var(--col); }
+  .mast h2 {
+    font-family:var(--serif);
+    font-size:var(--lede-size, clamp(24px,3.2vw,32px));
+    line-height:var(--lede-lh, 1.3);
+    font-weight:var(--lede-weight, 500);
+    letter-spacing:var(--lede-track, -0.01em);
+    color:var(--headline);
+    max-width:var(--lede-measure, 760px);
+  }
+  /* standfirst: sans at reading size, matching .tab-standfirst */
+  .stand { font-family:var(--sans); font-size:15px; line-height:1.7; color:var(--muted); font-weight:400; max-width:var(--lede-measure, 760px); margin-top:14px; }
+  .stand b { color:var(--terra); font-weight:600; }
+
+  /* Last element in the masthead, so it carries the shared closing
+     hairline — at --lede-measure, not --col, so it hugs the text above
+     it. The vintage stamp stays inside the masthead rather than being
+     orphaned into the content: on a real-time data page it belongs with
+     the headline it qualifies. */
+  .meta { display:flex; flex-wrap:wrap; align-items:center; gap:9px 16px; margin-top:22px; max-width:var(--lede-measure, 760px); padding-bottom:12px; border-bottom:1px solid var(--border); }
+  .vintage { font-family:var(--grot); font-size:11.5px; letter-spacing:.03em; color:var(--muted); }
+  .vintage b { color:var(--headline); font-weight:600; }
+
+  /* ══ THE SHORT VERSION ════════════════════════════════════════════
+     Editorial answer rows in place of the table: an outlined ghost
+     numeral, the section's question set in serif, then a one-line
+     answer. Each row is a jump link into its section, not a tab switch.
+
+     The question carries the display type; the verdict is the first
+     word of the answer, which is where the colour rule applies — a
+     "no" is grey (--null-ink), never green. The gold numeral is a
+     decorative device and carries no verdict meaning, so it stays
+     uniform across all three rows. ═══════════════════════════════════ */
+  .sv { margin:36px 0 0; max-width:var(--col); }
+  .sv-t { font-family:var(--grot); font-size:11px; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:var(--muted); margin-bottom:4px; border-bottom:2px solid var(--navy); padding-bottom:12px; }
+
+  /* two across, flowing down — more sections just extend the grid */
+  .sv-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); }
+
+  .answer-row {
+    display:grid; grid-template-columns:54px 1fr; gap:4px 16px; align-items:start;
+    text-align:left; background:none; border:none; cursor:pointer;
+    border-top:1px solid var(--border); padding:20px 26px 22px 0;
+    font-family:inherit; transition:padding-left .18s;
+  }
+  /* the two cells of a row share a divider; the top row sits under the
+     navy rule of the section label, so it needs no border of its own */
+  .answer-row:nth-child(2n) { padding-left:26px; padding-right:0; border-left:1px solid var(--border); }
+  .answer-row:nth-child(-n+2) { border-top:none; padding-top:18px; }
+  .answer-row:hover { padding-left:8px; }
+  .answer-row:nth-child(2n):hover { padding-left:34px; }
+  /* rows are <button>s, so the inner elements are spans and need block */
+  .ar-body, .ar-q, .ar-a, .ar-num { display:block; }
+  .ar-num {
+    font-family:var(--serif); font-size:clamp(34px,3.6vw,46px); line-height:.9; font-weight:500;
+    color:transparent; -webkit-text-stroke:1.3px var(--gold-deep); text-stroke:1.3px var(--gold-deep);
+    font-variant-numeric:tabular-nums;
+  }
+  .answer-row:hover .ar-num { color:var(--gold); }
+  .ar-body { padding-top:1px; min-width:0; }
+  /* the question, scaled for the half-width cell */
+  .ar-q { font-family:var(--serif); font-size:clamp(18px,1.7vw,22px); line-height:1.22; font-weight:500;
+    color:var(--headline); letter-spacing:-.008em; margin-bottom:8px; }
+  /* the answer: one line, verdict first — fills the cell */
+  .ar-a { font-size:14px; line-height:1.6; color:var(--text); font-variant-numeric:tabular-nums; }
+  .ar-a .v { font-family:var(--serif); font-size:16.5px; font-weight:500; }
+  .ar-a .v.null   { color:var(--null-ink); }
+  .ar-a .v.signal { color:var(--sig-ink); }
+  .ar-a b { color:var(--headline); font-weight:600; }
+  .ar-go {
+    font-family:var(--grot); font-size:11px; font-weight:700; letter-spacing:.04em; text-transform:uppercase;
+    color:var(--navy); margin-top:10px; display:inline-flex; gap:6px; transition:gap .15s;
+  }
+  .answer-row:hover .ar-go { gap:10px; }
+  .sv-note { font-size:13px; line-height:1.65; color:var(--muted); margin:0; border-top:1px solid var(--border); padding-top:16px; }
+
+  /* ══ SCROLL: rail + sections ══════════════════════════════════════ */
+  .wrap { display:grid; grid-template-columns:var(--rail-w) minmax(0,1fr); gap:48px; margin-top:8px; align-items:start; }
+
+  .rail { position:sticky; top:22px; padding-top:52px; }
+  .rail-t { font-family:var(--grot); font-size:9.5px; font-weight:700; letter-spacing:.13em; text-transform:uppercase; color:var(--muted); padding:0 0 9px 12px; }
+  .rail a {
+    display:grid; grid-template-columns:16px 9px 1fr; align-items:center; gap:9px;
+    text-decoration:none; padding:8px 12px; border-left:2px solid var(--border);
+    font-family:var(--grot); font-size:11.5px; line-height:1.3; color:var(--muted);
+    transition:color .15s,border-color .15s;
+  }
+  .rail a:hover { color:var(--headline); }
+  .rail a.here { color:var(--headline); font-weight:600; border-left-color:var(--green); }
+  .rail a .rn { font-size:10px; font-weight:700; font-variant-numeric:tabular-nums; color:var(--divider); }
+  .rail a.here .rn { color:var(--green); }
+  .rail a .rdot { width:9px; height:9px; border-radius:50%; }
+  .rail a .rdot.null   { background:var(--null-ink); }
+  .rail a .rdot.signal { background:var(--sig-ink); }
+  .rail-back { display:block; margin:16px 0 0 12px; font-family:var(--grot); font-size:11px; color:var(--muted); text-decoration:none; }
+  .rail-back:hover { color:var(--headline); }
+
+  /* ── SECTION ──────────────────────────────────────────────────── */
+  .sec { max-width:var(--col); padding:52px 0 46px; border-bottom:1px solid var(--border); scroll-margin-top:20px; }
+  .sec:last-of-type { border-bottom:none; }
+  .sec-kick { font-family:var(--grot); font-size:11.5px; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:var(--green); margin-bottom:16px; display:flex; align-items:center; gap:11px; }
+  .sec-kick .kn { color:var(--divider); font-variant-numeric:tabular-nums; }
+
+  /* the verdict sentence, set large — the section's whole argument */
+  .verdict { font-family:var(--serif); font-weight:400; font-size:clamp(22px,2.9vw,31px); line-height:1.32; color:var(--headline); max-width:42ch; letter-spacing:-.008em; }
+  .verdict b { font-weight:500; font-variant-numeric:tabular-nums; }
+  .verdict .no { color:var(--null-ink); font-style:italic; }
+  .verdict .yes { color:var(--terra); font-style:italic; }
+  .sec-q { font-family:var(--grot); font-size:13px; color:var(--muted); margin-top:12px; max-width:var(--measure); line-height:1.6; }
+
+  /* figures break out of the prose measure */
+  .figure { margin:26px 0 0; width:100%; }
+  .jd-chart-wrap { background:var(--surface); border:1px solid var(--border); border-radius:10px; padding:16px 14px 12px; }
+  .jd-chart-title { font-family:var(--grot); font-size:13px; font-weight:600; color:var(--headline); margin:0 4px 2px; }
+  .jd-chart-sub { font-size:11.5px; color:var(--muted); margin:0 4px 8px; }
+  .jd-svg { width:100%; height:auto; display:block; font-family:var(--sans); }
+  .jd-chart-note { font-size:11px; color:var(--muted); margin:8px 4px 0; line-height:1.5; }
+  .jd-legend { display:flex; flex-wrap:wrap; gap:15px; margin:6px 4px 2px; font-size:12px; color:var(--text); }
+  .jd-legend span { display:inline-flex; align-items:center; gap:6px; }
+  .jd-legend i { width:13px; height:4px; border-radius:2px; display:inline-block; }
+  .jd-legend i.dot { width:10px; height:10px; border-radius:50%; }
+  .jd-flag { display:inline-flex; align-items:center; gap:8px; font-family:var(--grot); font-size:12px; font-weight:600; background:var(--navy); color:var(--beige); border-radius:999px; padding:6px 13px; margin:16px 0 0; }
+  .jd-flag b { color:var(--gold); }
+  .jd-tooltip { position:fixed; pointer-events:none; background:var(--navy); color:var(--beige); font-family:var(--sans); font-size:12px; line-height:1.5; padding:7px 10px; border-radius:6px; box-shadow:0 4px 16px rgba(0,0,0,.28); opacity:0; transition:opacity .1s; z-index:60; max-width:250px; }
+  .jd-tooltip b { color:#fff; }
+
+  /* prose sits at the narrower measure */
+  .prose { max-width:var(--measure); margin-top:26px; }
+  .prose p { font-size:15px; line-height:1.78; margin-bottom:15px; }
+  .prose p:last-child { margin-bottom:0; }
+  .prose em { color:var(--headline); font-style:italic; }
+
+  /* the caveat is body text, not a warning box — it belongs to the argument */
+  .caveat { max-width:var(--measure); margin-top:18px; padding-left:16px; border-left:2px solid var(--gold); }
+  .caveat p { font-size:14px; line-height:1.7; color:var(--muted); }
+  .caveat b { font-family:var(--grot); font-size:9.5px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--gold-deep); display:block; margin-bottom:5px; }
+
+  /* plain-language method note: the general reader's entry point, so it reads
+     as body copy with a rule, not as a boxed aside to be skipped */
+  .howto { max-width:var(--measure); margin-top:24px; padding:2px 0 0 17px; border-left:2px solid var(--navy); }
+  .howto b.h { font-family:var(--grot); font-size:9.5px; font-weight:700; letter-spacing:.1em;
+               text-transform:uppercase; color:var(--navy); display:block; margin-bottom:7px; }
+  .howto p { font-size:14.5px; line-height:1.75; margin-bottom:12px; color:var(--text); }
+  .howto p:last-child { margin-bottom:0; }
+  .howto em { color:var(--headline); font-style:italic; }
+
+  /* one line per figure, telling the reader what to look at before they look */
+  .fig-what { max-width:var(--measure); margin:14px 0 0; font-size:13.5px; line-height:1.7; color:var(--muted); }
+  .fig-what b { font-family:var(--grot); font-size:11px; font-weight:700; letter-spacing:.04em;
+                text-transform:uppercase; color:var(--headline); }
+
+  /* the advanced reader's block: same disclosure pattern as .method, but it
+     carries a specification rather than a summary, so it gets more room */
+  .method-body .spec { font-family:var(--grot); font-size:12.5px; line-height:1.7; color:var(--headline);
+                       background:var(--beige); border:1px solid var(--border); border-radius:6px;
+                       padding:11px 13px; margin:2px 0 4px; overflow-x:auto; white-space:nowrap; }
+  .method-body dd code { font-family:var(--grot); font-size:12px; background:var(--beige); padding:1px 4px; border-radius:3px; }
+  .method-body dd ul { margin:4px 0 0 15px; padding:0; }
+  .method-body dd li { margin-bottom:5px; }
+  .method-body dd:last-of-type { margin-bottom:0; }
+
+  /* ▸ How this is measured */
+  details.method { max-width:var(--measure); margin-top:22px; border-top:1px solid var(--border); }
+  details.method summary {
+    cursor:pointer; list-style:none; padding:13px 0 12px;
+    font-family:var(--grot); font-size:12px; font-weight:600; letter-spacing:.02em; color:var(--navy);
+    display:flex; align-items:center; gap:9px;
+  }
+  details.method summary::-webkit-details-marker { display:none; }
+  details.method summary::before { content:"▸"; font-size:10px; color:var(--green); transition:transform .18s; display:inline-block; }
+  details.method[open] summary::before { transform:rotate(90deg); }
+  details.method summary:hover { color:var(--headline); }
+  .method-body { padding:0 0 16px 19px; }
+  .method-body dl { display:grid; grid-template-columns:auto 1fr; gap:7px 16px; }
+  .method-body dt { font-family:var(--grot); font-size:9.5px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--muted); padding-top:3px; white-space:nowrap; }
+  .method-body dd { font-size:13.5px; line-height:1.6; color:var(--text); }
+  .method-more { margin-top:13px; font-family:var(--grot); font-size:11.5px; font-weight:600; color:var(--navy); text-decoration:none; display:inline-block; }
+  .method-more:hover { text-decoration:underline; }
+
+  /* what would change this verdict */
+  .change {
+    max-width:var(--measure); margin-top:6px; padding:14px 18px;
+    background:var(--surface); border:1px solid var(--border); border-radius:10px;
+    display:flex; gap:13px; align-items:baseline;
+  }
+  .change b { font-family:var(--grot); font-size:9.5px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--green); flex-shrink:0; }
+  .change span { font-size:13.5px; line-height:1.6; color:var(--text); }
+
+  /* ── CLOSING ──────────────────────────────────────────────────── */
+  .closing { max-width:var(--col); margin-top:44px; padding:26px 30px; background:var(--navy); color:var(--beige); border-radius:14px; }
+  .closing .ct { font-family:var(--grot); font-size:11px; font-weight:700; letter-spacing:.13em; text-transform:uppercase; color:var(--gold); margin-bottom:12px; }
+  .closing p { font-size:15px; line-height:1.72; color:#d6d8e2; max-width:80ch; }
+  .closing p + p { margin-top:11px; }
+  .closing b { color:#fff; font-weight:600; }
+  .closing a { color:var(--gold); }
+
+  /* ── MOTION ───────────────────────────────────────────────────── */
+  @media (prefers-reduced-motion:no-preference) {
+    .sec { opacity:0; transform:translateY(12px); transition:opacity .5s ease, transform .5s cubic-bezier(.2,.7,.3,1); }
+    .sec.in { opacity:1; transform:none; }
+    .sec.in .anim-line { stroke-dasharray:1; stroke-dashoffset:1; animation:drawline 1s ease forwards .15s; }
+    @keyframes drawline { to { stroke-dashoffset:0; } }
+    .sec.in .anim-bar { transform:scaleX(0); animation:growbar .6s cubic-bezier(.2,.7,.3,1) forwards; }
+    @keyframes growbar { to { transform:scaleX(1); } }
+    .sec.in .anim-pop { opacity:0; animation:pop .4s ease forwards .5s; }
+    @keyframes pop { to { opacity:1; } }
+  }
+
+  footer { background:var(--navy); color:var(--divider); padding:20px 32px; text-align:center; font-size:12.5px; flex-shrink:0; }
+  footer a { color:var(--beige); }
+
+  /* ── RESPONSIVE ───────────────────────────────────────────────── */
+  @media (max-width:980px) {
+    .wrap { grid-template-columns:1fr; gap:0; }
+    .rail {
+      position:sticky; top:0; z-index:40; padding:9px 0; margin-bottom:6px;
+      display:flex; gap:4px; overflow-x:auto; background:var(--beige);
+      border-bottom:1px solid var(--border);
+    }
+    .rail-t, .rail-back { display:none; }
+    .rail a { border-left:none; border-bottom:2px solid transparent; padding:6px 11px; white-space:nowrap; flex-shrink:0; }
+    .rail a.here { border-bottom-color:var(--green); }
+  }
+  @media (max-width:720px) {
+    main { padding:0 18px 50px; }
+    .site-header { padding:20px 18px 18px; }
+    .header-inner { flex-wrap:wrap; justify-content:center; gap:12px; }
+    /* single column: every row gets its own rule again, no vertical divider */
+    .sv-grid { grid-template-columns:minmax(0,1fr); }
+    .answer-row,
+    .answer-row:nth-child(2n) { grid-template-columns:44px 1fr; gap:4px 14px;
+      padding:17px 0; border-left:none; border-top:1px solid var(--border); }
+    .answer-row:first-child { border-top:none; }
+    .answer-row:nth-child(2) { border-top:1px solid var(--border); }
+    .answer-row:hover,
+    .answer-row:nth-child(2n):hover { padding-left:8px; }
+    .closing { padding:22px 20px; }
+    .method-body dl { grid-template-columns:1fr; gap:3px; }
+    .method-body dd { margin-bottom:9px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="header-inner">
+    <div class="header-brand">
+      <img src="assets/esp-c3-white.png" alt="Economic Security Project">
+      <div class="header-text">
+        <h1><a href="https://cmpcmp-dot.github.io/ai-tech-markets-research/">AI, Tech and the Economy: Research Intelligence</a></h1>
+        <div class="header-sub">A curated database of research on AI, automation, and the economy</div>
+      </div>
+    </div>
+    <nav class="header-nav" aria-label="Primary">
+      <button class="header-nav-btn">Research</button>
+      <button class="header-nav-btn">Fact Bank</button>
+      <button class="header-nav-btn">Themes</button>
+      <button class="header-nav-btn">Policy Map</button>
+      <button class="header-nav-btn active" aria-current="page">Job displacement</button>
+      <button class="header-nav-btn">About</button>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+  <!-- ══ MASTHEAD ══ -->
+  <div class="mast">
+    <h2>Is AI displacing workers yet?</h2>
+    <p class="stand">
+      The headline unemployment rate says one thing. Look closer and it says
+      <b>something more specific</b>. Three questions, three verdicts.
+    </p>
+    <div class="meta">
+      <span class="vintage" id="vintage"></span>
+    </div>
+  </div>
+
+  <!-- ══ THE SHORT VERSION ══ -->
+  <div class="sv">
+    <div class="sv-t">The short version</div>
+    <div class="sv-grid" id="answers"></div>
+    <p class="sv-note" id="svNote"></p>
+  </div>
+
+  <!-- ══ SCROLL ══ -->
+  <div class="wrap">
+    <nav class="rail" id="rail" aria-label="Sections"></nav>
+
+    <div>
+
+      <!-- ── 01 ─────────────────────────────────────────────────── -->
+      <section class="sec" id="level" data-v="null" aria-labelledby="h-level">
+        <div class="sec-kick"><span class="kn">01</span> The level</div>
+        <h3 class="verdict" id="h-level">
+          <span class="no">No</span> &mdash; unemployment is <b id="vLevel"></b>, at or below CBO&rsquo;s natural
+          rate, and its path tracks growth about as Okun&rsquo;s law predicts.
+        </h3>
+        <p class="sec-q">Is unemployment higher than growth alone would predict, and is a low rate hiding people who have stopped looking?</p>
+
+        <div class="figure">
+          <div class="jd-chart-wrap">
+            <div class="jd-chart-title">Okun&rsquo;s law: GDP growth vs. change in unemployment</div>
+            <div class="jd-chart-sub" id="okunSub"></div>
+            <svg class="jd-svg" id="okunChart" viewBox="0 0 640 410" role="img" aria-label="Okun's law scatter plot"></svg>
+            <div class="jd-legend" id="okunLegend"></div>
+            <div class="jd-chart-note" id="okunNote"></div>
+          </div>
+        </div>
+
+        <div class="prose">
+          <p>Okun&rsquo;s law ties the change in unemployment to how fast the economy grows: strong GDP growth pulls unemployment down, weak growth pushes it up. If unemployment were rising faster than growth predicts, that would point to something structural &mdash; a displacement effect layered on the ordinary business cycle. Each point is a quarter; the line is the historical relationship, and the last four quarters are traced in sequence.</p>
+          <p>They sit close to it. Unemployment can also mislead if people stop looking for work, since they leave the labor force and the rate falls even as the market weakens. The companion check is prime-age participation, which strips out retirement.</p>
+        </div>
+
+        <div class="figure">
+          <div class="jd-chart-wrap">
+            <div class="jd-chart-title">Prime-age (25&ndash;54) labor force participation &amp; employment rate</div>
+            <div class="jd-chart-sub">Monthly, seasonally adjusted, since 2000</div>
+            <svg class="jd-svg" id="lfpChart" viewBox="0 0 640 300" role="img" aria-label="Prime-age participation and employment-population ratio"></svg>
+            <div class="jd-legend" id="lfpLegend"></div>
+          </div>
+        </div>
+
+        <div class="prose">
+          <p id="lfpRead"></p>
+        </div>
+
+        <div class="caveat">
+          <b>What this cannot establish</b>
+          <p>This is the coarsest measure on the page and the last place displacement would appear. The Okun relationship leaves most quarter-to-quarter variation unexplained, so only a very large shock would clear the noise, and it is fitted on eighty years in which nothing resembling AI displacement occurs. An effect concentrated in one cohort or one sector &mdash; which is what the next two sections report &mdash; would leave no trace here at all. Read this as ruling out a macroeconomic event, not as evidence of calm.</p>
+        </div>
+
+        <details class="method">
+          <summary>How this is measured</summary>
+          <div class="method-body">
+            <dl>
+              <dt>Data</dt><dd>Real GDP and the unemployment rate from FRED, quarterly; CBO&rsquo;s natural rate of unemployment; prime-age participation and employment&ndash;population ratio, monthly and seasonally adjusted.</dd>
+              <dt>Sample</dt><dd id="mOkunSample"></dd>
+              <dt>Plotted</dt><dd>Each point is one quarter of annualised real GDP growth against the change in the unemployment rate. The line is the fitted historical relationship; the last four quarters are connected in time order.</dd>
+              <dt>Main caveat</dt><dd id="mOkunCaveat"></dd>
+            </dl>
+            <a class="method-more" href="methods.html#okun">Full specification and diagnostics &nearr;</a>
+          </div>
+        </details>
+
+        <div class="change">
+          <b>Would change this</b>
+          <span>A four-quarter mean residual above +0.3 pp, or prime-age participation falling more than 0.5 pp below its February 2020 level.</span>
+        </div>
+      </section>
+
+      <!-- ── 02 ─────────────────────────────────────────────────── -->
+      <section class="sec" id="workers" data-v="signal" aria-labelledby="h-workers">
+        <div class="sec-kick"><span class="kn">02</span> Across workers</div>
+        <h3 class="verdict" id="h-workers">
+          <span class="yes">Concentrated</span> &mdash; young graduates carry <b id="vWorkers"></b> more
+          unemployment than their own pre-2020 norm predicts.
+        </h3>
+        <p class="sec-q">Is the weakness spread evenly across workers, or is one group absorbing it?</p>
+
+        <!-- broad method first: the general reader needs the idea before the charts -->
+        <div class="howto">
+          <b class="h">How to read this section</b>
+          <p>Every group of workers has its own settled relationship to the national unemployment rate. When the economy weakens, unemployment rises faster for the young than for the old, and faster for workers without degrees than for those with them. Those ratios are stable enough to be useful: tell us the national rate and we can say what a given group&rsquo;s rate ought to be.</p>
+          <p>So that is what we do. For each combination of age and education we learn that relationship from the fifteen years before the pandemic, then ask what the group&rsquo;s unemployment rate should be today, given where the national rate actually is. All three charts below plot the same thing: <em>the gap between that prediction and reality.</em> Zero means a group is exactly where its own history says it should be. Positive means it is doing worse than its own track record predicts.</p>
+          <p>One extra step matters, because it changes the numbers. We tested whether the method returns zero when it should, by hiding the recent past and asking it to predict years we already know were unremarkable. It came back positive, by roughly half a point, so the procedure runs hot. That amount is subtracted from every figure on this page. What is left is the part the method cannot explain away as its own habit.</p>
+        </div>
+
+        <!-- A: levels, so the reader starts with two rates and a distance -->
+        <div class="figure">
+          <div class="jd-chart-wrap">
+            <div class="jd-chart-title">What each group has, against what the national rate predicts</div>
+            <div class="jd-chart-sub" id="ageGapSub"></div>
+            <svg class="jd-svg" id="ageGapChart" viewBox="0 0 640 300" role="img" aria-label="Actual versus predicted unemployment rate for six age and education groups"></svg>
+            <div class="jd-legend" id="ageGapLegend"></div>
+            <div class="jd-chart-note" id="ageGapNote"></div>
+          </div>
+          <p class="fig-what"><b>What this chart does.</b> It puts the two unemployment rates side by side for six groups. The hollow dot is the rate predicted from the national figure; the filled dot is the rate the group actually has. The bar between them is the gap. Read the <em>lengths</em> of the bars rather than their positions: one is conspicuously longer than the rest.</p>
+          <span class="jd-flag" id="distFlag"></span>
+        </div>
+
+        <!-- C: the same quantity across the full age range -->
+        <div class="figure">
+          <div class="jd-chart-wrap">
+            <div class="jd-chart-title">The same gap, across the whole age range</div>
+            <div class="jd-chart-sub" id="ageSub"></div>
+            <svg class="jd-svg" id="ageChart" viewBox="0 0 640 360" role="img" aria-label="Excess unemployment by five-year age band and education group"></svg>
+            <div class="jd-legend" id="ageLegend"></div>
+            <div class="jd-chart-note" id="ageNote"></div>
+          </div>
+          <p class="fig-what"><b>What this chart does.</b> It takes the gap from the first chart and traces it across every five-year age band from the early twenties to the mid-sixties, so you can see <em>where in the age range</em> it sits rather than just that it exists. The grey band is the room the method&rsquo;s own bias creates: a line inside it is not evidence of anything. Dot size is sample size, which is why the youngest graduate points are drawn smallest.</p>
+        </div>
+
+        <!-- B: the time path, which the two cross-sections cannot supply -->
+        <div class="figure">
+          <div class="jd-chart-wrap">
+            <div class="jd-chart-title">When the gap opened up</div>
+            <div class="jd-chart-sub" id="ageTimeSub"></div>
+            <svg class="jd-svg" id="ageTimeChart" viewBox="0 0 640 330" role="img" aria-label="Excess unemployment over time for young graduates and young non-graduates"></svg>
+            <div class="jd-legend" id="ageTimeLegend"></div>
+            <div class="jd-chart-note" id="ageTimeNote"></div>
+          </div>
+          <p class="fig-what"><b>What this chart does.</b> It answers the question the first two cannot: whether this is new. It follows the gap for young graduates month by month back to 2005. The grey band is the entire range this measure occupied from 2005 through 2019, the Great Recession included, so anything above the band is territory the pre-pandemic era never reached, in good years or bad.</p>
+        </div>
+
+        <div class="prose">
+          <p id="ageRead"></p>
+          <p>The shape is the finding, and it is narrower than a story about young workers. Non-graduates in their twenties sit at essentially zero, and so do graduates past forty-five. What separates the affected group from the unaffected ones is not age alone and not education alone, but the combination: people at the start of a career that a degree was supposed to open.</p>
+          <p>The timing matters as much as the shape. This gap did not appear with the pandemic and then linger. It closed to almost nothing by early 2023 and has widened in most months since, which is the opposite of what a fading shock looks like.</p>
+        </div>
+
+        <div class="caveat">
+          <b>What this cannot establish</b>
+          <p>Concentration, not cause. The same pattern would appear if firms had cut graduate training programs for ordinary cost reasons, or if degree supply had outrun demand in particular fields. The most serious alternative is compositional: as the share of young people finishing degrees rises, the average graduate is drawn from further down the distribution, which lifts the group&rsquo;s unemployment rate relative to the national rate with no change in employer behaviour at all. Nothing here separates that from a demand story. The entry-level market was also weakening before generative AI was deployed at scale. Postings data by occupational exposure is what would distinguish these, and it is not in this tracker yet.</p>
+        </div>
+
+        <details class="method">
+          <summary>The technical specification</summary>
+          <div class="method-body">
+            <dl>
+              <dt>Data</dt><dd>IPUMS CPS basic monthly, <span id="mAgeRange"></span>, persons 16+, weighted by <code>WTFINL</code>. Unemployed is <code>EMPSTAT &isin; {20,21,22}</code>; the labor force is <code>LABFORCE == 2</code>. College+ is <code>EDUC &ge; 111</code>; HS+ (no BA) is <code>73 &le; EDUC &lt; 111</code>. <span id="mAgeRecords"></span></dd>
+
+              <dt>Estimator</dt><dd>For each band <i>g</i>, ordinary least squares on months through <span id="mAgeTrain"></span>:
+                <div class="spec">log( r<sub>g,t</sub> ) = &alpha;<sub>g</sub> + &beta;<sub>g</sub> &middot; log( R<sub>t</sub> ) + &epsilon;<sub>g,t</sub></div>
+                where <i>r</i><sub>g,t</sub> is the band&rsquo;s trailing 12-month mean unemployment rate and <i>R<sub>t</sub></i> the same for all workers 16+. The fitted value is back-transformed as <code>exp(&middot;)</code>, so it targets the conditional median rather than the mean. &beta; is a cyclical elasticity: below one means the band is less cycle-sensitive than the aggregate.</dd>
+
+              <dt>Statistic</dt><dd>The mean of (actual &minus; predicted) over the latest <span id="mAgeWindow"></span> months, in rate units, then less the placebo bias below. Because the fit is multiplicative, a gap in percentage points scales with the band&rsquo;s base rate, so the actual-to-predicted <em>ratio</em> is the like-for-like comparison across groups; both are in the tooltips.</dd>
+
+              <dt>Bands</dt><dd>Five single years of age wide, plotted at the centre. The lower edge of the youngest band is pinned at 21 for College+ and 18 for HS+ (no BA), so no band spans an age at which the credential is effectively unattainable. <code>&lt; HS</code> is excluded: below 21 that category is defined by an outcome that is mechanically age-dependent, and its share of the young population more than halved over the sample, so its residuals track who remains in the category rather than labor demand.</dd>
+
+              <dt>Placebo correction</dt><dd>The same procedure re-run with the training cut moved back, then evaluated over the two following years, which were ordinary:
+                <ul id="mAgePlacebo"></ul>
+                Mean error is almost identical to mean absolute error in the original diagnostics, so the miss is one-directional across nearly every band: bias, not noise. The mechanism is that the aggregate rate is not a sufficient statistic for a group&rsquo;s rate, because band-level &beta; drifts as educational composition shifts, so a falling aggregate makes the fit over-predict improvement. The correction is estimated per band and subtracted. It matters most for comparisons <em>between</em> groups, since HS+ carries the larger bias.</dd>
+
+              <dt>Moving average</dt><dd>Taken over 12 calendar months, requiring at least 11 observed. October 2025 CPS was never collected, so a positional 12-row average would have silently spanned 13 calendar months for every window in the current reporting period.</dd>
+
+              <dt>Diagnostics</dt><dd id="mAgeDiag"></dd>
+
+              <dt>Known limits</dt><dd>No standard errors are placed on the gap itself; the placebo band is what stands in for them, and it is estimated from two scenarios only, so the headline is better read as a range than a point. The youngest graduate cells are thin. Each point is a 12-month average and the window closes in <span id="mAgeLatest"></span>, so this is a slow-moving object describing roughly the year to then, not a current-month reading.</dd>
+            </dl>
+            <a class="method-more" href="methods.html#workers">Full specification and diagnostics &nearr;</a>
+          </div>
+        </details>
+
+        <div class="change">
+          <b>Would change this</b>
+          <span>The bias-adjusted young-graduate gap falling back inside its pre-2020 range, a matched postings series showing the same pattern in occupations with no plausible AI exposure, or degree-attainment shares accounting for the drift.</span>
+        </div>
+      </section>
+
+      <!-- ── 03 ─────────────────────────────────────────────────── -->
+      <section class="sec" id="sectors" data-v="signal" aria-labelledby="h-sectors">
+        <div class="sec-kick"><span class="kn">03</span> Across sectors</div>
+        <h3 class="verdict" id="h-sectors">
+          <span class="yes">Tech-exposed</span> &mdash; <span id="vSectorName"></span> has decelerated by
+          <b id="vSectors"></b> against its own pre-pandemic pace.
+        </h3>
+        <p class="sec-q">Where has hiring slowed the most, and is it where AI substitution is most plausible?</p>
+
+        <div class="figure">
+          <div class="jd-chart-wrap">
+            <div class="jd-chart-title">Job-growth slowdown by sector</div>
+            <div class="jd-chart-sub" id="cesSub"></div>
+            <svg class="jd-svg" id="cesChart" viewBox="0 0 640 430" role="img" aria-label="Employment growth slowdown by sector"></svg>
+            <div class="jd-chart-note" id="cesNote"></div>
+          </div>
+        </div>
+
+        <div class="prose">
+          <p>Displacement should show up as hiring drying up in specific industries. For each major sector, employment growth over the past year is compared to that sector&rsquo;s own average pace in 2015&ndash;2019. A large negative bar means the sector is adding jobs far more slowly than it used to, or shedding them outright. Using each sector as its own baseline avoids penalising industries that were always slow-growing.</p>
+          <p id="cesRead"></p>
+        </div>
+
+        <div class="caveat">
+          <b>What this cannot establish</b>
+          <p>The sector that moved is also the sector that over-hired hardest in 2021&ndash;22 and has been correcting since. That is a complete alternative explanation, and the timing does not separate it from an AI effect. Eleven supersectors is a coarse grid besides: displacement inside legal services, or inside customer support within retail, would be averaged away entirely. Occupational mix within industries is the test that would catch that.</p>
+        </div>
+
+        <details class="method">
+          <summary>How this is measured</summary>
+          <div class="method-body">
+            <dl>
+              <dt>Data</dt><dd>BLS Current Employment Statistics, all-employee payrolls for the eleven major supersectors, which sum to total nonfarm.</dd>
+              <dt>Sample</dt><dd id="mCesSample"></dd>
+              <dt>Plotted</dt><dd>Past-year employment growth minus that sector&rsquo;s 2015&ndash;19 average growth, in percentage points. Negative means slower than its own pre-pandemic pace.</dd>
+              <dt>Main caveat</dt><dd>Supersector aggregates mask occupational composition, and payroll counts do not distinguish a role eliminated from a role never opened.</dd>
+            </dl>
+            <a class="method-more" href="methods.html#sectors">Full specification and diagnostics &nearr;</a>
+          </div>
+        </details>
+
+        <div class="change">
+          <b>Would change this</b>
+          <span>Information-sector growth returning to within 1 pp of its baseline, or the slowdown spreading to sectors with no plausible AI exposure.</span>
+        </div>
+      </section>
+
+      <div class="closing">
+        <div class="ct">Taken together</div>
+        <p id="closingA"></p>
+        <p>This is a tracker, not a verdict. Readings are regenerated when the underlying data refreshes, each section states the threshold that would move it, and further tests are added as they are built. The <a href="methods.html">methods page</a> carries the estimating equations, samples and known failure modes.</p>
+      </div>
+
+    </div>
+  </div>
+
+</main>
+
+<footer>
+  AI, Tech and the Economy: Research Intelligence &middot;
+  Created by Christelle Prophete &middot;
+  Job displacement &mdash; scroll, editorial masthead
+</footer>
+
+<script src="data/jobs-displacement-data.js" charset="utf-8"></script>
+<script src="assets/jobs-charts.js" charset="utf-8"></script>
+<script>
+(function () {
+  const JC = window.JOBS_CHARTS;
+  if (!JC) { console.error('JOBS_CHARTS not found'); return; }
+  const { sgn, fmtDate, facts, data } = JC;
+  const L = facts.level, DI = facts.distribution, S = facts.sectors;
+  const byId = id => document.getElementById(id);
+  const set = (id, html) => { const el = byId(id); if (el) el.innerHTML = html; };
+
+  /* ── SECTIONS ────────────────────────────────────────────────────
+     Verdict values are a fixed set so the summary stays scannable:
+     'null' renders grey, 'signal' renders terra. Never green.
+
+     Each row asks its section's question and answers it in one line:
+     `q` is the question, `big` the verdict word that opens the answer,
+     `read` the rest of it. `verdict` stays the terse label so the sticky
+     rail remains scannable.                                             */
+  const SECS = [
+    { id:'level', n:'01', lab:'The level', v:'null', verdict:'No',
+      q:'Is unemployment higher than growth predicts?', big:'No.',
+      read:`It is <b>${L.unrate}%</b>, at or below CBO&rsquo;s <b>${L.nrou}%</b> natural rate.` },
+    { id:'workers', n:'02', lab:'Across workers', v:'signal', verdict:'Concentrated',
+      q:'Is the weakness spread evenly across workers?', big:'No.',
+      read:`Graduates aged 22&ndash;27 carry <b>${sgn(DI.youngPP,1)} pp</b> more unemployment than their own pre-2020 norm. Non-graduates the same age: <b>${sgn(DI.nongradPP,1)} pp</b>.` },
+    { id:'sectors', n:'03', lab:'Across sectors', v:'signal', verdict:'Tech-exposed',
+      q:'Where has hiring slowed the most?', big:'In tech.',
+      read:`<b>${S.sector}</b> has decelerated <b>${Math.abs(S.slowdown).toFixed(1)} pp</b> against its pre-pandemic pace.` }
+  ];
+
+  /* ── masthead meta ───────────────────────────────────────────── */
+  set('vintage', `Data generated <b>${facts.generated}</b> &middot; latest labor market data ${L.month}`);
+
+  /* ── the short version, as editorial answer rows ──────────────── */
+  byId('answers').innerHTML = SECS.map(s => `
+    <button class="answer-row" data-go="${s.id}" aria-label="${s.q} ${s.big} Jump to section.">
+      <span class="ar-num">${s.n}</span>
+      <span class="ar-body">
+        <span class="ar-q">${s.q}</span>
+        <span class="ar-a"><span class="v ${s.v}">${s.big}</span> ${s.read}</span>
+        <span class="ar-go">Read the section &rarr;</span>
+      </span>
+    </button>`).join('');
+  byId('answers').querySelectorAll('[data-go]').forEach(b =>
+    b.addEventListener('click', () => byId(b.dataset.go).scrollIntoView({ block:'start' })));
+
+  /* No score. Said once, plainly, so the absence reads as a choice. */
+  set('svNote',
+    `Three views of the same labor market, not a score &mdash; they draw on overlapping data and are not independent tests. ` +
+    `The first is the coarsest measure here and the last place displacement would surface, so its quiet reading carries little weight. ` +
+    `The concentration in 02 and 03 is real, but neither section can separate an AI effect from the alternatives, and each says so.`);
+
+  /* ── interpolated figures ────────────────────────────────────── */
+  set('vLevel',      `${L.unrate}%`);
+  set('vWorkers',    `${sgn(DI.youngPP,1)} pp`);
+  set('vSectorName', String(S.sector));
+  /* "decelerated by −4.1 pp" is a double negative; the verb carries the sign */
+  set('vSectors',    `${Math.abs(S.slowdown).toFixed(1)} pp`);
+
+  set('lfpRead',
+    `Prime-age participation is <b>${L.lfpr}%</b>, ${sgn(L.lfprVsFeb,1)} pp against February 2020, so the headline rate is not ` +
+    `being flattered by people quietly leaving the labor force. Over the last four quarters, unemployment has run ` +
+    `${sgn(L.residMean,2)} pp from what Okun&rsquo;s law predicts &mdash; well inside the ordinary range.`);
+
+  set('ageRead',
+    `Graduates aged 22&ndash;27 face <b>${DI.actual.toFixed(1)}%</b> unemployment against the <b>${DI.pred.toFixed(1)}%</b> their own ` +
+    `pre-2020 relationship to the national rate predicts. That is <b>${sgn(DI.youngPP,1)} pp</b> more, or about ` +
+    `<b>${DI.pctMore.toFixed(0)}%</b> more unemployment than predicted, once the ${sgn(DI.youngBias,1)} pp the method reports in ` +
+    `placebo periods is netted out. Graduates aged 45&ndash;54 come in at <b>${sgn(DI.primePP,1)} pp</b> and non-graduates aged ` +
+    `20&ndash;27 at <b>${sgn(DI.nongradPP,1)} pp</b>: both indistinguishable from nothing.`);
+
+  /* ── technical spec, filled from the same payload the charts read ─── */
+  const AB = data.age_bands, ABd = AB.diagnostics, X = ABd.extrapolation;
+  set('mAgeRange', AB.source.cps_range.replace(' to ', '&ndash;'));
+  set('mAgeRecords', AB.source.cps_missing_months
+    ? `October 2025 is absent from the extract: the survey was not collected.` : '');
+  set('mAgeTrain', String(2019));
+  set('mAgeWindow', String(AB.months_window));
+  set('mAgeLatest', fmtDate(AB.headline.latest_month + '-01'));
+  set('mAgePlacebo', AB.placebo.mean_bias_pp.map(r => {
+    const cells = AB.placebo.scenarios.map(s => {
+      const lab = s.replace('train_','trained through ').replace('_test_',', measured over ')
+                   .replace(/_(\d{4})$/,'&ndash;$1');
+      return `${lab}: <b>${sgn(r[s],2)} pp</b>`;
+    }).join('; ');
+    return `<li>${r.edu_group} &mdash; ${cells}. Mean applied: <b>${sgn(r.placebo_bias,2)} pp</b>.</li>`;
+  }).join(''));
+  set('mAgeDiag',
+    `The prediction is out of sample in time but inside the support of the regressor, which is the ` +
+    `condition for reading it at all: the current 12-month-average national rate is ` +
+    `<b>${(X.overall_ma12_now*100).toFixed(2)}%</b>, inside the ` +
+    `<b>${(X.train_min*100).toFixed(2)}&ndash;${(X.train_max*100).toFixed(2)}%</b> range the fit was trained on. ` +
+    `Re-running at three-year bands and a three-month window instead of five and ${AB.months_window} gives ` +
+    ABd.sensitivity.map(r => `${r.edu_group} r = <b>${r.cor.toFixed(2)}</b>`).join(' and ') +
+    `. College+ is robust to that choice; HS+ (no BA) is not, but it is noise around zero rather than a ` +
+    `disagreement about shape, so no structure should be read into that line.`);
+
+  set('cesRead',
+    `<b>${S.sector}</b> has decelerated most: employment is growing <b>${S.recent}%</b> over the past year against a ` +
+    `<b>${S.baseline}%</b> pre-pandemic pace, a <b>${sgn(S.slowdown,1)} pp</b> slowdown. It is also the sector where AI ` +
+    `substitution is most plausible on priors. That coincidence is suggestive and nothing more.`);
+
+  const fit = data.okun.fit;
+  set('mOkunSample',
+    `${fit.sample_start.slice(0,4)}&ndash;${fit.sample_end.slice(0,4)}, quarterly, excluding ${fit.excluded.join(' and ')} ` +
+    `as pandemic outliers. Breakeven growth ${fit.breakeven_growth}%.`);
+  set('mOkunCaveat',
+    `The fit explains r&sup2; = ${fit.r2} of the variation, so residuals of a few tenths of a point are ordinary noise. ` +
+    `Only a shock large enough to be a macroeconomic event would clear it.`);
+  set('mCesSample',
+    `Past-year growth to ${data.ces_slowdown.latest_month}, compared with each sector&rsquo;s own 2015&ndash;19 average.`);
+
+  set('closingA',
+    `The headline says <b>no</b>. The detail says <b>not economy-wide, but concentrated</b> &mdash; among young graduates, and in ` +
+    `${String(S.sector).toLowerCase()}. Neither of those findings establishes a cause, and the coarse aggregate that reads quiet ` +
+    `is the instrument least able to detect a concentrated effect in the first place. If AI displacement is arriving, this is ` +
+    `where it would show up first, and where to keep watching.`);
+
+  /* ── rail ────────────────────────────────────────────────────── */
+  byId('rail').innerHTML =
+    `<div class="rail-t">Sections</div>` +
+    SECS.map(s => `<a href="#${s.id}" data-s="${s.id}"><span class="rn">${s.n}</span><span class="rdot ${s.v}"></span><span>${s.verdict}</span></a>`).join('') +
+    `<a class="rail-back" href="#top">&uarr; The short version</a>`;
+  byId('rail').querySelector('.rail-back').addEventListener('click', e => {
+    e.preventDefault(); window.scrollTo({ top:0, behavior:'smooth' });
+  });
+
+  /* ── lazy chart render ───────────────────────────────────────── */
+  const CHARTS = {
+    level:   ['renderOkun','renderLFP'],
+    workers: ['renderAgeGap','renderAges','renderAgeTime'],
+    sectors: ['renderCES']
+  };
+  const drawn = {};
+  const drawFor = id => (CHARTS[id] || []).forEach(fn => {
+    if (!drawn[fn] && typeof JC[fn] === 'function') { JC[fn](); drawn[fn] = true; }
+  });
+
+  const drawObs = new IntersectionObserver(es => es.forEach(en => {
+    if (!en.isIntersecting) return;
+    drawFor(en.target.id);
+    en.target.classList.add('in');
+    drawObs.unobserve(en.target);
+  }), { rootMargin:'250px 0px' });
+  document.querySelectorAll('.sec').forEach(el => drawObs.observe(el));
+
+  /* ── rail active state + citable anchors ─────────────────────── */
+  const links = {};
+  document.querySelectorAll('.rail a[data-s]').forEach(a => links[a.dataset.s] = a);
+  let cur = null;
+  const spy = new IntersectionObserver(es => es.forEach(en => {
+    if (!en.isIntersecting || en.target.id === cur) return;
+    cur = en.target.id;
+    Object.values(links).forEach(a => a.classList.remove('here'));
+    if (links[cur]) links[cur].classList.add('here');
+    /* guarded: replaceState throws a SecurityError under file:// */
+    try { history.replaceState(null, '', '#' + cur); } catch (_) {}
+    if (links[cur] && window.innerWidth <= 980) links[cur].scrollIntoView({ block:'nearest', inline:'center' });
+  }), { rootMargin:'-15% 0px -70% 0px' });
+  document.querySelectorAll('.sec').forEach(el => spy.observe(el));
+
+  /* arriving on a deep link: draw that section immediately */
+  if (location.hash) {
+    const el = document.querySelector(location.hash);
+    if (el && el.classList.contains('sec')) {
+      drawFor(el.id); el.classList.add('in');
+      requestAnimationFrame(() => el.scrollIntoView());
+    }
+  }
+})();
+</script>
+
+</body>
+</html>
