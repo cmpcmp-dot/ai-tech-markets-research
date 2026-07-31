@@ -10,6 +10,7 @@
    Data globals:
      window.BTOS_DATA      — data/btos-data.js          (biweekly + AI supplement)
      window.BTOS_EXPOSURE  — data/btos-exposure-data.js (exposure x adoption, T1)
+     window.US_ALBERS      — data/us-albers-data.js     (state outlines + MSA points)
 
    Renderers target canonical element IDs, all prefixed `ad`:
      renderExposure()   -> #adExposureScatter #adExposureTime #adExposureTable
@@ -20,7 +21,8 @@
      renderSupSector()  -> #adSupSector
      renderSubsector()  -> #adSubsector
      renderDiffusion()  -> #adDiffusion
-     renderGeography()  -> #adStates #adMSA
+     renderGeography()  -> #adStates #adMSA      (ranked bars; optional fallback)
+     renderStateMap()   -> #adStateMap #adMapNote (significance choropleth + metros)
      renderSupFunctions()  -> #adSupFunctions
      renderSupGenai()      -> #adSupGenai
      renderSupBarriers()   -> #adSupBarriers
@@ -55,6 +57,11 @@
   // plots them as a precise zero. Always use fin().
   const fin   = v => v != null && v !== '' && isFinite(v);
   const num   = (v, dp) => !fin(v) ? '—' : (+v).toFixed(dp == null ? 2 : dp);
+  // Rounded percentages. Whole numbers from 10 up; one decimal below, because
+  // at the low end rounding erases differences that carry the argument — the
+  // gap between adopters reporting an employment increase (2.3%) and a
+  // decrease (2.0%) is the case in point, and both round to "2%".
+  const pct   = v => !fin(v) ? '—' : Math.abs(v) >= 10 ? String(Math.round(v)) : (+v).toFixed(1);
   const sgn   = (v, dp) => !fin(v) ? '—' : (v >= 0 ? '+' : '') + (+v).toFixed(dp == null ? 1 : dp);
   const stars = p => p == null ? '' : p < 0.01 ? '***' : p < 0.05 ? '**' : p < 0.1 ? '*' : '';
 
@@ -189,7 +196,7 @@
         s += drawBar(r.value2, r.color2 || C.goldLine, cy + 1);
       } else {
         s += drawBar(r.value, r.color, cy - bh / 2);
-        if (fin(r.value)) s += `<text x="${X(r.value) + (r.value < 0 ? -4 : 4)}" y="${cy + 3}" text-anchor="${r.value < 0 ? 'end' : 'start'}" font-size="10" font-weight="600" fill="${r.color}">${opts.signed ? sgn(r.value, 1) : (+r.value).toFixed(1)}</text>`;
+        if (fin(r.value)) s += `<text x="${X(r.value) + (r.value < 0 ? -4 : 4)}" y="${cy + 3}" text-anchor="${r.value < 0 ? 'end' : 'start'}" font-size="10" font-weight="600" fill="${r.color}">${opts.signed ? sgn(r.value, 1) : pct(r.value)}</text>`;
       }
       s += `<text x="${mLl - 8}" y="${cy + 3.5}" text-anchor="end" font-size="10.5" fill="${C.text}">${r.label}${r.suppressed ? ' †' : ''}</text>`;
     });
@@ -316,10 +323,14 @@
       h: 380
     });
 
+    // The design is Tucker's; this is a replication on different exposure
+    // inputs, so the benchmark line reads as "ours vs the original", not as
+    // two independent teams agreeing.
     if (pca) setHTML('adExposureHead',
-      `<b>${sgn(pca.slope_pp_per_sd, 1)} pp</b> of adoption per standard deviation of exposure &middot; ` +
+      `This replication: <b>${sgn(pca.slope_pp_per_sd, 1)} pp</b> of adoption per standard deviation of exposure &middot; ` +
       `R<sup>2</sup> = <b>${num(pca.r2, 2)}</b> &middot; n = ${pca.n} industries&nbsp;&nbsp;` +
-      `<span class="ad-bench">Tucker (2025) reports 6.7 pp, R<sup>2</sup> ≈ 0.47 on an independent construction.</span>`);
+      `<span class="ad-bench">Tucker (2025), the original design: ${num(t1.tucker_slope, 1)} pp, ` +
+      `R<sup>2</sup> &asymp; ${num(t1.tucker_r2, 2)}.</span>`);
 
     // Headline composite first, then the components by explanatory power, so
     // the first row (which the CSS emphasises) is the metric the text quotes.
@@ -545,6 +556,149 @@
       `blocs. Multi-state ("XX") filers are excluded.`);
   }
 
+  /* ══ 05 — GEOGRAPHY: GRADIENT CHOROPLETH + METRO OVERLAY ══════════════════
+     A straight sequential choropleth of the published levels. Every state with
+     an estimate gets a shade on one continuous ramp, so the whole distribution
+     is visible even though the range is narrow; no binning, no significance
+     testing, no editorial overlay. Hover gives the estimate and its standard
+     error, and the note says plainly that these are imprecise.
+
+     Geometry comes from data/us-albers-data.js (pre-projected Albers USA,
+     975x610), so there is no projection maths at runtime and no CDN. Metro
+     circles are the 25 largest MSAs at their principal city, on the same ramp
+     and sized by adoption. Puerto Rico has an estimate but no polygon in that
+     file, and ten small states plus DC are unreadable at this scale, so all of
+     them get a labelled square in the strip beneath the map.
+     ═════════════════════════════════════════════════════════════════════════ */
+  const NAT_STRIP = ['MA','MD','DE','NJ','CT','RI','NH','VT','DC','PR'];
+  const NO_DATA_FILL = '#e0ddd0';
+
+  // Sequential ramp, light warm stone -> Warm Navy. Interpolated in sRGB,
+  // which is fine for a two-stop single-hue scale.
+  const RAMP = [[240, 235, 216], [44, 50, 84]];
+  function rampColor(t) {
+    t = Math.max(0, Math.min(1, t));
+    // Slight gamma so the crowded middle of a narrow range still separates.
+    const e = Math.pow(t, 0.85);
+    const c = RAMP[0].map((a, i) => Math.round(a + (RAMP[1][i] - a) * e));
+    return `rgb(${c[0]},${c[1]},${c[2]})`;
+  }
+  // Luminance-aware label colour so values stay legible at both ends. The
+  // switch is deliberately early (0.45, not 0.5) because dark ink on a
+  // mid-navy fill is the worst case and light ink on a mid fill still reads.
+  const inkOn = t => Math.pow(Math.max(0, Math.min(1, t)), 0.85) > 0.45 ? '#fffdf2' : C.headline;
+
+  function renderStateMap() {
+    const svg = byId('adStateMap'); if (!svg) return;
+    const U = window.US_ALBERS;
+    if (!U) { svg.innerHTML = `<text x="20" y="30" font-size="12" fill="${C.muted}">Map geometry not loaded.</text>`; return; }
+
+    const stRows = arr(D.geography && D.geography.states);
+    const msRows = arr(D.geography && D.geography.msas);
+    const byCode = {}; stRows.forEach(s => byCode[s.code] = s);
+
+    // One ramp domain across both layers so a state and a metro of the same
+    // shade mean the same adoption rate.
+    const all = stRows.concat(msRows).filter(r => fin(r.est)).map(r => r.est);
+    const lo = Math.floor(Math.min(...all)), hi = Math.ceil(Math.max(...all));
+    const t = v => (v - lo) / ((hi - lo) || 1);
+
+    const W = 975, MAPH = 610, STRIP = 72, LEG = 38, H = MAPH + STRIP + LEG;
+    svg.setAttribute('viewBox', `0 0 ${W} ${H}`);
+    svg.setAttribute('preserveAspectRatio', 'xMidYMid meet');
+
+    const tipFor = (name, v, se, extra) =>
+      `${name}<br>AI use: <b>${fin(v) ? pct(v) + '%' : 'no estimate'}</b>` +
+      `${fin(se) ? ` &plusmn;${num(se, 1)}` : ''}${extra || ''}`;
+
+    let s = `<defs><linearGradient id="adRampGrad" x1="0" y1="0" x2="1" y2="0">` +
+      [0, .25, .5, .75, 1].map(p => `<stop offset="${p * 100}%" stop-color="${rampColor(p)}"/>`).join('') +
+      `</linearGradient></defs>`;
+
+    /* ── states ── */
+    U.states.forEach(g => {
+      const r = byCode[g.code], has = r && fin(r.est);
+      s += `<path d="${g.d}" fill="${has ? rampColor(t(r.est)) : NO_DATA_FILL}"` +
+           ` stroke="${C.grid}" stroke-width="0.6"` +
+           ` data-tip="${esc(tipFor(g.name, r && r.est, r && r.se))}" style="cursor:default"/>`;
+    });
+
+    /* Value labels on the states with room for one, so the map can be read
+       without hovering. Small states are covered by the strip below. */
+    stRows.forEach(r => {
+      if (!fin(r.est) || NAT_STRIP.indexOf(r.code) >= 0) return;
+      const a = U.labelAnchors[r.code]; if (!a) return;
+      s += `<text x="${a[0]}" y="${a[1] + 3}" text-anchor="middle" font-size="9.5" font-weight="600"` +
+           ` fill="${inkOn(t(r.est))}" pointer-events="none">${pct(r.est)}</text>`;
+    });
+
+    /* ── metros: same ramp, sized by adoption ── */
+    const mvals = msRows.filter(m => fin(m.est)).map(m => m.est);
+    const rlo = Math.sqrt(Math.min(...mvals)), rhi = Math.sqrt(Math.max(...mvals));
+    const rad = v => 4 + (Math.sqrt(v) - rlo) / ((rhi - rlo) || 1) * 5.5;
+    msRows.slice().sort((a, b) => (b.est || 0) - (a.est || 0)).forEach(m => {
+      const xy = U.metros[String(m.code)]; if (!xy || !fin(m.est)) return;
+      s += `<circle cx="${xy[0]}" cy="${xy[1]}" r="${num(rad(m.est), 1)}"` +
+           ` fill="${rampColor(t(m.est))}" stroke="#fffdf2" stroke-width="1.6"` +
+           ` data-tip="${esc(tipFor(m.name, m.est, m.se, '<br><span style="opacity:.8">metro area</span>'))}"/>`;
+    });
+
+    /* ── strip: entities the map cannot show at this scale ── */
+    const sy = MAPH + 12, sq = 26;
+    s += `<text x="0" y="${sy + 2}" font-size="10.5" font-weight="600" fill="${C.headline}">` +
+         `Too small to read at this scale, plus Puerto Rico (no polygon in the Albers projection)</text>`;
+    NAT_STRIP.forEach((code, i) => {
+      const r = byCode[code], has = r && fin(r.est);
+      const x = i * (sq + 34) + 1, y = sy + 12;
+      s += `<rect x="${x}" y="${y}" width="${sq}" height="${sq}" rx="2"` +
+           ` fill="${has ? rampColor(t(r.est)) : NO_DATA_FILL}" stroke="${C.grid}" stroke-width="0.8"` +
+           ` data-tip="${esc(tipFor((r && r.code) || code, r && r.est, r && r.se))}"/>`;
+      s += `<text x="${x + sq / 2}" y="${y + sq / 2 + 3.6}" text-anchor="middle" font-size="10" font-weight="600"` +
+           ` fill="${has ? inkOn(t(r.est)) : C.headline}" pointer-events="none">${code}</text>`;
+      s += `<text x="${x + sq + 5}" y="${y + sq / 2 + 3.6}" font-size="9.5" fill="${C.muted}" pointer-events="none">` +
+           `${has ? pct(r.est) : '—'}</text>`;
+    });
+
+    /* ── legend: continuous ramp bar with ticks, then the size key ── */
+    const ly = MAPH + STRIP + 8, bw = 240, bh = 11;
+    s += `<text x="0" y="${ly + bh - 1}" font-size="10.5" fill="${C.text}">Share of businesses using AI</text>`;
+    const bx = 172;
+    s += `<rect x="${bx}" y="${ly}" width="${bw}" height="${bh}" fill="url(#adRampGrad)" stroke="${C.grid}" stroke-width="0.6"/>`;
+    [lo, Math.round((lo + hi) / 2), hi].forEach((v, i) => {
+      const x = bx + [0, bw / 2, bw][i];
+      s += `<text x="${x}" y="${ly + bh + 12}" text-anchor="${i === 0 ? 'start' : i === 2 ? 'end' : 'middle'}"` +
+           ` font-size="9.5" fill="${C.muted}">${v}%</text>`;
+    });
+    let lx = bx + bw + 26;
+    s += `<rect x="${lx}" y="${ly}" width="${bh}" height="${bh}" rx="2" fill="${NO_DATA_FILL}" stroke="${C.grid}" stroke-width="0.6"/>`;
+    s += `<text x="${lx + bh + 6}" y="${ly + bh - 1}" font-size="10.5" fill="${C.text}">No estimate</text>`;
+    lx += bh + 90;
+    s += `<text x="${lx}" y="${ly + bh - 1}" font-size="10.5" fill="${C.text}">Metros, sized by adoption:</text>`;
+    lx += 152;
+    [Math.min(...mvals), Math.max(...mvals)].forEach(v => {
+      s += `<circle cx="${lx + rad(v)}" cy="${ly + bh / 2}" r="${num(rad(v), 1)}" fill="${rampColor(t(v))}" stroke="#fffdf2" stroke-width="1.6"/>`;
+      s += `<text x="${lx + rad(v)}" y="${ly + bh + 12}" text-anchor="middle" font-size="9.5" fill="${C.muted}">${pct(v)}%</text>`;
+      lx += rad(v) * 2 + 30;
+    });
+
+    svg.innerHTML = s;
+    bindTips(svg);
+
+    const withData = stRows.filter(r => fin(r.est));
+    const top = withData.slice().sort((a, b) => b.est - a.est)[0];
+    const bot = withData.slice().sort((a, b) => a.est - b.est)[0];
+    const ses = withData.filter(r => fin(r.se)).map(r => r.se).sort((a, b) => a - b);
+    setHTML('adMapNote',
+      `Firm-weighted share of businesses reporting AI use, latest collection period (${fmtDate(D.latest_date)}), ` +
+      `against a national rate of ${pct(D.headline_now.current)}%. States run from <b>${top.code} ${pct(top.est)}%</b> ` +
+      `down to <b>${bot.code} ${pct(bot.est)}%</b>; circles are the 25 largest metro areas, on the same colour scale ` +
+      `and sized by their rate. Hover anything for its estimate and standard error. ` +
+      `These are state and metro subsamples of a firm survey, so the estimates are imprecise — the median state ` +
+      `standard error is ${num(ses[Math.floor(ses.length / 2)], 1)} percentage points, which is large next to the ` +
+      `spread across states, so individual ranks are less reliable than the broad pattern. ` +
+      `Alaska and Rhode Island are suppressed by Census; multi-state ("XX") filers are excluded.`);
+  }
+
   /* ══ 04 — WHAT AI IS DOING, AND WHY FIRMS SAY NO ══════════════════════════ */
   function renderSupFunctions() {
     supBars('adSupFunctions', 'adSupFunctionsNote', D.supplement && D.supplement.business_functions, {
@@ -614,6 +768,42 @@
       ` &middot; source: ${D.source.api}`);
   }
 
+  /* ══ THE CHAIN — headline number on each of the six spine links ═══════════
+     The link labels are editorial and live in index.html; the numbers are
+     filled here so the spine can never disagree with the charts below it. */
+  function renderChain() {
+    const nat = D.headline_now.current;
+    const sz = arr(D.size_class);
+    const last = s => arr(s && s.series).filter(p => fin(p.est)).slice(-1)[0];
+    const big = last(sz[sz.length - 1]), small = last(sz[0]);
+    const pca = E && E.t1 ? arr(E.t1.coefs).find(c => c.metric === 'pca_score') : null;
+    const genai = arr(D.supplement && D.supplement.genai_tasks).slice()
+      .sort((a, b) => b.share - a.share)[0];
+    const noChange = arr(D.supplement && D.supplement.employment_effect)
+      .find(r => /no change/i.test(r.label));
+    const stVals = arr(D.geography && D.geography.states).filter(r => fin(r.est)).map(r => r.est);
+
+    // Spacing is explicit (&nbsp;) rather than left to CSS margins, so the
+    // number and its unit never collide and never wrap apart.
+    const u = t => `<span class="u">${t}</span>`;
+    const put = (id, html) => setHTML('adChainV-' + id, html == null ? '&mdash;' : html);
+
+    put('aggregate', pct(nat) + u('%'));
+    put('exposure', pca ? sgn(pca.slope_pp_per_sd, 1) + u('&nbsp;pp per SD') : null);
+    put('who', big && small
+      ? pct(big.est) + u('%&nbsp;vs') + '&nbsp;' + pct(small.est) + u('%') : null);
+    put('what-for', genai ? pct(genai.share) + u('%') : null);
+    put('where', stVals.length
+      ? pct(Math.max(...stVals)) + u('%&nbsp;to') + '&nbsp;' + pct(Math.min(...stVals)) + u('%') : null);
+    put('jobs', noChange ? pct(noChange.share) + u('%') : null);
+  }
+
+  /* Every renderer no-ops when its target element is absent, so the markup in
+     index.html decides which figures the tab shows. Currently unused slots,
+     kept live so re-adding the element is the only edit needed to restore the
+     chart: #adExpect (expected vs realized), #adExposureTime (gradient over
+     time), #adStates / #adMSA (ranked geography bars), #adTopStats (the three
+     summary boxes — the chain spine carries those numbers now). */
   function renderAll() {
     try { renderExposure(); }   catch (e) { console.error('adoption: exposure', e); }
     try { renderHeadline(); }   catch (e) { console.error('adoption: headline', e); }
@@ -624,14 +814,16 @@
     try { renderSubsector(); }  catch (e) { console.error('adoption: subsector', e); }
     try { renderDiffusion(); }  catch (e) { console.error('adoption: diffusion', e); }
     try { renderGeography(); }  catch (e) { console.error('adoption: geography', e); }
+    try { renderStateMap(); }   catch (e) { console.error('adoption: stateMap', e); }
     try { renderSupFunctions(); } catch (e) { console.error('adoption: functions', e); }
     try { renderSupGenai(); }     catch (e) { console.error('adoption: genai', e); }
     try { renderSupBarriers(); }  catch (e) { console.error('adoption: barriers', e); }
     try { renderSupEmpEffect(); } catch (e) { console.error('adoption: empEffect', e); }
     try { renderMeta(); }         catch (e) { console.error('adoption: meta', e); }
+    try { renderChain(); }        catch (e) { console.error('adoption: chain', e); }
   }
 
-  window.ADOPTION_CHARTS = { C, data: D, exposure: E, renderAll };
+  window.ADOPTION_CHARTS = { C, data: D, exposure: E, renderAll, renderStateMap, renderChain };
   // Fixed-viewBox SVGs lay out correctly even while the tab is hidden, so render
   // eagerly rather than on first tab activation.
   if (document.readyState !== 'loading') renderAll();

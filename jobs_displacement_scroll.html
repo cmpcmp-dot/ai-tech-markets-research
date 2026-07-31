@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Is AI displacing workers yet?</title>
+<style>
+  /* ═══════════════════════════════════════════════════════════════════
+     JOB DISPLACEMENT — SCROLL LAYOUT
+
+     One scrolling document. Masthead, a short-version table that is the
+     whole piece in 20 seconds, then three sections you can jump to or
+     read straight through. Sticky rail carries the verdicts with you.
+
+     Two rules held from the editorial discussion, kept structural but
+     kept quiet:
+       · A "no" renders in neutral grey, never green. Green reads as
+         all-clear, and a null is not good news, it is no news.
+       · No score is published, and each section states its own main
+         alternative explanation in the body rather than in a footnote.
+
+     Palette and fonts are brand-locked to ESP C3, copied from index.html.
+     Charts come from assets/jobs-charts.js against the canonical IDs.
+     ═══════════════════════════════════════════════════════════════════ */
+
+  @font-face { font-family:'Publico Banner'; src:url('fonts/PublicoBannerMedium.otf') format('opentype'); font-weight:500; font-style:normal; font-display:swap; }
+  @font-face { font-family:'Publico Banner'; src:url('fonts/PublicoBannerRoman.otf') format('opentype'); font-weight:400; font-style:normal; font-display:swap; }
+  @font-face { font-family:'Haas Grotesk'; src:url('fonts/HaasGrotDisp55Roman.otf') format('opentype'); font-weight:400 600; font-style:normal; font-display:swap; }
+  @font-face { font-family:'Public Sans'; src:url('fonts/PublicSans-Regular.ttf') format('truetype'); font-weight:400; font-style:normal; font-display:swap; }
+  @font-face { font-family:'Public Sans'; src:url('fonts/PublicSans-Medium.ttf') format('truetype'); font-weight:500; font-style:normal; font-display:swap; }
+  @font-face { font-family:'Public Sans'; src:url('fonts/PublicSans-SemiBold.ttf') format('truetype'); font-weight:600; font-style:normal; font-display:swap; }
+  @font-face { font-family:'Public Sans'; src:url('fonts/PublicSans-Bold.ttf') format('truetype'); font-weight:700; font-style:normal; font-display:swap; }
+
+  :root {
+    --navy:#2c3254; --beige:#f4f2e4; --light-beige:#fffdf2;
+    --green:#70ad8f; --green-hover:#84cca8; --purple:#472b51;
+    --gold:#ebc382; --gold-deep:#c99a3f; --pink:#ffbfa7; --terra:#b06a4f;
+    --headline:#232849; --divider:#caccd4;
+    --serif:'Publico Banner',Georgia,serif;
+    --grot:'Haas Grotesk','Helvetica Neue',Arial,sans-serif;
+    --sans:'Public Sans',-apple-system,'Segoe UI',system-ui,sans-serif;
+
+    --surface:var(--light-beige); --border:var(--divider);
+    --text:#3c4164; --muted:#6d7091;
+
+    /* verdict semantics — a "no" is grey, never green */
+    --null-ink:#75788f; --null-bg:rgba(109,112,145,.10);
+    --sig-ink:#a35f45;  --sig-bg:rgba(176,106,79,.13);
+
+    --rail-w:190px;
+    --col:840px;      /* content column; figures span this */
+    --measure:660px;  /* prose measure; figures break out of it */
+  }
+
+  * { box-sizing:border-box; margin:0; padding:0; }
+  html { scroll-behavior:smooth; scroll-padding-top:20px; }
+  @media (prefers-reduced-motion:reduce) { html { scroll-behavior:auto; } }
+  body { background:var(--beige); color:var(--text); font-family:var(--sans); line-height:1.6; min-height:100vh; display:flex; flex-direction:column; -webkit-font-smoothing:antialiased; }
+  a { color:var(--navy); }
+  :focus-visible { outline:2px solid var(--green); outline-offset:3px; border-radius:3px; }
+
+  /* ── HEADER ─────────────────────────────────────────────────────── */
+  .site-header { background:var(--navy); color:var(--beige); padding:24px 32px 22px; flex-shrink:0; }
+  .header-inner { max-width:1140px; margin:0 auto; display:flex; align-items:center; justify-content:space-between; gap:24px; }
+  .header-brand { display:flex; align-items:center; gap:18px; min-width:0; }
+  .header-brand img { height:42px; width:auto; flex-shrink:0; }
+  .site-header h1 { font-size:clamp(20px,2.5vw,28px); font-weight:700; letter-spacing:-.015em; line-height:1.2; margin-bottom:3px; color:var(--beige); font-family:var(--serif); }
+  .site-header h1 a { color:var(--beige); text-decoration:none; }
+  .site-header h1 a:hover { color:var(--green-hover); }
+  .header-sub { font-family:var(--grot); font-size:13px; letter-spacing:.02em; color:var(--divider); }
+  .header-nav { display:flex; align-items:center; gap:6px; flex-shrink:0; flex-wrap:wrap; }
+  .header-nav-btn { background:none; border:none; cursor:pointer; font-family:var(--grot); font-size:14px; font-weight:500; letter-spacing:.02em; color:var(--divider); padding:6px 13px; border-bottom:2px solid transparent; transition:color .15s,border-color .15s; white-space:nowrap; }
+  .header-nav-btn:hover { color:var(--beige); }
+  .header-nav-btn.active { color:#fff; font-weight:600; border-bottom-color:var(--green); }
+
+  main { flex:1; width:100%; max-width:1140px; margin:0 auto; padding:0 30px 64px; }
+
+  /* ══ MASTHEAD ═════════════════════════════════════════════════════ */
+  .mast { padding:40px 0 0; max-width:var(--col); }
+  .eyebrow { font-family:var(--grot); font-size:11px; font-weight:700; letter-spacing:.16em; text-transform:uppercase; color:var(--green); margin-bottom:14px; display:flex; align-items:center; gap:10px; }
+  .eyebrow::after { content:""; flex:1; height:1px; background:var(--border); }
+  .mast h2 { font-family:var(--serif); font-weight:500; font-size:clamp(34px,5.4vw,58px); line-height:1.02; letter-spacing:-.018em; color:var(--headline); max-width:15ch; }
+  .mast h2 em { font-style:italic; color:var(--terra); }
+  .stand { font-size:16px; line-height:1.7; color:var(--muted); max-width:62ch; margin-top:18px; }
+
+  .meta { display:flex; flex-wrap:wrap; align-items:center; gap:9px 16px; margin-top:22px; padding-top:15px; border-top:1px solid var(--border); }
+  .vintage { font-family:var(--grot); font-size:11.5px; letter-spacing:.03em; color:var(--muted); }
+  .vintage b { color:var(--headline); font-weight:600; }
+  .doclink { font-family:var(--grot); font-size:12px; font-weight:600; letter-spacing:.02em; color:var(--navy); text-decoration:none; border:1px solid var(--border); border-radius:999px; padding:5px 13px; background:var(--surface); transition:border-color .15s,color .15s; }
+  .doclink:hover { border-color:var(--green); color:var(--headline); }
+
+  /* ══ THE SHORT VERSION ════════════════════════════════════════════
+     The whole piece in 20 seconds. Three rows, each a jump link. ═══ */
+  .sv { margin:38px 0 0; max-width:var(--col); }
+  .sv-t { font-family:var(--grot); font-size:11px; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:var(--muted); margin-bottom:11px; }
+  .sv-box { background:var(--surface); border:1px solid var(--border); border-radius:12px; overflow:hidden; }
+  .sv-row {
+    display:grid; grid-template-columns:34px 1fr 168px 150px; align-items:center; gap:16px;
+    width:100%; text-align:left; background:none; border:none; cursor:pointer;
+    padding:15px 20px; border-bottom:1px solid rgba(202,204,212,.6);
+    font-family:inherit; transition:background .15s;
+  }
+  .sv-row:last-child { border-bottom:none; }
+  .sv-row:hover { background:rgba(112,173,143,.07); }
+  .sv-n { font-family:var(--grot); font-size:11px; font-weight:700; color:var(--divider); font-variant-numeric:tabular-nums; }
+  .sv-lab { font-family:var(--grot); font-size:14px; font-weight:600; color:var(--headline); letter-spacing:.01em; }
+  .sv-v { font-family:var(--grot); font-size:11.5px; font-weight:700; letter-spacing:.07em; text-transform:uppercase; padding:5px 12px; border-radius:999px; justify-self:start; white-space:nowrap; }
+  .sv-v.null   { color:var(--null-ink); background:var(--null-bg); }
+  .sv-v.signal { color:var(--sig-ink);  background:var(--sig-bg); }
+  .sv-num { font-family:var(--serif); font-size:19px; color:var(--headline); font-variant-numeric:tabular-nums; text-align:right; line-height:1.2; }
+  .sv-num small { display:block; font-family:var(--grot); font-size:10px; color:var(--muted); letter-spacing:.04em; margin-top:3px; text-transform:uppercase; }
+  .sv-note { font-size:13px; line-height:1.65; color:var(--muted); margin:13px 2px 0; max-width:76ch; }
+
+  /* ══ SCROLL: rail + sections ══════════════════════════════════════ */
+  .wrap { display:grid; grid-template-columns:var(--rail-w) minmax(0,1fr); gap:48px; margin-top:8px; align-items:start; }
+
+  .rail { position:sticky; top:22px; padding-top:52px; }
+  .rail-t { font-family:var(--grot); font-size:9.5px; font-weight:700; letter-spacing:.13em; text-transform:uppercase; color:var(--muted); padding:0 0 9px 12px; }
+  .rail a {
+    display:grid; grid-template-columns:16px 9px 1fr; align-items:center; gap:9px;
+    text-decoration:none; padding:8px 12px; border-left:2px solid var(--border);
+    font-family:var(--grot); font-size:11.5px; line-height:1.3; color:var(--muted);
+    transition:color .15s,border-color .15s;
+  }
+  .rail a:hover { color:var(--headline); }
+  .rail a.here { color:var(--headline); font-weight:600; border-left-color:var(--green); }
+  .rail a .rn { font-size:10px; font-weight:700; font-variant-numeric:tabular-nums; color:var(--divider); }
+  .rail a.here .rn { color:var(--green); }
+  .rail a .rdot { width:9px; height:9px; border-radius:50%; }
+  .rail a .rdot.null   { background:var(--null-ink); }
+  .rail a .rdot.signal { background:var(--sig-ink); }
+  .rail-back { display:block; margin:16px 0 0 12px; font-family:var(--grot); font-size:11px; color:var(--muted); text-decoration:none; }
+  .rail-back:hover { color:var(--headline); }
+
+  /* ── SECTION ──────────────────────────────────────────────────── */
+  .sec { max-width:var(--col); padding:52px 0 46px; border-bottom:1px solid var(--border); scroll-margin-top:20px; }
+  .sec:last-of-type { border-bottom:none; }
+  .sec-kick { font-family:var(--grot); font-size:11.5px; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:var(--green); margin-bottom:16px; display:flex; align-items:center; gap:11px; }
+  .sec-kick .kn { color:var(--divider); font-variant-numeric:tabular-nums; }
+
+  /* the verdict sentence, set large — the section's whole argument */
+  .verdict { font-family:var(--serif); font-weight:400; font-size:clamp(22px,2.9vw,31px); line-height:1.32; color:var(--headline); max-width:22ch; letter-spacing:-.008em; }
+  .verdict b { font-weight:500; font-variant-numeric:tabular-nums; }
+  .verdict .no { color:var(--null-ink); font-style:italic; }
+  .verdict .yes { color:var(--terra); font-style:italic; }
+  .sec-q { font-family:var(--grot); font-size:13px; color:var(--muted); margin-top:12px; max-width:56ch; line-height:1.6; }
+
+  /* figures break out of the prose measure */
+  .figure { margin:26px 0 0; width:100%; }
+  .jd-chart-wrap { background:var(--surface); border:1px solid var(--border); border-radius:10px; padding:16px 14px 12px; }
+  .jd-chart-title { font-family:var(--grot); font-size:13px; font-weight:600; color:var(--headline); margin:0 4px 2px; }
+  .jd-chart-sub { font-size:11.5px; color:var(--muted); margin:0 4px 8px; }
+  .jd-svg { width:100%; height:auto; display:block; font-family:var(--sans); }
+  .jd-chart-note { font-size:11px; color:var(--muted); margin:8px 4px 0; line-height:1.5; }
+  .jd-legend { display:flex; flex-wrap:wrap; gap:15px; margin:6px 4px 2px; font-size:12px; color:var(--text); }
+  .jd-legend span { display:inline-flex; align-items:center; gap:6px; }
+  .jd-legend i { width:13px; height:4px; border-radius:2px; display:inline-block; }
+  .jd-legend i.dot { width:10px; height:10px; border-radius:50%; }
+  .jd-flag { display:inline-flex; align-items:center; gap:8px; font-family:var(--grot); font-size:12px; font-weight:600; background:var(--navy); color:var(--beige); border-radius:999px; padding:6px 13px; margin:16px 0 0; }
+  .jd-flag b { color:var(--gold); }
+  .jd-tooltip { position:fixed; pointer-events:none; background:var(--navy); color:var(--beige); font-family:var(--sans); font-size:12px; line-height:1.5; padding:7px 10px; border-radius:6px; box-shadow:0 4px 16px rgba(0,0,0,.28); opacity:0; transition:opacity .1s; z-index:60; max-width:250px; }
+  .jd-tooltip b { color:#fff; }
+
+  /* prose sits at the narrower measure */
+  .prose { max-width:var(--measure); margin-top:26px; }
+  .prose p { font-size:15px; line-height:1.78; margin-bottom:15px; }
+  .prose p:last-child { margin-bottom:0; }
+  .prose em { color:var(--headline); font-style:italic; }
+
+  /* the caveat is body text, not a warning box — it belongs to the argument */
+  .caveat { max-width:var(--measure); margin-top:18px; padding-left:16px; border-left:2px solid var(--gold); }
+  .caveat p { font-size:14px; line-height:1.7; color:var(--muted); }
+  .caveat b { font-family:var(--grot); font-size:9.5px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--gold-deep); display:block; margin-bottom:5px; }
+
+  /* ▸ How this is measured */
+  details.method { max-width:var(--measure); margin-top:22px; border-top:1px solid var(--border); }
+  details.method summary {
+    cursor:pointer; list-style:none; padding:13px 0 12px;
+    font-family:var(--grot); font-size:12px; font-weight:600; letter-spacing:.02em; color:var(--navy);
+    display:flex; align-items:center; gap:9px;
+  }
+  details.method summary::-webkit-details-marker { display:none; }
+  details.method summary::before { content:"▸"; font-size:10px; color:var(--green); transition:transform .18s; display:inline-block; }
+  details.method[open] summary::before { transform:rotate(90deg); }
+  details.method summary:hover { color:var(--headline); }
+  .method-body { padding:0 0 16px 19px; }
+  .method-body dl { display:grid; grid-template-columns:auto 1fr; gap:7px 16px; }
+  .method-body dt { font-family:var(--grot); font-size:9.5px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--muted); padding-top:3px; white-space:nowrap; }
+  .method-body dd { font-size:13.5px; line-height:1.6; color:var(--text); }
+  .method-more { margin-top:13px; font-family:var(--grot); font-size:11.5px; font-weight:600; color:var(--navy); text-decoration:none; display:inline-block; }
+  .method-more:hover { text-decoration:underline; }
+
+  /* what would change this verdict */
+  .change {
+    max-width:var(--measure); margin-top:6px; padding:14px 18px;
+    background:var(--surface); border:1px solid var(--border); border-radius:10px;
+    display:flex; gap:13px; align-items:baseline;
+  }
+  .change b { font-family:var(--grot); font-size:9.5px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--green); flex-shrink:0; }
+  .change span { font-size:13.5px; line-height:1.6; color:var(--text); }
+
+  /* ── CLOSING ──────────────────────────────────────────────────── */
+  .closing { max-width:var(--col); margin-top:44px; padding:26px 30px; background:var(--navy); color:var(--beige); border-radius:14px; }
+  .closing .ct { font-family:var(--grot); font-size:11px; font-weight:700; letter-spacing:.13em; text-transform:uppercase; color:var(--gold); margin-bottom:12px; }
+  .closing p { font-size:15px; line-height:1.72; color:#d6d8e2; max-width:66ch; }
+  .closing p + p { margin-top:11px; }
+  .closing b { color:#fff; font-weight:600; }
+  .closing a { color:var(--gold); }
+
+  /* ── MOTION ───────────────────────────────────────────────────── */
+  @media (prefers-reduced-motion:no-preference) {
+    .sec { opacity:0; transform:translateY(12px); transition:opacity .5s ease, transform .5s cubic-bezier(.2,.7,.3,1); }
+    .sec.in { opacity:1; transform:none; }
+    .sec.in .anim-line { stroke-dasharray:1; stroke-dashoffset:1; animation:drawline 1s ease forwards .15s; }
+    @keyframes drawline { to { stroke-dashoffset:0; } }
+    .sec.in .anim-bar { transform:scaleX(0); animation:growbar .6s cubic-bezier(.2,.7,.3,1) forwards; }
+    @keyframes growbar { to { transform:scaleX(1); } }
+    .sec.in .anim-pop { opacity:0; animation:pop .4s ease forwards .5s; }
+    @keyframes pop { to { opacity:1; } }
+  }
+
+  footer { background:var(--navy); color:var(--divider); padding:20px 32px; text-align:center; font-size:12.5px; flex-shrink:0; }
+  footer a { color:var(--beige); }
+
+  /* ── RESPONSIVE ───────────────────────────────────────────────── */
+  @media (max-width:980px) {
+    .wrap { grid-template-columns:1fr; gap:0; }
+    .rail {
+      position:sticky; top:0; z-index:40; padding:9px 0; margin-bottom:6px;
+      display:flex; gap:4px; overflow-x:auto; background:var(--beige);
+      border-bottom:1px solid var(--border);
+    }
+    .rail-t, .rail-back { display:none; }
+    .rail a { border-left:none; border-bottom:2px solid transparent; padding:6px 11px; white-space:nowrap; flex-shrink:0; }
+    .rail a.here { border-bottom-color:var(--green); }
+  }
+  @media (max-width:720px) {
+    main { padding:0 18px 50px; }
+    .site-header { padding:20px 18px 18px; }
+    .header-inner { flex-wrap:wrap; justify-content:center; gap:12px; }
+    .sv-row { grid-template-columns:26px 1fr; gap:6px 12px; padding:14px 16px; }
+    .sv-v { grid-column:2; }
+    .sv-num { grid-column:2; text-align:left; font-size:17px; }
+    .sv-num small { display:inline; margin-left:7px; }
+    .closing { padding:22px 20px; }
+    .method-body dl { grid-template-columns:1fr; gap:3px; }
+    .method-body dd { margin-bottom:9px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="header-inner">
+    <div class="header-brand">
+      <img src="assets/esp-c3-white.png" alt="Economic Security Project">
+      <div class="header-text">
+        <h1><a href="https://cmpcmp-dot.github.io/ai-tech-markets-research/">AI, Tech and the Economy: Research Intelligence</a></h1>
+        <div class="header-sub">A curated database of research on AI, automation, and the economy</div>
+      </div>
+    </div>
+    <nav class="header-nav" aria-label="Primary">
+      <button class="header-nav-btn">Research</button>
+      <button class="header-nav-btn">Fact Bank</button>
+      <button class="header-nav-btn">Themes</button>
+      <button class="header-nav-btn">Policy Map</button>
+      <button class="header-nav-btn active" aria-current="page">Job displacement</button>
+      <button class="header-nav-btn">About</button>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+  <!-- ══ MASTHEAD ══ -->
+  <div class="mast">
+    <div class="eyebrow">Job displacement tracker</div>
+    <h2>Is AI displacing workers <em>yet</em>?</h2>
+    <p class="stand">
+      The headline unemployment rate is a blunt instrument. To see displacement you have to look past it:
+      at how the weakness is distributed across workers, and at which sectors have stopped hiring. The
+      answer changes as you go, and each section says what it can and cannot establish.
+    </p>
+    <div class="meta">
+      <span class="vintage" id="vintage"></span>
+      <a class="doclink" href="methods.html">Methods &amp; sources &nearr;</a>
+      <a class="doclink" href="#" id="paperLink">Download the paper (PDF) &darr;</a>
+    </div>
+  </div>
+
+  <!-- ══ THE SHORT VERSION ══ -->
+  <div class="sv">
+    <div class="sv-t">The short version</div>
+    <div class="sv-box" id="svBox"></div>
+    <p class="sv-note" id="svNote"></p>
+  </div>
+
+  <!-- ══ SCROLL ══ -->
+  <div class="wrap">
+    <nav class="rail" id="rail" aria-label="Sections"></nav>
+
+    <div>
+
+      <!-- ── 01 ─────────────────────────────────────────────────── -->
+      <section class="sec" id="level" data-v="null" aria-labelledby="h-level">
+        <div class="sec-kick"><span class="kn">01</span> The level</div>
+        <h3 class="verdict" id="h-level">
+          <span class="no">No</span> &mdash; unemployment is <b id="vLevel"></b>, at or below CBO&rsquo;s natural
+          rate, and its path tracks growth about as Okun&rsquo;s law predicts.
+        </h3>
+        <p class="sec-q">Is unemployment higher than growth alone would predict, and is a low rate hiding people who have stopped looking?</p>
+
+        <div class="figure">
+          <div class="jd-chart-wrap">
+            <div class="jd-chart-title">Okun&rsquo;s law: GDP growth vs. change in unemployment</div>
+            <div class="jd-chart-sub" id="okunSub"></div>
+            <svg class="jd-svg" id="okunChart" viewBox="0 0 640 410" role="img" aria-label="Okun's law scatter plot"></svg>
+            <div class="jd-legend" id="okunLegend"></div>
+            <div class="jd-chart-note" id="okunNote"></div>
+          </div>
+        </div>
+
+        <div class="prose">
+          <p>Okun&rsquo;s law ties the change in unemployment to how fast the economy grows: strong GDP growth pulls unemployment down, weak growth pushes it up. If unemployment were rising faster than growth predicts, that would point to something structural &mdash; a displacement effect layered on the ordinary business cycle. Each point is a quarter; the line is the historical relationship, and the last four quarters are traced in sequence.</p>
+          <p>They sit close to it. Unemployment can also mislead if people stop looking for work, since they leave the labor force and the rate falls even as the market weakens. The companion check is prime-age participation, which strips out retirement.</p>
+        </div>
+
+        <div class="figure">
+          <div class="jd-chart-wrap">
+            <div class="jd-chart-title">Prime-age (25&ndash;54) labor force participation &amp; employment rate</div>
+            <div class="jd-chart-sub">Monthly, seasonally adjusted, since 2000</div>
+            <svg class="jd-svg" id="lfpChart" viewBox="0 0 640 300" role="img" aria-label="Prime-age participation and employment-population ratio"></svg>
+            <div class="jd-legend" id="lfpLegend"></div>
+          </div>
+        </div>
+
+        <div class="prose">
+          <p id="lfpRead"></p>
+        </div>
+
+        <div class="caveat">
+          <b>What this cannot establish</b>
+          <p>This is the coarsest measure on the page and the last place displacement would appear. The Okun relationship leaves most quarter-to-quarter variation unexplained, so only a very large shock would clear the noise, and it is fitted on eighty years in which nothing resembling AI displacement occurs. An effect concentrated in one cohort or one sector &mdash; which is what the next two sections report &mdash; would leave no trace here at all. Read this as ruling out a macroeconomic event, not as evidence of calm.</p>
+        </div>
+
+        <details class="method">
+          <summary>How this is measured</summary>
+          <div class="method-body">
+            <dl>
+              <dt>Data</dt><dd>Real GDP and the unemployment rate from FRED, quarterly; CBO&rsquo;s natural rate of unemployment; prime-age participation and employment&ndash;population ratio, monthly and seasonally adjusted.</dd>
+              <dt>Sample</dt><dd id="mOkunSample"></dd>
+              <dt>Plotted</dt><dd>Each point is one quarter of annualised real GDP growth against the change in the unemployment rate. The line is the fitted historical relationship; the last four quarters are connected in time order.</dd>
+              <dt>Main caveat</dt><dd id="mOkunCaveat"></dd>
+            </dl>
+            <a class="method-more" href="methods.html#okun">Full specification and diagnostics &nearr;</a>
+          </div>
+        </details>
+
+        <div class="change">
+          <b>Would change this</b>
+          <span>A four-quarter mean residual above +0.3 pp, or prime-age participation falling more than 0.5 pp below its February 2020 level.</span>
+        </div>
+      </section>
+
+      <!-- ── 02 ─────────────────────────────────────────────────── -->
+      <section class="sec" id="workers" data-v="signal" aria-labelledby="h-workers">
+        <div class="sec-kick"><span class="kn">02</span> Across workers</div>
+        <h3 class="verdict" id="h-workers">
+          <span class="yes">Concentrated</span> &mdash; young graduates carry <b id="vWorkers"></b> more
+          unemployment than their own pre-2020 norm predicts.
+        </h3>
+        <p class="sec-q">Is the weakness spread evenly across workers, or is one group absorbing it?</p>
+
+        <div class="figure">
+          <div class="jd-chart-wrap">
+            <div class="jd-chart-title">Excess unemployment by age, relative to the pre-2020 norm</div>
+            <div class="jd-chart-sub">Residual: actual minus predicted unemployment rate, by education group</div>
+            <svg class="jd-svg" id="ageChart" viewBox="0 0 640 380" role="img" aria-label="Residual unemployment by age and education"></svg>
+            <div class="jd-legend" id="ageLegend"></div>
+            <div class="jd-chart-note" id="ageNote"></div>
+          </div>
+          <span class="jd-flag" id="distFlag"></span>
+        </div>
+
+        <div class="prose">
+          <p>A healthy average can hide a group taking the hit. Each age-and-education group has a predicted unemployment rate given the overall rate, estimated from its own pre-2020 relationship. The chart plots how far above or below that prediction each group actually sits. Zero is normal; positive means more unemployment than history says the group should have.</p>
+          <p id="ageRead"></p>
+          <p>The shape is the finding. The residual is steeply positive at the youngest ages among degree-holders and flattens to roughly nothing by the mid-forties. That is not what a broad-based downturn looks like &mdash; a general slowdown pushes the whole curve up, not one end of it.</p>
+        </div>
+
+        <div class="caveat">
+          <b>What this cannot establish</b>
+          <p>Concentration, not cause. The same curve would appear if firms had cut graduate training programs for ordinary cost reasons, or if degree supply had outrun demand in specific fields. The entry-level market was also weakening before generative AI was deployed at scale, and this residual cannot separate the two. Postings data by occupational exposure is what would distinguish them, and it is not in this tracker yet.</p>
+        </div>
+
+        <details class="method">
+          <summary>How this is measured</summary>
+          <div class="method-body">
+            <dl>
+              <dt>Data</dt><dd>Current Population Survey microdata, unemployment rates by single year of age crossed with education group.</dd>
+              <dt>Sample</dt><dd>Each group&rsquo;s relationship to the overall unemployment rate is estimated on pre-2020 data only, then used to predict the current period out of sample.</dd>
+              <dt>Plotted</dt><dd>The residual in percentage points: actual unemployment rate minus the rate predicted by that group&rsquo;s own historical relationship to the aggregate. Zero means the group is exactly where history says it should be.</dd>
+              <dt>Main caveat</dt><dd>Single-year age bands have small samples and are noisy; the curve, not any individual point, is the result. Residuals measure divergence from a historical norm, never its cause.</dd>
+            </dl>
+            <a class="method-more" href="methods.html#workers">Full specification and diagnostics &nearr;</a>
+          </div>
+        </details>
+
+        <div class="change">
+          <b>Would change this</b>
+          <span>The young-graduate residual falling back below 1 pp, or a matched postings series showing the same pattern in occupations with no plausible AI exposure.</span>
+        </div>
+      </section>
+
+      <!-- ── 03 ─────────────────────────────────────────────────── -->
+      <section class="sec" id="sectors" data-v="signal" aria-labelledby="h-sectors">
+        <div class="sec-kick"><span class="kn">03</span> Across sectors</div>
+        <h3 class="verdict" id="h-sectors">
+          <span class="yes">Tech-exposed</span> &mdash; <span id="vSectorName"></span> has decelerated by
+          <b id="vSectors"></b> against its own pre-pandemic pace.
+        </h3>
+        <p class="sec-q">Where has hiring slowed the most, and is it where AI substitution is most plausible?</p>
+
+        <div class="figure">
+          <div class="jd-chart-wrap">
+            <div class="jd-chart-title">Job-growth slowdown by sector</div>
+            <div class="jd-chart-sub" id="cesSub"></div>
+            <svg class="jd-svg" id="cesChart" viewBox="0 0 640 430" role="img" aria-label="Employment growth slowdown by sector"></svg>
+            <div class="jd-chart-note" id="cesNote"></div>
+          </div>
+        </div>
+
+        <div class="prose">
+          <p>Displacement should show up as hiring drying up in specific industries. For each major sector, employment growth over the past year is compared to that sector&rsquo;s own average pace in 2015&ndash;2019. A large negative bar means the sector is adding jobs far more slowly than it used to, or shedding them outright. Using each sector as its own baseline avoids penalising industries that were always slow-growing.</p>
+          <p id="cesRead"></p>
+        </div>
+
+        <div class="caveat">
+          <b>What this cannot establish</b>
+          <p>The sector that moved is also the sector that over-hired hardest in 2021&ndash;22 and has been correcting since. That is a complete alternative explanation, and the timing does not separate it from an AI effect. Eleven supersectors is a coarse grid besides: displacement inside legal services, or inside customer support within retail, would be averaged away entirely. Occupational mix within industries is the test that would catch that.</p>
+        </div>
+
+        <details class="method">
+          <summary>How this is measured</summary>
+          <div class="method-body">
+            <dl>
+              <dt>Data</dt><dd>BLS Current Employment Statistics, all-employee payrolls for the eleven major supersectors, which sum to total nonfarm.</dd>
+              <dt>Sample</dt><dd id="mCesSample"></dd>
+              <dt>Plotted</dt><dd>Past-year employment growth minus that sector&rsquo;s 2015&ndash;19 average growth, in percentage points. Negative means slower than its own pre-pandemic pace.</dd>
+              <dt>Main caveat</dt><dd>Supersector aggregates mask occupational composition, and payroll counts do not distinguish a role eliminated from a role never opened.</dd>
+            </dl>
+            <a class="method-more" href="methods.html#sectors">Full specification and diagnostics &nearr;</a>
+          </div>
+        </details>
+
+        <div class="change">
+          <b>Would change this</b>
+          <span>Information-sector growth returning to within 1 pp of its baseline, or the slowdown spreading to sectors with no plausible AI exposure.</span>
+        </div>
+      </section>
+
+      <div class="closing">
+        <div class="ct">Taken together</div>
+        <p id="closingA"></p>
+        <p>This is a tracker, not a verdict. Readings are regenerated when the underlying data refreshes, each section states the threshold that would move it, and further tests are added as they are built. The <a href="methods.html">methods page</a> carries the estimating equations, samples and known failure modes.</p>
+      </div>
+
+    </div>
+  </div>
+
+</main>
+
+<footer>
+  AI, Tech and the Economy: Research Intelligence &middot;
+  Created by Christelle Prophete &middot;
+  Job displacement
+</footer>
+
+<script src="data/jobs-displacement-data.js" charset="utf-8"></script>
+<script src="assets/jobs-charts.js" charset="utf-8"></script>
+<script>
+(function () {
+  const JC = window.JOBS_CHARTS;
+  if (!JC) { console.error('JOBS_CHARTS not found'); return; }
+  const { sgn, facts, data } = JC;
+  const L = facts.level, DI = facts.distribution, S = facts.sectors;
+  const byId = id => document.getElementById(id);
+  const set = (id, html) => { const el = byId(id); if (el) el.innerHTML = html; };
+
+  /* ── SECTIONS ────────────────────────────────────────────────────
+     Verdict values are a fixed set so the summary stays scannable:
+     'null' renders grey, 'signal' renders terra. Never green.        */
+  const SECS = [
+    { id:'level',   n:'01', lab:'The level',      v:'null',   verdict:'No',
+      num:`${L.unrate}%`, sub:`vs ${L.nrou}% natural` },
+    { id:'workers', n:'02', lab:'Across workers', v:'signal', verdict:'Concentrated',
+      num:`${sgn(DI.peakPP,1)} pp`, sub:'young graduates' },
+    { id:'sectors', n:'03', lab:'Across sectors', v:'signal', verdict:'Tech-exposed',
+      num:`${sgn(S.slowdown,1)} pp`, sub:String(S.sector) }
+  ];
+
+  /* ── masthead meta ───────────────────────────────────────────── */
+  set('vintage', `Data generated <b>${facts.generated}</b> &middot; latest labor market data ${L.month}`);
+  byId('paperLink').addEventListener('click', e => {
+    e.preventDefault();
+    alert('Placeholder. The PDF is generated from methods.html and stamped with the data vintage above.');
+  });
+
+  /* ── the short version ───────────────────────────────────────── */
+  byId('svBox').innerHTML = SECS.map(s => `
+    <button class="sv-row" data-go="${s.id}">
+      <span class="sv-n">${s.n}</span>
+      <span class="sv-lab">${s.lab}</span>
+      <span class="sv-v ${s.v}">${s.verdict}</span>
+      <span class="sv-num">${s.num}<small>${s.sub}</small></span>
+    </button>`).join('');
+  byId('svBox').querySelectorAll('[data-go]').forEach(b =>
+    b.addEventListener('click', () => byId(b.dataset.go).scrollIntoView({ block:'start' })));
+
+  /* No score. Said once, plainly, so the absence reads as a choice. */
+  set('svNote',
+    `Three views of the same labor market, not a score &mdash; they draw on overlapping data and are not independent tests. ` +
+    `The first is the coarsest measure here and the last place displacement would surface, so its quiet reading carries little weight. ` +
+    `The concentration in 02 and 03 is real, but neither section can separate an AI effect from the alternatives, and each says so.`);
+
+  /* ── interpolated figures ────────────────────────────────────── */
+  set('vLevel',      `${L.unrate}%`);
+  set('vWorkers',    `${sgn(DI.peakPP,1)} pp`);
+  set('vSectorName', String(S.sector));
+  /* "decelerated by −4.1 pp" is a double negative; the verb carries the sign */
+  set('vSectors',    `${Math.abs(S.slowdown).toFixed(1)} pp`);
+
+  set('lfpRead',
+    `Prime-age participation is <b>${L.lfpr}%</b>, ${sgn(L.lfprVsFeb,1)} pp against February 2020, so the headline rate is not ` +
+    `being flattered by people quietly leaving the labor force. Over the last four quarters, unemployment has run ` +
+    `${sgn(L.residMean,2)} pp from what Okun&rsquo;s law predicts &mdash; well inside the ordinary range.`);
+
+  set('ageRead',
+    `Young college graduates (age ${DI.peakAge}) carry about <b>${sgn(DI.peakPP,1)} pp</b> more unemployment than their pre-2020 ` +
+    `relationship to the overall rate predicts, against roughly <b>${sgn(DI.primePP,1)} pp</b> for prime-age graduates. ` +
+    `The softness is landing on the young and the educated.`);
+
+  set('cesRead',
+    `<b>${S.sector}</b> has decelerated most: employment is growing <b>${S.recent}%</b> over the past year against a ` +
+    `<b>${S.baseline}%</b> pre-pandemic pace, a <b>${sgn(S.slowdown,1)} pp</b> slowdown. It is also the sector where AI ` +
+    `substitution is most plausible on priors. That coincidence is suggestive and nothing more.`);
+
+  const fit = data.okun.fit;
+  set('mOkunSample',
+    `${fit.sample_start.slice(0,4)}&ndash;${fit.sample_end.slice(0,4)}, quarterly, excluding ${fit.excluded.join(' and ')} ` +
+    `as pandemic outliers. Breakeven growth ${fit.breakeven_growth}%.`);
+  set('mOkunCaveat',
+    `The fit explains r&sup2; = ${fit.r2} of the variation, so residuals of a few tenths of a point are ordinary noise. ` +
+    `Only a shock large enough to be a macroeconomic event would clear it.`);
+  set('mCesSample',
+    `Past-year growth to ${data.ces_slowdown.latest_month}, compared with each sector&rsquo;s own 2015&ndash;19 average.`);
+
+  set('closingA',
+    `The headline says <b>no</b>. The detail says <b>not economy-wide, but concentrated</b> &mdash; among young graduates, and in ` +
+    `${String(S.sector).toLowerCase()}. Neither of those findings establishes a cause, and the coarse aggregate that reads quiet ` +
+    `is the instrument least able to detect a concentrated effect in the first place. If AI displacement is arriving, this is ` +
+    `where it would show up first, and where to keep watching.`);
+
+  /* ── rail ────────────────────────────────────────────────────── */
+  byId('rail').innerHTML =
+    `<div class="rail-t">Sections</div>` +
+    SECS.map(s => `<a href="#${s.id}" data-s="${s.id}"><span class="rn">${s.n}</span><span class="rdot ${s.v}"></span><span>${s.verdict}</span></a>`).join('') +
+    `<a class="rail-back" href="#top">&uarr; The short version</a>`;
+  byId('rail').querySelector('.rail-back').addEventListener('click', e => {
+    e.preventDefault(); window.scrollTo({ top:0, behavior:'smooth' });
+  });
+
+  /* ── lazy chart render ───────────────────────────────────────── */
+  const CHARTS = { level:['renderOkun','renderLFP'], workers:['renderAges'], sectors:['renderCES'] };
+  const drawn = {};
+  const drawFor = id => (CHARTS[id] || []).forEach(fn => {
+    if (!drawn[fn] && typeof JC[fn] === 'function') { JC[fn](); drawn[fn] = true; }
+  });
+
+  const drawObs = new IntersectionObserver(es => es.forEach(en => {
+    if (!en.isIntersecting) return;
+    drawFor(en.target.id);
+    en.target.classList.add('in');
+    drawObs.unobserve(en.target);
+  }), { rootMargin:'250px 0px' });
+  document.querySelectorAll('.sec').forEach(el => drawObs.observe(el));
+
+  /* ── rail active state + citable anchors ─────────────────────── */
+  const links = {};
+  document.querySelectorAll('.rail a[data-s]').forEach(a => links[a.dataset.s] = a);
+  let cur = null;
+  const spy = new IntersectionObserver(es => es.forEach(en => {
+    if (!en.isIntersecting || en.target.id === cur) return;
+    cur = en.target.id;
+    Object.values(links).forEach(a => a.classList.remove('here'));
+    if (links[cur]) links[cur].classList.add('here');
+    /* guarded: replaceState throws a SecurityError under file:// */
+    try { history.replaceState(null, '', '#' + cur); } catch (_) {}
+    if (links[cur] && window.innerWidth <= 980) links[cur].scrollIntoView({ block:'nearest', inline:'center' });
+  }), { rootMargin:'-15% 0px -70% 0px' });
+  document.querySelectorAll('.sec').forEach(el => spy.observe(el));
+
+  /* arriving on a deep link: draw that section immediately */
+  if (location.hash) {
+    const el = document.querySelector(location.hash);
+    if (el && el.classList.contains('sec')) {
+      drawFor(el.id); el.classList.add('in');
+      requestAnimationFrame(() => el.scrollIntoView());
+    }
+  }
+})();
+</script>
+
+</body>
+</html>

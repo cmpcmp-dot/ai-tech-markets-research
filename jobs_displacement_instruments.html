@@ -1,0 +1,843 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Job displacement — instrument panel prototype</title>
+<style>
+  /* ═══════════════════════════════════════════════════════════════════
+     JOB DISPLACEMENT — "THE INSTRUMENT PANEL"
+
+     A single scrolling document that scales to 6–10 tests.
+
+     The governing idea: a test reports on the INSTRUMENT, not on the
+     world. "No signal" means this detector has not registered anything,
+     not that displacement is absent. Every reading is therefore paired
+     with the instrument's sensitivity and lag, so a null from a blunt
+     quarterly aggregate is visibly weaker evidence than a null from a
+     sharp monthly one.
+
+     Consequences that are load-bearing, not cosmetic:
+       · Nulls render in neutral grey, never green. A wall of green
+         checkmarks reads as all-clear; that is the failure mode.
+       · No tally is published. The tests are not independent (several
+         share CPS microdata), so counting them measures nothing.
+       · Tests are ordered fastest/sharpest first. Opening on the
+         bluntest instrument's loudest null sets a reassuring tone.
+       · "Trips if" sits in the summary table, not buried per-test, so
+         every null reads forward-looking rather than conclusive.
+
+     Palette and fonts are brand-locked to ESP C3 and copied from
+     index.html. All invention lives in structure and semantics.
+     ═══════════════════════════════════════════════════════════════════ */
+
+  @font-face { font-family:'Publico Banner'; src:url('fonts/PublicoBannerMedium.otf') format('opentype'); font-weight:500; font-style:normal; font-display:swap; }
+  @font-face { font-family:'Publico Banner'; src:url('fonts/PublicoBannerRoman.otf') format('opentype'); font-weight:400; font-style:normal; font-display:swap; }
+  @font-face { font-family:'Haas Grotesk'; src:url('fonts/HaasGrotDisp55Roman.otf') format('opentype'); font-weight:400 600; font-style:normal; font-display:swap; }
+  @font-face { font-family:'Public Sans'; src:url('fonts/PublicSans-Regular.ttf') format('truetype'); font-weight:400; font-style:normal; font-display:swap; }
+  @font-face { font-family:'Public Sans'; src:url('fonts/PublicSans-Medium.ttf') format('truetype'); font-weight:500; font-style:normal; font-display:swap; }
+  @font-face { font-family:'Public Sans'; src:url('fonts/PublicSans-SemiBold.ttf') format('truetype'); font-weight:600; font-style:normal; font-display:swap; }
+  @font-face { font-family:'Public Sans'; src:url('fonts/PublicSans-Bold.ttf') format('truetype'); font-weight:700; font-style:normal; font-display:swap; }
+
+  :root {
+    /* ── ESP C3 brand tokens ── */
+    --navy:#2c3254; --beige:#f4f2e4; --light-beige:#fffdf2;
+    --green:#70ad8f; --green-hover:#84cca8; --purple:#472b51;
+    --gold:#ebc382; --gold-deep:#c99a3f; --pink:#ffbfa7; --terra:#b06a4f;
+    --headline:#232849; --divider:#caccd4;
+    --serif:'Publico Banner',Georgia,serif;
+    --grot:'Haas Grotesk','Helvetica Neue',Arial,sans-serif;
+    --sans:'Public Sans',-apple-system,'Segoe UI',system-ui,sans-serif;
+
+    --bg:var(--beige); --surface:var(--light-beige); --border:var(--divider);
+    --text:#3c4164; --muted:#6d7091;
+
+    /* ── READING SEMANTICS ──────────────────────────────────────────
+       Deliberately NOT the brand green. A null is not good news, it is
+       no news, and it must not accumulate into a reassuring colour. */
+    --null-ink:#75788f;  --null-bg:rgba(109,112,145,.09);  --null-line:rgba(109,112,145,.30);
+    --sig-ink:#a35f45;   --sig-bg:rgba(176,106,79,.13);    --sig-line:rgba(176,106,79,.40);
+    --mix-ink:#a37c2c;   --mix-bg:rgba(201,154,63,.14);    --mix-line:rgba(201,154,63,.42);
+    --pend-ink:#9698ab;  --pend-bg:transparent;            --pend-line:rgba(109,112,145,.28);
+
+    --rail-w:216px;
+    --measure:720px;
+  }
+
+  * { box-sizing:border-box; margin:0; padding:0; }
+  html { scroll-behavior:smooth; scroll-padding-top:24px; }
+  @media (prefers-reduced-motion:reduce) { html { scroll-behavior:auto; } }
+
+  body {
+    background:var(--beige); color:var(--text); font-family:var(--sans);
+    min-height:100vh; line-height:1.6; display:flex; flex-direction:column;
+    -webkit-font-smoothing:antialiased;
+  }
+  a { color:var(--navy); }
+  :focus-visible { outline:2px solid var(--green); outline-offset:3px; border-radius:3px; }
+
+  /* ── HEADER ──────────────────────────────────────────────────────── */
+  .site-header { background:var(--navy); color:var(--beige); padding:24px 32px 22px; flex-shrink:0; }
+  .header-inner { max-width:1180px; margin:0 auto; display:flex; align-items:center; justify-content:space-between; gap:24px; }
+  .header-brand { display:flex; align-items:center; gap:18px; min-width:0; }
+  .header-brand img { height:42px; width:auto; flex-shrink:0; }
+  .site-header h1 { font-size:clamp(20px,2.5vw,28px); font-weight:700; letter-spacing:-.015em; line-height:1.2; margin-bottom:3px; color:var(--beige); font-family:var(--serif); }
+  .site-header h1 a { color:var(--beige); text-decoration:none; }
+  .site-header h1 a:hover { color:var(--green-hover); }
+  .header-sub { font-family:var(--grot); font-size:13px; letter-spacing:.02em; color:var(--divider); }
+  .header-nav { display:flex; align-items:center; gap:6px; flex-shrink:0; flex-wrap:wrap; }
+  .header-nav-btn { background:none; border:none; cursor:pointer; font-family:var(--grot); font-size:14px; font-weight:500; letter-spacing:.02em; color:var(--divider); padding:6px 13px; border-bottom:2px solid transparent; transition:color .15s,border-color .15s; white-space:nowrap; }
+  .header-nav-btn:hover { color:var(--beige); }
+  .header-nav-btn.active { color:#fff; font-weight:600; border-bottom-color:var(--green); }
+
+  main { flex:1; width:100%; max-width:1180px; margin:0 auto; padding:0 28px 60px; }
+
+  /* ── MASTHEAD ────────────────────────────────────────────────────── */
+  .mast { max-width:var(--measure); padding:34px 0 4px; }
+  .eyebrow { font-family:var(--grot); font-size:11px; font-weight:700; letter-spacing:.16em; text-transform:uppercase; color:var(--green); margin-bottom:12px; display:flex; align-items:center; gap:10px; }
+  .eyebrow::after { content:""; flex:1; height:1px; background:var(--border); }
+  .mast h2 {
+    font-family:var(--serif); font-weight:500; font-size:clamp(30px,4.6vw,50px);
+    line-height:1.05; letter-spacing:-.015em; color:var(--headline); max-width:19ch;
+  }
+  .mast h2 em { font-style:italic; color:var(--terra); }
+  .stand { font-size:16px; line-height:1.7; color:var(--muted); max-width:64ch; margin-top:18px; }
+
+  .mast-meta { display:flex; flex-wrap:wrap; align-items:center; gap:10px 18px; margin-top:22px; padding-top:16px; border-top:1px solid var(--border); }
+  .vintage { font-family:var(--grot); font-size:11.5px; letter-spacing:.03em; color:var(--muted); }
+  .vintage b { color:var(--headline); font-weight:600; }
+  .doclink { font-family:var(--grot); font-size:12px; font-weight:600; letter-spacing:.02em; color:var(--navy); text-decoration:none; border:1px solid var(--border); border-radius:999px; padding:5px 13px; background:var(--surface); transition:border-color .15s,color .15s; }
+  .doclink:hover { border-color:var(--green); color:var(--headline); }
+
+  /* ── FRAME: what these tests can't see ───────────────────────────── */
+  .frame { background:var(--navy); color:var(--beige); border-radius:14px; padding:26px 30px 24px; margin:32px 0 0; max-width:960px; }
+  .frame-t { font-family:var(--grot); font-size:11px; font-weight:700; letter-spacing:.13em; text-transform:uppercase; color:var(--gold); margin-bottom:16px; }
+  .frame-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:18px 30px; }
+  .frame-item h4 { font-family:var(--serif); font-size:16.5px; font-weight:500; color:#fff; margin-bottom:6px; line-height:1.3; }
+  .frame-item p { font-size:13.5px; line-height:1.6; color:#d3d5e0; }
+
+  /* ══ SIGNATURE: THE INSTRUMENT PANEL ═════════════════════════════
+     Not a verdict scoreboard. Each row is a detector: what it watches
+     for, what would trip it, how sensitive it is, what it currently
+     reads. This is the screenshot-and-cite artifact. ═══════════════ */
+  .panel-head { display:flex; flex-wrap:wrap; align-items:flex-end; justify-content:space-between; gap:14px; margin:44px 0 0; }
+  .panel-head h3 { font-family:var(--serif); font-size:26px; font-weight:500; color:var(--headline); line-height:1.2; }
+  .panel-head p { font-size:13.5px; color:var(--muted); max-width:52ch; margin-top:6px; }
+  .panel-key { display:flex; flex-wrap:wrap; gap:12px; font-family:var(--grot); font-size:11px; color:var(--muted); padding-bottom:4px; }
+  .panel-key span { display:inline-flex; align-items:center; gap:6px; }
+  .panel-key i { width:9px; height:9px; border-radius:50%; display:inline-block; }
+
+  .panel { width:100%; border-collapse:collapse; margin:16px 0 0; background:var(--surface); border:1px solid var(--border); border-radius:12px; overflow:hidden; }
+  .panel caption { text-align:left; font-family:var(--grot); font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:var(--muted); padding:0 0 8px; }
+  .panel thead th {
+    font-family:var(--grot); font-size:10.5px; font-weight:700; letter-spacing:.1em; text-transform:uppercase;
+    color:var(--muted); text-align:left; padding:11px 14px; border-bottom:1px solid var(--border); background:var(--beige); white-space:nowrap;
+  }
+  .panel tbody tr { border-bottom:1px solid rgba(202,204,212,.55); }
+  .panel tbody tr:last-child { border-bottom:none; }
+  .panel tbody tr.fam-start td { border-top:2px solid var(--border); }
+  .panel tbody tr:hover { background:rgba(112,173,143,.06); }
+  .panel td { padding:12px 14px; vertical-align:top; font-size:13.5px; }
+  .p-fam { font-family:var(--grot); font-size:9.5px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--green); margin-bottom:4px; }
+  .p-num { font-family:var(--grot); font-size:11px; font-weight:700; color:var(--divider); font-variant-numeric:tabular-nums; }
+  .p-name { font-weight:600; color:var(--headline); font-size:13.5px; line-height:1.35; }
+  .p-name a { color:inherit; text-decoration:none; border-bottom:1px solid transparent; }
+  .p-name a:hover { border-bottom-color:var(--green); }
+  .p-watch { color:var(--text); line-height:1.5; font-size:13px; }
+  .p-trip { display:block; margin-top:5px; font-size:11.5px; line-height:1.5; color:var(--muted); }
+  .p-trip b { font-family:var(--grot); font-size:9.5px; letter-spacing:.09em; text-transform:uppercase; color:var(--gold-deep); font-weight:700; }
+
+  /* sensitivity meter — three bars, filled by power */
+  .meter { display:flex; align-items:center; gap:8px; }
+  .meter-bars { display:inline-flex; gap:2.5px; }
+  .meter-bars i { width:5px; height:13px; border-radius:1.5px; background:rgba(44,50,84,.15); display:inline-block; }
+  .meter-bars i.on { background:var(--navy); }
+  .meter-txt { font-family:var(--grot); font-size:11px; color:var(--text); white-space:nowrap; }
+  .meter-lag { display:block; font-family:var(--grot); font-size:10.5px; color:var(--muted); margin-top:4px; white-space:nowrap; }
+
+  .reading { display:inline-flex; align-items:center; gap:7px; font-family:var(--grot); font-size:11px; font-weight:700; letter-spacing:.05em; text-transform:uppercase; padding:4px 11px; border-radius:999px; white-space:nowrap; }
+  .reading i { width:7px; height:7px; border-radius:50%; flex-shrink:0; }
+  .reading.null    { color:var(--null-ink); background:var(--null-bg); }
+  .reading.null i  { background:var(--null-ink); }
+  .reading.signal  { color:var(--sig-ink);  background:var(--sig-bg); }
+  .reading.signal i{ background:var(--sig-ink); }
+  .reading.mixed   { color:var(--mix-ink);  background:var(--mix-bg); }
+  .reading.mixed i { background:var(--mix-ink); }
+  .reading.pending { color:var(--pend-ink); background:var(--pend-bg); border:1px dashed var(--pend-line); }
+  .reading.pending i { background:none; border:1px solid var(--pend-line); }
+  .r-detail { display:block; font-size:11.5px; color:var(--muted); margin-top:5px; line-height:1.45; max-width:22ch; }
+
+  .no-score { font-size:12.5px; color:var(--muted); margin:12px 2px 0; max-width:70ch; line-height:1.6; font-style:italic; }
+
+  /* ── READING MODE TOGGLE ─────────────────────────────────────────── */
+  .modebar { display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:14px; margin:52px 0 0; padding-bottom:12px; border-bottom:1px solid var(--border); }
+  .modebar h3 { font-family:var(--serif); font-size:24px; font-weight:500; color:var(--headline); }
+  .modebar p { font-size:13px; color:var(--muted); margin-top:4px; max-width:56ch; }
+  .seg { display:inline-flex; background:var(--surface); border:1px solid var(--border); border-radius:999px; padding:3px; flex-shrink:0; }
+  .seg button { background:none; border:none; cursor:pointer; font-family:var(--grot); font-size:12px; font-weight:600; letter-spacing:.03em; color:var(--muted); padding:6px 16px; border-radius:999px; transition:background .15s,color .15s; }
+  .seg button.on { background:var(--navy); color:var(--beige); }
+  .seg button:not(.on):hover { color:var(--headline); }
+
+  /* ── SCROLL LAYOUT: rail + tests ─────────────────────────────────── */
+  .scroll-wrap { display:grid; grid-template-columns:var(--rail-w) minmax(0,1fr); gap:44px; margin-top:26px; align-items:start; }
+
+  .rail { position:sticky; top:20px; max-height:calc(100vh - 40px); overflow-y:auto; padding-right:4px; }
+  .rail-fam { margin-bottom:16px; }
+  .rail-fam > .rf-name { font-family:var(--grot); font-size:10px; font-weight:700; letter-spacing:.11em; text-transform:uppercase; color:var(--muted); padding:0 0 7px 10px; }
+  .rail-fam.here > .rf-name { color:var(--green); }
+  .rail a {
+    display:grid; grid-template-columns:14px 1fr; align-items:center; gap:9px;
+    text-decoration:none; padding:6px 10px; border-left:2px solid var(--border);
+    font-family:var(--grot); font-size:12px; line-height:1.35; color:var(--muted);
+    transition:color .15s,border-color .15s;
+  }
+  .rail a:hover { color:var(--headline); }
+  .rail a.here { color:var(--headline); font-weight:600; border-left-color:var(--green); }
+  .rail a .rdot { width:8px; height:8px; border-radius:50%; justify-self:center; }
+  .rail a .rdot.null   { background:var(--null-ink); }
+  .rail a .rdot.signal { background:var(--sig-ink); }
+  .rail a .rdot.mixed  { background:var(--mix-ink); }
+  .rail a .rdot.pending{ background:none; border:1px solid var(--pend-line); }
+
+  /* ── TEST COMPONENT — identical anatomy every time ───────────────── */
+  .fam-head { margin:0 0 4px; padding-top:12px; }
+  .fam-head:not(:first-child) { margin-top:34px; }
+  .fam-head .fh-name { font-family:var(--grot); font-size:11px; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:var(--green); }
+  .fam-head .fh-note { font-size:13.5px; color:var(--muted); margin-top:7px; max-width:60ch; line-height:1.6; padding-bottom:14px; border-bottom:1px solid var(--border); }
+
+  .test { padding:30px 0 34px; border-bottom:1px solid var(--border); scroll-margin-top:20px; }
+  .test:last-child { border-bottom:none; }
+  .test.pending { opacity:.82; }
+
+  .t-top { display:flex; align-items:flex-start; justify-content:space-between; gap:18px; flex-wrap:wrap; }
+  .t-num { font-family:var(--grot); font-size:11px; font-weight:700; letter-spacing:.09em; color:var(--divider); font-variant-numeric:tabular-nums; margin-bottom:6px; }
+  .t-title { font-family:var(--serif); font-size:clamp(20px,2.3vw,25px); font-weight:500; line-height:1.25; color:var(--headline); max-width:24ch; }
+
+  /* the reading states what the instrument did, then what that is worth */
+  .t-reading { margin:16px 0 0; padding:14px 16px; border-radius:10px; border-left:4px solid; background:var(--surface); }
+  .t-reading.null   { border-left-color:var(--null-line); }
+  .t-reading.signal { border-left-color:var(--sig-line); }
+  .t-reading.mixed  { border-left-color:var(--mix-line); }
+  .t-reading.pending{ border-left-color:var(--pend-line); border-left-style:dashed; }
+  .t-reading .tr-line { font-family:var(--serif); font-size:17px; line-height:1.5; color:var(--headline); margin-top:9px; }
+  .t-reading .tr-line b { font-variant-numeric:tabular-nums; }
+  .t-reading .tr-worth { font-size:13px; line-height:1.6; color:var(--muted); margin-top:9px; padding-top:9px; border-top:1px solid var(--border); }
+  .t-reading .tr-worth b { font-family:var(--grot); font-size:9.5px; letter-spacing:.09em; text-transform:uppercase; color:var(--text); font-weight:700; }
+
+  .t-spec { display:flex; flex-wrap:wrap; gap:10px 26px; margin:16px 0 0; padding:12px 0 0; border-top:1px solid var(--border); }
+  .t-spec div { min-width:120px; }
+  .t-spec dt { font-family:var(--grot); font-size:9.5px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--muted); margin-bottom:5px; }
+  .t-spec dd { font-size:12.5px; color:var(--text); line-height:1.5; max-width:34ch; }
+
+  .t-prose { margin-top:20px; max-width:66ch; }
+  .t-prose p { font-size:14.5px; line-height:1.78; margin-bottom:14px; }
+  .t-prose p:last-child { margin-bottom:0; }
+  .t-prose em { color:var(--headline); font-style:italic; }
+
+  .t-links { display:flex; flex-wrap:wrap; gap:8px; margin-top:18px; }
+  .t-link { font-family:var(--grot); font-size:11.5px; font-weight:600; letter-spacing:.02em; color:var(--navy); text-decoration:none; border:1px solid var(--border); border-radius:999px; padding:5px 12px; background:var(--surface); transition:border-color .15s; }
+  .t-link:hover { border-color:var(--green); }
+
+  .t-stub { margin-top:18px; padding:16px 18px; border:1px dashed var(--pend-line); border-radius:10px; background:rgba(255,253,242,.5); }
+  .t-stub p { font-size:13.5px; line-height:1.65; color:var(--muted); max-width:62ch; }
+  .t-stub p + p { margin-top:9px; }
+
+  /* skim mode collapses reasoning and specs, keeps reading + chart */
+  body.skim .t-prose, body.skim .t-spec, body.skim .t-links, body.skim .t-stub,
+  body.skim .fam-head .fh-note { display:none; }
+  body.skim .test { padding:20px 0 22px; }
+  body.skim .fam-head .fh-name { padding-bottom:10px; border-bottom:1px solid var(--border); display:block; }
+
+  /* ── CHART SHELL (canonical IDs consumed by assets/jobs-charts.js) ─ */
+  .jd-chart-wrap { background:var(--surface); border:1px solid var(--border); border-radius:10px; padding:16px 14px 12px; margin:20px 0 0; }
+  .jd-chart-title { font-family:var(--grot); font-size:13px; font-weight:600; color:var(--headline); margin:0 4px 2px; }
+  .jd-chart-sub { font-size:11.5px; color:var(--muted); margin:0 4px 8px; }
+  .jd-svg { width:100%; height:auto; display:block; font-family:var(--sans); }
+  .jd-chart-note { font-size:11px; color:var(--muted); margin:8px 4px 0; line-height:1.5; }
+  .jd-legend { display:flex; flex-wrap:wrap; gap:15px; margin:6px 4px 2px; font-size:12px; color:var(--text); }
+  .jd-legend span { display:inline-flex; align-items:center; gap:6px; }
+  .jd-legend i { width:13px; height:4px; border-radius:2px; display:inline-block; }
+  .jd-legend i.dot { width:10px; height:10px; border-radius:50%; }
+  .jd-flag { display:inline-flex; align-items:center; gap:8px; font-family:var(--grot); font-size:12px; font-weight:600; background:var(--navy); color:var(--beige); border-radius:999px; padding:6px 13px; margin:14px 0 0; }
+  .jd-flag b { color:var(--gold); }
+  .jd-tooltip { position:fixed; pointer-events:none; background:var(--navy); color:var(--beige); font-family:var(--sans); font-size:12px; line-height:1.5; padding:7px 10px; border-radius:6px; box-shadow:0 4px 16px rgba(0,0,0,.28); opacity:0; transition:opacity .1s; z-index:60; max-width:250px; }
+  .jd-tooltip b { color:#fff; }
+
+  /* ── CLOSING ─────────────────────────────────────────────────────── */
+  .closing { margin:46px 0 0; padding:26px 30px; background:var(--surface); border:1px solid var(--border); border-radius:14px; max-width:960px; }
+  .closing .ct { font-family:var(--grot); font-size:11px; font-weight:700; letter-spacing:.13em; text-transform:uppercase; color:var(--green); margin-bottom:12px; }
+  .closing p { font-size:14.5px; line-height:1.75; max-width:68ch; }
+  .closing p + p { margin-top:12px; }
+
+  /* ── MOTION (scroll reveal; reduced-motion safe) ─────────────────── */
+  @media (prefers-reduced-motion:no-preference) {
+    .test { opacity:0; transform:translateY(12px); transition:opacity .5s ease, transform .5s cubic-bezier(.2,.7,.3,1); }
+    .test.in { opacity:1; transform:none; }
+    .test.in .anim-line { stroke-dasharray:1; stroke-dashoffset:1; animation:drawline 1s ease forwards .15s; }
+    @keyframes drawline { to { stroke-dashoffset:0; } }
+    .test.in .anim-bar { transform:scaleX(0); animation:growbar .6s cubic-bezier(.2,.7,.3,1) forwards; }
+    @keyframes growbar { to { transform:scaleX(1); } }
+    .test.in .anim-pop { opacity:0; animation:pop .4s ease forwards .5s; }
+    @keyframes pop { to { opacity:1; } }
+  }
+
+  /* ── FOOTER ──────────────────────────────────────────────────────── */
+  footer { background:var(--navy); color:var(--divider); padding:20px 32px; text-align:center; font-size:12.5px; flex-shrink:0; }
+  footer a { color:var(--beige); }
+
+  /* ── RESPONSIVE ──────────────────────────────────────────────────── */
+  @media (max-width:1000px) {
+    .scroll-wrap { grid-template-columns:1fr; gap:0; }
+    .rail {
+      position:sticky; top:0; z-index:40; max-height:none; overflow-x:auto; overflow-y:hidden;
+      display:flex; gap:4px; background:var(--beige); border-bottom:1px solid var(--border);
+      padding:10px 0; margin-bottom:8px; scrollbar-width:thin;
+    }
+    .rail-fam { display:flex; align-items:center; gap:4px; margin-bottom:0; flex-shrink:0; }
+    .rail-fam > .rf-name { padding:0 10px 0 6px; border-left:1px solid var(--border); white-space:nowrap; }
+    .rail a { border-left:none; border-bottom:2px solid transparent; padding:5px 9px; white-space:nowrap; flex-shrink:0; }
+    .rail a.here { border-bottom-color:var(--green); }
+  }
+  @media (max-width:820px) {
+    main { padding:0 18px 50px; }
+    .site-header { padding:20px 18px 18px; }
+    .header-inner { flex-wrap:wrap; justify-content:center; gap:12px; }
+    .frame { padding:22px 20px; }
+    .closing { padding:22px 20px; }
+    /* instrument panel → stacked cards */
+    .panel, .panel tbody, .panel tr, .panel td { display:block; width:100%; }
+    .panel thead { display:none; }
+    .panel { border:none; background:none; }
+    .panel tbody tr { background:var(--surface); border:1px solid var(--border); border-radius:10px; margin-bottom:10px; padding:12px 14px; }
+    .panel tbody tr.fam-start td { border-top:none; }
+    .panel td { padding:5px 0; }
+    .panel td[data-lab]::before {
+      content:attr(data-lab); display:block; font-family:var(--grot); font-size:9.5px; font-weight:700;
+      letter-spacing:.1em; text-transform:uppercase; color:var(--muted); margin-bottom:4px;
+    }
+    .r-detail { max-width:none; }
+  }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="header-inner">
+    <div class="header-brand">
+      <img src="assets/esp-c3-white.png" alt="Economic Security Project">
+      <div class="header-text">
+        <h1><a href="https://cmpcmp-dot.github.io/ai-tech-markets-research/">AI, Tech and the Economy: Research Intelligence</a></h1>
+        <div class="header-sub">A curated database of research on AI, automation, and the economy</div>
+      </div>
+    </div>
+    <nav class="header-nav" aria-label="Primary">
+      <button class="header-nav-btn">Research</button>
+      <button class="header-nav-btn">Fact Bank</button>
+      <button class="header-nav-btn">Themes</button>
+      <button class="header-nav-btn">Policy Map</button>
+      <button class="header-nav-btn active" aria-current="page">Job displacement</button>
+      <button class="header-nav-btn">About</button>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+  <!-- ══ MASTHEAD — a monitoring posture, not a verdict ══ -->
+  <div class="mast">
+    <div class="eyebrow">Job displacement tracker</div>
+    <h2>Where AI displacement would show up first &mdash; and whether it <em>has</em></h2>
+    <p class="stand">
+      No single statistic can tell you whether AI is displacing workers. So this page runs a battery of
+      separate tests, each watching a different place the effect would surface. Every test reports what it
+      found <em>and</em> how much it could have found: a quiet reading from a blunt, slow instrument is very
+      weak evidence, and is marked as such. Nothing here is a verdict on the labor market.
+    </p>
+    <div class="mast-meta">
+      <span class="vintage" id="vintage"></span>
+      <a class="doclink" href="methods.html">Methods &amp; sources &nearr;</a>
+      <a class="doclink" href="#" id="paperLink">Download the paper (PDF) &darr;</a>
+    </div>
+  </div>
+
+  <!-- ══ FRAME — the limits are part of the argument, not a footnote ══ -->
+  <section class="frame" aria-labelledby="frameTitle">
+    <div class="frame-t" id="frameTitle">Before the tests: what this evidence cannot see</div>
+    <div class="frame-grid">
+      <div class="frame-item">
+        <h4>Displacement arrives as non-hiring</h4>
+        <p>A firm that quietly stops opening a role produces no layoff, no unemployment claim, and no separation. An entire cohort can be shut out while every headline series reads normal.</p>
+      </div>
+      <div class="frame-item">
+        <h4>Reallocation looks like nothing</h4>
+        <p>If AI destroys work in one place and creates it in another, aggregate employment is flat. The aggregate tests read null even though the labor market has churned underneath them.</p>
+      </div>
+      <div class="frame-item">
+        <h4>These tests are not independent</h4>
+        <p>Several draw on the same CPS microdata and will move together for reasons that have nothing to do with AI. Counting how many are quiet measures nothing, so no score is published here.</p>
+      </div>
+      <div class="frame-item">
+        <h4>The instruments lag</h4>
+        <p>Quarterly series, subject to revision, describe a labor market of six to eighteen months ago. A null today is a statement about the recent past, not the present.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ SIGNATURE: THE INSTRUMENT PANEL ══ -->
+  <div class="panel-head">
+    <div>
+      <h3>The instrument panel</h3>
+      <p>Every test, what it is watching for, and what would trip it. Sensitivity is how large an effect the test could detect at all.</p>
+    </div>
+    <div class="panel-key">
+      <span><i style="background:var(--sig-ink)"></i> Signal</span>
+      <span><i style="background:var(--mix-ink)"></i> Mixed</span>
+      <span><i style="background:var(--null-ink)"></i> No signal</span>
+      <span><i style="background:none;border:1px solid var(--pend-line)"></i> Not yet running</span>
+    </div>
+  </div>
+
+  <table class="panel" id="panelTable">
+    <caption class="sr-only" style="position:absolute;left:-9999px">Displacement tests: watching for, sensitivity, and current reading</caption>
+    <thead>
+      <tr>
+        <th scope="col" style="width:40px"></th>
+        <th scope="col" style="width:23%">Test</th>
+        <th scope="col">Watching for</th>
+        <th scope="col" style="width:15%">Sensitivity</th>
+        <th scope="col" style="width:20%">Reading</th>
+      </tr>
+    </thead>
+    <tbody id="panelBody"></tbody>
+  </table>
+  <p class="no-score" id="noScore"></p>
+
+  <!-- ══ READING MODE ══ -->
+  <div class="modebar">
+    <div>
+      <h3>The tests</h3>
+      <p>Ordered fastest and sharpest first. The blunt aggregates come last, because they are the last place displacement would appear.</p>
+    </div>
+    <div class="seg" role="group" aria-label="Reading depth">
+      <button id="modeSkim" type="button">Skim</button>
+      <button id="modeFull" type="button" class="on">Full</button>
+    </div>
+  </div>
+
+  <!-- ══ SCROLL: rail + tests ══ -->
+  <div class="scroll-wrap">
+    <nav class="rail" id="rail" aria-label="Tests"></nav>
+    <div id="tests"></div>
+  </div>
+
+  <section class="closing">
+    <div class="ct">How to read this page</div>
+    <p id="closingText"></p>
+    <p>Tests are added as they are built, and every reading is regenerated when the underlying data refreshes. A test that is quiet today is not settled; it is a detector that has not tripped, with a stated threshold for what would trip it. The <a href="methods.html">methods page</a> carries the estimating equations, samples and known failure modes for each one.</p>
+  </section>
+
+</main>
+
+<footer>
+  AI, Tech and the Economy: Research Intelligence &middot;
+  Created by Christelle Prophete &middot;
+  Job displacement &mdash; instrument panel prototype
+</footer>
+
+<script src="data/jobs-displacement-data.js" charset="utf-8"></script>
+<script src="assets/jobs-charts.js" charset="utf-8"></script>
+<script>
+(function () {
+  const JC = window.JOBS_CHARTS;
+  if (!JC) { console.error('JOBS_CHARTS not found'); return; }
+  const { sgn, facts } = JC;
+  const L = facts.level, DI = facts.distribution, S = facts.sectors;
+  const byId = id => document.getElementById(id);
+
+  /* ═══════════════════════════════════════════════════════════════
+     CONTROLLED READING VOCABULARY — four values, fixed.
+     Locked now so the panel stays scannable at ten tests and so
+     retrofitting hand-written verdicts later is never necessary.
+     ═══════════════════════════════════════════════════════════════ */
+  const READING = {
+    signal:  { cls:'signal',  label:'Signal' },
+    mixed:   { cls:'mixed',   label:'Mixed' },
+    null:    { cls:'null',    label:'No signal' },
+    pending: { cls:'pending', label:'Not yet running' }
+  };
+  const POWER = { 1:'Blunt', 2:'Moderate', 3:'Sharp' };
+
+  /* ═══════════════════════════════════════════════════════════════
+     THE TESTS — data-driven so the page and the R pipeline cannot
+     disagree. Numbers come from facts (generated), never typed in.
+     Ordered fast/sharp → blunt/slow.
+     ═══════════════════════════════════════════════════════════════ */
+  const FAMILIES = [
+    {
+      id:'fast', name:'Fast indicators',
+      note:'The sharpest instruments with the shortest lag. If displacement is happening right now, these are the first places it becomes visible — which is why they lead rather than the aggregate.',
+      tests:[
+        {
+          id:'postings', num:'01', title:'Job postings in exposed occupations',
+          watch:'Openings falling for roles AI can do, measured against roles it cannot',
+          trip:'Postings in exposed occupations run 15% or more below a matched control group for two consecutive quarters',
+          power:3, lag:'~1 month', reading:'pending',
+          detail:'Scoped, not yet built',
+          sees:'Firms that stop hiring without laying anyone off — the failure mode that defeats almost every other test here.',
+          blind:'Postings are noisy, are reposted, and over-represent large employers. Occupational exposure scores are contested.',
+          stub:[
+            'This is the highest-value test on the list and it is not built yet. Because displacement shows up first as a hiring freeze rather than a separation, a posting-level series is the only instrument here that could catch the effect while it is happening rather than a year later.',
+            'The intended construction: index postings by occupation against an exposure measure, difference against a control set of occupations with comparable cyclicality but low exposure, and report the gap. The hard part is the control group, not the data.'
+          ]
+        },
+        {
+          id:'entry', num:'02', title:'Entry-level hiring rate',
+          watch:'The share of new hires going into junior roles, against its own pre-2023 trend',
+          trip:'The entry-level share of hiring falls more than 2 pp below trend and stays there for three months',
+          power:3, lag:'~2 months', reading:'pending',
+          detail:'Scoped, not yet built',
+          sees:'Whether the bottom rung is being pulled up — the most commonly claimed mechanism, and one that unemployment statistics will not register for years.',
+          blind:'Cannot separate AI from a general hiring slowdown without a sector control. Says nothing about incumbents.',
+          stub:[
+            'Related to test 04 but measured from the employer side rather than the worker side. If firms are substituting AI for junior labor, the composition of who gets hired shifts before the composition of who is unemployed does.'
+          ]
+        }
+      ]
+    },
+    {
+      id:'who', name:'Who is affected',
+      note:'A healthy average can hide a group taking the hit. These tests ask whether the softness in the labor market is landing evenly across workers or concentrating somewhere specific.',
+      tests:[
+        {
+          id:'excess-unemp', num:'03', title:'Excess unemployment by age and education',
+          watch:'Any age-and-education group carrying more unemployment than its own pre-2020 relationship to the overall rate predicts',
+          trip:'Already tripped. Would clear if the young-graduate residual returns below 1 pp.',
+          power:2, lag:'~1 quarter', reading:'signal',
+          detail:() => `Young graduates ${sgn(DI.peakPP,1)} pp above norm`,
+          sees:'Concentration. If one group is absorbing a shock the aggregate is smoothing over, this finds it.',
+          blind:'Cannot say why. A cohort effect, a credential glut, or a sectoral shock would all produce the same residual.',
+          chart:{
+            render:'renderAges',
+            html:`<div class="jd-chart-wrap">
+                    <div class="jd-chart-title">Excess unemployment by age, relative to the pre-2020 norm</div>
+                    <div class="jd-chart-sub">Residual: actual minus predicted unemployment rate, by education group</div>
+                    <svg class="jd-svg" id="ageChart" viewBox="0 0 640 380" role="img" aria-label="Residual unemployment by age and education"></svg>
+                    <div class="jd-legend" id="ageLegend"></div>
+                    <div class="jd-chart-note" id="ageNote"></div>
+                  </div>
+                  <div><span class="jd-flag" id="distFlag"></span></div>`
+          },
+          line:() => `Young college graduates (age ${DI.peakAge}) carry <b>${sgn(DI.peakPP,1)} pp</b> more unemployment than their own pre-2020 relationship predicts, against roughly <b>${sgn(DI.primePP,1)} pp</b> for prime-age graduates.`,
+          worth:'This is a real divergence and it is large. It is also the test most vulnerable to alternative explanations — the entry-level labor market was weakening before generative AI was deployed at scale, and this residual cannot distinguish the two.',
+          prose:[
+            'Each age-and-education group has a predicted unemployment rate given the overall rate, estimated from its own pre-2020 relationship. The chart plots how far above or below that prediction each group actually sits. Zero is normal. Positive means more unemployment than history says the group should have.',
+            'The shape is the finding: the residual is steeply positive at the youngest ages among degree-holders and flattens to roughly nothing by the mid-forties. That is not what a broad-based downturn looks like. A general slowdown pushes the whole curve up.',
+            'What it cannot do is attribute. The same curve would appear if firms had cut graduate training programs for cost reasons, or if degree supply had outrun demand in specific fields. Tests 01 and 02 are what would separate these; neither is running yet.'
+          ],
+          links:[['Method &amp; specification','methods.html#excess-unemp'],['Underlying analysis','https://github.com/mtkonczal/Blog-Posts-Presentations-and-Testimony/tree/main/blogs_2026/01_education_young_unrate']]
+        },
+        {
+          id:'grad-emprate', num:'04', title:'Young-graduate employment rate',
+          watch:'The employment-population ratio for recent graduates, against non-graduates of the same age',
+          trip:'The graduate/non-graduate employment gap narrows by more than 3 pp from its pre-2023 average',
+          power:2, lag:'~1 quarter', reading:'pending',
+          detail:'Scoped, not yet built',
+          sees:'Whether the degree premium in employment (not wages) is eroding — a cleaner read than unemployment, which misses people who never enter the labor force.',
+          blind:'Small samples at narrow age bands make quarter-to-quarter movement unreliable.',
+          stub:[
+            'Test 03 measures unemployment, which requires actively looking for work. A graduate who goes to graduate school, or stops searching, disappears from it entirely. The employment rate does not have that hole, which makes it the better companion measure.'
+          ]
+        }
+      ]
+    },
+    {
+      id:'where', name:'Where the jobs are',
+      note:'If AI displaces labor, it displaces it somewhere specific. These tests look for the effect in the composition of employment across and within industries.',
+      tests:[
+        {
+          id:'sector-slowdown', num:'05', title:'Job-growth slowdown by sector',
+          watch:'Sectors adding jobs materially slower than their own 2015–19 pace, concentrated in AI-exposed industries',
+          trip:'Already tripped. Would clear if information-sector growth returns to within 1 pp of its baseline.',
+          power:2, lag:'~2 months', reading:'signal',
+          detail:() => `${S.sector} ${sgn(S.slowdown,1)} pp vs baseline`,
+          sees:'Where hiring has actually stopped, at monthly frequency, with good coverage.',
+          blind:'Supersectors are coarse. An AI effect inside a sector that is growing for other reasons is invisible here — that is what test 06 is for.',
+          chart:{
+            render:'renderCES',
+            html:`<div class="jd-chart-wrap">
+                    <div class="jd-chart-title">Job-growth slowdown by sector</div>
+                    <div class="jd-chart-sub" id="cesSub"></div>
+                    <svg class="jd-svg" id="cesChart" viewBox="0 0 640 430" role="img" aria-label="Employment growth slowdown by sector"></svg>
+                    <div class="jd-chart-note" id="cesNote"></div>
+                  </div>`
+          },
+          line:() => `${S.sector} has decelerated most: employment is growing <b>${S.recent}%</b> over the past year against a <b>${S.baseline}%</b> pre-pandemic pace, a <b>${sgn(S.slowdown,1)} pp</b> slowdown.`,
+          worth:'A genuine signal, but the sector that moved is also the sector that over-hired hardest in 2021–22 and has been correcting since. The deceleration is real; its cause is contested, and this test cannot settle it.',
+          prose:[
+            'For each major sector, employment growth over the past year is compared to that sector&rsquo;s own average pace in 2015–19. A large negative bar means the sector is adding jobs far more slowly than it used to, or shedding them outright. Using each sector as its own baseline avoids penalising industries that were always slow-growing.',
+            'The concentration in information is the part worth attention: it is the sector where AI substitution is most plausible on priors, and it is the sharpest decelerator. That coincidence is suggestive and nothing more. Post-2022 correction in tech employment is a complete alternative explanation and the timing does not separate them.',
+            'Eleven supersectors is also a coarse grid. Displacement inside legal services, or inside customer support within retail, would be averaged away entirely.'
+          ],
+          links:[['Method &amp; specification','methods.html#sector-slowdown']]
+        },
+        {
+          id:'occ-mix', num:'06', title:'Occupational mix inside exposed sectors',
+          watch:'Exposed occupations shrinking as a share of employment within their own industry',
+          trip:'Exposed occupations lose more than 2 pp of within-industry employment share over four quarters',
+          power:2, lag:'~1 quarter', reading:'pending',
+          detail:'Scoped, not yet built',
+          sees:'Substitution happening inside a growing firm or industry — invisible to every sector-level test.',
+          blind:'Occupational coding is slow to reflect changing job content. A role can be transformed without being reclassified.',
+          stub:[
+            'The sector test asks whether an industry is hiring. This one asks whether the industry is hiring different people. Those come apart exactly in the case that matters most: a firm that grows revenue and headcount while replacing a specific function.'
+          ]
+        }
+      ]
+    },
+    {
+      id:'aggregate', name:'The aggregate',
+      note:'The bluntest and slowest instruments on the page. They come last deliberately: they are the final place a displacement effect would appear, and a quiet reading from them carries very little information.',
+      tests:[
+        {
+          id:'okun', num:'07', title:'Unemployment against growth (Okun residual)',
+          watch:'Unemployment running higher than GDP growth alone would predict',
+          trip:'Four-quarter mean residual exceeds +0.3 pp',
+          power:1, lag:'~2 quarters, plus revisions', reading:'null',
+          detail:() => `Residual ${sgn(L.residMean,2)} pp, within noise`,
+          sees:'A displacement effect large enough to move the national unemployment rate away from its historical relationship with output.',
+          blind:'Almost everything else. The relationship explains under half the variance, so only a very large shock clears the noise.',
+          chart:{
+            render:'renderOkun',
+            html:`<div class="jd-chart-wrap">
+                    <div class="jd-chart-title">Okun&rsquo;s law: GDP growth vs. change in unemployment</div>
+                    <div class="jd-chart-sub" id="okunSub"></div>
+                    <svg class="jd-svg" id="okunChart" viewBox="0 0 640 410" role="img" aria-label="Okun's law scatter plot"></svg>
+                    <div class="jd-legend" id="okunLegend"></div>
+                    <div class="jd-chart-note" id="okunNote"></div>
+                  </div>`
+          },
+          line:() => `Unemployment is <b>${L.unrate}%</b> against CBO&rsquo;s <b>${L.nrou}%</b> natural rate, and the last four quarters sit <b>${sgn(L.residMean,2)} pp</b> from what Okun&rsquo;s law predicts.`,
+          worth:'This null is close to uninformative. The fitted relationship has an r&sup2; of about 0.41, so quarter-to-quarter residuals of this size are ordinary noise. The test would only speak if displacement were already large enough to be a macroeconomic event.',
+          prose:[
+            'Okun&rsquo;s law ties the change in unemployment to how fast the economy grows: strong growth pulls unemployment down, weak growth pushes it up. If unemployment were running above what growth predicts, that would suggest something structural layered on the ordinary business cycle.',
+            'It is not. But the honest way to state that is about the instrument. This is the bluntest detector on the page: it operates on national quarterly aggregates, it is fitted on nearly eighty years of data in which nothing resembling AI displacement occurs, and it leaves most of the quarter-to-quarter variation unexplained. An effect concentrated in one cohort or one sector — which is exactly what tests 03 and 05 report — would leave no trace here at all.',
+            'A null from this test is what you would expect in almost every world, including worlds where displacement is well underway. It is included because its absence would be conspicuous, not because its presence tells you much.'
+          ],
+          links:[['Method &amp; specification','methods.html#okun']]
+        },
+        {
+          id:'prime-lfp', num:'08', title:'Prime-age participation',
+          watch:'Workers leaving the labor force, which would flatter the unemployment rate',
+          trip:'Prime-age participation falls more than 0.5 pp below its February 2020 level',
+          power:1, lag:'~1 month, but slow-moving', reading:'null',
+          detail:() => `${L.lfpr}%, ${sgn(L.lfprVsFeb,1)} pp vs Feb 2020`,
+          sees:'Whether a low unemployment rate is hiding withdrawal rather than reflecting strength.',
+          blind:'Participation is driven overwhelmingly by demography, caregiving and disability. An AI effect would be a rounding error against those.',
+          chart:{
+            render:'renderLFP',
+            html:`<div class="jd-chart-wrap">
+                    <div class="jd-chart-title">Prime-age (25&ndash;54) labor force participation &amp; employment rate</div>
+                    <div class="jd-chart-sub">Monthly, seasonally adjusted, since 2000</div>
+                    <svg class="jd-svg" id="lfpChart" viewBox="0 0 640 300" role="img" aria-label="Prime-age participation and employment-population ratio"></svg>
+                    <div class="jd-legend" id="lfpLegend"></div>
+                  </div>`
+          },
+          line:() => `Prime-age participation is <b>${L.lfpr}%</b>, <b>${sgn(L.lfprVsFeb,1)} pp</b> against February 2020. Nobody has quietly left.`,
+          worth:'A useful null, but a narrow one. It rules out the specific artefact of a flattering unemployment rate. It says nothing whatsoever about whether displacement is occurring among people who remain employed or are still searching.',
+          prose:[
+            'Unemployment can mislead if people stop looking for work: they leave the labor force and the rate falls even as the market weakens. Prime-age participation strips out retirement, so it is the standard check on that.',
+            'It is above its pre-pandemic level, so the headline rate is not being flattered by withdrawal. That is worth knowing and it is roughly all this test establishes. Prime-age participation moves on demographic and caregiving trends measured in tenths of a point over years; a displacement effect would have to be enormous, and enormously sudden, to register against that.'
+          ],
+          links:[['Method &amp; specification','methods.html#prime-lfp']]
+        }
+      ]
+    },
+    {
+      id:'stated', name:'What firms and workers say',
+      note:'The statistical tests above measure outcomes with a lag. These measure intent and experience in something close to real time — weaker as evidence, but early, and they are held here in tension with the nulls rather than subordinated to them.',
+      tests:[
+        {
+          id:'firm-claims', num:'09', title:'Firm announcements and earnings calls',
+          watch:'Employers explicitly attributing headcount decisions to AI',
+          trip:'Not a threshold test — tracked as a running count against the outcomes the same firms report',
+          power:2, lag:'~real time', reading:'pending',
+          detail:'Sourced, not yet systematised',
+          sees:'Intent, early, in the words of the people making the decisions. Frequently the first mover.',
+          blind:'Intent is not outcome. Firms have strong incentives to attribute ordinary cost-cutting to AI for investors, and equally strong incentives to deny it publicly. Treat as a directional indicator only.',
+          stub:[
+            'The Fact Bank already carries much of this material. Systematising it means tracking claims against the same firms&rsquo; subsequent reported headcount, which converts an unreliable signal into a testable one.',
+            'This family exists because if the statistical nulls stand alone, they win by default. A page that reports only what the coarse aggregates can see will systematically understate an effect that is real but early — and that is the specific error this tracker is built to avoid.'
+          ]
+        },
+        {
+          id:'worker-surveys', num:'10', title:'Worker surveys',
+          watch:'Workers reporting task displacement, intensified monitoring, or role change attributed to AI',
+          trip:'Not a threshold test — tracked for level and direction across repeated waves',
+          power:2, lag:'~1 quarter', reading:'pending',
+          detail:'Sourced, not yet systematised',
+          sees:'Task-level change inside jobs that continue to exist. No employment statistic can see this.',
+          blind:'Self-report, variable question wording across surveys, and no consistent panel. Comparability across waves is the binding constraint.',
+          stub:[
+            'Most of what AI does to work will not be a job disappearing. It will be a job changing — tasks removed, pace increased, discretion reduced — while the headcount stays flat and every test above reads null. Surveys are the only instrument on this page that can see that at all.'
+          ]
+        }
+      ]
+    }
+  ];
+
+  const val = v => (typeof v === 'function' ? v() : v);
+  const ALL = FAMILIES.flatMap(f => f.tests.map(t => ({ ...t, famId:f.id, famName:f.name })));
+
+  /* ── vintage ─────────────────────────────────────────────────── */
+  byId('vintage').innerHTML =
+    `Data generated <b>${facts.generated}</b> &middot; ${ALL.filter(t => t.reading !== 'pending').length} of ${ALL.length} tests running`;
+  byId('paperLink').addEventListener('click', e => {
+    e.preventDefault();
+    alert('Placeholder. The PDF is generated from methods.html and stamped with the data vintage above.');
+  });
+
+  /* ── INSTRUMENT PANEL ────────────────────────────────────────── */
+  byId('panelBody').innerHTML = FAMILIES.map(f => f.tests.map((t, i) => {
+    const r = READING[t.reading];
+    const bars = [1,2,3].map(n => `<i class="${n <= t.power ? 'on' : ''}"></i>`).join('');
+    return `<tr class="${i === 0 ? 'fam-start' : ''}">
+      <td class="p-num">${t.num}</td>
+      <td data-lab="Test">
+        ${i === 0 ? `<div class="p-fam">${f.name}</div>` : ''}
+        <div class="p-name"><a href="#${t.id}">${t.title}</a></div>
+      </td>
+      <td data-lab="Watching for">
+        <div class="p-watch">${t.watch}</div>
+        <span class="p-trip"><b>Trips if</b> &middot; ${t.trip}</span>
+      </td>
+      <td data-lab="Sensitivity">
+        <div class="meter"><span class="meter-bars">${bars}</span><span class="meter-txt">${POWER[t.power]}</span></div>
+        <span class="meter-lag">${t.lag}</span>
+      </td>
+      <td data-lab="Reading">
+        <span class="reading ${r.cls}"><i></i>${r.label}</span>
+        <span class="r-detail">${val(t.detail)}</span>
+      </td>
+    </tr>`;
+  }).join('')).join('');
+
+  /* No tally. State plainly why, so its absence reads as a choice. */
+  byId('noScore').innerHTML =
+    `No score is reported. These tests share data and would move together for reasons unrelated to AI, so the number that are quiet is not a measurement. Read the sensitivity column alongside every reading: most of what is quiet here is quiet at a resolution too coarse to have detected the effect in the first place.`;
+
+  byId('closingText').innerHTML =
+    `Of ${ALL.length} tests, ${ALL.filter(t => t.reading === 'pending').length} are not yet running and ${ALL.filter(t => t.reading === 'null').length} are quiet — but the quiet ones are the blunt aggregates, which would be the last instruments on this page to notice anything. Two register something: unemployment among young graduates, and hiring in ${String(S.sector).toLowerCase()}. Neither establishes a cause, and the tests that could separate AI from the alternatives are precisely the ones still to be built. Nothing here rules displacement in or out.`;
+
+  /* ── TESTS ───────────────────────────────────────────────────── */
+  byId('tests').innerHTML = FAMILIES.map(f => `
+    <div class="fam-head" id="fam-${f.id}">
+      <div class="fh-name">${f.name}</div>
+      <div class="fh-note">${f.note}</div>
+    </div>
+    ${f.tests.map(t => {
+      const r = READING[t.reading];
+      return `<section class="test ${t.reading === 'pending' ? 'pending' : ''}" id="${t.id}"
+                       data-fam="${f.id}" data-chart="${t.chart ? t.chart.render : ''}" aria-labelledby="h-${t.id}">
+        <div class="t-top">
+          <div>
+            <div class="t-num">Test ${t.num}</div>
+            <h4 class="t-title" id="h-${t.id}">${t.title}</h4>
+          </div>
+          <span class="reading ${r.cls}"><i></i>${r.label}</span>
+        </div>
+
+        <div class="t-reading ${r.cls}">
+          <div class="t-num" style="margin:0">Reading</div>
+          <div class="tr-line">${t.line ? val(t.line) : val(t.detail) + '.'}</div>
+          <div class="tr-worth"><b>What that is worth</b> &middot; ${t.worth || t.sees}</div>
+        </div>
+
+        ${t.chart ? t.chart.html : ''}
+
+        <dl class="t-spec">
+          <div><dt>Watching for</dt><dd>${t.watch}</dd></div>
+          <div><dt>Would trip if</dt><dd>${t.trip}</dd></div>
+          <div><dt>Can see</dt><dd>${t.sees}</dd></div>
+          <div><dt>Cannot see</dt><dd>${t.blind}</dd></div>
+        </dl>
+
+        ${t.prose ? `<div class="t-prose">${t.prose.map(p => `<p>${p}</p>`).join('')}</div>` : ''}
+        ${t.stub ? `<div class="t-stub">${t.stub.map(p => `<p>${p}</p>`).join('')}</div>` : ''}
+        ${t.links ? `<div class="t-links">${t.links.map(l => `<a class="t-link" href="${l[1]}"${/^http/.test(l[1]) ? ' target="_blank" rel="noopener"' : ''}>${l[0]} &rarr;</a>`).join('')}</div>` : ''}
+      </section>`;
+    }).join('')}
+  `).join('');
+
+  /* ── RAIL ────────────────────────────────────────────────────── */
+  byId('rail').innerHTML = FAMILIES.map(f => `
+    <div class="rail-fam" data-fam="${f.id}">
+      <div class="rf-name">${f.name}</div>
+      ${f.tests.map(t => `<a href="#${t.id}" data-t="${t.id}"><span class="rdot ${READING[t.reading].cls}"></span><span>${t.title}</span></a>`).join('')}
+    </div>`).join('');
+
+  /* ── LAZY CHART RENDER — charts draw as they approach the viewport,
+        so ten SVGs never render at once on load. ────────────────── */
+  const drawn = {};
+  const chartObs = new IntersectionObserver(entries => {
+    entries.forEach(en => {
+      if (!en.isIntersecting) return;
+      const fn = en.target.dataset.chart;
+      if (fn && !drawn[fn] && typeof JC[fn] === 'function') { JC[fn](); drawn[fn] = true; }
+      en.target.classList.add('in');
+      chartObs.unobserve(en.target);
+    });
+  }, { rootMargin:'200px 0px' });
+  document.querySelectorAll('.test').forEach(el => chartObs.observe(el));
+
+  /* ── RAIL ACTIVE STATE + DEEP LINKS ──────────────────────────── */
+  const railLinks = {}, railFams = {};
+  document.querySelectorAll('.rail a[data-t]').forEach(a => railLinks[a.dataset.t] = a);
+  document.querySelectorAll('.rail-fam').forEach(d => railFams[d.dataset.fam] = d);
+
+  let current = null;
+  const spyObs = new IntersectionObserver(entries => {
+    entries.forEach(en => {
+      if (!en.isIntersecting) return;
+      const id = en.target.id, fam = en.target.dataset.fam;
+      if (id === current) return;
+      current = id;
+      Object.values(railLinks).forEach(a => a.classList.remove('here'));
+      Object.values(railFams).forEach(d => d.classList.remove('here'));
+      if (railLinks[id]) railLinks[id].classList.add('here');
+      if (railFams[fam]) railFams[fam].classList.add('here');
+      /* Keep the URL citable without polluting browser history.
+         Guarded: replaceState throws a SecurityError under file://, and
+         these prototypes are routinely opened as local files. */
+      try { history.replaceState(null, '', '#' + id); } catch (_) {}
+      const a = railLinks[id];
+      if (a && window.innerWidth <= 1000) a.scrollIntoView({ block:'nearest', inline:'center' });
+    });
+  }, { rootMargin:'-20% 0px -65% 0px' });
+  document.querySelectorAll('.test').forEach(el => spyObs.observe(el));
+
+  /* ── SKIM / FULL — one page, two depths, same anchors ─────────── */
+  const bSkim = byId('modeSkim'), bFull = byId('modeFull');
+  function setMode(skim) {
+    document.body.classList.toggle('skim', skim);
+    bSkim.classList.toggle('on', skim); bFull.classList.toggle('on', !skim);
+    bSkim.setAttribute('aria-pressed', skim); bFull.setAttribute('aria-pressed', !skim);
+  }
+  bSkim.addEventListener('click', () => setMode(true));
+  bFull.addEventListener('click', () => setMode(false));
+  setMode(false);
+
+  /* arriving on a deep link: draw that chart immediately */
+  if (location.hash) {
+    const el = document.querySelector(location.hash);
+    if (el && el.classList.contains('test')) {
+      const fn = el.dataset.chart;
+      if (fn && typeof JC[fn] === 'function') { JC[fn](); drawn[fn] = true; }
+      el.classList.add('in');
+      requestAnimationFrame(() => el.scrollIntoView());
+    }
+  }
+})();
+</script>
+
+</body>
+</html>
