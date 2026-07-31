@@ -233,17 +233,27 @@
   .header-tabs { display: flex; align-items: flex-start; flex-wrap: wrap; gap: 0 22px; }
 
   /* Grouped nav tabs: a continuous rule under a pair of tabs, with a
-     shared group label below it (e.g. Research / Adoption). */
-  .tab-group { display: flex; flex-direction: column; }
+     shared group label below it (e.g. Research / Adoption).
+
+     Each group carries its own accent via --group-accent, set per group
+     below. ESP secondary palette on the Warm Navy band: Soft Green (the
+     C3 accent) for Research, Warm Gold for Adoption, Warm Pink for
+     Policy. All three clear contrast on navy, and they stay graphic
+     elements (rules, underlines, 10px labels) rather than body copy —
+     the 75/15/10 balance holds because the band itself is navy. */
+  .tab-group { display: flex; flex-direction: column; --group-accent: var(--green); }
+  .tab-group[data-group="research"] { --group-accent: var(--green); }
+  .tab-group[data-group="adoption"] { --group-accent: var(--gold);  }
+  .tab-group[data-group="policy"]   { --group-accent: var(--pink);  }
   .tab-group-btns { display: flex; align-items: flex-end; }
   .tab-group-label {
     margin-top: 3px; padding-top: 4px;
-    border-top: 1px solid color-mix(in srgb, var(--beige) 40%, transparent);
+    border-top: 1px solid color-mix(in srgb, var(--group-accent) 65%, transparent);
     text-align: center;
     font-family: var(--grot);
     font-size: 10px; font-weight: 500;
     letter-spacing: 0.1em; text-transform: uppercase;
-    color: var(--divider);
+    color: var(--group-accent);
   }
   .tab-group-label--empty { border-top-color: transparent; color: transparent; user-select: none; }
   .header-tab-desc {
@@ -286,10 +296,22 @@
     display: block;
   }
   a.header-nav-btn { text-decoration: none; }
-  .header-nav-btn:hover { color: var(--beige); }
+  /* Hover previews the same underline the active state uses, so the group's
+     color reads before the click as well as after. Hover is the softer of the
+     two: a partial-strength rule, no weight change (which would reflow the
+     tab), and beige text rather than white. */
+  .header-nav-btn:hover {
+    color: var(--beige);
+    border-bottom-color: color-mix(in srgb, var(--group-accent) 60%, transparent);
+  }
   .header-nav-btn.active {
     color: #fff; font-weight: 600;
-    border-bottom-color: var(--green);
+    border-bottom-color: var(--group-accent);
+  }
+  .header-nav-btn.active:hover { border-bottom-color: var(--group-accent); }
+  /* Keyboard parity with hover. */
+  .header-nav-btn:focus-visible {
+    border-bottom-color: color-mix(in srgb, var(--group-accent) 60%, transparent);
   }
 
   /* ── APP LAYOUT ─────────────────────────────────────────── */
@@ -1368,6 +1390,46 @@
   .adoption-view .app-layout              { grid-template-columns: 1fr; }
   .adoption-view .main-content            { grid-column: 1 / -1; }
 
+  /* ── SOLUTIONS TAB ── (placeholder view, modeled on About) */
+  #solutionsArea                          { display: none; }
+  .solutions-view #solutionsArea          { display: block; }
+  .solutions-view .sidebar                { display: none; }
+  .solutions-view .inline-filters         { display: none; }
+  .solutions-view .cards-grid             { display: none !important; }
+  .solutions-view .empty-state            { display: none !important; }
+  .solutions-view .lens-toggle            { display: none; }
+  .solutions-view .header-tab-desc        { display: none; }
+  .solutions-view .research-header-bar    { display: none !important; }
+  .solutions-view .theme-nav-strip        { display: none; }
+  .solutions-view .theme-disclaimer-bar   { display: none; }
+  .solutions-view .key-findings-band      { display: none; }
+  .solutions-view .app-layout             { grid-template-columns: 1fr; }
+  .solutions-view .main-content           { grid-column: 1 / -1; }
+  .sol-placeholder {
+    display: flex; align-items: center; justify-content: center;
+    padding: 80px 28px;
+  }
+  .sol-card {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: var(--r-card); padding: 56px 48px; text-align: center;
+    max-width: 620px; width: 100%;
+  }
+  .sol-eyebrow {
+    font-family: var(--grot); font-size: 10px; font-weight: 500;
+    letter-spacing: 0.14em; text-transform: uppercase; color: var(--purple);
+    padding-bottom: 8px; border-bottom: 1px solid var(--border);
+    display: inline-block; margin-bottom: 22px;
+  }
+  .sol-mark {
+    font-family: var(--serif); font-size: 76px; font-weight: 700;
+    letter-spacing: 0.02em; color: var(--navy); line-height: 1;
+  }
+  .sol-note { margin-top: 18px; font-size: 14px; color: var(--purple); }
+  @media (max-width: 560px) {
+    .sol-card { padding: 40px 22px; }
+    .sol-mark { font-size: 56px; }
+  }
+
   /* ═══════════════════════════════════════════════════════════
      FACT BANK TAB
      All component styles are scoped under #factBankArea so the
@@ -2078,24 +2140,24 @@
     </div>
     <nav class="header-nav" aria-label="Primary">
       <div class="header-tabs" role="tablist" aria-label="Select view">
-        <div class="tab-group" role="presentation">
+        <div class="tab-group" data-group="research" role="presentation">
           <div class="tab-group-btns" role="presentation">
             <button class="header-nav-btn" id="viewCards" role="tab" aria-selected="false" aria-controls="viewPanel">Papers</button>
             <button class="header-nav-btn" id="viewFactBank" role="tab" aria-selected="false" aria-controls="viewPanel">Fact Bank</button>
           </div>
           <div class="tab-group-label" aria-hidden="true">Research</div>
         </div>
-        <div class="tab-group" role="presentation">
+        <div class="tab-group" data-group="adoption" role="presentation">
           <div class="tab-group-btns" role="presentation">
             <button class="header-nav-btn" id="viewAdoption" role="tab" aria-selected="false" aria-controls="viewPanel">Adoption</button>
             <button class="header-nav-btn" id="viewJobs" role="tab" aria-selected="false" aria-controls="viewPanel">Job Displacement</button>
           </div>
           <div class="tab-group-label" aria-hidden="true">Adoption</div>
         </div>
-        <div class="tab-group" role="presentation">
+        <div class="tab-group" data-group="policy" role="presentation">
           <div class="tab-group-btns" role="presentation">
             <button class="header-nav-btn" id="viewPolicy" role="tab" aria-selected="false" aria-controls="viewPanel">Lab</button>
-            <a class="header-nav-btn" id="viewSolutions" href="solutions.html">Solutions</a>
+            <button class="header-nav-btn" id="viewSolutions" role="tab" aria-selected="false" aria-controls="viewPanel">Solutions</button>
           </div>
           <div class="tab-group-label" aria-hidden="true">Policy</div>
         </div>
@@ -2227,6 +2289,18 @@
           <div id="byPaperView"></div>
           <div id="allFactsView" hidden></div>
           <div class="kf-empty-state" id="kfEmptyState" hidden>No facts match the current filters.</div>
+        </div>
+      </div>
+
+      <!-- ── SOLUTIONS TAB ── (placeholder; shown by the .solutions-view body
+           class, static — early return in render()) -->
+      <div id="solutionsArea">
+        <div class="sol-placeholder">
+          <div class="sol-card">
+            <div class="sol-eyebrow">Policy &middot; Solutions</div>
+            <div class="sol-mark">TK</div>
+            <p class="sol-note">This section is in development.</p>
+          </div>
         </div>
       </div>
 
@@ -4087,7 +4161,7 @@
 
   /* ── R2: deep-link routing ────────────────────────────────────
      Routes: #about (home) · #research · #changelog · #fact-bank ·
-             #adoption · #job-displacement · #policy (tabs)
+             #adoption · #job-displacement · #policy · #solutions (tabs)
              #policy/<policy-id> · #entry/<entry-id>
      Retired: #themes and #theme/<theme-id> now hand off to themes.html,
      which is a frozen snapshot of the build that carried the Themes tab.
@@ -4117,6 +4191,7 @@
     if (activeView === 'policy') return 'policy';
     if (activeView === 'adoption') return 'adoption';
     if (activeView === 'jobs')   return 'job-displacement';
+    if (activeView === 'solutions') return 'solutions';
     return 'about';
   }
 
@@ -4137,6 +4212,7 @@
       if (head === 'adoption' && !tail) { setView('adoption'); return true; }
       if (head === 'job-displacement' && !tail) { setView('jobs'); return true; }
       if (head === 'policy'   && !tail) { setView('policy'); return true; }
+      if (head === 'solutions' && !tail) { setView('solutions'); return true; }
       // What's New is now a sub-tab of Research; #changelog still deep-links to it.
       if (head === 'changelog' && !tail) {
         setResearchSubview('changelog');
@@ -4251,6 +4327,7 @@
     if (activeView === 'about')  { return; }
     if (activeView === 'adoption') { return; }   // static: charts drawn once by assets/adoption-charts.js
     if (activeView === 'jobs')   { return; }
+    if (activeView === 'solutions') { return; }  // static placeholder
 
     // ── Research (cards) view ──
     const sig = cardsSig();
@@ -4328,18 +4405,22 @@
       general:   { title: 'Adoption', text: 'Who is actually adopting AI and what they are using it for, from the Census Business Trends and Outlook Survey.', note: '' },
       economist: { title: 'Adoption', text: 'Census BTOS AI adoption against employment-weighted occupational exposure, plus the AI supplement on business functions, barriers and self-reported employment effects.', note: '' },
     },
+    solutions: {
+      general:   { title: 'Solutions', text: 'In development.', note: '' },
+      economist: { title: 'Solutions', text: 'In development.', note: '' },
+    },
   };
   function getTabDesc(view) {
     const lens = activeLens === 'economist' ? 'economist' : 'general';
     return (TAB_DESCS[view] || {})[lens] || null;
   }
 
-  const VIEW_TAB_IDS = { cards: 'viewCards', 'fact-bank': 'viewFactBank', policy: 'viewPolicy', adoption: 'viewAdoption', jobs: 'viewJobs', about: 'homeTitleLink' };
+  const VIEW_TAB_IDS = { cards: 'viewCards', 'fact-bank': 'viewFactBank', policy: 'viewPolicy', adoption: 'viewAdoption', jobs: 'viewJobs', solutions: 'viewSolutions', about: 'homeTitleLink' };
 
   function setView(view) {
     activeView = view;
     viewInitialized = true;
-    ['viewCards', 'viewFactBank', 'viewPolicy', 'viewAdoption', 'viewJobs'].forEach(id => {
+    ['viewCards', 'viewFactBank', 'viewPolicy', 'viewAdoption', 'viewJobs', 'viewSolutions'].forEach(id => {
       const el = document.getElementById(id);
       if (!el) return;
       const active = id === VIEW_TAB_IDS[view];
@@ -4361,6 +4442,7 @@
     document.body.classList.toggle('about-view',    view === 'about');
     document.body.classList.toggle('adoption-view', view === 'adoption');
     document.body.classList.toggle('jobs-view',     view === 'jobs');
+    document.body.classList.toggle('solutions-view', view === 'solutions');
     document.body.classList.toggle('fact-bank-view',   view === 'fact-bank');
     if (view === 'fact-bank' && typeof initFactBank === 'function') initFactBank();
     render();
@@ -4369,7 +4451,7 @@
     if (panel) panel.setAttribute('aria-labelledby', activeTabId);
     const ann = document.getElementById('viewAnnounce');
     if (ann) {
-      const names = { cards: 'Papers', 'fact-bank': 'Fact Bank', policy: 'Policy Map', adoption: 'Adoption', jobs: 'Job Displacement', about: 'About' };
+      const names = { cards: 'Papers', 'fact-bank': 'Fact Bank', policy: 'Policy Map', adoption: 'Adoption', jobs: 'Job Displacement', solutions: 'Solutions', about: 'About' };
       ann.textContent = (names[view] || view) + ' view';
     }
     setHash(currentRoute());
@@ -4379,6 +4461,7 @@
   document.getElementById('viewPolicy').addEventListener('click', () => setView('policy'));
   document.getElementById('viewAdoption')?.addEventListener('click', () => setView('adoption'));
   document.getElementById('viewJobs')?.addEventListener('click', () => setView('jobs'));
+  document.getElementById('viewSolutions')?.addEventListener('click', () => setView('solutions'));
 
   // Key findings band: open a source-excerpt modal, or hand off to the frozen
   // Themes page if there is no source paper to show.
