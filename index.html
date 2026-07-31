@@ -278,7 +278,14 @@
     border-bottom: 2px solid transparent;
     transition: color 0.15s, border-color 0.15s;
     white-space: nowrap;
+    /* Buttons default to line-height:normal but <a> inherits the body's 1.6.
+       Pin both so a link tab (Solutions) is exactly as tall as a button tab
+       (Lab) — otherwise the taller link stretches its group and knocks the
+       group label out of line with the neighbouring groups. */
+    line-height: 1.25;
+    display: block;
   }
+  a.header-nav-btn { text-decoration: none; }
   .header-nav-btn:hover { color: var(--beige); }
   .header-nav-btn.active {
     color: #fff; font-weight: 600;
@@ -2087,9 +2094,10 @@
         </div>
         <div class="tab-group" role="presentation">
           <div class="tab-group-btns" role="presentation">
-            <button class="header-nav-btn" id="viewPolicy" role="tab" aria-selected="false" aria-controls="viewPanel">Policy Map</button>
+            <button class="header-nav-btn" id="viewPolicy" role="tab" aria-selected="false" aria-controls="viewPanel">Lab</button>
+            <a class="header-nav-btn" id="viewSolutions" href="solutions.html">Solutions</a>
           </div>
-          <div class="tab-group-label tab-group-label--empty" aria-hidden="true">&nbsp;</div>
+          <div class="tab-group-label" aria-hidden="true">Policy</div>
         </div>
       </div>
     </nav>

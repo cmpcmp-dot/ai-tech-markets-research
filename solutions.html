@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Solutions — AI Tracker: Research, Impact, and Policy</title>
+<meta name="description" content="Solutions: in development.">
+<meta name="robots" content="noindex">
+<style>
+  /* Header, footer and brand tokens are kept in sync with index.html so this
+     page reads as the same site. If the tracker header changes there, mirror
+     the change here. */
+  @font-face {
+    font-family: 'Publico Banner';
+    src: url('fonts/PublicoBannerBold.otf') format('opentype');
+    font-weight: 700; font-style: normal; font-display: swap;
+  }
+  @font-face {
+    font-family: 'Publico Banner';
+    src: url('fonts/PublicoBannerMedium.otf') format('opentype');
+    font-weight: 500; font-style: normal; font-display: swap;
+  }
+  @font-face {
+    font-family: 'Publico Banner';
+    src: url('fonts/PublicoBannerRoman.otf') format('opentype');
+    font-weight: 400; font-style: normal; font-display: swap;
+  }
+  @font-face {
+    font-family: 'Haas Grotesk';
+    src: url('fonts/HaasGrotDisp55Roman.otf') format('opentype');
+    font-weight: 400 600; font-style: normal; font-display: swap;
+  }
+  @font-face {
+    font-family: 'Public Sans';
+    src: url('fonts/PublicSans-Regular.ttf') format('truetype');
+    font-weight: 400; font-style: normal; font-display: swap;
+  }
+  @font-face {
+    font-family: 'Public Sans';
+    src: url('fonts/PublicSans-Medium.ttf') format('truetype');
+    font-weight: 500; font-style: normal; font-display: swap;
+  }
+  @font-face {
+    font-family: 'Public Sans';
+    src: url('fonts/PublicSans-SemiBold.ttf') format('truetype');
+    font-weight: 600; font-style: normal; font-display: swap;
+  }
+  @font-face {
+    font-family: 'Public Sans';
+    src: url('fonts/PublicSans-Bold.ttf') format('truetype');
+    font-weight: 700; font-style: normal; font-display: swap;
+  }
+
+  :root {
+    --navy:        #2c3254;
+    --beige:       #f4f2e4;
+    --light-beige: #fffdf2;
+    --green:       #70ad8f;
+    --green-hover: #84cca8;
+    --gold:        #ebc382;
+    --divider:     #caccd4;
+    --serif:  'Publico Banner', Georgia, serif;
+    --grot:   'Haas Grotesk', 'Helvetica Neue', Arial, sans-serif;
+    --sans:   'Public Sans', -apple-system, 'Segoe UI', system-ui, sans-serif;
+    --surface:  var(--light-beige);
+    --border:   var(--divider);
+    --text:     #3c4164;
+    --muted:    #6d7091;
+    --sidebar-w: 252px;
+    --r-tag:   4px;
+    --r-card: 10px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    zoom: 1.05;
+    background: var(--beige); color: var(--text);
+    font-family: var(--sans);
+    min-height: 100vh; line-height: 1.6;
+    display: flex; flex-direction: column;
+  }
+
+  /* ── HEADER (Warm Navy band) ────────────────────────────── */
+  .site-header {
+    background: var(--navy); color: var(--beige);
+    padding: 24px 32px 22px;
+    position: relative; flex-shrink: 0;
+  }
+  .header-inner {
+    max-width: calc(var(--sidebar-w) + 1100px);
+    margin: 0 auto;
+    display: flex; align-items: center; justify-content: space-between; gap: 24px;
+    position: relative;
+  }
+  .header-brand { display: flex; align-items: center; gap: 18px; min-width: 0; }
+  .header-text { min-width: 0; }
+  .site-header h1 {
+    font-size: clamp(20px, 2.5vw, 28px); font-weight: 700; letter-spacing: -0.015em;
+    line-height: 1.2; margin-bottom: 3px; color: var(--beige);
+    font-family: var(--serif);
+  }
+  .site-header h1 a { color: var(--beige); text-decoration: none; }
+  .site-header h1 a:hover { color: var(--green-hover); }
+  .header-proto-tag {
+    display: inline-block; vertical-align: middle;
+    margin-left: 12px; transform: translateY(-2px);
+    font-family: var(--grot); font-weight: 700; letter-spacing: 0.08em;
+    text-transform: uppercase; font-size: 10.5px; line-height: 1;
+    color: var(--gold); border: 1.5px solid var(--gold);
+    border-radius: var(--r-tag); padding: 4px 8px;
+    white-space: nowrap;
+  }
+  .header-proto-note {
+    font-family: var(--grot); font-size: 12px; letter-spacing: 0.02em;
+    color: var(--gold); margin-top: 2px;
+  }
+  .header-nav {
+    display: flex; align-items: center; gap: 6px;
+    flex-shrink: 0; flex-wrap: wrap;
+  }
+  .header-tabs { display: flex; align-items: flex-start; flex-wrap: wrap; gap: 0 22px; }
+  .tab-group { display: flex; flex-direction: column; }
+  .tab-group-btns { display: flex; align-items: flex-end; }
+  .tab-group-label {
+    margin-top: 3px; padding-top: 4px;
+    border-top: 1px solid color-mix(in srgb, var(--beige) 40%, transparent);
+    text-align: center;
+    font-family: var(--grot);
+    font-size: 10px; font-weight: 500;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--divider);
+  }
+  .header-nav-btn {
+    background: none; border: none; cursor: pointer;
+    font-family: var(--grot);
+    font-size: 14px; font-weight: 500; letter-spacing: 0.02em;
+    color: var(--divider); padding: 6px 13px;
+    border-bottom: 2px solid transparent;
+    transition: color 0.15s, border-color 0.15s;
+    white-space: nowrap;
+    line-height: 1.25;
+    display: block;
+  }
+  a.header-nav-btn { text-decoration: none; }
+  .header-nav-btn:hover { color: var(--beige); }
+  .header-nav-btn.active {
+    color: #fff; font-weight: 600;
+    border-bottom-color: var(--green);
+  }
+
+  /* ── PLACEHOLDER BODY ──────────────────────────────────── */
+  main { flex: 1; display: flex; align-items: center; justify-content: center; padding: 80px 28px; }
+  .tk-card {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: var(--r-card); padding: 56px 48px; text-align: center;
+    max-width: 620px; width: 100%;
+  }
+  .tk-eyebrow {
+    font-family: var(--grot); font-size: 10px; font-weight: 500;
+    letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted);
+    padding-bottom: 8px; border-bottom: 1px solid var(--border);
+    display: inline-block; margin-bottom: 22px;
+  }
+  .tk-mark {
+    font-family: var(--serif); font-size: 76px; font-weight: 700;
+    letter-spacing: 0.02em; color: var(--navy); line-height: 1;
+  }
+  .tk-note { margin-top: 18px; font-size: 14px; color: var(--muted); }
+
+  footer {
+    background: var(--navy); color: var(--divider);
+    border-top: none; padding: 20px 32px;
+    text-align: center; font-size: 12.5px;
+    flex-shrink: 0;
+  }
+  footer a { color: var(--beige); }
+
+  @media (max-width: 900px) {
+    .header-inner { flex-direction: column; align-items: flex-start; gap: 16px; }
+  }
+  @media (max-width: 560px) {
+    .site-header { padding: 18px 16px; }
+    .header-proto-tag { margin-left: 8px; font-size: 9.5px; padding: 3px 6px; }
+    .header-proto-note { font-size: 11px; }
+    .header-nav-btn { padding: 6px 6px; letter-spacing: 0; }
+    .header-tabs { gap: 0 10px; }
+    .tab-group-label { font-size: 9px; letter-spacing: 0.06em; }
+    .tk-card { padding: 40px 22px; }
+    .tk-mark { font-size: 56px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="header-inner">
+    <div class="header-brand">
+      <div class="header-text">
+        <h1><a href="index.html#about" aria-label="Home: about this site">AI Tracker: Research, Impact, and Policy</a><span class="header-proto-tag" title="Work in progress — please do not cite or share these figures">Prototype</span></h1>
+        <div class="header-proto-note">Work in progress &mdash; please do not cite or share these figures.</div>
+      </div>
+    </div>
+    <nav class="header-nav" aria-label="Primary">
+      <div class="header-tabs">
+        <div class="tab-group">
+          <div class="tab-group-btns">
+            <a class="header-nav-btn" href="index.html#research">Papers</a>
+            <a class="header-nav-btn" href="index.html#fact-bank">Fact Bank</a>
+          </div>
+          <div class="tab-group-label" aria-hidden="true">Research</div>
+        </div>
+        <div class="tab-group">
+          <div class="tab-group-btns">
+            <a class="header-nav-btn" href="index.html#adoption">Adoption</a>
+            <a class="header-nav-btn" href="index.html#job-displacement">Job Displacement</a>
+          </div>
+          <div class="tab-group-label" aria-hidden="true">Adoption</div>
+        </div>
+        <div class="tab-group">
+          <div class="tab-group-btns">
+            <a class="header-nav-btn" href="index.html#policy">Lab</a>
+            <a class="header-nav-btn active" href="solutions.html" aria-current="page">Solutions</a>
+          </div>
+          <div class="tab-group-label" aria-hidden="true">Policy</div>
+        </div>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <div class="tk-card">
+    <div class="tk-eyebrow">Policy &middot; Solutions</div>
+    <div class="tk-mark">TK</div>
+    <p class="tk-note">This section is in development.</p>
+  </div>
+</main>
+
+<footer>
+  AI Tracker: Research, Impact, and Policy &middot;
+  Created by Christelle Prophete &middot;
+  <a href="index.html#about">About</a> &middot;
+  <a href="index.html#changelog">What's New</a>
+</footer>
+
+</body>
+</html>
