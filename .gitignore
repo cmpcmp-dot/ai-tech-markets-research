@@ -14,9 +14,11 @@ data_analysis/**/output/*
 !data_analysis/micro/output/t1_slope_over_time.csv
 !data_analysis/micro/output/tests_industry_meta.json
 
-# ── large local-only inputs ───────────────────────────────────────────
-data_analysis/job_data/
-data_analysis/qwi/
+# ── large local-only inputs (symlinks or dirs; see DATA_LOCAL.md) ──────
+# No trailing slash: these are symlinks on this machine, which git sees as
+# files, and a trailing-slash rule would not match them.
+data_analysis/job_data
+data_analysis/qwi/output
 data_analysis/data/
 data_analysis/data-local/
 

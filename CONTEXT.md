@@ -2,6 +2,23 @@
 
 A curated research database and synthesis on AI, automation, and the economy, presented as a single static site (`index.html`) with four main views — Research, Fact Bank, Themes, and Policy Map.
 
+## Setup (once per machine)
+
+```sh
+git config core.hooksPath .githooks    # 2 MB size guard; hooks are not cloned
+```
+
+Large data is not committed. `index.html` reads only `data/*.js`, which are, so a
+fresh clone renders correctly with no data setup. To *rebuild* any `.js`, read
+**[`data_analysis/DATA_LOCAL.md`](data_analysis/DATA_LOCAL.md)** — it lists every
+ignored input, its size, which script needs it, and how to re-fetch it.
+**[`MERGE_PLAN.md`](MERGE_PLAN.md)** records why the layout is shaped this way.
+
+One trap worth knowing: `data/` (repo root) is the committed publish directory;
+`data_analysis/data/` is an ignored multi-hundred-MB input cache. They are
+different things. `data_analysis/_paths.R` calls them `repo_path("data")` and
+`da_path("data")`.
+
 ## Language
 
 **Fact Bank**:

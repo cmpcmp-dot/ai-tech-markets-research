@@ -1,6 +1,12 @@
 # Merge plan: `job_displacement_AI` → `ai-tech-markets-research`
 
-Written 2026-07-31. Status: proposed, nothing executed yet.
+Written 2026-07-31. **Status: executed 2026-07-31.** All five phases are done;
+`job_displacement_AI` was left untouched as agreed. Where execution deviated from
+the plan as first written, the section says so and
+[Deviations](#deviations-from-the-plan-as-written) collects them.
+
+Day-to-day reference is **[`data_analysis/DATA_LOCAL.md`](data_analysis/DATA_LOCAL.md)**;
+this file is the record of *why*.
 
 ## The two problems this solves
 
@@ -78,8 +84,10 @@ data_analysis/**/output/*
 !data_analysis/micro/output/tests_industry_meta.json
 
 # ── large local-only inputs (see data_analysis/DATA_LOCAL.md) ──────────
-data_analysis/job_data/
-data_analysis/qwi/
+# No trailing slash on the first two: they are symlinks, which git sees as
+# files, and a trailing-slash rule would not match them.
+data_analysis/job_data
+data_analysis/qwi/output
 data_analysis/data/
 data_analysis/data-local/
 
@@ -127,30 +135,51 @@ Hooks are not cloned, so note the `core.hooksPath` line in the setup section of
 ## Phase 1 — Land the big inputs without copying 9.6 GB
 
 `job_displacement_AI` stays untouched and remains the physical home of the raw
-files. Link to them rather than duplicating:
+files. Link to them rather than duplicating — but **not** by symlinking whole
+directories, which the first draft of this plan got wrong twice:
+
+- Symlinking `qwi/` would have made the ported QWI *code* literally the same
+  files as the old repo's, so editing it here would edit there. Only
+  `qwi/output/` (988 MB) is data.
+- Symlinking `data/` would have exposed the old repo's stale `data/*.js` publish
+  files at `data_analysis/data/*.js`, one careless copy away from overwriting a
+  live site data file. Only the two `cps.*` files are wanted.
+
+What was actually done:
 
 ```sh
 cd ~/Documents/GitHub/ai-tech-markets-research/data_analysis
 JD=~/Documents/command_line_AI_projects/job_displacement_AI
 
-ln -s "$JD/job_data" job_data     # 3.8 GB CES + 210 MB JOLTS
-ln -s "$JD/qwi"      qwi          # 988 MB LEHD panel + fetch/build R
-ln -s "$JD/data"     data         # 818 MB IPUMS CPS extract (cps.dat.gz + cps.xml)
+ln -sfn "$JD/job_data"   job_data              # 3.8 GB CES + 210 MB JOLTS
+mkdir -p qwi && ln -sfn "$JD/qwi/output" qwi/output    # 988 MB LEHD panel
+mkdir -p data
+ln -sfn "$JD/data/cps.dat.gz" data/cps.dat.gz  # 818 MB IPUMS extract
+ln -sfn "$JD/data/cps.xml"    data/cps.xml
+cp "$JD/data/cpi_monthly.csv" data/            # 6 KB, real copy so re-pulls
+                                               # don't write into the old repo
 ```
 
-- All three link names are in `.gitignore`, so git sees nothing — not even the
-  symlink.
+Two ignored-but-cheap inputs were **copied** rather than linked or re-fetched,
+because they make the pipelines runnable offline for the price of 88 MB:
+
+```sh
+cp -R "$JD/btos/output/raw/." btos/output/raw/   #  76 MB, saves ~70 Census calls
+cp "$JD"/micro/output/*       micro/output/      #  12 MB SDID intermediates
+```
+
+- Everything above is gitignored; `git status` shows none of it.
 - Zero script edits: the mirror paths resolve exactly as the R expects.
-- No 9.6 GB duplication, and no risk of the two copies drifting.
+- No 9.6 GB duplication, and no risk of the code copies drifting.
 - Trade-off: the pipelines depend on that folder existing. Acceptable while it
-  stays put; if it ever moves, replace the symlink with a real directory and
+  stays put; if it ever moves, replace each symlink with a real directory and
   re-fetch per `DATA_LOCAL.md`. Nothing else changes.
 
-Confirm the guard actually holds before moving on:
+Verified with:
 
 ```sh
 git status --porcelain --ignored | grep -E 'job_data|qwi|data_analysis/data'
-git check-ignore -v data_analysis/job_data/ces.RDS
+git check-ignore -v data_analysis/job_data data_analysis/qwi/output
 ```
 
 ---
@@ -206,11 +235,20 @@ repo_path <- function(...) file.path(REPO_ROOT, ...)   # e.g. data/btos-data.js
 da_path   <- function(...) file.path(DA_ROOT, ...)     # e.g. job_data/ces.RDS
 ```
 
-Then `repo <- "/Users/..."` becomes `source(".../\_paths.R")` + `da_path(...)`,
-and the BTOS scripts' bespoke `dirname(dirname(...))` lines collapse to the same
-helper. Small, mechanical, and it removes the last thing in the repo that knows
-whose machine it is on. Do it one pipeline at a time, re-running each and
-diffing the generated `data/*.js` to confirm byte-identical output.
+Each of the four scripts now opens with the same five-line bootstrap that finds
+`_paths.R` by walking up from its own location, then `repo <- REPO_ROOT`. Every
+line after that is untouched, so the diff is five lines per file and the values
+are identical to what was hard-coded.
+
+**The BTOS/micro/QWI scripts were deliberately left alone.** Their
+`dirname(dirname(--file))` idiom is already machine-independent — it was only
+*inconsistent*, not broken. Rewriting a dozen working scripts to use the new
+helper is risk with no benefit, and R is not installed here to verify it. Use
+`_paths.R` for new scripts; convert old ones only when touching them anyway,
+re-running each and diffing the generated `data/*.js` to confirm byte-identical
+output.
+
+`grep -rn "/Users/" --include="*.R" --include="*.py" .` now returns nothing.
 
 ---
 
@@ -250,6 +288,28 @@ irreversible without a history rewrite, and over GitHub's file-size limit
 anyway. Migrate with `cp`, `rsync`, or symlinks only.
 
 ---
+
+## Deviations from the plan as written
+
+1. **`qwi/` and `data/` are hybrids, not whole-directory symlinks** — see Phase 1
+   above for why both would have been footguns.
+2. **88 MB of ignored inputs were copied** (`btos/output/raw/`,
+   `micro/output/*`) so the pipelines run without a cold re-fetch.
+3. **The other pipelines' path idiom was left as-is** rather than unified on
+   `_paths.R`; see Phase 3.
+4. **`micro/run_micro.R` needed a two-line fix** the plan hadn't anticipated: it
+   wrote `repo/data/microdata.js`, which under the new layout is the *ignored
+   input cache*, not the publish directory. Now `dirname(repo)/data`, matching
+   `btos/run_btos.R`.
+5. **`99_download_ipums.py` resolved its output as `Path("data")`** — relative to
+   the working directory. Now resolved from `__file__`.
+6. **The size guard's first version didn't work.** It used
+   `--diff-filter=ACM`, and git classified a copied 5 MB CSV as a *rename* (`R`),
+   which sailed straight through. Now `ACMRT`, tested three ways: fresh 3 MB file
+   blocked, rename-shaped 5 MB file blocked, small file still commits.
+7. **Not done: `01_load_data.R` was not ported.** It is four meaningful lines
+   that write `job_data/*.RDS` from a working-directory-relative path; the
+   command is recorded in `DATA_LOCAL.md` instead of carried as a script.
 
 ## Suggested order
 

@@ -34,7 +34,14 @@ SRC_URL <- paste0(
   "01_education_young_unrate/data/age_diff_sa_3lines.csv"
 )
 
-repo    <- "/Users/mtkonczal/Documents/GitHub/ai-tech-markets-research"
+# Locate the repo from this script's own position -- never hard-code a path
+# containing a user name. Defines REPO_ROOT / DA_ROOT / repo_path() / da_path().
+.file <- sub("^--file=", "", grep("^--file=", commandArgs(FALSE), value = TRUE))
+.base <- if (length(.file)) dirname(normalizePath(.file)) else normalizePath(getwd())
+while (!file.exists(file.path(.base, "data_analysis", "_paths.R")) &&
+       dirname(.base) != .base) .base <- dirname(.base)
+source(file.path(.base, "data_analysis", "_paths.R"))
+repo    <- REPO_ROOT
 out_dir <- file.path(repo, "data_analysis", "output")
 dir.create(out_dir, showWarnings = FALSE, recursive = TRUE)
 snapshot <- file.path(out_dir, "age_diff_sa_3lines.csv")

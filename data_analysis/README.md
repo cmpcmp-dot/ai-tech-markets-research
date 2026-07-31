@@ -8,6 +8,12 @@ works over `file://`.
 |---|---|---|---|
 | Job displacement | Job Displacement tab, sections 01-03 | `JOBS_DISPLACEMENT_DATA` | `scripts/` |
 | BTOS adoption | **Adoption tab** + Job Displacement section 04 | `BTOS_DATA`, `BTOS_EXPOSURE`, `BTOS_JOBS_MONITOR` | `btos/`, `exposure/`, `micro/` |
+| CPS microdata / SDID | nothing on the site yet (`data/microdata.js`) | `MICRO_DATA` | `micro/`, `qwi/` |
+
+Two files govern everything about paths and data:
+**[`_paths.R`](_paths.R)** (the only place directories are resolved — no script
+may hard-code a path containing a user name) and
+**[`DATA_LOCAL.md`](DATA_LOCAL.md)** (every uncommitted input and how to get it).
 
 The BTOS pipeline has its own documentation: **[`btos/README.md`](btos/README.md)**
 for the survey side and **[`exposure/README.md`](exposure/README.md)** for the
@@ -140,18 +146,43 @@ Rscript data_analysis/micro/run_exposure.R        # -> data/btos-exposure-data.j
 panel that is not committed here; it will stop with an explanation if you run it
 without one. Its T1 outputs are committed, so `run_exposure.R` works on its own.
 
-## What was deliberately not copied
+**CPS microdata chain** — rare, and needs an IPUMS account:
 
-Three inputs are too large to commit and are either re-fetchable or not needed
-for a refresh. If a script errors looking for one of these, this is why:
+```bash
+python data_analysis/micro/99_download_ipums.py       # -> data_analysis/data/cps.dat.gz
+Rscript data_analysis/micro/00_pull_cpi.R             # needs BLS_KEY
+Rscript data_analysis/micro/01_build_cps_panel.R      # -> micro/output/*.rds
+Rscript data_analysis/micro/{02_sdid_replicate,04_sdid_extensions,05_goldman_cps,06_qwi_dynamics}.R
+Rscript data_analysis/micro/run_micro.R               # -> data/microdata.js
+```
 
-| Missing | Size | Needed for | How to get it back |
-|---|---|---|---|
-| `btos/output/raw/period_*.json` | 76 MB | rebuilding `btos_data.json` from scratch | `01_fetch_btos.R` re-downloads from the Census API; the first run after a fresh clone costs ~70 requests |
-| `qwi/output/` (LEHD) | 988 MB | the employment weights used to pool two BTOS subsectors in T1 | already baked into `micro/output/t1_adoption_exposure.csv`; only needed to rebuild T1 from raw |
-| `data/cps.dat.gz` (IPUMS CPS extract) | 818 MB | building `micro/output/cps_occ_ind_weights.rds` | that `.rds` **is** committed here (1.7 MB); the extract requires an IPUMS account and is not automatable |
+`data/microdata.js` is **not loaded by `index.html`** — it was the payload for
+the old repo's `paper.html`/`btos.html`, which were not ported. The serializer is
+pointed at the right directory in case those exhibits ever come over.
 
-Two of the three generated files are deliberate **slices** rather than whole
+**LEHD QWI panel** — `Rscript data_analysis/qwi/01_fetch_qwi.R` then
+`02_build_qwi.R`. About 100 state pulls and 940 MB of raw `.csv.gz`; only needed
+to rebuild T4/T6 or the QWI event study from scratch.
+
+## What is not committed
+
+As of the 2026-07-31 merge, the full pipeline code lives here — `qwi/`, the CPS
+microdata chain `micro/{00,01,02,04,05,06}`, `sdid_core.R`, `run_micro.R` and
+`99_download_ipums.py` were brought over from `job_displacement_AI`, which is now
+retired as a code location.
+
+The large inputs are present on this machine but **not committed**: they are
+symlinks into that older folder, plus 88 MB of copied intermediates. Every one is
+catalogued in **[`DATA_LOCAL.md`](DATA_LOCAL.md)** with its size, the script that
+needs it, and how to re-fetch it. Read that file if a script errors looking for
+something. In short: `job_data/` (4 GB CES+JOLTS), `qwi/output/` (988 MB LEHD),
+`data/cps.dat.gz` (818 MB IPUMS), `btos/output/raw/` (76 MB Census JSON), and all
+of `**/output/` bar five named snapshots.
+
+`index.html` reads only `data/*.js`, which *are* committed, so none of the above
+is needed to render the site — only to rebuild it.
+
+Two of the generated files are deliberate **slices** rather than whole
 contracts, because the research repo's dashboard needed far more than this site
 does. `run_exposure.R` emits only test T1; `run_jobs.R` emits only the
 descriptive monitor block, not the 96 cross-section coefficients or the panel.
