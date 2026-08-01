@@ -62,6 +62,26 @@ CONTRACTS <- list(
     # re-derived from a 3.8 GB file; --refresh asks for that.
     refresh_args = list(`clean/ces_jolts.R` = "--reslim")
   ),
+  # ── Data Tracker ──────────────────────────────────────────────────────
+  # Both use the BLS v2 API (R/bls_api.R, needs BLS_KEY) rather than the
+  # whole-survey flat files the older contracts pull: a handful of named
+  # series each, so the fetch is a few KB and seconds rather than gigabytes.
+  # NOT YET RUN. The series ids are documented in each fetch script and the
+  # fetch stops loudly if any of them returns nothing.
+  `tracker-productivity` = list(
+    js      = "data/tracker-productivity-data.js",
+    cards   = "Data Tracker: Productivity (output per hour, unit labour costs)",
+    fetch   = "fetch/productivity.R",
+    build   = c("exhibits/tracker_productivity.R",
+                "publish/tracker_productivity.R")
+  ),
+  `tracker-jolts` = list(
+    js      = "data/tracker-jolts-data.js",
+    cards   = "Data Tracker: JOLTS national headline rates",
+    fetch   = "fetch/jolts_national.R",
+    build   = c("exhibits/tracker_jolts.R",
+                "publish/tracker_jolts.R")
+  ),
   `jobs-young-workers` = list(
     js      = "data/jobs-young-workers-data.js",
     cards   = "Job Displacement 05 (early-career hiring, QWI x BTOS)",
