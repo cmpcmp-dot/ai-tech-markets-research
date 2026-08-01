@@ -11,7 +11,7 @@
 # ─────────────────────────────────────────────────────────────────────────────
 
 TOL <- 1e-9
-IGNORE_KEYS <- c("vintage", "generated", "vintage_utc", "built")
+IGNORE_KEYS <- c("vintage", "generated", "vintage_utc", "built", "built_at")
 
 new_report <- function() {
   r <- new.env(parent = emptyenv())
