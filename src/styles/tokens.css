@@ -68,7 +68,7 @@
 
        Consumed by: .tab-lede (the class to reach for on anything
        new), plus the four legacy per-tab classes kept as aliases
-       for it — .jd-lede (Adoption), #factBankArea .intro-title,
+       for it — .jd-lede (Census BTOS), #factBankArea .intro-title,
        .about-lede, .header-tab-desc-lede (Papers/Policy Map), and
        #jobDisplacementArea .mast h2.
 
@@ -102,7 +102,7 @@
 
        The closing rule is --lede-measure wide, not the content
        width, so it hugs the text it closes. Content below the rule
-       keeps whatever measure it needs: Adoption's charts 1060,
+       keeps whatever measure it needs: the BTOS charts 1060,
        Fact Bank 1140, Jobs' prose 840.
 
        Same caveat as --lede-*: do not add --masthead-top to

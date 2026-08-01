@@ -106,7 +106,7 @@
 
        Consumed by: .tab-lede (the class to reach for on anything
        new), plus the four legacy per-tab classes kept as aliases
-       for it — .jd-lede (Adoption), #factBankArea .intro-title,
+       for it — .jd-lede (Census BTOS), #factBankArea .intro-title,
        .about-lede, .header-tab-desc-lede (Papers/Policy Map), and
        #jobDisplacementArea .mast h2.
 
@@ -140,7 +140,7 @@
 
        The closing rule is --lede-measure wide, not the content
        width, so it hugs the text it closes. Content below the rule
-       keeps whatever measure it needs: Adoption's charts 1060,
+       keeps whatever measure it needs: the BTOS charts 1060,
        Fact Bank 1140, Jobs' prose 840.
 
        Same caveat as --lede-*: do not add --masthead-top to
@@ -290,7 +290,7 @@
   .header-tabs { display: flex; align-items: flex-start; flex-wrap: wrap; gap: 0 22px; }
 
   /* Grouped nav tabs: a continuous rule under a pair of tabs, with a
-     shared group label below it (e.g. Research / Adoption).
+     shared group label below it (e.g. Research / Economy).
 
      Each group carries its own accent via --group-accent, set per group
      below. ESP secondary palette on the Warm Navy band: Soft Green (the
@@ -1488,7 +1488,7 @@
      and another in the standalone jobs_displacement.html. */
   .jobs-view .cards-area                  { padding-top: 0; }
 
-  /* ── ADOPTION TAB ── (static view; reuses the .jd-* editorial components) */
+  /* ── CENSUS BTOS ── (static view; reuses the .jd-* editorial components) */
   #trackerArea                           { display: none; }
   .tracker-view #trackerArea            { display: block; }
   .tracker-view .sidebar                 { display: none; }
@@ -2098,7 +2098,7 @@
 
   /* ── SHARED CHART CHROME (.jd-*) ─────────────────────────────
      OWNED BY index.html. NOT synced. Both the Job Displacement tab and
-     the Adoption tab render into this vocabulary, and assets/jobs-charts.js
+     the Census BTOS panels render into this vocabulary, and assets/jobs-charts.js
      and assets/adoption-charts.js both attach a .jd-tooltip directly to
      <body> — outside #jobDisplacementArea — so none of this can be scoped
      to a single tab.
@@ -2107,7 +2107,7 @@
      the standalone preview looks right. That copy is deliberately dropped
      during sync; this block is the one that ships. The two can therefore
      drift on shared chrome — that is the accepted trade for not letting a
-     jobs-tab edit silently restyle Adoption. sync_jobs_displacement.py
+     jobs-tab edit silently restyle the BTOS panels. sync_jobs_displacement.py
      fails loudly if jobs_displacement.html introduces a .jd-* selector
      that is missing here, so new shared components can't slip through
      unnoticed; add them below by hand when that happens. */
@@ -2174,7 +2174,7 @@
   .jd-stat .n .pos { color: var(--red-deep); }
   .jd-stat .l { font-family: var(--grot); font-size: 11px; color: var(--muted); margin-top: 7px; line-height: 1.45; }
   /* Introduced by the Job Displacement rewrite; kept here with the rest of
-     the family so the Adoption tab can pick it up too. */
+     the family so the Census BTOS panels can pick it up too. */
   .jd-flag {
     display: inline-flex; align-items: center; gap: 8px;
     font-family: var(--grot); font-size: 12px; font-weight: 600;
@@ -2208,7 +2208,7 @@
 
      Two things deliberately NOT here:
        - the shared .jd-* chart chrome, which lives in charts.css. Both this
-         view and Adoption render into that vocabulary, and the charts attach
+         view and the BTOS panels render into that vocabulary, and the charts attach
          .jd-tooltip straight to <body>, where a scoped rule could not reach.
        - site chrome (.site-header, .header-nav-btn, body, a). shell.css owns
          it and both pages include shell.css. */
@@ -2239,7 +2239,7 @@
 
      The h2 and .stand sizes are the site-wide tab-opener scale, not a
      masthead of their own: index.html defines --lede-* in :root and all
-     six tabs read them, so this page opens at the same size as Adoption,
+     six tabs read them, so this page opens at the same size as the tracker,
      Papers, Fact Bank and the rest. The literal values are var()
      fallbacks so this standalone preview still renders correctly on its
      own — index.html's tokens win once synced.
@@ -2576,7 +2576,7 @@
 
      Panels reuse the .jd-* chart chrome (charts.css) and the .ad-* editorial
      classes (adoption.css) rather than restating them, so a tracker panel and
-     an adoption panel look like the same publication. Only what is genuinely
+     a BTOS panel look like the same publication. Only what is genuinely
      new to the tracker lives here. */
 
   .trk-lede {
@@ -2773,10 +2773,10 @@
      Together 42% of the payload bytes, off the critical path. -->
 <!-- Job displacement data (window.JOBS_DISPLACEMENT_DATA). Regenerate: Rscript analysis/run.R jobs-displacement -->
 <script src="data/jobs-displacement-data.js" charset="utf-8"></script>
-<!-- Adoption tab. Census BTOS, biweekly + AI supplement (window.BTOS_DATA).
+<!-- Census BTOS sub-tab. Biweekly + AI supplement (window.BTOS_DATA).
      Regenerate: Rscript analysis/run.R btos -->
 <script src="data/btos-data.js" charset="utf-8"></script>
-<!-- Adoption tab. BTOS adoption x employment-weighted occupational exposure (window.BTOS_EXPOSURE).
+<!-- Census BTOS sub-tab. Adoption x employment-weighted occupational exposure (window.BTOS_EXPOSURE).
      Regenerate: Rscript analysis/run.R btos-exposure -->
 <script src="data/btos-exposure-data.js" charset="utf-8"></script>
 <!-- Job Displacement tab, sections 03-04. BTOS x CES x JOLTS (window.BTOS_JOBS_MONITOR).
@@ -5466,7 +5466,7 @@
        - the view nav (Papers / Fact Bank / Data Tracker / ...) is VIEW_TAB_IDS
          plus setView() plus six hand-written click listeners, in 70-render.js
        - the BTOS chain inside the tracker is AD_LINKS plus setAdLink(), in
-         50-adoption-chain.js
+         50-tracker-tabs.js
 
      Phase 3 migrates both onto this, deletes their bespoke copies, and moves
      route parsing here too. Until then, resist adding a fourth pattern: if you
@@ -6591,8 +6591,8 @@
   });
 
   // ── init ─────────────────────────────────────────────────────
-  // Adoption chain prev/next controls, built before routing so a
-  // #adoption/<link> deep link lands on a finished panel.
+  // Census BTOS chain prev/next controls, built before routing so a
+  // #tracker/btos/<link> deep link lands on a finished panel.
   buildAdSteps();
 
   // R2: honor a deep link if one is present; otherwise land on About (home).

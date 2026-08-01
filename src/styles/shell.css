@@ -56,7 +56,7 @@
   .header-tabs { display: flex; align-items: flex-start; flex-wrap: wrap; gap: 0 22px; }
 
   /* Grouped nav tabs: a continuous rule under a pair of tabs, with a
-     shared group label below it (e.g. Research / Adoption).
+     shared group label below it (e.g. Research / Economy).
 
      Each group carries its own accent via --group-accent, set per group
      below. ESP secondary palette on the Warm Navy band: Soft Green (the

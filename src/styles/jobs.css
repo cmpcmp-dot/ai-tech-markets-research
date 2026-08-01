@@ -14,7 +14,7 @@
 
      Two things deliberately NOT here:
        - the shared .jd-* chart chrome, which lives in charts.css. Both this
-         view and Adoption render into that vocabulary, and the charts attach
+         view and the BTOS panels render into that vocabulary, and the charts attach
          .jd-tooltip straight to <body>, where a scoped rule could not reach.
        - site chrome (.site-header, .header-nav-btn, body, a). shell.css owns
          it and both pages include shell.css. */
@@ -45,7 +45,7 @@
 
      The h2 and .stand sizes are the site-wide tab-opener scale, not a
      masthead of their own: index.html defines --lede-* in :root and all
-     six tabs read them, so this page opens at the same size as Adoption,
+     six tabs read them, so this page opens at the same size as the tracker,
      Papers, Fact Bank and the rest. The literal values are var()
      fallbacks so this standalone preview still renders correctly on its
      own — index.html's tokens win once synced.

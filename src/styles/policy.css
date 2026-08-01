@@ -97,7 +97,7 @@
      and another in the standalone jobs_displacement.html. */
   .jobs-view .cards-area                  { padding-top: 0; }
 
-  /* ── ADOPTION TAB ── (static view; reuses the .jd-* editorial components) */
+  /* ── CENSUS BTOS ── (static view; reuses the .jd-* editorial components) */
   #trackerArea                           { display: none; }
   .tracker-view #trackerArea            { display: block; }
   .tracker-view .sidebar                 { display: none; }

@@ -10,7 +10,7 @@
        - the view nav (Papers / Fact Bank / Data Tracker / ...) is VIEW_TAB_IDS
          plus setView() plus six hand-written click listeners, in 70-render.js
        - the BTOS chain inside the tracker is AD_LINKS plus setAdLink(), in
-         50-adoption-chain.js
+         50-tracker-tabs.js
 
      Phase 3 migrates both onto this, deletes their bespoke copies, and moves
      route parsing here too. Until then, resist adding a fourth pattern: if you

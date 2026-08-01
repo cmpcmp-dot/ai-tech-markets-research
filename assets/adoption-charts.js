@@ -1,5 +1,5 @@
 /* ═══════════════════════════════════════════════════════════════════════════
-   adoption-charts.js — the chart engine for index.html, and the renderers for
+   adoption-charts.js: the chart engine for index.html, and the renderers for
    the Census BTOS sub-tab of the Data Tracker.
 
    The filename is historical: this file was written for a nav tab called

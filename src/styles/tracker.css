@@ -4,7 +4,7 @@
 
      Panels reuse the .jd-* chart chrome (charts.css) and the .ad-* editorial
      classes (adoption.css) rather than restating them, so a tracker panel and
-     an adoption panel look like the same publication. Only what is genuinely
+     a BTOS panel look like the same publication. Only what is genuinely
      new to the tracker lives here. */
 
   .trk-lede {
