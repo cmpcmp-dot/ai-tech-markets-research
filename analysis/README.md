@@ -29,9 +29,9 @@ Rscript analysis/run.R --refresh btos      include the network fetch
 | **Job Displacement** | | |
 | 01 Is unemployment higher than we would expect? | `jobs_01_okun.R` | `jobs-displacement-data.js` |
 | 02 Is the weakness spread evenly? | `jobs_02_age_bands.R` | `jobs-displacement-data.js` |
-| 03 Where has job growth slowed? | *not yet ported* | `btos-jobs-monitor-data.js` |
-| 04 What do hiring flows show? | *not yet ported* | `btos-jobs-monitor-data.js` |
-| 05 Are young workers hit first? | *not yet ported* | `microdata.js` |
+| 03 Where has job growth slowed? | `jobs_03_industries.R` | `btos-jobs-monitor-data.js` |
+| 04 What do hiring flows show? | `jobs_04_flows.R` | `btos-jobs-monitor-data.js` |
+| 05 Are young workers hit first? | `jobs_05_young_workers.R` | `jobs-young-workers-data.js` |
 | **Adoption** | | |
 | 01 How many firms are we talking about? | `adoption_01_aggregate.R` | `btos-data.js` |
 | 02 Does the theory predict the practice? | `adoption_02_exposure.R` | `btos-exposure-data.js` |
@@ -40,7 +40,8 @@ Rscript analysis/run.R --refresh btos      include the network fetch
 | 05 Where are the adopters? | `adoption_05_where.R` | `btos-data.js` |
 | 06 Do adopters say it cost anyone a job? | `adoption_06_jobs.R` | `btos-data.js` |
 
-Three cards are still built from the pre-refactor tree; see **Status** below.
+Every card is built here. `Rscript analysis/run.R --list` prints the same table
+from the code, so it cannot go stale.
 
 ## Sources
 
@@ -52,6 +53,8 @@ Three cards are still built from the pre-refactor tree; see **Status** below.
 | Census BTOS AI Supplement | `fetch/btos.R` | `clean/btos_supplement.R` | Adoption 03, 04, 06 |
 | Yale exposure indices | `fetch/exposure.R` | `clean/exposure.R` | Adoption 02 |
 | LEHD QWI | `fetch/qwi.R` | `clean/qwi.R`, `clean/btos_qwi_join.R` | Adoption 02, JD 05 |
+| IPUMS CPS, occ x ind | `fetch/cps_ipums.py` | `clean/cps_industry_weights.R` | Adoption 02 (pushes occupational exposure onto industries) |
+| BLS CPI | `fetch/cpi.R` | &mdash; | nothing yet; kept for real-wage outcomes |
 | BLS CES + JOLTS | `fetch/ces_jolts.R` | `clean/ces_jolts.R` | JD 03, 04 |
 
 ## Layout
@@ -69,6 +72,7 @@ analysis/
   interim/         built intermediates, gitignored
   frozen/          small and irreplaceable, COMMITTED
   tests/           compare_golden.R, compare_json.R
+  INPUTS.md        every uncommitted input: size, owner, how to re-fetch
 ```
 
 Nothing under `analysis/` is called `data`. The only `data/` in this repository
@@ -103,14 +107,26 @@ Rscript analysis/tests/compare_golden.R <golden_dir>
 Rscript analysis/tests/compare_json.R a.json b.json     # any two files
 ```
 
-Results at the time of the port:
+Results at the end of the port, every contract:
 
 | Contract | Result |
 |---|---|
 | `btos-data.js` | every value identical |
 | `btos-exposure-data.js` | identical (all five intermediates byte-identical) |
+| `btos-jobs-monitor-data.js` | every value identical |
+| `jobs-young-workers-data.js` | every value identical at the port; see the QWI vintage note below |
 | `jobs-displacement-data.js`, `age_bands` | zero numeric differences |
 | `jobs-displacement-data.js`, `okun` | data vintage only, see below |
+
+Several intermediates were checked directly rather than only through the
+published contract, which is the stronger test:
+
+| Intermediate | Result |
+|---|---|
+| `interim/bls/{ces_slim,jolts_slim}.rds` | identical to the pre-refactor extracts |
+| `interim/qwi/t4_{frame,coefs}.csv` | identical (`t4_coefs` to 4e-15, the `fixest` fit) |
+| `interim/qwi/qwi_{event_study,event_legs,placebo,robust,descriptive}.csv` | identical |
+| `frozen/cps_occ_ind_weights.rds` | rebuilt from the 788 MB extract, identical |
 
 Card 01's input is a live FRED pull, so its committed numbers cannot be
 reproduced from today's data at any level of care. It was verified instead by
@@ -118,23 +134,81 @@ running the old script and the new fetch/exhibit pair minutes apart against the
 same pull: every value identical. The difference against the committed artifact
 is the 2026Q2 GDP release, which the committed version predated.
 
+### The QWI vintage, and why one contract no longer byte-matches
+
+LEHD reissued six states (dc, de, ia, ma, nd, ne) on 2026-07-31, after the input
+cache was first pulled. The port was verified against the pre-revision inputs and
+reproduced the committed artifact exactly. The revision was then taken
+deliberately, so that `inputs/`, `interim/` and `data/` sit on one vintage rather
+than three. It moves the T4b headline from -7.293% to -7.299% and changes no
+figure the site displays: still -7.6% per SD of adoption, 40% of the gap in the
+AI era, n = 59. Every one of the 2,726 differences is about 1e-5 relative.
+
+If you re-run `compare_golden.R` against a snapshot older than 2026-08-01, that
+contract will report those differences. That is expected, and it is the reason to
+take a fresh snapshot after any deliberate vintage bump.
+
+Two fetch scripts were verified by running them into a scratch directory
+(`--out=`) and comparing byte-for-byte against the cached inputs: `fetch/btos.R`
+reproduced all 71 period files and the supplement workbook exactly, and
+`fetch/exposure.R` and `fetch/cpi.R` reproduced their files exactly.
+
+### One rounding subtlety, in case a value looks off by 1e-5
+
+`a1` and `a2` in `btos-jobs-monitor-data.js` are serialised at 5 decimals, and
+the card fragments that feed them at 6. That is not arbitrary: the pre-refactor
+pipeline also wrote an intermediate JSON at 6 before the contract at 5, and
+double rounding at those two precisions is what the committed artifact contains.
+Rounding once at 5 instead moves about one point in twenty by a single unit in
+the fifth decimal of an index number. `write_card()` defaults to 6 for this
+reason; do not override it to 5 for these two cards.
+
 Deliberate removals from published output, each because nothing rendered it:
 
 | Key | Contract | Why |
 |---|---|---|
 | `ces_slowdown` | jobs-displacement | chart replaced by the BTOS tercile cut |
-| `expectations_vs_realized` | btos | `renderExpect()` targets `#adExpect`, which does not exist |
+| `expectations_vs_realized` | btos | `renderExpect()` targeted `#adExpect`, which does not exist |
+| `monitor` | btos-jobs-monitor | the dashboard markup that drew it was removed 2026-07-31 |
+| `sources`, `replication`, `t1`, `t2`, `t3`, `t5`, `t6`, `goldman` | jobs-young-workers | SDID replication and horse-race outputs; no chart read them |
+
+Also never published, and now deleted rather than left to rot: the 96
+cross-section regression coefficients behind cards 03 and 04, their placebos, the
+added-variable plot, the quarterly panel, and the whole synthetic-DID chain. The
+regressions were an identification attempt the sample could not support -- a
+200k-job effect sat inside the confidence interval -- and cards 03 and 04 are
+descriptive by design.
+
+## Possible extensions
+
+Carried over from `data_analysis/btos/TIER3_NEXT_STEPS.md` (2026-07-26) so the
+list survives the directory that held it. Roughly in priority order, and none of
+it is started.
+
+1. **Breadth of integration** &mdash; the "how many business functions per firm"
+   distribution. The single highest-signal thing missing: it separates shallow
+   adoption from deepening adoption, which is the difference between the
+   optimistic and pessimistic readings of the whole Adoption tab. **Not in the
+   aggregate workbook.** Needs a functions-per-firm cross-tab, so restricted
+   microdata or a custom Census tabulation.
+2. **Supplement by state.** `clean/btos_supplement.R` already parses every
+   question by state into `interim/btos/supplement.json`; a 50-state ranked panel
+   is a low-effort add. Parked in the data rather than on the page because it is
+   lower signal than the size and sector cuts.
+3. **Expansion plans by function** (supplement Q12, scope 5) &mdash; the
+   forward-looking mirror of the business-functions chart: which functions the
+   *planners* expect to use AI in. Already parsed.
+4. **Monthly automation.** `Rscript analysis/run.R --refresh <contract>` is the
+   single entry point a scheduled task should call, followed by a commit of the
+   `.js`. Not wired to anything yet. `analysis/INPUTS.md` lists the cadence each
+   contract actually needs.
+
+When Census posts a newer supplement workbook, only the URL and date range in
+`fetch/btos.R` and `clean/btos_supplement.R` need touching: the parser is generic
+across the four sheets.
 
 ## Status
 
-Ported and verified: Job Displacement 01-02, Adoption 01-06.
-
-Not yet ported, still built from `data_analysis/`:
-
-| Contract | Old command |
-|---|---|
-| `btos-jobs-monitor-data.js` | `Rscript data_analysis/btos/{03_jobs_join,run_jobs}.R` |
-| `microdata.js` | `Rscript data_analysis/micro/{03_tests_industry,06_qwi_dynamics,run_micro}.R` |
-
-Both still work. `data_analysis/` is intact and no committed artifact depends on
-the new tree for those two. Remaining work is tracked in `PORTING.md`.
+Complete. Every card on the site is built from this directory, and
+`data_analysis/` has been removed. `PORTING.md` records how the migration was
+done and what was checked at each step.

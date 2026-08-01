@@ -22,7 +22,7 @@
 
      window.JOBS_DISPLACEMENT_DATA  data/jobs-displacement-data.js   sections 01-02
      window.BTOS_JOBS_MONITOR       data/btos-jobs-monitor-data.js   sections 03-04
-     window.MICRO_DATA              data/microdata.js                section 05
+     window.JOBS_YOUNG_WORKERS      data/jobs-young-workers-data.js  section 05
 
    Derived numbers are exposed on window.JOBS_CHARTS.facts for the summary
    panels, so no figure quoted in the prose is typed by hand. Animation is
@@ -34,9 +34,9 @@
   if (!D) { console.error('JOBS_DISPLACEMENT_DATA not found'); return; }
   // Sections 03-05 read these. Absent = those renderers no-op and say so once.
   const J = window.BTOS_JOBS_MONITOR || null;
-  const M = window.MICRO_DATA || null;
+  const M = window.JOBS_YOUNG_WORKERS || null;
   if (!J) console.warn('BTOS_JOBS_MONITOR not found — sections 03 and 04 will be empty.');
-  if (!M) console.warn('MICRO_DATA not found — section 05 will be empty.');
+  if (!M) console.warn('JOBS_YOUNG_WORKERS not found — section 05 will be empty.');
 
   const C = {
     navy: '#2c3254', navyMute: '#9498b4', green: '#70ad8f', gold: '#c99a3f',

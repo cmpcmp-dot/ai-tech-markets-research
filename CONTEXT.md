@@ -9,15 +9,28 @@ git config core.hooksPath .githooks    # 2 MB size guard; hooks are not cloned
 ```
 
 Large data is not committed. `index.html` reads only `data/*.js`, which are, so a
-fresh clone renders correctly with no data setup. To *rebuild* any `.js`, read
-**[`data_analysis/DATA_LOCAL.md`](data_analysis/DATA_LOCAL.md)** — it lists every
-ignored input, its size, which script needs it, and how to re-fetch it.
+fresh clone renders correctly with no data setup.
+
+Every number on the site is produced under **[`analysis/`](analysis/README.md)**,
+which is where to start if you want to understand or change a figure. One file
+per card, one command per contract:
+
+```sh
+Rscript analysis/run.R --list            what exists, and what feeds it
+Rscript analysis/run.R btos              rebuild one contract, offline
+Rscript analysis/run.R --refresh btos    include the network fetch
+```
+
+To rebuild anything you first need its inputs, which are not committed:
+**[`analysis/INPUTS.md`](analysis/INPUTS.md)** lists every one, its size, which
+script needs it, and how to re-fetch it.
 **[`MERGE_PLAN.md`](MERGE_PLAN.md)** records why the layout is shaped this way.
 
-One trap worth knowing: `data/` (repo root) is the committed publish directory;
-`data_analysis/data/` is an ignored multi-hundred-MB input cache. They are
-different things. `data_analysis/_paths.R` calls them `repo_path("data")` and
-`da_path("data")`.
+The old `data_analysis/` tree was removed once every contract had been ported and
+verified against a pre-refactor snapshot; `analysis/tests/compare_golden.R` is
+what proved it. Nothing under `analysis/` is called `data`, so the two-directories-
+named-data trap the old layout had is gone: `data/` at the repo root is the
+committed publish directory and the only one.
 
 ## Language
 

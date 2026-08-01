@@ -14,15 +14,6 @@
 analysis/inputs/
 analysis/interim/
 
-# ── legacy layout, removed in the analysis/ refactor ──────────────────────
-# Kept until data_analysis/ is deleted so a half-migrated tree cannot stage
-# a 3.8 GB file by accident.
-data_analysis/**/output/*
-data_analysis/job_data
-data_analysis/qwi/output
-data_analysis/data/
-data_analysis/data-local/
-
 # ── belt and braces: never commit these formats anywhere ──────────────────
 # Listed after the directory rules so a stray extract outside inputs/ is
 # still caught. The frozen/ exceptions follow, and must come last to win.

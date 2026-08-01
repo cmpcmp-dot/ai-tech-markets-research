@@ -27,13 +27,17 @@ source(file.path(.d, "json_diff.R"))
 while (!file.exists(file.path(.d, "R", "paths.R")) && dirname(.d) != .d) .d <- dirname(.d)
 source(file.path(.d, "R", "paths.R"))
 
-# golden file -> file in data/ now
+# Contract in data/ -> the name(s) its snapshot may carry in <golden_dir>, most
+# recent first. Only one contract was ever renamed, and a snapshot taken before
+# 2026-08-01 still calls it microdata.js, so both names resolve. Without the
+# fallback a pre-rename snapshot silently SKIPs; without the new name first, a
+# post-rename one does.
 FILES <- list(
-  "jobs-displacement-data.js"  = "jobs-displacement-data.js",
-  "btos-data.js"               = "btos-data.js",
-  "btos-exposure-data.js"      = "btos-exposure-data.js",
-  "btos-jobs-monitor-data.js"  = "btos-jobs-monitor-data.js",
-  "microdata.js"               = "jobs-young-workers-data.js"
+  "jobs-displacement-data.js" = "jobs-displacement-data.js",
+  "btos-data.js"              = "btos-data.js",
+  "btos-exposure-data.js"     = "btos-exposure-data.js",
+  "btos-jobs-monitor-data.js" = "btos-jobs-monitor-data.js",
+  "jobs-young-workers-data.js" = c("jobs-young-workers-data.js", "microdata.js")
 )
 
 # Top-level keys we deliberately stopped publishing, and why:
@@ -42,11 +46,11 @@ FILES <- list(
 #   monitor                  no chart reads J.monitor
 #   t1/t2/t3/t5/t6/...       SDID + horse-race outputs; no chart reads them
 ALLOWED_REMOVALS <- list(
-  "jobs-displacement-data.js" = "ces_slowdown",
-  "btos-data.js"              = "expectations_vs_realized",
-  "btos-jobs-monitor-data.js" = "monitor",
-  "microdata.js"              = c("replication", "t1", "t2", "t3", "t5", "t6",
-                                  "goldman", "sources")
+  "jobs-displacement-data.js"  = "ces_slowdown",
+  "btos-data.js"               = "expectations_vs_realized",
+  "btos-jobs-monitor-data.js"  = "monitor",
+  "jobs-young-workers-data.js" = c("replication", "t1", "t2", "t3", "t5", "t6",
+                                   "goldman", "sources")
 )
 
 read_js <- function(path) {
@@ -61,16 +65,17 @@ if (!length(args)) stop("usage: compare_golden.R <golden_dir>", call. = FALSE)
 golden_dir <- normalizePath(args[1], mustWork = TRUE)
 
 fail <- FALSE
-for (gf in names(FILES)) {
-  cf <- FILES[[gf]]
-  gp <- file.path(golden_dir, gf)
+for (cf in names(FILES)) {
+  candidates <- file.path(golden_dir, FILES[[cf]])
+  gp <- candidates[file.exists(candidates)][1]
   cp <- publish_path(cf)
-  cat(sprintf("\n%s\n  golden  %s\n  current %s\n", cf, gp, cp))
+  cat(sprintf("\n%s\n  golden  %s\n  current %s\n",
+              cf, if (is.na(gp)) paste(basename(candidates), collapse = " / ") else gp, cp))
 
-  if (!file.exists(gp)) { cat("  SKIP: no golden snapshot\n"); next }
+  if (is.na(gp)) { cat("  SKIP: no golden snapshot\n"); next }
   if (!file.exists(cp)) { cat("  FAIL: not generated\n"); fail <- TRUE; next }
 
-  allowed <- ALLOWED_REMOVALS[[gf]]
+  allowed <- ALLOWED_REMOVALS[[cf]]
   if (is.null(allowed)) allowed <- character()
   rep <- new_report()
   cmp(read_js(gp), read_js(cp), "$", rep, allowed)

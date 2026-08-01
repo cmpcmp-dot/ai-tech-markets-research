@@ -1,154 +1,109 @@
-# Porting status
+# Porting record
 
-The `data_analysis/` → `analysis/` refactor is partly done. This file says
-exactly what is left, so the next session does not have to rediscover it.
+The `data_analysis/` → `analysis/` refactor is **complete**. `data_analysis/` has
+been deleted. This file is the record of what moved, what was checked, and the
+handful of judgement calls that are worth knowing about later.
 
-Nothing is broken. `data_analysis/` is intact and the two unported contracts
-still build from it with their original commands.
+For how to use the result, read `README.md`. For how to rebuild anything, read
+`INPUTS.md`. Neither depends on this file.
 
-## Done and verified
+## What every contract was checked against
 
-| Contract | Cards | Verification |
+`tests/compare_golden.R` at 1e-9 relative, ignoring vintage stamps and allowing
+only declared key removals.
+
+| Contract | Golden was | Result |
 |---|---|---|
-| `data/btos-data.js` | Adoption 01, 03, 04, 05, 06 | every value identical |
-| `data/btos-exposure-data.js` | Adoption 02 | identical; 5 intermediates byte-identical |
-| `data/jobs-displacement-data.js` | JD 01, 02 | zero numeric differences (card 01 verified old-vs-new on one FRED pull) |
+| `btos-jobs-monitor-data.js` | the genuine pre-refactor artifact | every value identical |
+| `jobs-young-workers-data.js` (was `microdata.js`) | the genuine pre-refactor artifact | every value identical |
+| `btos-data.js` | already-ported output | every value identical (regression check) |
+| `btos-exposure-data.js` | already-ported output | every value identical (regression check) |
+| `jobs-displacement-data.js` | already-ported output | every value identical (regression check) |
 
-Also done: 5.7 GB of inputs copied into `analysis/inputs/` and sha256-verified,
-so the repository no longer depends on `~/Documents/command_line_AI_projects/
-job_displacement_AI`. `.gitignore` rewritten. Golden-diff harness built.
+Intermediates were also compared directly, which is the stronger test because it
+catches a compensating error the published rounding would hide:
 
-## Remaining
-
-### 1. Port `btos-jobs-monitor-data.js` (JD cards 03, 04)
-
-From `data_analysis/btos/03_jobs_join.R` (719 lines) and `run_jobs.R`.
-
-Target shape:
-
-```
-src/fetch/ces_jolts.R    getBLSFiles("ces"/"jolts") -> inputs/bls/
-src/clean/ces_jolts.R    slim extracts + BTOS adoption by sector + terciles
-                         -> interim/bls/{ces_slim,jolts_slim}.rds
-src/exhibits/jobs_03_industries.R   the `a1` block (CES employment by tercile)
-src/exhibits/jobs_04_flows.R        the `a2` block (JOLTS flows by tercile)
-src/publish/btos_jobs_monitor.R
-```
-
-The care point: `a1` (line ~325) needs `sector_grp`, which is built from
-`xs_sector`, which is also the input to the cross-section regressions that are
-being deleted. Keep the adoption-and-tercile construction, drop the regression
-machinery. Read lines 40–360 properly before cutting.
-
-Delete on the way through, per the agreed scope (nothing reads `J.monitor`):
-- D1–D6, roughly lines 467–620: `board`, `decomp`, `quad`, `mde`, `scorecard`,
-  `nat_adopt`, `total_private_chg`
-- the cross-section regression grid, placebos, AV plot, panel fits
-- `MONITOR_KEEP` in `run_jobs.R`
-
-`ALLOWED_REMOVALS` in `tests/compare_golden.R` already declares `monitor`, so
-the golden-diff will pass once only `a1`/`a2` and the top-level keys remain.
-Inputs are frozen on disk, so this one must reproduce exactly.
-
-### 2. Port `microdata.js` (JD card 05), and rename it
-
-From `micro/03_tests_industry.R` (test T4 only), `micro/06_qwi_dynamics.R`,
-`micro/run_micro.R`.
-
-The shared setup is already ported: `clean/btos_qwi_join.R` writes
-`interim/qwi/{adoption_naics3,qwi_windows}.csv`, which is exactly what T4 needs.
-
-```
-src/fetch/qwi.R                     ~100 state pulls -> inputs/qwi/raw/
-src/clean/qwi.R                     from qwi/02_build_qwi.R
-src/exhibits/jobs_05_young_workers.R   T4 + the QWI event study
-src/publish/jobs_young_workers.R
-```
-
-Keep only `t4` and `qwi`. Drop `replication`, `t1`, `t2`, `t3`, `t5`, `t6`,
-`goldman`, `sources` — no chart reads any of them. Within `06_qwi_dynamics.R`,
-check whether `qwi_placebo`, `qwi_robust`, `qwi_loo` and `qwi_descriptive`
-reach the published `qwi` key; prune under the same rule if not.
-
-**Approved rename**: `data/microdata.js` → `data/jobs-young-workers-data.js`,
-global `MICRO_DATA` → `JOBS_YOUNG_WORKERS`. After the prune the file holds only
-QWI early-career results and the old name misleads. Requires a one-line
-`<script src>` change in `index.html` (line ~2595) and `jobs_displacement.html`
-(line ~782), plus the three `M.` references in `assets/jobs-charts.js`.
-`tests/compare_golden.R` already maps `microdata.js` to the new filename.
-
-### 3. Port the remaining source scripts
-
-Mostly mechanical moves with a path rewrite. Each `src/fetch/` script must
-accept `--out=<dir>` via `fetch_dir()` so it can be proved to work into a
-scratch directory without disturbing the cached inputs.
-
-| New file | From |
+| Intermediate | Result |
 |---|---|
-| `src/fetch/btos.R` | `btos/01_fetch_btos.R` |
-| `src/fetch/exposure.R` | `exposure/01_fetch_exposure.R` |
-| `src/fetch/qwi.R` | `qwi/01_fetch_qwi.R` |
-| `src/fetch/cps_ipums.py` | `micro/99_download_ipums.py` |
-| `src/clean/qwi.R` | `qwi/02_build_qwi.R` |
-| `src/clean/cps_industry_weights.R` | `micro/01_build_cps_panel.R`, **trimmed** |
-| `src/fetch/cpi.R` | `micro/00_pull_cpi.R` |
+| `interim/bls/{ces_slim,jolts_slim}.rds` | identical to the pre-refactor extracts |
+| `interim/qwi/t4_frame.csv` | identical |
+| `interim/qwi/t4_coefs.csv` | identical to 4e-15 (the `fixest` triple difference) |
+| `interim/qwi/qwi_{event_study,event_legs,placebo,robust,descriptive}.csv` | identical |
+| `frozen/cps_occ_ind_weights.rds` | rebuilt from the 788 MB extract, identical |
+| `inputs/btos/period_*.json` (71), supplement workbook | `fetch/btos.R --out=<scratch>` reproduced all byte-for-byte |
+| `inputs/exposure/yale_*.csv`, `inputs/cps/cpi_monthly.csv` | fetch scripts reproduced them byte-for-byte |
 
-`cps_industry_weights.R` is approved to be trimmed to produce only
-`cps_occ_ind_weights.rds`; the other three `.rds` it writes existed solely for
-the deleted SDID chain. Verify by checksum against `frozen/cps_occ_ind_weights.rds`.
+## Judgement calls worth knowing
 
-### 4. Deletions (approved, not yet done)
+**Card fragments carry 6 decimals, contracts 5.** The old pipeline wrote
+`btos_jobs.json` at 6 and then the `.js` at 5, so the committed artifact contains
+a double-rounded value. Rounding once at 5 instead moves about one point in
+twenty by one unit in the fifth decimal. `write_card()` defaults to 6 so the two
+stages reproduce it; do not override it to 5 for cards 03 and 04.
 
-Hold until the ports above are verified, because the old scripts are the
-reference being compared against.
+**`jolts_groups.gap` is the difference of the published figures**, not the rounded
+raw difference. The old `transmute()` reused its own freshly-rounded columns, so
+for professional and business services the raw gap is -1.158 but the table shows
+11.66 - 12.81 = -1.15. That is the better behaviour for a display table (the
+printed columns add up), so it was reproduced deliberately rather than fixed.
 
-```
-99_area_test.R
-data_analysis/exposure/make_crosswalk.R
-data_analysis/scripts/03_ces_slowdown.R
-data_analysis/micro/02_sdid_replicate.R
-data_analysis/micro/04_sdid_extensions.R
-data_analysis/micro/05_goldman_cps.R
-data_analysis/micro/sdid_core.R
-assets/jobs-monitor-charts.js
-```
+**`fetch/btos.R` now fetches `strata.json`.** Nothing in the old tree ever did;
+it was a hand-placed file that `R/btos_frame.R` depended on, so the pipeline was
+not actually reproducible from scratch. The `/strata` endpoint supplies it.
 
-Then remove `data_analysis/` entirely and drop its `.gitignore` block.
+**`clean/cps_industry_weights.R` writes to `interim/` and only compares against
+`frozen/`.** It needs `--promote` to overwrite the committed copy. A rebuild that
+silently replaced a committed artifact would be the one thing here nobody could
+audit.
 
-Keep `micro/07_age_bands_cps.R` in mind as a *counter*-example: it looked dead
-in the old README but is live, and its logic now lives in
-`exhibits/jobs_02_age_bands.R`. Check before deleting anything else.
+**QWI vintage.** LEHD reissued six states (dc, de, ia, ma, nd, ne) on 2026-07-31,
+after the input cache was first pulled. Taking the revision was a deliberate
+choice made during this port: it keeps `inputs/`, `interim/` and `data/` on one
+vintage. It moves the T4b headline from -7.293% to -7.299% and changes no figure
+the site displays. This is why `jobs-young-workers-data.js` no longer byte-matches
+the pre-refactor artifact even though the port itself was verified against it.
 
-### 5. Prune dead JS (approved)
+## What was deleted, and why nothing read it
 
-In `assets/adoption-charts.js`, delete `renderExpect()` (targets `#adExpect`)
-and `renderGeography()` (targets `#adMSA`/`#adStates`) — none of those elements
-exist in `index.html` — and their entries in `renderAll()`. `renderStateMap()`
-stays; it is the map that actually draws.
+Published but unrendered, so dropped from the contracts:
 
-### 6. Update path references shown to readers
+| Key | Contract | Why |
+|---|---|---|
+| `ces_slowdown` | jobs-displacement | chart replaced by the BTOS tercile cut |
+| `expectations_vs_realized` | btos | `renderExpect()` targeted `#adExpect`, which does not exist |
+| `monitor` | btos-jobs-monitor | the dashboard markup that drew it was removed 2026-07-31 |
+| `sources`, `replication`, `t1`, `t2`, `t3`, `t5`, `t6`, `goldman` | jobs-young-workers | SDID and horse-race outputs; no chart read them |
 
-Twelve strings in `index.html` and `jobs_displacement.html` cite
-`data_analysis/...` paths as source credits. They must point at the new files
-or the site cites things that do not exist.
+Computed but never published, and now gone with the scripts that made them: the
+96 cross-section regression coefficients behind cards 03 and 04, their placebos,
+the added-variable plot, the quarterly panel, and the whole synthetic-DID chain
+(`02_sdid_replicate.R`, `04_sdid_extensions.R`, `05_goldman_cps.R`,
+`sdid_core.R`). The regressions were an identification attempt the sample could
+not support: a 200k-job effect sat inside the confidence interval. Cards 03 and
+04 are descriptive by design and say so on the page.
 
-```
-data_analysis/btos/crosswalk_btos_jolts.csv  -> analysis/src/lookups/crosswalk_btos_jolts.csv
-data_analysis/scripts/run_all.R              -> analysis/run.R jobs-displacement
-data_analysis/micro/run_micro.R              -> analysis/run.R jobs-young-workers
-data_analysis/btos/README.md                 -> analysis/README.md
-data_analysis/exposure/README.md             -> analysis/README.md
-```
+Dead JS: `renderExpect()` and `renderGeography()` in `assets/adoption-charts.js`
+(their target elements have never existed in `index.html`), and
+`assets/jobs-monitor-charts.js` entirely. `renderStateMap()` stays; it is the
+geography chart that actually draws.
 
-`assets/jobs-charts.js` line ~313 is **done** -- it now cites
-`analysis/src/exhibits/jobs_02_age_bands.R`, verified rendered in the browser.
-The remaining eleven strings are in the two HTML files.
+`prototypes/themes.html` is collateral. It loaded the deleted asset and contains
+the three orphaned chart slots, so its monitor section and those three slots no
+longer draw. It is a frozen theming prototype, it is not on the live site, and its
+header now says so.
 
-Also update `CONTEXT.md`, which describes the old layout, and
-`.githooks/pre-commit`, which references `data_analysis`.
+## Renamed
 
-### 7. Write `INPUTS.md`
+`data/microdata.js` → `data/jobs-young-workers-data.js`, `MICRO_DATA` →
+`JOBS_YOUNG_WORKERS`. After the prune the file holds only QWI early-career
+results and the old name described a four-tab research dashboard that no longer
+exists. `tests/compare_golden.R` maps the old golden filename to the new one, so
+the comparison above still works.
 
-One row per uncommitted input: size, which script needs it, how to re-fetch.
-The content exists in `data_analysis/DATA_LOCAL.md`; it needs rewriting for the
-new paths, and the symlink section deleted since nothing is symlinked now.
+## The one deliberate loss
+
+`data_analysis/**/output/` was gitignored, so the pre-refactor reference outputs
+(`t4_coefs.csv`, `qwi_event_study.csv`, `btos_ai_long.csv`, the slim CES and JOLTS
+extracts) were not in git history and are gone. Every comparison made against
+them is recorded above. All of them are regenerable from `analysis/` given the
+inputs in `INPUTS.md`.

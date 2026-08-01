@@ -15,13 +15,11 @@
    Renderers target canonical element IDs, all prefixed `ad`:
      renderExposure()   -> #adExposureScatter #adExposureTime #adExposureTable
      renderHeadline()   -> #adHeadline
-     renderExpect()     -> #adExpect
      renderSize()       -> #adSize
      renderSupSize()    -> #adSupSize
      renderSupSector()  -> #adSupSector
      renderSubsector()  -> #adSubsector
      renderDiffusion()  -> #adDiffusion
-     renderGeography()  -> #adStates #adMSA      (ranked bars; optional fallback)
      renderStateMap()   -> #adStateMap #adMapNote (significance choropleth + metros)
      renderSupFunctions()  -> #adSupFunctions
      renderSupGenai()      -> #adSupGenai
@@ -408,40 +406,6 @@
       `<b>${num(D.headline_now.future, 1)}%</b> expect to within six months.`);
   }
 
-  function renderExpect() {
-    const svg = byId('adExpect'); if (!svg) return;
-    const rows = arr(D.expectations_vs_realized);
-    if (!rows.length) { svg.innerHTML = `<text x="20" y="30" font-size="12" fill="${C.muted}">Not enough matched vintages yet.</text>`; return; }
-    const W = 700, H = 360, mL = 46, mR = 20, mT = 18, mB = 44, pw = W - mL - mR, ph = H - mT - mB;
-    svg.setAttribute('viewBox', `0 0 ${W} ${H}`);
-    const vals = rows.flatMap(r => [r.expected, r.realized]).filter(fin);
-    let lo = Math.min(...vals), hi = Math.max(...vals);
-    const pad = (hi - lo) * 0.12 || 2; lo = Math.max(0, lo - pad); hi += pad;
-    const X = lin(lo, hi, mL, mL + pw), Y = lin(lo, hi, mT + ph, mT);
-    let s = '';
-    ticks(lo, hi, 5).forEach(t => { const x = X(t), y = Y(t);
-      s += `<line x1="${x}" y1="${mT}" x2="${x}" y2="${mT + ph}" stroke="${C.grid}"/><text x="${x}" y="${mT + ph + 16}" text-anchor="middle" font-size="11" fill="${C.muted}">${t}%</text>` +
-           `<line x1="${mL}" y1="${y}" x2="${mL + pw}" y2="${y}" stroke="${C.grid}"/><text x="${mL - 7}" y="${y + 3.5}" text-anchor="end" font-size="11" fill="${C.muted}">${t}%</text>`; });
-    s += `<line x1="${X(lo)}" y1="${Y(lo)}" x2="${X(hi)}" y2="${Y(hi)}" stroke="${C.muted}" stroke-width="1.2" stroke-dasharray="5 4"/>`;
-    s += `<text x="${mL + pw / 2}" y="${H - 8}" text-anchor="middle" font-size="11.5" fill="${C.text}">Expected adoption, stated six months earlier (%)</text>`;
-    s += `<text transform="translate(13,${mT + ph / 2}) rotate(-90)" text-anchor="middle" font-size="11.5" fill="${C.text}">Adoption actually realized (%)</text>`;
-    s += `<text x="${mL + 6}" y="${mT + 12}" font-size="10.5" fill="${C.muted}">above the line = under-predicted · below = over-predicted</text>`;
-    rows.forEach(r => {
-      if (!fin(r.expected) || !fin(r.realized)) return;
-      const x = X(r.expected), y = Y(r.realized);
-      const t = `Expected ${fmtDate(r.expect_date)}: <b>${num(r.expected, 1)}%</b><br>Realized ~6 mo later: <b>${num(r.realized, 1)}%</b>${r.crosses_break ? '<br><i>window crosses the wording break</i>' : ''}`;
-      s += r.crosses_break
-        ? `<circle cx="${x}" cy="${y}" r="4" fill="none" stroke="${C.muted}" stroke-width="1.4" data-tip="${esc(t)}"/>`
-        : `<circle cx="${x}" cy="${y}" r="4.5" fill="${C.navy}" data-tip="${esc(t)}"/>`;
-    });
-    svg.innerHTML = s; bindTips(svg);
-    setHTML('adExpectNote',
-      `Each point pairs a six-month expectation with the adoption actually realized about six months later. ` +
-      `Points below the 45° line mean firms over-predicted their own adoption — the modal pattern, and a useful ` +
-      `discount on the survey's forward-looking numbers. Hollow points have a window straddling the ` +
-      `${fmtDate(D.break_date)} rewording and are not strictly comparable.`);
-  }
-
   /* ══ 03 — WHO IS ADOPTING ═════════════════════════════════════════════════ */
   const SIZE_RAMP = ['#c9d0c8', '#a7c2ad', '#84b39a', '#5f9e86', '#3f7d6a', '#345f6b', '#2c3254'];
 
@@ -537,23 +501,6 @@
       `Change in the firm-weighted adoption rate over the trailing six months by 2-digit NAICS sector, new-wording ` +
       `period only. Twelve-month change is withheld wherever the window would cross the ${fmtDate(D.break_date)} ` +
       `rewording. Positive almost everywhere: this is still a diffusion phase, not a plateau.`);
-  }
-
-  function renderGeography() {
-    const st = byId('adStates');
-    if (st) hbarPanel(st, arr(D.geography && D.geography.states).map(s => ({
-      label: s.code, value: s.est, color: C.navy, suppressed: s.suppressed,
-      tip: `${s.code}<br>AI use: <b>${fin(s.est) ? num(s.est, 1) + '%' : 'suppressed'}</b>${fin(s.se) ? ` ±${num(s.se, 2)}` : ''}`
-    })), { mL: 42, unit: '%', rowH: 13 });
-    const ms = byId('adMSA');
-    if (ms) hbarPanel(ms, arr(D.geography && D.geography.msas).map(m => ({
-      label: (m.name || m.code).replace(/,.*$/, '').slice(0, 22), value: m.est, color: C.green, suppressed: m.suppressed,
-      tip: `${m.name}<br>AI use: <b>${fin(m.est) ? num(m.est, 1) + '%' : 'suppressed'}</b>${fin(m.se) ? ` ±${num(m.se, 2)}` : ''}`
-    })), { mL: 150, unit: '%', rowH: 16 });
-    setHTML('adGeoNote',
-      `Firm-weighted adoption for the latest period (${fmtDate(D.latest_date)}): states at left, the 25 largest metros ` +
-      `at right. Ranked rather than mapped so the ordering is exact and small differences are not read as regional ` +
-      `blocs. Multi-state ("XX") filers are excluded.`);
   }
 
   /* ══ 05 — GEOGRAPHY: GRADIENT CHOROPLETH + METRO OVERLAY ══════════════════
@@ -799,21 +746,22 @@
   }
 
   /* Every renderer no-ops when its target element is absent, so the markup in
-     index.html decides which figures the tab shows. Currently unused slots,
-     kept live so re-adding the element is the only edit needed to restore the
-     chart: #adExpect (expected vs realized), #adExposureTime (gradient over
-     time), #adStates / #adMSA (ranked geography bars), #adTopStats (the three
-     summary boxes — the chain spine carries those numbers now). */
+     index.html decides which figures the tab shows. Two renderers were deleted
+     in the analysis/ refactor rather than left dormant: renderExpect() targeted
+     #adExpect and renderGeography() targeted #adStates / #adMSA, and none of
+     those elements has ever existed in index.html. renderExpect() also read
+     `expectations_vs_realized`, which src/publish/btos.R no longer emits.
+     renderStateMap() is the geography chart that actually draws. The one slot
+     still kept live is #adExposureTime (the gradient over time); #adTopStats is
+     gone too, since the chain spine carries those three numbers now. */
   function renderAll() {
     try { renderExposure(); }   catch (e) { console.error('adoption: exposure', e); }
     try { renderHeadline(); }   catch (e) { console.error('adoption: headline', e); }
-    try { renderExpect(); }     catch (e) { console.error('adoption: expect', e); }
     try { renderSize(); }       catch (e) { console.error('adoption: size', e); }
     try { renderSupSize(); }    catch (e) { console.error('adoption: supSize', e); }
     try { renderSupSector(); }  catch (e) { console.error('adoption: supSector', e); }
     try { renderSubsector(); }  catch (e) { console.error('adoption: subsector', e); }
     try { renderDiffusion(); }  catch (e) { console.error('adoption: diffusion', e); }
-    try { renderGeography(); }  catch (e) { console.error('adoption: geography', e); }
     try { renderStateMap(); }   catch (e) { console.error('adoption: stateMap', e); }
     try { renderSupFunctions(); } catch (e) { console.error('adoption: functions', e); }
     try { renderSupGenai(); }     catch (e) { console.error('adoption: genai', e); }

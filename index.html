@@ -2576,23 +2576,24 @@
 <script src="data/tracker-data.js"></script>
 <!-- Fact Bank data. Optional: if absent, the Fact Bank tab hides itself. -->
 <script src="data/fact-bank-data.js"></script>
-<!-- Job displacement data (window.JOBS_DISPLACEMENT_DATA). Regenerate via data_analysis/scripts/run_all.R --refresh -->
+<!-- Job displacement data (window.JOBS_DISPLACEMENT_DATA). Regenerate: Rscript analysis/run.R jobs-displacement -->
 <script src="data/jobs-displacement-data.js" charset="utf-8"></script>
 <!-- Adoption tab. Census BTOS, biweekly + AI supplement (window.BTOS_DATA).
-     Regenerate: Rscript data_analysis/btos/{01_fetch_btos,02_build_btos,run_btos}.R -->
+     Regenerate: Rscript analysis/run.R btos -->
 <script src="data/btos-data.js" charset="utf-8"></script>
 <!-- Adoption tab. BTOS adoption x employment-weighted occupational exposure (window.BTOS_EXPOSURE).
-     Regenerate: Rscript data_analysis/{exposure/02_build_exposure,micro/03_tests_industry,micro/run_micro}.R -->
+     Regenerate: Rscript analysis/run.R btos-exposure -->
 <script src="data/btos-exposure-data.js" charset="utf-8"></script>
 <!-- Adoption tab, link 5 (Where). Pre-projected US state outlines and MSA
      points for the significance map (window.US_ALBERS). -->
 <script src="data/us-albers-data.js" charset="utf-8"></script>
 <!-- Job Displacement tab, sections 03-04. BTOS x CES x JOLTS (window.BTOS_JOBS_MONITOR).
-     Regenerate: Rscript data_analysis/btos/{03_jobs_join,run_jobs}.R -->
+     Regenerate: Rscript analysis/run.R btos-jobs-monitor -->
 <script src="data/btos-jobs-monitor-data.js" charset="utf-8"></script>
-<!-- Job Displacement tab, section 05. QWI x BTOS early-career hiring (window.MICRO_DATA).
-     Regenerate: Rscript data_analysis/micro/run_micro.R -->
-<script src="data/microdata.js" charset="utf-8"></script>
+<!-- Job Displacement tab, section 05. QWI x BTOS early-career hiring
+     (window.JOBS_YOUNG_WORKERS).
+     Regenerate: Rscript analysis/run.R jobs-young-workers -->
+<script src="data/jobs-young-workers-data.js" charset="utf-8"></script>
 
 <!-- ═══════════════════════════════════════════════════════════
      HTML
@@ -3061,7 +3062,7 @@
               <p class="jd-p"><b>Geography is measured imprecisely.</b> State and metro figures are subsamples of a firm survey and carry standard errors of a few percentage points, which is large relative to the spread across states. The map shows the levels as published; it does not test whether any two places differ.</p>
               <p class="jd-p"><b>The exposure join is the least standard thing on this page.</b> The design is Tucker's (2025). Occupation scores come from the Budget Lab at Yale's replication of the exposure literature, aggregated to industry with CPS 2021&ndash;22 occupation-by-industry employment weights. About ten percent of employment cannot be mapped, mostly construction, which CPS codes as a single industry, and public administration. Using 2023&ndash;24 weights instead correlates at 0.99, so the choice of weight window does not drive the result.</p>
               <p class="jd-p"><b>Adoption is not causation.</b> Nothing on this page identifies an effect of AI on anything. Industries that adopt AI differ from industries that do not in many ways, and the exposure gradient is a correlation between two industry characteristics.</p>
-              <p class="jd-p">Full pipeline, sources and sanity checks: <code>data_analysis/btos/README.md</code> and <code>data_analysis/exposure/README.md</code> in this repository.</p>
+              <p class="jd-p">Full pipeline, sources and sanity checks: <code>analysis/README.md</code> in this repository.</p>
             </div>
           </details>
 
@@ -3371,7 +3372,7 @@
           <summary>The technical specification</summary>
           <div class="method-body">
             <dl>
-              <dt>Treatment</dt><dd>The same pre-break BTOS adoption measure as section 03, mapped from BTOS sectors to JOLTS supersectors by <code>data_analysis/btos/crosswalk_btos_jolts.csv</code>, then cut at terciles, five supersectors per group.</dd>
+              <dt>Treatment</dt><dd>The same pre-break BTOS adoption measure as section 03, mapped from BTOS sectors to JOLTS supersectors by <code>analysis/src/lookups/crosswalk_btos_jolts.csv</code>, then cut at terciles, five supersectors per group.</dd>
               <dt>Outcome</dt><dd>BLS Job Openings and Labor Turnover Survey, seasonally adjusted rates. Within a group, rates are averaged across supersectors weighted by employment, then smoothed with a three-month trailing mean.</dd>
               <dt>Sample</dt><dd id="mFlowSample"></dd>
               <dt>Scale</dt><dd>Each panel is free-scaled, so vertical distances are not comparable between panels. The layoffs panel is clipped: its three-month average peaks near ten percent in spring 2020, and at full scale the entire post-2021 range would be a few pixels tall. The clip level, the true peaks and the exit points are all marked; the figures are in the chart note.</dd>
