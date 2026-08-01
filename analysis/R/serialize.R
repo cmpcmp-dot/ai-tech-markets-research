@@ -62,10 +62,16 @@ read_card <- function(name) {
 }
 
 # Write a card's JSON fragment. Called at the end of every exhibit.
+#
+# na = "null" is not optional. Without it jsonlite serialises R's NA as the
+# STRING "NA", which survives all the way to the browser, where it is truthy
+# and a chart will try to plot it. A missing observation must arrive as JSON
+# null so `if (v == null)` in the chart code does the right thing.
 write_card <- function(payload, name, digits = 6) {
   ensure_dir(card_path())
   p <- card_path(paste0(name, ".json"))
-  write_json(payload, p, auto_unbox = TRUE, pretty = TRUE, digits = digits)
+  write_json(payload, p, auto_unbox = TRUE, pretty = TRUE,
+             digits = digits, na = "null")
   say("  wrote %s", p)
   invisible(p)
 }
