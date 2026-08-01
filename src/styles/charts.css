@@ -1,0 +1,96 @@
+  /* ── SHARED CHART CHROME (.jd-*) ─────────────────────────────
+     OWNED BY index.html. NOT synced. Both the Job Displacement tab and
+     the Adoption tab render into this vocabulary, and assets/jobs-charts.js
+     and assets/adoption-charts.js both attach a .jd-tooltip directly to
+     <body> — outside #jobDisplacementArea — so none of this can be scoped
+     to a single tab.
+
+     jobs_displacement.html carries its own copy of these rules purely so
+     the standalone preview looks right. That copy is deliberately dropped
+     during sync; this block is the one that ships. The two can therefore
+     drift on shared chrome — that is the accepted trade for not letting a
+     jobs-tab edit silently restyle Adoption. sync_jobs_displacement.py
+     fails loudly if jobs_displacement.html introduces a .jd-* selector
+     that is missing here, so new shared components can't slip through
+     unnoticed; add them below by hand when that happens. */
+  /* Alias of .tab-lede. This was the reference treatment the shared
+     --lede-* tokens were derived from; only the ceiling moved (28px → 32px)
+     so it holds up as a page opener rather than reading as a subhead. */
+  .jd-lede {
+    font-family: var(--serif);
+    font-size: var(--lede-size);
+    line-height: var(--lede-lh);
+    font-weight: var(--lede-weight);
+    letter-spacing: var(--lede-track);
+    color: var(--headline);
+    max-width: var(--lede-measure);
+    /* No padding-top: the top gap belongs to the wrapper, which reads
+       --masthead-top, so it can't fork from the other five tabs. */
+    padding: 0 0 6px;
+  }
+  .jd-standfirst {
+    font-family: var(--sans);
+    font-size: 15px; line-height: 1.7; color: var(--muted);
+    max-width: var(--lede-measure);
+    padding-bottom: 8px; border-bottom: 1px solid var(--border);
+  }
+  .jd-section { padding: 30px 0 10px; border-top: 1px solid var(--border); }
+  .jd-section:first-of-type { border-top: none; }
+  .jd-kicker {
+    font-family: var(--grot); font-size: 11.5px; letter-spacing: 0.09em;
+    text-transform: uppercase; color: var(--green); font-weight: 600; margin-bottom: 7px;
+  }
+  .jd-h {
+    font-family: var(--grot); font-size: clamp(20px, 2.4vw, 25px);
+    line-height: 1.25; color: var(--headline); margin-bottom: 13px; font-weight: 500;
+  }
+  .jd-p { font-size: 14.5px; line-height: 1.75; color: var(--text); margin-bottom: 14px; }
+  .jd-p a { color: var(--navy); }
+  .jd-chart-wrap {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: var(--r-card); padding: 16px 14px 12px; margin: 18px 0 10px;
+  }
+  .jd-chart-title { font-family: var(--grot); font-size: 13px; font-weight: 600; color: var(--headline); margin: 0 4px 2px; }
+  .jd-chart-sub { font-size: 11.5px; color: var(--muted); margin: 0 4px 8px; }
+  .jd-svg { width: 100%; height: auto; display: block; font-family: var(--sans); }
+  .jd-chart-note { font-size: 11px; color: var(--muted); margin: 8px 4px 0; line-height: 1.5; }
+  .jd-legend { display: flex; flex-wrap: wrap; gap: 15px; margin: 6px 4px 2px; font-size: 12px; color: var(--text); }
+  .jd-legend span { display: inline-flex; align-items: center; gap: 6px; }
+  .jd-legend i { width: 13px; height: 4px; border-radius: 2px; display: inline-block; }
+  .jd-legend i.dot { width: 10px; height: 10px; border-radius: 50%; }
+  .jd-answer {
+    display: flex; gap: 14px; align-items: flex-start;
+    background: var(--navy); color: var(--beige);
+    border-radius: var(--r-card); padding: 15px 18px; margin: 16px 0 6px;
+  }
+  .jd-answer .lab {
+    font-family: var(--grot); font-weight: 700; letter-spacing: 0.07em;
+    text-transform: uppercase; font-size: 11.5px; color: var(--gold);
+    flex-shrink: 0; padding-top: 2px;
+  }
+  .jd-answer .txt { font-size: 14px; line-height: 1.65; }
+  .jd-stats { display: flex; flex-wrap: wrap; gap: 10px; margin: 16px 0 4px; }
+  .jd-stat { flex: 1 1 140px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--r-card); padding: 12px 14px; }
+  .jd-stat .n { font-family: var(--serif); font-size: 25px; color: var(--headline); line-height: 1.05; }
+  .jd-stat .n small { font-size: 14px; color: var(--muted); font-family: var(--sans); }
+  .jd-stat .n .pos { color: var(--red-deep); }
+  .jd-stat .l { font-family: var(--grot); font-size: 11px; color: var(--muted); margin-top: 7px; line-height: 1.45; }
+  /* Introduced by the Job Displacement rewrite; kept here with the rest of
+     the family so the Adoption tab can pick it up too. */
+  .jd-flag {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-family: var(--grot); font-size: 12px; font-weight: 600;
+    background: var(--navy); color: var(--beige);
+    border-radius: 999px; padding: 6px 13px; margin: 16px 0 0;
+  }
+  .jd-flag b { color: var(--gold); }
+  .jd-tooltip {
+    position: fixed; pointer-events: none; background: var(--navy); color: var(--beige);
+    font-family: var(--sans); font-size: 12px; line-height: 1.5; padding: 7px 10px;
+    border-radius: var(--r-ctl); box-shadow: 0 4px 16px rgba(0,0,0,0.28); opacity: 0;
+    transition: opacity 0.1s; z-index: 60; max-width: 250px;
+  }
+  .jd-tooltip b { color: #fff; }
+  .jd-src { font-size: 11px; color: var(--muted); margin-top: 4px; }
+  .jd-vintage { font-family: var(--grot); font-size: 10.5px; color: var(--muted); text-align: right; margin-top: 4px; }
+

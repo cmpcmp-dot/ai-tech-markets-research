@@ -1,7 +1,28 @@
 #!/bin/sh
-# Reject any staged blob over 2 MB.
+# Two guards. Either can be skipped for a one-off commit:
+#   SKIP_SIZE_GUARD=1 git commit ...    the 2 MB blob limit
+#   SKIP_BUILD_GUARD=1 git commit ...   the index.html freshness check
+
+# ── Guard 2: index.html must match a fresh build ──────────────────────────
+# index.html is generated from src/ by build.py. Committing a stale or
+# hand-edited one means the next rebuild silently reverts it, so catch it here
+# rather than in review. Runs first because it is the cheap, common mistake.
+if [ -z "$SKIP_BUILD_GUARD" ] && \
+   git diff --cached --name-only --diff-filter=ACMRT | grep -qE '^(index\.html|src/|build\.py)'; then
+  if ! python3 build.py --check >/dev/null 2>&1; then
+    echo "pre-commit: index.html does not match a fresh build of src/."
+    echo ""
+    echo "  Run:  python3 build.py && git add index.html"
+    echo ""
+    echo "  If you edited index.html directly, those edits are in the working"
+    echo "  tree only and rebuilding will discard them. Move them into src/"
+    echo "  first -- see CONTRIBUTING.md for which file owns what."
+    exit 1
+  fi
+fi
+
+# ── Guard 1: reject any staged blob over 2 MB ─────────────────────────────
 # Large derived data does not belong in this repo -- see analysis/README.md.
-# One-off override:  SKIP_SIZE_GUARD=1 git commit ...
 [ -n "$SKIP_SIZE_GUARD" ] && exit 0
 limit=2097152
 fail=0

@@ -1,0 +1,14 @@
+---
+title: "monthly data"
+---
+
+This is a Quarto website. Here we are going to get the jobs data.
+
+
+```{r startup}
+library(tidyverse)
+library(tidyusmacro)
+
+jobs <- getUnrateFRED()
+```
+

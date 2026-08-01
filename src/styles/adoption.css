@@ -1,0 +1,170 @@
+
+  /* ── ADOPTION TAB extras ────────────────────────────────────
+     The Adoption tab reuses every .jd-* component above. These are the few
+     pieces it needs that the Job Displacement tab never did: a regression
+     table, a two-up chart row, a pull-quote handoff, and a subhead. */
+  .ad-sub {
+    font-family: var(--grot); font-size: 11.5px; letter-spacing: 0.06em;
+    text-transform: uppercase; color: var(--muted); font-weight: 600;
+    margin: 26px 0 2px;
+  }
+  .ad-head {
+    font-size: 13.5px; line-height: 1.6; color: var(--headline);
+    background: var(--surface2); border-left: 3px solid var(--green);
+    border-radius: 0 var(--r-card) var(--r-card) 0; padding: 11px 14px; margin: 14px 0 4px;
+  }
+  .ad-head .ad-bench { color: var(--muted); font-size: 12.5px; }
+  .ad-table-wrap { overflow-x: auto; margin: 14px 0 4px; }
+  table.ad-table {
+    width: 100%; border-collapse: collapse;
+    font-family: var(--sans); font-size: 12px; color: var(--text);
+  }
+  table.ad-table th {
+    font-family: var(--grot); font-size: 10.5px; letter-spacing: 0.05em;
+    text-transform: uppercase; color: var(--muted); font-weight: 600;
+    text-align: left; padding: 6px 9px; border-bottom: 1.5px solid var(--border);
+    white-space: nowrap;
+  }
+  table.ad-table td { padding: 6px 9px; border-bottom: 1px solid var(--border); }
+  table.ad-table tbody tr:first-child td { font-weight: 600; color: var(--headline); }
+  .ad-two-up { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; align-items: start; }
+  .ad-two-up > div { min-width: 0; }
+  .ad-handoff {
+    display: flex; gap: 14px; align-items: flex-start;
+    background: var(--surface2); border: 1px solid var(--border);
+    border-left: 3px solid var(--gold);
+    border-radius: 0 var(--r-card) var(--r-card) 0; padding: 15px 18px; margin: 18px 0 6px;
+    font-size: 14px; line-height: 1.65; color: var(--text);
+  }
+  .ad-handoff a { color: var(--navy); font-weight: 600; }
+
+  /* ── ADOPTION TAB: the chain ─────────────────────────────────
+     The tab's own argument is a causal chain — exposure predicts adoption,
+     adoption concentrates in large firms, it does language work, and the
+     final link to job loss is the one that does not hold. So the chain IS
+     the navigation: six links across the top with their headline numbers
+     visible at once, and only the selected link's evidence below. The last
+     link carries a dashed rule because it is the weak one, which is the
+     single most important thing the page has to say.
+
+     Everything inside a panel reuses the .jd-* components, so the charts,
+     notes and tooltips are the same ones the Job Displacement tab uses. */
+  /* margin: 0 and no side padding. The 1060px cap stays — it is the
+     column the charts are drawn for — but centring it inside the 1352px
+     layout put this tab's masthead 144px right of Papers'/Lab's/Jobs',
+     making Adoption the outlier on left edge. The 28px inset now comes
+     once, from .cards-area, instead of 28 + 26 here. */
+  .ad-chain-wrap { max-width: 1060px; margin: 0; padding: var(--masthead-top) 0 24px; }
+  /* The measure now comes from --lede-measure on the .jd-* rules
+     themselves; this pair is kept only so the wide .ad-chain-wrap
+     column can't widen the opener past it. */
+  .ad-chain-wrap .jd-lede,
+  .ad-chain-wrap .jd-standfirst { max-width: var(--lede-measure); }
+
+  .ad-spine {
+    display: grid; grid-template-columns: repeat(6, 1fr);
+    margin: 22px 0 0; border-bottom: 1px solid var(--border);
+  }
+  .ad-link {
+    position: relative; text-align: left; background: transparent; border: none;
+    font-family: inherit; cursor: pointer; padding: 14px 14px 16px;
+    border-top: 3px solid var(--border);
+    transition: border-color .18s, background .18s;
+  }
+  .ad-link + .ad-link { border-left: 1px solid var(--border); }
+  .ad-link:hover:not(.on) { background: rgba(44, 50, 84, 0.035); }
+  .ad-link.on { border-top-color: var(--navy); background: var(--surface); }
+  .ad-link:focus-visible { outline: 2px solid var(--navy); outline-offset: -2px; }
+  /* The link name is the loudest thing on the spine — no numbering, because
+     the left-to-right order already says it is a sequence. */
+  .ad-lq {
+    display: block; font-family: var(--grot); font-size: 19px; font-weight: 600;
+    color: var(--headline); line-height: 1.15; margin-bottom: 9px;
+    letter-spacing: -.004em;
+  }
+  .ad-lv {
+    display: block; font-family: var(--serif); font-size: 22px; line-height: 1;
+    color: var(--headline); font-weight: 500;
+  }
+  /* Spacing comes from &nbsp; in renderChain(), not a margin, so units sit
+     tight to their number ("21.7%") or spaced ("+7.3 pp per SD") as needed. */
+  .ad-lv .u { font-family: var(--sans); font-size: 11.5px; color: var(--muted); white-space: nowrap; }
+  .ad-lc {
+    display: block; margin-top: 7px; font-size: 11px; color: var(--muted); line-height: 1.4;
+  }
+
+  /* Question, then the figure, then the answer. The hero chart sits directly
+     under the heading so it lands above the fold instead of being pushed down
+     by three paragraphs of setup; the reading matter goes below it. */
+  .ad-panel { display: none; padding: 22px 0 4px; }
+  .ad-panel.on { display: block; }
+  .ad-panel .jd-h { margin-bottom: 4px; }
+  .ad-panel .ad-standfirst {
+    font-size: 13.5px; line-height: 1.6; color: var(--muted);
+    max-width: 720px; margin: 0 0 14px;
+  }
+  .ad-panel .ad-hero { margin-top: 0; }
+  .ad-panel .ad-hero + .ad-verdict { margin-top: 18px; }
+  .ad-panel .jd-p,
+  .ad-panel .ad-head,
+  .ad-panel .ad-sub,
+  .ad-panel .ad-handoff,
+  .ad-panel .ad-verdict { max-width: 760px; }
+  /* Charts get the full panel width; prose stays at reading measure. */
+  .ad-verdict {
+    font-family: var(--serif); font-size: 17px; line-height: 1.5; color: var(--headline);
+    border-left: 3px solid var(--green); padding: 2px 0 2px 16px; margin: 0 0 20px;
+  }
+  .ad-panel.weak .ad-verdict { border-left-color: var(--red-deep); }
+
+  /* Walk the chain without going back to the spine. */
+  .ad-step {
+    display: flex; gap: 12px; align-items: center; justify-content: space-between;
+    margin: 24px 0 4px; padding-top: 16px; border-top: 1px solid var(--border);
+  }
+  .ad-step-btn {
+    font-family: var(--grot); font-size: 12.5px; font-weight: 600; color: var(--navy);
+    background: var(--surface); border: 1px solid var(--border); border-radius: var(--r-ctl);
+    padding: 9px 14px; cursor: pointer; text-align: left; line-height: 1.35;
+  }
+  .ad-step-btn:hover { border-color: var(--navy); }
+  .ad-step-btn .s { display: block; font-family: var(--sans); font-size: 10.5px;
+    font-weight: 400; color: var(--muted); letter-spacing: .06em; text-transform: uppercase; }
+  .ad-step-btn:disabled { opacity: .4; cursor: default; }
+  .ad-step-btn:disabled:hover { border-color: var(--border); }
+
+  /* Caveats apply to every link, so they live outside the panels. */
+  .ad-notes {
+    margin: 26px 0 8px; background: var(--surface); border: 1px solid var(--border);
+    border-radius: var(--r-card); padding: 0 18px;
+  }
+  .ad-notes > summary {
+    font-family: var(--grot); font-size: 12.5px; font-weight: 600; color: var(--headline);
+    padding: 14px 0; cursor: pointer; list-style: none;
+  }
+  .ad-notes > summary::-webkit-details-marker { display: none; }
+  .ad-notes > summary::before { content: '▸ '; color: var(--muted); }
+  .ad-notes[open] > summary::before { content: '▾ '; }
+  .ad-notes > summary:focus-visible { outline: 2px solid var(--navy); outline-offset: 2px; }
+  .ad-notes .jd-p { font-size: 13px; line-height: 1.65; max-width: 820px; }
+  .ad-notes .nb { padding-bottom: 8px; }
+
+  @media (max-width: 1000px) {
+    .ad-spine { grid-template-columns: repeat(3, 1fr); }
+    .ad-link:nth-child(4) { border-left: none; }
+    .ad-link:nth-child(n+4) { border-top-width: 2px; }
+  }
+  @media (max-width: 620px) {
+    .ad-spine { grid-template-columns: repeat(2, 1fr); }
+    .ad-link:nth-child(odd) { border-left: none; }
+  }
+
+  /* JOB DISPLACEMENT: adoption-monitor section (jdm-board / jdm-card /
+     jdmQuad etc.) removed 2026-07-31 — superseded by the scroll/editorial
+     redesign synced from jobs_displacement.html, which has no equivalent
+     section. assets/jobs-monitor-charts.js is no longer loaded either;
+     the file is left in place in case that section is revived later. */
+  @media (max-width: 760px) {
+    .ad-two-up { grid-template-columns: 1fr; }
+  }
+

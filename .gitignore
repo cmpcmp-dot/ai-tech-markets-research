@@ -28,3 +28,18 @@ analysis/interim/
 # add a line here AND a row in analysis/INPUTS.md, so provenance stays legible.
 !analysis/frozen/
 !analysis/frozen/**
+
+# ── phase 1 refactor scaffolding ──────────────────────────────────────────
+# The pre-split index.html, kept only to prove the src/ extraction was
+# byte-identical. build.py --check plus the pre-commit build guard subsume it;
+# delete tests/golden/ once you have opened the built page and are satisfied.
+tests/golden/
+
+# ── test harness ──────────────────────────────────────────────────────────
+# tests/ needs jsdom: `npm install jsdom`. The tree is not committed.
+# No trailing slash: a local `npm install` makes a directory, but pointing
+# node_modules at a shared tree makes it a SYMLINK, which git sees as a file,
+# and `node_modules/` would not match it. Same trap as the input symlinks in
+# docs/history/MERGE_PLAN.md.
+node_modules
+package-lock.json

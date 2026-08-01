@@ -1,0 +1,187 @@
+  /* ── DATA TRACKER ────────────────────────────────────────────────────────
+     The five-way sub-tab bar inside #trackerArea, its stat tiles, and the
+     deliberately-empty state for a tab whose contract does not exist yet.
+
+     Panels reuse the .jd-* chart chrome (charts.css) and the .ad-* editorial
+     classes (adoption.css) rather than restating them, so a tracker panel and
+     an adoption panel look like the same publication. Only what is genuinely
+     new to the tracker lives here. */
+
+  .trk-lede {
+    font-family: var(--serif);
+    font-size: var(--lede-size, clamp(23px, 2.5vw, 33px));
+    line-height: 1.16;
+    letter-spacing: -0.011em;
+    font-weight: 500;
+    color: var(--headline);
+    max-width: var(--lede-measure, 760px);
+    margin: var(--masthead-top, 34px) 0 0;
+  }
+  .trk-standfirst {
+    font-family: var(--sans);
+    font-size: 15px;
+    line-height: 1.7;
+    color: var(--muted);
+    max-width: var(--lede-measure, 760px);
+    margin-top: 13px;
+  }
+  .trk-standfirst a { color: var(--accent); text-decoration: none; border-bottom: 1px solid var(--border); }
+  .trk-standfirst a:hover { border-bottom-color: var(--accent); }
+
+  /* ── the sub-tab bar ────────────────────────────────────────────────────
+     Five equal columns on desktop, horizontally scrollable below that rather
+     than wrapping, so the set always reads as one row of siblings. */
+  .trk-tabs {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 0;
+    margin: 26px 0 0;
+    border-top: 2px solid var(--navy);
+    border-bottom: 1px solid var(--border);
+  }
+  .trk-tab {
+    appearance: none;
+    background: none;
+    border: none;
+    border-right: 1px solid var(--border);
+    text-align: left;
+    padding: 13px 15px 12px;
+    cursor: pointer;
+    font-family: inherit;
+    display: block;
+    transition: background .13s ease;
+  }
+  .trk-tab:last-child { border-right: none; }
+  .trk-tab:hover { background: var(--surface2); }
+  .trk-tab.on { background: var(--surface2); box-shadow: inset 0 -3px 0 0 var(--gold-deep, #c99a3f); }
+
+  .trk-tab-l {
+    display: block;
+    font-family: var(--grot);
+    font-size: 13.5px;
+    font-weight: 600;
+    letter-spacing: .005em;
+    color: var(--muted);
+    line-height: 1.2;
+  }
+  .trk-tab.on .trk-tab-l { color: var(--headline); }
+  .trk-tab-s {
+    display: block;
+    margin-top: 3px;
+    font-family: var(--grot);
+    font-size: 10.5px;
+    letter-spacing: .04em;
+    text-transform: uppercase;
+    color: var(--muted);
+    opacity: .78;
+  }
+  /* A tab with no data reads differently from one that is merely unselected. */
+  .trk-tab-tk { color: var(--terra); opacity: 1; }
+
+  .trk-panel { display: none; padding: 24px 0 4px; }
+  .trk-panel.on { display: block; }
+  .trk-panel .jd-h { margin-bottom: 4px; }
+  .trk-panel .jd-p,
+  .trk-panel .ad-standfirst,
+  .trk-panel .ad-verdict { max-width: 760px; }
+
+  /* ── stat tiles ─────────────────────────────────────────────────────────
+     Every tile carries its units and its reference period in .trk-stat-s,
+     because these are the numbers most likely to be screenshotted alone. */
+  .trk-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(168px, 1fr));
+    gap: 1px;
+    margin: 22px 0 4px;
+    background: var(--border);
+    border: 1px solid var(--border);
+  }
+  .trk-stat { background: var(--surface); padding: 14px 16px 15px; }
+  .trk-stat.weak { background: var(--surface2); }
+  .trk-stat-v {
+    font-family: var(--serif);
+    font-size: clamp(21px, 2vw, 27px);
+    font-weight: 500;
+    line-height: 1.05;
+    color: var(--headline);
+    font-variant-numeric: tabular-nums;
+  }
+  .trk-stat-l {
+    margin-top: 6px;
+    font-family: var(--grot);
+    font-size: 11.5px;
+    font-weight: 600;
+    letter-spacing: .02em;
+    color: var(--text);
+    line-height: 1.3;
+  }
+  .trk-stat-s {
+    margin-top: 4px;
+    font-family: var(--grot);
+    font-size: 10.5px;
+    letter-spacing: .015em;
+    color: var(--muted);
+    line-height: 1.4;
+  }
+
+  /* Two-up chart grid for the four JOLTS flows. */
+  .trk-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px;
+    margin-top: 20px;
+  }
+  .trk-grid .jd-chart-wrap { margin-top: 0; }
+
+  /* ── the empty state ────────────────────────────────────────────────────
+     Has to be unmistakable at a glance and in a screenshot. Dashed rule,
+     terracotta mark, no chart frame: nothing here should read as a chart that
+     failed to load, and nothing should read as data. */
+  .trk-empty {
+    margin: 24px 0 8px;
+    padding: 30px 30px 32px;
+    border: 1px dashed var(--terra, #b0503a);
+    background: var(--surface2);
+    max-width: 760px;
+  }
+  .trk-empty-mark {
+    display: inline-block;
+    font-family: var(--grot);
+    font-size: 10.5px;
+    font-weight: 700;
+    letter-spacing: .13em;
+    text-transform: uppercase;
+    color: #fff;
+    background: var(--terra, #b0503a);
+    padding: 4px 9px 3px;
+  }
+  .trk-empty-lede {
+    font-family: var(--serif);
+    font-size: 19px;
+    line-height: 1.35;
+    color: var(--headline);
+    margin: 15px 0 0;
+  }
+  .trk-empty-p {
+    font-family: var(--sans);
+    font-size: 14.5px;
+    line-height: 1.68;
+    color: var(--muted);
+    margin: 11px 0 0;
+  }
+  .trk-empty-p code {
+    font-family: var(--mono, ui-monospace, SFMono-Regular, Menlo, monospace);
+    font-size: 12.5px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 1px 4px;
+  }
+
+  @media (max-width: 900px) {
+    .trk-tabs {
+      grid-template-columns: repeat(5, minmax(132px, 1fr));
+      overflow-x: auto;
+      scrollbar-width: thin;
+    }
+    .trk-grid { grid-template-columns: minmax(0, 1fr); }
+  }
