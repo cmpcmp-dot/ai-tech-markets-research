@@ -75,7 +75,14 @@ throws at load. Verify names resolve, and prefer running the page in
 - Chart primitives live in `assets/adoption-charts.js` and are exported on
   `window.ADOPTION_CHARTS`. `assets/tracker-charts.js` draws with them rather
   than carrying a second engine. Anything on that export list is a public
-  contract.
+  contract. The `adoption` in that filename is historical and deliberately not
+  renamed: the file is the shared engine, not just the BTOS renderer. Same for
+  `src/styles/adoption.css` and the `.ad-*`/`#ad*` prefix.
+- **"Adoption" means the variable, never the nav group.** The middle nav group
+  is **Economy** (Data Tracker, Job Displacement); it was renamed from Adoption
+  on 2026-08-01, see `docs/adr/0005`. Adoption is still the right word for what
+  BTOS measures and for the high/middle/low industry groups, and that usage is
+  correct and current. `docs/GLOSSARY.md` defines both.
 - Comments explain *why*, especially where a choice is load-bearing or where the
   obvious alternative is wrong. Several comments in this repo record a bug that
   the obvious arrangement caused; leave them there.

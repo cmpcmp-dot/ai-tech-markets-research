@@ -144,18 +144,28 @@ payload fails, rather than being disabled at load when the data is absent.
 `setView('tracker')`, `viewTracker`. Files renamed to match:
 `src/views/60-tracker.html`, `src/js/50-tracker-tabs.js`.
 
-Three things deliberately kept the old name. `head === 'adoption'` in the router,
-because `#adoption` and `#adoption/<link>` are public links that must keep
-resolving. `data-group="adoption"`, because the nav group stays labelled
-Adoption and Data Tracker belongs beside Job Displacement in it.
-`assets/adoption-charts.js` and `src/styles/adoption.css`, because they are
-genuinely about AI adoption — they serve the Census BTOS sub-tab.
+Three things deliberately kept the old name at the time. Two have since been
+revisited; see [`docs/adr/0005`](docs/adr/0005-adoption-to-economy-rename.md).
+
+- `head === 'adoption'` in the router, kept "because `#adoption` and
+  `#adoption/<link>` are public links that must keep resolving." The premise was
+  wrong: the page is not circulating and nothing links to it. **Alias removed
+  2026-08-01**, along with the `#themes`/`#theme/<id>` handoff, which called a
+  function that was never defined and threw on every hit.
+- `data-group="adoption"`, kept "because the nav group stays labelled Adoption."
+  **The group is now labelled Economy**, and the attribute is `economy` to
+  match. Adoption named one of the tracker's five sub-tabs, not the group.
+- `assets/adoption-charts.js` and `src/styles/adoption.css`. **Still kept**, on a
+  sharper reason than the original: `adoption-charts.js` is not only the BTOS
+  renderer, it is the shared primitive engine `tracker-charts.js` draws Jobs,
+  JOLTS and GDP with, so `btos-charts.js` would be a worse name than the one it
+  has. The `.ad-*`/`#ad*` prefix stays for the same reason at ~180 call sites.
 
 ### Tests
 
 ```sh
 node tests/interactions.js              # 58 assertions, ~40s
-node tests/routes.js                    # 26 routes, ~2.5 min
+node tests/routes.js                    # 27 routes, ~2.5 min
 node tests/routes.js --slice=0:6        # a chunk, for a short timeout
 node tests/routes.js --write            # re-record an intended change
 ```

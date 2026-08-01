@@ -3,6 +3,14 @@
 Draft for discussion, 2026-08-01. Nothing here is executed. Two decisions at the
 bottom gate everything else.
 
+> **Note, 2026-08-01, after this draft was written.** The nav group called
+> Adoption throughout the sections below is now labelled **Economy**, and its
+> `data-group` is `economy`. See
+> [`adr/0005`](adr/0005-adoption-to-economy-rename.md). The draft is left in its
+> original wording so the options still read as they were proposed; read
+> "Adoption (the group)" as "Economy" and "Adoption (the tab)" as "Data Tracker."
+> `assets/adoption-charts.js` and `src/styles/adoption.css` keep their names.
+
 ## What exists now
 
 `index.html` is 6,341 lines in one file:

@@ -3,6 +3,18 @@
 The words this project uses for its own parts, and the ones to avoid.
 Orientation and build instructions are in the root [`README.md`](../README.md).
 
+**Nav Group**:
+One of three labelled clusters in the site header, each holding two tabs and carrying its own accent colour via `data-group` and `--group-accent` (`src/styles/shell.css`). They are **Research** (Papers, Fact Bank; Soft Green), **Economy** (Data Tracker, Job Displacement; Warm Gold), and **Policy** (Lab, Solutions; Warm Pink). The three match the site title and the three framing questions on the About page, in that order. A nav group is a label only: it has no view key, no route, and no state.
+_Avoid_: tab category, section (when you mean the group)
+
+**Economy**:
+The middle Nav Group, holding Data Tracker and Job Displacement (`data-group="economy"`). Named for the question it asks, which the About lede states as "how the economy will absorb it." Formerly called "Adoption," which named only the Census BTOS sub-tab and not the other four or Job Displacement; renamed 2026-08-01, see [`adr/0005`](adr/0005-adoption-to-economy-rename.md). Not to be confused with **adoption** the variable, which is live and correct terminology throughout the charts and prose.
+_Avoid_: Adoption (as the name of this group), Impact
+
+**Adoption**:
+The economic variable, not a part of the site: the share of firms reporting they used AI to produce goods or services, as measured by the Census Business Trends and Outlook Survey. Industries are cut into high, middle and low adoption groups for the payroll and turnover comparisons. Correct and current usage; the term survives in `assets/adoption-charts.js`, `src/styles/adoption.css`, the `.ad-*`/`#ad*` prefix and `analysis/src/exhibits/adoption_*.R`, none of which were renamed. Adoption is not causation, and the pages that use it say so.
+_Avoid_: using it for the nav group (that is Economy), or as a synonym for AI's effect on employment
+
 **Fact Bank**:
 The tab/view (`#fact-bank`) listing short, citable, number-bearing facts extracted from tracker sources, one to three per source. Stored in `FACT_BANK` (`data/fact-bank-data.js`), rendered in `#factBankArea`, each record tied to one tracker entry via `paperId`. Extraction is governed by the `fact-bank` skill (`skills/fact-bank/SKILL.md`). Formerly called "Killer Facts."
 _Avoid_: Killer Facts, Killer Facts page/tab

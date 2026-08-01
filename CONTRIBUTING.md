@@ -76,22 +76,22 @@ src/styles/policy.css        policy map, matrix, columns, category rows
 src/styles/focus.css         :focus-visible, global
 src/styles/charts.css        shared .jd-* chart chrome
 src/styles/jobs.css          Job Displacement view
-src/styles/adoption.css      Adoption view + the chain
+src/styles/adoption.css      Census BTOS panels + the chain (name is historical)
 src/views/00-data-scripts    the data/*.js <script> tags
 src/views/10-header          site header nav
 src/views/20-shell           <main>, sidebar, tab description, #viewPanel
-src/views/30-fact-bank       ... 40-solutions, 50-about, 60-adoption,
+src/views/30-fact-bank       ... 40-solutions, 50-about, 60-tracker,
                                  70-jobs, 80-papers, 90-modals
 src/js/00-state              data wiring, helpers, state
 src/js/10-policy-map         ... 20-cite-export, 30-changelog, 40-router,
-                                 50-adoption-chain, 60-whats-new, 70-render,
-                                 80-fact-bank, 90-jobs-inline
+                                 45-tabgroup, 50-tracker-tabs, 60-whats-new,
+                                 70-render, 80-fact-bank, 90-jobs-inline
 ```
 
-`src/js/40-router.js` is only 11 lines today because the router is still
-scattered: `VIEW_TAB_IDS` and `setView()` are in `70-render.js`, and the
-`.ad-link` sub-tab system is in `50-adoption-chain.js`. Consolidating them is a
-separate change; that file is where it lands.
+The router is still split: `src/js/40-router.js` owns hash mapping and the
+`VIEWS` table, but `setView()` lives in `70-render.js` and the `.ad-link` chain
+inside the Census BTOS sub-tab is in `50-tracker-tabs.js`. Consolidating them is
+a separate change; `40-router.js` is where it lands.
 
 ## Tests
 
