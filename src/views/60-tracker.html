@@ -12,8 +12,9 @@
            Routes: #tracker/<tab>, and #tracker/btos/<link> for the chain.
            The old #adoption and #adoption/<link> still resolve here, because
            this view is what the Adoption tab became and those links are in
-           the wild. The nav group is still labelled Adoption, which is
-           deliberate: Data Tracker and Job Displacement belong together.
+           the wild. The nav group holding this view and Job Displacement is
+           labelled Economy; it was Adoption until 2026-08-01, which named only
+           one of the five sub-tabs below. See docs/adr/0005.
            ══════════════════════════════════════════════════════════════════ -->
       <div id="trackerArea">
 
@@ -22,7 +23,7 @@
 
         <!-- ══ SUB-TAB BAR ══════════════════════════════════════════════════
              Buttons are static; the active state, panel visibility and hash
-             are managed by the makeTabGroup() instance in 50-adoption-chain.js.
+             are managed by the makeTabGroup() instance in 50-tracker-tabs.js.
              Keep ids as trkTab-<id> / trkPanel-<id>: that is the contract. -->
         <div class="trk-tabs" role="tablist" aria-label="Data Tracker sources">
           <button class="trk-tab" id="trkTab-jobs" data-trktab="jobs" role="tab" aria-selected="false" aria-controls="trkPanel-jobs" tabindex="-1">

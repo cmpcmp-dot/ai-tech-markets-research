@@ -1,5 +1,13 @@
 /* ═══════════════════════════════════════════════════════════════════════════
-   adoption-charts.js — chart engine for the ADOPTION tab of index.html.
+   adoption-charts.js — the chart engine for index.html, and the renderers for
+   the Census BTOS sub-tab of the Data Tracker.
+
+   The filename is historical: this file was written for a nav tab called
+   Adoption, which became the Data Tracker and was relabelled Economy on
+   2026-08-01 (docs/adr/0005). It was deliberately NOT renamed, because the
+   obvious new name (btos-charts.js) would be more misleading than the old one:
+   the export list below is the shared primitive engine that tracker-charts.js
+   draws the Jobs, JOLTS and GDP panels with. Only the renderers are BTOS.
 
    Census Business Trends and Outlook Survey (BTOS) AI adoption, plus the
    employment-weighted occupational-exposure join. Inline SVG, no chart

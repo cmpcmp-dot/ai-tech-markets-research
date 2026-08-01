@@ -294,13 +294,13 @@
 
      Each group carries its own accent via --group-accent, set per group
      below. ESP secondary palette on the Warm Navy band: Soft Green (the
-     C3 accent) for Research, Warm Gold for Adoption, Warm Pink for
+     C3 accent) for Research, Warm Gold for Economy, Warm Pink for
      Policy. All three clear contrast on navy, and they stay graphic
      elements (rules, underlines, 10px labels) rather than body copy —
      the 75/15/10 balance holds because the band itself is navy. */
   .tab-group { display: flex; flex-direction: column; --group-accent: var(--green); }
   .tab-group[data-group="research"] { --group-accent: var(--green); }
-  .tab-group[data-group="adoption"] { --group-accent: var(--gold);  }
+  .tab-group[data-group="economy"]  { --group-accent: var(--gold);  }
   .tab-group[data-group="policy"]   { --group-accent: var(--pink);  }
   .tab-group-btns { display: flex; align-items: flex-end; }
   .tab-group-label {
@@ -2403,10 +2403,16 @@
       padding:17px 0; border-left:none; border-top:1px solid var(--border); }#jobDisplacementArea .answer-row:first-child { border-top:none; }#jobDisplacementArea .answer-row:nth-child(2) { border-top:1px solid var(--border); }#jobDisplacementArea .answer-row:hover, #jobDisplacementArea .answer-row:nth-child(2n):hover { padding-left:8px; }#jobDisplacementArea .closing { padding:22px 20px; }#jobDisplacementArea .method-body dl { grid-template-columns:1fr; gap:3px; }#jobDisplacementArea .method-body dd { margin-bottom:9px; }#jobDisplacementArea .sm-grid { grid-template-columns:minmax(0,1fr); }
   }
 
-  /* ── ADOPTION TAB extras ────────────────────────────────────
-     The Adoption tab reuses every .jd-* component above. These are the few
-     pieces it needs that the Job Displacement tab never did: a regression
-     table, a two-up chart row, a pull-quote handoff, and a subhead. */
+  /* ── CENSUS BTOS extras ─────────────────────────────────────
+     The Data Tracker's BTOS panels reuse every .jd-* component above. These are
+     the few pieces they need that the Job Displacement tab never did: a
+     regression table, a two-up chart row, a pull-quote handoff, and a subhead.
+
+     Filename and the .ad-* prefix are historical, from the nav tab once called
+     Adoption; see docs/adr/0005. Not renamed: ~180 call sites across CSS,
+     markup and JS selectors, several of them element ids that
+     assets/adoption-charts.js documents as a contract, for no reader-visible
+     gain. */
   .ad-sub {
     font-family: var(--grot); font-size: 11.5px; letter-spacing: 0.06em;
     text-transform: uppercase; color: var(--muted); font-weight: 600;
@@ -2797,7 +2803,7 @@
   <div class="header-inner">
     <div class="header-brand">
       <div class="header-text">
-        <h1><a href="#about" id="homeTitleLink" aria-label="Home: about this site">AI Tracker: Research, Impact, and Policy</a><span class="header-proto-tag" title="Work in progress — please do not cite or share these figures">Prototype</span></h1>
+        <h1><a href="#about" id="homeTitleLink" aria-label="Home: about this site">AI Tracker: Research, Economy, and Policy</a><span class="header-proto-tag" title="Work in progress — please do not cite or share these figures">Prototype</span></h1>
         <div class="header-proto-note">Work in progress &mdash; please do not cite or share these figures.</div>
       </div>
     </div>
@@ -2810,13 +2816,15 @@
           </div>
           <div class="tab-group-label" aria-hidden="true">Research</div>
         </div>
-        <div class="tab-group" data-group="adoption" role="presentation">
+        <div class="tab-group" data-group="economy" role="presentation">
           <div class="tab-group-btns" role="presentation">
-            <!-- Internal key is still `adoption` (see src/views/60-adoption.html). -->
+            <!-- Group renamed Adoption -> Economy on 2026-08-01; see docs/adr/0005.
+                 Adoption named only one of the Data Tracker's five sub-tabs. The
+                 view keys underneath (`tracker`, `jobs`) are unrelated and unchanged. -->
             <button class="header-nav-btn" id="viewTracker" data-view="tracker" role="tab" aria-selected="false" aria-controls="viewPanel">Data Tracker</button>
             <button class="header-nav-btn" id="viewJobs" data-view="jobs" role="tab" aria-selected="false" aria-controls="viewPanel">Job Displacement</button>
           </div>
-          <div class="tab-group-label" aria-hidden="true">Adoption</div>
+          <div class="tab-group-label" aria-hidden="true">Economy</div>
         </div>
         <div class="tab-group" data-group="policy" role="presentation">
           <div class="tab-group-btns" role="presentation">
@@ -2968,7 +2976,7 @@
             <p class="about-section-text">We don&rsquo;t know what this technology will become, how the economy will absorb it, or what policy should do in response. The hard part is that we have to answer the third before anyone answers the first two.</p>
             <ol class="about-questions">
               <li><strong>Research.</strong> It&rsquo;s unclear how the technology itself will take shape. Will it be a normal technology, as Arvind Narayanan and Sayash Kapoor <a href="https://knightcolumbia.org/content/ai-as-normal-technology" target="_blank" rel="noopener">argue</a>, or is it more like electricity, where the whole economy eventually reorganizes around it?</li>
-              <li><strong>Adoption.</strong> Even as the technology evolves, how it enters the economy is a separate question. Will AI&rsquo;s effect on the labor market be sudden and large, or slower and more jagged as it works its way into existing firms and institutions?</li>
+              <li><strong>Economy.</strong> Even as the technology evolves, how the economy absorbs it is a separate question. Will AI&rsquo;s effect on the labor market be sudden and large, or slower and more jagged as it works its way into existing firms and institutions?</li>
               <li><strong>Policy.</strong> And even then, it&rsquo;s hard to know how to react. What policies safeguard against the downsides, amplify what&rsquo;s good, and make sure this broadly helps people? Should we work through the policies we already have, or does a genuinely new era demand bigger and different ideas? How much can we steer the technology, and how much should we just plan on absorbing its effects?</li>
             </ol>
             <p class="about-section-text" style="margin-top:16px;">Each question calls for a different kind of answer, which is how this dashboard is organized. We&rsquo;re learning here alongside everyone else, but we think what we&rsquo;ve built can contribute to a better AI transition.</p>
@@ -2979,7 +2987,7 @@
             <p class="about-note"><strong>How this section is built.</strong> To cover this much ground, the tracker and fact bank are summarized with the help of AI and then human review. We&rsquo;ve built skills to check the output for accuracy, but as with any secondhand source, verify anything you plan to cite or build on. Terminal-based AI tools are becoming more important for ideas-based work, and we&rsquo;d rather experiment with putting them into our own workflow than only write about them.</p>
           </div>
           <div class="about-section">
-            <h2 class="about-section-label">Adoption</h2>
+            <h2 class="about-section-label">Economy</h2>
             <p class="about-section-text">The first section summarizes how firms are actually using the technology, drawn from the Census Bureau&rsquo;s Business Trends and Outlook Survey (BTOS) and put in a more accessible form. Adoption looks jagged, not like the complete takeover some predicted. It is also moving considerably faster than anyone who called this a flash in the pan expected.</p>
             <p class="about-section-text">The second section tracks how AI is showing up in the labor market. Rather than running complicated statistical tests, we tell a story about the different ways you might look at this, to give a broader sense of what is and isn&rsquo;t moving. We update it with each new data release, and we show the range of tools economists are bringing to the question.</p>
             <p class="about-section-text">There will be no jobs day where AI&rsquo;s effect on the labor market becomes undeniable and forces a policy response. In that way it&rsquo;s less like 9/11 or the COVID lockdowns and more like climate change: the impact accumulates without ever announcing itself. We hope this makes it easier to follow while we&rsquo;re still early.</p>
@@ -3009,8 +3017,9 @@
            Routes: #tracker/<tab>, and #tracker/btos/<link> for the chain.
            The old #adoption and #adoption/<link> still resolve here, because
            this view is what the Adoption tab became and those links are in
-           the wild. The nav group is still labelled Adoption, which is
-           deliberate: Data Tracker and Job Displacement belong together.
+           the wild. The nav group holding this view and Job Displacement is
+           labelled Economy; it was Adoption until 2026-08-01, which named only
+           one of the five sub-tabs below. See docs/adr/0005.
            ══════════════════════════════════════════════════════════════════ -->
       <div id="trackerArea">
 
@@ -3019,7 +3028,7 @@
 
         <!-- ══ SUB-TAB BAR ══════════════════════════════════════════════════
              Buttons are static; the active state, panel visibility and hash
-             are managed by the makeTabGroup() instance in 50-adoption-chain.js.
+             are managed by the makeTabGroup() instance in 50-tracker-tabs.js.
              Keep ids as trkTab-<id> / trkPanel-<id>: that is the contract. -->
         <div class="trk-tabs" role="tablist" aria-label="Data Tracker sources">
           <button class="trk-tab" id="trkTab-jobs" data-trktab="jobs" role="tab" aria-selected="false" aria-controls="trkPanel-jobs" tabindex="-1">
@@ -5319,8 +5328,8 @@
 
   /* ── ROUTER ──────────────────────────────────────────────────────────────
      One place that knows how location.hash and app state map onto each other.
-     Everything here used to live in 50-adoption-chain.js, which owned it only
-     because the Adoption tab was the first thing that needed deep links.
+     Everything here used to live in what is now 50-tracker-tabs.js, which owned
+     it only because the BTOS chain was the first thing that needed deep links.
 
      Routes
        #about #research #changelog #fact-bank #policy #solutions

@@ -2,7 +2,7 @@
   <div class="header-inner">
     <div class="header-brand">
       <div class="header-text">
-        <h1><a href="#about" id="homeTitleLink" aria-label="Home: about this site">AI Tracker: Research, Impact, and Policy</a><span class="header-proto-tag" title="Work in progress — please do not cite or share these figures">Prototype</span></h1>
+        <h1><a href="#about" id="homeTitleLink" aria-label="Home: about this site">AI Tracker: Research, Economy, and Policy</a><span class="header-proto-tag" title="Work in progress — please do not cite or share these figures">Prototype</span></h1>
         <div class="header-proto-note">Work in progress &mdash; please do not cite or share these figures.</div>
       </div>
     </div>
@@ -15,13 +15,15 @@
           </div>
           <div class="tab-group-label" aria-hidden="true">Research</div>
         </div>
-        <div class="tab-group" data-group="adoption" role="presentation">
+        <div class="tab-group" data-group="economy" role="presentation">
           <div class="tab-group-btns" role="presentation">
-            <!-- Internal key is still `adoption` (see src/views/60-adoption.html). -->
+            <!-- Group renamed Adoption -> Economy on 2026-08-01; see docs/adr/0005.
+                 Adoption named only one of the Data Tracker's five sub-tabs. The
+                 view keys underneath (`tracker`, `jobs`) are unrelated and unchanged. -->
             <button class="header-nav-btn" id="viewTracker" data-view="tracker" role="tab" aria-selected="false" aria-controls="viewPanel">Data Tracker</button>
             <button class="header-nav-btn" id="viewJobs" data-view="jobs" role="tab" aria-selected="false" aria-controls="viewPanel">Job Displacement</button>
           </div>
-          <div class="tab-group-label" aria-hidden="true">Adoption</div>
+          <div class="tab-group-label" aria-hidden="true">Economy</div>
         </div>
         <div class="tab-group" data-group="policy" role="presentation">
           <div class="tab-group-btns" role="presentation">

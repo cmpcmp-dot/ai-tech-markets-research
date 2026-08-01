@@ -1,8 +1,14 @@
 
-  /* ── ADOPTION TAB extras ────────────────────────────────────
-     The Adoption tab reuses every .jd-* component above. These are the few
-     pieces it needs that the Job Displacement tab never did: a regression
-     table, a two-up chart row, a pull-quote handoff, and a subhead. */
+  /* ── CENSUS BTOS extras ─────────────────────────────────────
+     The Data Tracker's BTOS panels reuse every .jd-* component above. These are
+     the few pieces they need that the Job Displacement tab never did: a
+     regression table, a two-up chart row, a pull-quote handoff, and a subhead.
+
+     Filename and the .ad-* prefix are historical, from the nav tab once called
+     Adoption; see docs/adr/0005. Not renamed: ~180 call sites across CSS,
+     markup and JS selectors, several of them element ids that
+     assets/adoption-charts.js documents as a contract, for no reader-visible
+     gain. */
   .ad-sub {
     font-family: var(--grot); font-size: 11.5px; letter-spacing: 0.06em;
     text-transform: uppercase; color: var(--muted); font-weight: 600;

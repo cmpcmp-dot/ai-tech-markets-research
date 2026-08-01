@@ -1,7 +1,7 @@
   /* ── ROUTER ──────────────────────────────────────────────────────────────
      One place that knows how location.hash and app state map onto each other.
-     Everything here used to live in 50-adoption-chain.js, which owned it only
-     because the Adoption tab was the first thing that needed deep links.
+     Everything here used to live in what is now 50-tracker-tabs.js, which owned
+     it only because the BTOS chain was the first thing that needed deep links.
 
      Routes
        #about #research #changelog #fact-bank #policy #solutions

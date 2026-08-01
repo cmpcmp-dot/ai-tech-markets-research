@@ -4,9 +4,9 @@
 #
 #   window.BTOS_DATA = { ... }
 #
-# Read by index.html and drawn by assets/adoption-charts.js: the whole Adoption
-# tab. Survey-level metadata comes from clean/btos_survey.R; each chart block
-# comes from the exhibit that owns it.
+# Read by index.html and drawn by assets/adoption-charts.js: the whole Census
+# BTOS sub-tab of the Data Tracker. Survey-level metadata comes from
+# clean/btos_survey.R; each chart block comes from the exhibit that owns it.
 #
 # `supplement` is reassembled here from four card fragments. It is one Census
 # workbook read by three cards, so it is parsed once in clean/ and sharded to

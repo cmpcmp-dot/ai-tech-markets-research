@@ -4,7 +4,7 @@
 #
 #   window.BTOS_EXPOSURE = { vintage, source, exposure_meta, t1 }
 #
-# Read by index.html, drawn by assets/adoption-charts.js: Adoption card 02.
+# Read by index.html, drawn by assets/adoption-charts.js: Census BTOS card 02.
 #
 #   Rscript analysis/src/publish/btos_exposure.R
 # ─────────────────────────────────────────────────────────────────────────────

@@ -271,13 +271,13 @@
 
      Each group carries its own accent via --group-accent, set per group
      below. ESP secondary palette on the Warm Navy band: Soft Green (the
-     C3 accent) for Research, Warm Gold for Adoption, Warm Pink for
+     C3 accent) for Research, Warm Gold for Economy, Warm Pink for
      Policy. All three clear contrast on navy, and they stay graphic
      elements (rules, underlines, 10px labels) rather than body copy —
      the 75/15/10 balance holds because the band itself is navy. */
   .tab-group { display: flex; flex-direction: column; --group-accent: var(--green); }
   .tab-group[data-group="research"] { --group-accent: var(--green); }
-  .tab-group[data-group="adoption"] { --group-accent: var(--gold);  }
+  .tab-group[data-group="economy"]  { --group-accent: var(--gold);  }
   .tab-group[data-group="policy"]   { --group-accent: var(--pink);  }
   .tab-group-btns { display: flex; align-items: flex-end; }
   .tab-group-label {
