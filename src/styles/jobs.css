@@ -1,0 +1,202 @@
+  /* ── JOB DISPLACEMENT ANALYSIS ──────────────────────────────────────────
+     Included by BOTH index.html (where the view is a tab) and
+     jobs_displacement.html (where it is the whole page). Edit here; there is
+     no other copy and nothing is synced.
+
+     EVERY SELECTOR IN THIS FILE IS SCOPED TO #jobDisplacementArea, including
+     what would otherwise be :root. Keep it that way. The view claims very
+     general class names — .wrap, .sec, .rail, .prose, .figure, .meta,
+     .verdict — and restates site tokens (--surface, --border, --text,
+     --serif) with its own values, so an unscoped rule here would restyle the
+     rest of the site from a change meant for one tab. The standalone page
+     wraps its content in the same #jobDisplacementArea div precisely so this
+     one scoped sheet serves both.
+
+     Two things deliberately NOT here:
+       - the shared .jd-* chart chrome, which lives in charts.css. Both this
+         view and Adoption render into that vocabulary, and the charts attach
+         .jd-tooltip straight to <body>, where a scoped rule could not reach.
+       - site chrome (.site-header, .header-nav-btn, body, a). shell.css owns
+         it and both pages include shell.css. */
+#jobDisplacementArea {
+    --navy:#2c3254; --beige:#f4f2e4; --light-beige:#fffdf2;
+    --green:#70ad8f; --green-hover:#84cca8; --purple:#472b51;
+    --gold:#ebc382; --gold-deep:#c99a3f; --pink:#ffbfa7; --terra:#b06a4f;
+    --headline:#232849; --divider:#caccd4;
+    --serif:'Publico Banner',Georgia,serif;
+    --grot:'Haas Grotesk','Helvetica Neue',Arial,sans-serif;
+    --sans:'Public Sans',-apple-system,'Segoe UI',system-ui,sans-serif;
+
+    --surface:var(--light-beige); --border:var(--divider);
+    --text:#3c4164; --muted:#6d7091;
+
+    --rail-w:190px;
+    /* main is 1140 wide with 30px padding, so the content column beside a
+       190px rail plus 48px gap is ~842px. --col matches it; --measure sits
+       just inside it so prose reaches most of the way across rather than
+       stopping short of the figures above it. */
+    --col:840px;      /* content column; figures span this */
+    --measure:800px;  /* prose measure */
+  }
+
+  /* ══ MASTHEAD ═════════════════════════════════════════════════════
+     Editorial treatment: serif question, an italic terra pivot word, and
+     a standfirst at reading size.
+
+     The h2 and .stand sizes are the site-wide tab-opener scale, not a
+     masthead of their own: index.html defines --lede-* in :root and all
+     six tabs read them, so this page opens at the same size as Adoption,
+     Papers, Fact Bank and the rest. The literal values are var()
+     fallbacks so this standalone preview still renders correctly on its
+     own — index.html's tokens win once synced.
+
+     Do NOT move --lede-* into this file's :root. sync_jobs_displacement.py
+     rewrites :root as a scoped block on #jobDisplacementArea, which would
+     outrank index.html's :root and silently fork the scale for this tab
+     only. To change the size, edit --lede-size in index.html. */
+  /* Same token-with-fallback contract as --lede-* above: --masthead-top
+     wins when embedded in index.html, the 40px fallback keeps the
+     standalone preview honest. Do not add --masthead-top to :root here.
+     Embedded, .jobs-view .cards-area zeroes its own top padding so this
+     is the only thing setting the gap in either context. */
+  #jobDisplacementArea .mast { padding:var(--masthead-top, 40px) 0 0; max-width:var(--col); }#jobDisplacementArea .mast h2 {
+    font-family:var(--serif);
+    font-size:var(--lede-size, clamp(24px,3.2vw,32px));
+    line-height:var(--lede-lh, 1.3);
+    font-weight:var(--lede-weight, 500);
+    letter-spacing:var(--lede-track, -0.01em);
+    color:var(--headline);
+    max-width:var(--lede-measure, 760px);
+  }
+  /* standfirst: sans at reading size, matching .tab-standfirst */
+  #jobDisplacementArea .stand { font-family:var(--sans); font-size:15px; line-height:1.7; color:var(--muted); font-weight:400; max-width:var(--lede-measure, 760px); margin-top:14px; }#jobDisplacementArea .stand b { color:var(--terra); font-weight:600; }
+
+  /* Last element in the masthead, so it carries the shared closing
+     hairline — at --lede-measure, not --col, so it hugs the text above
+     it. The vintage stamp stays inside the masthead rather than being
+     orphaned into the content: on a real-time data page it belongs with
+     the headline it qualifies. */
+  #jobDisplacementArea .meta { display:flex; flex-wrap:wrap; align-items:center; gap:9px 16px; margin-top:22px; max-width:var(--lede-measure, 760px); padding-bottom:12px; border-bottom:1px solid var(--border); }#jobDisplacementArea .vintage { font-family:var(--grot); font-size:11.5px; letter-spacing:.03em; color:var(--muted); }#jobDisplacementArea .vintage b { color:var(--headline); font-weight:600; }
+
+  /* ══ THE SHORT VERSION ════════════════════════════════════════════
+     Editorial answer rows in place of the table: an outlined ghost
+     numeral, the section's question set in serif, then a one-line
+     answer. Each row is a jump link into its section, not a tab switch.
+
+     The question carries the display type and the answer is prose,
+     opening with the claim rather than with a colour-coded verdict
+     word. The gold numeral is decorative and carries no meaning, so it
+     stays uniform across every row. ═══════════════════════════════════ */
+  #jobDisplacementArea .sv { margin:36px 0 0; max-width:var(--col); }#jobDisplacementArea .sv-t { font-family:var(--grot); font-size:11px; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:var(--muted); margin-bottom:4px; border-bottom:2px solid var(--navy); padding-bottom:12px; }
+
+  /* two across, flowing down — more sections just extend the grid */
+  #jobDisplacementArea .sv-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); }#jobDisplacementArea .answer-row {
+    display:grid; grid-template-columns:54px 1fr; gap:4px 16px; align-items:start;
+    text-align:left; background:none; border:none; cursor:pointer;
+    border-top:1px solid var(--border); padding:20px 26px 22px 0;
+    font-family:inherit; transition:padding-left .18s;
+  }
+  /* the two cells of a row share a divider; the top row sits under the
+     navy rule of the section label, so it needs no border of its own */
+  #jobDisplacementArea .answer-row:nth-child(2n) { padding-left:26px; padding-right:0; border-left:1px solid var(--border); }#jobDisplacementArea .answer-row:nth-child(-n+2) { border-top:none; padding-top:18px; }
+  /* an odd number of sections leaves the last row half-empty; let it span.
+     Self-cancelling — at an even count this selector matches nothing. */
+  #jobDisplacementArea .answer-row:last-child:nth-child(odd) { grid-column:1 / -1; }#jobDisplacementArea .answer-row:hover { padding-left:8px; }#jobDisplacementArea .answer-row:nth-child(2n):hover { padding-left:34px; }
+  /* rows are <button>s, so the inner elements are spans and need block */
+  #jobDisplacementArea .ar-body, #jobDisplacementArea .ar-q, #jobDisplacementArea .ar-a, #jobDisplacementArea .ar-num { display:block; }#jobDisplacementArea .ar-num {
+    font-family:var(--serif); font-size:clamp(34px,3.6vw,46px); line-height:.9; font-weight:500;
+    color:transparent; -webkit-text-stroke:1.3px var(--gold-deep); text-stroke:1.3px var(--gold-deep);
+    font-variant-numeric:tabular-nums;
+  }#jobDisplacementArea .answer-row:hover .ar-num { color:var(--gold); }#jobDisplacementArea .ar-body { padding-top:1px; min-width:0; }
+  /* the question, scaled for the half-width cell */
+  #jobDisplacementArea .ar-q { font-family:var(--serif); font-size:clamp(18px,1.7vw,22px); line-height:1.22; font-weight:500;
+    color:var(--headline); letter-spacing:-.008em; margin-bottom:8px; }
+  /* the answer: one line of prose — fills the cell */
+  #jobDisplacementArea .ar-a { font-size:14px; line-height:1.6; color:var(--text); font-variant-numeric:tabular-nums; }#jobDisplacementArea .ar-a b { color:var(--headline); font-weight:600; }#jobDisplacementArea .ar-go {
+    font-family:var(--grot); font-size:11px; font-weight:700; letter-spacing:.04em; text-transform:uppercase;
+    color:var(--navy); margin-top:10px; display:inline-flex; gap:6px; transition:gap .15s;
+  }#jobDisplacementArea .answer-row:hover .ar-go { gap:10px; }#jobDisplacementArea .sv-note { font-size:13px; line-height:1.65; color:var(--muted); margin:0; border-top:1px solid var(--border); padding-top:16px; }
+
+  /* ══ SCROLL: rail + sections ══════════════════════════════════════ */
+  #jobDisplacementArea .wrap { display:grid; grid-template-columns:var(--rail-w) minmax(0,1fr); gap:48px; margin-top:8px; align-items:start; }#jobDisplacementArea .rail { position:sticky; top:22px; padding-top:52px; }#jobDisplacementArea .rail-t { font-family:var(--grot); font-size:9.5px; font-weight:700; letter-spacing:.13em; text-transform:uppercase; color:var(--muted); padding:0 0 9px 12px; }#jobDisplacementArea .rail a {
+    display:grid; grid-template-columns:16px 1fr; align-items:center; gap:9px;
+    text-decoration:none; padding:8px 12px; border-left:2px solid var(--border);
+    font-family:var(--grot); font-size:11.5px; line-height:1.3; color:var(--muted);
+    transition:color .15s,border-color .15s;
+  }#jobDisplacementArea .rail a:hover { color:var(--headline); }#jobDisplacementArea .rail a.here { color:var(--headline); font-weight:600; border-left-color:var(--green); }#jobDisplacementArea .rail a .rn { font-size:10px; font-weight:700; font-variant-numeric:tabular-nums; color:var(--divider); }#jobDisplacementArea .rail a.here .rn { color:var(--green); }#jobDisplacementArea .rail-back { display:block; margin:16px 0 0 12px; font-family:var(--grot); font-size:11px; color:var(--muted); text-decoration:none; }#jobDisplacementArea .rail-back:hover { color:var(--headline); }
+
+  /* ── SECTION ──────────────────────────────────────────────────── */
+  #jobDisplacementArea .sec { max-width:var(--col); padding:52px 0 46px; border-bottom:1px solid var(--border); scroll-margin-top:20px; }#jobDisplacementArea .sec:last-of-type { border-bottom:none; }#jobDisplacementArea .sec-kick { font-family:var(--grot); font-size:11.5px; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:var(--green); margin-bottom:16px; display:flex; align-items:center; gap:11px; }#jobDisplacementArea .sec-kick .kn { color:var(--divider); font-variant-numeric:tabular-nums; }
+
+  /* the claim, set large — the section's whole argument in one sentence */
+  #jobDisplacementArea .claim { font-family:var(--serif); font-weight:400; font-size:clamp(22px,2.9vw,31px); line-height:1.32; color:var(--headline); max-width:42ch; letter-spacing:-.008em; }#jobDisplacementArea .claim b { font-weight:500; font-variant-numeric:tabular-nums; }#jobDisplacementArea .sec-q { font-family:var(--grot); font-size:13px; color:var(--muted); margin-top:12px; max-width:var(--measure); line-height:1.6; }
+
+  /* figures break out of the prose measure */
+  #jobDisplacementArea .figure { margin:26px 0 0; width:100%; }
+
+  /* four JOLTS flows, two across: the comparison is across panels, so they
+     have to be visible together rather than stacked down the page */
+  #jobDisplacementArea .sm-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px 14px; margin-top:4px; }#jobDisplacementArea .sm-cell { min-width:0; }
+
+  /* group membership, disclosed under the chart — a lookup table, so it is
+     laid out for scanning rather than reading */
+  #jobDisplacementArea .memtable { width:100%; border-collapse:collapse; font-size:12.5px; font-variant-numeric:tabular-nums; }#jobDisplacementArea .memtable th { font-family:var(--grot); font-size:9.5px; font-weight:700; letter-spacing:.09em; text-transform:uppercase;
+                 color:var(--muted); text-align:left; padding:0 10px 6px 0; border-bottom:1px solid var(--border); }#jobDisplacementArea .memtable td { padding:5px 10px 5px 0; border-bottom:1px solid var(--border); color:var(--text); }#jobDisplacementArea .memtable tr:last-child td { border-bottom:none; }#jobDisplacementArea .memtable .r { text-align:right; }
+
+  /* prose sits at the narrower measure */
+  #jobDisplacementArea .prose { max-width:var(--measure); margin-top:26px; }#jobDisplacementArea .prose p { font-size:15px; line-height:1.78; margin-bottom:15px; }#jobDisplacementArea .prose p:last-child { margin-bottom:0; }#jobDisplacementArea .prose em { color:var(--headline); font-style:italic; }
+
+  /* the caveat is body text, not a warning box — it belongs to the argument */
+  #jobDisplacementArea .caveat { max-width:var(--measure); margin-top:18px; padding-left:16px; border-left:2px solid var(--gold); }#jobDisplacementArea .caveat p { font-size:14px; line-height:1.7; color:var(--muted); }#jobDisplacementArea .caveat b { font-family:var(--grot); font-size:9.5px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--gold-deep); display:block; margin-bottom:5px; }
+
+  /* plain-language method note: the general reader's entry point, so it reads
+     as body copy with a rule, not as a boxed aside to be skipped */
+  #jobDisplacementArea .howto { max-width:var(--measure); margin-top:24px; padding:2px 0 0 17px; border-left:2px solid var(--navy); }#jobDisplacementArea .howto b.h { font-family:var(--grot); font-size:9.5px; font-weight:700; letter-spacing:.1em;
+               text-transform:uppercase; color:var(--navy); display:block; margin-bottom:7px; }#jobDisplacementArea .howto p { font-size:14.5px; line-height:1.75; margin-bottom:12px; color:var(--text); }#jobDisplacementArea .howto p:last-child { margin-bottom:0; }#jobDisplacementArea .howto em { color:var(--headline); font-style:italic; }
+
+  /* one line per figure, telling the reader what to look at before they look */
+  #jobDisplacementArea .fig-what { max-width:var(--measure); margin:14px 0 0; font-size:13.5px; line-height:1.7; color:var(--muted); }#jobDisplacementArea .fig-what b { font-family:var(--grot); font-size:11px; font-weight:700; letter-spacing:.04em;
+                text-transform:uppercase; color:var(--headline); }
+
+  /* the advanced reader's block: same disclosure pattern as .method, but it
+     carries a specification rather than a summary, so it gets more room */
+  #jobDisplacementArea .method-body .spec { font-family:var(--grot); font-size:12.5px; line-height:1.7; color:var(--headline);
+                       background:var(--beige); border:1px solid var(--border); border-radius:6px;
+                       padding:11px 13px; margin:2px 0 4px; overflow-x:auto; white-space:nowrap; }#jobDisplacementArea .method-body dd code { font-family:var(--grot); font-size:12px; background:var(--beige); padding:1px 4px; border-radius:3px; }#jobDisplacementArea .method-body dd ul { margin:4px 0 0 15px; padding:0; }#jobDisplacementArea .method-body dd li { margin-bottom:5px; }#jobDisplacementArea .method-body dd:last-of-type { margin-bottom:0; }
+
+  /* ▸ How this is measured */
+  #jobDisplacementArea details.method { max-width:var(--measure); margin-top:22px; border-top:1px solid var(--border); }#jobDisplacementArea details.method summary {
+    cursor:pointer; list-style:none; padding:13px 0 12px;
+    font-family:var(--grot); font-size:12px; font-weight:600; letter-spacing:.02em; color:var(--navy);
+    display:flex; align-items:center; gap:9px;
+  }#jobDisplacementArea details.method summary::-webkit-details-marker { display:none; }#jobDisplacementArea details.method summary::before { content:"▸"; font-size:10px; color:var(--green); transition:transform .18s; display:inline-block; }#jobDisplacementArea details.method[open] summary::before { transform:rotate(90deg); }#jobDisplacementArea details.method summary:hover { color:var(--headline); }#jobDisplacementArea .method-body { padding:0 0 16px 19px; }#jobDisplacementArea .method-body dl { display:grid; grid-template-columns:auto 1fr; gap:7px 16px; }#jobDisplacementArea .method-body dt { font-family:var(--grot); font-size:9.5px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--muted); padding-top:3px; white-space:nowrap; }#jobDisplacementArea .method-body dd { font-size:13.5px; line-height:1.6; color:var(--text); }#jobDisplacementArea .method-more { margin-top:13px; font-family:var(--grot); font-size:11.5px; font-weight:600; color:var(--navy); text-decoration:none; display:inline-block; }#jobDisplacementArea .method-more:hover { text-decoration:underline; }
+
+  /* what would change this verdict */
+  #jobDisplacementArea .change {
+    max-width:var(--measure); margin-top:6px; padding:14px 18px;
+    background:var(--surface); border:1px solid var(--border); border-radius:10px;
+    display:flex; gap:13px; align-items:baseline;
+  }#jobDisplacementArea .change b { font-family:var(--grot); font-size:9.5px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--green); flex-shrink:0; }#jobDisplacementArea .change span { font-size:13.5px; line-height:1.6; color:var(--text); }
+
+  /* ── CLOSING ──────────────────────────────────────────────────── */
+  #jobDisplacementArea .closing { max-width:var(--col); margin-top:44px; padding:26px 30px; background:var(--navy); color:var(--beige); border-radius:14px; }#jobDisplacementArea .closing .ct { font-family:var(--grot); font-size:11px; font-weight:700; letter-spacing:.13em; text-transform:uppercase; color:var(--gold); margin-bottom:12px; }#jobDisplacementArea .closing p { font-size:15px; line-height:1.72; color:#d6d8e2; max-width:80ch; }#jobDisplacementArea .closing p + p { margin-top:11px; }#jobDisplacementArea .closing b { color:#fff; font-weight:600; }#jobDisplacementArea .closing a { color:var(--gold); }
+
+  /* ── MOTION ───────────────────────────────────────────────────── */
+  @media (prefers-reduced-motion:no-preference) {#jobDisplacementArea .sec { opacity:0; transform:translateY(12px); transition:opacity .5s ease, transform .5s cubic-bezier(.2,.7,.3,1); }#jobDisplacementArea .sec.in { opacity:1; transform:none; }#jobDisplacementArea .sec.in .anim-line { stroke-dasharray:1; stroke-dashoffset:1; animation:drawline 1s ease forwards .15s; }
+    @keyframes drawline { to { stroke-dashoffset:0; } }#jobDisplacementArea .sec.in .anim-bar { transform:scaleX(0); animation:growbar .6s cubic-bezier(.2,.7,.3,1) forwards; }
+    @keyframes growbar { to { transform:scaleX(1); } }#jobDisplacementArea .sec.in .anim-pop { opacity:0; animation:pop .4s ease forwards .5s; }
+    @keyframes pop { to { opacity:1; } }
+  }
+
+  /* ── RESPONSIVE ───────────────────────────────────────────────── */
+  @media (max-width:980px) {#jobDisplacementArea .wrap { grid-template-columns:1fr; gap:0; }#jobDisplacementArea .rail {
+      position:sticky; top:0; z-index:40; padding:9px 0; margin-bottom:6px;
+      display:flex; gap:4px; overflow-x:auto; background:var(--beige);
+      border-bottom:1px solid var(--border);
+    }#jobDisplacementArea .rail-t, #jobDisplacementArea .rail-back { display:none; }#jobDisplacementArea .rail a { border-left:none; border-bottom:2px solid transparent; padding:6px 11px; white-space:nowrap; flex-shrink:0; }#jobDisplacementArea .rail a.here { border-bottom-color:var(--green); }
+  }
+  @media (max-width:720px) {
+    /* single column: every row gets its own rule again, no vertical divider */
+    #jobDisplacementArea .sv-grid { grid-template-columns:minmax(0,1fr); }#jobDisplacementArea .answer-row, #jobDisplacementArea .answer-row:nth-child(2n) { grid-template-columns:44px 1fr; gap:4px 14px;
+      padding:17px 0; border-left:none; border-top:1px solid var(--border); }#jobDisplacementArea .answer-row:first-child { border-top:none; }#jobDisplacementArea .answer-row:nth-child(2) { border-top:1px solid var(--border); }#jobDisplacementArea .answer-row:hover, #jobDisplacementArea .answer-row:nth-child(2n):hover { padding-left:8px; }#jobDisplacementArea .closing { padding:22px 20px; }#jobDisplacementArea .method-body dl { grid-template-columns:1fr; gap:3px; }#jobDisplacementArea .method-body dd { margin-bottom:9px; }#jobDisplacementArea .sm-grid { grid-template-columns:minmax(0,1fr); }
+  }

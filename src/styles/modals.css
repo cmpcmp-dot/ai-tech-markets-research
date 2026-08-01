@@ -1,0 +1,196 @@
+  /* ── SOURCES MODAL ───────────────────────────────────────── */
+
+  .modal-backdrop {
+    display: none; position: fixed; inset: 0; z-index: 500;
+    background: rgba(35,40,73,0.4); backdrop-filter: blur(3px);
+    align-items: center; justify-content: center;
+  }
+  .modal-backdrop.open { display: flex; }
+  .modal {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: var(--r-modal); padding: 28px 28px 24px;
+    max-width: 640px; width: calc(100% - 40px);
+    max-height: 80vh; display: flex; flex-direction: column;
+    box-shadow: 0 8px 40px rgba(44,50,84,0.18);
+  }
+  .modal-header {
+    display: flex; align-items: center; justify-content: space-between;
+    margin-bottom: 18px; flex-shrink: 0;
+  }
+  .modal-title { font-size: 18px; font-weight: 700; letter-spacing: -0.01em; font-family: var(--grot); }
+
+  .modal-close {
+    background: none; border: none; cursor: pointer;
+    color: var(--muted); font-size: 19px; line-height: 1; padding: 4px;
+    border-radius: var(--r-ctl); transition: color 0.15s;
+  }
+  .modal-close:hover { color: var(--text); }
+  .modal-body { overflow-y: auto; scrollbar-width: thin; }
+  .modal-group { margin-bottom: 18px; }
+  .modal-group:last-child { margin-bottom: 0; }
+  .modal-group-name {
+    font-size: 11px; font-weight: 700; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--accent); margin-bottom: 7px;
+    font-family: 'Haas Grotesk', 'Helvetica Neue', Arial, sans-serif;
+  }
+  .modal-sources-intro {
+    font-size: 13px; color: var(--muted); line-height: 1.55;
+    margin-bottom: 20px; padding-bottom: 16px;
+    border-bottom: 1px solid var(--border); flex-shrink: 0;
+  }
+  .modal-sources-list { display: flex; flex-direction: column; }
+  .modal-source-row {
+    display: flex; flex-direction: column;
+    padding: 9px 0; border-bottom: 1px solid var(--border);
+  }
+  .modal-source-row:last-child { border-bottom: none; padding-bottom: 0; }
+  .modal-source-top { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+  .modal-source-link {
+    font-size: 13px; font-weight: 600; color: var(--text);
+    text-decoration: none; transition: color 0.15s;
+  }
+  .modal-source-link:hover { color: var(--accent); text-decoration: underline; }
+  .modal-source-ext { font-size: 10px; opacity: 0.45; margin-left: 1px; }
+
+  /* ── Policy pop-out modal ───────────────────────────────── */
+  .pol-modal {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: var(--r-modal); padding: 0;
+    max-width: 940px; width: calc(100% - 40px);
+    max-height: 88vh; display: flex; flex-direction: column;
+    box-shadow: 0 8px 40px rgba(44,50,84,0.2);
+    overflow: hidden;
+    border-top: none;
+  }
+  .pol-modal-list {
+    margin: 0; padding: 0 0 0 18px;
+    display: flex; flex-direction: column; gap: 7px;
+    font-family: 'Public Sans', sans-serif;
+    font-size: 13.5px; line-height: 1.55; color: var(--text);
+  }
+  .pol-modal-list li { padding-left: 2px; }
+  .pol-modal-list li::marker { color: var(--accent); }
+  .pol-modal-twocol {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 22px;
+    padding-bottom: 16px; border-bottom: 1px solid var(--border);
+  }
+  .pol-modal-twocol > div { display: flex; flex-direction: column; gap: 8px; }
+  @media (max-width: 720px) {
+    .pol-modal-twocol { grid-template-columns: 1fr; gap: 18px; }
+  }
+  .pol-press-list {
+    list-style: none; padding: 0; margin: 0;
+    display: flex; flex-direction: column; gap: 6px;
+    font-family: 'Public Sans', sans-serif; font-size: 13.5px; line-height: 1.5;
+  }
+  .pol-press-list a {
+    color: var(--accent); text-decoration: none;
+    border-bottom: 1px dotted color-mix(in srgb, var(--accent) 45%, transparent);
+  }
+  .pol-press-list a:hover { border-bottom-style: solid; }
+  .pol-modal-lastreviewed {
+    margin-top: 4px; padding: 12px 0;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    font-family: 'Public Sans', sans-serif; font-size: 12px; color: var(--muted);
+    font-style: italic;
+  }
+  /* the section right above the last-reviewed line would otherwise draw a
+     second rule 4px above its border-top */
+  .pol-modal-section:has(+ .pol-modal-lastreviewed) { border-bottom: none; }
+  .pol-modal-header {
+    display: flex; align-items: flex-start; justify-content: space-between;
+    flex-wrap: wrap;
+    padding: 20px 22px 16px; flex-shrink: 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .pol-modal-title {
+    font-family: var(--grot);
+    font-size: 20px; font-weight: 700; letter-spacing: -0.01em;
+    color: var(--text); line-height: 1.25; flex: 1; margin-right: 12px;
+  }
+  .pol-modal-meta {
+    display: flex; align-items: center; gap: 6px; margin-top: 6px; flex-wrap: wrap;
+  }
+  .pol-modal-level {
+    font-size: 11px; font-weight: 500; color: var(--muted);
+    background: none; border: none; padding: 0; border-radius: 0; letter-spacing: 0;
+    font-family: 'Public Sans', sans-serif;
+  }
+  .pol-modal-meta-sep {
+    display: inline-block; width: 1px; height: 12px;
+    background: var(--border); margin: 0 6px; vertical-align: middle;
+    opacity: 0.8;
+  }
+  .pol-modal-cat {
+    font-size: 11px; font-weight: 500; color: var(--muted);
+    font-family: 'Public Sans', sans-serif;
+  }
+  .pol-modal-phase-desc {
+    font-size: 13px; color: var(--muted); line-height: 1.55;
+    margin-top: 8px; font-family: 'Public Sans', sans-serif;
+    flex-basis: 100%;
+  }
+  .pol-modal-phase-desc:empty { display: none; }
+  .pol-modal-close {
+    background: none; border: none; cursor: pointer;
+    color: var(--muted); font-size: 18px; line-height: 1; padding: 4px;
+    border-radius: var(--r-ctl); transition: color 0.15s; flex-shrink: 0;
+  }
+  .pol-modal-close:hover { color: var(--text); }
+  .pol-modal-body {
+    overflow-y: auto; scrollbar-width: thin;
+    padding: 18px 22px 22px; display: flex; flex-direction: column; gap: 16px;
+  }
+  .pol-modal-section {
+    display: flex; flex-direction: column; gap: 6px;
+    padding-bottom: 16px; border-bottom: 1px solid var(--border);
+  }
+  .pol-modal-section:last-child { padding-bottom: 0; border-bottom: none; }
+  .pol-modal-label {
+    font-family: var(--grot);
+    font-size: 16px; font-weight: 700; letter-spacing: -0.01em;
+    color: var(--text);
+  }
+  .pol-modal-text { font-size: 14px; color: var(--text); line-height: 1.7; }
+  .pol-modal-text.muted { color: var(--muted); }
+
+  /* How it interacts — pairs (green) / competes (amber), echoing the map legend */
+  :root { --rel-pair: var(--green-deep); --rel-compete: var(--gold-deep); }
+  .pol-rel-group { margin-top: 12px; }
+  .pol-rel-group:first-of-type { margin-top: 2px; }
+  .pol-rel-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 4px 26px; }
+  .pol-rel-cols .pol-rel-group { margin-top: 0; }
+  @media (max-width: 720px) { .pol-rel-cols { grid-template-columns: 1fr; gap: 12px; } }
+  .pol-rel-head {
+    display: flex; align-items: center; gap: 8px;
+    font-family: 'Public Sans', sans-serif; font-size: 11px; font-weight: 700;
+    letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 8px;
+  }
+  .pol-rel-head .pol-rel-glyph { width: 20px; border-top: 2.5px solid currentColor; }
+  .pol-rel-head.pairs { color: var(--rel-pair); }
+  .pol-rel-head.competes { color: var(--rel-compete); }
+  .pol-rel-head.competes .pol-rel-glyph { border-top-style: dashed; }
+  .pol-rel-item { padding: 3px 0 3px 12px; border-left: 2px solid var(--border); margin-bottom: 9px; }
+  .g-pairs .pol-rel-item { border-left-color: color-mix(in srgb, var(--rel-pair) 55%, var(--border)); }
+  .g-competes .pol-rel-item { border-left-color: color-mix(in srgb, var(--rel-compete) 55%, var(--border)); }
+  .pol-rel-item .pol-xref { font-size: 13.5px; font-weight: 600; }
+  .pol-rel-why { display: block; font-size: 12.5px; color: var(--muted); line-height: 1.5; margin-top: 2px; }
+  .finding-modal-stat {
+    font-family: var(--serif);
+    font-size: 30px; font-weight: 700; line-height: 1; color: var(--accent);
+    margin-bottom: 8px;
+  }
+  .finding-modal-source {
+    display: block; font-size: 13px; line-height: 1.55; color: var(--text);
+    text-decoration: none; margin-bottom: 10px;
+    padding-left: 16px; text-indent: -16px;
+  }
+  .finding-modal-source em { font-style: italic; }
+  .finding-modal-source:hover { color: var(--accent); }
+  .finding-theme-link {
+    border: none; background: none; cursor: pointer; padding: 0;
+    color: var(--accent); font-size: 13px; font-weight: 600;
+    font-family: 'Haas Grotesk', 'Helvetica Neue', Arial, sans-serif;
+  }
+

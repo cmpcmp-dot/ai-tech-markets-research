@@ -100,9 +100,15 @@
 
   /* ══ PRIMITIVE 1 — time-series line panel ═════════════════════════════════
      lines: [{pts:[{date,est,se}], color, width?, dash?, label?, dot?, tipLabel?}]
-     opts:  {vrule:{date,label}, gap:{start,end}, ymin?, ymax?, mR?, H?}          */
+     opts:  {vrule:{date,label}, gap:{start,end}, ymin?, ymax?, mR?, H?, unit?}
+
+     `unit` suffixes the y-axis ticks and the tooltip value, and defaults to '%'
+     so every pre-existing call is unchanged. assets/tracker-charts.js passes
+     '' for index series (payroll employment, 2019 = 100), which are not
+     percentages. Everything else on both tabs is a rate.                       */
   function timePanel(svg, lines, opts) {
     opts = opts || {};
+    const U = opts.unit != null ? opts.unit : '%';
     const W = 700, H = opts.H || 360, mL = 44, mR = opts.mR || 118, mT = 18, mB = 40;
     const pw = W - mL - mR, ph = H - mT - mB;
     svg.setAttribute('viewBox', `0 0 ${W} ${H}`);
@@ -124,7 +130,7 @@
     }
     ticks(ymin, ymax, 5).forEach(t => { const y = Y(t);
       s += `<line x1="${mL}" y1="${y}" x2="${mL + pw}" y2="${y}" stroke="${C.grid}"/>` +
-           `<text x="${mL - 7}" y="${y + 3.5}" text-anchor="end" font-size="11" fill="${C.muted}">${t}%</text>`; });
+           `<text x="${mL - 7}" y="${y + 3.5}" text-anchor="end" font-size="11" fill="${C.muted}">${t}${U}</text>`; });
     const yr0 = new Date(xmin).getFullYear(), yr1 = new Date(xmax).getFullYear();
     for (let yr = yr0; yr <= yr1 + 1; yr++) {
       for (const mo of ['01', '07']) {
@@ -148,7 +154,7 @@
         s += `<path d="${d}" fill="none" stroke="${l.color}" stroke-width="${l.width || 2.2}"${l.dash ? ` stroke-dasharray="${l.dash}"` : ''}/>`;
       }
       if (l.dot !== false) pts.forEach(p => {
-        const tp = `${fmtDate(p.date)}<br><b>${(+p.est).toFixed(1)}%</b>${fin(p.se) ? ` ±${(+p.se).toFixed(2)}` : ''}${l.tipLabel ? '<br>' + l.tipLabel : ''}`;
+        const tp = `${fmtDate(p.date)}<br><b>${(+p.est).toFixed(1)}${U}</b>${fin(p.se) ? ` ±${(+p.se).toFixed(2)}` : ''}${l.tipLabel ? '<br>' + l.tipLabel : ''}`;
         s += `<circle cx="${X(pdate(p.date))}" cy="${Y(p.est)}" r="2.4" fill="${l.color}" data-tip="${esc(tp)}"/>`;
       });
       if (l.label) {
@@ -771,7 +777,14 @@
     try { renderChain(); }        catch (e) { console.error('adoption: chain', e); }
   }
 
-  window.ADOPTION_CHARTS = { C, data: D, exposure: E, renderAll, renderStateMap, renderChain };
+  /* Primitives are exported so assets/tracker-charts.js can draw the other
+     Data Tracker sub-tabs in exactly this vocabulary rather than carrying a
+     second chart engine. Anything exported here is a public contract: check
+     tracker-charts.js before changing a signature. */
+  window.ADOPTION_CHARTS = {
+    C, data: D, exposure: E, renderAll, renderStateMap, renderChain,
+    timePanel, hbarPanel, ticks, fmtDate, bindTips, lin, pdate, fin, num, pct, sgn,
+  };
   // Fixed-viewBox SVGs lay out correctly even while the tab is hidden, so render
   // eagerly rather than on first tab activation.
   if (document.readyState !== 'loading') renderAll();

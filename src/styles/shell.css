@@ -1,0 +1,177 @@
+  /* ── HEADER (Warm Navy band) ────────────────────────────── */
+  .site-header {
+    background: var(--navy); color: var(--beige);
+    border-top: none; border-bottom: none;
+    padding: 24px 32px 22px;
+    position: relative; flex-shrink: 0;
+  }
+  .site-header::before { display: none; }
+  .site-header::after  { display: none; }
+  .header-inner {
+    max-width: calc(var(--sidebar-w) + 1100px);
+    margin: 0 auto;
+    display: flex; align-items: center; justify-content: space-between; gap: 24px;
+    position: relative;
+  }
+
+  .header-brand { display: flex; align-items: center; gap: 18px; min-width: 0; }
+  .header-brand img { height: 42px; width: auto; flex-shrink: 0; }
+  .header-text { min-width: 0; }
+
+  .site-header h1 {
+    font-size: clamp(20px, 2.5vw, 28px); font-weight: 700; letter-spacing: -0.015em;
+    line-height: 1.2; margin-bottom: 3px; color: var(--beige);
+    font-family: var(--serif);
+  }
+  .site-header h1 a {
+    color: var(--beige);
+    text-decoration: none;
+  }
+  .site-header h1 a:hover {
+    color: var(--green-hover);
+  }
+  /* Site-wide prototype warning. The whole tracker is in development, so the
+     badge rides with the title rather than repeating on each dashboard. */
+  .header-proto-tag {
+    display: inline-block; vertical-align: middle;
+    margin-left: 12px; transform: translateY(-2px);
+    font-family: var(--grot); font-weight: 700; letter-spacing: 0.08em;
+    text-transform: uppercase; font-size: 10.5px; line-height: 1;
+    color: var(--gold); border: 1.5px solid var(--gold);
+    border-radius: var(--r-tag); padding: 4px 8px;
+    white-space: nowrap;
+  }
+  .header-proto-note {
+    font-family: var(--grot); font-size: 12px; letter-spacing: 0.02em;
+    color: var(--gold); margin-top: 2px;
+  }
+  @media (max-width: 560px) {
+    .header-proto-tag { margin-left: 8px; font-size: 9.5px; padding: 3px 6px; }
+    .header-proto-note { font-size: 11px; }
+  }
+  .header-nav {
+    display: flex; align-items: center; gap: 6px;
+    flex-shrink: 0; flex-wrap: wrap;
+  }
+  .header-tabs { display: flex; align-items: flex-start; flex-wrap: wrap; gap: 0 22px; }
+
+  /* Grouped nav tabs: a continuous rule under a pair of tabs, with a
+     shared group label below it (e.g. Research / Adoption).
+
+     Each group carries its own accent via --group-accent, set per group
+     below. ESP secondary palette on the Warm Navy band: Soft Green (the
+     C3 accent) for Research, Warm Gold for Adoption, Warm Pink for
+     Policy. All three clear contrast on navy, and they stay graphic
+     elements (rules, underlines, 10px labels) rather than body copy —
+     the 75/15/10 balance holds because the band itself is navy. */
+  .tab-group { display: flex; flex-direction: column; --group-accent: var(--green); }
+  .tab-group[data-group="research"] { --group-accent: var(--green); }
+  .tab-group[data-group="adoption"] { --group-accent: var(--gold);  }
+  .tab-group[data-group="policy"]   { --group-accent: var(--pink);  }
+  .tab-group-btns { display: flex; align-items: flex-end; }
+  .tab-group-label {
+    margin-top: 3px; padding-top: 4px;
+    border-top: 1px solid color-mix(in srgb, var(--group-accent) 65%, transparent);
+    text-align: center;
+    font-family: var(--grot);
+    font-size: 10px; font-weight: 500;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--group-accent);
+  }
+  .tab-group-label--empty { border-top-color: transparent; color: transparent; user-select: none; }
+
+  /* ── SHARED TAB OPENER ───────────────────────────────────────────
+     The one type spec for the question or statement at the top of a
+     tab. Reach for .tab-lede / .tab-standfirst on anything new; the
+     per-tab classes below this are aliases that exist only because
+     their markup predates this block. */
+  .tab-lede {
+    font-family: var(--serif);
+    font-size: var(--lede-size);
+    line-height: var(--lede-lh);
+    font-weight: var(--lede-weight);
+    letter-spacing: var(--lede-track);
+    color: var(--headline);
+    max-width: var(--lede-measure);
+  }
+  .tab-standfirst {
+    font-family: var(--sans);
+    font-size: 15px; line-height: 1.7; color: var(--muted);
+    max-width: var(--lede-measure);
+    margin-top: 10px;
+  }
+
+  /* Papers, Policy Map and Solutions. No background and no bottom
+     border: this is an invisible container, and the masthead is closed
+     by the hairline on .header-tab-desc-text like every other tab. The
+     old --surface panel made these two read as a distinct site section,
+     and on Papers it was cream-on-cream with the .key-finding-cards,
+     which are --surface too. */
+  .header-tab-desc {
+    position: relative;
+    padding: var(--masthead-top) var(--masthead-inset) 14px;
+    display: flex; flex-direction: column; gap: 3px;
+  }
+  /* Empty now that the eyebrow is gone — the row survives only as the
+     lens toggle's anchor, so it must not add height above the lede. */
+  .header-tab-desc-row { margin-bottom: 0; }
+  /* Out of flow, so a taller control cannot push the lede under it down.
+     Papers is the only tab with a lens toggle, and while it sat in the
+     flow of this row it forked Papers' masthead from the other five. */
+  .header-tab-desc-row .lens-toggle {
+    position: absolute;
+    top: var(--masthead-top);
+    right: var(--masthead-inset);
+  }
+  .header-tab-desc-lede {
+    font-family: var(--serif);
+    font-size: var(--lede-size);
+    line-height: var(--lede-lh);
+    font-weight: var(--lede-weight);
+    letter-spacing: var(--lede-track);
+    color: var(--headline);
+    max-width: var(--lede-measure);
+    margin-bottom: 10px;
+  }
+  .header-tab-desc-lede:empty { display: none; }
+  /* Carries the shared closing hairline — see --masthead-top. */
+  .header-tab-desc-text {
+    font-size: 15px; color: var(--muted); line-height: 1.7;
+    max-width: var(--lede-measure);
+    font-family: var(--sans);
+    padding-bottom: 8px; border-bottom: 1px solid var(--border);
+  }
+  .header-nav-btn {
+    background: none; border: none; cursor: pointer;
+    font-family: var(--grot);
+    font-size: 14px; font-weight: 500; letter-spacing: 0.02em;
+    color: var(--divider); padding: 6px 13px;
+    border-bottom: 2px solid transparent;
+    transition: color 0.15s, border-color 0.15s;
+    white-space: nowrap;
+    /* Buttons default to line-height:normal but <a> inherits the body's 1.6.
+       Pin both so a link tab (Solutions) is exactly as tall as a button tab
+       (Lab) — otherwise the taller link stretches its group and knocks the
+       group label out of line with the neighbouring groups. */
+    line-height: 1.25;
+    display: block;
+  }
+  a.header-nav-btn { text-decoration: none; }
+  /* Hover previews the same underline the active state uses, so the group's
+     color reads before the click as well as after. Hover is the softer of the
+     two: a partial-strength rule, no weight change (which would reflow the
+     tab), and beige text rather than white. */
+  .header-nav-btn:hover {
+    color: var(--beige);
+    border-bottom-color: color-mix(in srgb, var(--group-accent) 60%, transparent);
+  }
+  .header-nav-btn.active {
+    color: #fff; font-weight: 600;
+    border-bottom-color: var(--group-accent);
+  }
+  .header-nav-btn.active:hover { border-bottom-color: var(--group-accent); }
+  /* Keyboard parity with hover. */
+  .header-nav-btn:focus-visible {
+    border-bottom-color: color-mix(in srgb, var(--group-accent) 60%, transparent);
+  }
+

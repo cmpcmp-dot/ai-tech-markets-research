@@ -1,0 +1,696 @@
+  /* ── POLICY MAP VIEW ─────────────────────────────────────── */
+  .policy-view .sidebar              { display: none; }
+  .policy-view .inline-filters       { display: none; }
+
+
+  .policy-view .cards-grid           { display: none !important; }
+  .policy-view .empty-state          { display: none !important; }
+  .policy-view .app-layout           { max-width: calc(var(--sidebar-w) + 1100px); grid-template-columns: 1fr; }
+  .policy-view .main-content         { grid-column: 1 / -1; }
+  .policy-view .cards-area           { padding: 0; }
+  #policyArea                        { display: none; }
+  .policy-view #policyArea           { display: block; }
+  #aboutArea                         { display: none; }
+  .about-view #aboutArea             { display: block; }
+  .about-view .sidebar               { display: none; }
+  .about-view .inline-filters        { display: none; }
+
+  .about-view .cards-grid            { display: none; }
+  .about-view .lens-toggle           { display: none; }
+  .about-view .header-tab-desc       { display: none; }
+  .about-view .app-layout            { grid-template-columns: 1fr; }
+  .about-view .main-content          { grid-column: 1 / -1; }
+  .about-content {
+    max-width: 660px; margin: 0 auto; padding: 40px 28px 60px;
+  }
+  .about-section {
+    border-bottom: 1px solid var(--border);
+    padding: 20px 0 24px;
+  }
+  .about-section:last-child { border-bottom: none; }
+  .about-section-label {
+    font-family: var(--grot);
+    font-size: 17px; font-weight: 700; letter-spacing: -0.01em;
+    color: var(--text); margin-bottom: 10px;
+  }
+  .about-section-text {
+    font-size: 14px; line-height: 1.75; color: var(--text);
+    font-family: 'Public Sans', sans-serif;
+  }
+  .about-section-text em { font-style: italic; }
+  .about-section-text + .about-section-text { margin-top: 12px; }
+  /* Alias of .tab-lede — was 24px grotesk 700. */
+  .about-lede {
+    font-family: var(--serif);
+    font-size: var(--lede-size);
+    line-height: var(--lede-lh);
+    font-weight: var(--lede-weight);
+    letter-spacing: var(--lede-track);
+    color: var(--headline);
+    max-width: var(--lede-measure);
+    margin-bottom: 14px;
+  }
+  .about-questions {
+    list-style: none; counter-reset: aq; margin: 16px 0 0; padding: 0;
+  }
+  .about-questions li {
+    counter-increment: aq; position: relative;
+    padding-left: 34px; margin-bottom: 16px;
+    font-size: 14px; line-height: 1.75; color: var(--text);
+    font-family: 'Public Sans', sans-serif;
+  }
+  .about-questions li:last-child { margin-bottom: 0; }
+  .about-questions li::before {
+    content: counter(aq); position: absolute; left: 0; top: 2px;
+    font-family: var(--grot); font-size: 12px; font-weight: 700;
+    width: 22px; height: 22px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    background: var(--navy); color: #fff;
+  }
+  .about-note {
+    border-left: 3px solid var(--purple);
+    background: rgba(0,0,0,0.02);
+    padding: 14px 16px; margin-top: 16px;
+    font-size: 13px; line-height: 1.7; color: var(--muted);
+    font-family: 'Public Sans', sans-serif;
+  }
+  .about-note strong { color: var(--text); }
+  .about-credit {
+    font-size: 13px; line-height: 1.7; color: var(--muted);
+    font-family: 'Public Sans', sans-serif;
+  }
+
+  /* ── JOB DISPLACEMENT TAB ── (static view, modeled on About) */
+  #jobDisplacementArea                    { display: none; }
+  .jobs-view #jobDisplacementArea         { display: block; }
+  .jobs-view .sidebar                     { display: none; }
+  .jobs-view .inline-filters              { display: none; }
+  .jobs-view .cards-grid                  { display: none !important; }
+  .jobs-view .empty-state                 { display: none !important; }
+  .jobs-view .lens-toggle                 { display: none; }
+  .jobs-view .header-tab-desc             { display: none; }
+  .jobs-view .key-findings-band           { display: none; }
+  .jobs-view .app-layout                  { grid-template-columns: 1fr; }
+  .jobs-view .main-content                { grid-column: 1 / -1; }
+  /* The masthead owns its own top gap via --masthead-top, so .cards-area
+     must not add to it — otherwise .mast's padding means one thing here
+     and another in the standalone jobs_displacement.html. */
+  .jobs-view .cards-area                  { padding-top: 0; }
+
+  /* ── ADOPTION TAB ── (static view; reuses the .jd-* editorial components) */
+  #trackerArea                           { display: none; }
+  .tracker-view #trackerArea            { display: block; }
+  .tracker-view .sidebar                 { display: none; }
+  .tracker-view .inline-filters          { display: none; }
+  .tracker-view .cards-grid              { display: none !important; }
+  .tracker-view .empty-state             { display: none !important; }
+  .tracker-view .lens-toggle             { display: none; }
+  .tracker-view .header-tab-desc         { display: none; }
+  .tracker-view .key-findings-band       { display: none; }
+  .tracker-view .app-layout              { grid-template-columns: 1fr; }
+  .tracker-view .main-content            { grid-column: 1 / -1; }
+  .tracker-view .cards-area              { padding-top: 0; }
+
+  /* ── SOLUTIONS TAB ── (placeholder view, modeled on About) */
+  #solutionsArea                          { display: none; }
+  .solutions-view #solutionsArea          { display: block; }
+  .solutions-view .sidebar                { display: none; }
+  .solutions-view .inline-filters         { display: none; }
+  .solutions-view .cards-grid             { display: none !important; }
+  .solutions-view .empty-state            { display: none !important; }
+  .solutions-view .lens-toggle            { display: none; }
+  /* Solutions keeps .header-tab-desc — it opens on the fourth of the four
+     questions ("What should we actually do?", from TAB_DESCS.solutions),
+     and a tab with no masthead would be the one exception in the set. */
+  .solutions-view .key-findings-band      { display: none; }
+  .solutions-view .app-layout             { grid-template-columns: 1fr; }
+  .solutions-view .main-content           { grid-column: 1 / -1; }
+  /* The masthead now carries the top structure, so the card no longer
+     needs to float in 80px of space to look deliberate. */
+  .sol-placeholder {
+    display: flex; align-items: center; justify-content: center;
+    padding: 24px 28px 80px;
+  }
+  .sol-card {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: var(--r-card); padding: 56px 48px; text-align: center;
+    max-width: 620px; width: 100%;
+  }
+  .sol-eyebrow {
+    font-family: var(--grot); font-size: 10px; font-weight: 500;
+    letter-spacing: 0.14em; text-transform: uppercase; color: var(--purple);
+    padding-bottom: 8px; border-bottom: 1px solid var(--border);
+    display: inline-block; margin-bottom: 22px;
+  }
+  .sol-mark {
+    font-family: var(--serif); font-size: 76px; font-weight: 700;
+    letter-spacing: 0.02em; color: var(--navy); line-height: 1;
+  }
+  .sol-note { margin-top: 18px; font-size: 14px; color: var(--purple); }
+  @media (max-width: 560px) {
+    .sol-card { padding: 40px 22px; }
+    .sol-mark { font-size: 56px; }
+  }
+
+  /* ═══════════════════════════════════════════════════════════
+     FACT BANK TAB
+     All component styles are scoped under #factBankArea so the
+     generic class names (.controls, .chip, .empty-state, …) cannot
+     leak into the rest of the app.
+     ═══════════════════════════════════════════════════════════ */
+  #factBankArea { display: none; }
+  /* margin: 0, not 0 auto. Centring a 1140px column inside the 1352px
+     layout pushed this tab's masthead 78px right of Papers'/Lab's/Jobs',
+     and the drift grew with the viewport. */
+  .fact-bank-view #factBankArea {
+    display: block; max-width: 1140px; margin: 0; width: 100%;
+  }
+  .fact-bank-view .sidebar            { display: none; }
+  .fact-bank-view .inline-filters     { display: none; }
+  .fact-bank-view .cards-grid         { display: none !important; }
+  .fact-bank-view .empty-state        { display: none !important; }
+  .fact-bank-view .lens-toggle        { display: none; }
+  .fact-bank-view .header-tab-desc    { display: none; }
+  .fact-bank-view .key-findings-band  { display: none; }
+  .fact-bank-view .app-layout         { grid-template-columns: 1fr; }
+  .fact-bank-view .main-content       { grid-column: 1 / -1; }
+  .fact-bank-view .cards-area         { padding-top: 0; }
+
+  #factBankArea .intro-bar { padding: var(--masthead-top) 0 0; }
+  /* Alias of .tab-lede — was 30px serif 700. */
+  #factBankArea .intro-title {
+    font-family: var(--serif); color: var(--headline);
+    font-size: var(--lede-size);
+    line-height: var(--lede-lh);
+    font-weight: var(--lede-weight);
+    letter-spacing: var(--lede-track);
+    max-width: var(--lede-measure);
+    margin-bottom: 10px;
+  }
+  #factBankArea .intro-text { font-size: 15px; line-height: 1.7; max-width: var(--lede-measure); }
+  /* Last element in the masthead, so it carries the closing hairline. It
+     also gains the shared measure — it was the one line on this tab
+     running the full 1140px while everything above it stopped at 760. */
+  #factBankArea .intro-note {
+    font-size: 12.5px; font-style: italic; color: var(--purple); margin-top: 8px;
+    max-width: var(--lede-measure);
+    padding-bottom: 8px; border-bottom: 1px solid var(--border);
+  }
+
+  /* ── MODE TOGGLE ── */
+  #factBankArea .mode-toggle { display: flex; gap: 10px; padding: 18px 0 4px; flex-wrap: wrap; }
+  #factBankArea .mode-btn {
+    flex: 1; min-width: 240px; text-align: left; cursor: pointer;
+    background: var(--light-beige); border: 1.5px solid var(--navy);
+    border-radius: var(--r-card); padding: 13px 18px 12px;
+    font-family: var(--grot); color: var(--text);
+    transition: border-color 0.15s, background 0.15s, color 0.15s;
+  }
+  #factBankArea .mode-btn .mode-name {
+    display: block; font-size: 16px; font-weight: 600; letter-spacing: 0.01em;
+    color: var(--headline); margin-bottom: 2px;
+  }
+  #factBankArea .mode-btn .mode-desc { display: block; font-family: var(--sans); font-size: 12.5px; }
+  #factBankArea .mode-btn:hover { border-color: var(--green); }
+  #factBankArea .mode-btn[aria-pressed="true"] { background: var(--navy); border-color: var(--navy); }
+  #factBankArea .mode-btn[aria-pressed="true"] .mode-name { color: #fff; }
+  #factBankArea .mode-btn[aria-pressed="true"] .mode-name::before {
+    content: ""; display: inline-block; width: 9px; height: 9px; border-radius: 50%;
+    background: var(--green); margin-right: 8px; vertical-align: 1px;
+  }
+  #factBankArea .mode-btn[aria-pressed="true"] .mode-desc { color: var(--divider); }
+
+  /* ── CONTROLS ── */
+  #factBankArea .controls {
+    position: sticky; top: 0; z-index: 100;
+    background: var(--beige); border-bottom: 1px solid var(--divider);
+    padding: 12px 0 10px;
+  }
+  #factBankArea .controls-row { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+  #factBankArea .controls-row2 { margin-top: 8px; }
+  #factBankArea .search-wrap { position: relative; flex: 1; min-width: 220px; }
+  #factBankArea .search-wrap svg {
+    position: absolute; left: 11px; top: 50%; transform: translateY(-50%);
+    color: var(--text); opacity: 0.55; pointer-events: none;
+  }
+  #factBankArea input[type="search"] {
+    width: 100%; background: var(--light-beige); border: 1px solid var(--divider);
+    color: var(--text); border-radius: var(--r-ctl); padding: 8px 12px 8px 34px;
+    font-size: 13.5px; outline: none; transition: border-color 0.18s; font-family: var(--sans);
+  }
+  #factBankArea input[type="search"]:focus { border-color: var(--green); }
+  #factBankArea input[type="search"]::placeholder { color: var(--text); opacity: 0.5; }
+  #factBankArea select {
+    /* native OS triangle suppressed; same chevron as every other control */
+    appearance: none; -webkit-appearance: none;
+    background-color: var(--light-beige);
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%232c3254' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 9px center;
+    background-size: 12px 12px;
+    border: 1px solid var(--divider); color: var(--text);
+    border-radius: var(--r-ctl); padding: 8px 28px 8px 10px; font-size: 13px; font-family: var(--sans);
+    outline: none; cursor: pointer;
+  }
+  #factBankArea select:focus { border-color: var(--green); }
+  #factBankArea .ctl-label {
+    font-family: var(--grot); font-size: 12px; font-weight: 500; letter-spacing: 0.03em;
+    color: var(--headline); white-space: nowrap;
+  }
+  #factBankArea .kw-toggle {
+    display: inline-flex; align-items: center; gap: 7px; cursor: pointer;
+    background: var(--light-beige); border: 1px solid var(--navy); border-radius: var(--r-ctl);
+    padding: 8px 13px; font-family: var(--grot); font-size: 13px; font-weight: 500;
+    color: var(--headline); white-space: nowrap; transition: background 0.15s;
+  }
+  #factBankArea .kw-toggle:hover { background: color-mix(in srgb, var(--navy) 7%, var(--light-beige)); }
+  #factBankArea .kw-toggle .chev { /* see .ui-chevron */ }
+  #factBankArea .kw-toggle[aria-expanded="true"] .chev { transform: rotate(180deg); }
+  #factBankArea .kw-toggle .kw-active-count {
+    background: var(--green); color: var(--headline); border-radius: var(--r-tag);
+    font-size: 11px; font-weight: 600; padding: 0 7px; line-height: 17px;
+  }
+  #factBankArea .kw-panel { display: grid; grid-template-rows: 0fr; transition: grid-template-rows 0.25s ease; }
+  #factBankArea .kw-panel.open { grid-template-rows: 1fr; }
+  #factBankArea .kw-panel > div { overflow: hidden; min-height: 0; }
+  #factBankArea .pill-row { display: flex; flex-wrap: wrap; gap: 6px; padding: 12px 2px 4px; }
+  #factBankArea .kw-pill {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-family: var(--grot); font-size: 12px; font-weight: 500; cursor: pointer; white-space: nowrap;
+    background: var(--light-beige); border: 1px solid var(--navy); border-radius: var(--r-ctl);
+    padding: 4px 12px; color: var(--navy);
+    transition: background 0.15s;
+  }
+  #factBankArea .kw-pill:hover { background: color-mix(in srgb, var(--navy) 7%, var(--light-beige)); }
+  #factBankArea .kw-pill[aria-pressed="true"] {
+    background: var(--navy); border-color: var(--navy); color: #fff; font-weight: 600;
+  }
+  #factBankArea .kw-count { font-size: 11px; opacity: 0.7; font-variant-numeric: tabular-nums; }
+  #factBankArea .result-line {
+    font-family: var(--grot); font-size: 12px; letter-spacing: 0.02em;
+    color: var(--text); padding: 10px 0 0;
+  }
+
+  /* ── COLLAPSE MACHINERY ── */
+  #factBankArea .cwrap {
+    display: grid; grid-template-rows: 1fr;
+    transition: grid-template-rows 0.3s ease, opacity 0.22s ease; opacity: 1;
+  }
+  #factBankArea .cwrap.hidden { grid-template-rows: 0fr; opacity: 0; pointer-events: none; }
+  #factBankArea .cwrap > .cinner { overflow: hidden; min-height: 0; }
+  #factBankArea .details { display: grid; grid-template-rows: 0fr; transition: grid-template-rows 0.28s ease; }
+  #factBankArea .details > .dinner { overflow: hidden; min-height: 0; }
+  #factBankArea .open > .details, #factBankArea .open .details { grid-template-rows: 1fr; }
+
+  /* ── SHARED CARD PIECES ── */
+  #factBankArea .lbl-grot {
+    font-family: var(--grot); font-weight: 600; font-size: 11px;
+    letter-spacing: 0.06em; text-transform: uppercase; color: var(--headline);
+  }
+  #factBankArea .fact-quote {
+    font-family: var(--sans); font-weight: 400;
+    font-size: 15px; line-height: 1.55; letter-spacing: 0; color: var(--text);
+  }
+  #factBankArea .fact-quote::before { content: "\201C"; color: var(--green); }
+  #factBankArea .fact-quote::after  { content: "\201D"; color: var(--green); }
+  #factBankArea .fact-caveat {
+    margin-top: 12px; padding: 9px 14px;
+    background: var(--beige); border-left: 3px solid var(--green); border-radius: 0 var(--r-card) var(--r-card) 0;
+    font-size: 13px; line-height: 1.55;
+  }
+  #factBankArea .fact-caveat .lbl-grot { display: block; margin-bottom: 2px; }
+  #factBankArea .fact-caveat.warn { border-left-color: var(--gold); background: rgba(235,195,130,0.16); }
+  #factBankArea .chips { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+  #factBankArea .chip {
+    display: inline-flex; align-items: center; gap: 5px;
+    font-family: var(--grot); font-size: 11px; font-weight: 500; letter-spacing: 0.02em;
+    border-radius: var(--r-tag); padding: 2.5px 9px;
+    background: var(--beige); border: 1px solid var(--divider); color: var(--text);
+  }
+  #factBankArea .chip-rating { color: var(--headline); font-weight: 600; }
+  #factBankArea .chip .dots { letter-spacing: 1.5px; color: var(--green); font-size: 10px; }
+  #factBankArea .chip-caution { background: rgba(235,195,130,0.3); border-color: var(--gold); color: var(--headline); font-weight: 600; }
+  #factBankArea .chip-access { font-style: italic; }
+  #factBankArea .chip-kw { background: rgba(112,173,143,0.16); border-color: rgba(112,173,143,0.55); color: var(--headline); }
+  #factBankArea .chip-foundational { background: rgba(235,195,130,0.18); border-color: var(--gold); color: var(--headline); font-weight: 600; cursor: help; }
+  #factBankArea .ctl-check { display: inline-flex; align-items: center; gap: 5px; font-size: 12px; color: var(--headline); cursor: pointer; white-space: nowrap; }
+  #factBankArea .fact-meta { font-size: 12.5px; color: var(--text); line-height: 1.6; }
+  #factBankArea .fact-meta strong { font-weight: 600; color: var(--headline); }
+  #factBankArea .fact-context {
+    margin-top: 10px; padding: 10px 14px;
+    border: 1px solid var(--divider); border-radius: var(--r-card); background: var(--beige);
+    font-size: 12.5px; line-height: 1.65; font-style: italic;
+  }
+  #factBankArea .fact-context .lbl-grot { display: block; font-style: normal; margin-bottom: 3px; }
+  #factBankArea .rating-desc { margin-top: 12px; display: flex; flex-direction: column; gap: 8px; }
+  #factBankArea .rating-desc .rd-row { font-size: 12.5px; line-height: 1.55; }
+  #factBankArea .rating-desc .rd-row .rd-head {
+    font-family: var(--grot); font-weight: 600; font-size: 12px; letter-spacing: 0.03em; color: var(--headline);
+  }
+  #factBankArea .rating-desc .rd-row .rd-head .dots { letter-spacing: 1.5px; color: var(--green); font-size: 10px; }
+  #factBankArea .cite-link {
+    font-size: 12.5px; line-height: 1.5; color: var(--text); text-decoration: underline;
+    text-decoration-color: var(--green); text-underline-offset: 3px; text-decoration-thickness: 1.5px;
+  }
+  #factBankArea .cite-link em { font-style: italic; }
+  #factBankArea .cite-link:hover { color: var(--headline); text-decoration-color: var(--navy); }
+  #factBankArea .cite-date {
+    font-family: var(--grot); font-size: 11.5px; letter-spacing: 0.03em; color: var(--purple); white-space: nowrap;
+  }
+  #factBankArea .act-btn {
+    background: var(--light-beige); border: 1px solid var(--navy); color: var(--navy);
+    border-radius: var(--r-ctl); padding: 4px 12px; font-family: var(--grot);
+    font-size: 12px; font-weight: 600; letter-spacing: 0.02em;
+    cursor: pointer; white-space: nowrap; text-decoration: none;
+    transition: background 0.15s, color 0.15s;
+  }
+  #factBankArea .act-btn:hover { background: var(--navy); color: var(--beige); }
+  #factBankArea .act-btn.copied { background: var(--green); border-color: var(--green); color: var(--headline); }
+  #factBankArea .expand-hint {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-family: var(--grot); font-size: 11.5px; font-weight: 600; letter-spacing: 0.04em;
+    color: var(--purple); background: none; border: none; cursor: pointer; padding: 0;
+  }
+  #factBankArea .expand-hint .chev { /* see .ui-chevron */ }
+  #factBankArea .open .expand-hint .chev { transform: rotate(180deg); }
+  #factBankArea .kf-empty-state { padding: 48px 0; text-align: center; color: var(--text); font-size: 14px; }
+
+  /* ── MODE 1: BY PAPER ── */
+  #factBankArea .paper-group {
+    background: var(--light-beige); border: 1px solid var(--divider); border-radius: var(--r-card);
+    margin-top: 18px; overflow: hidden;
+  }
+  #factBankArea .pg-facts { display: flex; flex-direction: column; }
+  #factBankArea .simple-card {
+    padding: 16px 20px 14px; cursor: pointer;
+    border-bottom: 1px solid var(--divider); border-left: 3px solid transparent;
+    transition: border-color 0.15s, background 0.15s;
+  }
+  #factBankArea .pg-facts .cwrap:last-of-type .simple-card { border-bottom: none; }
+  #factBankArea .simple-card:hover { border-left-color: var(--green); background: #fdfaef; }
+  #factBankArea .simple-card.open { border-left-color: var(--green); }
+  #factBankArea .sc-top { display: flex; gap: 12px; align-items: baseline; }
+  #factBankArea .sc-plain { flex: 1; font-size: 15px; font-weight: 500; line-height: 1.55; color: var(--headline); }
+  #factBankArea .sc-body { padding-top: 4px; }
+  #factBankArea .sc-actions { display: flex; gap: 8px; margin-top: 14px; flex-wrap: wrap; }
+  #factBankArea .pg-footer {
+    display: flex; align-items: flex-end; justify-content: space-between; gap: 16px;
+    padding: 13px 20px 14px; background: var(--beige); border-top: 1px solid var(--divider); flex-wrap: wrap;
+  }
+  #factBankArea .pg-cite { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+  #factBankArea .pg-count { font-family: var(--grot); font-size: 11.5px; letter-spacing: 0.04em; color: var(--purple); white-space: nowrap; }
+
+  /* ── MODE 2: ALL FACTS ── */
+  #factBankArea .fact-card {
+    background: var(--light-beige); border: 1px solid var(--divider); border-radius: var(--r-card);
+    border-left: 3px solid var(--green);
+    padding: 18px 22px 16px; margin-top: 14px; cursor: pointer; transition: background 0.15s;
+  }
+  #factBankArea .fact-card:hover { background: #fdfaef; }
+  #factBankArea .fc-plain { font-size: 15px; font-weight: 500; line-height: 1.55; color: var(--headline); }
+  #factBankArea .fc-quote-block { margin-top: 12px; }
+  #factBankArea .fc-quote-block .lbl-grot { display: block; margin-bottom: 4px; }
+  #factBankArea .fc-details-body { padding-top: 14px; }
+  #factBankArea .fc-details-body .fact-meta { margin-top: 12px; }
+  #factBankArea .fact-footer {
+    display: flex; align-items: flex-end; gap: 14px; flex-wrap: wrap;
+    margin-top: 14px; padding-top: 12px; border-top: 1px solid var(--divider);
+  }
+  #factBankArea .fact-footer .fc-cite { display: flex; flex-direction: column; gap: 2px; flex: 1; min-width: 220px; }
+  #factBankArea .fact-actions { display: flex; gap: 8px; align-items: center; flex-shrink: 0; }
+
+  @media (max-width: 760px) {
+    #factBankArea .mode-btn { min-width: 100%; }
+    #factBankArea .fact-card, #factBankArea .simple-card { padding-left: 15px; padding-right: 15px; }
+    #factBankArea .pg-footer { padding-left: 15px; padding-right: 15px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    #factBankArea .cwrap, #factBankArea .details, #factBankArea .kw-panel,
+    #factBankArea .expand-hint .chev, #factBankArea .kw-toggle .chev { transition: none; }
+    .ui-chevron { transition: none; }
+  }
+
+  /* Narrow phones: tighten the row so all five nav items share one line */
+  @media (max-width: 560px) {
+    .header-nav-btn { padding: 6px 6px; letter-spacing: 0; }
+    .header-tabs { gap: 0 10px; }
+    .tab-group-label { font-size: 9px; letter-spacing: 0.06em; }
+  }
+
+  .policy-view .lens-toggle { display: none !important; }
+
+  /* ── Policy filter bar ───────────────────────────────────── */
+
+  .pol-filter-label {
+    font-size: 13px; font-weight: 400; letter-spacing: 0;
+    color: var(--muted); white-space: nowrap;
+    flex-shrink: 0; margin-right: 10px;
+    font-family: 'Public Sans', 'Helvetica Neue', Arial, sans-serif;
+  }
+
+  /* Disruption chips */
+
+  .pol-empty-msg {
+    display: none; padding: 36px 40px;
+    font-size: 13px; color: var(--muted); font-style: italic;
+  }
+
+  /* ── Policy Matrix ───────────────────────────────────────── */
+  /* ── Policy Overview (Column Grid) ─────────────────────────── */
+  .pol-columns { display: none; }
+  .pol-col {
+    border: 1px solid var(--border);
+    border-radius: var(--r-card); overflow: hidden;
+    border-top: 2px solid color-mix(in srgb, var(--pol-cat-color, var(--border)) 45%, var(--border));
+    background: var(--surface);
+  }
+  .pol-col-header {
+    padding: 12px 14px 10px;
+    background: transparent;
+    border-bottom: 1px solid var(--border);
+  }
+  .pol-col-title {
+    font-size: 15px; font-weight: 700; letter-spacing: -0.01em;
+    color: color-mix(in srgb, var(--pol-cat-color, var(--text)) 45%, var(--text));
+    font-family: var(--grot);
+    line-height: 1.3; margin-bottom: 4px;
+  }
+  .pol-col-desc {
+    font-size: 10.5px; color: var(--muted); line-height: 1.45;
+    font-family: 'Haas Grotesk', 'Helvetica Neue', Arial, sans-serif;
+  }
+  .pol-col-count {
+    display: inline-block; font-size: 10px; color: var(--muted);
+    margin-top: 4px; font-variant-numeric: tabular-nums;
+  }
+  .pol-col-distbar { display: none; }
+  .pol-col-distbar-seg { display: none; }
+
+  /* ── Policy category rows ─────────────────────────────────── */
+  /* Four merged categories stacked as rows in curated order — the four
+     pathways of Becky Chao's April 2026 brief, in her order (Economic
+     Security first, Mitigating Harms last). Within each row the policy
+     cards flow left→right alphabetically and wrap to new lines, so
+     scrolling down reads category by category. Each row's ESP identity
+     color is set inline as --cat-color; it rides the top border, a faint
+     header wash, a colored dot, and each card's left stripe. Label text
+     stays --headline for ADA contrast. */
+  .pol-cat-rows {
+    width: 100%; padding: 32px 28px 60px;
+    display: flex; flex-direction: column; gap: 28px;
+  }
+  .pol-cat-row {
+    border: 1px solid var(--border);
+    border-top: 3px solid var(--cat-color, var(--border));
+    border-radius: var(--r-card); overflow: hidden;
+    background: var(--surface);
+  }
+  .pol-cat-row-head {
+    padding: 14px 20px 12px;
+    border-bottom: 1px solid var(--border);
+    background: color-mix(in srgb, var(--cat-color, transparent) 6%, transparent);
+  }
+  .pol-cat-row-title {
+    display: flex; align-items: baseline; gap: 9px;
+    font-family: var(--grot);
+    font-size: 18px; font-weight: 700; letter-spacing: -0.01em;
+    color: var(--headline); line-height: 1.2;
+  }
+  .pol-cat-row-title::before {
+    content: ''; flex-shrink: 0;
+    width: 10px; height: 10px; border-radius: 50%;
+    background: var(--cat-color, var(--muted));
+    transform: translateY(-1px);
+  }
+  .pol-cat-row-desc {
+    font-size: 12px; color: var(--muted); line-height: 1.5;
+    margin-top: 5px; font-family: 'Public Sans', sans-serif;
+  }
+  .pol-cat-row-count {
+    display: inline-block; margin-top: 7px;
+    font-family: 'Haas Grotesk', 'Helvetica Neue', Arial, sans-serif;
+    font-size: 10.5px; letter-spacing: 0.04em; text-transform: uppercase;
+    color: var(--muted); font-variant-numeric: tabular-nums;
+  }
+  /* Cards flow left→right and wrap; auto-fill columns of equal width keep
+     the alphabetical reading order clean across and down the row. */
+  .pol-cat-row-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 10px;
+    padding: 16px 20px 18px;
+  }
+  .pol-cat-card {
+    display: flex; align-items: flex-start; gap: 8px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-left: 3px solid color-mix(in srgb, var(--cat-color, var(--border)) 45%, var(--border));
+    border-radius: var(--r-card);
+    padding: 11px 12px 11px 13px; cursor: pointer;
+    transition: background 0.15s, border-color 0.15s, box-shadow 0.15s;
+  }
+  .pol-cat-card:hover {
+    background: color-mix(in srgb, var(--cat-color, transparent) 8%, var(--surface));
+    border-left-color: var(--cat-color, var(--accent));
+    box-shadow: 0 2px 10px rgba(44,50,84,0.07);
+  }
+  .pol-cat-card-title {
+    flex: 1;
+    font-family: 'Public Sans', sans-serif;
+    font-size: 13px; font-weight: 500; line-height: 1.4;
+    color: var(--text);
+  }
+  /* Persistent, faint affordance: darkens toward the category color and
+     slides right on hover. Always present — hovering never resizes the card.
+     Hover color is mixed toward --headline so it stays legible for the
+     lighter category hues (gold, green). */
+  .pol-cat-card-arrow {
+    align-self: center; color: var(--muted); opacity: 0.35;
+    transition: opacity 0.15s, color 0.15s, transform 0.15s;
+  }
+  .pol-cat-card:hover .pol-cat-card-arrow {
+    opacity: 1;
+    color: color-mix(in srgb, var(--cat-color, var(--accent)) 65%, var(--headline));
+    transform: rotate(-90deg) translateY(3px);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .pol-cat-card-arrow { transition: opacity 0.15s, color 0.15s; }
+    .pol-cat-card:hover .pol-cat-card-arrow { transform: rotate(-90deg); }
+  }
+  /* View mode toggle */
+
+  .pol-item-list {
+    display: flex; flex-direction: column; gap: 8px; padding: 10px;
+  }
+  .pol-item-wrap {
+    border: 1px solid color-mix(in srgb, var(--level-color, var(--border)) 18%, var(--border));
+    border-radius: var(--r-card); overflow: hidden; position: relative;
+    background: color-mix(in srgb, var(--level-color, #ffffff) 6%, #ffffff);
+    transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+  }
+  .pol-item-wrap::before {
+    content: ''; position: absolute; inset: 0; border-radius: inherit;
+    background: linear-gradient(135deg, var(--level-color, transparent) 0%, transparent 45%);
+    opacity: 0.06; pointer-events: none; z-index: 0;
+  }
+  .pol-item-wrap::after {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+    background: linear-gradient(to right, color-mix(in srgb, var(--level-color, transparent) 60%, transparent) 0%, transparent 65%);
+    border-radius: var(--r-card) var(--r-card) 0 0;
+  }
+  .pol-item-wrap:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 16px rgba(44,50,84,0.1);
+    border-color: color-mix(in srgb, var(--level-color, var(--border)) 35%, var(--border));
+  }
+  .pol-item {
+    display: flex; flex-direction: row; align-items: flex-start; gap: 8px;
+    padding: 10px 12px 11px; cursor: pointer;
+    position: relative; z-index: 1;
+  }
+  .pol-item-badge {
+    display: inline-block; flex-shrink: 0; margin-top: 1px;
+    font-size: 10px; font-weight: 500; letter-spacing: 0.01em;
+    color: color-mix(in srgb, var(--level-color, var(--muted)) 65%, var(--muted));
+    background: color-mix(in srgb, var(--level-color, var(--muted)) 7%, transparent);
+    border: 1px solid color-mix(in srgb, var(--level-color, var(--muted)) 18%, var(--border));
+    border-radius: var(--r-tag); padding: 2px 7px;
+    white-space: nowrap;
+  }
+  .pol-item-title {
+    font-size: 11.5px; font-weight: 500; color: var(--text); line-height: 1.35; flex: 1;
+  }
+  .pol-item-wrap:hover .pol-item-title { color: var(--accent); }
+
+  /* ── Policy Map / Links sub-view toggle ──────────────────────
+     Deliberately its own class, not `.lens-toggle` — the site hides
+     every `.lens-toggle` inside `.policy-view` (lens doesn't apply to
+     the Policy Map), which would also hide this if it shared the class. */
+  .pol-subview-toggle {
+    display: flex; align-items: center; gap: 2px;
+    background: var(--light-beige); border: 1px solid var(--navy);
+    border-radius: var(--r-ctl-outer); padding: 3px; width: fit-content;
+    margin: 20px 28px 0;
+  }
+  .pol-subview-btn {
+    padding: 5px 16px; font-size: 12px; font-weight: 500;
+    border: none; background: transparent; border-radius: var(--r-ctl);
+    cursor: pointer; color: var(--navy); font-family: inherit;
+    transition: all 0.15s; white-space: nowrap; letter-spacing: 0.015em;
+  }
+  .pol-subview-btn.active { background: var(--navy); color: #fff; font-weight: 600; }
+  .pol-subview-btn:hover:not(.active) { color: var(--text); background: color-mix(in srgb, var(--navy) 7%, transparent); }
+
+  /* ── Policy Links graph (test-run, hand-rolled SVG force layout) ── */
+  .pol-links-wrap { padding: 20px 28px 50px; }
+  .pol-links-graph-outer {
+    border: 1px solid var(--border); border-radius: var(--r-card);
+    background: var(--surface); overflow: hidden; position: relative;
+  }
+  .pol-links-svg { display: block; width: 100%; height: auto; min-height: 560px; }
+  .pol-links-band-label {
+    font-family: 'Haas Grotesk', 'Helvetica Neue', Arial, sans-serif;
+    font-size: 11px; font-weight: 600; letter-spacing: 0.03em; text-transform: uppercase;
+    fill: var(--muted); opacity: 0.75;
+  }
+  .pol-links-edge { stroke: var(--muted); stroke-opacity: 0.35; fill: none; transition: stroke-opacity 0.15s, stroke 0.15s; }
+  .pol-links-edge.dimmed { stroke-opacity: 0.08; }
+  .pol-links-edge.lit { stroke: var(--accent); stroke-opacity: 0.85; }
+  .pol-links-node-dot {
+    stroke: var(--surface); stroke-width: 1.5px; cursor: pointer;
+    transition: opacity 0.15s, r 0.15s;
+  }
+  .pol-links-node.dimmed .pol-links-node-dot { opacity: 0.28; }
+  /* Labels render via <foreignObject><div> (not SVG <text>) specifically so
+     long policy titles can wrap onto multiple lines instead of running off
+     as one long unbroken string. */
+  .pol-links-node-label-fo { overflow: visible; pointer-events: none; }
+  .pol-links-node-label {
+    font-family: 'Public Sans', 'Segoe UI', system-ui, sans-serif;
+    font-size: 9.5px; line-height: 1.28; color: var(--text);
+    white-space: normal; overflow-wrap: break-word;
+    transition: opacity 0.15s, font-weight 0.15s, color 0.15s;
+  }
+  .pol-links-node.dimmed .pol-links-node-label { opacity: 0.3; }
+  .pol-links-node.lit .pol-links-node-label { font-weight: 700; color: var(--headline); }
+  .pol-links-node-hit { fill: transparent; cursor: pointer; }
+  .pol-links-legend {
+    display: flex; flex-wrap: wrap; gap: 14px;
+    padding: 12px 16px; border-top: 1px solid var(--border);
+    font-family: 'Public Sans', sans-serif; font-size: 11px; color: var(--muted);
+  }
+  .pol-links-legend-item { display: flex; align-items: center; gap: 6px; }
+  .pol-links-legend-dot { width: 9px; height: 9px; border-radius: 50%; flex-shrink: 0; }
+
+  @media (max-width: 700px) {
+    .pol-subview-toggle { margin: 16px 16px 0; }
+    .pol-links-wrap { padding: 16px 16px 40px; }
+
+    .pol-columns { padding-left: 16px; padding-right: 16px; grid-template-columns: 1fr; }
+
+    /* Policy Map: tighten row padding; auto-fill collapses cards to 1-up */
+    .pol-cat-rows { padding: 18px 16px 40px; gap: 18px; }
+    .pol-cat-row-cards { grid-template-columns: 1fr; padding: 12px 14px 14px; }
+    .pol-cat-row-head { padding: 12px 14px 10px; }
+  }
+

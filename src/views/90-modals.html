@@ -1,0 +1,90 @@
+<!-- About Modal -->
+<div class="modal-backdrop" id="aboutModal">
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="aboutModalTitle">
+    <div class="modal-header">
+      <h2 class="modal-title" id="aboutModalTitle">About</h2>
+      <button class="modal-close" id="aboutModalClose" aria-label="Close">✕</button>
+    </div>
+    <div class="modal-body" id="aboutModalBody">
+      <div class="modal-group">
+        <div class="modal-group-name">Purpose</div>
+        <p class="modal-sources-intro">This tracker is a curated research intelligence tool at the intersection of artificial intelligence, automation, and labor markets. It aggregates peer-reviewed studies, policy reports, and investigative journalism into a structured database — and synthesizes that research into strategic themes and policy frameworks — to support institutional positioning, workforce strategy, and policy analysis.</p>
+      </div>
+      <div class="modal-group">
+        <div class="modal-group-name">Created by</div>
+        <p class="modal-sources-intro">Christelle Prophete. This site is independently maintained and updated as new research emerges. The content does not reflect the opinions or perspectives of the creator.</p>
+      </div>
+      <div class="modal-group">
+        <div class="modal-group-name">Papers tab</div>
+        <p class="modal-sources-intro">A filterable card database of individual research entries, tagged by category and geographic scope. Cards can be filtered by category and geography, or searched by title, source, or finding.</p>
+      </div>
+      <div class="modal-group">
+        <div class="modal-group-name">Themes (archived)</div>
+        <p class="modal-sources-intro">Cross-cutting syntheses of the research database. Each theme frames a key strategic question, presents an evidence consensus, identifies implications for institutional actors, and notes gaps in the current evidence base. This view has been retired from the main site and is preserved at <a href="themes.html">themes.html</a>.</p>
+      </div>
+      <div class="modal-group">
+        <div class="modal-group-name">Policy Map tab</div>
+        <p class="modal-sources-intro">Twenty-seven policy interventions organized by category and mapped to five stages of AI-driven labor disruption — from <em>Repair</em> (fixes needed regardless of AI's trajectory) through <em>Transform</em> (responses to large-scale displacement of the workforce). Each policy card includes a plain-language description, an account of the implementation challenge, and links to supporting research in the database. Does not constitute policy advice.</p>
+      </div>
+      <div class="modal-group">
+        <div class="modal-group-name">AI Disclaimer</div>
+        <p class="modal-sources-intro">Summaries, key findings, and takeaways are AI-generated and reviewed for accuracy on an ongoing basis. They are intended as orientation aids — not substitutes for reading the original source. Always consult the primary publication before citing or acting on any finding.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Policy pop-out modal -->
+<div class="modal-backdrop" id="polModal" role="dialog" aria-modal="true" aria-labelledby="polModalTitle">
+  <div class="pol-modal">
+    <div class="pol-modal-header">
+      <div>
+        <h2 class="pol-modal-title" id="polModalTitle"></h2>
+        <div class="pol-modal-meta">
+          <span class="pol-modal-level" id="polModalLevel"></span>
+          <span class="pol-modal-meta-sep"></span>
+          <span class="pol-modal-cat" id="polModalCat"></span>
+        </div>
+      </div>
+      <div class="pol-modal-actions" id="polModalActions"></div>
+      <button class="pol-modal-close" id="polModalClose" aria-label="Close">✕</button>
+      <div class="pol-modal-phase-desc" id="polModalPhaseDesc"></div>
+    </div>
+    <div class="pol-modal-body" id="polModalBody"></div>
+  </div>
+</div>
+
+<!-- Key Finding Modal -->
+<div class="modal-backdrop" id="findingModal" role="dialog" aria-modal="true" aria-labelledby="findingModalStat findingModalTitle">
+  <div class="pol-modal">
+    <div class="pol-modal-header">
+      <div>
+        <div class="finding-modal-stat" id="findingModalStat"></div>
+        <h2 class="pol-modal-title" id="findingModalTitle"></h2>
+      </div>
+      <button class="pol-modal-close" id="findingModalClose" aria-label="Close">✕</button>
+    </div>
+    <div class="pol-modal-body" id="findingModalBody"></div>
+  </div>
+</div>
+
+<!-- Priority Sources Modal -->
+<div class="modal-backdrop" id="sourcesModal">
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal-header">
+      <h2 class="modal-title" id="modalTitle">Sources</h2>
+      <button class="modal-close" id="sourcesModalClose" aria-label="Close">✕</button>
+    </div>
+    <div class="modal-body" id="sourcesModalBody"></div>
+  </div>
+</div>
+
+<!-- Mobile sidebar toggle -->
+<button class="sidebar-toggle" id="sidebarToggle" aria-label="Toggle filters">
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+    <line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/>
+  </svg>
+</button>
+<div class="sidebar-backdrop" id="sidebarBackdrop"></div>
+
+

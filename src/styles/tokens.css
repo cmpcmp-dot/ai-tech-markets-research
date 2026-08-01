@@ -1,0 +1,196 @@
+  @font-face {
+    font-family: 'Publico Banner';
+    src: url('fonts/PublicoBannerBold.otf') format('opentype');
+    font-weight: 700; font-style: normal; font-display: swap;
+  }
+  @font-face {
+    font-family: 'Publico Banner';
+    src: url('fonts/PublicoBannerMedium.otf') format('opentype');
+    font-weight: 500; font-style: normal; font-display: swap;
+  }
+  @font-face {
+    font-family: 'Publico Banner';
+    src: url('fonts/PublicoBannerRoman.otf') format('opentype');
+    font-weight: 400; font-style: normal; font-display: swap;
+  }
+  @font-face {
+    font-family: 'Haas Grotesk';
+    src: url('fonts/HaasGrotDisp55Roman.otf') format('opentype');
+    /* Only the Roman weight is licensed/bundled. Keep the declared range
+       BELOW 700 so requests for 700 fall outside it and the browser
+       synthesises bold — widening to 700 would match Roman exactly and
+       silently flatten every bold heading. */
+    font-weight: 400 600; font-style: normal; font-display: swap;
+  }
+  @font-face {
+    font-family: 'Public Sans';
+    src: url('fonts/PublicSans-Regular.ttf') format('truetype');
+    font-weight: 400; font-style: normal; font-display: swap;
+  }
+  @font-face {
+    font-family: 'Public Sans';
+    src: url('fonts/PublicSans-Medium.ttf') format('truetype');
+    font-weight: 500; font-style: normal; font-display: swap;
+  }
+  @font-face {
+    font-family: 'Public Sans';
+    src: url('fonts/PublicSans-SemiBold.ttf') format('truetype');
+    font-weight: 600; font-style: normal; font-display: swap;
+  }
+  @font-face {
+    font-family: 'Public Sans';
+    src: url('fonts/PublicSans-Bold.ttf') format('truetype');
+    font-weight: 700; font-style: normal; font-display: swap;
+  }
+
+  :root {
+    /* ── ESP C3 brand tokens (from the Fact Bank tab / esp-style-guide) ── */
+    --navy:        #2c3254;  /* Warm Navy — anchor */
+    --beige:       #f4f2e4;  /* Beige — anchor */
+    --light-beige: #fffdf2;  /* Light Beige — card surface */
+    --green:       #70ad8f;  /* Soft Green — C3 accent */
+    --green-hover: #84cca8;
+    --purple:      #472b51;  /* Deep Purple — secondary */
+    --gold:        #ebc382;  /* Warm Gold — secondary */
+    --pink:        #ffbfa7;  /* Warm Pink — secondary */
+    --headline:    #232849;  /* Headline Black */
+    --divider:     #caccd4;  /* Divider Grey */
+    --serif:  'Publico Banner', Georgia, serif;
+    --grot:   'Haas Grotesk', 'Helvetica Neue', Arial, sans-serif;
+    --sans:   'Public Sans', -apple-system, 'Segoe UI', system-ui, sans-serif;
+
+    /* ── TAB LEDE SCALE ──────────────────────────────────────────
+       Every tab opens on the same two-part pattern: the question or
+       statement (the lede) and a standfirst paragraph beneath it.
+       These tokens are the single source of
+       truth for the lede's size and measure — change them here and
+       all six tabs move together.
+
+       Consumed by: .tab-lede (the class to reach for on anything
+       new), plus the four legacy per-tab classes kept as aliases
+       for it — .jd-lede (Adoption), #factBankArea .intro-title,
+       .about-lede, .header-tab-desc-lede (Papers/Policy Map), and
+       #jobDisplacementArea .mast h2.
+
+       The Jobs tab's copy of the rule lives in
+       jobs_displacement.html and arrives via
+       sync_jobs_displacement.py, so it reads these with a literal
+       fallback (var(--lede-size, clamp(...))) — the token wins here
+       in index.html, the fallback keeps the standalone preview
+       honest. Do not add --lede-* to that file's :root; the sync
+       scopes :root onto #jobDisplacementArea, which would outrank
+       this block and quietly re-fork the scale. */
+    --lede-size:    clamp(24px, 3.2vw, 32px);
+    --lede-lh:      1.3;
+    --lede-weight:  500;
+    --lede-track:   -0.01em;
+    --lede-measure: 760px;
+
+    /* ── MASTHEAD FRAME ──────────────────────────────────────────
+       The --lede-* tokens above unify the masthead's *type*; these
+       unify its *box*, so all six tabs open at the same left edge,
+       the same distance below the navy band, and close on the same
+       hairline. Before this existed the six had five different left
+       edges (168/246/312/756) and five different top gaps (17–172),
+       because each tab's wrapper was centred in a column of its own
+       width — an inset that drifts with the viewport.
+
+       Left-flush, not centred: it is the only inset that is
+       invariant to window width, and the only one that survives the
+       Papers sidebar (a centred masthead there would align to
+       neither the sidebar nor the card grid).
+
+       The closing rule is --lede-measure wide, not the content
+       width, so it hugs the text it closes. Content below the rule
+       keeps whatever measure it needs: Adoption's charts 1060,
+       Fact Bank 1140, Jobs' prose 840.
+
+       Same caveat as --lede-*: do not add --masthead-top to
+       jobs_displacement.html's :root. The sync scopes :root onto
+       #jobDisplacementArea, which would outrank this block. That
+       file reads it with a literal fallback instead. */
+    --masthead-top:   40px;
+    --masthead-inset: 28px;
+
+    /* ── App tokens remapped onto the ESP palette ── */
+    --bg:       var(--beige);
+    --surface:  var(--light-beige);
+    --surface2: var(--beige);
+    --border:   var(--divider);
+    --text:     #3c4164;     /* Text Black */
+    --muted:    #6d7091;     /* warmed grey to sit in the family */
+    /* App emphasis/focus color. Set to Warm Navy (not the C3 Soft Green)
+       for readability: navy has far stronger contrast on the light
+       background, and it keeps green within ESP's ~15% accent budget.
+       Green survives as deliberate accents that reference --green directly:
+       the header active-tab underline, the Policy Map Economic Security
+       swatch, and the (green-by-design) Fact Bank tab. */
+    --accent:   var(--navy);
+    --tooltip-bg: #2c3254;
+    --tooltip-fg: #f4f2e4;
+    --sidebar-w: 252px;
+
+    /* One radius scale. Anything the user clicks is --r-ctl, so tabs,
+       toggles, filter pills, date/sort controls and action buttons are
+       all the same lightly-rounded rectangle. No pills. */
+    --r-ctl:   6px;   /* buttons, toggles, filter pills, inputs, selects */
+    --r-ctl-outer: 9px; /* segmented-toggle shell: --r-ctl + its 3px padding */
+    --r-tag:   4px;   /* non-interactive micro tags */
+    --r-card: 10px;   /* cards, panels, chart containers */
+    --r-modal:12px;   /* modals */
+
+    /* Deepened ESP hues for small marks and text-sized accents. Warm Gold,
+       Soft Green and Warm Red all fail contrast at small sizes on Beige
+       (see colors.md accessibility notes), so each has a darkened sibling
+       used ONLY for dots, rules, small labels and chart lines. Large fills
+       and display type still use the pure tokens. */
+    --gold-deep:   #c99a3f;  /* Warm Gold, darkened */
+    --green-deep:  #4a8a70;  /* Soft Green, darkened */
+    --red-deep:    #b0503a;  /* Warm Red, darkened — caution semantics only */
+
+    /* Category ramp. ESP series order, navy-led: Warm Navy, Soft Green,
+       Deep Purple, Warm Gold, Warm Pink, Text Black — then repeating.
+       Warm Red (#ff8361) is deliberately absent: this dashboard is the C3
+       (Soft Green) arm, and the brand guide forbids placing Warm Red and
+       Soft Green alongside one another. */
+    --c0: #2C3254; --c1: #70AD8F; --c2: #472B51; --c3: #C99A3F;
+    --c4: #FFBFA7; --c5: #3C4164; --c6: #2C3254; --c7: #70AD8F;
+    --c8: #472B51; --c9: #C99A3F; --c10: #FFBFA7; --c11: #3C4164;
+    --c12: #2C3254; --c13: #70AD8F;
+
+    --s-emergent: #70AD8F;
+    --s-current:  #2C3254;
+    --s-stale:    #6d7091;
+    --g-us:       #2C3254;
+    --g-intl:     #C99A3F;
+  }
+
+  /* ── CHEVRON ──────────────────────────────────────────────
+     One shape for every expand/collapse and dropdown affordance.
+     Drawn as an SVG mask filled with currentColor so it inherits
+     text color. Default points DOWN (closed); .is-open — or an
+     ancestor with aria-expanded="true" / not .is-collapsed —
+     rotates it 180deg so it points UP. */
+  .ui-chevron {
+    display: inline-block; flex-shrink: 0;
+    width: 12px; height: 12px;
+    background: currentColor;
+    -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E") center / 12px 12px no-repeat;
+            mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E") center / 12px 12px no-repeat;
+    transition: transform 0.18s ease;
+  }
+  .ui-chevron.sm {
+    width: 10px; height: 10px;
+    -webkit-mask-size: 10px 10px; mask-size: 10px 10px;
+  }
+  .ui-chevron.right { transform: rotate(-90deg); }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    zoom: 1.05;
+    background: var(--beige); color: var(--text);
+    font-family: var(--sans);
+    min-height: 100vh; line-height: 1.6;
+    display: flex; flex-direction: column;
+  }
+

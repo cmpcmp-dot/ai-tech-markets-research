@@ -1,0 +1,45 @@
+<main class="app-layout" id="mainContent" tabindex="-1">
+
+  <!-- ── SIDEBAR ── -->
+  <aside class="sidebar" id="sidebar">
+
+    <div class="sidebar-search">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+        <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+      </svg>
+      <input type="search" id="searchInput" placeholder="Search…" aria-label="Search the research database">
+    </div>
+
+    <div class="sidebar-section" id="secCategory">
+      <div class="sidebar-nav-wrap"><div id="catNav"></div></div>
+    </div>
+
+  </aside>
+
+  <div class="header-tab-desc" id="headerTabDesc">
+    <div class="header-tab-desc-row">
+      <div class="lens-toggle" role="group" aria-label="Research lens">
+        <button class="lens-btn active" id="lensGeneral" data-lens="general" title="Written for a broad audience" aria-label="General lens: written for a broad audience">General</button>
+        <button class="lens-btn" id="lensEconomist" data-lens="economist" title="Peer-reviewed and institutional research, organized around economic outcomes" aria-label="Focused lens: peer-reviewed and institutional research, organized around economic outcomes">Focused</button>
+      </div>
+    </div>
+    <h2 class="header-tab-desc-lede" id="headerTabDescLede">What does the research actually show?</h2>
+    <span class="header-tab-desc-text" id="headerTabDescText">A curated database of peer-reviewed studies, policy reports, and investigative journalism on AI, automation, and labor markets.</span>
+    <div class="key-findings-band" id="keyFindingsBand">
+      <h2 class="key-findings-label">From recent research</h2>
+      <div class="key-findings-row" id="keyFindingsRow"></div>
+    </div>
+  </div>
+
+  <!-- ── MAIN ── -->
+  <div class="main-content" id="viewPanel" role="tabpanel" aria-labelledby="homeTitleLink">
+
+    <div class="research-subview-toggle" id="researchSubviewToggle" role="group" aria-label="Research section">
+      <button class="pol-subview-btn active" id="resSubviewDatabase" type="button" aria-pressed="true">Database</button>
+      <button class="pol-subview-btn" id="resSubviewChangelog" type="button" aria-pressed="false">What&rsquo;s New<span class="res-subview-pill" id="whatsChangedPill" hidden></span></button>
+    </div>
+
+    <span id="resultCount" style="display:none" aria-live="polite" aria-atomic="true"></span>
+
+    <div class="inline-filters" id="inlineFilters"></div>
+

@@ -1,0 +1,43 @@
+<header class="site-header">
+  <div class="header-inner">
+    <div class="header-brand">
+      <div class="header-text">
+        <h1><a href="#about" id="homeTitleLink" aria-label="Home: about this site">AI Tracker: Research, Impact, and Policy</a><span class="header-proto-tag" title="Work in progress — please do not cite or share these figures">Prototype</span></h1>
+        <div class="header-proto-note">Work in progress &mdash; please do not cite or share these figures.</div>
+      </div>
+    </div>
+    <nav class="header-nav" aria-label="Primary">
+      <div class="header-tabs" role="tablist" aria-label="Select view">
+        <div class="tab-group" data-group="research" role="presentation">
+          <div class="tab-group-btns" role="presentation">
+            <button class="header-nav-btn" id="viewCards" data-view="cards" role="tab" aria-selected="false" aria-controls="viewPanel">Papers</button>
+            <button class="header-nav-btn" id="viewFactBank" data-view="fact-bank" role="tab" aria-selected="false" aria-controls="viewPanel">Fact Bank</button>
+          </div>
+          <div class="tab-group-label" aria-hidden="true">Research</div>
+        </div>
+        <div class="tab-group" data-group="adoption" role="presentation">
+          <div class="tab-group-btns" role="presentation">
+            <!-- Internal key is still `adoption` (see src/views/60-adoption.html). -->
+            <button class="header-nav-btn" id="viewTracker" data-view="tracker" role="tab" aria-selected="false" aria-controls="viewPanel">Data Tracker</button>
+            <button class="header-nav-btn" id="viewJobs" data-view="jobs" role="tab" aria-selected="false" aria-controls="viewPanel">Job Displacement</button>
+          </div>
+          <div class="tab-group-label" aria-hidden="true">Adoption</div>
+        </div>
+        <div class="tab-group" data-group="policy" role="presentation">
+          <div class="tab-group-btns" role="presentation">
+            <button class="header-nav-btn" id="viewPolicy" data-view="policy" role="tab" aria-selected="false" aria-controls="viewPanel">Lab</button>
+            <button class="header-nav-btn" id="viewSolutions" data-view="solutions" role="tab" aria-selected="false" aria-controls="viewPanel">Solutions</button>
+          </div>
+          <div class="tab-group-label" aria-hidden="true">Policy</div>
+        </div>
+      </div>
+    </nav>
+    <div style="display:none;">
+      <button id="aboutInfoBtn" aria-label="About this site"></button>
+      <button id="sourcesInfoBtn" aria-label="View sources"></button>
+    </div>
+  </div>
+</header>
+
+<div id="viewAnnounce" class="sr-only" aria-live="polite" aria-atomic="true"></div>
+
