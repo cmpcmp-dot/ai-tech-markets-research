@@ -7,24 +7,24 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AI Tracker: Research, Impact, and Policy</title>
+<title>AI Tracker: Research, Economy, and Policy</title>
 <meta name="description" content="A curated research database and synthesis on AI, automation, and the economy: peer-reviewed studies, policy reports, and investigative journalism on labor markets, equity, worker power, and policy responses.">
 <meta name="author" content="Economic Security Project">
 <meta name="theme-color" content="#2c3254">
 <link rel="canonical" href="https://cmpcmp-dot.github.io/ai-tech-markets-research/">
 <meta property="og:type" content="website">
-<meta property="og:site_name" content="AI Tracker: Research, Impact, and Policy">
-<meta property="og:title" content="AI Tracker: Research, Impact, and Policy">
+<meta property="og:site_name" content="AI Tracker: Research, Economy, and Policy">
+<meta property="og:title" content="AI Tracker: Research, Economy, and Policy">
 <meta property="og:description" content="A curated research database and synthesis on AI, automation, and the economy: peer-reviewed studies, policy reports, and investigative journalism on labor markets, equity, worker power, and policy responses.">
 <meta property="og:url" content="https://cmpcmp-dot.github.io/ai-tech-markets-research/">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="AI Tracker: Research, Impact, and Policy">
+<meta name="twitter:title" content="AI Tracker: Research, Economy, and Policy">
 <meta name="twitter:description" content="A curated research database and synthesis on AI, automation, and the economy: peer-reviewed studies, policy reports, and investigative journalism on labor markets, equity, worker power, and policy responses.">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "WebSite",
-  "name": "AI Tracker: Research, Impact, and Policy",
+  "name": "AI Tracker: Research, Economy, and Policy",
   "url": "https://cmpcmp-dot.github.io/ai-tech-markets-research/",
   "description": "A curated research database and synthesis on AI, automation, and the economy: peer-reviewed studies, policy reports, and investigative journalism on labor markets, equity, worker power, and policy responses.",
   "author": { "@type": "Organization", "name": "Economic Security Project" }
@@ -3847,7 +3847,7 @@
 </main><!-- /app-layout -->
 
 <footer>
-  AI Tracker: Research, Impact, and Policy ·
+  AI Tracker: Research, Economy, and Policy ·
   Economic Security Project ·
   Last updated <span id="headerLastUpdated"></span> ·
   <a class="footer-changelog-link" href="#about">About</a> ·
@@ -4630,7 +4630,7 @@
     ];
     if (org) lines.push(`  publisher = {${org}},`);
     if (p.sourceUrl) lines.push(`  howpublished = {\\url{${p.sourceUrl}}},`);
-    lines.push(`  note = {Via AI Tracker: Research, Impact, and Policy, entry ${p.id}}`);
+    lines.push(`  note = {Via AI Tracker: Research, Economy, and Policy, entry ${p.id}}`);
     lines.push('}');
     return lines.join('\n');
   }
@@ -4646,7 +4646,7 @@
     md.push('');
     md.push(`**Phase:** ${lvl.label || p.level}${catLabel ? ` · **Domain:** ${catLabel}` : ''}`);
     md.push('');
-    md.push(`*Draft prepared from AI Tracker: Research, Impact, and Policy (${appURL('policy/' + p.id)})${p.lastReviewed ? `. Last reviewed ${fmtD(p.lastReviewed)}` : ''}.*`);
+    md.push(`*Draft prepared from AI Tracker: Research, Economy, and Policy (${appURL('policy/' + p.id)})${p.lastReviewed ? `. Last reviewed ${fmtD(p.lastReviewed)}` : ''}.*`);
     const section = (label, body) => { if (body) { md.push('', `## ${label}`, '', plain(body)); } };
     const listSection = (label, arr) => {
       if (Array.isArray(arr) && arr.length) {

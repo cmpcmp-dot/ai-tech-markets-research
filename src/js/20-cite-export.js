@@ -68,7 +68,7 @@
     ];
     if (org) lines.push(`  publisher = {${org}},`);
     if (p.sourceUrl) lines.push(`  howpublished = {\\url{${p.sourceUrl}}},`);
-    lines.push(`  note = {Via AI Tracker: Research, Impact, and Policy, entry ${p.id}}`);
+    lines.push(`  note = {Via AI Tracker: Research, Economy, and Policy, entry ${p.id}}`);
     lines.push('}');
     return lines.join('\n');
   }
@@ -84,7 +84,7 @@
     md.push('');
     md.push(`**Phase:** ${lvl.label || p.level}${catLabel ? ` · **Domain:** ${catLabel}` : ''}`);
     md.push('');
-    md.push(`*Draft prepared from AI Tracker: Research, Impact, and Policy (${appURL('policy/' + p.id)})${p.lastReviewed ? `. Last reviewed ${fmtD(p.lastReviewed)}` : ''}.*`);
+    md.push(`*Draft prepared from AI Tracker: Research, Economy, and Policy (${appURL('policy/' + p.id)})${p.lastReviewed ? `. Last reviewed ${fmtD(p.lastReviewed)}` : ''}.*`);
     const section = (label, body) => { if (body) { md.push('', `## ${label}`, '', plain(body)); } };
     const listSection = (label, arr) => {
       if (Array.isArray(arr) && arr.length) {
