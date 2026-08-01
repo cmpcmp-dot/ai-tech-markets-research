@@ -78,7 +78,13 @@ What gets stripped on the way in
    does not define. Adding a new shared component is then a deliberate,
    two-file act rather than a silent one.
 
-The <main>...</main> inner content (masthead, short version, the three
+3. Every <script src>. index.html loads its data files in its own order,
+   alongside the other tabs' payloads, so these are not ported. For the
+   same reason as the .jd-* family, the script FAILS if jobs_displacement
+   .html loads a script index.html does not — otherwise a section whose
+   payload is missing renders as an empty frame and one console warning.
+
+The <main>...</main> inner content (masthead, short version, the
 sections) is ported as-is.
 
 The page's own inline <script> is ported with two changes:
@@ -272,7 +278,7 @@ def filter_css(css_text, jd_selectors, warnings):
 
         if sel == ":root":
             # Becomes a scoped custom-property block: the tab's tokens
-            # (--col, --measure, --rail-w, --terra, --null-*, --sig-*) stay
+            # (--col, --measure, --rail-w, --terra) stay
             # inside the tab, and its restatements of site tokens
             # (--surface, --text, --serif, ...) no longer shadow the real
             # ones for the rest of the page.
@@ -311,6 +317,32 @@ def check_jd_ownership(jd_selectors, dest_text):
             "  the copy in jobs_displacement.html is dropped during sync. Copy these\n"
             "  rules by hand into the 'SHARED CHART CHROME' block in index.html's\n"
             "  <style>, then re-run."
+        )
+
+
+def check_script_srcs(src_text, dest_text):
+    """Every <script src> jobs_displacement.html loads must also be loaded by
+    index.html.
+
+    Only three things are synced: the <style>, the <main> content and the last
+    inline <script>. External scripts are deliberately NOT synced, because
+    index.html loads its data files in its own order alongside seven other
+    tabs' payloads. But nothing used to check the two lists agreed, and the
+    failure is quiet: a section whose payload never loads renders as an empty
+    chart frame and one console warning. Adding a data file is a two-file act,
+    the same way adding a shared .jd-* component is."""
+    tags = re.compile(r"<script[^>]*\bsrc=\"([^\"]+)\"")
+    wanted = [s for s in dict.fromkeys(tags.findall(src_text))]
+    have = set(tags.findall(dest_text))
+    missing = [s for s in wanted if s not in have]
+    if missing:
+        die(
+            "jobs_displacement.html loads scripts that index.html does not:\n"
+            + "".join(f"    {m}\n" for m in missing)
+            + "  <script src> tags are not synced: index.html loads its data files in\n"
+            "  its own order, alongside the other tabs' payloads. Add these by hand to\n"
+            "  the data-loading block near the top of index.html's <body>, before\n"
+            "  assets/jobs-charts.js, then re-run."
         )
 
 
@@ -379,6 +411,7 @@ def build(src, dest):
     jd_selectors = set()
     filtered_css = filter_css(style_content, jd_selectors, warnings)
     check_jd_ownership(jd_selectors, dest)
+    check_script_srcs(src, dest)
 
     patched_js, js_warnings = patch_js(inline_js)
     warnings += js_warnings

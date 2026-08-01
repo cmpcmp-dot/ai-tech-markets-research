@@ -9,13 +9,15 @@
      JOB DISPLACEMENT — SCROLL LAYOUT
 
      One scrolling document. Masthead, a short-version table that is the
-     whole piece in 20 seconds, then three sections you can jump to or
-     read straight through. Sticky rail carries the verdicts with you.
+     whole piece in 20 seconds, then the sections, which you can jump to
+     or read straight through. Sticky rail carries the section labels.
 
      Two rules held from the editorial discussion, kept structural but
      kept quiet:
-       · A "no" renders in neutral grey, never green. Green reads as
-         all-clear, and a null is not good news, it is no news.
+       · No one-word verdicts. Each section opens with a claim in a full
+         sentence and the rail carries a plain label, because a chip
+         reading "No" or "Concentrated" is scorekeeping, and the finding
+         is always more conditional than a single word can carry.
        · No score is published, and each section states its own main
          alternative explanation in the body rather than in a footnote.
 
@@ -42,10 +44,6 @@
 
     --surface:var(--light-beige); --border:var(--divider);
     --text:#3c4164; --muted:#6d7091;
-
-    /* verdict semantics — a "no" is grey, never green */
-    --null-ink:#75788f; --null-bg:rgba(109,112,145,.10);
-    --sig-ink:#a35f45;  --sig-bg:rgba(176,106,79,.13);
 
     --rail-w:190px;
     /* main is 1140 wide with 30px padding, so the content column beside a
@@ -127,11 +125,10 @@
      numeral, the section's question set in serif, then a one-line
      answer. Each row is a jump link into its section, not a tab switch.
 
-     The question carries the display type; the verdict is the first
-     word of the answer, which is where the colour rule applies — a
-     "no" is grey (--null-ink), never green. The gold numeral is a
-     decorative device and carries no verdict meaning, so it stays
-     uniform across all three rows. ═══════════════════════════════════ */
+     The question carries the display type and the answer is prose,
+     opening with the claim rather than with a colour-coded verdict
+     word. The gold numeral is decorative and carries no meaning, so it
+     stays uniform across every row. ═══════════════════════════════════ */
   .sv { margin:36px 0 0; max-width:var(--col); }
   .sv-t { font-family:var(--grot); font-size:11px; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:var(--muted); margin-bottom:4px; border-bottom:2px solid var(--navy); padding-bottom:12px; }
 
@@ -148,6 +145,9 @@
      navy rule of the section label, so it needs no border of its own */
   .answer-row:nth-child(2n) { padding-left:26px; padding-right:0; border-left:1px solid var(--border); }
   .answer-row:nth-child(-n+2) { border-top:none; padding-top:18px; }
+  /* an odd number of sections leaves the last row half-empty; let it span.
+     Self-cancelling — at an even count this selector matches nothing. */
+  .answer-row:last-child:nth-child(odd) { grid-column:1 / -1; }
   .answer-row:hover { padding-left:8px; }
   .answer-row:nth-child(2n):hover { padding-left:34px; }
   /* rows are <button>s, so the inner elements are spans and need block */
@@ -162,11 +162,8 @@
   /* the question, scaled for the half-width cell */
   .ar-q { font-family:var(--serif); font-size:clamp(18px,1.7vw,22px); line-height:1.22; font-weight:500;
     color:var(--headline); letter-spacing:-.008em; margin-bottom:8px; }
-  /* the answer: one line, verdict first — fills the cell */
+  /* the answer: one line of prose — fills the cell */
   .ar-a { font-size:14px; line-height:1.6; color:var(--text); font-variant-numeric:tabular-nums; }
-  .ar-a .v { font-family:var(--serif); font-size:16.5px; font-weight:500; }
-  .ar-a .v.null   { color:var(--null-ink); }
-  .ar-a .v.signal { color:var(--sig-ink); }
   .ar-a b { color:var(--headline); font-weight:600; }
   .ar-go {
     font-family:var(--grot); font-size:11px; font-weight:700; letter-spacing:.04em; text-transform:uppercase;
@@ -181,7 +178,7 @@
   .rail { position:sticky; top:22px; padding-top:52px; }
   .rail-t { font-family:var(--grot); font-size:9.5px; font-weight:700; letter-spacing:.13em; text-transform:uppercase; color:var(--muted); padding:0 0 9px 12px; }
   .rail a {
-    display:grid; grid-template-columns:16px 9px 1fr; align-items:center; gap:9px;
+    display:grid; grid-template-columns:16px 1fr; align-items:center; gap:9px;
     text-decoration:none; padding:8px 12px; border-left:2px solid var(--border);
     font-family:var(--grot); font-size:11.5px; line-height:1.3; color:var(--muted);
     transition:color .15s,border-color .15s;
@@ -190,9 +187,6 @@
   .rail a.here { color:var(--headline); font-weight:600; border-left-color:var(--green); }
   .rail a .rn { font-size:10px; font-weight:700; font-variant-numeric:tabular-nums; color:var(--divider); }
   .rail a.here .rn { color:var(--green); }
-  .rail a .rdot { width:9px; height:9px; border-radius:50%; }
-  .rail a .rdot.null   { background:var(--null-ink); }
-  .rail a .rdot.signal { background:var(--sig-ink); }
   .rail-back { display:block; margin:16px 0 0 12px; font-family:var(--grot); font-size:11px; color:var(--muted); text-decoration:none; }
   .rail-back:hover { color:var(--headline); }
 
@@ -202,11 +196,9 @@
   .sec-kick { font-family:var(--grot); font-size:11.5px; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:var(--green); margin-bottom:16px; display:flex; align-items:center; gap:11px; }
   .sec-kick .kn { color:var(--divider); font-variant-numeric:tabular-nums; }
 
-  /* the verdict sentence, set large — the section's whole argument */
-  .verdict { font-family:var(--serif); font-weight:400; font-size:clamp(22px,2.9vw,31px); line-height:1.32; color:var(--headline); max-width:42ch; letter-spacing:-.008em; }
-  .verdict b { font-weight:500; font-variant-numeric:tabular-nums; }
-  .verdict .no { color:var(--null-ink); font-style:italic; }
-  .verdict .yes { color:var(--terra); font-style:italic; }
+  /* the claim, set large — the section's whole argument in one sentence */
+  .claim { font-family:var(--serif); font-weight:400; font-size:clamp(22px,2.9vw,31px); line-height:1.32; color:var(--headline); max-width:42ch; letter-spacing:-.008em; }
+  .claim b { font-weight:500; font-variant-numeric:tabular-nums; }
   .sec-q { font-family:var(--grot); font-size:13px; color:var(--muted); margin-top:12px; max-width:var(--measure); line-height:1.6; }
 
   /* figures break out of the prose measure */
@@ -224,6 +216,20 @@
   .jd-flag b { color:var(--gold); }
   .jd-tooltip { position:fixed; pointer-events:none; background:var(--navy); color:var(--beige); font-family:var(--sans); font-size:12px; line-height:1.5; padding:7px 10px; border-radius:6px; box-shadow:0 4px 16px rgba(0,0,0,.28); opacity:0; transition:opacity .1s; z-index:60; max-width:250px; }
   .jd-tooltip b { color:#fff; }
+
+  /* four JOLTS flows, two across: the comparison is across panels, so they
+     have to be visible together rather than stacked down the page */
+  .sm-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px 14px; margin-top:4px; }
+  .sm-cell { min-width:0; }
+
+  /* group membership, disclosed under the chart — a lookup table, so it is
+     laid out for scanning rather than reading */
+  .memtable { width:100%; border-collapse:collapse; font-size:12.5px; font-variant-numeric:tabular-nums; }
+  .memtable th { font-family:var(--grot); font-size:9.5px; font-weight:700; letter-spacing:.09em; text-transform:uppercase;
+                 color:var(--muted); text-align:left; padding:0 10px 6px 0; border-bottom:1px solid var(--border); }
+  .memtable td { padding:5px 10px 5px 0; border-bottom:1px solid var(--border); color:var(--text); }
+  .memtable tr:last-child td { border-bottom:none; }
+  .memtable .r { text-align:right; }
 
   /* prose sits at the narrower measure */
   .prose { max-width:var(--measure); margin-top:26px; }
@@ -338,6 +344,7 @@
     .closing { padding:22px 20px; }
     .method-body dl { grid-template-columns:1fr; gap:3px; }
     .method-body dd { margin-bottom:9px; }
+    .sm-grid { grid-template-columns:minmax(0,1fr); }
   }
 </style>
 </head>
@@ -370,7 +377,8 @@
     <h2>Is AI displacing workers yet?</h2>
     <p class="stand">
       The headline unemployment rate says one thing. Look closer and it says
-      <b>something more specific</b>. Three questions, three verdicts.
+      <b>something more specific</b>. Five questions, asked of the labor-market
+      data as it is released.
     </p>
     <div class="meta">
       <span class="vintage" id="vintage"></span>
@@ -391,11 +399,11 @@
     <div>
 
       <!-- ── 01 ─────────────────────────────────────────────────── -->
-      <section class="sec" id="level" data-v="null" aria-labelledby="h-level">
+      <section class="sec" id="level" aria-labelledby="h-level">
         <div class="sec-kick"><span class="kn">01</span> The level</div>
-        <h3 class="verdict" id="h-level">
-          <span class="no">No</span> &mdash; unemployment is <b id="vLevel"></b>, at or below CBO&rsquo;s natural
-          rate, and its path tracks growth about as Okun&rsquo;s law predicts.
+        <h3 class="claim" id="h-level">
+          Unemployment is <b id="vLevel"></b>, at or below CBO&rsquo;s natural rate, and its path
+          tracks growth about as Okun&rsquo;s law predicts.
         </h3>
         <p class="sec-q">Is unemployment higher than growth alone would predict, and is a low rate hiding people who have stopped looking?</p>
 
@@ -452,10 +460,10 @@
       </section>
 
       <!-- ── 02 ─────────────────────────────────────────────────── -->
-      <section class="sec" id="workers" data-v="signal" aria-labelledby="h-workers">
+      <section class="sec" id="workers" aria-labelledby="h-workers">
         <div class="sec-kick"><span class="kn">02</span> Across workers</div>
-        <h3 class="verdict" id="h-workers">
-          <span class="yes">Concentrated</span> &mdash; young graduates carry <b id="vWorkers"></b> more
+        <h3 class="claim" id="h-workers">
+          The weakness is concentrated: young graduates carry <b id="vWorkers"></b> more
           unemployment than their own pre-2020 norm predicts.
         </h3>
         <p class="sec-q">Is the weakness spread evenly across workers, or is one group absorbing it?</p>
@@ -550,50 +558,201 @@
         </div>
       </section>
 
-      <!-- ── 03 ─────────────────────────────────────────────────── -->
-      <section class="sec" id="sectors" data-v="signal" aria-labelledby="h-sectors">
-        <div class="sec-kick"><span class="kn">03</span> Across sectors</div>
-        <h3 class="verdict" id="h-sectors">
-          <span class="yes">Tech-exposed</span> &mdash; <span id="vSectorName"></span> has decelerated by
-          <b id="vSectors"></b> against its own pre-pandemic pace.
+      <!-- ── 03 ─────────────────────────────────────────────────────────────
+           Sections 03 and 04 share one treatment variable: each industry's
+           mean BTOS adoption rate before the November 2025 question change.
+           The .howto here introduces it for both, so 04 can open on its
+           finding rather than re-explaining the measure. ──────────────── -->
+      <section class="sec" id="industries" aria-labelledby="h-industries">
+        <div class="sec-kick"><span class="kn">03</span> Across industries</div>
+        <h3 class="claim" id="h-industries">
+          The industries using AI most have added jobs fastest: the high-adoption third stands at
+          <b id="vTercHigh"></b> against <b id="vTercLow"></b> for the low-adoption third, on 2019 = 100.
         </h3>
-        <p class="sec-q">Where has hiring slowed the most, and is it where AI substitution is most plausible?</p>
+        <p class="sec-q">If AI displaces workers, the industries buying it should be the ones shedding jobs. Are they?</p>
+
+        <div class="howto">
+          <b class="h">How to read sections 03 and 04</b>
+          <p>The Census Business Trends and Outlook Survey asks roughly a million businesses, every two weeks, whether they used AI to produce goods or services. Averaging each industry&rsquo;s answers gives one number per industry: the share of its firms using AI. Sort industries by that number, cut them into three equal groups, and you have the high, middle and low adoption groups plotted below.</p>
+          <p>Then ignore the survey entirely and watch what BLS reports for those groups. Every line in these two sections is payroll or turnover data. Adoption is used only to decide which industries go in which group, which is what makes this a descriptive cut rather than an estimate of anything.</p>
+          <p>Two features of the measure matter throughout. It counts <em>firms</em>, not workers, and adopters skew large, so the share of employees inside an AI-using firm runs well above these figures. And the survey rewrote the question in November 2025, so the grouping uses only the earlier, consistent wording.</p>
+        </div>
 
         <div class="figure">
           <div class="jd-chart-wrap">
-            <div class="jd-chart-title">Job-growth slowdown by sector</div>
-            <div class="jd-chart-sub" id="cesSub"></div>
-            <svg class="jd-svg" id="cesChart" viewBox="0 0 640 430" role="img" aria-label="Employment growth slowdown by sector"></svg>
-            <div class="jd-chart-note" id="cesNote"></div>
+            <div class="jd-chart-title">Employment by AI-adoption group, indexed to 2019</div>
+            <div class="jd-chart-sub" id="tercSub"></div>
+            <svg class="jd-svg" id="tercChart" role="img" aria-label="CES employment indexed to 2019 for high, middle and low AI-adoption industry groups"></svg>
+            <div class="jd-legend" id="tercLegend"></div>
+            <div class="jd-chart-note" id="tercNote"></div>
           </div>
+          <p class="fig-what"><b>What this chart does.</b> It stacks the three groups on a common base, so the vertical distance between lines is the difference in <em>growth</em> since 2019, not in size. The displacement hypothesis predicts the high-adoption line ends up lowest. It ends up highest, and has done throughout.</p>
         </div>
 
+        <details class="method">
+          <summary>Which sectors are in each group</summary>
+          <div class="method-body">
+            <div id="tercMembers"></div>
+          </div>
+        </details>
+
         <div class="prose">
-          <p>Displacement should show up as hiring drying up in specific industries. For each major sector, employment growth over the past year is compared to that sector&rsquo;s own average pace in 2015&ndash;2019. A large negative bar means the sector is adding jobs far more slowly than it used to, or shedding them outright. Using each sector as its own baseline avoids penalising industries that were always slow-growing.</p>
-          <p id="cesRead"></p>
+          <p>This is the cut most likely to be screenshotted, in either direction, so it is worth being clear about what it is not. It is not evidence that AI creates jobs. The ordering here is mostly a statement about which industries were growing before anyone typed a prompt, and about which ones the pandemic knocked down hardest.</p>
+          <p>What it does establish is a floor for the argument. Any claim that AI is visibly subtracting jobs at the industry level has to explain why the industries doing the adopting are the ones that grew fastest, and it has to do that with something more than the raw series.</p>
         </div>
 
         <div class="caveat">
           <b>What this cannot establish</b>
-          <p>The sector that moved is also the sector that over-hired hardest in 2021&ndash;22 and has been correcting since. That is a complete alternative explanation, and the timing does not separate it from an AI effect. Eleven supersectors is a coarse grid besides: displacement inside legal services, or inside customer support within retail, would be averaged away entirely. Occupational mix within industries is the test that would catch that.</p>
+          <p>Almost nothing, on its own. The gap that opens in 2020&ndash;22 is pandemic composition rather than AI: the low-adoption group is accommodation and food services, construction and transportation, which fell hardest in 2020 and were still climbing back into 2024. Adoption is also not randomly assigned, and the causation plausibly runs backwards, since profitable growing firms have the slack to buy new technology. Eighteen sectors is a coarse grid, and BTOS counts firms while CES counts jobs, so the two sides of this comparison are weighted differently.</p>
         </div>
 
         <details class="method">
-          <summary>How this is measured</summary>
+          <summary>The technical specification</summary>
           <div class="method-body">
             <dl>
-              <dt>Data</dt><dd>BLS Current Employment Statistics, all-employee payrolls for the eleven major supersectors, which sum to total nonfarm.</dd>
-              <dt>Sample</dt><dd id="mCesSample"></dd>
-              <dt>Plotted</dt><dd>Past-year employment growth minus that sector&rsquo;s 2015&ndash;19 average growth, in percentage points. Negative means slower than its own pre-pandemic pace.</dd>
-              <dt>Main caveat</dt><dd>Supersector aggregates mask occupational composition, and payroll counts do not distinguish a role eliminated from a role never opened.</dd>
+              <dt>Treatment</dt><dd>Each sector&rsquo;s mean BTOS &ldquo;currently using AI&rdquo; share, firm-weighted, over collection periods before the survey rewrote the question. Sectors are cut at the terciles of that distribution, six per group.</dd>
+              <dt>Outcome</dt><dd>BLS Current Employment Statistics, all employees, seasonally adjusted. Employment is summed within each group and indexed to the group&rsquo;s own 2019 mean, so the lines carry growth rather than level.</dd>
+              <dt>Sample</dt><dd id="mTercSample"></dd>
+              <dt>Known limits</dt><dd>Firm-weighted treatment against a worker-weighted outcome. No controls of any kind: not for pre-trend, not for pandemic catch-up, not for industry composition. With eighteen sectors there is no power to detect a modest effect, so the absence of a negative gradient here is weak evidence of absence rather than strong evidence of nothing.</dd>
             </dl>
-            <a class="method-more" href="methods.html#sectors">Full specification and diagnostics &nearr;</a>
           </div>
         </details>
 
         <div class="change">
           <b>Would change this</b>
-          <span>Information-sector growth returning to within 1 pp of its baseline, or the slowdown spreading to sectors with no plausible AI exposure.</span>
+          <span>The high-adoption index falling below the low-adoption index, or the gap narrowing once each sector&rsquo;s 2017&ndash;19 trend and its distance from the 2019 level are conditioned out.</span>
+        </div>
+      </section>
+
+      <!-- ── 04 ─────────────────────────────────────────────────── -->
+      <section class="sec" id="flows" aria-labelledby="h-flows">
+        <div class="sec-kick"><span class="kn">04</span> Hiring and firing</div>
+        <h3 class="claim" id="h-flows">
+          Mostly a freeze rather than a purge. Hires and quits are below their 2019 levels in every group and
+          furthest below where adoption is highest &mdash; but that group is also the only one whose layoffs rate,
+          at <b id="vLayHigh"></b>, is back above where it started.
+        </h3>
+        <p class="sec-q">A payroll count nets hiring against separations. Which side of that is moving, and does it move differently where AI is used?</p>
+
+        <div class="figure">
+          <div class="jd-chart-wrap">
+            <div class="jd-chart-title">Openings, hires, quits and layoffs by AI-adoption group</div>
+            <div class="jd-chart-sub">JOLTS rates, three-month moving average, employment-weighted within each group</div>
+            <div class="jd-legend" id="flowLegend"></div>
+            <div class="sm-grid" id="flowGrid"></div>
+            <div class="jd-chart-note" id="flowNote"></div>
+          </div>
+          <p class="fig-what"><b>What this chart does.</b> It separates the two things a payroll number adds together. Openings and hires are demand for new workers; quits are workers&rsquo; own confidence; layoffs are firms shedding staff. Displacement by automation has a signature: hiring falls, layoffs stay flat, and the gap opens where the technology is used. Read the levels against the 2019 stretch on the left of each panel, and read the distance between the lines within each panel.</p>
+        </div>
+
+        <details class="method">
+          <summary>Which supersectors are in each group</summary>
+          <div class="method-body">
+            <div id="flowMembers"></div>
+          </div>
+        </details>
+
+        <div class="prose">
+          <p id="flowRead"></p>
+          <p>Most of that is the low-hire, low-fire economy everyone has been describing, and it is not specific to AI: the three groups turn together, and openings have round-tripped to roughly where they were in 2019 across all of them. The exception is the last panel. Layoffs are the one series where the ordering runs the way a displacement story predicts, and the high-adoption group is the only one that has not returned to its 2019 rate.</p>
+          <p id="flowLayoffRead"></p>
+        </div>
+
+        <div class="caveat">
+          <b>What this cannot establish</b>
+          <p>Read the layoffs panel with its composition in mind. The largest employer in the high-adoption group is professional and business services, which JOLTS reports as one supersector pooling NAICS 54, 55 and 56 &mdash; and 56 contains temporary help services, the most volatile employment in the survey and a sector that has been shedding jobs since 2022 for reasons that long predate generative AI. A tenth of a percentage point spread across five supersectors is not a finding that can be pinned on anything.</p>
+          <p>More generally: fifteen supersectors, five per group, is the coarsest grid on this page, and these units are broader than the CES sectors in section 03. A displacement effect concentrated in one occupation inside one of them would be invisible. These are also rates, not counts, so a group whose employment base is growing can post a falling hires rate while hiring more people &mdash; which, given section 03, is exactly what the high-adoption group has been doing.</p>
+        </div>
+
+        <details class="method">
+          <summary>The technical specification</summary>
+          <div class="method-body">
+            <dl>
+              <dt>Treatment</dt><dd>The same pre-break BTOS adoption measure as section 03, mapped from BTOS sectors to JOLTS supersectors by <code>data_analysis/btos/crosswalk_btos_jolts.csv</code>, then cut at terciles, five supersectors per group.</dd>
+              <dt>Outcome</dt><dd>BLS Job Openings and Labor Turnover Survey, seasonally adjusted rates. Within a group, rates are averaged across supersectors weighted by employment, then smoothed with a three-month trailing mean.</dd>
+              <dt>Sample</dt><dd id="mFlowSample"></dd>
+              <dt>Scale</dt><dd>Each panel is free-scaled, so vertical distances are not comparable between panels. The layoffs panel is clipped: its three-month average peaks near ten percent in spring 2020, and at full scale the entire post-2021 range would be a few pixels tall. The clip level, the true peaks and the exit points are all marked; the figures are in the chart note.</dd>
+              <dt>Known limits</dt><dd>Same firm-weighted-treatment problem as section 03. Openings are a percent of employment plus openings and so are not on the same denominator as the other three. Nothing here is conditioned on anything.</dd>
+            </dl>
+          </div>
+        </details>
+
+        <div class="change">
+          <b>Would change this</b>
+          <span>The high-adoption layoffs gap surviving the removal of professional and business services from that group, which would rule out temporary help as the explanation. Or the gap widening beyond a few tenths of a point, which is where it stops being noise across five supersectors.</span>
+        </div>
+      </section>
+
+      <!-- ── 05 ─────────────────────────────────────────────────── -->
+      <section class="sec" id="early" aria-labelledby="h-early">
+        <div class="sec-kick"><span class="kn">05</span> Early careers</div>
+        <h3 class="claim" id="h-early">
+          One test does find something: early-career hiring is <b id="vEarly"></b> weaker per standard deviation of
+          industry adoption. Then the timing undoes most of the AI reading of it.
+        </h3>
+        <p class="sec-q">Sections 03 and 04 compare industries in aggregate. What happens with a sharper instrument, one that compares young and prime-age workers inside the same industry?</p>
+
+        <div class="howto">
+          <b class="h">How to read this section</b>
+          <p>The problem with every comparison above is that industries differ for a hundred reasons besides AI. This test removes all of them at once. For each industry it takes the change in hiring of 22 to 24 year olds and subtracts the change in hiring of 35 to 44 year olds <em>in that same industry</em>. Anything that hit the whole industry, a demand collapse or a post-pandemic correction, drops out of the difference.</p>
+          <p>What is left is whether young workers specifically did worse in the industries that adopted AI. The data is the Census LEHD Quarterly Workforce Indicators, which counts actual hires by age from state unemployment insurance records rather than from a survey.</p>
+        </div>
+
+        <div class="figure">
+          <div class="jd-chart-wrap">
+            <div class="jd-chart-title">Change in hiring, 22&ndash;24 minus 35&ndash;44, against adoption</div>
+            <div class="jd-chart-sub" id="t4Sub"></div>
+            <svg class="jd-svg" id="t4Chart" role="img" aria-label="Age-differenced change in hiring against AI adoption, by subsector"></svg>
+            <div class="jd-chart-note" id="t4Note"></div>
+          </div>
+          <p class="fig-what"><b>What this chart does.</b> Each dot is a subsector. Moving right means more AI adoption; moving down means early-career hiring fell further than prime-age hiring in that same industry. The line slopes down, and it is the most precisely estimated relationship on this page.</p>
+        </div>
+
+        <span class="jd-flag" id="earlyFlag"></span>
+
+        <div class="prose">
+          <p>That result compares two windows, 2019 against the most recent four quarters. It cannot say <em>when</em> the gap opened, and a two-window comparison cannot tell a gap that opened the month ChatGPT shipped from one that opened in April 2020 and never closed. So run the same regression once per quarter against the same 2019 base.</p>
+        </div>
+
+        <div class="figure">
+          <div class="jd-chart-wrap">
+            <div class="jd-chart-title">The same coefficient, estimated every quarter</div>
+            <div class="jd-chart-sub" id="t4EventSub"></div>
+            <svg class="jd-svg" id="t4EventChart" role="img" aria-label="Quarterly estimates of the age-differenced hiring gap on adoption"></svg>
+            <div class="jd-chart-note" id="t4EventNote"></div>
+          </div>
+          <p class="fig-what"><b>What this chart does.</b> It replaces one number with its history. Flat through 2019 is the pre-trend, and it is the part that supports the design. Then watch where the drop happens relative to the purple line.</p>
+        </div>
+
+        <div class="prose">
+          <p id="earlyLegs"></p>
+          <p>So the cross-section is real and the AI reading of it is much narrower than it looks. The gap between young and prime-age hiring in high-adoption industries is a pandemic artifact that never closed, with a further leg since 2023 that is consistent with AI diffusion and equally consistent with the tech correction, elevated interest rates, or the same industries simply continuing what they started in 2020.</p>
+        </div>
+
+        <div class="caveat">
+          <b>What this cannot establish</b>
+          <p>Adoption is measured at the industry level and outcomes at the industry level, so this is not the firm-level test the displacement literature actually needs. No public source links firm-level AI adoption to worker-level outcomes. The strongest objection to the cross-section survives the age difference: industries that adopted AI early are more white-collar, more urban, and were more exposed to the post-2021 tech correction, and the age difference removes what hit those industries uniformly, not something that hit their young workers specifically.</p>
+        </div>
+
+        <details class="method">
+          <summary>The technical specification</summary>
+          <div class="method-body">
+            <dl>
+              <dt>Data</dt><dd>LEHD Quarterly Workforce Indicators, all private ownership, hires and employment by NAICS subsector and age band, joined to pre-break BTOS adoption at the subsector level. Young is QWI age band A03 (22&ndash;24), prime-age is A05 (35&ndash;44). Hires are trailing four-quarter sums, which removes seasonality without an adjustment model.</dd>
+              <dt>Estimator</dt><dd>Cross-sectional OLS across subsectors of the age-differenced change in log hires on standardised adoption:
+                <div class="spec">&Delta;log H<sub>i,22-24</sub> &minus; &Delta;log H<sub>i,35-44</sub> = &alpha; + &beta; &middot; z(adoption<sub>i</sub>) + &epsilon;<sub>i</sub></div>
+                The event study is this same regression re-estimated once per quarter against a fixed 2019 base. At the final quarter it reproduces the cross-section, and the build asserts that equality.</dd>
+              <dt>All specifications</dt><dd id="t4Table"></dd>
+              <dt>Power</dt><dd id="t4Mde"></dd>
+              <dt>Status</dt><dd id="t4Status"></dd>
+              <dt>Known limits</dt><dd>Industry-level treatment, industry-level outcome. No standard errors are clustered beyond the cross-section, and with 59 subsectors the leverage of any single one is non-trivial. Coverage of the QWI panel is incomplete in the most recent quarters, so the last point moves as states report.</dd>
+            </dl>
+          </div>
+        </details>
+
+        <div class="change">
+          <b>Would change this</b>
+          <span>The quarterly coefficient continuing to fall through 2026 while the pandemic leg stays flat, which would put the weight of the effect in the AI era rather than in 2020. Or firm-level evidence, which would replace this test rather than adjust it.</span>
         </div>
       </section>
 
@@ -614,35 +773,58 @@
   Job displacement &mdash; scroll, editorial masthead
 </footer>
 
+<!-- Sections 01-02. Regenerate: Rscript data_analysis/scripts/run_all.R -->
 <script src="data/jobs-displacement-data.js" charset="utf-8"></script>
+<!-- Sections 03-04, BTOS × CES × JOLTS.
+     Regenerate: Rscript data_analysis/btos/{03_jobs_join,run_jobs}.R -->
+<script src="data/btos-jobs-monitor-data.js" charset="utf-8"></script>
+<!-- Section 05, QWI × BTOS. Regenerate: Rscript data_analysis/micro/run_micro.R -->
+<script src="data/microdata.js" charset="utf-8"></script>
 <script src="assets/jobs-charts.js" charset="utf-8"></script>
 <script>
 (function () {
   const JC = window.JOBS_CHARTS;
   if (!JC) { console.error('JOBS_CHARTS not found'); return; }
   const { sgn, fmtDate, facts, data } = JC;
-  const L = facts.level, DI = facts.distribution, S = facts.sectors;
+  const L = facts.level, DI = facts.distribution;
+  const TE = facts.terciles, FL = facts.flows, EA = facts.early;
   const byId = id => document.getElementById(id);
   const set = (id, html) => { const el = byId(id); if (el) el.innerHTML = html; };
 
   /* ── SECTIONS ────────────────────────────────────────────────────
-     Verdict values are a fixed set so the summary stays scannable:
-     'null' renders grey, 'signal' renders terra. Never green.
+     One entry per section, in reading order. `q` is the question the
+     section asks and `read` answers it in a sentence. There is no
+     verdict word and no colour coding: a chip reading "No" flattens a
+     conditional finding into a score. `lab` is the plain label the
+     sticky rail carries.
 
-     Each row asks its section's question and answers it in one line:
-     `q` is the question, `big` the verdict word that opens the answer,
-     `read` the rest of it. `verdict` stays the terse label so the sticky
-     rail remains scannable.                                             */
+     Sections 03-05 read payloads that are separate <script> files, so
+     each `read` degrades to an em dash rather than "undefined" if one
+     of them fails to load.                                             */
+  const q1 = (v, dp, unit) => JC.num(v, dp == null ? 1 : dp) + (unit || '');
+  const dpp2 = v => v == null ? '&mdash;' : sgn(v, 2) + ' pp';
   const SECS = [
-    { id:'level', n:'01', lab:'The level', v:'null', verdict:'No',
-      q:'Is unemployment higher than growth predicts?', big:'No.',
-      read:`It is <b>${L.unrate}%</b>, at or below CBO&rsquo;s <b>${L.nrou}%</b> natural rate.` },
-    { id:'workers', n:'02', lab:'Across workers', v:'signal', verdict:'Concentrated',
-      q:'Is the weakness spread evenly across workers?', big:'No.',
-      read:`Graduates aged 22&ndash;27 carry <b>${sgn(DI.youngPP,1)} pp</b> more unemployment than their own pre-2020 norm. Non-graduates the same age: <b>${sgn(DI.nongradPP,1)} pp</b>.` },
-    { id:'sectors', n:'03', lab:'Across sectors', v:'signal', verdict:'Tech-exposed',
-      q:'Where has hiring slowed the most?', big:'In tech.',
-      read:`<b>${S.sector}</b> has decelerated <b>${Math.abs(S.slowdown).toFixed(1)} pp</b> against its pre-pandemic pace.` }
+    { id:'level', n:'01', lab:'The level',
+      q:'Is unemployment higher than growth predicts?',
+      read:`No. It is <b>${L.unrate}%</b>, at or below CBO&rsquo;s <b>${L.nrou}%</b> natural rate, and its path tracks growth about as Okun&rsquo;s law predicts.` },
+    { id:'workers', n:'02', lab:'Across workers',
+      q:'Is the weakness spread evenly across workers?',
+      read:`No. Graduates aged 22&ndash;27 carry <b>${sgn(DI.youngPP,1)} pp</b> more unemployment than their own pre-2020 norm. Non-graduates the same age: <b>${sgn(DI.nongradPP,1)} pp</b>.` },
+    { id:'industries', n:'03', lab:'Across industries',
+      q:'Are the industries adopting AI the ones losing jobs?',
+      read: TE
+        ? `The opposite, so far. The high-adoption third of industries stands at <b>${q1(TE.high)}</b> against <b>${q1(TE.low)}</b> for the low-adoption third, on 2019 = 100.`
+        : '&mdash;' },
+    { id:'flows', n:'04', lab:'Hiring and firing',
+      q:'Is the slowdown in hiring, or in firing?',
+      read: FL
+        ? `Mostly hiring. Hires and quits are below 2019 in every group and furthest below in the high-adoption third, at <b>${dpp2(FL.get('hires',/High/).chg)}</b> and <b>${dpp2(FL.get('quits',/High/).chg)}</b> &mdash; but that third is also the only one whose layoffs rate is back above its 2019 level.`
+        : '&mdash;' },
+    { id:'early', n:'05', lab:'Early careers',
+      q:'Does a sharper test find anything the aggregates miss?',
+      read: EA
+        ? `Yes, and its timing is the problem. Early-career hiring is <b>${sgn(EA.estPct,1)}%</b> weaker per standard deviation of adoption, but ${EA.pandemicShare == null ? 'most' : `<b>${JC.num(100*EA.pandemicShare,0)}%</b>`} of that gap opened before generative AI shipped.`
+        : '&mdash;' }
   ];
 
   /* ── masthead meta ───────────────────────────────────────────── */
@@ -650,11 +832,11 @@
 
   /* ── the short version, as editorial answer rows ──────────────── */
   byId('answers').innerHTML = SECS.map(s => `
-    <button class="answer-row" data-go="${s.id}" aria-label="${s.q} ${s.big} Jump to section.">
+    <button class="answer-row" data-go="${s.id}" aria-label="${s.q} Jump to section.">
       <span class="ar-num">${s.n}</span>
       <span class="ar-body">
         <span class="ar-q">${s.q}</span>
-        <span class="ar-a"><span class="v ${s.v}">${s.big}</span> ${s.read}</span>
+        <span class="ar-a">${s.read}</span>
         <span class="ar-go">Read the section &rarr;</span>
       </span>
     </button>`).join('');
@@ -670,9 +852,6 @@
   /* ── interpolated figures ────────────────────────────────────── */
   set('vLevel',      `${L.unrate}%`);
   set('vWorkers',    `${sgn(DI.youngPP,1)} pp`);
-  set('vSectorName', String(S.sector));
-  /* "decelerated by −4.1 pp" is a double negative; the verb carries the sign */
-  set('vSectors',    `${Math.abs(S.slowdown).toFixed(1)} pp`);
 
   set('lfpRead',
     `Prime-age participation is <b>${L.lfpr}%</b>, ${sgn(L.lfprVsFeb,1)} pp against February 2020, so the headline rate is not ` +
@@ -712,10 +891,68 @@
     `. College+ is robust to that choice; HS+ (no BA) is not, but it is noise around zero rather than a ` +
     `disagreement about shape, so no structure should be read into that line.`);
 
-  set('cesRead',
-    `<b>${S.sector}</b> has decelerated most: employment is growing <b>${S.recent}%</b> over the past year against a ` +
-    `<b>${S.baseline}%</b> pre-pandemic pace, a <b>${sgn(S.slowdown,1)} pp</b> slowdown. It is also the sector where AI ` +
-    `substitution is most plausible on priors. That coincidence is suggestive and nothing more.`);
+  /* ── 03-05: every figure quoted in the prose comes from the payload ──
+     If a payload is missing the section still renders, with em dashes
+     where its numbers would be, rather than "undefined" or "NaN". */
+  if (TE) {
+    set('vTercHigh', JC.num(TE.high, 1));
+    set('vTercLow',  JC.num(TE.low, 1));
+    set('mTercSample',
+      `${TE.nSectors} BTOS sectors matched to CES, January 2019 to ${fmtDate(TE.latest)}. ` +
+      (TE.breakDate ? `Adoption is averaged over collection periods before the ${fmtDate(TE.breakDate)} question change. ` : '') +
+      (TE.noCes ? `${TE.noCes} sectors have no matching CES series and are dropped, so the sample is not a random subset.`
+                : `Sectors with no matching CES series are dropped, so the sample is not a random subset.`));
+  }
+  if (FL) {
+    /* pp = a rate; dpp = a change in a rate against its own 2019 mean. Every
+       "below 2019" or "above 2019" in this section is FL.get(...).chg, so the
+       claim and the line in the panel cannot disagree. */
+    const pp  = v => v == null ? '&mdash;' : `${JC.num(v, 2)}%`;
+    const dpp = v => v == null ? '&mdash;' : `${sgn(v, 2)} pp`;
+    const hiH = FL.get('hires', /High/), hiL = FL.get('hires', /Low/);
+    const quH = FL.get('quits', /High/), quL = FL.get('quits', /Low/);
+    const lyH = FL.get('layoffs', /High/);
+    set('vLayHigh', pp(lyH.now));
+    set('flowRead',
+      `Hiring is where the weakness is. The hires rate in the high-adoption group is <b>${pp(hiH.now)}</b>, ` +
+      `<b>${dpp(hiH.chg)}</b> against its own 2019 average, and quits are <b>${dpp(quH.chg)}</b>. Both are the ` +
+      `largest shortfalls of the three groups: the low-adoption group is <b>${dpp(hiL.chg)}</b> on hires and ` +
+      `<b>${dpp(quL.chg)}</b> on quits. Quits falling hardest where AI use is highest is a statement about ` +
+      `workers' outside options, not about anyone being let go.`);
+    set('flowLayoffRead',
+      `The high-adoption layoffs rate is <b>${pp(lyH.now)}</b>, <b>${dpp(lyH.chg)}</b> against its 2019 average, ` +
+      `and it is ${FL.aboveBase.length === 1 ? 'the only one of the three groups above its own 2019 level'
+        : `one of ${FL.aboveBase.length} groups above its own 2019 level`}. ` +
+      `That is the single reading on this page that points the way the displacement story predicts, and it is ` +
+      `worth about a tenth of a percentage point. Weigh it against the caveat below before carrying it anywhere.`);
+    set('mFlowSample',
+      `${FL.nGroups} JOLTS supersectors, January 2019 to ${fmtDate(FL.latest)}, three-month trailing average. ` +
+      `"Against 2019" compares with the mean of the observations before January 2020.`);
+  }
+  if (EA) {
+    set('vEarly', `${JC.num(Math.abs(EA.estPct), 1)}%`);
+    set('earlyFlag',
+      `Written <b>after</b> seeing the cross-section, so it is a weaker evidentiary standard than the rest of this page`);
+    /* Both shares come from the leg decomposition, never typed in. They do not
+       sum to 100: the plateau leg is negative, because the gap narrowed. */
+    const pct = v => v == null ? '&mdash;' : `${JC.num(100 * v, 0)}%`;
+    set('earlyLegs',
+      `The gap opened between 2019Q4 and 2021Q1, which accounts for <b>${pct(EA.pandemicShare)}</b> of the total, ` +
+      `before generative AI was available to anyone. The coefficient then flattens for two years and slightly ` +
+      `<em>narrows</em> across the ChatGPT release. The stretch since 2023Q2 accounts for <b>${pct(EA.aiShare)}</b>, ` +
+      `and it is the only leg whose timing is even consistent with AI diffusion.`);
+    set('t4Mde',
+      `This design detects <b>${JC.num(EA.mde, 1)}%</b> per standard deviation at 80% power. The estimate is ` +
+      `<b>${sgn(EA.estPct, 1)}%</b>, so it clears the detection floor. That is the exception on this page: the ` +
+      `industry-level tests above cannot detect effects the size of those the literature reports.`);
+    set('t4Status',
+      EA.preRegistered
+        ? `Pre-registered in <code>plan_microdata.md</code> before estimation.`
+        : `The cross-section (T4) was pre-registered in <code>plan_microdata.md</code> before anything ran. The ` +
+          `quarterly version was not: it was written after seeing T4's result, because the pre-registered list had ` +
+          `a hole in it, and a two-window comparison can say nothing about timing. It changes no specification and ` +
+          `replaces no headline, and it is labelled rather than quietly folded in with the rest.`);
+  }
 
   const fit = data.okun.fit;
   set('mOkunSample',
@@ -724,19 +961,22 @@
   set('mOkunCaveat',
     `The fit explains r&sup2; = ${fit.r2} of the variation, so residuals of a few tenths of a point are ordinary noise. ` +
     `Only a shock large enough to be a macroeconomic event would clear it.`);
-  set('mCesSample',
-    `Past-year growth to ${data.ces_slowdown.latest_month}, compared with each sector&rsquo;s own 2015&ndash;19 average.`);
-
   set('closingA',
-    `The headline says <b>no</b>. The detail says <b>not economy-wide, but concentrated</b> &mdash; among young graduates, and in ` +
-    `${String(S.sector).toLowerCase()}. Neither of those findings establishes a cause, and the coarse aggregate that reads quiet ` +
-    `is the instrument least able to detect a concentrated effect in the first place. If AI displacement is arriving, this is ` +
-    `where it would show up first, and where to keep watching.`);
+    `The aggregate reads quiet, and the industries buying the most AI are the ones that have added the most jobs. ` +
+    `What sits against that is thin and specific: hiring and quits are furthest below their 2019 levels in those ` +
+    `same industries, and their layoffs rate is the only one back above where it started, by about a tenth of a ` +
+    `point in a group whose largest member contains temporary help. Then there is the sharpest finding here &mdash; ` +
+    `young graduates carrying ` +
+    `<b>${sgn(DI.youngPP,1)} pp</b> more unemployment than their own history predicts, and early-career hiring ` +
+    `<b>${EA ? sgn(EA.estPct,1) + '%' : '&mdash;'}</b> weaker per standard deviation of adoption. Neither ` +
+    `establishes a cause, and the sharpest of them opened mostly in 2020. Note the order that runs through this ` +
+    `page: the coarser the instrument, the quieter the reading. That is what you would expect either from an ` +
+    `effect too small and too concentrated for aggregates to see, or from no effect at all.`);
 
   /* ── rail ────────────────────────────────────────────────────── */
   byId('rail').innerHTML =
     `<div class="rail-t">Sections</div>` +
-    SECS.map(s => `<a href="#${s.id}" data-s="${s.id}"><span class="rn">${s.n}</span><span class="rdot ${s.v}"></span><span>${s.verdict}</span></a>`).join('') +
+    SECS.map(s => `<a href="#${s.id}" data-s="${s.id}"><span class="rn">${s.n}</span><span>${s.lab}</span></a>`).join('') +
     `<a class="rail-back" href="#top">&uarr; The short version</a>`;
   byId('rail').querySelector('.rail-back').addEventListener('click', e => {
     e.preventDefault(); window.scrollTo({ top:0, behavior:'smooth' });
@@ -744,9 +984,11 @@
 
   /* ── lazy chart render ───────────────────────────────────────── */
   const CHARTS = {
-    level:   ['renderOkun','renderLFP'],
-    workers: ['renderAgeGap','renderAges','renderAgeTime'],
-    sectors: ['renderCES']
+    level:      ['renderOkun','renderLFP'],
+    workers:    ['renderAgeGap','renderAges','renderAgeTime'],
+    industries: ['renderTercile'],
+    flows:      ['renderFlows'],
+    early:      ['renderEarlyT4','renderEarlyQtr']
   };
   const drawn = {};
   const drawFor = id => (CHARTS[id] || []).forEach(fn => {

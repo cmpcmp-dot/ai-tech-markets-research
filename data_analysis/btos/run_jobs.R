@@ -4,8 +4,10 @@
 #
 # Writes  data/btos-jobs-monitor-data.js  defining a global:
 #   window.BTOS_JOBS_MONITOR = { ... }
-# consumed by index.html (Job Displacement tab, section 04 "Freeze or shed")
-# via assets/jobs-monitor-charts.js.
+# consumed by the Job Displacement tab (jobs_displacement.html, synced into
+# index.html) via assets/jobs-charts.js: section 03 reads a1, section 04 reads
+# a2. The monitor block is retained but nothing currently renders it — the old
+# dashboard markup and assets/jobs-monitor-charts.js were dropped 2026-07-31.
 #
 # This is a SLICE of btos_jobs.json, not the whole thing. The upstream research
 # repo shipped a four-tab dashboard off the full object (all 96 cross-section
@@ -33,7 +35,13 @@ if (!file.exists(src)) stop("Missing ", src, " - run 03_jobs_join.R first.")
 
 full <- fromJSON(src, simplifyVector = FALSE)
 
-TOP_KEEP     <- c("vintage", "ces_latest", "jolts_latest", "counts", "jolts_groups")
+# a1/a2/windows/dropped added 2026-07-31 for Job Displacement sections 03 and
+# 04 (employment by adoption tercile; JOLTS flows by tercile). `windows` carries
+# the BTOS question-change date and `dropped` the count of sectors with no CES
+# match, both of which the section notes quote, so neither is written into the
+# HTML by hand and neither can go stale. Measured: 54 KB -> ~160 KB.
+TOP_KEEP     <- c("vintage", "ces_latest", "jolts_latest", "counts", "jolts_groups",
+                  "windows", "dropped", "a1", "a2")
 MONITOR_KEEP <- c("board", "decomp", "quad", "mde", "scorecard", "nat_adopt",
                   "total_private_chg")
 

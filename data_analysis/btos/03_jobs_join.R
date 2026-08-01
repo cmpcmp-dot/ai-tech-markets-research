@@ -330,21 +330,33 @@ a1 <- ces_series(ces_sector_map) %>%
   mutate(index = 100 * emp / mean(emp[date >= C19_START & date <= C19_END])) %>%
   ungroup()
 
-jolts_half <- xs_jolts %>%
-  mutate(grp = if_else(prebreak >= median(prebreak), "Higher adoption", "Lower adoption")) %>%
+# CHANGED 2026-07-31: the JOLTS split was a median split into "Higher
+# adoption" / "Lower adoption". It is now the same tercile cut a1 uses, on the
+# supersectors' own distribution, so both exhibits speak one language and the
+# middle of the adoption distribution is visible rather than folded into
+# whichever half it fell in. Health care, retail and wholesale move out of the
+# top group as a result, which changes what the higher-vs-lower comparison
+# below reports; see MERGE_PLAN.md. 15 supersectors split 5/5/5.
+jolts_grp <- xs_jolts %>%
+  mutate(grp = tercile(prebreak)) %>%
   select(industry_code, title, prebreak, emp_w, grp)
 
 ma3 <- function(x) stats::filter(x, rep(1/3, 3), sides = 1) %>% as.numeric()
 
 a2 <- jolts_slim %>%
-  inner_join(jolts_half, by = "industry_code") %>%
+  inner_join(jolts_grp, by = "industry_code") %>%
   filter(date >= as.Date("2019-01-01")) %>%
   group_by(grp, dataelement_code, date) %>%
   summarise(rate = weighted.mean(value, emp_w), .groups = "drop") %>%
   arrange(grp, dataelement_code, date) %>%
   group_by(grp, dataelement_code) %>% mutate(rate = ma3(rate)) %>% ungroup() %>%
   filter(!is.na(rate)) %>%
-  mutate(outcome = jolts_el[dataelement_code])
+  mutate(outcome = jolts_el[dataelement_code]) %>%
+  # jolts_slim also carries TS (total separations), which jolts_el does not
+  # name, and an unnamed lookup returns NA. Serialised, that shipped a fifth
+  # series per group with outcome:null. The decomposition below reads TS
+  # straight from jolts_slim, so dropping it here costs nothing.
+  filter(!is.na(outcome))
 
 # ═══ 7. Quarterly panel ══════════════════════════════════════════════════════
 ces_panel <- function(map, strata) {
@@ -463,10 +475,15 @@ emp_gap <- a1 %>%
          gap = hi - lo) %>%
   filter(!is.na(gap)) %>% select(date, gap)
 
+# CHANGED 2026-07-31 with the tercile cut above: this was a median split, so
+# the gap was top-half minus bottom-half. It is now top-third minus
+# bottom-third, dropping the middle five supersectors. Sharper contrast,
+# fewer industries behind each side.
 flow_gap <- a2 %>%
+  filter(grp %in% c("High adoption", "Low adoption")) %>%
   select(outcome, grp, date, rate) %>%
   pivot_wider(names_from = grp, values_from = rate) %>%
-  mutate(gap = `Higher adoption` - `Lower adoption`) %>%
+  mutate(gap = `High adoption` - `Low adoption`) %>%
   filter(!is.na(gap)) %>% select(outcome, date, gap)
 
 chg_at <- function(d, v, back) {
@@ -485,7 +502,7 @@ board <- bind_rows(
   bind_rows(lapply(c("hires", "openings", "quits", "layoffs"), function(o) {
     x <- flow_gap %>% filter(outcome == o) %>% arrange(date)
     board_row(paste0(tools::toTitleCase(o), " rate gap"), "pp", x$date, x$gap,
-              "Higher-adoption minus lower-adoption JOLTS supersectors, 3-month average")
+              "High-adoption minus low-adoption JOLTS tercile, 3-month average")
   }))
 )
 
@@ -659,8 +676,9 @@ payload <- list(
   a2 = list(
     series = a2 %>% mutate(date = format(date)) %>%
       select(outcome, grp, date, rate) %>% nest(points = c(date, rate)),
-    members = jolts_half %>% arrange(desc(prebreak)) %>%
-      transmute(code = industry_code, title, adoption = round(prebreak, 1), grp)
+    members = jolts_grp %>% arrange(desc(prebreak)) %>%
+      transmute(code = industry_code, title, adoption = round(prebreak, 1),
+                grp = as.character(grp))
   ),
   coefs   = coefs,
   placebo = placebo,

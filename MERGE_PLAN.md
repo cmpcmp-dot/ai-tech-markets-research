@@ -320,3 +320,40 @@ anyway. Migrate with `cp`, `rsync`, or symlinks only.
 5. Phase 4 port remaining code, most-depended-on first (`qwi/`, then `micro/`).
 
 Phases 0–2 are half a day and capture nearly all the benefit. 3 and 4 can wait.
+
+---
+
+## Later change: JOLTS adoption groups became terciles (2026-07-31)
+
+`03_jobs_join.R` split the 15 JOLTS supersectors at the **median** of pre-break
+BTOS adoption (`"Higher adoption"` / `"Lower adoption"`) while the 18 CES
+sectors were cut into **terciles** (`"Low adoption"` / `"Middle"` /
+`"High adoption"`). Two groupings, two vocabularies, one script.
+
+The JOLTS cut is now the same `tercile()` call, on the supersectors' own
+distribution (5/5/5, cut points ~3.3% and ~7.4% adoption). Consequences worth
+knowing before quoting anything built on this:
+
+- **Health care, retail and wholesale leave the top group** for the middle.
+  Under the median split they sat on the high-adoption side and pulled the
+  higher-vs-lower flow comparison toward zero. The tercile contrast is sharper
+  and rests on five supersectors a side instead of seven or eight.
+- **`flow_gap` changed meaning**, from top-half-minus-bottom-half to
+  top-third-minus-bottom-third. It feeds the `monitor$board` D1 series, which
+  **nothing currently renders** — the dashboard markup and
+  `assets/jobs-monitor-charts.js` were dropped from `index.html` the same day.
+  If the monitor is ever restored, its flow-gap cards are not comparable with
+  their pre-2026-07-31 values.
+- **A fifth, unnamed a2 series is gone.** `jolts_slim` carries `TS` (total
+  separations); `jolts_el` names only `JO/HI/QU/LD`, and the unmatched lookup
+  returned `NA`, so every group shipped a series with `outcome: null`. Now
+  filtered out. The hires-vs-separations decomposition reads `TS` directly from
+  `jolts_slim` and is unaffected.
+
+`run_jobs.R` also now ships `a1`, `a2`, `windows` and `dropped` in
+`data/btos-jobs-monitor-data.js`, because Job Displacement sections 03 and 04
+read them: the two grouped time series, plus the question-change date and the
+count of sectors with no CES match, which the section notes quote rather than
+hardcode. That takes the file from 54 KB to roughly 160 KB — most of it the
+twelve 87-month JOLTS series. The monitor block is still shipped and still
+unused; dropping it would buy back about 40 KB if the size ever matters.
