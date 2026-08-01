@@ -65,6 +65,15 @@ ensure_dir <- function(p) {
 # Progress logging. Scripts print what they did; nothing here is silent.
 say <- function(fmt, ...) cat(sprintf(fmt, ...), "\n", sep = "")
 
+# Every script under src/fetch/ accepts --out=<dir>, so a refactored fetch can
+# be proved to work by running it into a scratch directory without disturbing
+# the cached inputs the rest of the pipeline is being verified against.
+fetch_dir <- function(default_subdir) {
+  a <- commandArgs(trailingOnly = TRUE)
+  o <- sub("^--out=", "", grep("^--out=", a, value = TRUE))
+  ensure_dir(if (length(o)) o[1] else input_path(default_subdir))
+}
+
 # Stop with a message that tells the reader how to fix it, rather than a bare
 # "cannot open file". Used wherever a script depends on an uncommitted input.
 need_file <- function(path, how) {
