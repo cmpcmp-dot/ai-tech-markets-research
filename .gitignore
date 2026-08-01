@@ -37,5 +37,9 @@ tests/golden/
 
 # ── test harness ──────────────────────────────────────────────────────────
 # tests/ needs jsdom: `npm install jsdom`. The tree is not committed.
-node_modules/
+# No trailing slash: a local `npm install` makes a directory, but pointing
+# node_modules at a shared tree makes it a SYMLINK, which git sees as a file,
+# and `node_modules/` would not match it. Same trap as the input symlinks in
+# docs/history/MERGE_PLAN.md.
+node_modules
 package-lock.json
