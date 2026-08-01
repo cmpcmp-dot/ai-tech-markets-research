@@ -210,5 +210,5 @@ across the four sheets.
 ## Status
 
 Complete. Every card on the site is built from this directory, and
-`data_analysis/` has been removed. `PORTING.md` records how the migration was
+`data_analysis/` has been removed. [`PORTING.md`](../docs/history/PORTING.md) records how the migration was
 done and what was checked at each step.
