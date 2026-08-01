@@ -455,13 +455,9 @@
                  : appURL('entry/' + entry.id);
       copyText(text, b);
     }));
-    // Theme badges, if any, hand off to the retired Themes page.
-    card.querySelectorAll('.paper-theme-badge').forEach(badge => {
-      badge.addEventListener('click', e => {
-        e.stopPropagation();
-        goToTheme(badge.dataset.themeId);
-      });
-    });
+    // No theme-badge handler: .paper-theme-badge is never emitted by any
+    // template, so this querySelectorAll always came back empty. What it bound
+    // handed off to the retired Themes page and threw. Removed 2026-08-01.
     return card;
   }
 

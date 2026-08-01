@@ -195,11 +195,12 @@
     setView(view);
   });
 
-  // Key findings band: open a source-excerpt modal, or hand off to the frozen
-  // Themes page if there is no source paper to show.
-  function goToTheme(id) {
-    goToThemesPage('theme/' + id);
-  }
+  // Key findings band: open a source-excerpt modal.
+  //
+  // There used to be a goToTheme() here that handed off to the retired Themes
+  // page. It called goToThemesPage(), which was never defined anywhere in the
+  // repo, so every path through it threw a ReferenceError. Removed 2026-08-01
+  // with its three call sites; see docs/adr/0005.
 
   function closeFindingModal() {
     const backdrop = document.getElementById('findingModal');
@@ -212,7 +213,9 @@
     const pid = +card.dataset.paperId;
     const themeId = card.dataset.themeId;
     const paper = RESEARCH_DATA.find(r => r.id === pid);
-    if (!paper) { goToTheme(themeId); return; }
+    // Cards are built below from RESEARCH_DATA with data-paper-id always set,
+    // so this cannot currently fire. Kept as a guard, not a handoff.
+    if (!paper) return;
     const theme = THEMES.find(t => t.id === themeId);
     const stat = card.querySelector('.key-finding-stat')?.textContent || '';
     const text = card.querySelector('.key-finding-text')?.textContent || '';
@@ -224,9 +227,9 @@
     const relatedHTML = related.length
       ? `<div class="pol-modal-section"><div class="pol-modal-label">Related research</div><div class="theme-refs" style="grid-template-columns:1fr">${related.map(refLink).join('')}</div></div>`
       : '';
-    const themeLink = theme
-      ? `<div class="pol-modal-section"><button class="finding-theme-link" type="button">Explore the ${theme.tag} theme →</button></div>`
-      : '';
+    // No theme link: the "Explore the <tag> theme" button used to live here and
+    // led to the retired Themes page via a function that did not exist, so it
+    // threw on every click. Removed 2026-08-01; see docs/adr/0005.
     document.getElementById('findingModalStat').textContent = stat;
     document.getElementById('findingModalTitle').textContent = text;
     document.getElementById('findingModalBody').innerHTML = `
@@ -235,12 +238,7 @@
         ${primaryCite}
         <div class="pol-modal-text">${card.dataset.excerpt || paper.keyFinding}</div>
       </div>
-      ${relatedHTML}
-      ${themeLink}`;
-    document.getElementById('findingModalBody').querySelector('.finding-theme-link')?.addEventListener('click', () => {
-      closeFindingModal();
-      goToTheme(themeId);
-    });
+      ${relatedHTML}`;
     const backdrop = document.getElementById('findingModal');
     backdrop._lastFocus = document.activeElement;
     backdrop.classList.add('open');
@@ -288,8 +286,9 @@
   document.getElementById('keyFindingsBand').addEventListener('click', e => {
     const card = e.target.closest('.key-finding-card[data-theme-id]');
     if (!card) return;
+    // Every card is built above with data-paper-id, so the modal is the only
+    // path. The else branch handed off to the retired Themes page and threw.
     if (card.dataset.paperId) openFindingModal(card);
-    else goToTheme(card.dataset.themeId);
   });
 
   buildKeyFindingsBand();

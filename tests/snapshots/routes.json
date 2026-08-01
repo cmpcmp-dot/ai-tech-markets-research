@@ -1535,16 +1535,12 @@
   "#adoption": {
     "errors": [],
     "bodyClasses": [
-      "tracker-view"
+      "about-view"
     ],
-    "nav": [
-      "viewTracker"
-    ],
-    "navSelected": [
-      "viewTracker"
-    ],
-    "panelLabelledBy": "viewTracker",
-    "announce": "Data Tracker view",
+    "nav": [],
+    "navSelected": [],
+    "panelLabelledBy": "homeTitleLink",
+    "announce": "About view",
     "trackerTab": "btos",
     "trackerVisible": [
       "btos"
@@ -1561,84 +1557,7 @@
       "29% to 11%",
       "96%"
     ],
-    "hash": "#adoption",
-    "charts": {
-      "adHeadline": 116,
-      "adSize": 42,
-      "adSupSector": 67,
-      "adSubsector": 80,
-      "adDiffusion": 67,
-      "adStateMap": 1,
-      "adSupFunctions": 63,
-      "adSupGenai": 40,
-      "adSupBarriers": 47,
-      "adSupEmpEffect": 21,
-      "adExposureScatter": 73,
-      "trkPrimeAge": 98,
-      "trkCes": 41,
-      "trkJoltsQuits": 35,
-      "trkJoltsHires": 37,
-      "trkJoltsLayoffs": 39,
-      "trkJoltsOpenings": 37,
-      "trkGdp": 95
-    },
-    "stats": {
-      "trkJobsStats": [
-        "4.2%",
-        "-0.2 pp",
-        "80.2%",
-        "83.3%",
-        "1.50×"
-      ],
-      "trkJoltsStats": [
-        "1.7%",
-        "3.5%",
-        "1.6%",
-        "4.8%"
-      ],
-      "trkGdpStats": [
-        "1.5%",
-        "2.98%",
-        "-1.5 pp",
-        "-0.04 pp"
-      ]
-    },
-    "productivityEmpty": {
-      "svgs": 0,
-      "stats": 0,
-      "marked": true
-    }
-  },
-  "#adoption/exposure": {
-    "errors": [],
-    "bodyClasses": [
-      "tracker-view"
-    ],
-    "nav": [
-      "viewTracker"
-    ],
-    "navSelected": [
-      "viewTracker"
-    ],
-    "panelLabelledBy": "viewTracker",
-    "announce": "Data Tracker view",
-    "trackerTab": "btos",
-    "trackerVisible": [
-      "btos"
-    ],
-    "chainLink": "exposure",
-    "chainVisible": [
-      "exposure"
-    ],
-    "chainValues": [
-      "22%",
-      "+7.3 pp per SD",
-      "39% vs 21%",
-      "85%",
-      "29% to 11%",
-      "96%"
-    ],
-    "hash": "#adoption/exposure",
+    "hash": "#about",
     "charts": {
       "adHeadline": 116,
       "adSize": 42,
@@ -1689,23 +1608,19 @@
   "#adoption/who": {
     "errors": [],
     "bodyClasses": [
-      "tracker-view"
+      "about-view"
     ],
-    "nav": [
-      "viewTracker"
-    ],
-    "navSelected": [
-      "viewTracker"
-    ],
-    "panelLabelledBy": "viewTracker",
-    "announce": "Data Tracker view",
+    "nav": [],
+    "navSelected": [],
+    "panelLabelledBy": "homeTitleLink",
+    "announce": "About view",
     "trackerTab": "btos",
     "trackerVisible": [
       "btos"
     ],
-    "chainLink": "who",
+    "chainLink": "aggregate",
     "chainVisible": [
-      "who"
+      "aggregate"
     ],
     "chainValues": [
       "22%",
@@ -1715,7 +1630,153 @@
       "29% to 11%",
       "96%"
     ],
-    "hash": "#adoption/who",
+    "hash": "#about",
+    "charts": {
+      "adHeadline": 116,
+      "adSize": 42,
+      "adSupSector": 67,
+      "adSubsector": 80,
+      "adDiffusion": 67,
+      "adStateMap": 1,
+      "adSupFunctions": 63,
+      "adSupGenai": 40,
+      "adSupBarriers": 47,
+      "adSupEmpEffect": 21,
+      "adExposureScatter": 73,
+      "trkPrimeAge": 98,
+      "trkCes": 41,
+      "trkJoltsQuits": 35,
+      "trkJoltsHires": 37,
+      "trkJoltsLayoffs": 39,
+      "trkJoltsOpenings": 37,
+      "trkGdp": 95
+    },
+    "stats": {
+      "trkJobsStats": [
+        "4.2%",
+        "-0.2 pp",
+        "80.2%",
+        "83.3%",
+        "1.50×"
+      ],
+      "trkJoltsStats": [
+        "1.7%",
+        "3.5%",
+        "1.6%",
+        "4.8%"
+      ],
+      "trkGdpStats": [
+        "1.5%",
+        "2.98%",
+        "-1.5 pp",
+        "-0.04 pp"
+      ]
+    },
+    "productivityEmpty": {
+      "svgs": 0,
+      "stats": 0,
+      "marked": true
+    }
+  },
+  "#themes": {
+    "errors": [],
+    "bodyClasses": [
+      "about-view"
+    ],
+    "nav": [],
+    "navSelected": [],
+    "panelLabelledBy": "homeTitleLink",
+    "announce": "About view",
+    "trackerTab": "btos",
+    "trackerVisible": [
+      "btos"
+    ],
+    "chainLink": "aggregate",
+    "chainVisible": [
+      "aggregate"
+    ],
+    "chainValues": [
+      "22%",
+      "+7.3 pp per SD",
+      "39% vs 21%",
+      "85%",
+      "29% to 11%",
+      "96%"
+    ],
+    "hash": "#about",
+    "charts": {
+      "adHeadline": 116,
+      "adSize": 42,
+      "adSupSector": 67,
+      "adSubsector": 80,
+      "adDiffusion": 67,
+      "adStateMap": 1,
+      "adSupFunctions": 63,
+      "adSupGenai": 40,
+      "adSupBarriers": 47,
+      "adSupEmpEffect": 21,
+      "adExposureScatter": 73,
+      "trkPrimeAge": 98,
+      "trkCes": 41,
+      "trkJoltsQuits": 35,
+      "trkJoltsHires": 37,
+      "trkJoltsLayoffs": 39,
+      "trkJoltsOpenings": 37,
+      "trkGdp": 95
+    },
+    "stats": {
+      "trkJobsStats": [
+        "4.2%",
+        "-0.2 pp",
+        "80.2%",
+        "83.3%",
+        "1.50×"
+      ],
+      "trkJoltsStats": [
+        "1.7%",
+        "3.5%",
+        "1.6%",
+        "4.8%"
+      ],
+      "trkGdpStats": [
+        "1.5%",
+        "2.98%",
+        "-1.5 pp",
+        "-0.04 pp"
+      ]
+    },
+    "productivityEmpty": {
+      "svgs": 0,
+      "stats": 0,
+      "marked": true
+    }
+  },
+  "#theme/displacement": {
+    "errors": [],
+    "bodyClasses": [
+      "about-view"
+    ],
+    "nav": [],
+    "navSelected": [],
+    "panelLabelledBy": "homeTitleLink",
+    "announce": "About view",
+    "trackerTab": "btos",
+    "trackerVisible": [
+      "btos"
+    ],
+    "chainLink": "aggregate",
+    "chainVisible": [
+      "aggregate"
+    ],
+    "chainValues": [
+      "22%",
+      "+7.3 pp per SD",
+      "39% vs 21%",
+      "85%",
+      "29% to 11%",
+      "96%"
+    ],
+    "hash": "#about",
     "charts": {
       "adHeadline": 116,
       "adSize": 42,

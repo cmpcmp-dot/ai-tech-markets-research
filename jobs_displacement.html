@@ -1437,7 +1437,7 @@
 
      The hash is only a section id when it is a plain identifier. Embedded, the
      app router owns location.hash and uses slash-separated routes
-     (#tracker/jolts, #adoption/who, #entry/214), and passing one of those to
+     (#tracker/jolts, #tracker/btos/who, #entry/214), and passing one of those to
      querySelector throws `SyntaxError: Invalid selector`. That threw here
      before the guard existed, which aborted the rest of this IIFE -- including
      the first-paint block below -- on every slashed route. Test the shape

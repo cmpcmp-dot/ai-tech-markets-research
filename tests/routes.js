@@ -33,7 +33,10 @@ const ROUTES = [
   '#tracker/productivity', '#tracker/btos',
   '#tracker/btos/aggregate', '#tracker/btos/exposure', '#tracker/btos/who',
   '#tracker/btos/what-for', '#tracker/btos/where', '#tracker/btos/jobs',
-  '#adoption', '#adoption/exposure', '#adoption/who',
+  // Removed routes, pinned so their fall-through to About cannot regress
+  // silently. #themes/#theme were never in this list, which is why the
+  // ReferenceError they threw went unnoticed. See docs/adr/0005.
+  '#adoption', '#adoption/who', '#themes', '#theme/displacement',
   '#tracker/nonsense', '#nonsense',
 ];
 

@@ -8,10 +8,11 @@
        #job-displacement                       ... the flat views, in VIEWS below
        #tracker #tracker/<tab> #tracker/btos/<chain-link>
        #policy/<policy-id> #entry/<entry-id>   ... parameterised
-       #themes #theme/<id>                     ... retired, hand off to themes.html
-     Legacy: #adoption and #adoption/<chain-link> resolve to the Data Tracker's
-     Census BTOS sub-tab, which is what the Adoption tab became. They are kept
-     because the page is embedded and those links are already in the wild.
+     Anything else falls through to About. That now includes #adoption,
+     #adoption/<chain-link>, #themes and #theme/<id>, all removed 2026-08-01
+     (docs/adr/0005): the first two were an alias kept only for inbound links
+     that turned out not to exist, and the themes pair called a function that
+     was never defined.
 
      The address bar tracks navigation with replaceState (no history spam);
      hashchange handles pasted links and back/forward.
@@ -103,18 +104,6 @@
         setView('tracker');
         return true;
       }
-
-      // ── legacy #adoption[/<chain-link>] ───────────────────────────────
-      if (head === 'adoption' && (!tail || adChain.has(tail))) {
-        trackerTabs.set('btos', { silent: true });
-        setAdLink(tail || adChain.ids[0]);
-        setView('tracker');
-        return true;
-      }
-
-      // ── retired: hand off to the frozen Themes page ───────────────────
-      if (head === 'themes' && !tail) { goToThemesPage('themes'); return true; }
-      if (head === 'theme' && tail)   { goToThemesPage('theme/' + tail); return true; }
 
       // ── parameterised ─────────────────────────────────────────────────
       if (head === 'policy' && tail && POLICY_DATA.some(pl => pl.id === tail)) {

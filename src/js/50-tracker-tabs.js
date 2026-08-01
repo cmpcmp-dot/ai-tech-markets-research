@@ -4,8 +4,8 @@
      others were added for the tracker.
 
      Routes: #tracker/<tab>, plus #tracker/btos/<link> for the chain inside the
-     BTOS tab. The legacy #adoption and #adoption/<link> still resolve, to the
-     BTOS tab, so links shared before the tracker existed keep working.
+     BTOS tab. A legacy #adoption alias used to resolve here; it was removed on
+     2026-08-01 once it was established that nothing linked to it.
 
      Charts are drawn eagerly by tracker-charts.js into fixed-viewBox SVGs, so
      switching tabs is pure show/hide with no re-render. */
@@ -38,7 +38,7 @@
      assets/adoption-charts.js into fixed-viewBox SVGs, so switching links is
      pure show/hide — no re-render, no layout thrash, and the panels stay
      correct even though they were laid out while hidden.
-     Deep-linkable as #adoption/<id>; link 1 is just #adoption. */
+     Deep-linkable as #tracker/btos/<id>; link 1 is just #tracker/btos. */
   const AD_LABELS = {
     aggregate: 'How many', exposure: 'Exposure', who: 'Who',
     'what-for': 'What for', where: 'Where', jobs: 'The jobs'

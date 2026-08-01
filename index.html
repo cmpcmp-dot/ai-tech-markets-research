@@ -1112,14 +1112,9 @@
   }
   .theme-collapsible.is-collapsed { max-height: 0; opacity: 0; }
 
-  /* ── PAPER THEME BADGES (Papers view) ───────────────────────── */
-  .paper-theme-badge {
-    font-size: 9px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase;
-    border-radius: var(--r-tag); padding: 1px 5px; cursor: pointer; white-space: nowrap;
-    border: 1px solid; background: none; font-family: inherit; line-height: 1.4;
-    opacity: 0.55; transition: opacity 0.15s;
-  }
-  .paper-theme-badge:hover { opacity: 1; }
+  /* .paper-theme-badge removed 2026-08-01: no template ever emitted the
+     element, and its only handler called into the retired Themes page.
+     See docs/adr/0005. */
 
   /* ── FILTER PILLS ───────────────────────────────────────── */
 
@@ -1391,11 +1386,8 @@
   }
   .finding-modal-source em { font-style: italic; }
   .finding-modal-source:hover { color: var(--accent); }
-  .finding-theme-link {
-    border: none; background: none; cursor: pointer; padding: 0;
-    color: var(--accent); font-size: 13px; font-weight: 600;
-    font-family: 'Haas Grotesk', 'Helvetica Neue', Arial, sans-serif;
-  }
+  /* .finding-theme-link removed 2026-08-01 with the button it styled; see
+     docs/adr/0005. */
 
   /* ── POLICY MAP VIEW ─────────────────────────────────────── */
   .policy-view .sidebar              { display: none; }
@@ -3015,9 +3007,10 @@
            View key is `tracker` throughout: body class .tracker-view,
            #trackerArea, setView('tracker').
            Routes: #tracker/<tab>, and #tracker/btos/<link> for the chain.
-           The old #adoption and #adoption/<link> still resolve here, because
-           this view is what the Adoption tab became and those links are in
-           the wild. The nav group holding this view and Job Displacement is
+           An #adoption alias used to resolve here, because this view is what
+           the Adoption tab became; it was removed on 2026-08-01 once it was
+           established that nothing linked to it. The nav group holding this
+           view and Job Displacement is
            labelled Economy; it was Adoption until 2026-08-01, which named only
            one of the five sub-tabs below. See docs/adr/0005.
            ══════════════════════════════════════════════════════════════════ -->
@@ -3884,7 +3877,7 @@
       </div>
       <div class="modal-group">
         <div class="modal-group-name">Themes (archived)</div>
-        <p class="modal-sources-intro">Cross-cutting syntheses of the research database. Each theme frames a key strategic question, presents an evidence consensus, identifies implications for institutional actors, and notes gaps in the current evidence base. This view has been retired from the main site and is preserved at <a href="themes.html">themes.html</a>.</p>
+        <p class="modal-sources-intro">Cross-cutting syntheses of the research database. Each theme frames a key strategic question, presents an evidence consensus, identifies implications for institutional actors, and notes gaps in the current evidence base. This view has been retired from the main site and is preserved at <a href="prototypes/themes.html">prototypes/themes.html</a>.</p>
       </div>
       <div class="modal-group">
         <div class="modal-group-name">Policy Map tab</div>
@@ -4414,13 +4407,9 @@
                  : appURL('entry/' + entry.id);
       copyText(text, b);
     }));
-    // Theme badges, if any, hand off to the retired Themes page.
-    card.querySelectorAll('.paper-theme-badge').forEach(badge => {
-      badge.addEventListener('click', e => {
-        e.stopPropagation();
-        goToTheme(badge.dataset.themeId);
-      });
-    });
+    // No theme-badge handler: .paper-theme-badge is never emitted by any
+    // template, so this querySelectorAll always came back empty. What it bound
+    // handed off to the retired Themes page and threw. Removed 2026-08-01.
     return card;
   }
 
@@ -5336,10 +5325,11 @@
        #job-displacement                       ... the flat views, in VIEWS below
        #tracker #tracker/<tab> #tracker/btos/<chain-link>
        #policy/<policy-id> #entry/<entry-id>   ... parameterised
-       #themes #theme/<id>                     ... retired, hand off to themes.html
-     Legacy: #adoption and #adoption/<chain-link> resolve to the Data Tracker's
-     Census BTOS sub-tab, which is what the Adoption tab became. They are kept
-     because the page is embedded and those links are already in the wild.
+     Anything else falls through to About. That now includes #adoption,
+     #adoption/<chain-link>, #themes and #theme/<id>, all removed 2026-08-01
+     (docs/adr/0005): the first two were an alias kept only for inbound links
+     that turned out not to exist, and the themes pair called a function that
+     was never defined.
 
      The address bar tracks navigation with replaceState (no history spam);
      hashchange handles pasted links and back/forward.
@@ -5431,18 +5421,6 @@
         setView('tracker');
         return true;
       }
-
-      // ── legacy #adoption[/<chain-link>] ───────────────────────────────
-      if (head === 'adoption' && (!tail || adChain.has(tail))) {
-        trackerTabs.set('btos', { silent: true });
-        setAdLink(tail || adChain.ids[0]);
-        setView('tracker');
-        return true;
-      }
-
-      // ── retired: hand off to the frozen Themes page ───────────────────
-      if (head === 'themes' && !tail) { goToThemesPage('themes'); return true; }
-      if (head === 'theme' && tail)   { goToThemesPage('theme/' + tail); return true; }
 
       // ── parameterised ─────────────────────────────────────────────────
       if (head === 'policy' && tail && POLICY_DATA.some(pl => pl.id === tail)) {
@@ -5558,8 +5536,8 @@
      others were added for the tracker.
 
      Routes: #tracker/<tab>, plus #tracker/btos/<link> for the chain inside the
-     BTOS tab. The legacy #adoption and #adoption/<link> still resolve, to the
-     BTOS tab, so links shared before the tracker existed keep working.
+     BTOS tab. A legacy #adoption alias used to resolve here; it was removed on
+     2026-08-01 once it was established that nothing linked to it.
 
      Charts are drawn eagerly by tracker-charts.js into fixed-viewBox SVGs, so
      switching tabs is pure show/hide with no re-render. */
@@ -5592,7 +5570,7 @@
      assets/adoption-charts.js into fixed-viewBox SVGs, so switching links is
      pure show/hide — no re-render, no layout thrash, and the panels stay
      correct even though they were laid out while hidden.
-     Deep-linkable as #adoption/<id>; link 1 is just #adoption. */
+     Deep-linkable as #tracker/btos/<id>; link 1 is just #tracker/btos. */
   const AD_LABELS = {
     aggregate: 'How many', exposure: 'Exposure', who: 'Who',
     'what-for': 'What for', where: 'Where', jobs: 'The jobs'
@@ -5882,11 +5860,12 @@
     setView(view);
   });
 
-  // Key findings band: open a source-excerpt modal, or hand off to the frozen
-  // Themes page if there is no source paper to show.
-  function goToTheme(id) {
-    goToThemesPage('theme/' + id);
-  }
+  // Key findings band: open a source-excerpt modal.
+  //
+  // There used to be a goToTheme() here that handed off to the retired Themes
+  // page. It called goToThemesPage(), which was never defined anywhere in the
+  // repo, so every path through it threw a ReferenceError. Removed 2026-08-01
+  // with its three call sites; see docs/adr/0005.
 
   function closeFindingModal() {
     const backdrop = document.getElementById('findingModal');
@@ -5899,7 +5878,9 @@
     const pid = +card.dataset.paperId;
     const themeId = card.dataset.themeId;
     const paper = RESEARCH_DATA.find(r => r.id === pid);
-    if (!paper) { goToTheme(themeId); return; }
+    // Cards are built below from RESEARCH_DATA with data-paper-id always set,
+    // so this cannot currently fire. Kept as a guard, not a handoff.
+    if (!paper) return;
     const theme = THEMES.find(t => t.id === themeId);
     const stat = card.querySelector('.key-finding-stat')?.textContent || '';
     const text = card.querySelector('.key-finding-text')?.textContent || '';
@@ -5911,9 +5892,9 @@
     const relatedHTML = related.length
       ? `<div class="pol-modal-section"><div class="pol-modal-label">Related research</div><div class="theme-refs" style="grid-template-columns:1fr">${related.map(refLink).join('')}</div></div>`
       : '';
-    const themeLink = theme
-      ? `<div class="pol-modal-section"><button class="finding-theme-link" type="button">Explore the ${theme.tag} theme →</button></div>`
-      : '';
+    // No theme link: the "Explore the <tag> theme" button used to live here and
+    // led to the retired Themes page via a function that did not exist, so it
+    // threw on every click. Removed 2026-08-01; see docs/adr/0005.
     document.getElementById('findingModalStat').textContent = stat;
     document.getElementById('findingModalTitle').textContent = text;
     document.getElementById('findingModalBody').innerHTML = `
@@ -5922,12 +5903,7 @@
         ${primaryCite}
         <div class="pol-modal-text">${card.dataset.excerpt || paper.keyFinding}</div>
       </div>
-      ${relatedHTML}
-      ${themeLink}`;
-    document.getElementById('findingModalBody').querySelector('.finding-theme-link')?.addEventListener('click', () => {
-      closeFindingModal();
-      goToTheme(themeId);
-    });
+      ${relatedHTML}`;
     const backdrop = document.getElementById('findingModal');
     backdrop._lastFocus = document.activeElement;
     backdrop.classList.add('open');
@@ -5975,8 +5951,9 @@
   document.getElementById('keyFindingsBand').addEventListener('click', e => {
     const card = e.target.closest('.key-finding-card[data-theme-id]');
     if (!card) return;
+    // Every card is built above with data-paper-id, so the modal is the only
+    // path. The else branch handed off to the retired Themes page and threw.
     if (card.dataset.paperId) openFindingModal(card);
-    else goToTheme(card.dataset.themeId);
   });
 
   buildKeyFindingsBand();
@@ -6905,7 +6882,7 @@
 
      The hash is only a section id when it is a plain identifier. Embedded, the
      app router owns location.hash and uses slash-separated routes
-     (#tracker/jolts, #adoption/who, #entry/214), and passing one of those to
+     (#tracker/jolts, #tracker/btos/who, #entry/214), and passing one of those to
      querySelector throws `SyntaxError: Invalid selector`. That threw here
      before the guard existed, which aborted the rest of this IIFE -- including
      the first-paint block below -- on every slashed route. Test the shape
