@@ -140,10 +140,9 @@ data_analysis/btos/README.md                 -> analysis/README.md
 data_analysis/exposure/README.md             -> analysis/README.md
 ```
 
-`assets/jobs-charts.js` line ~313 cites
-`data_analysis/micro/07_age_bands_cps.R`; the exhibit already emits the new
-path in `source.computed_by`, so point the chart at that field or update the
-string.
+`assets/jobs-charts.js` line ~313 is **done** -- it now cites
+`analysis/src/exhibits/jobs_02_age_bands.R`, verified rendered in the browser.
+The remaining eleven strings are in the two HTML files.
 
 Also update `CONTEXT.md`, which describes the old layout, and
 `.githooks/pre-commit`, which references `data_analysis`.

@@ -310,7 +310,7 @@
       `<span><i style="background:${C.goldLine};opacity:.45;height:11px"></i>Pre-specified headline range</span>`;
     if (byId('ageNote')) byId('ageNote').innerHTML =
       `Each point is one five-year age band, plotted at its centre. Positive means more unemployment than that band’s own pre-2020 relationship to the overall rate predicts, after subtracting the bias the same method shows in placebo periods. ` +
-      `<span class="jd-src">Computed from IPUMS CPS microdata by <code>data_analysis/micro/07_age_bands_cps.R</code>; method descends from this <a href="https://github.com/mtkonczal/Blog-Posts-Presentations-and-Testimony/tree/main/blogs_2026/01_education_young_unrate" target="_blank" rel="noopener">education and young-unemployment analysis</a>.</span>`;
+      `<span class="jd-src">Computed from IPUMS CPS microdata by <code>analysis/src/exhibits/jobs_02_age_bands.R</code>; method descends from this <a href="https://github.com/mtkonczal/Blog-Posts-Presentations-and-Testimony/tree/main/blogs_2026/01_education_young_unrate" target="_blank" rel="noopener">education and young-unemployment analysis</a>.</span>`;
     const h = A.headline.young_grad;
     if (byId('distFlag')) byId('distFlag').innerHTML =
       `Graduates aged 22&ndash;27 carry <b>${sgn(h.adj * 100, 1)} pp</b> more unemployment than predicted`;
