@@ -5,7 +5,14 @@ Written 2026-07-31. **Status: executed 2026-07-31.** All five phases are done;
 the plan as first written, the section says so and
 [Deviations](#deviations-from-the-plan-as-written) collects them.
 
-Day-to-day reference is **[`data_analysis/DATA_LOCAL.md`](data_analysis/DATA_LOCAL.md)**;
+> **Superseded 2026-08-01.** Every path below that begins `data_analysis/` is
+> historical. That tree was refactored into [`analysis/`](analysis/README.md) and
+> then deleted; [`analysis/PORTING.md`](analysis/PORTING.md) records that step and
+> what each contract was verified against. This file is kept unedited because it
+> is the record of *why* the layout is shaped the way it is, and rewriting a
+> post-mortem to match a later state destroys the thing it is for.
+
+Day-to-day reference is now **[`analysis/INPUTS.md`](analysis/INPUTS.md)**;
 this file is the record of *why*.
 
 ## The two problems this solves

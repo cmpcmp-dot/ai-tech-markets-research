@@ -668,7 +668,7 @@
           <summary>The technical specification</summary>
           <div class="method-body">
             <dl>
-              <dt>Treatment</dt><dd>The same pre-break BTOS adoption measure as section 03, mapped from BTOS sectors to JOLTS supersectors by <code>data_analysis/btos/crosswalk_btos_jolts.csv</code>, then cut at terciles, five supersectors per group.</dd>
+              <dt>Treatment</dt><dd>The same pre-break BTOS adoption measure as section 03, mapped from BTOS sectors to JOLTS supersectors by <code>analysis/src/lookups/crosswalk_btos_jolts.csv</code>, then cut at terciles, five supersectors per group.</dd>
               <dt>Outcome</dt><dd>BLS Job Openings and Labor Turnover Survey, seasonally adjusted rates. Within a group, rates are averaged across supersectors weighted by employment, then smoothed with a three-month trailing mean.</dd>
               <dt>Sample</dt><dd id="mFlowSample"></dd>
               <dt>Scale</dt><dd>Each panel is free-scaled, so vertical distances are not comparable between panels. The layoffs panel is clipped: its three-month average peaks near ten percent in spring 2020, and at full scale the entire post-2021 range would be a few pixels tall. The clip level, the true peaks and the exit points are all marked; the figures are in the chart note.</dd>
@@ -773,13 +773,13 @@
   Job displacement &mdash; scroll, editorial masthead
 </footer>
 
-<!-- Sections 01-02. Regenerate: Rscript data_analysis/scripts/run_all.R -->
+<!-- Sections 01-02. Regenerate: Rscript analysis/run.R jobs-displacement -->
 <script src="data/jobs-displacement-data.js" charset="utf-8"></script>
 <!-- Sections 03-04, BTOS × CES × JOLTS.
-     Regenerate: Rscript data_analysis/btos/{03_jobs_join,run_jobs}.R -->
+     Regenerate: Rscript analysis/run.R btos-jobs-monitor -->
 <script src="data/btos-jobs-monitor-data.js" charset="utf-8"></script>
-<!-- Section 05, QWI × BTOS. Regenerate: Rscript data_analysis/micro/run_micro.R -->
-<script src="data/microdata.js" charset="utf-8"></script>
+<!-- Section 05, QWI × BTOS. Regenerate: Rscript analysis/run.R jobs-young-workers -->
+<script src="data/jobs-young-workers-data.js" charset="utf-8"></script>
 <script src="assets/jobs-charts.js" charset="utf-8"></script>
 <script>
 (function () {

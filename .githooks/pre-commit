@@ -1,6 +1,6 @@
 #!/bin/sh
 # Reject any staged blob over 2 MB.
-# Large derived data does not belong in this repo -- see MERGE_PLAN.md.
+# Large derived data does not belong in this repo -- see analysis/README.md.
 # One-off override:  SKIP_SIZE_GUARD=1 git commit ...
 [ -n "$SKIP_SIZE_GUARD" ] && exit 0
 limit=2097152
@@ -15,7 +15,9 @@ for f in $(git diff --cached --name-only --diff-filter=ACMRT); do
 done
 if [ "$fail" -eq 1 ]; then
   echo ""
-  echo "Large derived data does not belong in this repo. Put it under an"
-  echo "ignored output/ directory, or document it in data_analysis/DATA_LOCAL.md."
+  echo "Large derived data does not belong in this repo. Put it under"
+  echo "analysis/inputs/ or analysis/interim/ (both ignored). If it genuinely"
+  echo "cannot be rebuilt, add it to analysis/frozen/ with a row in"
+  echo "analysis/INPUTS.md and a .gitignore exception."
 fi
 exit $fail

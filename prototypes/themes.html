@@ -5618,12 +5618,19 @@
 </script>
 
 <!-- ═══════════════════════════════════════════════════════════
-     ADOPTION TAB CHARTS + the Job Displacement monitor section.
-     Separate files, each an isolated IIFE with its own try/catch per
+     ADOPTION TAB CHARTS. An isolated IIFE with its own try/catch per
      renderer, so a break in one cannot take down the other tabs.
-     Classic scripts, no modules, no CDN: works over file://.
+     A classic script, no modules, no CDN: works over file://.
+
+     This is a THEMING PROTOTYPE and it is frozen at the markup of
+     2026-07-31. assets/jobs-monitor-charts.js used to load here too and
+     was deleted in the analysis/ refactor, so the monitor section below
+     no longer draws; its data key (BTOS_JOBS_MONITOR.monitor) is not
+     published any more either. Three of this file's chart slots --
+     #adExpect, #adStates, #adMSA -- lost their renderers in the same
+     pass and stay blank. Nothing here is on the live site; index.html
+     is. Do not use this file to judge whether a chart works.
      ═══════════════════════════════════════════════════════════ -->
 <script src="assets/adoption-charts.js" charset="utf-8"></script>
-<script src="assets/jobs-monitor-charts.js" charset="utf-8"></script>
 </body>
 </html>
