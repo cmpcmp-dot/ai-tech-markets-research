@@ -1,0 +1,19 @@
+{
+  "built_at": "2026-07-31T15:03:45-0400",
+  "windows": {
+    "base": "2019 (4 quarters)",
+    "end": "2024Q3-2025Q2",
+    "pretrend": "2017 (4 quarters)"
+  },
+  "n_industries_adoption": 59,
+  "n_industries_t1": 48,
+  "n_industries_t4": 59,
+  "n_industries_t4b": 59,
+  "adoption_exposure_cor": 0.6699,
+  "vif": 1.814,
+  "mde_pct_per_sd": 5.513,
+  "est_pct_per_sd": -7.588,
+  "mde_units": "log points of hiring per SD of adoption, within-industry age difference; not comparable to a level effect",
+  "early_career_base": 5913144,
+  "note": "Pre-registered in plan_microdata.md before running. All results reported."
+}

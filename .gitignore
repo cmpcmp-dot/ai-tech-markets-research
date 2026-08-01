@@ -1,30 +1,39 @@
 .DS_Store
 .claude
 
-# ── data_analysis: generated output is never committed ─────────────────
-# Anything under an output/ directory is disposable and regenerable.
-# See MERGE_PLAN.md and data_analysis/DATA_LOCAL.md.
+# ── analysis/: what is and is not committed ───────────────────────────────
+# Rule of thumb: if a script can rebuild it, it is not committed.
+#
+#   inputs/    raw downloads, 5.7 GB          ignored  (see analysis/INPUTS.md)
+#   interim/   built intermediates            ignored
+#   frozen/    small + irreplaceable          COMMITTED
+#   src/       code and hand-kept lookups     COMMITTED
+#
+# index.html reads only data/*.js, which are committed, so a fresh clone
+# renders the site with none of the ignored data present.
+analysis/inputs/
+analysis/interim/
+
+# ── legacy layout, removed in the analysis/ refactor ──────────────────────
+# Kept until data_analysis/ is deleted so a half-migrated tree cannot stage
+# a 3.8 GB file by accident.
 data_analysis/**/output/*
-
-# Exceptions: small artifacts that CANNOT be regenerated without an input
-# we do not keep (the 818 MB IPUMS CPS extract / the 988 MB LEHD QWI panel).
-!data_analysis/micro/output/cps_occ_ind_weights.rds
-!data_analysis/micro/output/t1_adoption_exposure.csv
-!data_analysis/micro/output/t1_coefs.csv
-!data_analysis/micro/output/t1_slope_over_time.csv
-!data_analysis/micro/output/tests_industry_meta.json
-
-# ── large local-only inputs (symlinks or dirs; see DATA_LOCAL.md) ──────
-# No trailing slash: these are symlinks on this machine, which git sees as
-# files, and a trailing-slash rule would not match them.
 data_analysis/job_data
 data_analysis/qwi/output
 data_analysis/data/
 data_analysis/data-local/
 
-# ── belt and braces: never commit these formats anywhere ──────────────
+# ── belt and braces: never commit these formats anywhere ──────────────────
+# Listed after the directory rules so a stray extract outside inputs/ is
+# still caught. The frozen/ exceptions follow, and must come last to win.
 *.RDS
 *.rds
 *.dat.gz
 *.parquet
-!data_analysis/micro/output/cps_occ_ind_weights.rds
+*.csv.gz
+
+# ── frozen/: the exceptions, re-included by name ──────────────────────────
+# Each cannot be regenerated without an input we do not keep. If you add one,
+# add a line here AND a row in analysis/INPUTS.md, so provenance stays legible.
+!analysis/frozen/
+!analysis/frozen/**
