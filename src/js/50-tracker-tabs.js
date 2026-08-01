@@ -1,7 +1,8 @@
   /* ── Data Tracker: the five source sub-tabs ─────────────────────────────
-     Declared once and driven by makeTabGroup (45-tabgroup.js). Census BTOS is
-     the default because it is the only tab that was already published; the
-     others were added for the tracker.
+     Declared once and driven by makeTabGroup (45-tabgroup.js). Jobs is the
+     default: the tracker leads with the labour market, which is the series a
+     reader arriving at #tracker is most likely to want. Census BTOS held the
+     default until 2026-08-01 only because it was the first tab published.
 
      Routes: #tracker/<tab>, plus #tracker/btos/<link> for the chain inside the
      BTOS tab. A legacy #adoption alias used to resolve here; it was removed on
@@ -16,7 +17,7 @@
     { id: 'productivity', label: 'Productivity' },
     { id: 'btos',         label: 'Census BTOS' },
   ];
-  const TRACKER_DEFAULT = 'btos';
+  const TRACKER_DEFAULT = 'jobs';
 
   const trackerTabs = makeTabGroup({
     name: 'tracker',

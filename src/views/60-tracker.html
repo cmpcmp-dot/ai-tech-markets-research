@@ -27,7 +27,7 @@
              are managed by the makeTabGroup() instance in 50-tracker-tabs.js.
              Keep ids as trkTab-<id> / trkPanel-<id>: that is the contract. -->
         <div class="trk-tabs" role="tablist" aria-label="Data Tracker sources">
-          <button class="trk-tab" id="trkTab-jobs" data-trktab="jobs" role="tab" aria-selected="false" aria-controls="trkPanel-jobs" tabindex="-1">
+          <button class="trk-tab on" id="trkTab-jobs" data-trktab="jobs" role="tab" aria-selected="true" aria-controls="trkPanel-jobs">
             <span class="trk-tab-l">Jobs</span>
             <span class="trk-tab-s">CPS &middot; CES</span>
           </button>
@@ -43,14 +43,14 @@
             <span class="trk-tab-l">Productivity</span>
             <span class="trk-tab-s trk-tab-tk">Not built yet</span>
           </button>
-          <button class="trk-tab on" id="trkTab-btos" data-trktab="btos" role="tab" aria-selected="true" aria-controls="trkPanel-btos">
+          <button class="trk-tab" id="trkTab-btos" data-trktab="btos" role="tab" aria-selected="false" aria-controls="trkPanel-btos" tabindex="-1">
             <span class="trk-tab-l">Census BTOS</span>
             <span class="trk-tab-s">AI adoption</span>
           </button>
         </div>
 
         <!-- ══ JOBS ═══════════════════════════════════════════════════════ -->
-        <section class="trk-panel" id="trkPanel-jobs" role="tabpanel" aria-labelledby="trkTab-jobs" hidden>
+        <section class="trk-panel on" id="trkPanel-jobs" role="tabpanel" aria-labelledby="trkTab-jobs">
           <div class="jd-kicker">Jobs</div>
           <h2 class="jd-h">Is the labour market loosening?</h2>
           <p class="ad-standfirst">The headline unemployment rate, what it looks like against the rate the CBO thinks is sustainable, and whether prime-age workers are still attached to the labour force.</p>
@@ -159,7 +159,7 @@
         </section>
 
         <!-- ══ CENSUS BTOS — the original adoption chain, unchanged ════════ -->
-        <section class="trk-panel on" id="trkPanel-btos" role="tabpanel" aria-labelledby="trkTab-btos">
+        <section class="trk-panel" id="trkPanel-btos" role="tabpanel" aria-labelledby="trkTab-btos" hidden>
         <div class="ad-chain-wrap">
 
           <h2 class="jd-lede">Who is actually adopting AI, what are they using it for, and is anyone losing a job over it?</h2>

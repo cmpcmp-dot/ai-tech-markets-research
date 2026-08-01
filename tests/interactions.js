@@ -38,7 +38,7 @@ const adOpen  = d => AD.filter(k => !d.getElementById('adPanel-' + k).hidden);
     ['viewCards', 'cards', '#research'],
     ['viewFactBank', 'fact-bank', '#fact-bank'],
     ['viewPolicy', 'policy', '#policy'],
-    ['viewTracker', 'tracker', '#tracker/btos'],
+    ['viewTracker', 'tracker', '#tracker/jobs'],
     ['viewJobs', 'jobs', '#job-displacement'],
     ['viewSolutions', 'solutions', '#solutions'],
   ];

@@ -8,9 +8,9 @@
     "navSelected": [],
     "panelLabelledBy": "homeTitleLink",
     "announce": "About view",
-    "trackerTab": "btos",
+    "trackerTab": "jobs",
     "trackerVisible": [
-      "btos"
+      "jobs"
     ],
     "chainLink": "aggregate",
     "chainVisible": [
@@ -81,9 +81,9 @@
     "navSelected": [],
     "panelLabelledBy": "homeTitleLink",
     "announce": "About view",
-    "trackerTab": "btos",
+    "trackerTab": "jobs",
     "trackerVisible": [
-      "btos"
+      "jobs"
     ],
     "chainLink": "aggregate",
     "chainVisible": [
@@ -158,9 +158,9 @@
     ],
     "panelLabelledBy": "viewCards",
     "announce": "Papers view",
-    "trackerTab": "btos",
+    "trackerTab": "jobs",
     "trackerVisible": [
-      "btos"
+      "jobs"
     ],
     "chainLink": "aggregate",
     "chainVisible": [
@@ -236,9 +236,9 @@
     ],
     "panelLabelledBy": "viewCards",
     "announce": "Papers view",
-    "trackerTab": "btos",
+    "trackerTab": "jobs",
     "trackerVisible": [
-      "btos"
+      "jobs"
     ],
     "chainLink": "aggregate",
     "chainVisible": [
@@ -313,9 +313,9 @@
     ],
     "panelLabelledBy": "viewFactBank",
     "announce": "Fact Bank view",
-    "trackerTab": "btos",
+    "trackerTab": "jobs",
     "trackerVisible": [
-      "btos"
+      "jobs"
     ],
     "chainLink": "aggregate",
     "chainVisible": [
@@ -390,9 +390,9 @@
     ],
     "panelLabelledBy": "viewPolicy",
     "announce": "Lab view",
-    "trackerTab": "btos",
+    "trackerTab": "jobs",
     "trackerVisible": [
-      "btos"
+      "jobs"
     ],
     "chainLink": "aggregate",
     "chainVisible": [
@@ -467,9 +467,9 @@
     ],
     "panelLabelledBy": "viewSolutions",
     "announce": "Solutions view",
-    "trackerTab": "btos",
+    "trackerTab": "jobs",
     "trackerVisible": [
-      "btos"
+      "jobs"
     ],
     "chainLink": "aggregate",
     "chainVisible": [
@@ -544,9 +544,9 @@
     ],
     "panelLabelledBy": "viewJobs",
     "announce": "Job Displacement view",
-    "trackerTab": "btos",
+    "trackerTab": "jobs",
     "trackerVisible": [
-      "btos"
+      "jobs"
     ],
     "chainLink": "aggregate",
     "chainVisible": [
@@ -621,9 +621,9 @@
     ],
     "panelLabelledBy": "viewTracker",
     "announce": "Data Tracker view",
-    "trackerTab": "btos",
+    "trackerTab": "jobs",
     "trackerVisible": [
-      "btos"
+      "jobs"
     ],
     "chainLink": "aggregate",
     "chainVisible": [
@@ -1541,9 +1541,9 @@
     "navSelected": [],
     "panelLabelledBy": "homeTitleLink",
     "announce": "About view",
-    "trackerTab": "btos",
+    "trackerTab": "jobs",
     "trackerVisible": [
-      "btos"
+      "jobs"
     ],
     "chainLink": "aggregate",
     "chainVisible": [
@@ -1614,9 +1614,9 @@
     "navSelected": [],
     "panelLabelledBy": "homeTitleLink",
     "announce": "About view",
-    "trackerTab": "btos",
+    "trackerTab": "jobs",
     "trackerVisible": [
-      "btos"
+      "jobs"
     ],
     "chainLink": "aggregate",
     "chainVisible": [
@@ -1687,9 +1687,9 @@
     "navSelected": [],
     "panelLabelledBy": "homeTitleLink",
     "announce": "About view",
-    "trackerTab": "btos",
+    "trackerTab": "jobs",
     "trackerVisible": [
-      "btos"
+      "jobs"
     ],
     "chainLink": "aggregate",
     "chainVisible": [
@@ -1760,9 +1760,9 @@
     "navSelected": [],
     "panelLabelledBy": "homeTitleLink",
     "announce": "About view",
-    "trackerTab": "btos",
+    "trackerTab": "jobs",
     "trackerVisible": [
-      "btos"
+      "jobs"
     ],
     "chainLink": "aggregate",
     "chainVisible": [
@@ -1837,9 +1837,9 @@
     ],
     "panelLabelledBy": "viewTracker",
     "announce": "Data Tracker view",
-    "trackerTab": "btos",
+    "trackerTab": "jobs",
     "trackerVisible": [
-      "btos"
+      "jobs"
     ],
     "chainLink": "aggregate",
     "chainVisible": [
@@ -1853,7 +1853,7 @@
       "29% to 11%",
       "96%"
     ],
-    "hash": "#tracker/btos",
+    "hash": "#tracker/jobs",
     "charts": {
       "adHeadline": 116,
       "adSize": 42,
@@ -1910,9 +1910,9 @@
     "navSelected": [],
     "panelLabelledBy": "homeTitleLink",
     "announce": "About view",
-    "trackerTab": "btos",
+    "trackerTab": "jobs",
     "trackerVisible": [
-      "btos"
+      "jobs"
     ],
     "chainLink": "aggregate",
     "chainVisible": [
