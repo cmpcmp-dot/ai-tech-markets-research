@@ -1,0 +1,13 @@
+---
+title: "Get Jobs Data for CSV"
+---
+
+
+```{r startup}
+library(tidyverse)
+library(tidyusmacro)
+
+jobs <- getUnrateFRED()
+write_csv(jobs, "jobs_CES_CPS/data/jobs.csv")
+```
+
