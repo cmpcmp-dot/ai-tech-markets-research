@@ -1,12 +1,88 @@
-      <!-- ── SOLUTIONS TAB ── (placeholder; shown by the .solutions-view body
-           class, static — early return in render()) -->
+      <!-- ── SOLUTIONS TAB ── (static editorial view; shown by the
+           .solutions-view body class, so render() early-returns on it.
+           Three parts in ESP's order: the world we want, the policies that
+           hold up either way, and the exploratory set. Numbering and accent
+           color come from .sol-part in styles/policy.css.) -->
       <div id="solutionsArea">
-        <div class="sol-placeholder">
-          <div class="sol-card">
-            <div class="sol-eyebrow">Policy &middot; Solutions</div>
-            <div class="sol-mark">TK</div>
-            <p class="sol-note">This section is in development.</p>
-          </div>
+        <div class="sol-content">
+
+          <!-- ── 01 ─────────────────────────────────────────────────── -->
+          <section class="sol-part sol-part--north" aria-labelledby="sol-h-north">
+            <div class="sol-kick"><span class="sol-kn">01</span> North Star</div>
+            <h3 class="sol-statement" id="sol-h-north">
+              We want an AI that people have a say over, that widens who gets to
+              know and do things, and whose returns reach the people whose
+              knowledge built it.
+            </h3>
+            <div class="sol-prose">
+              <p>Whether AI is good for the people who work alongside it is not a property of the technology. The same model can draft the tedious first version of a document and hand a worker back an hour of judgment, or it can time their breaks, score their calls, set their pace, and strip out the discretion that made the job theirs. Which one happens turns on who decides how the thing gets deployed, and today that is almost never the people doing the work. We want workers at that table before the decision is made, with the standing to say no. What we are fighting is the version of this technology that shows up as a surveillance and speed&#8209;up device with a chat window on the front.</p>
+              <p>Away from work the stakes split the same way. AI can put expertise within reach of people who could never afford it, and open doors that a credential or a zip code used to close. It can also be pointed at sorting people: who gets the apartment, the loan, the shift, the interview, the benefit, decided with all the bias of the record the model learned from, landing first and hardest on communities of color. Then there is the money. These systems are built out of what all of us wrote, drew, measured, and worked out, so the gains belong to all of us in a way the present arrangement does not reflect. A society that gets richer this way should feel richer: more security, more time, better public goods. The alternative is already taking shape, with the returns pooling in a few firms while everyone else pays the freight in utility bills, water and land, public subsidy, and work that pays less and holds together worse.</p>
+            </div>
+          </section>
+
+          <!-- ── 02 ─────────────────────────────────────────────────── -->
+          <section class="sol-part sol-part--legit" aria-labelledby="sol-h-legit">
+            <div class="sol-kick"><span class="sol-kn">02</span> Legitimize</div>
+            <h3 class="sol-head" id="sol-h-legit">Worth doing either way</h3>
+            <div class="sol-prose">
+              <p>Most of what follows does not depend on AI being world&#8209;historical. These are policies we would want if the technology stalls out at merely useful, and the ones we will need most if it does not. If AI is going to run through work and public life, and it looks like it will, this is the floor. The descriptions are first drafts and will get sharper.</p>
+            </div>
+            <ol class="sol-list">
+              <li class="sol-item">
+                <b class="sol-item-t">A worker voice in deployment</b>
+                Before a system goes in, the people it will be used on should have a say in what it monitors, what it automates, and what happens to the jobs it changes. That is broader than most of what is on the table in Washington or inside the labs, which is largely about how models get built rather than how they get used on people. It should be broader.
+              </li>
+              <li class="sol-item">
+                <b class="sol-item-t">Pre&#8209;clearance before release</b>
+                Systems capable of serious harm should have to clear a bar before deployment rather than be recalled after the damage. That review is also where algorithmic discrimination gets caught: testing for disparate outcomes belongs in the condition of approval, not in a voluntary report published a year later.
+              </li>
+              <li class="sol-item">
+                <b class="sol-item-t">Public options in AI</b>
+                Broadly defined, and we are not precious about the form: public compute and public research, a government model, open&#8209;weight models kept genuinely open, procurement that keeps an alternative alive. What matters is that basic capability is not something you can only rent from three companies.
+              </li>
+              <li class="sol-item">
+                <b class="sol-item-t">Universal health care</b>
+                In the United States, health insurance rides on a job, which makes losing that job to a machine a medical event as well as a financial one. Nothing else here does as much to make a churning labor market survivable, and it is the clearest case of an old fight that AI makes newly urgent.
+              </li>
+              <li class="sol-item">
+                <b class="sol-item-t">Unemployment insurance and retraining that work</b>
+                UI reaches too few workers, replaces too little of a paycheck, and runs out too soon. Retraining money is small and badly aimed. Fix both and you help everyone who loses a job, including the many who will never be told that AI is why.
+              </li>
+              <li class="sol-item">
+                <b class="sol-item-t">Cash through the transition</b>
+                A universal, fully refundable Child Tax Credit is where we would start. Cash covers the cases no categorical program anticipated, and in a transition nobody can forecast, that is most of the cases.
+              </li>
+              <li class="sol-item">
+                <b class="sol-item-t">Pay for it with corporate taxes</b>
+                The AI firms are the obvious place to start and too narrow a base to stop at. The gains show up across the corporate sector, at every firm that buys capability it did not have to build. Tax the returns where they land.
+              </li>
+            </ol>
+          </section>
+
+          <!-- ── 03 ─────────────────────────────────────────────────── -->
+          <section class="sol-part sol-part--provoke" aria-labelledby="sol-h-provoke">
+            <div class="sol-kick"><span class="sol-kn">03</span> Provoke</div>
+            <h3 class="sol-head" id="sol-h-provoke">Worth building toward</h3>
+            <div class="sol-prose">
+              <p>These are exploratory. We are not putting them forward as this session&rsquo;s bills, and the design details are unsettled. Each carries the germ of something, though: an answer to what a society does with wealth on the scale AI&rsquo;s advocates keep promising. If they are right, the interesting question is not how to cushion the fall. It is what to buy with the surplus.</p>
+            </div>
+            <ol class="sol-list">
+              <li class="sol-item">
+                <b class="sol-item-t">A four&#8209;day week</b>
+                If output per hour rises the way the forecasts say, part of the gain should come back as time instead of all of it as output. Same pay, four days, on the logic that produced the weekend and the eight&#8209;hour day. Earlier productivity booms were partly cashed out in hours. The last few were not.
+              </li>
+              <li class="sol-item">
+                <b class="sol-item-t">A guaranteed income</b>
+                If the models are built from everyone&rsquo;s knowledge, everyone holds a claim on what they earn. A guaranteed income is the most direct way to pay that claim and the least paternalistic. It also does what no jobs program can, which is reach people whose work was never paid in the first place.
+              </li>
+              <li class="sol-item">
+                <b class="sol-item-t">A jobs corps funded by the surplus</b>
+                There is work that badly needs doing and that no market will pay for: cleaning contaminated land and water, repairing what a warming climate is taking apart, caring for children and elders at the scale families actually need. A public jobs corps, funded out of how much richer this technology makes us, could hire straight into it.
+              </li>
+            </ol>
+          </section>
+
+          <p class="sol-foot"><b>Where this goes next.</b> A first pass, published early on purpose. Each item here will be built out with the precedents, bills and research behind it, the way the entries in the Policy Map already are, and the exploratory set will be argued with before any of it is proposed.</p>
+
         </div>
       </div>
-

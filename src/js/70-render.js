@@ -32,7 +32,7 @@
     if (activeView === 'about')  { return; }
     if (activeView === 'tracker') { return; }   // static: charts drawn once by assets/adoption-charts.js
     if (activeView === 'jobs')   { return; }
-    if (activeView === 'solutions') { return; }  // static placeholder
+    if (activeView === 'solutions') { return; }  // static: prose only
 
     // ── Research (cards) view ──
     const sig = cardsSig();
@@ -113,8 +113,8 @@
       economist: { lede: 'Who is actually adopting AI, what are they using it for, and is anyone losing a job over it?', text: 'Census BTOS AI adoption against employment-weighted occupational exposure, plus the AI supplement on business functions, barriers and self-reported employment effects.' },
     },
     solutions: {
-      general:   { lede: 'What should we actually do?', text: 'In development.' },
-      economist: { lede: 'What should we actually do?', text: 'In development.' },
+      general:   { lede: 'What should we actually do?', text: 'A first pass at our policy agenda, in three parts: the world we are aiming at, the policies worth fighting for either way, and the ideas worth building toward if this technology is as disruptive as its builders promise.' },
+      economist: { lede: 'What should we actually do?', text: 'A first pass at our policy agenda, in three parts: the world we are aiming at, the policies worth fighting for either way, and the ideas worth building toward if this technology is as disruptive as its builders promise.' },
     },
   };
   function getTabDesc(view) {
